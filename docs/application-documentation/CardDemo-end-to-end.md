@@ -1,8 +1,4 @@
-# CardDemo, end to end
-
-End-to-end flow for developers. A Word copy of this guide is `CardDemo-end-to-end.docx` in this folder. This is the single shareable description of the CardDemo repository: what it is, how a person moves through every screen, how the nightly batch runs, and where the data lives. Each fact names the file and line it comes from. Confirmed means the code or a definition states it. Inferred means it was reasoned from several cited facts. Unverified means it comes from a comment, a README, or a value this repository does not contain.
-
-The page-by-page package this was drawn from is listed at the end. That package has one page per program, job, screen, and dataset.
+# Aws Mainframe Credit-Card-Demo
 
 ## What this repository is
 
