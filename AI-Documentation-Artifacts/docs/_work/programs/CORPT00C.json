@@ -1,0 +1,705 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "COMEN01C", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:77", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS or DFHCOMMAREA present", 
+   "source": "app/cbl/CORPT00C.cbl:162"
+  }
+ ], 
+ "source_path": "app/cbl/CORPT00C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/CORPT00C.cbl:1-8", 
+  "version_banner": "* Ver: CardDemo_v1.0-15-g27d6c6f-68 Date: 2022-07-19 23:12:33 CDT", 
+  "description": "Program     : CORPT00C.CBL Application : CardDemo Type        : CICS COBOL Program Function    : Print Transaction reports by submitting batch job from online using extra partition TDQ. All Rights Reserved.", 
+  "author": "AWS"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 202, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "RETURN-TO-PREV-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "RECEIVE-TRNRPT-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "RETURN-TO-PREV-SCREEN", 
+    "SEND-TRNRPT-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 163, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "PROCESS-ENTER-KEY", 
+   "section": null, 
+   "end_line": 456, 
+   "purpose": "Statements include: START, CALL CSUTLDTC", 
+   "performs": [
+    "SUBMIT-JOB-TO-INTRDR", 
+    "SUBMIT-JOB-TO-INTRDR", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "SUBMIT-JOB-TO-INTRDR", 
+    "SEND-TRNRPT-SCREEN", 
+    "INITIALIZE-ALL-FIELDS", 
+    "SEND-TRNRPT-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 208, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SUBMIT-JOB-TO-INTRDR", 
+   "section": null, 
+   "end_line": 510, 
+   "purpose": "Statements include: inline PERFORM at app/cbl/CORPT00C.cbl:498", 
+   "performs": [
+    "SEND-TRNRPT-SCREEN", 
+    "INITIALIZE-ALL-FIELDS", 
+    "SEND-TRNRPT-SCREEN", 
+    "SEND-TRNRPT-SCREEN", 
+    "WIRTE-JOBSUB-TDQ"
+   ], 
+   "reachable": true, 
+   "start_line": 462, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "WIRTE-JOBSUB-TDQ", 
+   "section": null, 
+   "end_line": 535, 
+   "purpose": "Statements include: EXEC CICS WRITEQ, WRITE", 
+   "performs": [
+    "SEND-TRNRPT-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 515, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "RETURN-TO-PREV-SCREEN", 
+   "section": null, 
+   "end_line": 551, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 540, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SEND-TRNRPT-SCREEN", 
+   "section": null, 
+   "end_line": 580, 
+   "purpose": "Statements include: EXEC CICS SEND", 
+   "performs": [
+    "POPULATE-HEADER-INFO"
+   ], 
+   "reachable": true, 
+   "start_line": 556, 
+   "go_to": [
+    "RETURN-TO-CICS"
+   ]
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "RETURN-TO-CICS", 
+   "section": null, 
+   "end_line": 591, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 585, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "RECEIVE-TRNRPT-SCREEN", 
+   "section": null, 
+   "end_line": 604, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 596, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-HEADER-INFO", 
+   "section": null, 
+   "end_line": 628, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 609, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "INITIALIZE-ALL-FIELDS", 
+   "section": null, 
+   "end_line": 646, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 633, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "COCOM01Y", 
+   "replacing": null, 
+   "source": "app/cbl/CORPT00C.cbl:138", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (01 at app/cpy/COCOM01Y.cpy:19)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COCOM01Y.cpy"
+  }, 
+  {
+   "name": "CORPT00", 
+   "replacing": null, 
+   "source": "app/cbl/CORPT00C.cbl:140", 
+   "purpose": "Application copybook (bms-mapset)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/bms/CORPT00.bms"
+  }, 
+  {
+   "name": "COTTL01Y", 
+   "replacing": null, 
+   "source": "app/cbl/CORPT00C.cbl:142", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COTTL01Y.cpy"
+  }, 
+  {
+   "name": "CSDAT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/CORPT00C.cbl:143", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSDAT01Y.cpy"
+  }, 
+  {
+   "name": "CSMSG01Y", 
+   "replacing": null, 
+   "source": "app/cbl/CORPT00C.cbl:144", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSMSG01Y.cpy"
+  }, 
+  {
+   "name": "CVTRA05Y", 
+   "replacing": null, 
+   "source": "app/cbl/CORPT00C.cbl:146", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVTRA05Y.cpy"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/CORPT00C.cbl:148", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/CORPT00C.cbl:149", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/cbl/CORPT00C.cbl:37", 
+   "pic": "X(08)", 
+   "name": "WS-PGMNAME", 
+   "value": "'CORPT00C'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:38", 
+   "pic": "X(04)", 
+   "name": "WS-TRANID", 
+   "value": "'CR00'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:39", 
+   "pic": "X(80)", 
+   "name": "WS-MESSAGE", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:40", 
+   "pic": "X(08)", 
+   "name": "WS-TRANSACT-FILE", 
+   "value": "'TRANSACT'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:41", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "ERR-FLG-ON", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "ERR-FLG-OFF", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:44", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "TRANSACT-EOF", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "TRANSACT-NOT-EOF", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-TRANSACT-EOF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:47", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "SEND-ERASE-YES", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "SEND-ERASE-NO", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-SEND-ERASE-FLG", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:50", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "END-LOOP-YES", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "END-LOOP-NO", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-END-LOOP", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:54", 
+   "pic": "S9(09)", 
+   "name": "WS-RESP-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:55", 
+   "pic": "S9(09)", 
+   "name": "WS-REAS-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:56", 
+   "pic": "S9(04)", 
+   "name": "WS-REC-COUNT", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:57", 
+   "pic": "S9(04)", 
+   "name": "WS-IDX", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:58", 
+   "pic": "X(10)", 
+   "name": "WS-REPORT-NAME", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:61", 
+   "pic": "X(04)", 
+   "name": "WS-START-DATE-YYYY", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:62", 
+   "pic": "X(01)", 
+   "name": "FILLER", 
+   "value": "'-'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:63", 
+   "pic": "X(02)", 
+   "name": "WS-START-DATE-MM", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:64", 
+   "pic": "X(01)", 
+   "name": "FILLER", 
+   "value": "'-'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:65", 
+   "pic": "X(02)", 
+   "name": "WS-START-DATE-DD", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:67", 
+   "pic": "X(04)", 
+   "name": "WS-END-DATE-YYYY", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:68", 
+   "pic": "X(01)", 
+   "name": "FILLER", 
+   "value": "'-'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:69", 
+   "pic": "X(02)", 
+   "name": "WS-END-DATE-MM", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:70", 
+   "pic": "X(01)", 
+   "name": "FILLER", 
+   "value": "'-'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:71", 
+   "pic": "X(02)", 
+   "name": "WS-END-DATE-DD", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:72", 
+   "pic": "X(10)", 
+   "name": "WS-DATE-FORMAT", 
+   "value": "'YYYY-MM-DD'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:74", 
+   "pic": "99", 
+   "name": "WS-NUM-99", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:75", 
+   "pic": "9999", 
+   "name": "WS-NUM-9999", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:78", 
+   "pic": "X(08)", 
+   "name": "WS-TRAN-DATE", 
+   "value": "'00/00/00'"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:79", 
+   "pic": "X(80)", 
+   "name": "JCL-RECORD", 
+   "value": "' '"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:106", 
+   "pic": "X(10)", 
+   "name": "PARM-START-DATE-1", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:107", 
+   "pic": "X(52)", 
+   "name": "FILLER", 
+   "value": "\"'\""
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:111", 
+   "pic": "X(10)", 
+   "name": "PARM-END-DATE-1", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:112", 
+   "pic": "X(54)", 
+   "name": "FILLER", 
+   "value": "\"'\""
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:118", 
+   "pic": "X(10)", 
+   "name": "PARM-START-DATE-2", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:119", 
+   "pic": "X", 
+   "name": "FILLER", 
+   "value": "SPACE."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:120", 
+   "pic": "X(10)", 
+   "name": "PARM-END-DATE-2", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:121", 
+   "pic": "X(59)", 
+   "name": "FILLER", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:127", 
+   "name": "JOB-LINES", 
+   "value": "OCCURS 1000", 
+   "purpose": "table"
+  }
+ ], 
+ "loc": {
+  "comment": 63, 
+  "total": 649, 
+  "code": 586
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/CORPT00C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "embedded_jcl": {
+  "write_loop": {
+   "text": "Each JOB-LINES entry is moved to JCL-RECORD and written to TD queue JOBS. The loop stops after the line that equals '/*EOF', spaces, or low-values; that line is also written.", 
+   "source": "app/cbl/CORPT00C.cbl:497-508, app/cbl/CORPT00C.cbl:517-520"
+  }, 
+  "job_card_source": "app/cbl/CORPT00C.cbl:83-86", 
+  "confidence": "Confirmed", 
+  "jcllib_source": "app/cbl/CORPT00C.cbl:90", 
+  "exec": {
+   "source": "app/cbl/CORPT00C.cbl:94", 
+   "step": "STEP10", 
+   "proc": "TRANREPT"
+  }, 
+  "table": {
+   "source": "app/cbl/CORPT00C.cbl:126-127", 
+   "pic": "X(80)", 
+   "redefines": "JOB-DATA-1", 
+   "name": "JOB-LINES", 
+   "occurs": 1000
+  }, 
+  "overrides": [
+   {
+    "content": "TRAN-CARD-NUM, TRAN-PROC-DT symbols and PARM-START-DATE / PARM-END-DATE from PARM-START-DATE-1 and PARM-END-DATE-1", 
+    "source": "app/cbl/CORPT00C.cbl:97-112", 
+    "dd": "STEP05R.SYMNAMES"
+   }, 
+   {
+    "content": "PARM-START-DATE-2, a space, PARM-END-DATE-2", 
+    "source": "app/cbl/CORPT00C.cbl:116-121", 
+    "dd": "STEP10R.DATEPARM"
+   }
+  ], 
+  "job_name": "TRNRPT00", 
+  "jcllib": "AWS.M2.CARDDEMO.PROC", 
+  "terminator": {
+   "text": "/*EOF", 
+   "source": "app/cbl/CORPT00C.cbl:125"
+  }
+ }, 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CORPT00C.cbl:13"
+  }
+ ], 
+ "sha256": "0b06bd5d4f38f17871de8985c439dfce7ed30d28e02b6ffeb8459e0cd8db4fc2", 
+ "files": [], 
+ "messages": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "pcbs": [], 
+  "linkage": [
+   {
+    "source": "app/cbl/CORPT00C.cbl:155", 
+    "name": "DFHCOMMAREA"
+   }
+  ]
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/CORPT00C.cbl:517", 
+   "store_kind": "cics-td-queue", 
+   "store": "JOBS", 
+   "ops": [
+    "C"
+   ]
+  }
+ ], 
+ "program_id": "CORPT00C", 
+ "error_handling": [
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/CORPT00C.cbl:525", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "EVALUATE WS-RESP-CD"
+  }
+ ], 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 199, 
+   "paragraph": "MAIN-PARA", 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "options": {}
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "JOBS", 
+   "line": 517, 
+   "paragraph": "WIRTE-JOBSUB-TDQ", 
+   "verb": "WRITEQ", 
+   "response_handling": "RESP checked", 
+   "options": {}
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 548, 
+   "paragraph": "RETURN-TO-PREV-SCREEN", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "options": {}
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 563, 
+   "paragraph": "SEND-TRNRPT-SCREEN", 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "options": {}
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 571, 
+   "paragraph": "SEND-TRNRPT-SCREEN", 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "options": {}
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 587, 
+   "paragraph": "RETURN-TO-CICS", 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "options": {}
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 598, 
+   "paragraph": "RECEIVE-TRNRPT-SCREEN", 
+   "verb": "RECEIVE", 
+   "response_handling": "RESP checked", 
+   "options": {}
+  }
+ ], 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CR00", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/CORPT00C.cbl:199", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CSUTLDTC", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CORPT00C.cbl:392", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CSUTLDTC", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CORPT00C.cbl:412", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/CORPT00C.cbl:548", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CR00", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/CORPT00C.cbl:587", 
+   "condition": null
+  }
+ ], 
+ "language": "COBOL", 
+ "candidate_rules": [], 
+ "runtime_type": [
+  "cics-online"
+ ]
+}

@@ -1,0 +1,722 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CBEXPORT", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/jcl/CBEXPORT.jcl:43", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "No EXEC CICS or DFHCOMMAREA in this source", 
+   "source": "app/cbl/CBEXPORT.cbl:146"
+  }
+ ], 
+ "source_path": "app/cbl/CBEXPORT.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/CBEXPORT.cbl:1-8", 
+  "version_banner": "* Ver: CardDemo_v2.0-44-gb6e9c27-254 Date: 2025-10-16 14:07:18 CDT", 
+  "description": "Program     : CBEXPORT.CBL Application : CardDemo Type        : BATCH COBOL Program Function    : Export Customer Data for Branch Migration Reads normalized CardDemo files and creates multi-record export file for data migration", 
+  "author": "CARDDEMO"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "name": "0000-MAIN-PROCESSING", 
+   "section": null, 
+   "end_line": 158, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "1000-INITIALIZE", 
+    "2000-EXPORT-CUSTOMERS", 
+    "3000-EXPORT-ACCOUNTS", 
+    "4000-EXPORT-XREFS", 
+    "5000-EXPORT-TRANSACTIONS", 
+    "5500-EXPORT-CARDS", 
+    "6000-FINALIZE"
+   ], 
+   "reachable": true, 
+   "start_line": 149, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1000-INITIALIZE", 
+   "section": null, 
+   "end_line": 169, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "1050-GENERATE-TIMESTAMP", 
+    "1100-OPEN-FILES"
+   ], 
+   "reachable": true, 
+   "start_line": 161, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1050-GENERATE-TIMESTAMP", 
+   "section": null, 
+   "end_line": 195, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 172, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1100-OPEN-FILES", 
+   "section": null, 
+   "end_line": 240, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 198, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2000-EXPORT-CUSTOMERS", 
+   "section": null, 
+   "end_line": 255, 
+   "purpose": "Statements include: READ, inline PERFORM at app/cbl/CBEXPORT.cbl:249", 
+   "performs": [
+    "2100-READ-CUSTOMER-RECORD", 
+    "2200-CREATE-CUSTOMER-EXP-REC", 
+    "2100-READ-CUSTOMER-RECORD"
+   ], 
+   "reachable": true, 
+   "start_line": 243, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2100-READ-CUSTOMER-RECORD", 
+   "section": null, 
+   "end_line": 266, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 258, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2200-CREATE-CUSTOMER-EXP-REC", 
+   "section": null, 
+   "end_line": 310, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 269, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3000-EXPORT-ACCOUNTS", 
+   "section": null, 
+   "end_line": 324, 
+   "purpose": "Statements include: READ, inline PERFORM at app/cbl/CBEXPORT.cbl:318", 
+   "performs": [
+    "3100-READ-ACCOUNT-RECORD", 
+    "3200-CREATE-ACCOUNT-EXP-REC", 
+    "3100-READ-ACCOUNT-RECORD"
+   ], 
+   "reachable": true, 
+   "start_line": 312, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3100-READ-ACCOUNT-RECORD", 
+   "section": null, 
+   "end_line": 335, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 327, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3200-CREATE-ACCOUNT-EXP-REC", 
+   "section": null, 
+   "end_line": 373, 
+   "purpose": "Statements include: OPEN, WRITE", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 338, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "4000-EXPORT-XREFS", 
+   "section": null, 
+   "end_line": 388, 
+   "purpose": "Statements include: READ, inline PERFORM at app/cbl/CBEXPORT.cbl:382", 
+   "performs": [
+    "4100-READ-XREF-RECORD", 
+    "4200-CREATE-XREF-EXPORT-RECORD", 
+    "4100-READ-XREF-RECORD"
+   ], 
+   "reachable": true, 
+   "start_line": 376, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "4100-READ-XREF-RECORD", 
+   "section": null, 
+   "end_line": 399, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 391, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "4200-CREATE-XREF-EXPORT-RECORD", 
+   "section": null, 
+   "end_line": 428, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 402, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5000-EXPORT-TRANSACTIONS", 
+   "section": null, 
+   "end_line": 443, 
+   "purpose": "Statements include: READ, inline PERFORM at app/cbl/CBEXPORT.cbl:437", 
+   "performs": [
+    "5100-READ-TRANSACTION-RECORD", 
+    "5200-CREATE-TRAN-EXP-REC", 
+    "5100-READ-TRANSACTION-RECORD"
+   ], 
+   "reachable": true, 
+   "start_line": 431, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5100-READ-TRANSACTION-RECORD", 
+   "section": null, 
+   "end_line": 454, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 446, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5200-CREATE-TRAN-EXP-REC", 
+   "section": null, 
+   "end_line": 493, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 457, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5500-EXPORT-CARDS", 
+   "section": null, 
+   "end_line": 508, 
+   "purpose": "Statements include: READ, inline PERFORM at app/cbl/CBEXPORT.cbl:502", 
+   "performs": [
+    "5600-READ-CARD-RECORD", 
+    "5700-CREATE-CARD-EXPORT-RECORD", 
+    "5600-READ-CARD-RECORD"
+   ], 
+   "reachable": true, 
+   "start_line": 496, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5600-READ-CARD-RECORD", 
+   "section": null, 
+   "end_line": 519, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 511, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5700-CREATE-CARD-EXPORT-RECORD", 
+   "section": null, 
+   "end_line": 551, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 522, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "6000-FINALIZE", 
+   "section": null, 
+   "end_line": 573, 
+   "purpose": "Statements include: CLOSE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 554, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9999-ABEND-PROGRAM", 
+   "section": null, 
+   "end_line": 579, 
+   "purpose": "Statements include: CALL CEE3ABD", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 576, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "CVCUS01Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBEXPORT.cbl:75", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVCUS01Y.cpy"
+  }, 
+  {
+   "name": "CVACT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBEXPORT.cbl:78", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT01Y.cpy"
+  }, 
+  {
+   "name": "CVACT03Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBEXPORT.cbl:81", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT03Y.cpy"
+  }, 
+  {
+   "name": "CVTRA05Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBEXPORT.cbl:84", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVTRA05Y.cpy"
+  }, 
+  {
+   "name": "CVACT02Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBEXPORT.cbl:87", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT02Y.cpy"
+  }, 
+  {
+   "name": "CVEXPORT", 
+   "replacing": null, 
+   "source": "app/cbl/CBEXPORT.cbl:96", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVEXPORT.cpy"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/cbl/CBEXPORT.cbl:123", 
+   "pic": "9(09)", 
+   "name": "WS-SEQUENCE-COUNTER", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBEXPORT.cbl:139", 
+   "pic": "9(09)", 
+   "name": "WS-CUSTOMER-RECORDS-EXPORTED", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBEXPORT.cbl:140", 
+   "pic": "9(09)", 
+   "name": "WS-ACCOUNT-RECORDS-EXPORTED", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBEXPORT.cbl:141", 
+   "pic": "9(09)", 
+   "name": "WS-XREF-RECORDS-EXPORTED", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBEXPORT.cbl:142", 
+   "pic": "9(09)", 
+   "name": "WS-TRAN-RECORDS-EXPORTED", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBEXPORT.cbl:143", 
+   "pic": "9(09)", 
+   "name": "WS-CARD-RECORDS-EXPORTED", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBEXPORT.cbl:144", 
+   "pic": "9(09)", 
+   "name": "WS-TOTAL-RECORDS-EXPORTED", 
+   "value": "0."
+  }
+ ], 
+ "loc": {
+  "comment": 91, 
+  "total": 582, 
+  "code": 491
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/CBEXPORT.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBEXPORT.cbl:17"
+  }, 
+  {
+   "text": "DD name TRANSACT is used with more than one dataset name across jobs. Each name is tied to the JCL line in physical_names.", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBEXPORT.cbl:53-57"
+  }
+ ], 
+ "sha256": "598e3c9055b96b79266910e080bc24048eb308ee61afc828c06dbade9f501d38", 
+ "files": [
+  {
+   "logical_name": "CUSTOMER-INPUT", 
+   "record_layout": null, 
+   "record_key": "CUST-ID", 
+   "ddname_or_cics_file": "CUSTFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS (app/jcl/CBEXPORT.jcl:49)"
+   ], 
+   "source": "app/cbl/CBEXPORT.cbl:35-39", 
+   "file_status_field": "WS-CUSTOMER-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "ACCOUNT-INPUT", 
+   "record_layout": null, 
+   "record_key": "ACCT-ID", 
+   "ddname_or_cics_file": "ACCTFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS (app/jcl/CBEXPORT.jcl:51)"
+   ], 
+   "source": "app/cbl/CBEXPORT.cbl:41-45", 
+   "file_status_field": "WS-ACCOUNT-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "XREF-INPUT", 
+   "record_layout": null, 
+   "record_key": "XREF-CARD-NUM", 
+   "ddname_or_cics_file": "XREFFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS (app/jcl/CBEXPORT.jcl:53)"
+   ], 
+   "source": "app/cbl/CBEXPORT.cbl:47-51", 
+   "file_status_field": "WS-XREF-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "TRANSACTION-INPUT", 
+   "record_layout": null, 
+   "record_key": "TRAN-ID", 
+   "ddname_or_cics_file": "TRANSACT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS (app/jcl/CBEXPORT.jcl:55)", 
+    "AWS.M2.CARDDEMO.TRANSACT.COMBINED(+1) (app/jcl/COMBTRAN.jcl:43)", 
+    "AWS.M2.CARDDEMO.SYSTRAN(+1) (app/jcl/INTCALC.jcl:37)", 
+    "AWS.M2.CARDDEMO.DALYTRAN.PS.INIT (app/jcl/TRANFILE.jcl:69)"
+   ], 
+   "source": "app/cbl/CBEXPORT.cbl:53-57", 
+   "file_status_field": "WS-TRANSACTION-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "CARD-INPUT", 
+   "record_layout": null, 
+   "record_key": "CARD-NUM", 
+   "ddname_or_cics_file": "CARDFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS (app/jcl/CBEXPORT.jcl:57)"
+   ], 
+   "source": "app/cbl/CBEXPORT.cbl:59-63", 
+   "file_status_field": "WS-CARD-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "EXPORT-OUTPUT", 
+   "record_layout": "EXPORT-OUTPUT-RECORD", 
+   "record_key": "EXPORT-SEQUENCE-NUM", 
+   "ddname_or_cics_file": "EXPFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.EXPORT.DATA (app/jcl/CBEXPORT.jcl:62)"
+   ], 
+   "source": "app/cbl/CBEXPORT.cbl:65-69", 
+   "file_status_field": "WS-EXPORT-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }
+ ], 
+ "messages": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": []
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/CBEXPORT.cbl:200-260", 
+   "store_kind": "logical", 
+   "store": "CUSTOMER-INPUT", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBEXPORT.cbl:207-329", 
+   "store_kind": "logical", 
+   "store": "ACCOUNT-INPUT", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBEXPORT.cbl:214-393", 
+   "store_kind": "logical", 
+   "store": "XREF-INPUT", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBEXPORT.cbl:228-513", 
+   "store_kind": "logical", 
+   "store": "CARD-INPUT", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBEXPORT.cbl:235", 
+   "store_kind": "logical", 
+   "store": "EXPORT-OUTPUT", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBEXPORT.cbl:221-448", 
+   "store_kind": "logical", 
+   "store": "TRANSACTION-INPUT", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "program_id": "CBEXPORT", 
+ "error_handling": [
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:204", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:211", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:218", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:225", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:232", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:239", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:265", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:306", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:334", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:369", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:398", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:424", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:453", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:489", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:518", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:547", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:576", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "9999-ABEND-PROGRAM."
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBEXPORT.cbl:579", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "CALL 'CEE3ABD'."
+  }
+ ], 
+ "commands": [], 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CEE3ABD", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBEXPORT.cbl:579", 
+   "condition": null
+  }
+ ], 
+ "language": "COBOL", 
+ "candidate_rules": [], 
+ "runtime_type": [
+  "batch-main"
+ ]
+}

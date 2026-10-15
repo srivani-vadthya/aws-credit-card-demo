@@ -1,0 +1,111 @@
+{
+ "schema": "ops-security/1",
+ "authentication": {
+  "transaction": "CC00",
+  "program": "COSGN00C",
+  "map": "COSGN0A",
+  "user_store": "CICS file USRSEC",
+  "password_field": "SEC-USR-PWD PIC X(08)",
+  "password_layout": "app/cpy/CSUSR01Y.cpy:21",
+  "user_type_field": "SEC-USR-TYPE PIC X(01)",
+  "user_type_layout": "app/cpy/CSUSR01Y.cpy:22",
+  "comparison": "The entered user id and password are converted with FUNCTION UPPER-CASE, then SEC-USR-PWD is compared equal to WS-USER-PWD.",
+  "comparison_source": "app/cbl/COSGN00C.cbl:132-136, app/cbl/COSGN00C.cbl:223",
+  "screen_attribute": "PASSWD is DRK,FSET,UNPROT, length 8",
+  "screen_source": "app/bms/COSGN00.bms:175-178",
+  "lockout": "No lockout counter or attempt limit is coded in the sign-on EVALUATE.",
+  "lockout_source": "app/cbl/COSGN00C.cbl:221-256"
+ },
+ "roles": [
+  {
+   "role": "admin",
+   "identified_by": "CDEMO-USRTYP-ADMIN VALUE 'A'",
+   "source": "app/cpy/COCOM01Y.cpy:27",
+   "enforcement": "After a matching password, COSGN00C transfers to COADM01C.",
+   "enforcement_source": "app/cbl/COSGN00C.cbl:230-234"
+  },
+  {
+   "role": "user",
+   "identified_by": "CDEMO-USRTYP-USER VALUE 'U'",
+   "source": "app/cpy/COCOM01Y.cpy:28",
+   "enforcement": "A non-admin match transfers to COMEN01C. On that menu, a user-type U session is refused an option whose table user type is A.",
+   "enforcement_source": "app/cbl/COSGN00C.cbl:235-239, app/cbl/COMEN01C.cbl:136-142"
+  }
+ ],
+ "admin_menu_guard": {
+  "finding": "COADM01C does not test CDEMO-USRTYP-ADMIN. The admin menu is reached by the sign-on transfer.",
+  "source": "app/cbl/COSGN00C.cbl:230-234"
+ },
+ "empty_commarea": {
+  "finding": "When EIBCALEN is 0, COCRDLIC sets CDEMO-USRTYP-USER to true before continuing.",
+  "source": "app/cbl/COCRDLIC.cbl:315-320"
+ },
+ "password_maintenance": [
+  {
+   "program": "COUSR01C",
+   "statement": "A new user password is stored by moving the screen field PASSWDI to SEC-USR-PWD. That paragraph does not call FUNCTION UPPER-CASE.",
+   "source": "app/cbl/COUSR01C.cbl:157"
+  },
+  {
+   "program": "COUSR02C",
+   "statement": "When the screen password differs from SEC-USR-PWD, the screen value replaces the stored password.",
+   "source": "app/cbl/COUSR02C.cbl:227-228"
+  }
+ ],
+ "platform": [
+  {
+   "mechanism": "CICS transaction security attributes",
+   "definition": "RESSEC(NO) CMDSEC(NO)",
+   "scope": "Transaction definitions in the base CSD, the VSAM-MQ CSD, the DB2 CSD, and the authorization CSD.",
+   "evidence": [
+    "app/csd/CARDDEMO.CSD:314",
+    "app/app-vsam-mq/csd/CRDDEMOM.csd:24",
+    "app/app-transaction-type-db2/csd/CRDDEMOD.csd:32",
+    "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:46"
+   ]
+  },
+  {
+   "mechanism": "DB2 GRANT",
+   "definition": "GRANT DBADM ON DATABASE CARDDEMO TO PUBLIC; GRANT USE OF TABLESPACE CARDDEMO.CARDSPC1 TO PUBLIC; GRANT DELETE, INSERT, SELECT, UPDATE on CARDDEMO.TRANSACTION_TYPE and CARDDEMO.TRANSACTION_TYPE_CATEGORY TO PUBLIC.",
+   "evidence": [
+    "app/app-transaction-type-db2/ctl/DB2CREAT.ctl:52-59",
+    "app/app-transaction-type-db2/ctl/DB2CREAT.ctl:103-105"
+   ]
+  },
+  {
+   "mechanism": "RACF sample commands",
+   "definition": "RACFCMDS runs IKJEFT01. SYSIN contains RALT GCICSTRN CARD ADDMEM(CT02) and CONNECT of one user to GROUP(M2APPDEV). No ADDUSER, PERMIT, or RDEFINE of a data-set profile is in that job.",
+   "evidence": ["samples/jcl/RACFCMDS.jcl:19", "samples/jcl/RACFCMDS.jcl:24", "samples/jcl/RACFCMDS.jcl:29"]
+  },
+  {
+   "mechanism": "Catalog RACF flag",
+   "definition": "The point-in-time LISTCAT shows RACF----------------(NO) on listed clusters. Example line 43. This is the catalog as of 09/01/22, not a RACF rule.",
+   "evidence": ["app/catlg/LISTCAT.txt:43"]
+  },
+  {
+   "mechanism": "MQ authority",
+   "definition": "No MQ set-authority command was found.",
+   "evidence": []
+  }
+ ],
+ "sensitive": [
+  {
+   "store": "USRSEC SEC-USR-PWD",
+   "kind": "credential",
+   "protection": "Compared as an equal 8-byte value after the sign-on input is upper-cased. The BMS password field is dark. No encryption routine is called in the sign-on paragraph.",
+   "evidence": ["app/cpy/CSUSR01Y.cpy:21", "app/cbl/COSGN00C.cbl:223", "app/bms/COSGN00.bms:175"]
+  },
+  {
+   "store": "FTPJCLS SYSIN",
+   "kind": "credential",
+   "protection": "The job SYSIN contains a user id and a password. Those values are not copied into this catalog.",
+   "evidence": ["app/jcl/FTPJCL.JCL:33-40"]
+  }
+ ],
+ "observations": [
+  "Sign-on stores the user type from SEC-USR-TYPE into CDEMO-USER-TYPE and branches only on the value A.",
+  "The user menu refuses an option marked A when the commarea user type is U, with message 'No access - Admin Only option... '.",
+  "DB2 privileges in DB2CREAT.ctl are granted to PUBLIC.",
+  "CICS resource and command security are set to NO on the transaction definitions that were read."
+ ]
+}

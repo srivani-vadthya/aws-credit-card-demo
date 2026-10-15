@@ -1,0 +1,39 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/TRANREPT.jcl:76", 
+   "via": "jcl-dd", 
+   "by": "TRANREPT.STEP10R", 
+   "ops": [
+    "C", 
+    "D"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/DEFGDGB.jcl:36", 
+  "app/jcl/REPTFILE.jcl:25"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "gdg": {
+   "scratch": false, 
+   "limit": 10, 
+   "empty": false, 
+   "source": "app/jcl/REPTFILE.jcl:25"
+  }, 
+  "defined_by": [
+   "app/jcl/DEFGDGB.jcl:36", 
+   "app/jcl/REPTFILE.jcl:25"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.TRANREPT", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "gdg-base", 
+ "aliases": [], 
+ "sample_data": null
+}

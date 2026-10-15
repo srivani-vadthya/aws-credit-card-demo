@@ -1,0 +1,293 @@
+{
+ "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:20", 
+ "name": "COTRTUP", 
+ "module": "trantype", 
+ "maps": [
+  {
+   "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:25", 
+   "mockup": [
+    "Tran: XXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "                           Maintain Transaction Type", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "   Transaction Type  :   __", 
+    "", 
+    "   Description       :   __________________________________________________", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "                      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "ENTER=Process F3=Exit F4=Delete F5=Save   F6=Add                    F12=Cancel"
+   ], 
+   "name": "CTRTUPA", 
+   "fields": [
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:75", 
+     "length": 25, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Maintain Transaction Type", 
+     "col": 28, 
+     "row": 7
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:79", 
+     "length": 19, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Transaction Type  :", 
+     "col": 4, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:84", 
+     "length": 2, 
+     "attrb": "(IC,UNPROT)", 
+     "name": "TRTYPCD", 
+     "color": null, 
+     "initial": null, 
+     "col": 26, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:88", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 29, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:90", 
+     "length": 19, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Description       :", 
+     "col": 4, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:94", 
+     "length": 50, 
+     "attrb": "(UNPROT)", 
+     "name": "TRTYDSC", 
+     "color": null, 
+     "initial": null, 
+     "col": 26, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:98", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:100", 
+     "length": 45, 
+     "attrb": "(ASKIP)", 
+     "name": "INFOMSG", 
+     "color": "NEUTRAL", 
+     "initial": null, 
+     "col": 23, 
+     "row": 22
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:105", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 69, 
+     "row": 22
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:107", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:111", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "FKEYS", 
+     "color": "YELLOW", 
+     "initial": "ENTER=Process F3=Exit", 
+     "col": 1, 
+     "row": 24
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:116", 
+     "length": 9, 
+     "attrb": "(ASKIP,DRK)", 
+     "name": "FKEY04", 
+     "color": "YELLOW", 
+     "initial": "F4=Delete", 
+     "col": 23, 
+     "row": 24
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:121", 
+     "length": 8, 
+     "attrb": "(ASKIP,DRK)", 
+     "name": "FKEY05", 
+     "color": "YELLOW", 
+     "initial": "F5=Save", 
+     "col": 33, 
+     "row": 24
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:126", 
+     "length": 6, 
+     "attrb": "(ASKIP,DRK)", 
+     "name": "FKEY06", 
+     "color": "YELLOW", 
+     "initial": "F6=Add", 
+     "col": 43, 
+     "row": 24
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:131", 
+     "length": 10, 
+     "attrb": "(ASKIP,DRK)", 
+     "name": "FKEY12", 
+     "color": "YELLOW", 
+     "initial": "F12=Cancel", 
+     "col": 69, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "accessors": [], 
+ "module": "auth", 
+ "evidence": [
+  "app/app-authorization-ims-db2-mq/ims/DBPAUTX0.dbd:18"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "defined_by": [
+   "app/app-authorization-ims-db2-mq/ims/DBPAUTX0.dbd:18"
+  ]
+ }, 
+ "layout": null, 
+ "name": "DBPAUTX0", 
+ "ims": {
+  "access": "INDEX,VSAM,PROT", 
+  "lchild": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/ims/DBPAUTX0.dbd:30", 
+    "segment": "PAUTSUM0", 
+    "dbd": "DBPAUTP0"
+   }
+  ], 
+  "segments": [
+   {
+    "layout": null, 
+    "name": "PAUTINDX", 
+    "parent": null, 
+    "bytes": 6, 
+    "seq_field": "INDXSEQ", 
+    "source": "app/app-authorization-ims-db2-mq/ims/DBPAUTX0.dbd:27"
+   }
+  ], 
+  "dataset_dd": [
+   "DDPAUTX0"
+  ], 
+  "psbs": []
+ }, 
+ "mq": null, 
+ "store_kind": "ims-index", 
+ "aliases": [], 
+ "sample_data": null
+}

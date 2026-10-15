@@ -1,0 +1,98 @@
+{
+ "relationships": [
+  {
+   "confidence": "Confirmed", 
+   "from": "card-cross-reference", 
+   "evidence_type": "record-field", 
+   "fields": [
+    "XREF-CARD-NUM"
+   ], 
+   "evidence": "app/cpy/CVACT03Y.cpy:5", 
+   "to": "card"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "card-cross-reference", 
+   "evidence_type": "record-field", 
+   "fields": [
+    "XREF-CUST-ID"
+   ], 
+   "evidence": "app/cpy/CVACT03Y.cpy:6", 
+   "to": "customer"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "card-cross-reference", 
+   "evidence_type": "vsam-aix", 
+   "fields": [
+    "XREF-ACCT-ID"
+   ], 
+   "evidence": "app/jcl/XREFFILE.jcl:74", 
+   "note": "AIX KEYS(11 25) is the 11-byte field at 1-based offset 26, XREF-ACCT-ID in app/cpy/CVACT03Y.cpy:7", 
+   "to": "account"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "authorization-fraud", 
+   "evidence_type": "db2-column", 
+   "fields": [
+    "CARD_NUM"
+   ], 
+   "evidence": "app/app-authorization-ims-db2-mq/ddl/AUTHFRDS.ddl:2", 
+   "to": "card"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "authorization-fraud", 
+   "evidence_type": "db2-column", 
+   "fields": [
+    "ACCT_ID"
+   ], 
+   "evidence": "app/app-authorization-ims-db2-mq/ddl/AUTHFRDS.ddl:26", 
+   "to": "account"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "authorization-fraud", 
+   "evidence_type": "db2-column", 
+   "fields": [
+    "CUST_ID"
+   ], 
+   "evidence": "app/app-authorization-ims-db2-mq/ddl/AUTHFRDS.ddl:27", 
+   "to": "customer"
+  }
+ ], 
+ "entities": [
+  {
+   "stores": [
+    "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS"
+   ], 
+   "name": "account"
+  }, 
+  {
+   "stores": [
+    "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS"
+   ], 
+   "name": "card"
+  }, 
+  {
+   "stores": [
+    "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS"
+   ], 
+   "name": "customer"
+  }, 
+  {
+   "stores": [
+    "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS"
+   ], 
+   "name": "card-cross-reference"
+  }, 
+  {
+   "stores": [
+    "CARDDEMO.AUTHFRDS", 
+    "DBPAUTP0"
+   ], 
+   "name": "authorization-fraud"
+  }
+ ]
+}

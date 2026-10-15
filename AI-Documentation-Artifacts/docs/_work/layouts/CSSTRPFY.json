@@ -1,0 +1,7 @@
+{
+ "source": "app/cpy/CSSTRPFY.cpy", 
+ "notes": [], 
+ "conventions": "offset/end are 1-based byte positions; ODO at maximum", 
+ "records": [], 
+ "schema": "copybook-layout/1"
+}

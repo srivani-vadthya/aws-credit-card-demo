@@ -1,0 +1,383 @@
+{
+ "source": "app/bms/COCRDUP.bms:20", 
+ "name": "COCRDUP", 
+ "module": "base", 
+ "maps": [
+  {
+   "source": "app/bms/COCRDUP.bms:25", 
+   "mockup": [
+    "Tran: XXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "                             Update Credit Card Details", 
+    "", 
+    "", 
+    "                      Account Number    :   XXXXXXXXXXX", 
+    "                      Card Number       :   ________________", 
+    "", 
+    "", 
+    "   Name on card      :  __________________________________________________", 
+    "", 
+    "   Card Active Y/N   :  _", 
+    "", 
+    "   Expiry Date       :  __ / ____  XX", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "", 
+    "", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "ENTER=Process F3=Exit F5=Save F12=Cancel"
+   ], 
+   "name": "CCRDUPA", 
+   "fields": [
+    {
+     "source": "app/bms/COCRDUP.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:75", 
+     "length": 26, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Update Credit Card Details", 
+     "col": 30, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:79", 
+     "length": 19, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Account Number    :", 
+     "col": 23, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:84", 
+     "length": 11, 
+     "attrb": "(FSET,IC,NORM,PROT)", 
+     "name": "ACCTSID", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 45, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:89", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 57, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:91", 
+     "length": 19, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Card Number       :", 
+     "col": 23, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:96", 
+     "length": 16, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "CARDSID", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 45, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:101", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 62, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:103", 
+     "length": 20, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Name on card      :", 
+     "col": 4, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:107", 
+     "length": 50, 
+     "attrb": "(UNPROT)", 
+     "name": "CRDNAME", 
+     "color": null, 
+     "initial": null, 
+     "col": 25, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:111", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:113", 
+     "length": 20, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Card Active Y/N   : ", 
+     "col": 4, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:117", 
+     "length": 1, 
+     "attrb": "(UNPROT)", 
+     "name": "CRDSTCD", 
+     "color": null, 
+     "initial": null, 
+     "col": 25, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:121", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 27, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:123", 
+     "length": 20, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Expiry Date       : ", 
+     "col": 4, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:127", 
+     "length": 2, 
+     "attrb": "(UNPROT)", 
+     "name": "EXPMON", 
+     "color": null, 
+     "initial": null, 
+     "col": 25, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:132", 
+     "length": 1, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "/", 
+     "col": 28, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:135", 
+     "length": 4, 
+     "attrb": "(UNPROT)", 
+     "name": "EXPYEAR", 
+     "color": null, 
+     "initial": null, 
+     "col": 30, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:140", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 35, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:142", 
+     "length": 2, 
+     "attrb": "(DRK,FSET,PROT)", 
+     "name": "EXPDAY", 
+     "color": null, 
+     "initial": null, 
+     "col": 36, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:147", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 39, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:149", 
+     "length": 40, 
+     "attrb": "(PROT)", 
+     "name": "INFOMSG", 
+     "color": "NEUTRAL", 
+     "initial": null, 
+     "col": 25, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:154", 
+     "length": 80, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:158", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "FKEYS", 
+     "color": "YELLOW", 
+     "initial": "ENTER=Process F3=Exit", 
+     "col": 1, 
+     "row": 24
+    }, 
+    {
+     "source": "app/bms/COCRDUP.bms:163", 
+     "length": 18, 
+     "attrb": "(ASKIP,DRK)", 
+     "name": "FKEYSC", 
+     "color": "YELLOW", 
+     "initial": "F5=Save F12=Cancel", 
+     "col": 23, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

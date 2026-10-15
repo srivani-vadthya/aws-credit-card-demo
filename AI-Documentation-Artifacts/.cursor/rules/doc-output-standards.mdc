@@ -1,0 +1,39 @@
+---
+description: Formatting, structure, traceability and Mermaid standards for the generated application documentation package
+globs: docs/**
+alwaysApply: false
+---
+
+# Documentation Output Standards
+
+## Structure
+- Follow the template set (index `00-index.md` defines the package). File
+  names: lower-case, hyphenated; per-artifact files use the artifact's exact
+  source name (`07-programs/<PROGRAM-ID>.md`, `06-batch/jobs/<JOBNAME>.md`).
+- One H1 per file; sections in template order. Keep empty optional sections
+  with `Not applicable - <reason>`.
+- Every file ends with a "Sources" section listing cited `path:line` refs and
+  a "Confidence" note summarizing Inferred/Unverified items.
+
+## Writing
+- Plain language first, technical detail after. Expand acronyms on first use
+  per file and add them to the glossary.
+- Reference other documents with relative Markdown links.
+- Tables for enumerable facts only; explain meaning in prose.
+- No speculation words ("probably", "likely") without an `Inferred` tag and
+  reasoning.
+
+## Mermaid
+- Node IDs without spaces (camelCase or underscores); quote labels with
+  special characters: `A["Step 1: Read (VSAM)"]`.
+- Quote edge labels containing punctuation: `A -->|"XCTL (menu)"| B`.
+- No styling, colors, classDef or click events.
+- Avoid reserved IDs (`end`, `graph`, `subgraph`).
+- Split diagrams over ~40 nodes into per-module diagrams.
+- Diagram types: `flowchart` for navigation/batch/call graphs,
+  `sequenceDiagram` for MQ/CICS interactions, `erDiagram` for data models,
+  `stateDiagram-v2` for record/status lifecycles.
+
+## Traceability
+- Business rules referenced by ID (`BR-...`); every program, job, dataset,
+  screen and table referenced by its exact source name.

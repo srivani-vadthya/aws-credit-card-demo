@@ -1,0 +1,857 @@
+{
+ "invoked_by": [], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS present", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:176"
+  }, 
+  {
+   "text": "EXEC DLI or CALL CBLTDLI from a CICS program", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:176"
+  }
+ ], 
+ "candidate_rules": [], 
+ "module": "auth", 
+ "header": {
+  "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:1", 
+  "author": "AWS", 
+  "description": "See the comment block at the top of the source. Unverified until matched to code.", 
+  "version_banner": null
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 257, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "SEND-PAULST-SCREEN", 
+    "GATHER-DETAILS", 
+    "SEND-PAULST-SCREEN", 
+    "RECEIVE-PAULST-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "SEND-PAULST-SCREEN", 
+    "RETURN-TO-PREV-SCREEN", 
+    "SEND-PAULST-SCREEN", 
+    "PROCESS-PF7-KEY", 
+    "SEND-PAULST-SCREEN", 
+    "PROCESS-PF8-KEY", 
+    "SEND-PAULST-SCREEN", 
+    "SEND-PAULST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 178, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "PROCESS-ENTER-KEY", 
+   "section": null, 
+   "end_line": 338, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "GATHER-DETAILS"
+   ], 
+   "reachable": true, 
+   "start_line": 261, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "GATHER-DETAILS", 
+   "section": null, 
+   "end_line": 358, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "GATHER-ACCOUNT-DETAILS", 
+    "INITIALIZE-AUTH-DATA", 
+    "PROCESS-PAGE-FORWARD"
+   ], 
+   "reachable": true, 
+   "start_line": 342, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "PROCESS-PF7-KEY", 
+   "section": null, 
+   "end_line": 385, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "GET-AUTH-SUMMARY", 
+    "INITIALIZE-AUTH-DATA", 
+    "PROCESS-PAGE-FORWARD"
+   ], 
+   "reachable": true, 
+   "start_line": 362, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "PROCESS-PF8-KEY", 
+   "section": null, 
+   "end_line": 412, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "GET-AUTH-SUMMARY", 
+    "REPOSITION-AUTHORIZATIONS", 
+    "INITIALIZE-AUTH-DATA", 
+    "PROCESS-PAGE-FORWARD"
+   ], 
+   "reachable": true, 
+   "start_line": 388, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "PROCESS-PAGE-FORWARD", 
+   "section": null, 
+   "end_line": 454, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "REPOSITION-AUTHORIZATIONS", 
+    "GET-AUTHORIZATIONS", 
+    "POPULATE-AUTH-LIST", 
+    "GET-AUTHORIZATIONS"
+   ], 
+   "reachable": true, 
+   "start_line": 415, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "GET-AUTHORIZATIONS", 
+   "section": null, 
+   "end_line": 486, 
+   "purpose": "Statements include: EXEC DLI GNP", 
+   "performs": [
+    "SEND-PAULST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 458, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "REPOSITION-AUTHORIZATIONS", 
+   "section": null, 
+   "end_line": 519, 
+   "purpose": "Statements include: EXEC DLI GNP", 
+   "performs": [
+    "SEND-PAULST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 488, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-AUTH-LIST", 
+   "section": null, 
+   "end_line": 605, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 522, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "INITIALIZE-AUTH-DATA", 
+   "section": null, 
+   "end_line": 662, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 608, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "RETURN-TO-PREV-SCREEN", 
+   "section": null, 
+   "end_line": 677, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 665, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SEND-PAULST-SCREEN", 
+   "section": null, 
+   "end_line": 709, 
+   "purpose": "Statements include: EXEC CICS SYNCPOINT, EXEC CICS SEND", 
+   "performs": [
+    "POPULATE-HEADER-INFO"
+   ], 
+   "reachable": true, 
+   "start_line": 681, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "RECEIVE-PAULST-SCREEN", 
+   "section": null, 
+   "end_line": 722, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 712, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-HEADER-INFO", 
+   "section": null, 
+   "end_line": 747, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 726, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "GATHER-ACCOUNT-DETAILS", 
+   "section": null, 
+   "end_line": 808, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "GETCARDXREF-BYACCT", 
+    "GETACCTDATA-BYACCT", 
+    "GETCUSTDATA-BYCUST", 
+    "GET-AUTH-SUMMARY"
+   ], 
+   "reachable": true, 
+   "start_line": 750, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "GETCARDXREF-BYACCT", 
+   "section": null, 
+   "end_line": 862, 
+   "purpose": "Statements include: EXEC CICS READ", 
+   "performs": [
+    "SEND-PAULST-SCREEN", 
+    "SEND-PAULST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 812, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "GETACCTDATA-BYACCT", 
+   "section": null, 
+   "end_line": 912, 
+   "purpose": "Statements include: EXEC CICS READ", 
+   "performs": [
+    "SEND-PAULST-SCREEN", 
+    "SEND-PAULST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 865, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "GETCUSTDATA-BYCUST", 
+   "section": null, 
+   "end_line": 963, 
+   "purpose": "Statements include: EXEC CICS READ", 
+   "performs": [
+    "SEND-PAULST-SCREEN", 
+    "SEND-PAULST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 915, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "GET-AUTH-SUMMARY", 
+   "section": null, 
+   "end_line": 997, 
+   "purpose": "Statements include: EXEC DLI GU", 
+   "performs": [
+    "SCHEDULE-PSB", 
+    "SEND-PAULST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 966, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SCHEDULE-PSB", 
+   "section": null, 
+   "end_line": 1031, 
+   "purpose": "Statements include: EXEC DLI SCHD, EXEC DLI TERM", 
+   "performs": [
+    "SEND-PAULST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 1001, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:116", 
+   "resolution": "inventory", 
+   "name": "COCOM01Y", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (app/cpy/COCOM01Y.cpy:19)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:129", 
+   "resolution": "inventory", 
+   "name": "COPAU00", 
+   "purpose": "Application copybook (bms-mapset)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:132", 
+   "resolution": "inventory", 
+   "name": "COTTL01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:135", 
+   "resolution": "inventory", 
+   "name": "CSDAT01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:138", 
+   "resolution": "inventory", 
+   "name": "CSMSG01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:141", 
+   "resolution": "inventory", 
+   "name": "CSMSG02Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:144", 
+   "resolution": "inventory", 
+   "name": "CVACT01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:147", 
+   "resolution": "inventory", 
+   "name": "CVACT02Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:150", 
+   "resolution": "inventory", 
+   "name": "CVACT03Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:153", 
+   "resolution": "inventory", 
+   "name": "CVCUS01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:161", 
+   "resolution": "inventory", 
+   "name": "CIPAUSMY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:165", 
+   "resolution": "inventory", 
+   "name": "CIPAUDTY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:168", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:169", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }
+ ], 
+ "runtime_type": [
+  "cics-online"
+ ], 
+ "loc": {
+  "comment": 82, 
+  "total": 1032, 
+  "code": 950
+ }, 
+ "evidence_summary": "Structural facts read from app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl. Paragraph purposes are Inferred from statements.", 
+ "source_format": "fixed", 
+ "observations": [], 
+ "sha256": "7ab6dadad6d9d738f6a0cb402f394c25ccda5f7fef26ad644feeb76c11065254", 
+ "files": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "linkage": [], 
+  "pcbs": []
+ }, 
+ "crud": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:973", 
+   "store": "DLI-GU", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:869", 
+   "store": "ACCTDAT", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:461", 
+   "store": "DLI-GNP", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:818", 
+   "store": "CXACAIX", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:920", 
+   "store": "CUSTDAT", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "program_id": "COPAUS0C", 
+ "error_handling": [], 
+ "source_path": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl", 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 254
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 322
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "GNP", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "GNP", 
+   "response_handling": null, 
+   "line": 461
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "GNP", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "GNP", 
+   "response_handling": null, 
+   "line": 493
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 674
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SYNCPOINT", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 686
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 695
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 703
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "RECEIVE", 
+   "response_handling": "RESP checked", 
+   "line": 715
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "CXACAIX", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 818
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "ACCTDAT", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 869
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "CUSTDAT", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 920
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "GU", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "GU", 
+   "response_handling": null, 
+   "line": 973
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "SCHD", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SCHD", 
+   "response_handling": null, 
+   "line": 1002
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "TERM", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "TERM", 
+   "response_handling": null, 
+   "line": 1008
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "SCHD", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SCHD", 
+   "response_handling": null, 
+   "line": 1011
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CPVS", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:254", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:322", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:674", 
+   "condition": null
+  }
+ ], 
+ "messages": [], 
+ "data_items": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:33", 
+   "name": "WS-PGM-AUTH-SMRY", 
+   "value": "'COPAUS0C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:34", 
+   "name": "WS-PGM-AUTH-DTL", 
+   "value": "'COPAUS1C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:35", 
+   "name": "WS-PGM-MENU", 
+   "value": "'COMEN01C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:36", 
+   "name": "WS-CICS-TRANID", 
+   "value": "'CPVS'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:38", 
+   "name": "WS-ACCTFILENAME", 
+   "value": "'ACCTDAT '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:39", 
+   "name": "WS-CUSTFILENAME", 
+   "value": "'CUSTDAT '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:40", 
+   "name": "WS-CARDFILENAME", 
+   "value": "'CARDDAT '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:41", 
+   "name": "WS-CARDXREFNAME-ACCT-PATH", 
+   "value": "'CXACAIX '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:42", 
+   "name": "WS-CCXREF-FILE", 
+   "value": "'CCXREF  '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:59", 
+   "name": "WS-AUTH-DATE", 
+   "value": "'00/00/00'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:60", 
+   "name": "WS-AUTH-TIME", 
+   "value": "'00:00:00'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:75", 
+   "name": "PSB-NAME", 
+   "value": "'PSBPAUTB'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:79", 
+   "name": "STATUS-OK", 
+   "value": "'  '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:80", 
+   "name": "SEGMENT-NOT-FOUND", 
+   "value": "'GE'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:81", 
+   "name": "DUPLICATE-SEGMENT-FOUND", 
+   "value": "'II'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:82", 
+   "name": "WRONG-PARENTAGE", 
+   "value": "'GP'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:83", 
+   "name": "END-OF-DB", 
+   "value": "'GB'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:84", 
+   "name": "DATABASE-UNAVAILABLE", 
+   "value": "'BA'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:85", 
+   "name": "PSB-SCHEDULED-MORE-THAN-ONCE", 
+   "value": "'TC'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:86", 
+   "name": "COULD-NOT-SCHEDULE-PSB", 
+   "value": "'TE'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:87", 
+   "name": "RETRY-CONDITION", 
+   "value": "'BA'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:89", 
+   "name": "IMS-PSB-SCHD", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:90", 
+   "name": "IMS-PSB-NOT-SCHD", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:95", 
+   "name": "ACCT-NFOUND-XREF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:96", 
+   "name": "ACCT-FOUND-XREF", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:98", 
+   "name": "FOUND-ACCT-IN-MSTR", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:99", 
+   "name": "NFOUND-ACCT-IN-MSTR", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:101", 
+   "name": "FOUND-CUST-IN-MSTR", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:102", 
+   "name": "NFOUND-CUST-IN-MSTR", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:104", 
+   "name": "FOUND-PAUT-SMRY-SEG", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:105", 
+   "name": "NFOUND-PAUT-SMRY-SEG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:106", 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:107", 
+   "name": "ERR-FLG-ON", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:108", 
+   "name": "ERR-FLG-OFF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:109", 
+   "name": "WS-AUTHS-EOF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:110", 
+   "name": "AUTHS-EOF", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:111", 
+   "name": "AUTHS-NOT-EOF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:112", 
+   "name": "WS-SEND-ERASE-FLG", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:113", 
+   "name": "SEND-ERASE-YES", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:114", 
+   "name": "SEND-ERASE-NO", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:123", 
+   "name": "CDEMO-CPVS-NEXT-PAGE-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:124", 
+   "name": "NEXT-PAGE-YES", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:125", 
+   "name": "NEXT-PAGE-NO", 
+   "value": "'N'"
+  }
+ ]
+}

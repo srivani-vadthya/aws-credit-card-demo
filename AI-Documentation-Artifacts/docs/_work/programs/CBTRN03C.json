@@ -1,0 +1,886 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "TRANREPT", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/jcl/TRANREPT.jcl:59", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "TRANREPT", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/proc/TRANREPT.prc:57", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "No EXEC CICS or DFHCOMMAREA in this source", 
+   "source": "app/cbl/CBTRN03C.cbl:159"
+  }
+ ], 
+ "source_path": "app/cbl/CBTRN03C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/CBTRN03C.cbl:1-8", 
+  "version_banner": "* Ver: CardDemo_v2.0-25-gdb72e6b-235 Date: 2025-04-29 11:01:29 CDT", 
+  "description": "Program     : CBTRN03C.CBL Application : CardDemo Type        : BATCH COBOL Program Function    : Print the transaction detail report. All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0", 
+  "author": "AWS"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAINLINE", 
+   "section": null, 
+   "end_line": 217, 
+   "purpose": "Statements include: START, OPEN, READ, inline PERFORM at app/cbl/CBTRN03C.cbl:170, WRITE, CLOSE", 
+   "performs": [
+    "0000-TRANFILE-OPEN", 
+    "0100-REPTFILE-OPEN", 
+    "0200-CARDXREF-OPEN", 
+    "0300-TRANTYPE-OPEN", 
+    "0400-TRANCATG-OPEN", 
+    "0500-DATEPARM-OPEN", 
+    "0550-DATEPARM-READ", 
+    "1000-TRANFILE-GET-NEXT", 
+    "1120-WRITE-ACCOUNT-TOTALS", 
+    "1500-A-LOOKUP-XREF", 
+    "1500-B-LOOKUP-TRANTYPE", 
+    "1500-C-LOOKUP-TRANCATG", 
+    "1100-WRITE-TRANSACTION-REPORT", 
+    "1110-WRITE-PAGE-TOTALS", 
+    "1110-WRITE-GRAND-TOTALS", 
+    "9000-TRANFILE-CLOSE", 
+    "9100-REPTFILE-CLOSE", 
+    "9200-CARDXREF-CLOSE", 
+    "9300-TRANTYPE-CLOSE", 
+    "9400-TRANCATG-CLOSE", 
+    "9500-DATEPARM-CLOSE"
+   ], 
+   "reachable": true, 
+   "start_line": 159, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "0550-DATEPARM-READ", 
+   "section": null, 
+   "end_line": 243, 
+   "purpose": "Statements include: READ, START", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 220, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1000-TRANFILE-GET-NEXT", 
+   "section": null, 
+   "end_line": 272, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 248, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1100-WRITE-TRANSACTION-REPORT", 
+   "section": null, 
+   "end_line": 290, 
+   "purpose": "Statements include: START, WRITE", 
+   "performs": [
+    "1120-WRITE-HEADERS", 
+    "1110-WRITE-PAGE-TOTALS", 
+    "1120-WRITE-HEADERS", 
+    "1120-WRITE-DETAIL"
+   ], 
+   "reachable": true, 
+   "start_line": 274, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1110-WRITE-PAGE-TOTALS", 
+   "section": null, 
+   "end_line": 304, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "1111-WRITE-REPORT-REC", 
+    "1111-WRITE-REPORT-REC"
+   ], 
+   "reachable": true, 
+   "start_line": 293, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1120-WRITE-ACCOUNT-TOTALS", 
+   "section": null, 
+   "end_line": 316, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "1111-WRITE-REPORT-REC", 
+    "1111-WRITE-REPORT-REC"
+   ], 
+   "reachable": true, 
+   "start_line": 306, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1110-WRITE-GRAND-TOTALS", 
+   "section": null, 
+   "end_line": 322, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "1111-WRITE-REPORT-REC"
+   ], 
+   "reachable": true, 
+   "start_line": 318, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1120-WRITE-HEADERS", 
+   "section": null, 
+   "end_line": 341, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "1111-WRITE-REPORT-REC", 
+    "1111-WRITE-REPORT-REC", 
+    "1111-WRITE-REPORT-REC", 
+    "1111-WRITE-REPORT-REC"
+   ], 
+   "reachable": true, 
+   "start_line": 324, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1111-WRITE-REPORT-REC", 
+   "section": null, 
+   "end_line": 359, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 343, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1120-WRITE-DETAIL", 
+   "section": null, 
+   "end_line": 374, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "1111-WRITE-REPORT-REC"
+   ], 
+   "reachable": true, 
+   "start_line": 361, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "0000-TRANFILE-OPEN", 
+   "section": null, 
+   "end_line": 392, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 376, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "0100-REPTFILE-OPEN", 
+   "section": null, 
+   "end_line": 410, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 394, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "0200-CARDXREF-OPEN", 
+   "section": null, 
+   "end_line": 428, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 412, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "0300-TRANTYPE-OPEN", 
+   "section": null, 
+   "end_line": 446, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 430, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "0400-TRANCATG-OPEN", 
+   "section": null, 
+   "end_line": 464, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 448, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "0500-DATEPARM-OPEN", 
+   "section": null, 
+   "end_line": 482, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 466, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1500-A-LOOKUP-XREF", 
+   "section": null, 
+   "end_line": 492, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 484, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1500-B-LOOKUP-TRANTYPE", 
+   "section": null, 
+   "end_line": 502, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 494, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1500-C-LOOKUP-TRANCATG", 
+   "section": null, 
+   "end_line": 512, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 504, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9000-TRANFILE-CLOSE", 
+   "section": null, 
+   "end_line": 530, 
+   "purpose": "Statements include: CLOSE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 514, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9100-REPTFILE-CLOSE", 
+   "section": null, 
+   "end_line": 548, 
+   "purpose": "Statements include: CLOSE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 532, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9200-CARDXREF-CLOSE", 
+   "section": null, 
+   "end_line": 567, 
+   "purpose": "Statements include: CLOSE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 551, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9300-TRANTYPE-CLOSE", 
+   "section": null, 
+   "end_line": 585, 
+   "purpose": "Statements include: CLOSE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 569, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9400-TRANCATG-CLOSE", 
+   "section": null, 
+   "end_line": 603, 
+   "purpose": "Statements include: CLOSE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 587, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9500-DATEPARM-CLOSE", 
+   "section": null, 
+   "end_line": 621, 
+   "purpose": "Statements include: CLOSE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 605, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9999-ABEND-PROGRAM", 
+   "section": null, 
+   "end_line": 630, 
+   "purpose": "Statements include: CALL CEE3ABD", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 626, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9910-DISPLAY-IO-STATUS", 
+   "section": null, 
+   "end_line": 646, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 633, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "CVTRA05Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBTRN03C.cbl:93", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVTRA05Y.cpy"
+  }, 
+  {
+   "name": "CVACT03Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBTRN03C.cbl:98", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT03Y.cpy"
+  }, 
+  {
+   "name": "CVTRA03Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBTRN03C.cbl:103", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVTRA03Y.cpy"
+  }, 
+  {
+   "name": "CVTRA04Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBTRN03C.cbl:108", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVTRA04Y.cpy"
+  }, 
+  {
+   "name": "CVTRA07Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBTRN03C.cbl:113", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVTRA07Y.cpy"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/cbl/CBTRN03C.cbl:128", 
+   "pic": "X", 
+   "name": "WS-FIRST-TIME", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:133", 
+   "pic": "X(133)", 
+   "name": "WS-BLANK-LINE", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:134", 
+   "pic": "S9(09)V99", 
+   "name": "WS-PAGE-TOTAL", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:135", 
+   "pic": "S9(09)V99", 
+   "name": "WS-ACCOUNT-TOTAL", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:136", 
+   "pic": "S9(09)V99", 
+   "name": "WS-GRAND-TOTAL", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:137", 
+   "pic": "X(16)", 
+   "name": "WS-CURR-CARD-NUM", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:147", 
+   "pic": "9", 
+   "name": "IO-STATUS-0401", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:148", 
+   "pic": "999", 
+   "conditions": [
+    {
+     "name": "APPL-AOK", 
+     "value": "0"
+    }, 
+    {
+     "name": "APPL-EOF", 
+     "value": "16"
+    }
+   ], 
+   "name": "IO-STATUS-0403", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:154", 
+   "pic": "X(01)", 
+   "name": "END-OF-FILE", 
+   "value": "'N'"
+  }
+ ], 
+ "loc": {
+  "comment": 53, 
+  "total": 649, 
+  "code": 596
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/CBTRN03C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBTRN03C.cbl:12"
+  }, 
+  {
+   "text": "DD name TRANFILE is used with more than one dataset name across jobs. Each name is tied to the JCL line in physical_names.", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBTRN03C.cbl:29-31"
+  }, 
+  {
+   "text": "DD name TRANTYPE is used with more than one dataset name across jobs. Each name is tied to the JCL line in physical_names.", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBTRN03C.cbl:39-43"
+  }, 
+  {
+   "text": "DD name TRANCATG is used with more than one dataset name across jobs. Each name is tied to the JCL line in physical_names.", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBTRN03C.cbl:45-49"
+  }
+ ], 
+ "sha256": "8691e625502b7efcfd7ba4ae61797132e7b68f3fd5fedcdcc7dd6488f6871eef", 
+ "files": [
+  {
+   "logical_name": "TRANSACT-FILE", 
+   "record_layout": "FD-TRANFILE-REC", 
+   "record_key": null, 
+   "ddname_or_cics_file": "TRANFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS (app/jcl/POSTTRAN.jcl:28)", 
+    "AWS.M2.CARDDEMO.TRANSACT.DALY(+1) (app/jcl/TRANREPT.jcl:65)"
+   ], 
+   "source": "app/cbl/CBTRN03C.cbl:29-31", 
+   "file_status_field": "TRANFILE-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": null, 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "XREF-FILE", 
+   "record_layout": "FD-CARDXREF-REC", 
+   "record_key": "FD-XREF-CARD-NUM", 
+   "ddname_or_cics_file": "CARDXREF", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS (app/jcl/TRANREPT.jcl:67)"
+   ], 
+   "source": "app/cbl/CBTRN03C.cbl:33-37", 
+   "file_status_field": "CARDXREF-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "RANDOM", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "TRANTYPE-FILE", 
+   "record_layout": "FD-TRANTYPE-REC", 
+   "record_key": "FD-TRAN-TYPE", 
+   "ddname_or_cics_file": "TRANTYPE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.TRANTYPE.VSAM.KSDS (app/jcl/TRANREPT.jcl:69)", 
+    "AWS.M2.CARDDEMO.TRANTYPE.PS (app/jcl/TRANTYPE.jcl:56)"
+   ], 
+   "source": "app/cbl/CBTRN03C.cbl:39-43", 
+   "file_status_field": "TRANTYPE-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "RANDOM", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "TRANCATG-FILE", 
+   "record_layout": "FD-TRAN-CAT-RECORD", 
+   "record_key": "FD-TRAN-CAT-KEY", 
+   "ddname_or_cics_file": "TRANCATG", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.TRANCATG.PS (app/jcl/TRANCATG.jcl:56)", 
+    "AWS.M2.CARDDEMO.TRANCATG.VSAM.KSDS (app/jcl/TRANREPT.jcl:71)"
+   ], 
+   "source": "app/cbl/CBTRN03C.cbl:45-49", 
+   "file_status_field": "TRANCATG-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "RANDOM", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "REPORT-FILE", 
+   "record_layout": "FD-REPTFILE-REC", 
+   "record_key": null, 
+   "ddname_or_cics_file": "TRANREPT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.TRANREPT(+1) (app/jcl/TRANREPT.jcl:76)"
+   ], 
+   "source": "app/cbl/CBTRN03C.cbl:51-53", 
+   "file_status_field": "TRANREPT-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": null, 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "DATE-PARMS-FILE", 
+   "record_layout": "FD-DATEPARM-REC", 
+   "record_key": null, 
+   "ddname_or_cics_file": "DATEPARM", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.DATEPARM (app/jcl/TRANREPT.jcl:73)"
+   ], 
+   "source": "app/cbl/CBTRN03C.cbl:55-57", 
+   "file_status_field": "DATEPARM-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": null, 
+   "alternate_keys": []
+  }
+ ], 
+ "messages": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": []
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/CBTRN03C.cbl:249-378", 
+   "store_kind": "logical", 
+   "store": "TRANSACT-FILE", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:414-485", 
+   "store_kind": "logical", 
+   "store": "XREF-FILE", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:450-505", 
+   "store_kind": "logical", 
+   "store": "TRANCATG-FILE", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:345", 
+   "store_kind": "logical", 
+   "store": "REPORT-FILE", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:221-468", 
+   "store_kind": "logical", 
+   "store": "DATE-PARMS-FILE", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBTRN03C.cbl:432-495", 
+   "store_kind": "logical", 
+   "store": "TRANTYPE-FILE", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "program_id": "CBTRN03C", 
+ "error_handling": [
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:241", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:269", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:357", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBTRN03C.cbl:379", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF TRANFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:390", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:408", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:426", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:444", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:462", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:480", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:490", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:500", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:510", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBTRN03C.cbl:517", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF TRANFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:528", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:546", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:565", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:583", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:601", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:619", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:626", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "9999-ABEND-PROGRAM."
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBTRN03C.cbl:630", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "CALL 'CEE3ABD' USING ABCODE, TIMING."
+  }
+ ], 
+ "commands": [], 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CEE3ABD", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBTRN03C.cbl:630", 
+   "condition": null
+  }
+ ], 
+ "language": "COBOL", 
+ "candidate_rules": [], 
+ "runtime_type": [
+  "batch-main"
+ ]
+}

@@ -1,0 +1,359 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "EXECUTE IMS PROGRAM TO DELETE EXPIRED AUTHORIZATIONS", 
+  "confidence": "Unverified", 
+  "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:21"
+ }, 
+ "job_card": {
+  "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:1", 
+  "msgclass": "H", 
+  "region": "0M", 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [
+  {
+   "source": "app/scheduler/CardDemo.ca7", 
+   "calendar": null, 
+   "successors": [
+    "POSTTRAN"
+   ], 
+   "predecessors": [
+    "CLOSEFIL"
+   ], 
+   "time": null
+  }
+ ], 
+ "module": "auth", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [], 
+ "source_path": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl", 
+ "steps": [
+  {
+   "function": "IMS BMP program CBPAUP0C PSB PSBPAUTB", 
+   "if_condition": null, 
+   "parm": "'BMP,CBPAUP0C,PSBPAUTB'", 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 24, 
+   "kind": "ims", 
+   "name": "STEP01", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 26, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "IMS.SDFSRESL", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 27, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "XXXXXXXX.PROD.LOADLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 28, 
+     "ddname": "DFSRESLB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "IMS.SDFSRESL", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 29, 
+     "ddname": "PROCLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "IMS.PROCLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 31, 
+     "ddname": "DFSSEL", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "IMS.SDFSRESL", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 33, 
+     "ddname": "IMS", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "IMS.PSBLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 34, 
+     "ddname": "IMS", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "IMS.DBDLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 36, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 39, 
+     "ddname": "SYSOUX", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 40, 
+     "ddname": "SYSOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 41, 
+     "ddname": "SYSABOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 42, 
+     "ddname": "ABENDAID", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": true, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 43, 
+     "ddname": "IEFRDER", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": true, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 44, 
+     "ddname": "IMSLOGR", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 45, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 46, 
+     "ddname": "SYSUDUMP", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 47, 
+     "ddname": "IMSERR", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "DFSRRC00", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "99e84914708d330fd3b8d19ce8b731ed5acd9b4e0dbdc16af8823802a01b68e4", 
+ "job_name": "CBPAUP0J"
+}

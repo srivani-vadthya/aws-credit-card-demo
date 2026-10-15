@@ -1,0 +1,612 @@
+{
+ "jobs": [
+  {
+   "module": "auth", 
+   "job": "CBPAUP0J", 
+   "steps": 1, 
+   "scheduled_ca7": true, 
+   "path": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "auth", 
+   "job": "DBPAUTP0", 
+   "steps": 2, 
+   "scheduled_ca7": false, 
+   "path": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "auth", 
+   "job": "LOADPADB", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "auth", 
+   "job": "UNLDGSAM", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "auth", 
+   "job": "UNLDPADB", 
+   "steps": 2, 
+   "scheduled_ca7": false, 
+   "path": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "trantype", 
+   "job": "CREADB2", 
+   "steps": 5, 
+   "scheduled_ca7": false, 
+   "path": "app/app-transaction-type-db2/jcl/CREADB21.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "trantype", 
+   "job": "MNTTRDB2", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl", 
+   "scheduled_controlm": true
+  }, 
+  {
+   "module": "trantype", 
+   "job": "TRANEXTR", 
+   "steps": 5, 
+   "scheduled_ca7": false, 
+   "path": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl", 
+   "scheduled_controlm": true
+  }, 
+  {
+   "module": "base", 
+   "job": "ACCTFILE", 
+   "steps": 3, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/ACCTFILE.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "CARDFILE", 
+   "steps": 8, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/CARDFILE.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "CBADMCDJ", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/CBADMCDJ.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "CBEXPORT", 
+   "steps": 2, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/CBEXPORT.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "CBIMPORT", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/CBIMPORT.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "CLOSEFIL", 
+   "steps": 1, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/CLOSEFIL.jcl", 
+   "scheduled_controlm": true
+  }, 
+  {
+   "module": "base", 
+   "job": "COMBTRAN", 
+   "steps": 2, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/COMBTRAN.jcl", 
+   "scheduled_controlm": true
+  }, 
+  {
+   "module": "base", 
+   "job": "CREASTMT", 
+   "steps": 5, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/CREASTMT.JCL", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "CUSTFILE", 
+   "steps": 5, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/CUSTFILE.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "DALYREJS", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/DALYREJS.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "DEFCUST", 
+   "steps": 2, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/DEFCUST.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "DEFGDGB", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/DEFGDGB.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "DEFGDGD", 
+   "steps": 6, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/DEFGDGD.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "DISCGRP", 
+   "steps": 3, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/DISCGRP.jcl", 
+   "scheduled_controlm": true
+  }, 
+  {
+   "module": "base", 
+   "job": "DUSRSECJ", 
+   "steps": 4, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/DUSRSECJ.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "ESDSRRDS", 
+   "steps": 6, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/ESDSRRDS.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "FTPJCLS", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/FTPJCL.JCL", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "INTCALC", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/INTCALC.jcl", 
+   "scheduled_controlm": true
+  }, 
+  {
+   "module": "base", 
+   "job": "INTRDRJ1", 
+   "steps": 2, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/INTRDRJ1.JCL", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "INTRDRJ2", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/INTRDRJ2.JCL", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "OPENFIL", 
+   "steps": 1, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/OPENFIL.jcl", 
+   "scheduled_controlm": true
+  }, 
+  {
+   "module": "base", 
+   "job": "POSTTRAN", 
+   "steps": 1, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/POSTTRAN.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "PRTCATBL", 
+   "steps": 3, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/PRTCATBL.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "READACCT", 
+   "steps": 2, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/READACCT.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "READCARD", 
+   "steps": 1, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/READCARD.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "READCUST", 
+   "steps": 1, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/READCUST.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "READXREF", 
+   "steps": 1, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/READXREF.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "REPTFILE", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/REPTFILE.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "TCATBALF", 
+   "steps": 3, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/TCATBALF.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "TRANBKP", 
+   "steps": 3, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/TRANBKP.jcl", 
+   "scheduled_controlm": true
+  }, 
+  {
+   "module": "base", 
+   "job": "TRANCATG", 
+   "steps": 3, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/TRANCATG.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "TRANFILE", 
+   "steps": 8, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/TRANFILE.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "TRANIDX", 
+   "steps": 3, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/TRANIDX.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "TRANREPT", 
+   "steps": 3, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/TRANREPT.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "TRANTYPE", 
+   "steps": 3, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/TRANTYPE.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "TXT2PDF1", 
+   "steps": 1, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/TXT2PDF1.JCL", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "base", 
+   "job": "WAITSTEP", 
+   "steps": 1, 
+   "scheduled_ca7": true, 
+   "path": "app/jcl/WAITSTEP.jcl", 
+   "scheduled_controlm": true
+  }, 
+  {
+   "module": "base", 
+   "job": "XREFFILE", 
+   "steps": 6, 
+   "scheduled_ca7": false, 
+   "path": "app/jcl/XREFFILE.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "build", 
+   "job": "CNJBATMP", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "samples/jcl/BATCMP.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "build", 
+   "job": "CBLDBMS", 
+   "steps": 2, 
+   "scheduled_ca7": false, 
+   "path": "samples/jcl/BMSCMP.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "build", 
+   "job": "CICCMP", 
+   "steps": 2, 
+   "scheduled_ca7": false, 
+   "path": "samples/jcl/CICCMP.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "build", 
+   "job": "CIDBCMP", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "samples/jcl/CICDBCMP.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "build", 
+   "job": "IMSMQCMP", 
+   "steps": 6, 
+   "scheduled_ca7": false, 
+   "path": "samples/jcl/IMSMQCMP.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "build", 
+   "job": "LISTFILS", 
+   "steps": 2, 
+   "scheduled_ca7": false, 
+   "path": "samples/jcl/LISTCAT.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "build", 
+   "job": "RACFCMDS", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "samples/jcl/RACFCMDS.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "build", 
+   "job": "REPRTEST", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "samples/jcl/REPRTEST.jcl", 
+   "scheduled_controlm": false
+  }, 
+  {
+   "module": "build", 
+   "job": "SORTTEST", 
+   "steps": 1, 
+   "scheduled_ca7": false, 
+   "path": "samples/jcl/SORTTEST.jcl", 
+   "scheduled_controlm": false
+  }
+ ], 
+ "procs": {
+  "BLDCIDB2": {
+   "path": "samples/proc/BLDCIDB2.prc", 
+   "steps": [
+    {
+     "line": 46, 
+     "program": "DSNHPC", 
+     "name": "PRECMP"
+    }, 
+    {
+     "line": 68, 
+     "program": "DFHECP1$", 
+     "name": "TRN"
+    }, 
+    {
+     "line": 80, 
+     "program": "IGYCRCTL", 
+     "name": "COBOL"
+    }, 
+    {
+     "line": 114, 
+     "program": "HEWL", 
+     "name": "LKED"
+    }, 
+    {
+     "line": 135, 
+     "program": "IKJEFT01", 
+     "name": "BINDPK"
+    }, 
+    {
+     "line": 158, 
+     "program": "IKJEFT01", 
+     "name": "BINDPL"
+    }
+   ]
+  }, 
+  "BUILDBMS": {
+   "path": "samples/proc/BUILDBMS.prc", 
+   "steps": [
+    {
+     "line": 36, 
+     "program": "IEBGENER", 
+     "name": "PRINT"
+    }, 
+    {
+     "line": 49, 
+     "program": "ASMA90", 
+     "name": "MAP"
+    }, 
+    {
+     "line": 68, 
+     "program": "HEWL", 
+     "name": "LKED"
+    }, 
+    {
+     "line": 78, 
+     "program": "ASMA90", 
+     "name": "DSECT"
+    }, 
+    {
+     "line": 96, 
+     "program": "IEBGENER", 
+     "name": "DISPLIST"
+    }, 
+    {
+     "line": 103, 
+     "program": "IEFBR14", 
+     "name": "DELTEMP"
+    }
+   ]
+  }, 
+  "TRANREPT": {
+   "path": "app/proc/TRANREPT.prc", 
+   "invoked_by": [
+    {
+     "source": "app/cbl/CORPT00C.cbl:94", 
+     "kind": "online-submitted JCL", 
+     "program": "CORPT00C", 
+     "job": "TRNRPT00"
+    }
+   ], 
+   "steps": [
+    {
+     "line": 21, 
+     "program": "REPROC", 
+     "name": "STEP01R", 
+     "symbolics": [
+      {
+       "source": "app/proc/TRANREPT.prc:22", 
+       "name": "CNTLLIB", 
+       "value": "AWS.M2.CARDDEMO.CNTL"
+      }
+     ]
+    }, 
+    {
+     "line": 35, 
+     "program": "SORT", 
+     "name": "STEP05R"
+    }, 
+    {
+     "line": 57, 
+     "program": "CBTRN03C", 
+     "name": "STEP10R"
+    }
+   ], 
+   "proc_statement_label": {
+    "note": "The PROC statement label differs from the member name TRANREPT. Step STEP01R also executes PROC=REPROC (app/proc/TRANREPT.prc:21), which names member REPROC.", 
+    "source": "app/proc/TRANREPT.prc:1", 
+    "confidence": "Confirmed", 
+    "label": "REPROC"
+   }
+  }, 
+  "REPROC": {
+   "path": "app/proc/REPROC.prc", 
+   "steps": [
+    {
+     "line": 21, 
+     "program": "IDCAMS", 
+     "name": "PRC001"
+    }
+   ]
+  }, 
+  "BUILDBAT": {
+   "path": "samples/proc/BUILDBAT.prc", 
+   "steps": [
+    {
+     "line": 35, 
+     "program": "IGYCRCTL", 
+     "name": "COMPILE"
+    }, 
+    {
+     "line": 64, 
+     "program": "IEBGENER", 
+     "name": "CBLPRINT"
+    }, 
+    {
+     "line": 74, 
+     "program": "HEWL", 
+     "name": "LKED"
+    }
+   ]
+  }, 
+  "BUILDONL": {
+   "path": "samples/proc/BUILDONL.prc", 
+   "steps": [
+    {
+     "line": 39, 
+     "program": "IGYCRCTL", 
+     "name": "COB"
+    }, 
+    {
+     "line": 70, 
+     "program": "IEBGENER", 
+     "name": "DISPLIST"
+    }, 
+    {
+     "line": 79, 
+     "program": "IEBGENER", 
+     "name": "COPYLINK"
+    }, 
+    {
+     "line": 91, 
+     "program": "HEWL", 
+     "name": "LKED"
+    }
+   ]
+  }
+ }
+}

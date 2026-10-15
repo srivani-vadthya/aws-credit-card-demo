@@ -1,0 +1,79 @@
+{
+ "schema": "ops-runbook/1",
+ "tasks": [
+  {
+   "task": "Close CICS files before batch",
+   "job": "CLOSEFIL",
+   "how": "PGM=SDSF. ISFIN issues /F CICSAWSA,'CEMT SET FIL(...) CLO' for TRANSACT, CCXREF, ACCTDAT, CXACAIX, and USRSEC.",
+   "source": "app/jcl/CLOSEFIL.jcl:22-30",
+   "expected": "The JCL does not test a return code. The commands are the SYSIN of the SDSF step.",
+   "on_failure": "No restart step is coded in CLOSEFIL."
+  },
+  {
+   "task": "Open CICS files after batch",
+   "job": "OPENFIL",
+   "how": "PGM=SDSF. ISFIN issues /F CICSAWSA,'CEMT SET FIL(...) OPE' for the same five files.",
+   "source": "app/jcl/OPENFIL.jcl:22-30",
+   "expected": "The JCL does not test a return code.",
+   "on_failure": "No restart step is coded in OPENFIL."
+  },
+  {
+   "task": "Close and reopen one file around a load",
+   "jobs": ["CARDFILE", "CUSTFILE", "TRANFILE"],
+   "how": "Each job issues CEMT SET FIL CLO before the load and OPE after it, through the same /F CICSAWSA form.",
+   "source": "app/jcl/CARDFILE.jcl:26-27, app/jcl/CARDFILE.jcl:122-123, app/jcl/CUSTFILE.jcl:26, app/jcl/CUSTFILE.jcl:80, app/jcl/TRANFILE.jcl:26-27, app/jcl/TRANFILE.jcl:120-121"
+  },
+  {
+   "task": "NEWCOPY a compiled CICS program",
+   "job": "CICCMP",
+   "how": "After the compile PROC, step NEWCOPY runs PGM=SDSF with /MODIFY CICSAWSA,'CEMT SET PROG(CICSPGMN) NEWCOPY'. CICSPGMN is the sample placeholder named in the job comment.",
+   "source": "samples/jcl/CICCMP.jcl:45-49",
+   "cond": "(4,LT)"
+  },
+  {
+   "task": "NEWCOPY a compiled BMS map",
+   "job": "BMSCMP",
+   "how": "Step SDSF1 runs PGM=SDSF with /MODIFY CICSAWSA,'CEMT SET PROG(CICSMAP) NEWCOPY'.",
+   "source": "samples/jcl/BMSCMP.jcl:42-46"
+  },
+  {
+   "task": "Define CICS resources",
+   "job": "CBADMCDJ",
+   "how": "DFHCSDUP reads SYSIN DEFINE commands for GROUP(CARDDEMO). INSTALL GROUP is a comment. The job comment says to use CEDA INSTALL GROUP(CARDDEMO).",
+   "source": "app/jcl/CBADMCDJ.jcl:27-45",
+   "comment_confidence": "The CEDA sentence at app/jcl/CBADMCDJ.jcl:37 is a comment, so the install action is Unverified as an executed command."
+  },
+  {
+   "task": "Load the user-security file",
+   "job": "DUSRSECJ",
+   "how": "IEFBR14, IEBGENER, then IDCAMS, then IDCAMS REPRO.",
+   "source": "app/jcl/DUSRSECJ.jcl:23, app/jcl/DUSRSECJ.jcl:32, app/jcl/DUSRSECJ.jcl:58, app/jcl/DUSRSECJ.jcl:80-87"
+  },
+  {
+   "task": "Refresh application files from the shell",
+   "how": "scripts/remote_refresh.sh puts CLOSEFIL, the file-load jobs, DUSRSECJ, and OPENFIL to JES in that order.",
+   "source": "scripts/remote_refresh.sh:12-50",
+   "prerequisite": "The script exits when the count of processes matching 2121: equals 1, and prints 'FTP Tunnel to Ensono not running.'",
+   "prerequisite_source": "scripts/remote_refresh.sh:3-6"
+  },
+  {
+   "task": "Post transactions",
+   "how": "scripts/run_posting.sh puts CLOSEFIL, ACCTFILE, TCATBALF, TRANBKP, POSTTRAN, TRANIDX, and OPENFIL.",
+   "source": "scripts/run_posting.sh:12-34"
+  },
+  {
+   "task": "Calculate interest",
+   "how": "scripts/run_interest_calc.sh puts CLOSEFIL, INTCALC, TRANBKP, COMBTRAN, TRANIDX, and OPENFIL.",
+   "source": "scripts/run_interest_calc.sh:14-34"
+  },
+  {
+   "task": "Submit one job",
+   "how": "scripts/remote_submit.sh puts a path whose extension is .jcl to JES on localhost port 2121.",
+   "source": "scripts/remote_submit.sh:14-24"
+  }
+ ],
+ "not_documented_in_source": [
+  "No operator procedure for purge, emergency restart, or monitoring beyond the SDSF CEMT commands above was found in the JCL or shell scripts.",
+  "IMS checkpoint is EXEC DLI CHKP in CBPAUP0C (app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:355). It is application logic, not an operator command."
+ ]
+}

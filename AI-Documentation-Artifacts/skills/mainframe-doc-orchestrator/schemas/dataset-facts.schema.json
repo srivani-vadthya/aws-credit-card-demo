@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "mainframe-doc/dataset-facts/1",
+  "title": "Facts for one data store: dataset, VSAM cluster, GDG, DB2 table, IMS database, queue (mainframe-data-model-analysis)",
+  "type": "object",
+  "required": ["name", "store_kind", "evidence"],
+  "properties": {
+    "name": {"type": "string", "description": "DSN / qualified table / DBD / queue name, placeholders kept"},
+    "store_kind": {"enum": ["vsam-ksds", "vsam-esds", "vsam-rrds", "vsam-lds", "vsam-aix", "vsam-path", "sequential", "gdg-base", "pds", "db2-table", "db2-view", "ims-database", "ims-index", "gsam", "mq-queue", "cics-tsq", "cics-tdq", "other"]},
+    "module": {"type": ["string", "null"]},
+    "aliases": {
+      "type": "array",
+      "items": {"type": "object", "properties": {"kind": {"enum": ["ddname", "cics-file", "select-name", "pcb", "host-structure", "other"]}, "name": {"type": "string"}, "source": {"type": "string"}}}
+    },
+    "physical": {
+      "type": "object",
+      "properties": {
+        "recfm": {"type": ["string", "null"]},
+        "lrecl": {"type": ["integer", "null"]},
+        "record_size": {"type": ["string", "null"], "description": "IDCAMS RECORDSIZE(avg max)"},
+        "keys": {"type": ["string", "null"], "description": "IDCAMS KEYS(length offset)"},
+        "aix": {"type": "array", "items": {"type": "object", "properties": {"name": {"type": "string"}, "keys": {"type": "string"}, "unique": {"type": "boolean"}, "path": {"type": "string"}, "source": {"type": "string"}}}},
+        "gdg": {"type": ["object", "null"], "properties": {"limit": {"type": "integer"}, "scratch": {"type": "boolean"}, "empty": {"type": "boolean"}, "source": {"type": "string"}}},
+        "catalog_facts": {"type": ["object", "null"], "description": "point-in-time LISTCAT attributes", "properties": {"source": {"type": "string"}}},
+        "defined_by": {"type": "array", "items": {"type": "string"}, "description": "job.step or DDL path:line"}
+      }
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "copybook": {"type": ["string", "null"]},
+        "record": {"type": ["string", "null"]},
+        "length": {"type": ["integer", "null"]},
+        "key_fields": {"type": "array", "items": {"type": "string"}},
+        "length_checks": {"type": "array", "items": {"type": "object", "properties": {"source": {"type": "string"}, "length": {"type": "integer"}, "agrees": {"type": "boolean"}}}}
+      }
+    },
+    "db2": {
+      "type": ["object", "null"],
+      "properties": {
+        "columns": {"type": "array", "items": {"type": "object", "properties": {"name": {"type": "string"}, "type": {"type": "string"}, "nullable": {"type": "boolean"}, "default": {"type": ["string", "null"]}, "host_variable": {"type": ["string", "null"]}}}},
+        "primary_key": {"type": "array", "items": {"type": "string"}},
+        "indexes": {"type": "array", "items": {"type": "object", "properties": {"name": {"type": "string"}, "unique": {"type": "boolean"}, "columns": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}}},
+        "foreign_keys": {"type": "array", "items": {"type": "object"}},
+        "tablespace": {"type": ["string", "null"]}
+      }
+    },
+    "ims": {
+      "type": ["object", "null"],
+      "properties": {
+        "access": {"type": "string"},
+        "segments": {"type": "array", "items": {"type": "object", "properties": {"name": {"type": "string"}, "parent": {"type": ["string", "null"]}, "bytes": {"type": "integer"}, "seq_field": {"type": ["string", "null"]}, "layout": {"type": ["string", "null"]}, "source": {"type": "string"}}}},
+        "psbs": {"type": "array", "items": {"type": "object", "properties": {"psb": {"type": "string"}, "procopt": {"type": "string"}, "sensegs": {"type": "array", "items": {"type": "string"}}, "source": {"type": "string"}}}}
+      }
+    },
+    "mq": {
+      "type": ["object", "null"],
+      "properties": {
+        "role": {"enum": ["request", "reply", "one-way", "trigger-initiation", "unknown"]},
+        "name_origin": {"enum": ["literal", "variable", "trigger-message", "definition", "runtime-provided"]},
+        "message_layout": {"type": ["string", "null"]}
+      }
+    },
+    "accessors": {
+      "type": "array",
+      "items": {"type": "object", "required": ["by", "ops", "source"], "properties": {"by": {"type": "string", "description": "program or job.step"}, "ops": {"type": "array", "items": {"enum": ["C", "R", "U", "D", "B"]}}, "via": {"type": "string"}, "source": {"type": "string"}}}
+    },
+    "sample_data": {"type": ["object", "null"], "properties": {"path": {"type": "string"}, "encoding": {"type": "string"}, "records": {"type": ["integer", "null"]}, "profile": {"type": "object"}}},
+    "purpose": {"type": "object", "properties": {"text": {"type": "string"}, "confidence": {"enum": ["Confirmed", "Inferred", "Unverified"]}}},
+    "evidence": {"type": "array", "items": {"type": "string"}}
+  }
+}

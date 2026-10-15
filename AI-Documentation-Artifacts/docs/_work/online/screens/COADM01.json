@@ -1,0 +1,323 @@
+{
+ "source": "app/bms/COADM01.bms:19", 
+ "name": "COADM01", 
+ "module": "base", 
+ "maps": [
+  {
+   "source": "app/bms/COADM01.bms:26", 
+   "mockup": [
+    "Tran: XXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "                                  Admin Menu", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "              Please select an option : 99", 
+    "", 
+    "", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "ENTER=Continue  F3=Exit"
+   ], 
+   "name": "COADM1A", 
+   "fields": [
+    {
+     "source": "app/bms/COADM01.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:75", 
+     "length": 10, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Admin Menu", 
+     "col": 35, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:80", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN001", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:85", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN002", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:90", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN003", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:95", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN004", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:100", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN005", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:105", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN006", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:110", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN007", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:115", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN008", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:120", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN009", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:125", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN010", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:130", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN011", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:135", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "OPTN012", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 20, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:140", 
+     "length": 25, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Please select an option :", 
+     "col": 15, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:145", 
+     "length": 2, 
+     "attrb": "(FSET,IC,NORM,NUM,UNPROT)", 
+     "name": "OPTION", 
+     "color": null, 
+     "initial": null, 
+     "col": 41, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:150", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 44, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:154", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/bms/COADM01.bms:158", 
+     "length": 23, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "YELLOW", 
+     "initial": "ENTER=Continue  F3=Exit", 
+     "col": 1, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

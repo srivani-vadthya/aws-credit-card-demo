@@ -1,0 +1,762 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "COMEN01C", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:83", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS or DFHCOMMAREA present", 
+   "source": "app/cbl/COBIL00C.cbl:98"
+  }
+ ], 
+ "source_path": "app/cbl/COBIL00C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/COBIL00C.cbl:1-8", 
+  "author": "AWS", 
+  "description": "Program     : COBIL00C.CBL Application : CardDemo Type        : CICS COBOL Program Function    : Bill Payment - Pay account balance in full and a tractionsaction for the online bill payment. All Rights Reserved.", 
+  "version_banner": "* Ver: CardDemo_v1.0-15-g27d6c6f-68 Date: 2022-07-19 23:12:32 CDT"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 149, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "RETURN-TO-PREV-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "SEND-BILLPAY-SCREEN", 
+    "RECEIVE-BILLPAY-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "RETURN-TO-PREV-SCREEN", 
+    "CLEAR-CURRENT-SCREEN", 
+    "SEND-BILLPAY-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 99, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "PROCESS-ENTER-KEY", 
+   "section": null, 
+   "end_line": 244, 
+   "purpose": "Statements include: READ, WRITE", 
+   "performs": [
+    "SEND-BILLPAY-SCREEN", 
+    "READ-ACCTDAT-FILE", 
+    "CLEAR-CURRENT-SCREEN", 
+    "READ-ACCTDAT-FILE", 
+    "SEND-BILLPAY-SCREEN", 
+    "SEND-BILLPAY-SCREEN", 
+    "READ-CXACAIX-FILE", 
+    "STARTBR-TRANSACT-FILE", 
+    "READPREV-TRANSACT-FILE", 
+    "ENDBR-TRANSACT-FILE", 
+    "GET-CURRENT-TIMESTAMP", 
+    "WRITE-TRANSACT-FILE", 
+    "UPDATE-ACCTDAT-FILE", 
+    "SEND-BILLPAY-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 154, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "GET-CURRENT-TIMESTAMP", 
+   "section": null, 
+   "end_line": 267, 
+   "purpose": "Statements include: EXEC CICS ASKTIME, EXEC CICS FORMATTIME", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 249, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "RETURN-TO-PREV-SCREEN", 
+   "section": null, 
+   "end_line": 284, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 273, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SEND-BILLPAY-SCREEN", 
+   "section": null, 
+   "end_line": 301, 
+   "purpose": "Statements include: EXEC CICS SEND", 
+   "performs": [
+    "POPULATE-HEADER-INFO"
+   ], 
+   "reachable": true, 
+   "start_line": 289, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "RECEIVE-BILLPAY-SCREEN", 
+   "section": null, 
+   "end_line": 314, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 306, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-HEADER-INFO", 
+   "section": null, 
+   "end_line": 338, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 319, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "READ-ACCTDAT-FILE", 
+   "section": null, 
+   "end_line": 372, 
+   "purpose": "Statements include: EXEC CICS READ", 
+   "performs": [
+    "SEND-BILLPAY-SCREEN", 
+    "SEND-BILLPAY-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 343, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "UPDATE-ACCTDAT-FILE", 
+   "section": null, 
+   "end_line": 403, 
+   "purpose": "Statements include: EXEC CICS REWRITE", 
+   "performs": [
+    "SEND-BILLPAY-SCREEN", 
+    "SEND-BILLPAY-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 377, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "READ-CXACAIX-FILE", 
+   "section": null, 
+   "end_line": 436, 
+   "purpose": "Statements include: EXEC CICS READ", 
+   "performs": [
+    "SEND-BILLPAY-SCREEN", 
+    "SEND-BILLPAY-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 408, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "STARTBR-TRANSACT-FILE", 
+   "section": null, 
+   "end_line": 467, 
+   "purpose": "Statements include: EXEC CICS STARTBR", 
+   "performs": [
+    "SEND-BILLPAY-SCREEN", 
+    "SEND-BILLPAY-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 441, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "READPREV-TRANSACT-FILE", 
+   "section": null, 
+   "end_line": 496, 
+   "purpose": "Statements include: EXEC CICS READPREV", 
+   "performs": [
+    "SEND-BILLPAY-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 472, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "ENDBR-TRANSACT-FILE", 
+   "section": null, 
+   "end_line": 505, 
+   "purpose": "Statements include: EXEC CICS ENDBR", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 501, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "WRITE-TRANSACT-FILE", 
+   "section": null, 
+   "end_line": 547, 
+   "purpose": "Statements include: EXEC CICS WRITE", 
+   "performs": [
+    "INITIALIZE-ALL-FIELDS", 
+    "SEND-BILLPAY-SCREEN", 
+    "SEND-BILLPAY-SCREEN", 
+    "SEND-BILLPAY-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 510, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "CLEAR-CURRENT-SCREEN", 
+   "section": null, 
+   "end_line": 555, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "INITIALIZE-ALL-FIELDS", 
+    "SEND-BILLPAY-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 552, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "INITIALIZE-ALL-FIELDS", 
+   "section": null, 
+   "end_line": 566, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 560, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "COCOM01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COBIL00C.cbl:63", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (01 at app/cpy/COCOM01Y.cpy:19)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COCOM01Y.cpy"
+  }, 
+  {
+   "name": "COBIL00", 
+   "replacing": null, 
+   "source": "app/cbl/COBIL00C.cbl:74", 
+   "purpose": "Application copybook (bms-mapset)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/bms/COBIL00.bms"
+  }, 
+  {
+   "name": "COTTL01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COBIL00C.cbl:76", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COTTL01Y.cpy"
+  }, 
+  {
+   "name": "CSDAT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COBIL00C.cbl:77", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSDAT01Y.cpy"
+  }, 
+  {
+   "name": "CSMSG01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COBIL00C.cbl:78", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSMSG01Y.cpy"
+  }, 
+  {
+   "name": "CVACT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COBIL00C.cbl:80", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT01Y.cpy"
+  }, 
+  {
+   "name": "CVACT03Y", 
+   "replacing": null, 
+   "source": "app/cbl/COBIL00C.cbl:81", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT03Y.cpy"
+  }, 
+  {
+   "name": "CVTRA05Y", 
+   "replacing": null, 
+   "source": "app/cbl/COBIL00C.cbl:82", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVTRA05Y.cpy"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COBIL00C.cbl:84", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COBIL00C.cbl:85", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }
+ ], 
+ "runtime_type": [
+  "cics-online"
+ ], 
+ "loc": {
+  "comment": 79, 
+  "total": 572, 
+  "code": 493
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/COBIL00C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COBIL00C.cbl:13"
+  }
+ ], 
+ "sha256": "b5c46039eb8fd2f7ed7d3ca379172e56fa87385a369023bef706b04986fe1cfb", 
+ "files": [
+  {
+   "logical_name": "TRANSACT", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "TRANSACT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS"
+   ], 
+   "source": "app/csd/CARDDEMO.CSD:76", 
+   "file_status_field": null, 
+   "organization": null, 
+   "access_mode": null, 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "ACCTDAT", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "ACCTDAT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS"
+   ], 
+   "source": "app/csd/CARDDEMO.CSD:1", 
+   "file_status_field": null, 
+   "organization": null, 
+   "access_mode": null, 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "CXACAIX", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "CXACAIX", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX.PATH"
+   ], 
+   "source": "app/csd/CARDDEMO.CSD:63", 
+   "file_status_field": null, 
+   "organization": null, 
+   "access_mode": null, 
+   "alternate_keys": []
+  }
+ ], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "linkage": [
+   {
+    "source": "app/cbl/COBIL00C.cbl:91", 
+    "name": "DFHCOMMAREA"
+   }
+  ], 
+  "pcbs": []
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/COBIL00C.cbl:443-512", 
+   "store": "TRANSACT", 
+   "store_kind": "cics-file", 
+   "ops": [
+    "B", 
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:345-379", 
+   "store": "ACCTDAT", 
+   "store_kind": "cics-file", 
+   "ops": [
+    "R", 
+    "U"
+   ]
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:410", 
+   "store": "CXACAIX", 
+   "store_kind": "cics-file", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "program_id": "COBIL00C", 
+ "candidate_rules": [], 
+ "error_handling": [
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COBIL00C.cbl:356", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }, 
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COBIL00C.cbl:387", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }, 
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COBIL00C.cbl:420", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }, 
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COBIL00C.cbl:451", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }, 
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COBIL00C.cbl:484", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }, 
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COBIL00C.cbl:522", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }
+ ], 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "MAIN-PARA", 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 146
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "GET-CURRENT-TIMESTAMP", 
+   "verb": "ASKTIME", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 251
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "GET-CURRENT-TIMESTAMP", 
+   "verb": "FORMATTIME", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 255
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RETURN-TO-PREV-SCREEN", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 281
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "SEND-BILLPAY-SCREEN", 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 295
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RECEIVE-BILLPAY-SCREEN", 
+   "verb": "RECEIVE", 
+   "response_handling": "RESP checked", 
+   "line": 308
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "ACCTDAT", 
+   "options": {}, 
+   "paragraph": "READ-ACCTDAT-FILE", 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 345
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "ACCTDAT", 
+   "options": {}, 
+   "paragraph": "UPDATE-ACCTDAT-FILE", 
+   "verb": "REWRITE", 
+   "response_handling": "RESP checked", 
+   "line": 379
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "CXACAIX", 
+   "options": {}, 
+   "paragraph": "READ-CXACAIX-FILE", 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 410
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "TRANSACT", 
+   "options": {}, 
+   "paragraph": "STARTBR-TRANSACT-FILE", 
+   "verb": "STARTBR", 
+   "response_handling": "RESP checked", 
+   "line": 443
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "TRANSACT", 
+   "options": {}, 
+   "paragraph": "READPREV-TRANSACT-FILE", 
+   "verb": "READPREV", 
+   "response_handling": "RESP checked", 
+   "line": 474
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "TRANSACT", 
+   "options": {}, 
+   "paragraph": "ENDBR-TRANSACT-FILE", 
+   "verb": "ENDBR", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 503
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "TRANSACT", 
+   "options": {}, 
+   "paragraph": "WRITE-TRANSACT-FILE", 
+   "verb": "WRITE", 
+   "response_handling": "RESP checked", 
+   "line": 512
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CB00", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COBIL00C.cbl:146", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COBIL00C.cbl:281", 
+   "condition": null
+  }
+ ], 
+ "messages": [], 
+ "data_items": [
+  {
+   "source": "app/cbl/COBIL00C.cbl:37", 
+   "pic": "X(08)", 
+   "name": "WS-PGMNAME", 
+   "value": "'COBIL00C'"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:38", 
+   "pic": "X(04)", 
+   "name": "WS-TRANID", 
+   "value": "'CB00'"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:39", 
+   "pic": "X(80)", 
+   "name": "WS-MESSAGE", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:40", 
+   "pic": "X(08)", 
+   "name": "WS-TRANSACT-FILE", 
+   "value": "'TRANSACT'"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:41", 
+   "pic": "X(08)", 
+   "name": "WS-ACCTDAT-FILE", 
+   "value": "'ACCTDAT '"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:42", 
+   "pic": "X(08)", 
+   "name": "WS-CXACAIX-FILE", 
+   "value": "'CXACAIX '"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:43", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "ERR-FLG-ON", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "ERR-FLG-OFF", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:46", 
+   "pic": "S9(09)", 
+   "name": "WS-RESP-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:47", 
+   "pic": "S9(09)", 
+   "name": "WS-REAS-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:48", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "USR-MODIFIED-YES", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "USR-MODIFIED-NO", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-USR-MODIFIED", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:51", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "CONF-PAY-YES", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "CONF-PAY-NO", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-CONF-PAY-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:57", 
+   "pic": "9(16)", 
+   "name": "WS-TRAN-ID-NUM", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:58", 
+   "pic": "X(08)", 
+   "name": "WS-TRAN-DATE", 
+   "value": "'00/00/00'"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:59", 
+   "pic": "S9(15)", 
+   "name": "WS-ABS-TIME", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:60", 
+   "pic": "X(10)", 
+   "name": "WS-CUR-DATE-X10", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:61", 
+   "pic": "X(08)", 
+   "name": "WS-CUR-TIME-X08", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:68", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "NEXT-PAGE-YES", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "NEXT-PAGE-NO", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "CDEMO-CB00-NEXT-PAGE-FLG", 
+   "value": "'N'"
+  }
+ ]
+}

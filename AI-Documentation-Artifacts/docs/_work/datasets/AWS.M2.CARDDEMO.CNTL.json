@@ -1,0 +1,93 @@
+{
+ "db2": null, 
+ "layout": null, 
+ "accessors": [
+  {
+   "access": "R", 
+   "via": "PROC REPROC symbolic &CNTLLIB", 
+   "step": "STEP05R", 
+   "ddname": "PRC001.SYSIN", 
+   "member": "REPROCT", 
+   "source": "app/proc/REPROC.prc:27-28", 
+   "job": "PRTCATBL", 
+   "symbolic_source": "app/jcl/PRTCATBL.jcl:30"
+  }, 
+  {
+   "access": "R", 
+   "via": "PROC REPROC symbolic &CNTLLIB", 
+   "step": "STEP05R", 
+   "ddname": "PRC001.SYSIN", 
+   "member": "REPROCT", 
+   "source": "app/proc/REPROC.prc:27-28", 
+   "job": "TRANREPT", 
+   "symbolic_source": "app/jcl/TRANREPT.jcl:24"
+  }, 
+  {
+   "access": "R", 
+   "via": "PROC REPROC symbolic &CNTLLIB", 
+   "step": "STEP05R", 
+   "ddname": "PRC001.SYSIN", 
+   "member": "REPROCT", 
+   "source": "app/proc/REPROC.prc:27-28", 
+   "job": "TRANBKP", 
+   "symbolic_source": "app/jcl/TRANBKP.jcl:24"
+  }, 
+  {
+   "access": "R", 
+   "via": "PROC REPROC symbolic &CNTLLIB", 
+   "step": "STEP05", 
+   "ddname": "PRC001.SYSIN", 
+   "member": "REPROCT", 
+   "source": "app/proc/REPROC.prc:27-28", 
+   "job": "REPRTEST", 
+   "symbolic_source": "samples/jcl/REPRTEST.jcl:24"
+  }, 
+  {
+   "member": "REPROCT", 
+   "access": "R", 
+   "step": "STEP01R", 
+   "via": "PROC REPROC symbolic &CNTLLIB", 
+   "symbolic_source": "app/proc/TRANREPT.prc:22", 
+   "source": "app/proc/REPROC.prc:27-28", 
+   "run_by": {
+    "source": "app/cbl/CORPT00C.cbl:94", 
+    "job": "TRNRPT00", 
+    "program": "CORPT00C"
+   }, 
+   "proc": "TRANREPT", 
+   "ddname": "PRC001.SYSIN"
+  }
+ ], 
+ "physical": {
+  "catalog_facts": {
+   "source": "app/catlg/LISTCAT.txt:552", 
+   "as_of": "09/01/22", 
+   "point_in_time": true
+  }, 
+  "defined_by": []
+ }, 
+ "organisation_note": {
+  "text": "LISTCAT lists the name as NONVSAM. JCL references it with a member name, (REPROCT), so it is used as a partitioned data set.", 
+  "confidence": "Inferred", 
+  "source": [
+   "app/catlg/LISTCAT.txt:552", 
+   "app/proc/REPROC.prc:28"
+  ]
+ }, 
+ "module": null, 
+ "name": "AWS.M2.CARDDEMO.CNTL", 
+ "ims": null, 
+ "mq": null, 
+ "purpose": null, 
+ "store_kind": "sequential", 
+ "evidence": [
+  "app/catlg/LISTCAT.txt:552", 
+  "app/jcl/PRTCATBL.jcl:30", 
+  "app/jcl/TRANREPT.jcl:24", 
+  "app/jcl/TRANBKP.jcl:24", 
+  "samples/jcl/REPRTEST.jcl:24", 
+  "app/proc/REPROC.prc:27-28"
+ ], 
+ "sample_data": null, 
+ "aliases": []
+}

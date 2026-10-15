@@ -1,0 +1,675 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CBIMPORT", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/jcl/CBIMPORT.jcl:22", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "No EXEC CICS or DFHCOMMAREA in this source", 
+   "source": "app/cbl/CBIMPORT.cbl:162"
+  }
+ ], 
+ "source_path": "app/cbl/CBIMPORT.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/CBIMPORT.cbl:1-8", 
+  "version_banner": "* Ver: CardDemo_v2.0-44-gb6e9c27-254 Date: 2025-10-16 14:07:18 CDT", 
+  "description": "Program     : CBIMPORT.CBL Application : CardDemo Type        : BATCH COBOL Program Function    : Import Customer Data from Branch Migration Export Reads multi-record export file and splits it into separate normalized target files (CUSTOMER, ACCOUN", 
+  "author": "CARDDEMO"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "name": "0000-MAIN-PROCESSING", 
+   "section": null, 
+   "end_line": 171, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "1000-INITIALIZE", 
+    "2000-PROCESS-EXPORT-FILE", 
+    "3000-VALIDATE-IMPORT", 
+    "4000-FINALIZE"
+   ], 
+   "reachable": true, 
+   "start_line": 165, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1000-INITIALIZE", 
+   "section": null, 
+   "end_line": 193, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "1100-OPEN-FILES"
+   ], 
+   "reachable": true, 
+   "start_line": 174, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1100-OPEN-FILES", 
+   "section": null, 
+   "end_line": 245, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 196, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2000-PROCESS-EXPORT-FILE", 
+   "section": null, 
+   "end_line": 256, 
+   "purpose": "Statements include: READ, inline PERFORM at app/cbl/CBIMPORT.cbl:252", 
+   "performs": [
+    "2100-READ-EXPORT-RECORD", 
+    "2200-PROCESS-RECORD-BY-TYPE", 
+    "2100-READ-EXPORT-RECORD"
+   ], 
+   "reachable": true, 
+   "start_line": 248, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2100-READ-EXPORT-RECORD", 
+   "section": null, 
+   "end_line": 267, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 259, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2200-PROCESS-RECORD-BY-TYPE", 
+   "section": null, 
+   "end_line": 285, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "2300-PROCESS-CUSTOMER-RECORD", 
+    "2400-PROCESS-ACCOUNT-RECORD", 
+    "2500-PROCESS-XREF-RECORD", 
+    "2600-PROCESS-TRAN-RECORD", 
+    "2650-PROCESS-CARD-RECORD", 
+    "2700-PROCESS-UNKNOWN-RECORD"
+   ], 
+   "reachable": true, 
+   "start_line": 270, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2300-PROCESS-CUSTOMER-RECORD", 
+   "section": null, 
+   "end_line": 320, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 288, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2400-PROCESS-ACCOUNT-RECORD", 
+   "section": null, 
+   "end_line": 349, 
+   "purpose": "Statements include: OPEN, WRITE", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 323, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2500-PROCESS-XREF-RECORD", 
+   "section": null, 
+   "end_line": 369, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 352, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2600-PROCESS-TRAN-RECORD", 
+   "section": null, 
+   "end_line": 399, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 372, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2650-PROCESS-CARD-RECORD", 
+   "section": null, 
+   "end_line": 422, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 402, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2700-PROCESS-UNKNOWN-RECORD", 
+   "section": null, 
+   "end_line": 434, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "2750-WRITE-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 425, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2750-WRITE-ERROR", 
+   "section": null, 
+   "end_line": 446, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 437, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3000-VALIDATE-IMPORT", 
+   "section": null, 
+   "end_line": 452, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 449, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "4000-FINALIZE", 
+   "section": null, 
+   "end_line": 478, 
+   "purpose": "Statements include: CLOSE, READ", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 455, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9999-ABEND-PROGRAM", 
+   "section": null, 
+   "end_line": 484, 
+   "purpose": "Statements include: CALL CEE3ABD", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 481, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "CVCUS01Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBIMPORT.cbl:84", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVCUS01Y.cpy"
+  }, 
+  {
+   "name": "CVACT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBIMPORT.cbl:89", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT01Y.cpy"
+  }, 
+  {
+   "name": "CVACT03Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBIMPORT.cbl:94", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT03Y.cpy"
+  }, 
+  {
+   "name": "CVTRA05Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBIMPORT.cbl:99", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVTRA05Y.cpy"
+  }, 
+  {
+   "name": "CVACT02Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBIMPORT.cbl:104", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT02Y.cpy"
+  }, 
+  {
+   "name": "CVEXPORT", 
+   "replacing": null, 
+   "source": "app/cbl/CBIMPORT.cbl:113", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVEXPORT.cpy"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/cbl/CBIMPORT.cbl:140", 
+   "pic": "9(09)", 
+   "name": "WS-TOTAL-RECORDS-READ", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:141", 
+   "pic": "9(09)", 
+   "name": "WS-CUSTOMER-RECORDS-IMPORTED", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:142", 
+   "pic": "9(09)", 
+   "name": "WS-ACCOUNT-RECORDS-IMPORTED", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:143", 
+   "pic": "9(09)", 
+   "name": "WS-XREF-RECORDS-IMPORTED", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:144", 
+   "pic": "9(09)", 
+   "name": "WS-TRAN-RECORDS-IMPORTED", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:145", 
+   "pic": "9(09)", 
+   "name": "WS-CARD-RECORDS-IMPORTED", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:146", 
+   "pic": "9(09)", 
+   "name": "WS-ERROR-RECORDS-WRITTEN", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:147", 
+   "pic": "9(09)", 
+   "name": "WS-UNKNOWN-RECORD-TYPE-COUNT", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:154", 
+   "pic": "X(01)", 
+   "name": "FILLER", 
+   "value": "'|'"
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:156", 
+   "pic": "X(01)", 
+   "name": "FILLER", 
+   "value": "'|'"
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:158", 
+   "pic": "X(01)", 
+   "name": "FILLER", 
+   "value": "'|'"
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:160", 
+   "pic": "X(43)", 
+   "name": "FILLER", 
+   "value": "SPACES."
+  }
+ ], 
+ "loc": {
+  "comment": 74, 
+  "total": 487, 
+  "code": 413
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/CBIMPORT.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBIMPORT.cbl:18"
+  }
+ ], 
+ "sha256": "0eccb28695cb3a8ea6f6ea7da26d1b48a4529787f6130b2c98bead33bc661967", 
+ "files": [
+  {
+   "logical_name": "EXPORT-INPUT", 
+   "record_layout": "EXPORT-INPUT-RECORD", 
+   "record_key": "EXPORT-SEQUENCE-NUM", 
+   "ddname_or_cics_file": "EXPFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.EXPORT.DATA (app/jcl/CBEXPORT.jcl:62)"
+   ], 
+   "source": "app/cbl/CBIMPORT.cbl:37-41", 
+   "file_status_field": "WS-EXPORT-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "CUSTOMER-OUTPUT", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "CUSTOUT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.CUSTDATA.IMPORT (app/jcl/CBIMPORT.jcl:33)"
+   ], 
+   "source": "app/cbl/CBIMPORT.cbl:43-46", 
+   "file_status_field": "WS-CUSTOMER-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "ACCOUNT-OUTPUT", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "ACCTOUT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.ACCTDATA.IMPORT (app/jcl/CBIMPORT.jcl:38)"
+   ], 
+   "source": "app/cbl/CBIMPORT.cbl:48-51", 
+   "file_status_field": "WS-ACCOUNT-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "XREF-OUTPUT", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "XREFOUT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.CARDXREF.IMPORT (app/jcl/CBIMPORT.jcl:43)"
+   ], 
+   "source": "app/cbl/CBIMPORT.cbl:53-56", 
+   "file_status_field": "WS-XREF-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "TRANSACTION-OUTPUT", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "TRNXOUT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.TRANSACT.IMPORT (app/jcl/CBIMPORT.jcl:48)"
+   ], 
+   "source": "app/cbl/CBIMPORT.cbl:58-61", 
+   "file_status_field": "WS-TRANSACTION-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "CARD-OUTPUT", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "CARDOUT", 
+   "physical_names": [], 
+   "source": "app/cbl/CBIMPORT.cbl:63-66", 
+   "file_status_field": "WS-CARD-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "ERROR-OUTPUT", 
+   "record_layout": "ERROR-OUTPUT-RECORD", 
+   "record_key": null, 
+   "ddname_or_cics_file": "ERROUT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.IMPORT.ERRORS (app/jcl/CBIMPORT.jcl:56)"
+   ], 
+   "source": "app/cbl/CBIMPORT.cbl:68-71", 
+   "file_status_field": "WS-ERROR-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }
+ ], 
+ "messages": [
+  {
+   "text": "Unknown record type encountered", 
+   "source": "app/cbl/CBIMPORT.cbl:432"
+  }
+ ], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": []
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/CBIMPORT.cbl:198-261", 
+   "store_kind": "logical", 
+   "store": "EXPORT-INPUT", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:212", 
+   "store_kind": "logical", 
+   "store": "ACCOUNT-OUTPUT", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:226", 
+   "store_kind": "logical", 
+   "store": "TRANSACTION-OUTPUT", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:219", 
+   "store_kind": "logical", 
+   "store": "XREF-OUTPUT", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:439", 
+   "store_kind": "logical", 
+   "store": "ERROR-OUTPUT", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:205", 
+   "store_kind": "logical", 
+   "store": "CUSTOMER-OUTPUT", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBIMPORT.cbl:233", 
+   "store_kind": "logical", 
+   "store": "CARD-OUTPUT", 
+   "ops": [
+    "C"
+   ]
+  }
+ ], 
+ "program_id": "CBIMPORT", 
+ "error_handling": [
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:202", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:209", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:216", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:223", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:230", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:237", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:244", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:266", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:317", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:346", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:366", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:396", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:419", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:481", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "9999-ABEND-PROGRAM."
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBIMPORT.cbl:484", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "CALL 'CEE3ABD'."
+  }
+ ], 
+ "commands": [], 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CEE3ABD", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBIMPORT.cbl:484", 
+   "condition": null
+  }
+ ], 
+ "language": "COBOL", 
+ "candidate_rules": [], 
+ "runtime_type": [
+  "batch-main"
+ ]
+}

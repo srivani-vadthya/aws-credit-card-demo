@@ -1,0 +1,45 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/PRTCATBL.jcl:35", 
+   "via": "jcl-dd", 
+   "by": "PRTCATBL.STEP05R", 
+   "ops": [
+    "C", 
+    "D"
+   ]
+  }, 
+  {
+   "source": "app/jcl/PRTCATBL.jcl:44", 
+   "via": "jcl-dd", 
+   "by": "PRTCATBL.STEP10R", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/DEFGDGB.jcl:42"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "gdg": {
+   "scratch": true, 
+   "limit": 5, 
+   "empty": false, 
+   "source": "app/jcl/DEFGDGB.jcl:42"
+  }, 
+  "defined_by": [
+   "app/jcl/DEFGDGB.jcl:42"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.TCATBALF.BKUP", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "gdg-base", 
+ "aliases": [], 
+ "sample_data": null
+}

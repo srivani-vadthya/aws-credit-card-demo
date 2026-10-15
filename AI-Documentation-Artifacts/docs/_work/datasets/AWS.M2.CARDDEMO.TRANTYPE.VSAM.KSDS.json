@@ -1,0 +1,71 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/TRANREPT.jcl:69", 
+   "via": "jcl-dd", 
+   "by": "TRANREPT.STEP10R", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANTYPE.jcl:58", 
+   "via": "jcl-dd", 
+   "by": "TRANTYPE.STEP15", 
+   "ops": [
+    "U"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/TRANTYPE.jcl:36", 
+  "app/catlg/LISTCAT.txt:3742"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "keys": "KEYS(2 0)", 
+  "record_max": 60, 
+  "record_size": "RECORDSIZE(60 60)", 
+  "defined_by": [
+   "app/jcl/TRANTYPE.jcl:36"
+  ], 
+  "catalog_facts": {
+   "as_of": "09/01/22", 
+   "point_in_time": true, 
+   "rec_total": 7, 
+   "listcat_org": "INDEXED", 
+   "rec_total_source": "app/catlg/LISTCAT.txt:3784", 
+   "keylen_source": "app/catlg/LISTCAT.txt:3779", 
+   "source": "app/catlg/LISTCAT.txt:3742", 
+   "keylen": 2, 
+   "avglrecl": 60
+  }, 
+  "key_offset": 0, 
+  "key_length": 2
+ }, 
+ "layout": {
+  "key_fields": [], 
+  "copybook": null, 
+  "record": null, 
+  "length": null, 
+  "candidates": [
+   "CVTRA03Y:TRAN-TYPE-RECORD", 
+   "CVTRA04Y:TRAN-CAT-RECORD"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/TRANTYPE.jcl:36", 
+    "length": 60, 
+    "agrees": false
+   }
+  ]
+ }, 
+ "name": "AWS.M2.CARDDEMO.TRANTYPE.VSAM.KSDS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-ksds", 
+ "aliases": [], 
+ "sample_data": null
+}

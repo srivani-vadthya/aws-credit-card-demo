@@ -1,0 +1,83 @@
+{
+ "accessors": [], 
+ "module": "auth", 
+ "evidence": [
+  "app/app-authorization-ims-db2-mq/ims/DBPAUTP0.dbd:18", 
+  "app/app-authorization-ims-db2-mq/ims/PAUTBUNL.PSB:18", 
+  "app/app-authorization-ims-db2-mq/ims/PSBPAUTB.psb:17", 
+  "app/app-authorization-ims-db2-mq/ims/PSBPAUTL.psb:17"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "defined_by": [
+   "app/app-authorization-ims-db2-mq/ims/DBPAUTP0.dbd:18"
+  ]
+ }, 
+ "layout": null, 
+ "name": "DBPAUTP0", 
+ "ims": {
+  "access": "HIDAM,VSAM", 
+  "lchild": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/ims/DBPAUTP0.dbd:31", 
+    "segment": "PAUTINDX", 
+    "dbd": "DBPAUTX0"
+   }
+  ], 
+  "segments": [
+   {
+    "layout": "CIPAUSMY", 
+    "name": "PAUTSUM0", 
+    "parent": null, 
+    "bytes": 100, 
+    "seq_field": "ACCNTID", 
+    "source": "app/app-authorization-ims-db2-mq/ims/DBPAUTP0.dbd:28"
+   }, 
+   {
+    "layout": "CIPAUDTY", 
+    "name": "PAUTDTL1", 
+    "parent": "PAUTSUM0", 
+    "bytes": 200, 
+    "seq_field": "PAUT9CTS", 
+    "source": "app/app-authorization-ims-db2-mq/ims/DBPAUTP0.dbd:36"
+   }
+  ], 
+  "dataset_dd": [
+   "DDPAUTP0"
+  ], 
+  "psbs": [
+   {
+    "psb": "PAUTBUNL", 
+    "source": "app/app-authorization-ims-db2-mq/ims/PAUTBUNL.PSB:18", 
+    "procopt": "GOTP", 
+    "sensegs": [
+     "PAUTSUM0", 
+     "PAUTDTL1"
+    ]
+   }, 
+   {
+    "psb": "PSBPAUTB", 
+    "source": "app/app-authorization-ims-db2-mq/ims/PSBPAUTB.psb:17", 
+    "procopt": "AP", 
+    "sensegs": [
+     "PAUTSUM0", 
+     "PAUTDTL1"
+    ]
+   }, 
+   {
+    "psb": "PSBPAUTL", 
+    "source": "app/app-authorization-ims-db2-mq/ims/PSBPAUTL.psb:17", 
+    "procopt": "L", 
+    "sensegs": [
+     "PAUTSUM0", 
+     "PAUTDTL1"
+    ]
+   }
+  ]
+ }, 
+ "mq": null, 
+ "store_kind": "ims-database", 
+ "aliases": [], 
+ "sample_data": null
+}

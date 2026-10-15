@@ -1,0 +1,60 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/CREASTMT.JCL:59", 
+   "via": "jcl-dd", 
+   "by": "CREASTMT.STEP020", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CREASTMT.JCL:83", 
+   "via": "jcl-dd", 
+   "by": "CREASTMT.STEP040", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/CREASTMT.JCL:29"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "keys": "KEYS(32 0)", 
+  "record_max": 350, 
+  "record_size": "RECORDSIZE(350 350)", 
+  "defined_by": [
+   "app/jcl/CREASTMT.JCL:29"
+  ], 
+  "key_offset": 0, 
+  "key_length": 32
+ }, 
+ "layout": {
+  "key_fields": [], 
+  "copybook": null, 
+  "record": null, 
+  "length": null, 
+  "candidates": [
+   "COSTM01:TRNX-RECORD", 
+   "CVTRA05Y:TRAN-RECORD", 
+   "CVTRA06Y:DALYTRAN-RECORD"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/CREASTMT.JCL:29", 
+    "length": 350, 
+    "agrees": false
+   }
+  ]
+ }, 
+ "name": "AWS.M2.CARDDEMO.TRXFL.VSAM.KSDS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-ksds", 
+ "aliases": [], 
+ "sample_data": null
+}

@@ -1,0 +1,44 @@
+---
+description: How to read fixed-format COBOL programs and copybooks accurately during reverse engineering
+globs: **/*.{cbl,CBL,cob,COB,cobol,cpy,CPY,copy,dcl,DCL}
+alwaysApply: false
+---
+
+# Reading COBOL Source
+
+## Reference format
+- Columns 1-6 sequence area, 7 indicator, 8-11 Area A, 12-72 Area B,
+  73-80 identification area. Ignore 1-6 and 73-80 when parsing; numbers there
+  (e.g. `00410032`) are not code.
+- Column 7: `*` or `/` comment, `-` continuation of the previous literal or
+  word, `D` debugging line. Comment lines are never code evidence.
+- If lines are not 80-column aligned (free format, tabs, stripped
+  sequence area), detect it per file and record it in the program facts.
+- Keywords and names are case-insensitive; normalize to upper case for
+  matching, but cite original lines.
+
+## Statements spanning lines
+- `EXEC CICS|SQL|DLI ... END-EXEC` routinely spans lines; join the block
+  before extracting the verb and options.
+- A sentence ends with a period; scope terminators (`END-IF`, `END-EVALUATE`,
+  `END-PERFORM`) end constructs. Track both.
+
+## Copybooks
+- Resolve `COPY name [OF|IN lib] [REPLACING ...]` and `EXEC SQL INCLUDE`.
+  Apply REPLACING (including `==pseudo-text==`) before using field names.
+- Search all copybook locations in the inventory; match member names
+  case-insensitively and with or without extension.
+- System copybooks (`DFHAID`, `DFHBMSCA`, `DFHATTR`, `SQLCA`, `CMQ*`) are
+  external: record them, do not flag as missing application code.
+
+## Dynamic targets
+- `XCTL/LINK PROGRAM(var)`, `CALL var`, `START TRANSID(var)`: resolve `var`
+  by tracing MOVEs, VALUE clauses and table copybooks (OCCURS + REDEFINES
+  of literal tables). List every resolvable value with its source line; mark
+  the rest `Unverified` and log a gap.
+
+## Data definitions
+- Record level numbers, PIC, USAGE (DISPLAY, COMP, COMP-3, COMP-5, BINARY),
+  SIGN, REDEFINES, OCCURS [DEPENDING ON], level-88 values, VALUE and FILLER.
+- Compute byte lengths from PIC + USAGE; never copy lengths from comments
+  without checking (comments like `RECLN 300` are `Unverified`).

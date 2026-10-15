@@ -1,0 +1,82 @@
+{
+ "accessors": [], 
+ "module": "trantype", 
+ "evidence": [
+  "app/app-transaction-type-db2/ctl/DB2CREAT.ctl:75", 
+  "app/app-transaction-type-db2/ctl/DB2CREAT.ctl:85", 
+  "app/app-transaction-type-db2/ddl/TRNTYCAT.ddl:1", 
+  "app/app-transaction-type-db2/ddl/XTRNTYCAT.ddl:1"
+ ], 
+ "purpose": null, 
+ "db2": {
+  "foreign_keys": [], 
+  "tablespace": "CARDDEMO.CARDSTTC", 
+  "primary_key": [
+   "TRC_TYPE_CODE", 
+   "TRC_TYPE_CATEGORY"
+  ], 
+  "columns": [
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(2)", 
+    "name": "TRC_TYPE_CODE", 
+    "nullable": false
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(4)", 
+    "name": "TRC_TYPE_CATEGORY", 
+    "nullable": false
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "VARCHAR(50)", 
+    "name": "TRC_CAT_DATA", 
+    "nullable": false
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "KEY", 
+    "name": "FOREIGN", 
+    "nullable": true
+   }
+  ], 
+  "indexes": [
+   {
+    "source": "app/app-transaction-type-db2/ctl/DB2CREAT.ctl:85", 
+    "unique": true, 
+    "name": "CARDDEMO.X_TRAN_TYPE_CATG", 
+    "columns": [
+     "TRC_TYPE_CODE", 
+     "TRC_TYPE_CATEGORY"
+    ]
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/ddl/XTRNTYCAT.ddl:1", 
+    "unique": true, 
+    "name": "CARDDEMO.X_TRAN_TYPE_CATG", 
+    "columns": [
+     "TRC_TYPE_CODE", 
+     "TRC_TYPE_CATEGORY"
+    ]
+   }
+  ]
+ }, 
+ "physical": {
+  "defined_by": [
+   "app/app-transaction-type-db2/ctl/DB2CREAT.ctl:75", 
+   "app/app-transaction-type-db2/ddl/TRNTYCAT.ddl:1"
+  ]
+ }, 
+ "layout": null, 
+ "name": "CARDDEMO.TRANSACTION_TYPE_CATEGORY", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "db2-table", 
+ "aliases": [], 
+ "sample_data": null
+}

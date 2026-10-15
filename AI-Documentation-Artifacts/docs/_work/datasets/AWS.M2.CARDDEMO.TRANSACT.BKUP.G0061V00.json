@@ -1,0 +1,24 @@
+{
+ "accessors": [], 
+ "module": null, 
+ "evidence": [
+  "app/catlg/LISTCAT.txt:2735"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "catalog_facts": {
+   "source": "app/catlg/LISTCAT.txt:2735", 
+   "as_of": "09/01/22", 
+   "point_in_time": true
+  }, 
+  "defined_by": []
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0061V00", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "sequential", 
+ "aliases": [], 
+ "sample_data": null
+}

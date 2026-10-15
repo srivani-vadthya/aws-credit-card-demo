@@ -1,0 +1,23 @@
+{
+ "accessors": [], 
+ "module": "vsammq", 
+ "evidence": [
+  "app/app-vsam-mq/cbl/COACCT01.cbl:198"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "defined_by": []
+ }, 
+ "layout": null, 
+ "name": "CARD.DEMO.REPLY.ACCT", 
+ "ims": null, 
+ "mq": {
+  "message_layout": null, 
+  "name_origin": "literal", 
+  "role": "reply"
+ }, 
+ "store_kind": "mq-queue", 
+ "aliases": [], 
+ "sample_data": null
+}

@@ -1,0 +1,36 @@
+{
+ "accessors": [], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/CARDFILE.jcl:83", 
+  "app/catlg/LISTCAT.txt:254"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "keys": "KEYS(11 16)", 
+  "catalog_facts": {
+   "as_of": "09/01/22", 
+   "point_in_time": true, 
+   "rec_total": 50, 
+   "listcat_org": "INDEXED", 
+   "rec_total_source": "app/catlg/LISTCAT.txt:287", 
+   "keylen_source": "app/catlg/LISTCAT.txt:281", 
+   "source": "app/catlg/LISTCAT.txt:254", 
+   "keylen": 11, 
+   "avglrecl": 150
+  }, 
+  "unique": false, 
+  "aix_relate": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+  "defined_by": [
+   "app/jcl/CARDFILE.jcl:83"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.CARDDATA.VSAM.AIX", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-aix", 
+ "aliases": [], 
+ "sample_data": null
+}

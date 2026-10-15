@@ -1,0 +1,564 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "Close files in CICS region", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/CARDFILE.jcl:20"
+ }, 
+ "job_card": {
+  "source": "app/jcl/CARDFILE.jcl:1", 
+  "msgclass": "0", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [
+  {
+   "source": "scripts/remote_refresh.sh:20", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:20", 
+   "mechanism": "script-ftp-put"
+  }
+ ], 
+ "findings": [], 
+ "source_path": "app/jcl/CARDFILE.jcl", 
+ "steps": [
+  {
+   "function": "Operator command", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 22, 
+   "kind": "other", 
+   "name": "CLCIFIL", 
+   "control_statements": [
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(CARDDAT ) CLO'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/CARDFILE.jcl:26"
+    }, 
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(CARDAIX ) CLO'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/CARDFILE.jcl:27"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 23, 
+     "ddname": "ISFOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 24, 
+     "ddname": "CMDOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 25, 
+     "ddname": "ISFIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "SDSF", 
+   "proc": null
+  }, 
+  {
+   "function": "IDCAMS delete", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 33, 
+   "kind": "utility", 
+   "name": "STEP05", 
+   "control_statements": [
+    {
+     "text": "DELETE AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS -", 
+     "meaning": "IDCAMS delete", 
+     "source": "app/jcl/CARDFILE.jcl:36"
+    }, 
+    {
+     "text": "DELETE AWS.M2.CARDDEMO.CARDDATA.VSAM.AIX -", 
+     "meaning": "IDCAMS delete", 
+     "source": "app/jcl/CARDFILE.jcl:39"
+    }, 
+    {
+     "text": "ALTERNATEINDEX", 
+     "meaning": "IDCAMS define alternate index", 
+     "source": "app/jcl/CARDFILE.jcl:40"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 34, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 35, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "IDCAMS define VSAM cluster", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 47, 
+   "kind": "utility", 
+   "name": "STEP10", 
+   "control_statements": [
+    {
+     "text": "DEFINE CLUSTER (NAME(AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS) -", 
+     "meaning": "IDCAMS define VSAM cluster", 
+     "source": "app/jcl/CARDFILE.jcl:50"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 48, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 49, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "IDCAMS REPRO copy", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 68, 
+   "kind": "utility", 
+   "name": "STEP15", 
+   "control_statements": [
+    {
+     "text": "REPRO INFILE(CARDDATA) OUTFILE(CARDVSAM)", 
+     "meaning": "IDCAMS REPRO copy", 
+     "source": "app/jcl/CARDFILE.jcl:75"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 69, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 70, 
+     "ddname": "CARDDATA", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.CARDDATA.PS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 72, 
+     "ddname": "CARDVSAM", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 74, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "IDCAMS define alternate index", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 80, 
+   "kind": "utility", 
+   "name": "STEP40", 
+   "control_statements": [
+    {
+     "text": "DEFINE ALTERNATEINDEX (NAME(AWS.M2.CARDDEMO.CARDDATA.VSAM.AIX)-", 
+     "meaning": "IDCAMS define alternate index", 
+     "source": "app/jcl/CARDFILE.jcl:83"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 81, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 82, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "IDCAMS define path", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 97, 
+   "kind": "utility", 
+   "name": "STEP50", 
+   "control_statements": [
+    {
+     "text": "DEFINE PATH                                           -", 
+     "meaning": "IDCAMS define path", 
+     "source": "app/jcl/CARDFILE.jcl:100"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 98, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 99, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "Utility step IDCAMS", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 107, 
+   "kind": "utility", 
+   "name": "STEP60", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 108, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 109, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "Operator command", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 118, 
+   "kind": "other", 
+   "name": "OPCIFIL", 
+   "control_statements": [
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(CARDDAT ) OPE'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/CARDFILE.jcl:122"
+    }, 
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(CARDAIX ) OPE'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/CARDFILE.jcl:123"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 119, 
+     "ddname": "ISFOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 120, 
+     "ddname": "CMDOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 121, 
+     "ddname": "ISFIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "SDSF", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "0240faee5aec80d976ce0b15a85f101fa0f901b09b72d64545daa09858ddcc0c", 
+ "job_name": "CARDFILE"
+}

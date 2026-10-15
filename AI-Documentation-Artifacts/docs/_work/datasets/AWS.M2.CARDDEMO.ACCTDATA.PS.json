@@ -1,0 +1,33 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/ACCTFILE.jcl:56", 
+   "via": "jcl-dd", 
+   "by": "ACCTFILE.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": null, 
+ "evidence": [
+  "app/catlg/LISTCAT.txt:7"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "catalog_facts": {
+   "source": "app/catlg/LISTCAT.txt:7", 
+   "as_of": "09/01/22", 
+   "point_in_time": true
+  }, 
+  "defined_by": []
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.ACCTDATA.PS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "sequential", 
+ "aliases": [], 
+ "sample_data": null
+}

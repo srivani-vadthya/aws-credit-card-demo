@@ -1,0 +1,508 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CBPAUP0J", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:24", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC DLI or CALL CBLTDLI", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:132"
+  }
+ ], 
+ "candidate_rules": [], 
+ "module": "auth", 
+ "header": {
+  "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:1", 
+  "author": "AWS", 
+  "description": "See the comment block at the top of the source. Unverified until matched to code.", 
+  "version_banner": null
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "name": "MAINLINE", 
+   "section": null, 
+   "end_line": 133, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 132, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 180, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "1000-INITIALIZE", 
+    "2000-FIND-NEXT-AUTH-SUMMARY", 
+    "3000-FIND-NEXT-AUTH-DTL", 
+    "4000-CHECK-IF-EXPIRED", 
+    "5000-DELETE-AUTH-DTL", 
+    "3000-FIND-NEXT-AUTH-DTL", 
+    "6000-DELETE-AUTH-SUMMARY", 
+    "9000-TAKE-CHECKPOINT", 
+    "2000-FIND-NEXT-AUTH-SUMMARY", 
+    "9000-TAKE-CHECKPOINT"
+   ], 
+   "reachable": true, 
+   "start_line": 136, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1000-INITIALIZE", 
+   "section": null, 
+   "end_line": 210, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 183, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1000-EXIT", 
+   "section": null, 
+   "end_line": 213, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 212, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2000-FIND-NEXT-AUTH-SUMMARY", 
+   "section": null, 
+   "end_line": 242, 
+   "purpose": "Statements include: EXEC DLI GN", 
+   "performs": [
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 216, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2000-EXIT", 
+   "section": null, 
+   "end_line": 244, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 243, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3000-FIND-NEXT-AUTH-DTL", 
+   "section": null, 
+   "end_line": 272, 
+   "purpose": "Statements include: EXEC DLI GNP", 
+   "performs": [
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 248, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3000-EXIT", 
+   "section": null, 
+   "end_line": 274, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 273, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "4000-CHECK-IF-EXPIRED", 
+   "section": null, 
+   "end_line": 298, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 277, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "4000-EXIT", 
+   "section": null, 
+   "end_line": 300, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 299, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5000-DELETE-AUTH-DTL", 
+   "section": null, 
+   "end_line": 323, 
+   "purpose": "Statements include: EXEC DLI DLET", 
+   "performs": [
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 303, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "5000-EXIT", 
+   "section": null, 
+   "end_line": 325, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 324, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "6000-DELETE-AUTH-SUMMARY", 
+   "section": null, 
+   "end_line": 347, 
+   "purpose": "Statements include: EXEC DLI DLET", 
+   "performs": [
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 328, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "6000-EXIT", 
+   "section": null, 
+   "end_line": 349, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 348, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9000-TAKE-CHECKPOINT", 
+   "section": null, 
+   "end_line": 372, 
+   "purpose": "Statements include: EXEC DLI CHKP", 
+   "performs": [
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 352, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9000-EXIT", 
+   "section": null, 
+   "end_line": 374, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 373, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9999-ABEND", 
+   "section": null, 
+   "end_line": 383, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 377, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9999-EXIT", 
+   "section": null, 
+   "end_line": 386, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 385, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:117", 
+   "resolution": "inventory", 
+   "name": "CIPAUSMY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:121", 
+   "resolution": "inventory", 
+   "name": "CIPAUDTY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }
+ ], 
+ "runtime_type": [
+  "ims-bmp"
+ ], 
+ "loc": {
+  "comment": 90, 
+  "total": 386, 
+  "code": 296
+ }, 
+ "evidence_summary": "Structural facts read from app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl. Paragraph purposes are Inferred from statements.", 
+ "source_format": "fixed", 
+ "observations": [], 
+ "sha256": "309468a5c4745f92c6dcf6ed28b396334b2f131ced78eb43eda962a63d2b174e", 
+ "files": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "linkage": [], 
+  "pcbs": []
+ }, 
+ "crud": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:310", 
+   "store": "DLI-DLET", 
+   "store_kind": "logical", 
+   "ops": [
+    "D"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:255", 
+   "store": "DLI-GNP", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:223", 
+   "store": "DLI-GN", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "program_id": "CBPAUP0C", 
+ "error_handling": [], 
+ "source_path": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl", 
+ "commands": [
+  {
+   "kind": "DLI", 
+   "resource": "GN", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "GN", 
+   "response_handling": null, 
+   "line": 223
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "GNP", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "GNP", 
+   "response_handling": null, 
+   "line": 255
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "DLET", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "DLET", 
+   "response_handling": null, 
+   "line": 310
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "DLET", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "DLET", 
+   "response_handling": null, 
+   "line": 335
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "CHKP", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "CHKP", 
+   "response_handling": null, 
+   "line": 355
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [], 
+ "messages": [], 
+ "data_items": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:42", 
+   "name": "WS-PGMNAME", 
+   "value": "'CBPAUP0C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:59", 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:60", 
+   "name": "ERR-FLG-ON", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:61", 
+   "name": "ERR-FLG-OFF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:62", 
+   "name": "WS-END-OF-AUTHDB-FLAG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:63", 
+   "name": "END-OF-AUTHDB", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:64", 
+   "name": "NOT-END-OF-AUTHDB", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:65", 
+   "name": "WS-MORE-AUTHS-FLAG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:66", 
+   "name": "MORE-AUTHS", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:67", 
+   "name": "NO-MORE-AUTHS", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:68", 
+   "name": "WS-QUALIFY-DELETE-FLAG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:69", 
+   "name": "QUALIFIED-FOR-DELETE", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:70", 
+   "name": "NOT-QUALIFIED-FOR-DELETE", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:73", 
+   "name": "END-OF-FILE", 
+   "value": "'10'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:76", 
+   "name": "FILLER", 
+   "value": "'RMAD'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:80", 
+   "name": "PSB-NAME", 
+   "value": "'PSBPAUTB'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:84", 
+   "name": "STATUS-OK", 
+   "value": "'  '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:85", 
+   "name": "SEGMENT-NOT-FOUND", 
+   "value": "'GE'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:86", 
+   "name": "DUPLICATE-SEGMENT-FOUND", 
+   "value": "'II'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:87", 
+   "name": "WRONG-PARENTAGE", 
+   "value": "'GP'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:88", 
+   "name": "END-OF-DB", 
+   "value": "'GB'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:89", 
+   "name": "DATABASE-UNAVAILABLE", 
+   "value": "'BA'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:90", 
+   "name": "PSB-SCHEDULED-MORE-THAN-ONCE", 
+   "value": "'TC'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:91", 
+   "name": "COULD-NOT-SCHEDULE-PSB", 
+   "value": "'TE'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:92", 
+   "name": "RETRY-CONDITION", 
+   "value": "'BA'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:94", 
+   "name": "IMS-PSB-SCHD", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:95", 
+   "name": "IMS-PSB-NOT-SCHD", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:106", 
+   "name": "DEBUG-ON", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:107", 
+   "name": "DEBUG-OFF", 
+   "value": "'N'"
+  }
+ ]
+}

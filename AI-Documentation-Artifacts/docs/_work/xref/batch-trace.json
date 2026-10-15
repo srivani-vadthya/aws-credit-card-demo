@@ -1,0 +1,3910 @@
+{
+ "rows": [
+  {
+   "source": "app/jcl/ACCTFILE.jcl", 
+   "job": "ACCTFILE", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 33, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "ACCTDATA", 
+       "source": "app/jcl/ACCTFILE.jcl:56"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "ACCTVSAM", 
+       "source": "app/jcl/ACCTFILE.jcl:58"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP15", 
+     "program": "IDCAMS", 
+     "line": 54, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/CARDFILE.jcl", 
+   "job": "CARDFILE", 
+   "steps": [
+    {
+     "kind": "other", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "CLCIFIL", 
+     "program": "SDSF", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 33, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 47, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDDATA.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "CARDDATA", 
+       "source": "app/jcl/CARDFILE.jcl:70"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "CARDVSAM", 
+       "source": "app/jcl/CARDFILE.jcl:72"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP15", 
+     "program": "IDCAMS", 
+     "line": 68, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP40", 
+     "program": "IDCAMS", 
+     "line": 80, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP50", 
+     "program": "IDCAMS", 
+     "line": 97, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP60", 
+     "program": "IDCAMS", 
+     "line": 107, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "other", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "OPCIFIL", 
+     "program": "SDSF", 
+     "line": 118, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/CBADMCDJ.jcl", 
+   "job": "CBADMCDJ", 
+   "steps": [
+    {
+     "kind": "build", 
+     "datasets": [
+      {
+       "dsn": "OEM.CICSTS.V05R06M0.CICS.SDFHLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/CBADMCDJ.jcl:29"
+      }, 
+      {
+       "dsn": "OEM.CICSTS.DFHCSD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DFHCSD", 
+       "source": "app/jcl/CBADMCDJ.jcl:30"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP1", 
+     "program": "DFHCSDUP", 
+     "line": 27, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/CBEXPORT.jcl", 
+   "job": "CBEXPORT", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP01", 
+     "program": "IDCAMS", 
+     "line": 24, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "application", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/CBEXPORT.jcl:44"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "CUSTFILE", 
+       "source": "app/jcl/CBEXPORT.jcl:49"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "ACCTFILE", 
+       "source": "app/jcl/CBEXPORT.jcl:51"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "XREFFILE", 
+       "source": "app/jcl/CBEXPORT.jcl:53"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TRANSACT", 
+       "source": "app/jcl/CBEXPORT.jcl:55"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "CARDFILE", 
+       "source": "app/jcl/CBEXPORT.jcl:57"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.EXPORT.DATA", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "EXPFILE", 
+       "source": "app/jcl/CBEXPORT.jcl:62"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP02", 
+     "program": "CBEXPORT", 
+     "line": 43, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/CBIMPORT.jcl", 
+   "job": "CBIMPORT", 
+   "steps": [
+    {
+     "kind": "application", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/CBIMPORT.jcl:23"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.EXPORT.DATA", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "EXPFILE", 
+       "source": "app/jcl/CBIMPORT.jcl:28"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CUSTDATA.IMPORT", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "CUSTOUT", 
+       "source": "app/jcl/CBIMPORT.jcl:33"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.IMPORT", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "ACCTOUT", 
+       "source": "app/jcl/CBIMPORT.jcl:38"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDXREF.IMPORT", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "XREFOUT", 
+       "source": "app/jcl/CBIMPORT.jcl:43"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.IMPORT", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "TRNXOUT", 
+       "source": "app/jcl/CBIMPORT.jcl:48"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.IMPORT.ERRORS", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "ERROUT", 
+       "source": "app/jcl/CBIMPORT.jcl:56"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP01", 
+     "program": "CBIMPORT", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "samples/jcl/BMSCMP.jcl", 
+   "job": "CBLDBMS", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP1", 
+     "program": null, 
+     "line": 38, 
+     "proc": "BUILDBMS", 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "other", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "SDSF1", 
+     "program": "SDSF", 
+     "line": 42, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl", 
+   "job": "CBPAUP0J", 
+   "steps": [
+    {
+     "kind": "ims", 
+     "datasets": [
+      {
+       "dsn": "IMS.SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:26"
+      }, 
+      {
+       "dsn": "XXXXXXXX.PROD.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:27"
+      }, 
+      {
+       "dsn": "IMS.SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DFSRESLB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:28"
+      }, 
+      {
+       "dsn": "IMS.PROCLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "PROCLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:29"
+      }, 
+      {
+       "dsn": "IMS.SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DFSSEL", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:31"
+      }, 
+      {
+       "dsn": "IMS.PSBLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IMS", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:33"
+      }, 
+      {
+       "dsn": "IMS.DBDLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IMS", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:34"
+      }
+     ], 
+     "rules": [
+      "BR-AUTH-CBPAUP0C-001", 
+      "BR-AUTH-CBPAUP0C-002"
+     ], 
+     "step": "STEP01", 
+     "program": "DFSRRC00", 
+     "line": 24, 
+     "proc": null, 
+     "invoked_program": "CBPAUP0C", 
+     "sysout_or_unnamed_dd_count": 10
+    }
+   ]
+  }, 
+  {
+   "source": "samples/jcl/CICCMP.jcl", 
+   "job": "CICCMP", 
+   "steps": [
+    {
+     "kind": "build", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "CICSCMP", 
+     "program": null, 
+     "line": 41, 
+     "proc": "BUILDONL", 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "other", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "NEWCOPY", 
+     "program": "SDSF", 
+     "line": 45, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "samples/jcl/CICDBCMP.jcl", 
+   "job": "CIDBCMP", 
+   "steps": [
+    {
+     "kind": "application", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "CICSCMP", 
+     "program": null, 
+     "line": 54, 
+     "proc": "BLDCIDB2", 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/CLOSEFIL.jcl", 
+   "job": "CLOSEFIL", 
+   "steps": [
+    {
+     "kind": "other", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "CLCIFIL", 
+     "program": "SDSF", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "samples/jcl/BATCMP.jcl", 
+   "job": "CNJBATMP", 
+   "steps": [
+    {
+     "kind": "build", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "BATCMP", 
+     "program": null, 
+     "line": 42, 
+     "proc": "BUILDBAT", 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/COMBTRAN.jcl", 
+   "job": "COMBTRAN", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(0)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SORTIN", 
+       "source": "app/jcl/COMBTRAN.jcl:23"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.SYSTRAN(0)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SORTIN", 
+       "source": "app/jcl/COMBTRAN.jcl:25"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED(+1)", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "SORTOUT", 
+       "source": "app/jcl/COMBTRAN.jcl:33"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05R", 
+     "program": "SORT", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED(+1)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TRANSACT", 
+       "source": "app/jcl/COMBTRAN.jcl:43"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TRANVSAM", 
+       "source": "app/jcl/COMBTRAN.jcl:45"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 41, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl", 
+   "job": "CREADB2", 
+   "steps": [
+    {
+     "kind": "db2", 
+     "datasets": [
+      {
+       "dsn": "OEM.DB2.DAZ1.SDSNEXIT", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:41"
+      }, 
+      {
+       "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:42"
+      }, 
+      {
+       "dsn": "&LBNM..CNTL(DB2FREE)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSTSIN", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:46"
+      }
+     ], 
+     "rules": [], 
+     "step": "FREEPLN", 
+     "program": "IKJEFT01", 
+     "line": 40, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "db2", 
+     "datasets": [
+      {
+       "dsn": "OEM.DB2.&DB2S..RUNLIB.LOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:53"
+      }, 
+      {
+       "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:54"
+      }, 
+      {
+       "dsn": "&LBNM..CNTL(DB2TIAD1)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSTSIN", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:58"
+      }, 
+      {
+       "dsn": "&LBNM..CNTL(DB2CREAT)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSIN", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:59"
+      }
+     ], 
+     "rules": [], 
+     "step": "CRCRDDB", 
+     "program": "IKJEFT01", 
+     "line": 52, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "LDTTYPE", 
+     "program": "IEFBR14", 
+     "line": 64, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "db2", 
+     "datasets": [
+      {
+       "dsn": "OEM.DB2.&DB2S..RUNLIB.LOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:66"
+      }, 
+      {
+       "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:67"
+      }, 
+      {
+       "dsn": "&LBNM..CNTL(DB2TEP41)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSTSIN", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:71"
+      }, 
+      {
+       "dsn": "&LBNM..CNTL(DB2LTTYP)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSIN", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:72"
+      }
+     ], 
+     "rules": [], 
+     "step": "RUNTEP2", 
+     "program": "IKJEFT01", 
+     "line": 65, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "db2", 
+     "datasets": [
+      {
+       "dsn": "OEM.DB2.&DB2S..RUNLIB.LOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:78"
+      }, 
+      {
+       "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:79"
+      }, 
+      {
+       "dsn": "&LBNM..CNTL(DB2TEP41)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSTSIN", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:83"
+      }, 
+      {
+       "dsn": "&LBNM..CNTL(DB2LTCAT)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSIN", 
+       "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:84"
+      }
+     ], 
+     "rules": [], 
+     "step": "LDTCCAT", 
+     "program": "IKJEFT01", 
+     "line": 77, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/CREASTMT.JCL", 
+   "job": "CREASTMT", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "DELDEF01", 
+     "program": "IDCAMS", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SORTIN", 
+       "source": "app/jcl/CREASTMT.JCL:45"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRXFL.SEQ", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "SORTOUT", 
+       "source": "app/jcl/CREASTMT.JCL:48"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP010", 
+     "program": "SORT", 
+     "line": 44, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRXFL.SEQ", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "INFILE", 
+       "source": "app/jcl/CREASTMT.JCL:58"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRXFL.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "OUTFILE", 
+       "source": "app/jcl/CREASTMT.JCL:59"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP020", 
+     "program": "IDCAMS", 
+     "line": 56, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.STATEMNT.HTML", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "HTMLFILE", 
+       "source": "app/jcl/CREASTMT.JCL:67"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.STATEMNT.PS", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "STMTFILE", 
+       "source": "app/jcl/CREASTMT.JCL:72"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP030", 
+     "program": "IEFBR14", 
+     "line": 66, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "application", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/CREASTMT.JCL:80"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRXFL.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TRNXFILE", 
+       "source": "app/jcl/CREASTMT.JCL:83"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "XREFFILE", 
+       "source": "app/jcl/CREASTMT.JCL:84"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "ACCTFILE", 
+       "source": "app/jcl/CREASTMT.JCL:85"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "CUSTFILE", 
+       "source": "app/jcl/CREASTMT.JCL:86"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.STATEMNT.PS", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "STMTFILE", 
+       "source": "app/jcl/CREASTMT.JCL:87"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.STATEMNT.HTML", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "HTMLFILE", 
+       "source": "app/jcl/CREASTMT.JCL:92"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP040", 
+     "program": "CBSTM03A", 
+     "line": 79, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/CUSTFILE.jcl", 
+   "job": "CUSTFILE", 
+   "steps": [
+    {
+     "kind": "other", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "CLCIFIL", 
+     "program": "SDSF", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 32, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 43, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.CUSTDATA.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "CUSTDATA", 
+       "source": "app/jcl/CUSTFILE.jcl:66"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "CUSTVSAM", 
+       "source": "app/jcl/CUSTFILE.jcl:68"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP15", 
+     "program": "IDCAMS", 
+     "line": 64, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "other", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "OPCIFIL", 
+     "program": "SDSF", 
+     "line": 76, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/DALYREJS.jcl", 
+   "job": "DALYREJS", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 21, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl", 
+   "job": "DBPAUTP0", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.IMSDATA.DBPAUTP0", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "SYSUT1", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:9"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEPDEL", 
+     "program": "IEFBR14", 
+     "line": 7, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 1
+    }, 
+    {
+     "kind": "ims", 
+     "datasets": [
+      {
+       "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:18"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:19"
+      }, 
+      {
+       "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DFSRESLB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:20"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.PSBLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IMS", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:21"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.DBDLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IMS", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:22"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.IMSDATA.DBPAUTP0", 
+       "usage": [
+        "D"
+       ], 
+       "ddname": "DFSURGU1", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:25"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.PAUTHDB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DDPAUTP0", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:31"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.PAUTHDBX", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DDPAUTX0", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:32"
+      }, 
+      {
+       "dsn": "OEMPP.IMS.V15R01MB.PROCLIB(DFSVSMDB)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DFSVSAMP", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:33"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.RECON1", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "RECON1", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:40"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.RECON2", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "RECON2", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:41"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.RECON3", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "RECON3", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:42"
+      }
+     ], 
+     "rules": [], 
+     "step": "UNLOAD", 
+     "program": "DFSRRC00", 
+     "line": 15, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 5
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/DEFCUST.jcl", 
+   "job": "DEFCUST", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 32, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/DEFGDGB.jcl", 
+   "job": "DEFGDGB", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 21, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/DEFGDGD.jcl", 
+   "job": "DEFGDGD", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 24, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANTYPE.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSUT1", 
+       "source": "app/jcl/DEFGDGD.jcl:39"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANTYPE.BKUP(+1)", 
+       "usage": [
+        "C"
+       ], 
+       "ddname": "SYSUT2", 
+       "source": "app/jcl/DEFGDGD.jcl:40"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP20", 
+     "program": "IEBGENER", 
+     "line": 36, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP30", 
+     "program": "IDCAMS", 
+     "line": 47, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSUT1", 
+       "source": "app/jcl/DEFGDGD.jcl:62"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS.BKUP(+1)", 
+       "usage": [
+        "C"
+       ], 
+       "ddname": "SYSUT2", 
+       "source": "app/jcl/DEFGDGD.jcl:63"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP40", 
+     "program": "IEBGENER", 
+     "line": 59, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP50", 
+     "program": "IDCAMS", 
+     "line": 70, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.DISCGRP.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSUT1", 
+       "source": "app/jcl/DEFGDGD.jcl:85"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.DISCGRP.BKUP(+1)", 
+       "usage": [
+        "C"
+       ], 
+       "ddname": "SYSUT2", 
+       "source": "app/jcl/DEFGDGD.jcl:86"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP60", 
+     "program": "IEBGENER", 
+     "line": 82, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/DISCGRP.jcl", 
+   "job": "DISCGRP", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 33, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.DISCGRP.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DISCGRP", 
+       "source": "app/jcl/DISCGRP.jcl:56"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.DISCGRP.VSAM.KSDS", 
+       "usage": [
+        "U"
+       ], 
+       "ddname": "DISCVSAM", 
+       "source": "app/jcl/DISCGRP.jcl:58"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP15", 
+     "program": "IDCAMS", 
+     "line": 54, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/DUSRSECJ.jcl", 
+   "job": "DUSRSECJ", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.USRSEC.PS", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "DD01", 
+       "source": "app/jcl/DUSRSECJ.jcl:25"
+      }
+     ], 
+     "rules": [], 
+     "step": "PREDEL", 
+     "program": "IEFBR14", 
+     "line": 23, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.USRSEC.PS", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "SYSUT2", 
+       "source": "app/jcl/DUSRSECJ.jcl:46"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP01", 
+     "program": "IEBGENER", 
+     "line": 32, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP02", 
+     "program": "IDCAMS", 
+     "line": 58, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.USRSEC.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IN", 
+       "source": "app/jcl/DUSRSECJ.jcl:82"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "OUT", 
+       "source": "app/jcl/DUSRSECJ.jcl:83"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP03", 
+     "program": "IDCAMS", 
+     "line": 80, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/ESDSRRDS.jcl", 
+   "job": "ESDSRRDS", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.ESDSRRDS.PS", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "DD01", 
+       "source": "app/jcl/ESDSRRDS.jcl:26"
+      }
+     ], 
+     "rules": [], 
+     "step": "PREDEL", 
+     "program": "IEFBR14", 
+     "line": 24, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.ESDSRRDS.PS", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "SYSUT2", 
+       "source": "app/jcl/ESDSRRDS.jcl:47"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP01", 
+     "program": "IEBGENER", 
+     "line": 33, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP02", 
+     "program": "IDCAMS", 
+     "line": 59, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.ESDSRRDS.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IN", 
+       "source": "app/jcl/ESDSRRDS.jcl:81"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.ESDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "OUT", 
+       "source": "app/jcl/ESDSRRDS.jcl:82"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP03", 
+     "program": "IDCAMS", 
+     "line": 79, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP04", 
+     "program": "IDCAMS", 
+     "line": 93, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.ESDSRRDS.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IN", 
+       "source": "app/jcl/ESDSRRDS.jcl:115"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.RRDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "OUT", 
+       "source": "app/jcl/ESDSRRDS.jcl:116"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 113, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/FTPJCL.JCL", 
+   "job": "FTPJCLS", 
+   "steps": [
+    {
+     "kind": "ftp", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP1", 
+     "program": "FTP", 
+     "line": 30, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 1
+    }
+   ]
+  }, 
+  {
+   "source": "samples/jcl/IMSMQCMP.jcl", 
+   "job": "IMSMQCMP", 
+   "steps": [
+    {
+     "kind": "other", 
+     "datasets": [
+      {
+       "dsn": "&CICSHLQ..CICS.SDFHLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:29"
+      }, 
+      {
+       "dsn": "&HLQ..COBOL.SRC(IMSMQPGM)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSIN", 
+       "source": "samples/jcl/IMSMQCMP.jcl:30"
+      }, 
+      {
+       "dsn": "&&SYSCIN", 
+       "usage": [], 
+       "ddname": "SYSPUNCH", 
+       "source": "samples/jcl/IMSMQCMP.jcl:32"
+      }
+     ], 
+     "rules": [], 
+     "step": "TRN", 
+     "program": "DFHECP1$", 
+     "line": 28, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 1
+    }, 
+    {
+     "kind": "build", 
+     "datasets": [
+      {
+       "dsn": "IGY.SIGYCOMP.V63", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:39"
+      }, 
+      {
+       "dsn": "CEE.SCEERUN", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:40"
+      }, 
+      {
+       "dsn": "CEE.SCEERUN2", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:41"
+      }, 
+      {
+       "dsn": "&&LOADSET", 
+       "usage": [
+        "U"
+       ], 
+       "ddname": "SYSLIN", 
+       "source": "samples/jcl/IMSMQCMP.jcl:43"
+      }, 
+      {
+       "dsn": "CEE.SCEESAMP", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:62"
+      }, 
+      {
+       "dsn": "&CICSHLQ..CICS.SDFHCOB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:63"
+      }, 
+      {
+       "dsn": "&MQHLQ..SCSQCOBC", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:64"
+      }, 
+      {
+       "dsn": "&HLQ..COBCOPY", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:65"
+      }, 
+      {
+       "dsn": "&&SYSCIN", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "SYSIN", 
+       "source": "samples/jcl/IMSMQCMP.jcl:66"
+      }
+     ], 
+     "rules": [], 
+     "step": "COBOL", 
+     "program": "IGYCRCTL", 
+     "line": 37, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 17
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "&&COPYIMS", 
+       "usage": [
+        "C"
+       ], 
+       "ddname": "SYSUT2", 
+       "source": "samples/jcl/IMSMQCMP.jcl:76"
+      }
+     ], 
+     "rules": [], 
+     "step": "COPYIMS", 
+     "program": "IEBGENER", 
+     "line": 71, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 4
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "&&COPYLINK", 
+       "usage": [
+        "C"
+       ], 
+       "ddname": "SYSUT2", 
+       "source": "samples/jcl/IMSMQCMP.jcl:85"
+      }
+     ], 
+     "rules": [], 
+     "step": "COPYLINK", 
+     "program": "IEBGENER", 
+     "line": 82, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "&&COPYMQ", 
+       "usage": [
+        "C"
+       ], 
+       "ddname": "SYSUT2", 
+       "source": "samples/jcl/IMSMQCMP.jcl:94"
+      }
+     ], 
+     "rules": [], 
+     "step": "COPYMQ", 
+     "program": "IEBGENER", 
+     "line": 91, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "build", 
+     "datasets": [
+      {
+       "dsn": "&MQHLQ..SCSQLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:101"
+      }, 
+      {
+       "dsn": "SYS1.LINKLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:102"
+      }, 
+      {
+       "dsn": "CEE.SCEELKED", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:103"
+      }, 
+      {
+       "dsn": "&CICSHLQ..CICS.SDFHLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:104"
+      }, 
+      {
+       "dsn": "&IMSHLQ..SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSLIB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:105"
+      }, 
+      {
+       "dsn": "&MQHLQ..SCSQLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "CSQSTUB", 
+       "source": "samples/jcl/IMSMQCMP.jcl:106"
+      }, 
+      {
+       "dsn": "&&COPYLINK", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "SYSLIN", 
+       "source": "samples/jcl/IMSMQCMP.jcl:107"
+      }, 
+      {
+       "dsn": "&&COPYMQ", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "SYSLIN", 
+       "source": "samples/jcl/IMSMQCMP.jcl:108"
+      }, 
+      {
+       "dsn": "&&LOADSET", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "SYSLIN", 
+       "source": "samples/jcl/IMSMQCMP.jcl:109"
+      }, 
+      {
+       "dsn": "&&COPYIMS", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "SYSLIN", 
+       "source": "samples/jcl/IMSMQCMP.jcl:110"
+      }, 
+      {
+       "dsn": "&HLQ..CICSLOAD(IMSMQPGM)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSLMOD", 
+       "source": "samples/jcl/IMSMQCMP.jcl:112"
+      }
+     ], 
+     "rules": [], 
+     "step": "LKED", 
+     "program": "IEWL", 
+     "line": 100, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/INTCALC.jcl", 
+   "job": "INTCALC", 
+   "steps": [
+    {
+     "kind": "application", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/INTCALC.jcl:23"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TCATBALF", 
+       "source": "app/jcl/INTCALC.jcl:27"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "XREFFILE", 
+       "source": "app/jcl/INTCALC.jcl:29"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX.PATH", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "XREFFIL1", 
+       "source": "app/jcl/INTCALC.jcl:31"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "ACCTFILE", 
+       "source": "app/jcl/INTCALC.jcl:33"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.DISCGRP.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DISCGRP", 
+       "source": "app/jcl/INTCALC.jcl:35"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.SYSTRAN(+1)", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "TRANSACT", 
+       "source": "app/jcl/INTCALC.jcl:37"
+      }
+     ], 
+     "rules": [
+      "BR-BASE-CBACT04C-001"
+     ], 
+     "step": "STEP15", 
+     "program": "CBACT04C", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/INTRDRJ1.JCL", 
+   "job": "INTRDRJ1", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDEMO.FTP.TEST", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IN", 
+       "source": "app/jcl/INTRDRJ1.JCL:8"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDEMO.FTP.TEST.BKUP", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "OUT", 
+       "source": "app/jcl/INTRDRJ1.JCL:9"
+      }
+     ], 
+     "rules": [], 
+     "step": "IDCAMS", 
+     "program": "IDCAMS", 
+     "line": 6, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.JCL(INTRDRJ2)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSUT1", 
+       "source": "app/jcl/INTRDRJ1.JCL:17"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP01", 
+     "program": "IEBGENER", 
+     "line": 14, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/INTRDRJ2.JCL", 
+   "job": "INTRDRJ2", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDEMO.FTP.TEST.BKUP", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IN", 
+       "source": "app/jcl/INTRDRJ2.JCL:9"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDEMO.FTP.TEST.BKUP.INTRDR", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "OUT", 
+       "source": "app/jcl/INTRDRJ2.JCL:10"
+      }
+     ], 
+     "rules": [], 
+     "step": "IDCAMS", 
+     "program": "IDCAMS", 
+     "line": 7, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "samples/jcl/LISTCAT.jcl", 
+   "job": "LISTFILS", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LISTCAT", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "DD1", 
+       "source": "samples/jcl/LISTCAT.jcl:22"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP01", 
+     "program": "IEFBR14", 
+     "line": 21, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LISTCAT", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "SYSPRINT", 
+       "source": "samples/jcl/LISTCAT.jcl:28"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 27, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 1
+    }
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL", 
+   "job": "LOADPADB", 
+   "steps": [
+    {
+     "kind": "ims", 
+     "datasets": [
+      {
+       "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:28"
+      }, 
+      {
+       "dsn": "OEMA.IMS.IMSP.SDFSRESL.V151", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:29"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:30"
+      }, 
+      {
+       "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DFSRESLB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:31"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.PSBLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IMS", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:33"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.DBDLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IMS", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:34"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.PAUTDB.ROOT.FILEO", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "INFILE1", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:36"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.PAUTDB.CHILD.FILEO", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "INFILE2", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:38"
+      }, 
+      {
+       "dsn": "OEMPP.IMS.V15R01MB.PROCLIB(DFSVSMDB)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DFSVSAMP", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:44"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP01", 
+     "program": "DFSRRC00", 
+     "line": 26, 
+     "proc": null, 
+     "invoked_program": "PAUDBLOD", 
+     "sysout_or_unnamed_dd_count": 5
+    }
+   ]
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl", 
+   "job": "MNTTRDB2", 
+   "steps": [
+    {
+     "kind": "db2", 
+     "datasets": [
+      {
+       "dsn": "OEM.DB2.DAZ1.SDSNEXIT", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:22"
+      }, 
+      {
+       "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:23"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:24"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.DBRMLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DBRMLIB", 
+       "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:25"
+      }, 
+      {
+       "dsn": "INPFILE", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "INPFILE", 
+       "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:27"
+      }
+     ], 
+     "rules": [
+      "BR-TRANTYPE-COBTUPDT-001"
+     ], 
+     "step": "STEP1", 
+     "program": "IKJEFT01", 
+     "line": 21, 
+     "proc": null, 
+     "invoked_program": "COBTUPDT", 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/OPENFIL.jcl", 
+   "job": "OPENFIL", 
+   "steps": [
+    {
+     "kind": "other", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "OPCIFIL", 
+     "program": "SDSF", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/POSTTRAN.jcl", 
+   "job": "POSTTRAN", 
+   "steps": [
+    {
+     "kind": "application", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/POSTTRAN.jcl:24"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TRANFILE", 
+       "source": "app/jcl/POSTTRAN.jcl:28"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.DALYTRAN.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DALYTRAN", 
+       "source": "app/jcl/POSTTRAN.jcl:30"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "XREFFILE", 
+       "source": "app/jcl/POSTTRAN.jcl:32"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.DALYREJS(+1)", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "DALYREJS", 
+       "source": "app/jcl/POSTTRAN.jcl:34"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "ACCTFILE", 
+       "source": "app/jcl/POSTTRAN.jcl:39"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TCATBALF", 
+       "source": "app/jcl/POSTTRAN.jcl:41"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP15", 
+     "program": "CBTRN02C", 
+     "line": 23, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/PRTCATBL.jcl", 
+   "job": "PRTCATBL", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TCATBALF.REPT", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "source": "app/jcl/PRTCATBL.jcl:22", 
+       "ddname": "THEFILE"
+      }
+     ], 
+     "rules": [], 
+     "step": "DELDEF", 
+     "program": "IEFBR14", 
+     "line": 21, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/jcl/PRTCATBL.jcl:32", 
+       "ddname": "PRC001.FILEIN"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP(+1)", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "source": "app/jcl/PRTCATBL.jcl:35", 
+       "ddname": "PRC001.FILEOUT"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/proc/REPROC.prc:27-28", 
+       "ddname": "PRC001.SYSIN"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05R", 
+     "program": null, 
+     "line": 29, 
+     "proc": "REPROC", 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP(+1)", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/jcl/PRTCATBL.jcl:44", 
+       "ddname": "SORTIN"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TCATBALF.REPT", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "source": "app/jcl/PRTCATBL.jcl:59", 
+       "ddname": "SORTOUT"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP10R", 
+     "program": "SORT", 
+     "line": 43, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "samples/jcl/RACFCMDS.jcl", 
+   "job": "RACFCMDS", 
+   "steps": [
+    {
+     "kind": "db2", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "TSOBAT", 
+     "program": "IKJEFT01", 
+     "line": 19, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/READACCT.jcl", 
+   "job": "READACCT", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.PSCOMP", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "DD01", 
+       "source": "app/jcl/READACCT.jcl:23"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.ARRYPS", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "DD02", 
+       "source": "app/jcl/READACCT.jcl:25"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VBPS", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "DD03", 
+       "source": "app/jcl/READACCT.jcl:27"
+      }
+     ], 
+     "rules": [], 
+     "step": "PREDEL", 
+     "program": "IEFBR14", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "application", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/READACCT.jcl:33"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "ACCTFILE", 
+       "source": "app/jcl/READACCT.jcl:35"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.PSCOMP", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "OUTFILE", 
+       "source": "app/jcl/READACCT.jcl:37"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.ARRYPS", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "ARRYFILE", 
+       "source": "app/jcl/READACCT.jcl:41"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VBPS", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "VBRCFILE", 
+       "source": "app/jcl/READACCT.jcl:45"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "CBACT01C", 
+     "line": 32, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/READCARD.jcl", 
+   "job": "READCARD", 
+   "steps": [
+    {
+     "kind": "application", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/READCARD.jcl:23"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "CARDFILE", 
+       "source": "app/jcl/READCARD.jcl:25"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "CBACT02C", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/READCUST.jcl", 
+   "job": "READCUST", 
+   "steps": [
+    {
+     "kind": "application", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/READCUST.jcl:22"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "CUSTFILE", 
+       "source": "app/jcl/READCUST.jcl:24"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "CBCUS01C", 
+     "line": 21, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/READXREF.jcl", 
+   "job": "READXREF", 
+   "steps": [
+    {
+     "kind": "application", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/READXREF.jcl:23"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "XREFFILE", 
+       "source": "app/jcl/READXREF.jcl:25"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "CBACT03C", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "samples/jcl/REPRTEST.jcl", 
+   "job": "REPRTEST", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "source": "samples/jcl/REPRTEST.jcl:26", 
+       "ddname": "PRC001.FILEIN"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "source": "samples/jcl/REPRTEST.jcl:29", 
+       "ddname": "PRC001.FILEOUT"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/proc/REPROC.prc:27-28", 
+       "ddname": "PRC001.SYSIN"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": null, 
+     "line": 23, 
+     "proc": "REPROC", 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/REPTFILE.jcl", 
+   "job": "REPTFILE", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "samples/jcl/SORTTEST.jcl", 
+   "job": "SORTTEST", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(0)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SORTIN", 
+       "source": "samples/jcl/SORTTEST.jcl:20"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "SORTOUT", 
+       "source": "samples/jcl/SORTTEST.jcl:31"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05R", 
+     "program": "SORT", 
+     "line": 19, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/TCATBALF.jcl", 
+   "job": "TCATBALF", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 33, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TCATBALF.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TCATBAL", 
+       "source": "app/jcl/TCATBALF.jcl:56"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+       "usage": [
+        "U"
+       ], 
+       "ddname": "TCATBALV", 
+       "source": "app/jcl/TCATBALF.jcl:58"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP15", 
+     "program": "IDCAMS", 
+     "line": 54, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANBKP.jcl", 
+   "job": "TRANBKP", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/jcl/TRANBKP.jcl:26", 
+       "ddname": "PRC001.FILEIN"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "source": "app/jcl/TRANBKP.jcl:29", 
+       "ddname": "PRC001.FILEOUT"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/proc/REPROC.prc:27-28", 
+       "ddname": "PRC001.SYSIN"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05R", 
+     "program": null, 
+     "line": 23, 
+     "proc": "REPROC", 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 37, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 51, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANCATG.jcl", 
+   "job": "TRANCATG", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 33, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TRANCATG", 
+       "source": "app/jcl/TRANCATG.jcl:56"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANCATG.VSAM.KSDS", 
+       "usage": [
+        "U"
+       ], 
+       "ddname": "TCATVSAM", 
+       "source": "app/jcl/TRANCATG.jcl:58"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP15", 
+     "program": "IDCAMS", 
+     "line": 54, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl", 
+   "job": "TRANEXTR", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "&HLQ..TRANTYPE.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSUT1", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:34"
+      }, 
+      {
+       "dsn": "&HLQ..TRANTYPE.BKUP(+1)", 
+       "usage": [
+        "C"
+       ], 
+       "ddname": "SYSUT2", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:35"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IEBGENER", 
+     "line": 31, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "&HLQ..TRANCATG.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSUT1", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:45"
+      }, 
+      {
+       "dsn": "&HLQ..TRANCATG.PS.BKUP(+1)", 
+       "usage": [
+        "C"
+       ], 
+       "ddname": "SYSUT2", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:46"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP20", 
+     "program": "IEBGENER", 
+     "line": 42, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "&HLQ..TRANTYPE.PS", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "DD01", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:54"
+      }, 
+      {
+       "dsn": "&HLQ..TRANCATG.PS", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "DD02", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:58"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP30", 
+     "program": "IEFBR14", 
+     "line": 53, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "db2", 
+     "datasets": [
+      {
+       "dsn": "OEM.DB2.DAZ1.RUNLIB.LOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:66"
+      }, 
+      {
+       "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:67"
+      }, 
+      {
+       "dsn": "&HLQ..TRANTYPE.PS", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "SYSREC00", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:72"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP40", 
+     "program": "IKJEFT01", 
+     "line": 65, 
+     "proc": null, 
+     "invoked_program": "DSNTIAUL", 
+     "sysout_or_unnamed_dd_count": 6
+    }, 
+    {
+     "kind": "db2", 
+     "datasets": [
+      {
+       "dsn": "OEM.DB2.DAZ1.RUNLIB.LOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:96"
+      }, 
+      {
+       "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:97"
+      }, 
+      {
+       "dsn": "&HLQ..TRANCATG.PS", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "SYSREC00", 
+       "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:102"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP50", 
+     "program": "IKJEFT01", 
+     "line": 95, 
+     "proc": null, 
+     "invoked_program": "DSNTIAUL", 
+     "sysout_or_unnamed_dd_count": 6
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANFILE.jcl", 
+   "job": "TRANFILE", 
+   "steps": [
+    {
+     "kind": "other", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "CLCIFIL", 
+     "program": "SDSF", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 32, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 46, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.DALYTRAN.PS.INIT", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TRANSACT", 
+       "source": "app/jcl/TRANFILE.jcl:69"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TRANVSAM", 
+       "source": "app/jcl/TRANFILE.jcl:71"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP15", 
+     "program": "IDCAMS", 
+     "line": 67, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP20", 
+     "program": "IDCAMS", 
+     "line": 79, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP25", 
+     "program": "IDCAMS", 
+     "line": 96, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP30", 
+     "program": "IDCAMS", 
+     "line": 106, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "other", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "OPCIFIL", 
+     "program": "SDSF", 
+     "line": 116, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANIDX.jcl", 
+   "job": "TRANIDX", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP20", 
+     "program": "IDCAMS", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP25", 
+     "program": "IDCAMS", 
+     "line": 39, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP30", 
+     "program": "IDCAMS", 
+     "line": 49, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANREPT.jcl", 
+   "job": "TRANREPT", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/jcl/TRANREPT.jcl:26", 
+       "ddname": "PRC001.FILEIN"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/proc/REPROC.prc:27-28", 
+       "ddname": "PRC001.SYSIN"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "source": "app/jcl/TRANREPT.jcl:29", 
+       "ddname": "PRC001.FILEOUT"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05R", 
+     "program": null, 
+     "line": 23, 
+     "proc": "REPROC", 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 0
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/jcl/TRANREPT.jcl:38", 
+       "ddname": "SORTIN"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "source": "app/jcl/TRANREPT.jcl:51", 
+       "ddname": "SORTOUT"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP05R", 
+     "program": "SORT", 
+     "line": 37, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "application", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/jcl/TRANREPT.jcl:60", 
+       "ddname": "STEPLIB"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/jcl/TRANREPT.jcl:65", 
+       "ddname": "TRANFILE"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/jcl/TRANREPT.jcl:67", 
+       "ddname": "CARDXREF"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANTYPE.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/jcl/TRANREPT.jcl:69", 
+       "ddname": "TRANTYPE"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANCATG.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/jcl/TRANREPT.jcl:71", 
+       "ddname": "TRANCATG"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.DATEPARM", 
+       "usage": [
+        "R"
+       ], 
+       "source": "app/jcl/TRANREPT.jcl:73", 
+       "ddname": "DATEPARM"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANREPT(+1)", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "source": "app/jcl/TRANREPT.jcl:76", 
+       "ddname": "TRANREPT"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP10R", 
+     "program": "CBTRN03C", 
+     "line": 59, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANTYPE.jcl", 
+   "job": "TRANTYPE", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 33, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANTYPE.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "TRANTYPE", 
+       "source": "app/jcl/TRANTYPE.jcl:56"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.TRANTYPE.VSAM.KSDS", 
+       "usage": [
+        "U"
+       ], 
+       "ddname": "TTYPVSAM", 
+       "source": "app/jcl/TRANTYPE.jcl:58"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP15", 
+     "program": "IDCAMS", 
+     "line": 54, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/TXT2PDF1.JCL", 
+   "job": "TXT2PDF1", 
+   "steps": [
+    {
+     "kind": "db2", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.LBD.TXT2PDF.LOAD", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/TXT2PDF1.JCL:28"
+      }, 
+      {
+       "dsn": "AWS.M2.LBD.TXT2PDF.EXEC", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "SYSEXEC", 
+       "source": "app/jcl/TXT2PDF1.JCL:31"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.STATEMNT.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "INDD", 
+       "source": "app/jcl/TXT2PDF1.JCL:33"
+      }
+     ], 
+     "rules": [], 
+     "step": "TXT2PDF", 
+     "program": "IKJEFT1B", 
+     "line": 24, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL", 
+   "job": "UNLDGSAM", 
+   "steps": [
+    {
+     "kind": "ims", 
+     "datasets": [
+      {
+       "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:28"
+      }, 
+      {
+       "dsn": "OEMA.IMS.IMSP.SDFSRESL.V151", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:29"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:30"
+      }, 
+      {
+       "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DFSRESLB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:31"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.PSBLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IMS", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:33"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.DBDLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IMS", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:34"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.PAUTDB.ROOT.GSAM", 
+       "usage": [
+        "U"
+       ], 
+       "ddname": "PASFILOP", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:36"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.PAUTDB.CHILD.GSAM", 
+       "usage": [
+        "U"
+       ], 
+       "ddname": "PADFILOP", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:39"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.PAUTHDB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DDPAUTP0", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:42"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.PAUTHDBX", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DDPAUTX0", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:43"
+      }, 
+      {
+       "dsn": "OEMPP.IMS.V15R01MB.PROCLIB(DFSVSMDB)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DFSVSAMP", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:46"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP01", 
+     "program": "DFSRRC00", 
+     "line": 26, 
+     "proc": null, 
+     "invoked_program": "DBUNLDGS", 
+     "sysout_or_unnamed_dd_count": 5
+    }
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL", 
+   "job": "UNLDPADB", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.PAUTDB.ROOT.FILEO", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "DD1", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:33"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.PAUTDB.CHILD.FILEO", 
+       "usage": [
+        "U", 
+        "D"
+       ], 
+       "ddname": "DD2", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:35"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP0", 
+     "program": "IEFBR14", 
+     "line": 25, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 3
+    }, 
+    {
+     "kind": "ims", 
+     "datasets": [
+      {
+       "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:40"
+      }, 
+      {
+       "dsn": "OEMA.IMS.IMSP.SDFSRESL.V151", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:41"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:42"
+      }, 
+      {
+       "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DFSRESLB", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:43"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.PSBLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IMS", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:45"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.DBDLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "IMS", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:46"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.PAUTDB.ROOT.FILEO", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "OUTFIL1", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:48"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.PAUTDB.CHILD.FILEO", 
+       "usage": [
+        "C", 
+        "D"
+       ], 
+       "ddname": "OUTFIL2", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:53"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.PAUTHDB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DDPAUTP0", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:58"
+      }, 
+      {
+       "dsn": "OEM.IMS.IMSP.PAUTHDBX", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DDPAUTX0", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:59"
+      }, 
+      {
+       "dsn": "OEMPP.IMS.V15R01MB.PROCLIB(DFSVSMDB)", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "DFSVSAMP", 
+       "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:62"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP01", 
+     "program": "DFSRRC00", 
+     "line": 38, 
+     "proc": null, 
+     "invoked_program": "PAUDBUNL", 
+     "sysout_or_unnamed_dd_count": 5
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/WAITSTEP.jcl", 
+   "job": "WAITSTEP", 
+   "steps": [
+    {
+     "kind": "application", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "STEPLIB", 
+       "source": "app/jcl/WAITSTEP.jcl:23"
+      }
+     ], 
+     "rules": [], 
+     "step": "WAIT", 
+     "program": "COBSWAIT", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }, 
+  {
+   "source": "app/jcl/XREFFILE.jcl", 
+   "job": "XREFFILE", 
+   "steps": [
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP05", 
+     "program": "IDCAMS", 
+     "line": 22, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP10", 
+     "program": "IDCAMS", 
+     "line": 36, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDXREF.PS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "XREFDATA", 
+       "source": "app/jcl/XREFFILE.jcl:59"
+      }, 
+      {
+       "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+       "usage": [
+        "R"
+       ], 
+       "ddname": "XREFVSAM", 
+       "source": "app/jcl/XREFFILE.jcl:61"
+      }
+     ], 
+     "rules": [], 
+     "step": "STEP15", 
+     "program": "IDCAMS", 
+     "line": 57, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP20", 
+     "program": "IDCAMS", 
+     "line": 69, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP25", 
+     "program": "IDCAMS", 
+     "line": 87, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }, 
+    {
+     "kind": "utility", 
+     "datasets": [], 
+     "rules": [], 
+     "step": "STEP30", 
+     "program": "IDCAMS", 
+     "line": 97, 
+     "proc": null, 
+     "invoked_program": null, 
+     "sysout_or_unnamed_dd_count": 2
+    }
+   ]
+  }
+ ], 
+ "schema": "batch-trace/1"
+}

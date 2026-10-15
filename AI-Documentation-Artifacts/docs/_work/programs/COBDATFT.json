@@ -1,0 +1,97 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CBACT01C", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBACT01C.cbl:231", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "CSECT with standard save-area linkage and BR 14 return", 
+   "source": "app/asm/COBDATFT.asm:17-62"
+  }
+ ], 
+ "messages": [
+  {
+   "text": "INVALID INPUT", 
+   "source": "app/asm/COBDATFT.asm:56"
+  }
+ ], 
+ "module": "base", 
+ "header": {
+  "source": "app/asm/COBDATFT.asm:17", 
+  "version_banner": null, 
+  "description": "Date format conversion routine. Input type 1 and 2 are tested in the code.", 
+  "author": null
+ }, 
+ "paragraphs": [], 
+ "copybooks": [
+  {
+   "replacing": null, 
+   "source": "app/asm/COBDATFT.asm:66", 
+   "resolution": "inventory", 
+   "name": "COCDATFT", 
+   "purpose": "DSECT for the date conversion parameter area"
+  }
+ ], 
+ "data_items": [], 
+ "loc": {
+  "comment": 18, 
+  "total": 84, 
+  "code": 60
+ }, 
+ "evidence_summary": "Read in full. Called from CBACT01C (app/cbl/CBACT01C.cbl:231).", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "The hyphen check for input type 2 is commented out, so a type-2 date is not rejected for a missing hyphen.", 
+   "confidence": "Confirmed", 
+   "source": "app/asm/COBDATFT.asm:47-48"
+  }
+ ], 
+ "files": [], 
+ "interfaces": {
+  "return_code_usage": [
+   {
+    "text": "SR 15,15 before return", 
+    "source": "app/asm/COBDATFT.asm:61"
+   }
+  ], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": [
+   {
+    "source": "app/asm/COBDATFT.asm:27-29", 
+    "name": "R1 addresses COREC (DSECT from COCDATFT)"
+   }
+  ]
+ }, 
+ "crud": [], 
+ "program_id": "COBDATFT", 
+ "error_handling": [], 
+ "source_path": "app/asm/COBDATFT.asm", 
+ "commands": [], 
+ "language": "Assembler", 
+ "calls": [], 
+ "candidate_rules": [
+  {
+   "source": "app/asm/COBDATFT.asm:30-45", 
+   "summary": "Input type 1 is rejected when the fifth input character is a hyphen, or when the requested output type is 2. Otherwise the routine inserts hyphens into YYYYMMDD positions."
+  }, 
+  {
+   "source": "app/asm/COBDATFT.asm:46-54", 
+   "summary": "Input type 2 is rejected when the requested output type is 1. The hyphen positions are removed."
+  }, 
+  {
+   "source": "app/asm/COBDATFT.asm:34-56", 
+   "summary": "Any other input type moves INVALID INPUT into the error message field."
+  }
+ ], 
+ "runtime_type": [
+  "asm-routine"
+ ]
+}

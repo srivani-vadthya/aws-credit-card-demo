@@ -1,0 +1,648 @@
+{
+ "set_symbols": {
+  "HLQ": "AWS.M2.CARDDEMO"
+ }, 
+ "description": {
+  "text": "This JCL will extract reference data for  use in Transaction", 
+  "confidence": "Unverified", 
+  "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:19"
+ }, 
+ "job_card": {
+  "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:1", 
+  "msgclass": "0", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [
+  {
+   "source": "app/scheduler/CardDemo.controlm", 
+   "description": {
+    "text": "WEEKLY TransactionTypesDBRefresh TRANEXTR", 
+    "confidence": "Unverified"
+   }, 
+   "folder_calendar": "SA", 
+   "time": "23:00", 
+   "folder": "WEEKLY-TransactionTypesDBRefresh", 
+   "successors": [], 
+   "calendar": null, 
+   "predecessors": [
+    "MNTTRDB2"
+   ]
+  }
+ ], 
+ "module": "trantype", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [], 
+ "source_path": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl", 
+ "steps": [
+  {
+   "function": "Utility step IEBGENER", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 31, 
+   "kind": "utility", 
+   "name": "STEP10", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 32, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": true, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 33, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 34, 
+     "ddname": "SYSUT1", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "&HLQ..TRANTYPE.PS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(NEW,CATLG)", 
+     "dummy": false, 
+     "lrecl": "60", 
+     "gdg_relative": "+1", 
+     "sysout": false, 
+     "line": 35, 
+     "ddname": "SYSUT2", 
+     "recfm": "FB", 
+     "layout": null, 
+     "space": "(TRK,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "&HLQ..TRANTYPE.BKUP(+1)", 
+     "usage": [
+      "C"
+     ], 
+     "instream": false
+    }
+   ], 
+   "program": "IEBGENER", 
+   "proc": null
+  }, 
+  {
+   "function": "Utility step IEBGENER", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": "(0,NE)", 
+   "proc_steps": [], 
+   "line": 42, 
+   "kind": "utility", 
+   "name": "STEP20", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 43, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": true, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 44, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 45, 
+     "ddname": "SYSUT1", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "&HLQ..TRANCATG.PS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(NEW,CATLG)", 
+     "dummy": false, 
+     "lrecl": "60", 
+     "gdg_relative": "+1", 
+     "sysout": false, 
+     "line": 46, 
+     "ddname": "SYSUT2", 
+     "recfm": "FB", 
+     "layout": null, 
+     "space": "(TRK,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "&HLQ..TRANCATG.PS.BKUP(+1)", 
+     "usage": [
+      "C"
+     ], 
+     "instream": false
+    }
+   ], 
+   "program": "IEBGENER", 
+   "proc": null
+  }, 
+  {
+   "function": "Utility step IEFBR14", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": "(0,NE)", 
+   "proc_steps": [], 
+   "line": 53, 
+   "kind": "utility", 
+   "name": "STEP30", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "(MOD,DELETE,DELETE)", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 54, 
+     "ddname": "DD01", 
+     "recfm": null, 
+     "layout": null, 
+     "space": "(TRK,(1,1))", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "&HLQ..TRANTYPE.PS", 
+     "usage": [
+      "U", 
+      "D"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(MOD,DELETE,DELETE)", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 58, 
+     "ddname": "DD02", 
+     "recfm": null, 
+     "layout": null, 
+     "space": "(TRK,(1,1))", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "&HLQ..TRANCATG.PS", 
+     "usage": [
+      "U", 
+      "D"
+     ], 
+     "instream": false
+    }
+   ], 
+   "program": "IEFBR14", 
+   "proc": null
+  }, 
+  {
+   "function": "RUN PROGRAM(DSNTIAUL) -", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": "(0,NE)", 
+   "proc_steps": [], 
+   "line": 65, 
+   "kind": "db2", 
+   "name": "STEP40", 
+   "control_statements": [
+    {
+     "text": "DSN SYSTEM(DAZ1)", 
+     "meaning": "DSN SYSTEM(DAZ1)", 
+     "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:87"
+    }, 
+    {
+     "text": "RUN PROGRAM(DSNTIAUL) -", 
+     "meaning": "RUN PROGRAM(DSNTIAUL) -", 
+     "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:88"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 66, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.DB2.DAZ1.RUNLIB.LOAD", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 67, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 68, 
+     "ddname": "SYSTSPRT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 69, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 70, 
+     "ddname": "SYSUDUMP", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": true, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 71, 
+     "ddname": "SYSPUNCH", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": false
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 72, 
+     "ddname": "SYSREC00", 
+     "recfm": null, 
+     "layout": null, 
+     "space": "(TRK,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "&HLQ..TRANTYPE.PS", 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 75, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 86, 
+     "ddname": "SYSTSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IKJEFT01", 
+   "proc": null
+  }, 
+  {
+   "function": "RUN PROGRAM(DSNTIAUL) -", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": "(4,LT)", 
+   "proc_steps": [], 
+   "line": 95, 
+   "kind": "db2", 
+   "name": "STEP50", 
+   "control_statements": [
+    {
+     "text": "DSN SYSTEM(DAZ1)", 
+     "meaning": "DSN SYSTEM(DAZ1)", 
+     "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:118"
+    }, 
+    {
+     "text": "RUN PROGRAM(DSNTIAUL) -", 
+     "meaning": "RUN PROGRAM(DSNTIAUL) -", 
+     "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:119"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 96, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.DB2.DAZ1.RUNLIB.LOAD", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 97, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 98, 
+     "ddname": "SYSTSPRT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 99, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 100, 
+     "ddname": "SYSUDUMP", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": true, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 101, 
+     "ddname": "SYSPUNCH", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": false
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 102, 
+     "ddname": "SYSREC00", 
+     "recfm": null, 
+     "layout": null, 
+     "space": "(TRK,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "&HLQ..TRANCATG.PS", 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 105, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 117, 
+     "ddname": "SYSTSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IKJEFT01", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "11649702d1a495e52c47493a9fc618c383e2932ea81444525b3e89b69edce598", 
+ "job_name": "TRANEXTR"
+}

@@ -1,0 +1,43 @@
+{
+ "accessors": [], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/DEFCUST.jcl:35"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "keys": "KEYS(10 0)", 
+  "record_max": 500, 
+  "record_size": "RECORDSIZE(500 500)", 
+  "defined_by": [
+   "app/jcl/DEFCUST.jcl:35"
+  ], 
+  "key_offset": 0, 
+  "key_length": 10
+ }, 
+ "layout": {
+  "key_fields": [], 
+  "copybook": null, 
+  "record": null, 
+  "length": null, 
+  "candidates": [
+   "CUSTREC:CUSTOMER-RECORD", 
+   "CVCUS01Y:CUSTOMER-RECORD", 
+   "CVEXPORT:EXPORT-RECORD"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/DEFCUST.jcl:35", 
+    "length": 500, 
+    "agrees": false
+   }
+  ]
+ }, 
+ "name": "AWS.CUSTDATA.CLUSTER", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-ksds", 
+ "aliases": [], 
+ "sample_data": null
+}

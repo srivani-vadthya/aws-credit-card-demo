@@ -1,0 +1,747 @@
+{
+ "invoked_by": [], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS present", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:156"
+  }, 
+  {
+   "text": "EXEC DLI or CALL CBLTDLI from a CICS program", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:156"
+  }
+ ], 
+ "candidate_rules": [], 
+ "module": "auth", 
+ "header": {
+  "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:1", 
+  "author": "AWS", 
+  "description": "See the comment block at the top of the source. Unverified until matched to code.", 
+  "version_banner": null
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 206, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "RETURN-TO-PREV-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "SEND-AUTHVIEW-SCREEN", 
+    "RECEIVE-AUTHVIEW-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "SEND-AUTHVIEW-SCREEN", 
+    "RETURN-TO-PREV-SCREEN", 
+    "MARK-AUTH-FRAUD", 
+    "SEND-AUTHVIEW-SCREEN", 
+    "PROCESS-PF8-KEY", 
+    "SEND-AUTHVIEW-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "SEND-AUTHVIEW-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 157, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "PROCESS-ENTER-KEY", 
+   "section": null, 
+   "end_line": 228, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "READ-AUTH-RECORD", 
+    "TAKE-SYNCPOINT", 
+    "POPULATE-AUTH-DETAILS"
+   ], 
+   "reachable": true, 
+   "start_line": 208, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "MARK-AUTH-FRAUD", 
+   "section": null, 
+   "end_line": 266, 
+   "purpose": "Statements include: EXEC CICS LINK", 
+   "performs": [
+    "READ-AUTH-RECORD", 
+    "UPDATE-AUTH-DETAILS", 
+    "ROLL-BACK", 
+    "ROLL-BACK", 
+    "POPULATE-AUTH-DETAILS"
+   ], 
+   "reachable": true, 
+   "start_line": 230, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "PROCESS-PF8-KEY", 
+   "section": null, 
+   "end_line": 289, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "READ-AUTH-RECORD", 
+    "READ-NEXT-AUTH-RECORD", 
+    "TAKE-SYNCPOINT", 
+    "POPULATE-AUTH-DETAILS"
+   ], 
+   "reachable": true, 
+   "start_line": 268, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-AUTH-DETAILS", 
+   "section": null, 
+   "end_line": 358, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 291, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "RETURN-TO-PREV-SCREEN", 
+   "section": null, 
+   "end_line": 370, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 360, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SEND-AUTHVIEW-SCREEN", 
+   "section": null, 
+   "end_line": 396, 
+   "purpose": "Statements include: EXEC CICS SEND", 
+   "performs": [
+    "POPULATE-HEADER-INFO"
+   ], 
+   "reachable": true, 
+   "start_line": 373, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "RECEIVE-AUTHVIEW-SCREEN", 
+   "section": null, 
+   "end_line": 406, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 398, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-HEADER-INFO", 
+   "section": null, 
+   "end_line": 429, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 409, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "READ-AUTH-RECORD", 
+   "section": null, 
+   "end_line": 491, 
+   "purpose": "Statements include: EXEC DLI GU, EXEC DLI GNP", 
+   "performs": [
+    "SCHEDULE-PSB", 
+    "SEND-AUTHVIEW-SCREEN", 
+    "SEND-AUTHVIEW-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 431, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "READ-NEXT-AUTH-RECORD", 
+   "section": null, 
+   "end_line": 518, 
+   "purpose": "Statements include: EXEC DLI GNP", 
+   "performs": [
+    "SEND-AUTHVIEW-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 493, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "UPDATE-AUTH-DETAILS", 
+   "section": null, 
+   "end_line": 552, 
+   "purpose": "Statements include: EXEC DLI REPL", 
+   "performs": [
+    "TAKE-SYNCPOINT", 
+    "ROLL-BACK", 
+    "SEND-AUTHVIEW-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 520, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "TAKE-SYNCPOINT", 
+   "section": null, 
+   "end_line": 560, 
+   "purpose": "Statements include: EXEC CICS SYNCPOINT", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 557, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "ROLL-BACK", 
+   "section": null, 
+   "end_line": 569, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 565, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SCHEDULE-PSB", 
+   "section": null, 
+   "end_line": 603, 
+   "purpose": "Statements include: EXEC DLI SCHD, EXEC DLI TERM", 
+   "performs": [
+    "SEND-AUTHVIEW-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 574, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:109", 
+   "resolution": "inventory", 
+   "name": "COCOM01Y", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (app/cpy/COCOM01Y.cpy:19)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:122", 
+   "resolution": "inventory", 
+   "name": "COPAU01", 
+   "purpose": "Application copybook (bms-mapset)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:126", 
+   "resolution": "inventory", 
+   "name": "COTTL01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:129", 
+   "resolution": "inventory", 
+   "name": "CSDAT01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:132", 
+   "resolution": "inventory", 
+   "name": "CSMSG01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:135", 
+   "resolution": "inventory", 
+   "name": "CSMSG02Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:142", 
+   "resolution": "inventory", 
+   "name": "CIPAUSMY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:146", 
+   "resolution": "inventory", 
+   "name": "CIPAUDTY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:148", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:149", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }
+ ], 
+ "runtime_type": [
+  "cics-online"
+ ], 
+ "loc": {
+  "comment": 39, 
+  "total": 604, 
+  "code": 565
+ }, 
+ "evidence_summary": "Structural facts read from app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl. Paragraph purposes are Inferred from statements.", 
+ "source_format": "fixed", 
+ "observations": [], 
+ "sha256": "27a969cbee69426fa1056053e676041430e99399912f0e27ee1f1a454093c21e", 
+ "files": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "linkage": [], 
+  "pcbs": []
+ }, 
+ "crud": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:465", 
+   "store": "DLI-GNP", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:439", 
+   "store": "DLI-GU", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:525", 
+   "store": "DLI-REPL", 
+   "store_kind": "logical", 
+   "ops": [
+    "U"
+   ]
+  }
+ ], 
+ "program_id": "COPAUS1C", 
+ "error_handling": [], 
+ "source_path": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl", 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 202
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "LINK", 
+   "response_handling": "NOHANDLE", 
+   "line": 248
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 367
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 381
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 389
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "RECEIVE", 
+   "response_handling": "NOHANDLE", 
+   "line": 400
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "GU", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "GU", 
+   "response_handling": null, 
+   "line": 439
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "GNP", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "GNP", 
+   "response_handling": null, 
+   "line": 465
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "GNP", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "GNP", 
+   "response_handling": null, 
+   "line": 495
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "REPL", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "REPL", 
+   "response_handling": null, 
+   "line": 525
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SYNCPOINT", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 558
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SYNCPOINT", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 566
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "SCHD", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SCHD", 
+   "response_handling": null, 
+   "line": 575
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "TERM", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "TERM", 
+   "response_handling": null, 
+   "line": 581
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "SCHD", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SCHD", 
+   "response_handling": null, 
+   "line": 584
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CPVD", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:202", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COPAUS2C", 
+   "resolved_from": null, 
+   "mechanism": "LINK", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:248", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:367", 
+   "condition": null
+  }
+ ], 
+ "messages": [
+  {
+   "text": "AUTH FRAUD REMOVED...", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:535"
+  }, 
+  {
+   "text": "AUTH MARKED FRAUD...", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:537"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:33", 
+   "name": "WS-PGM-AUTH-DTL", 
+   "value": "'COPAUS1C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:34", 
+   "name": "WS-PGM-AUTH-SMRY", 
+   "value": "'COPAUS0C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:35", 
+   "name": "WS-PGM-AUTH-FRAUD", 
+   "value": "'COPAUS2C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:36", 
+   "name": "WS-CICS-TRANID", 
+   "value": "'CPVD'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:38", 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:39", 
+   "name": "ERR-FLG-ON", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:40", 
+   "name": "ERR-FLG-OFF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:41", 
+   "name": "WS-AUTHS-EOF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:42", 
+   "name": "AUTHS-EOF", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:43", 
+   "name": "AUTHS-NOT-EOF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:44", 
+   "name": "WS-SEND-ERASE-FLG", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:45", 
+   "name": "SEND-ERASE-YES", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:46", 
+   "name": "SEND-ERASE-NO", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:53", 
+   "name": "WS-AUTH-DATE", 
+   "value": "'00/00/00'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:54", 
+   "name": "WS-AUTH-TIME", 
+   "value": "'00:00:00'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:58", 
+   "name": "PIC", 
+   "value": "'0000APPROVED'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:59", 
+   "name": "PIC", 
+   "value": "'3100INVALID CARD'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:60", 
+   "name": "PIC", 
+   "value": "'4100INSUFFICNT FUND'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:61", 
+   "name": "PIC", 
+   "value": "'4200CARD NOT ACTIVE'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:62", 
+   "name": "PIC", 
+   "value": "'4300ACCOUNT CLOSED'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:63", 
+   "name": "PIC", 
+   "value": "'4400EXCED DAILY LMT'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:64", 
+   "name": "PIC", 
+   "value": "'5100CARD FRAUD'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:65", 
+   "name": "PIC", 
+   "value": "'5200MERCHANT FRAUD'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:66", 
+   "name": "PIC", 
+   "value": "'5300LOST CARD'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:67", 
+   "name": "PIC", 
+   "value": "'9000UNKNOWN'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:76", 
+   "name": "PSB-NAME", 
+   "value": "'PSBPAUTB'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:80", 
+   "name": "STATUS-OK", 
+   "value": "'  '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:81", 
+   "name": "SEGMENT-NOT-FOUND", 
+   "value": "'GE'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:82", 
+   "name": "DUPLICATE-SEGMENT-FOUND", 
+   "value": "'II'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:83", 
+   "name": "WRONG-PARENTAGE", 
+   "value": "'GP'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:84", 
+   "name": "END-OF-DB", 
+   "value": "'GB'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:85", 
+   "name": "DATABASE-UNAVAILABLE", 
+   "value": "'BA'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:86", 
+   "name": "PSB-SCHEDULED-MORE-THAN-ONCE", 
+   "value": "'TC'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:87", 
+   "name": "COULD-NOT-SCHEDULE-PSB", 
+   "value": "'TE'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:88", 
+   "name": "RETRY-CONDITION", 
+   "value": "'BA'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:90", 
+   "name": "IMS-PSB-SCHD", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:91", 
+   "name": "IMS-PSB-NOT-SCHD", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:99", 
+   "name": "WS-REPORT-FRAUD", 
+   "value": "'F'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:100", 
+   "name": "WS-REMOVE-FRAUD", 
+   "value": "'R'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:102", 
+   "name": "WS-FRD-UPDT-SUCCESS", 
+   "value": "'S'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:103", 
+   "name": "WS-FRD-UPDT-FAILED", 
+   "value": "'F'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:116", 
+   "name": "CDEMO-CPVD-NEXT-PAGE-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:117", 
+   "name": "NEXT-PAGE-YES", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:118", 
+   "name": "NEXT-PAGE-NO", 
+   "value": "'N'"
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "accessors": [], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/TRANFILE.jcl:82", 
+  "app/jcl/TRANIDX.jcl:25", 
+  "app/catlg/LISTCAT.txt:3645"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "keys": "KEYS(26 304)", 
+  "catalog_facts": {
+   "as_of": "09/01/22", 
+   "point_in_time": true, 
+   "rec_total": 39, 
+   "listcat_org": "INDEXED", 
+   "rec_total_source": "app/catlg/LISTCAT.txt:3680", 
+   "keylen_source": "app/catlg/LISTCAT.txt:3674", 
+   "source": "app/catlg/LISTCAT.txt:3645", 
+   "keylen": 26, 
+   "avglrecl": 350
+  }, 
+  "unique": false, 
+  "aix_relate": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+  "defined_by": [
+   "app/jcl/TRANFILE.jcl:82", 
+   "app/jcl/TRANIDX.jcl:25"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.TRANSACT.VSAM.AIX", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-aix", 
+ "aliases": [], 
+ "sample_data": null
+}

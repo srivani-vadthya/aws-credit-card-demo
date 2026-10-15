@@ -1,0 +1,201 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "USE THIS JOB TO MAINTAIN DB2 TRANSACTION TABLE, INSERTING,      *//", 
+  "confidence": "Unverified", 
+  "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:5"
+ }, 
+ "job_card": {
+  "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:1", 
+  "msgclass": "H", 
+  "region": null, 
+  "class": "A", 
+  "notify": null
+ }, 
+ "schedule": [
+  {
+   "source": "app/scheduler/CardDemo.controlm", 
+   "description": {
+    "text": "WEEKLY MNTTRDB2", 
+    "confidence": "Unverified"
+   }, 
+   "folder_calendar": null, 
+   "time": "23:00", 
+   "folder": "WEEKLY-TransactionTypesDBRefresh", 
+   "successors": [
+    "CLOSEFIL", 
+    "TRANEXTR"
+   ], 
+   "calendar": null, 
+   "predecessors": []
+  }
+ ], 
+ "module": "trantype", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [], 
+ "source_path": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl", 
+ "steps": [
+  {
+   "function": "RUN PROGRAM(COBTUPDT) PLAN(CARDDEMO)", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 21, 
+   "kind": "db2", 
+   "name": "STEP1", 
+   "control_statements": [
+    {
+     "text": "DSN SYSTEM(DAZ1)", 
+     "meaning": "DSN SYSTEM(DAZ1)", 
+     "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:29"
+    }, 
+    {
+     "text": "RUN PROGRAM(COBTUPDT) PLAN(CARDDEMO)", 
+     "meaning": "RUN PROGRAM(COBTUPDT) PLAN(CARDDEMO)", 
+     "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:30"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 22, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.DB2.DAZ1.SDSNEXIT", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 23, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 24, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 25, 
+     "ddname": "DBRMLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.DBRMLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 26, 
+     "ddname": "SYSTSPRT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 27, 
+     "ddname": "INPFILE", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "INPFILE", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 28, 
+     "ddname": "SYSTSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IKJEFT01", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "9e8a11746c47ea762258e8b5d96a6852f35e7dce4ea456a31a2e9f76f127040e", 
+ "job_name": "MNTTRDB2"
+}

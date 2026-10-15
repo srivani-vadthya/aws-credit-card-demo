@@ -1,0 +1,463 @@
+{
+ "source": "app/bms/CORPT00.bms:19", 
+ "name": "CORPT00", 
+ "module": "base", 
+ "maps": [
+  {
+   "source": "app/bms/CORPT00.bms:26", 
+   "mockup": [
+    "Tran: XXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "                             Transaction Reports", 
+    "", 
+    "", 
+    "              Monthly (Current Month)", 
+    "", 
+    "              Yearly (Current Year)", 
+    "", 
+    "              Custom (Date Range)", 
+    "", 
+    "              Start Date :     /    /        (MM/DD/YYYY)", 
+    "                End Date :     /    /        (MM/DD/YYYY)", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "     The Report will be submitted for printing. Plea- se confirm _  (Y/N)", 
+    "", 
+    "", 
+    "", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "ENTER=Continue  F3=Back"
+   ], 
+   "name": "CORPT0A", 
+   "fields": [
+    {
+     "source": "app/bms/CORPT00.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:75", 
+     "length": 19, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Transaction Reports", 
+     "col": 30, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:80", 
+     "length": 1, 
+     "attrb": "(FSET,IC,NORM,UNPROT)", 
+     "name": "MONTHLY", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 10, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:86", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 12, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:89", 
+     "length": 23, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Monthly (Current Month)", 
+     "col": 15, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:94", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "YEARLY", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 10, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:100", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 12, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:103", 
+     "length": 23, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Yearly (Current Year)", 
+     "col": 15, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:108", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "CUSTOM", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 10, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:114", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 12, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:117", 
+     "length": 23, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Custom (Date Range)", 
+     "col": 15, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:122", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Start Date :", 
+     "col": 15, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:127", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,NUM,UNPROT)", 
+     "name": "SDTMM", 
+     "color": "GREEN", 
+     "initial": "  ", 
+     "col": 29, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:133", 
+     "length": 1, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "/", 
+     "col": 32, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:138", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,NUM,UNPROT)", 
+     "name": "SDTDD", 
+     "color": "GREEN", 
+     "initial": "  ", 
+     "col": 34, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:144", 
+     "length": 1, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "/", 
+     "col": 37, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:149", 
+     "length": 4, 
+     "attrb": "(FSET,NORM,NUM,UNPROT)", 
+     "name": "SDTYYYY", 
+     "color": "GREEN", 
+     "initial": "    ", 
+     "col": 39, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:155", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 44, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:157", 
+     "length": 12, 
+     "attrb": null, 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "(MM/DD/YYYY)", 
+     "col": 46, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:161", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "  End Date :", 
+     "col": 15, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:166", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,NUM,UNPROT)", 
+     "name": "EDTMM", 
+     "color": "GREEN", 
+     "initial": "  ", 
+     "col": 29, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:172", 
+     "length": 1, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "/", 
+     "col": 32, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:177", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,NUM,UNPROT)", 
+     "name": "EDTDD", 
+     "color": "GREEN", 
+     "initial": "  ", 
+     "col": 34, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:183", 
+     "length": 1, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "/", 
+     "col": 37, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:188", 
+     "length": 4, 
+     "attrb": "(FSET,NORM,NUM,UNPROT)", 
+     "name": "EDTYYYY", 
+     "color": "GREEN", 
+     "initial": "    ", 
+     "col": 39, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:194", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 44, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:196", 
+     "length": 12, 
+     "attrb": null, 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "(MM/DD/YYYY)", 
+     "col": 46, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:200", 
+     "length": 59, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "The Report will be submitted for printing. Plea- se confirm: ", 
+     "col": 6, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:206", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "CONFIRM", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 66, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:211", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 68, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:213", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "(Y/N)", 
+     "col": 69, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:218", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/bms/CORPT00.bms:222", 
+     "length": 23, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "YELLOW", 
+     "initial": "ENTER=Continue  F3=Back", 
+     "col": 1, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

@@ -1,0 +1,415 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "DELETE OUTPUT DATASET", 
+  "confidence": "Unverified", 
+  "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:5"
+ }, 
+ "job_card": {
+  "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:1", 
+  "msgclass": "X", 
+  "region": "0K", 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "auth", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [
+  {
+   "text": "Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member. Absence does not prove the job never runs.", 
+   "confidence": "Confirmed", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl"
+  }
+ ], 
+ "source_path": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl", 
+ "steps": [
+  {
+   "function": "Utility step IEFBR14", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 7, 
+   "kind": "utility", 
+   "name": "STEPDEL", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 8, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": "(MOD,DELETE)", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 9, 
+     "ddname": "SYSUT1", 
+     "recfm": null, 
+     "layout": null, 
+     "space": "(TRK,0)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.IMSDATA.DBPAUTP0", 
+     "usage": [
+      "U", 
+      "D"
+     ], 
+     "instream": false
+    }
+   ], 
+   "program": "IEFBR14", 
+   "proc": null
+  }, 
+  {
+   "function": "IMS (ULU program DFSURGU0 PSB DBPAUTP0)", 
+   "if_condition": null, 
+   "parm": "(ULU,DFSURGU0,DBPAUTP0)", 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 15, 
+   "kind": "ims", 
+   "name": "UNLOAD", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 18, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 19, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 20, 
+     "ddname": "DFSRESLB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 21, 
+     "ddname": "IMS", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.IMS.IMSP.PSBLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 22, 
+     "ddname": "IMS", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.IMS.IMSP.DBDLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 23, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": "(,CATLG,DELETE)", 
+     "dummy": false, 
+     "lrecl": "27990", 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 25, 
+     "ddname": "DFSURGU1", 
+     "recfm": "VB", 
+     "layout": null, 
+     "space": "(32274,(600,100)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.IMSDATA.DBPAUTP0", 
+     "usage": [
+      "D"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 31, 
+     "ddname": "DDPAUTP0", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.IMS.IMSP.PAUTHDB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 32, 
+     "ddname": "DDPAUTX0", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.IMS.IMSP.PAUTHDBX", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 33, 
+     "ddname": "DFSVSAMP", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEMPP.IMS.V15R01MB.PROCLIB(DFSVSMDB)", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 34, 
+     "ddname": "DFSCTL", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": "133)", 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 36, 
+     "ddname": "SYSUDUMP", 
+     "recfm": "FBA", 
+     "layout": null, 
+     "space": "(605,(500,500)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 40, 
+     "ddname": "RECON1", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.IMS.IMSP.RECON1", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 41, 
+     "ddname": "RECON2", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.IMS.IMSP.RECON2", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 42, 
+     "ddname": "RECON3", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.IMS.IMSP.RECON3", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": true, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 44, 
+     "ddname": "DFSWRK01", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": true, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 45, 
+     "ddname": "DFSSRT01", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": false
+    }
+   ], 
+   "program": "DFSRRC00", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "58539078f5e86b3a08168bbc4d8e379cedeb34d168ad0eb6e6f94fc07bf87e8d", 
+ "job_name": "DBPAUTP0"
+}

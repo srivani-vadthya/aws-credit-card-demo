@@ -1,0 +1,486 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "COSGN00C", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COSGN00C.cbl:236", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS or DFHCOMMAREA present", 
+   "source": "app/cbl/COMEN01C.cbl:74"
+  }
+ ], 
+ "source_path": "app/cbl/COMEN01C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/COMEN01C.cbl:1-8", 
+  "author": "AWS", 
+  "description": "Program     : COMEN01C.CBL Application : CardDemo Type        : CICS COBOL Program Function    : Main Menu for the Regular users All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0", 
+  "version_banner": "* Ver: CardDemo_v1.0-15-g27d6c6f-68 Date: 2022-07-19 23:12:33 CDT"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 110, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "RETURN-TO-SIGNON-SCREEN", 
+    "SEND-MENU-SCREEN", 
+    "RECEIVE-MENU-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "RETURN-TO-SIGNON-SCREEN", 
+    "SEND-MENU-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 75, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "PROCESS-ENTER-KEY", 
+   "section": null, 
+   "end_line": 191, 
+   "purpose": "Statements include: inline PERFORM at app/cbl/COMEN01C.cbl:117, EXEC CICS INQUIRE, EXEC CICS XCTL", 
+   "performs": [
+    "SEND-MENU-SCREEN", 
+    "SEND-MENU-SCREEN", 
+    "SEND-MENU-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 115, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "RETURN-TO-SIGNON-SCREEN", 
+   "section": null, 
+   "end_line": 203, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 196, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SEND-MENU-SCREEN", 
+   "section": null, 
+   "end_line": 220, 
+   "purpose": "Statements include: EXEC CICS SEND", 
+   "performs": [
+    "POPULATE-HEADER-INFO", 
+    "BUILD-MENU-OPTIONS"
+   ], 
+   "reachable": true, 
+   "start_line": 208, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "RECEIVE-MENU-SCREEN", 
+   "section": null, 
+   "end_line": 233, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 225, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-HEADER-INFO", 
+   "section": null, 
+   "end_line": 257, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 238, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "BUILD-MENU-OPTIONS", 
+   "section": null, 
+   "end_line": 303, 
+   "purpose": "Statements include: inline PERFORM at app/cbl/COMEN01C.cbl:264", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 262, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "COCOM01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COMEN01C.cbl:50", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (01 at app/cpy/COCOM01Y.cpy:19)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COCOM01Y.cpy"
+  }, 
+  {
+   "name": "COMEN02Y", 
+   "replacing": null, 
+   "source": "app/cbl/COMEN01C.cbl:51", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COMEN02Y.cpy"
+  }, 
+  {
+   "name": "COMEN01", 
+   "replacing": null, 
+   "source": "app/cbl/COMEN01C.cbl:53", 
+   "purpose": "Application copybook (bms-mapset)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/bms/COMEN01.bms"
+  }, 
+  {
+   "name": "COTTL01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COMEN01C.cbl:55", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COTTL01Y.cpy"
+  }, 
+  {
+   "name": "CSDAT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COMEN01C.cbl:56", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSDAT01Y.cpy"
+  }, 
+  {
+   "name": "CSMSG01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COMEN01C.cbl:57", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSMSG01Y.cpy"
+  }, 
+  {
+   "name": "CSUSR01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COMEN01C.cbl:58", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSUSR01Y.cpy"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COMEN01C.cbl:60", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COMEN01C.cbl:61", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }
+ ], 
+ "runtime_type": [
+  "cics-online"
+ ], 
+ "loc": {
+  "comment": 53, 
+  "total": 308, 
+  "code": 255
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/COMEN01C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COMEN01C.cbl:12"
+  }
+ ], 
+ "sha256": "c77747b4caaf00b45177a6449562b7f59ec336db832937595edef8b32fdce6fa", 
+ "files": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "linkage": [
+   {
+    "source": "app/cbl/COMEN01C.cbl:67", 
+    "name": "DFHCOMMAREA"
+   }
+  ], 
+  "pcbs": []
+ }, 
+ "crud": [], 
+ "program_id": "COMEN01C", 
+ "candidate_rules": [], 
+ "error_handling": [
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COMEN01C.cbl:152", 
+   "message": null, 
+   "condition": "IF EIBRESP = DFHRESP(NORMAL)", 
+   "abend_code": null
+  }
+ ], 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "MAIN-PARA", 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 107
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "verb": "INQUIRE", 
+   "response_handling": "NOHANDLE", 
+   "line": 148
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 156
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 184
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RETURN-TO-SIGNON-SCREEN", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 201
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "SEND-MENU-SCREEN", 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 215
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RECEIVE-MENU-SCREEN", 
+   "verb": "RECEIVE", 
+   "response_handling": "RESP checked", 
+   "line": 227
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CM00", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COMEN01C.cbl:107", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:201", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COACTVWC", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:28", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COACTUPC", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:34", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COCRDLIC", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:40", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COCRDSLC", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:46", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COCRDUPC", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:52", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COTRN00C", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:58", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COTRN01C", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:64", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COTRN02C", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:71", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CORPT00C", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:77", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COBIL00C", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:83", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COPAUS0C", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:89", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COSGN00C", 
+   "resolved_from": "app/cbl/COMEN01C.cbl MOVE literal", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:199", 
+   "condition": "CDEMO-TO-PROGRAM is spaces or low-values"
+  }
+ ], 
+ "messages": [], 
+ "data_items": [
+  {
+   "source": "app/cbl/COMEN01C.cbl:36", 
+   "pic": "X(08)", 
+   "name": "WS-PGMNAME", 
+   "value": "'COMEN01C'"
+  }, 
+  {
+   "source": "app/cbl/COMEN01C.cbl:37", 
+   "pic": "X(04)", 
+   "name": "WS-TRANID", 
+   "value": "'CM00'"
+  }, 
+  {
+   "source": "app/cbl/COMEN01C.cbl:38", 
+   "pic": "X(80)", 
+   "name": "WS-MESSAGE", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/COMEN01C.cbl:39", 
+   "pic": "X(08)", 
+   "name": "WS-USRSEC-FILE", 
+   "value": "'USRSEC  '"
+  }, 
+  {
+   "source": "app/cbl/COMEN01C.cbl:40", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "ERR-FLG-ON", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "ERR-FLG-OFF", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COMEN01C.cbl:43", 
+   "pic": "S9(09)", 
+   "name": "WS-RESP-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COMEN01C.cbl:44", 
+   "pic": "S9(09)", 
+   "name": "WS-REAS-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COMEN01C.cbl:46", 
+   "pic": "9(02)", 
+   "name": "WS-OPTION", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/COMEN01C.cbl:47", 
+   "pic": "S9(04)", 
+   "name": "WS-IDX", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COMEN01C.cbl:48", 
+   "pic": "X(40)", 
+   "name": "WS-MENU-OPT-TXT", 
+   "value": "SPACES."
+  }
+ ]
+}

@@ -1,0 +1,195 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "Open files in CICS region", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/OPENFIL.jcl:20"
+ }, 
+ "job_card": {
+  "source": "app/jcl/OPENFIL.jcl:1", 
+  "msgclass": "0", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [
+  {
+   "source": "app/scheduler/CardDemo.ca7", 
+   "calendar": null, 
+   "successors": [
+    "CLOSEFIL"
+   ], 
+   "predecessors": [
+    "WAITSTEP"
+   ], 
+   "time": null
+  }, 
+  {
+   "source": "app/scheduler/CardDemo.controlm", 
+   "description": {
+    "text": "DAILY OPENFIL", 
+    "confidence": "Unverified"
+   }, 
+   "folder_calendar": null, 
+   "time": "23:00", 
+   "folder": "DAILY-TransactionBackup", 
+   "successors": [], 
+   "calendar": "ALL", 
+   "predecessors": [
+    "WAITSTEP"
+   ]
+  }, 
+  {
+   "source": "app/scheduler/CardDemo.controlm", 
+   "description": {
+    "text": "MONTHLY OPENFIL", 
+    "confidence": "Unverified"
+   }, 
+   "folder_calendar": null, 
+   "time": "23:00", 
+   "folder": "MONTHLY-InterestCalculation", 
+   "successors": [], 
+   "calendar": null, 
+   "predecessors": [
+    "WAITSTEP"
+   ]
+  }, 
+  {
+   "source": "app/scheduler/CardDemo.controlm", 
+   "description": {
+    "text": "WEEKLY DisclosureGroupsRefresh OPENFIL", 
+    "confidence": "Unverified"
+   }, 
+   "folder_calendar": "SA", 
+   "time": "23:00", 
+   "folder": "WEEKLY-DisclosureGroupsRefresh", 
+   "successors": [], 
+   "calendar": null, 
+   "predecessors": [
+    "WAITSTEP"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [
+  {
+   "source": "scripts/remote_refresh.sh:50", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:66", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_interest_calc.sh:34", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:34", 
+   "mechanism": "script-ftp-put"
+  }
+ ], 
+ "findings": [], 
+ "source_path": "app/jcl/OPENFIL.jcl", 
+ "steps": [
+  {
+   "function": "Operator command", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 22, 
+   "kind": "other", 
+   "name": "OPCIFIL", 
+   "control_statements": [
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(TRANSACT ) OPE'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/OPENFIL.jcl:26"
+    }, 
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(CCXREF ) OPE'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/OPENFIL.jcl:27"
+    }, 
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(ACCTDAT ) OPE'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/OPENFIL.jcl:28"
+    }, 
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(CXACAIX ) OPE'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/OPENFIL.jcl:29"
+    }, 
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(USRSEC ) OPE'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/OPENFIL.jcl:30"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 23, 
+     "ddname": "ISFOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 24, 
+     "ddname": "CMDOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 25, 
+     "ddname": "ISFIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "SDSF", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "1831990c78749793661ba75f46007810fd1fb0c237e6220623bc4795e2c7e87e", 
+ "job_name": "OPENFIL"
+}

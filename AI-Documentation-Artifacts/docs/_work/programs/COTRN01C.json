@@ -1,0 +1,439 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "COMEN01C", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:64", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS or DFHCOMMAREA present", 
+   "source": "app/cbl/COTRN01C.cbl:85"
+  }
+ ], 
+ "source_path": "app/cbl/COTRN01C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/COTRN01C.cbl:1-8", 
+  "author": "AWS", 
+  "description": "Program     : COTRN01C.CBL Application : CardDemo Type        : CICS COBOL Program Function    : View a Transaction from TRANSACT file All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0", 
+  "version_banner": "* Ver: CardDemo_v1.0-15-g27d6c6f-68 Date: 2022-07-19 23:12:34 CDT"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 139, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "RETURN-TO-PREV-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "SEND-TRNVIEW-SCREEN", 
+    "RECEIVE-TRNVIEW-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "RETURN-TO-PREV-SCREEN", 
+    "CLEAR-CURRENT-SCREEN", 
+    "RETURN-TO-PREV-SCREEN", 
+    "SEND-TRNVIEW-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 86, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "PROCESS-ENTER-KEY", 
+   "section": null, 
+   "end_line": 192, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "SEND-TRNVIEW-SCREEN", 
+    "READ-TRANSACT-FILE", 
+    "SEND-TRNVIEW-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 144, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "RETURN-TO-PREV-SCREEN", 
+   "section": null, 
+   "end_line": 208, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 197, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SEND-TRNVIEW-SCREEN", 
+   "section": null, 
+   "end_line": 225, 
+   "purpose": "Statements include: EXEC CICS SEND", 
+   "performs": [
+    "POPULATE-HEADER-INFO"
+   ], 
+   "reachable": true, 
+   "start_line": 213, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "RECEIVE-TRNVIEW-SCREEN", 
+   "section": null, 
+   "end_line": 238, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 230, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-HEADER-INFO", 
+   "section": null, 
+   "end_line": 262, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 243, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "READ-TRANSACT-FILE", 
+   "section": null, 
+   "end_line": 296, 
+   "purpose": "Statements include: EXEC CICS READ", 
+   "performs": [
+    "SEND-TRNVIEW-SCREEN", 
+    "SEND-TRNVIEW-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 267, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "CLEAR-CURRENT-SCREEN", 
+   "section": null, 
+   "end_line": 304, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "INITIALIZE-ALL-FIELDS", 
+    "SEND-TRNVIEW-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 301, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "INITIALIZE-ALL-FIELDS", 
+   "section": null, 
+   "end_line": 326, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 309, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "COCOM01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN01C.cbl:52", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (01 at app/cpy/COCOM01Y.cpy:19)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COCOM01Y.cpy"
+  }, 
+  {
+   "name": "COTRN01", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN01C.cbl:63", 
+   "purpose": "Application copybook (bms-mapset)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/bms/COTRN01.bms"
+  }, 
+  {
+   "name": "COTTL01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN01C.cbl:65", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COTTL01Y.cpy"
+  }, 
+  {
+   "name": "CSDAT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN01C.cbl:66", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSDAT01Y.cpy"
+  }, 
+  {
+   "name": "CSMSG01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN01C.cbl:67", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSMSG01Y.cpy"
+  }, 
+  {
+   "name": "CVTRA05Y", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN01C.cbl:69", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVTRA05Y.cpy"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COTRN01C.cbl:71", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COTRN01C.cbl:72", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }
+ ], 
+ "runtime_type": [
+  "cics-online"
+ ], 
+ "loc": {
+  "comment": 57, 
+  "total": 330, 
+  "code": 273
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/COTRN01C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COTRN01C.cbl:12"
+  }
+ ], 
+ "sha256": "fc24ff879ac6ae12bc6817554cb756f14c5e86e0ca2dd0037af49599887f03c0", 
+ "files": [
+  {
+   "logical_name": "TRANSACT", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "TRANSACT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS"
+   ], 
+   "source": "app/csd/CARDDEMO.CSD:76", 
+   "file_status_field": null, 
+   "organization": null, 
+   "access_mode": null, 
+   "alternate_keys": []
+  }
+ ], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "linkage": [
+   {
+    "source": "app/cbl/COTRN01C.cbl:78", 
+    "name": "DFHCOMMAREA"
+   }
+  ], 
+  "pcbs": []
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/COTRN01C.cbl:269", 
+   "store": "TRANSACT", 
+   "store_kind": "cics-file", 
+   "ops": [
+    "R", 
+    "U"
+   ]
+  }
+ ], 
+ "program_id": "COTRN01C", 
+ "candidate_rules": [], 
+ "error_handling": [
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COTRN01C.cbl:280", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }
+ ], 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "MAIN-PARA", 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 136
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RETURN-TO-PREV-SCREEN", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 205
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "SEND-TRNVIEW-SCREEN", 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 219
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RECEIVE-TRNVIEW-SCREEN", 
+   "verb": "RECEIVE", 
+   "response_handling": "RESP checked", 
+   "line": 232
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "TRANSACT", 
+   "options": {}, 
+   "paragraph": "READ-TRANSACT-FILE", 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 269
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CT01", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COTRN01C.cbl:136", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COTRN01C.cbl:205", 
+   "condition": null
+  }
+ ], 
+ "messages": [], 
+ "data_items": [
+  {
+   "source": "app/cbl/COTRN01C.cbl:36", 
+   "pic": "X(08)", 
+   "name": "WS-PGMNAME", 
+   "value": "'COTRN01C'"
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:37", 
+   "pic": "X(04)", 
+   "name": "WS-TRANID", 
+   "value": "'CT01'"
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:38", 
+   "pic": "X(80)", 
+   "name": "WS-MESSAGE", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:39", 
+   "pic": "X(08)", 
+   "name": "WS-TRANSACT-FILE", 
+   "value": "'TRANSACT'"
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:40", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "ERR-FLG-ON", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "ERR-FLG-OFF", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:43", 
+   "pic": "S9(09)", 
+   "name": "WS-RESP-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:44", 
+   "pic": "S9(09)", 
+   "name": "WS-REAS-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:45", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "USR-MODIFIED-YES", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "USR-MODIFIED-NO", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-USR-MODIFIED", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:50", 
+   "pic": "X(08)", 
+   "name": "WS-TRAN-DATE", 
+   "value": "'00/00/00'"
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:57", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "NEXT-PAGE-YES", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "NEXT-PAGE-NO", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "CDEMO-CT01-NEXT-PAGE-FLG", 
+   "value": "'N'"
+  }
+ ]
+}

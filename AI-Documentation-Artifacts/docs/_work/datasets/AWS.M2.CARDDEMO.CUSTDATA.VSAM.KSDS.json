@@ -1,0 +1,95 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/CBEXPORT.jcl:49", 
+   "via": "jcl-dd", 
+   "by": "CBEXPORT.STEP02", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CREASTMT.JCL:86", 
+   "via": "jcl-dd", 
+   "by": "CREASTMT.STEP040", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CUSTFILE.jcl:68", 
+   "via": "jcl-dd", 
+   "by": "CUSTFILE.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/READCUST.jcl:24", 
+   "via": "jcl-dd", 
+   "by": "READCUST.STEP05", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/CUSTFILE.jcl:46", 
+  "app/csd/CARDDEMO.CSD:50", 
+  "app/catlg/LISTCAT.txt:595"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "keys": "KEYS(9 0)", 
+  "record_max": 500, 
+  "record_size": "RECORDSIZE(500 500)", 
+  "defined_by": [
+   "app/jcl/CUSTFILE.jcl:46"
+  ], 
+  "catalog_facts": {
+   "as_of": "09/01/22", 
+   "point_in_time": true, 
+   "rec_total": 50, 
+   "listcat_org": "INDEXED", 
+   "rec_total_source": "app/catlg/LISTCAT.txt:637", 
+   "keylen_source": "app/catlg/LISTCAT.txt:632", 
+   "source": "app/catlg/LISTCAT.txt:595", 
+   "keylen": 9, 
+   "avglrecl": 500
+  }, 
+  "key_offset": 0, 
+  "key_length": 9
+ }, 
+ "layout": {
+  "key_fields": [], 
+  "copybook": null, 
+  "record": null, 
+  "length": null, 
+  "candidates": [
+   "CUSTREC:CUSTOMER-RECORD", 
+   "CVCUS01Y:CUSTOMER-RECORD", 
+   "CVEXPORT:EXPORT-RECORD"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/CUSTFILE.jcl:46", 
+    "length": 500, 
+    "agrees": false
+   }
+  ]
+ }, 
+ "name": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-ksds", 
+ "aliases": [
+  {
+   "source": "app/csd/CARDDEMO.CSD:50", 
+   "kind": "cics-file", 
+   "name": "CUSTDAT"
+  }
+ ], 
+ "sample_data": null
+}

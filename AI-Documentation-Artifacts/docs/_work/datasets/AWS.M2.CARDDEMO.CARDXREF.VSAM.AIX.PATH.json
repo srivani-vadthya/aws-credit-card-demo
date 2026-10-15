@@ -1,0 +1,44 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/INTCALC.jcl:31", 
+   "via": "jcl-dd", 
+   "by": "INTCALC.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/XREFFILE.jcl:90", 
+  "app/csd/CARDDEMO.CSD:63", 
+  "app/catlg/LISTCAT.txt:351"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "catalog_facts": {
+   "source": "app/catlg/LISTCAT.txt:351", 
+   "as_of": "09/01/22", 
+   "point_in_time": true
+  }, 
+  "pathentry": "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX", 
+  "defined_by": [
+   "app/jcl/XREFFILE.jcl:90"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX.PATH", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-path", 
+ "aliases": [
+  {
+   "source": "app/csd/CARDDEMO.CSD:63", 
+   "kind": "cics-file", 
+   "name": "CXACAIX"
+  }
+ ], 
+ "sample_data": null
+}

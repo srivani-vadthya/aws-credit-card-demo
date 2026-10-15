@@ -1,0 +1,261 @@
+{
+ "tools": [
+  {
+   "source": "scripts/git-addSrcVersionInfo.sh:1-103", 
+   "settings": {
+    "source": "scripts/git-addSrcVersionInfo.sh:11-12", 
+    "app_version": "v2.0", 
+    "app_name": "CardDemo"
+   }, 
+   "observation": {
+    "text": "The script's app_version is v2.0. Banners in source read CardDemo_v1.0-... (example app/proc/REPROC.prc:31). Not invoked by any other script or job in the repository.", 
+    "confidence": "Confirmed"
+   }, 
+   "actions": [
+    "requires one file path argument; exits 99 when missing or not found (scripts/git-addSrcVersionInfo.sh:18-27)", 
+    "deletes every local git tag except app_version, then tags app_version (scripts/git-addSrcVersionInfo.sh:30-37)", 
+    "builds 'Ver: <app_name>_<git describe --tags --long>-<commit count> Date: <now>' (scripts/git-addSrcVersionInfo.sh:39-43)", 
+    "chooses the comment prefix by extension: cbl/cob/cpy, jcl/prc/proc, bms, py; other extensions exit 99 (scripts/git-addSrcVersionInfo.sh:50-67)", 
+    "replaces an existing 'Ver: <app_name>_' line or appends a three-line banner, then overwrites the file (scripts/git-addSrcVersionInfo.sh:88-98)"
+   ], 
+   "script": "scripts/git-addSrcVersionInfo.sh"
+  }
+ ], 
+ "not_found": [
+  "No JCL or PROC in this repository executes DBDGEN, PSBGEN, or ACBGEN. IMS DBD and PSB source is present; the gen step is not."
+ ], 
+ "chains": [
+  {
+   "comment": "THIS PROC IS USED TO COMPILE BATCH PGMS", 
+   "confidence": "Confirmed", 
+   "proc_label": "BLDBAT", 
+   "source": "samples/proc/BUILDBAT.prc:24", 
+   "comment_confidence": "Unverified", 
+   "used_by": [
+    {
+     "source": "samples/jcl/BATCMP.jcl:42", 
+     "job": "BATCMP", 
+     "exec": "BUILDBAT"
+    }, 
+    {
+     "note": "The EXEC at scripts/compile_batch.jcl.template:64 names BLDBAT and resolves to the in-stream PROC.", 
+     "source": "scripts/compile_batch.jcl.template:7", 
+     "job": "in-stream template", 
+     "exec": "BLDBAT"
+    }
+   ], 
+   "source_type": "batch-cobol", 
+   "steps": [
+    {
+     "source": "samples/proc/BUILDBAT.prc:35-36", 
+     "parm": "APOST,LIST,MAP,NUMBER,NOSEQ", 
+     "program": "IGYCRCTL", 
+     "name": "COMPILE"
+    }, 
+    {
+     "source": "samples/proc/BUILDBAT.prc:64", 
+     "program": "IEBGENER", 
+     "name": "CBLPRINT"
+    }, 
+    {
+     "source": "samples/proc/BUILDBAT.prc:74", 
+     "parm": "LIST,XREF", 
+     "program": "HEWL", 
+     "cond": "(8,LT,COMPILE)", 
+     "name": "LKED"
+    }
+   ], 
+   "output": "&LOADLIB(&MEM)", 
+   "proc_member": "BUILDBAT", 
+   "output_source": "samples/proc/BUILDBAT.prc:82"
+  }, 
+  {
+   "comment": "THIS PROC IS USED TO COMPILE CICS PGMS", 
+   "confidence": "Confirmed", 
+   "proc_label": "BLDONL", 
+   "source": "samples/proc/BUILDONL.prc:25", 
+   "comment_confidence": "Unverified", 
+   "used_by": [
+    {
+     "source": "samples/jcl/CICCMP.jcl:41", 
+     "job": "CICCMP", 
+     "exec": "BUILDONL"
+    }
+   ], 
+   "source_type": "cics-cobol", 
+   "steps": [
+    {
+     "source": "samples/proc/BUILDONL.prc:39-40", 
+     "parm": "CICS,NODYNAM,RENT,NOSEQ", 
+     "program": "IGYCRCTL", 
+     "name": "COB"
+    }, 
+    {
+     "source": "samples/proc/BUILDONL.prc:70", 
+     "program": "IEBGENER", 
+     "name": "DISPLIST"
+    }, 
+    {
+     "source": "samples/proc/BUILDONL.prc:79", 
+     "program": "IEBGENER", 
+     "name": "COPYLINK"
+    }, 
+    {
+     "source": "samples/proc/BUILDONL.prc:91-92", 
+     "parm": "LIST,XREF,LET,MAP,AMODE(31),RMODE(ANY)", 
+     "program": "HEWL", 
+     "name": "LKED"
+    }
+   ], 
+   "output": "&LOADLIB(&MEM)", 
+   "proc_member": "BUILDONL", 
+   "output_source": "samples/proc/BUILDONL.prc:104", 
+   "notes": "There is no separate DFHECP1 step in this PROC. The CICS option is the IGYCRCTL PARM value CICS. CICCMP also has a later SDSF step that issues CEMT SET PROG NEWCOPY (samples/jcl/CICCMP.jcl:45-49)."
+  }, 
+  {
+   "comment": "THIS PROC IS USED TO COMPILE CICS + DB2 PROGRAMS", 
+   "confidence": "Confirmed", 
+   "proc_label": "BLDONL", 
+   "source": "samples/proc/BLDCIDB2.prc:25", 
+   "comment_confidence": "Unverified", 
+   "used_by": [
+    {
+     "source": "samples/jcl/CICDBCMP.jcl:54", 
+     "job": "CICDBCMP", 
+     "exec": "BLDCIDB2"
+    }
+   ], 
+   "source_type": "cics-db2-cobol", 
+   "steps": [
+    {
+     "source": "samples/proc/BLDCIDB2.prc:46-47", 
+     "parm": "HOST(IBMCOB),XREF,SOURCE,FLAG(I),APOST", 
+     "program": "DSNHPC", 
+     "name": "PRECMP"
+    }, 
+    {
+     "source": "samples/proc/BLDCIDB2.prc:68", 
+     "parm": "NOSEQ", 
+     "program": "DFHECP1$", 
+     "name": "TRN"
+    }, 
+    {
+     "source": "samples/proc/BLDCIDB2.prc:80-81", 
+     "parm": "RENT,NODYNAM,NOSEQ", 
+     "program": "IGYCRCTL", 
+     "cond": "(0,NE)", 
+     "name": "COBOL"
+    }, 
+    {
+     "source": "samples/proc/BLDCIDB2.prc:114", 
+     "program": "HEWL", 
+     "cond": "(0,NE)", 
+     "name": "LKED"
+    }, 
+    {
+     "control": "BIND PACKAGE (CARDDEMO) MEMBER (&MEMNAME) QUALIFIER (CARDDEMO)", 
+     "source": "samples/proc/BLDCIDB2.prc:135-146", 
+     "program": "IKJEFT01", 
+     "name": "BINDPK"
+    }, 
+    {
+     "control": "BIND PLAN (&PLAN) PKLIST (CARDDEMO.*)", 
+     "source": "samples/proc/BLDCIDB2.prc:158-169", 
+     "program": "IKJEFT01", 
+     "cond": "(4,LT,BINDPK)", 
+     "name": "BINDPL"
+    }
+   ], 
+   "output": "&LOADLIB(&MEMNAME)", 
+   "proc_member": "BLDCIDB2", 
+   "output_source": "samples/proc/BLDCIDB2.prc:127"
+  }, 
+  {
+   "comment": "THIS PROC IS USED TO COMPILE BMS MAPS", 
+   "confidence": "Confirmed", 
+   "proc_label": "BUILDBMS", 
+   "source": "samples/proc/BUILDBMS.prc:23", 
+   "comment_confidence": "Unverified", 
+   "used_by": [
+    {
+     "source": "samples/jcl/BMSCMP.jcl:38", 
+     "job": "BMSCMP", 
+     "exec": "BUILDBMS"
+    }
+   ], 
+   "source_type": "bms-mapset", 
+   "steps": [
+    {
+     "source": "samples/proc/BUILDBMS.prc:36", 
+     "program": "IEBGENER", 
+     "name": "PRINT"
+    }, 
+    {
+     "source": "samples/proc/BUILDBMS.prc:49", 
+     "parm": "SYSPARM(MAP),DECK,NOLOAD", 
+     "program": "ASMA90", 
+     "name": "MAP"
+    }, 
+    {
+     "source": "samples/proc/BUILDBMS.prc:68", 
+     "parm": "LIST,LET,XREF", 
+     "program": "HEWL", 
+     "name": "LKED"
+    }, 
+    {
+     "source": "samples/proc/BUILDBMS.prc:78", 
+     "parm": "SYSPARM(DSECT),DECK,NOLOAD", 
+     "program": "ASMA90", 
+     "name": "DSECT"
+    }, 
+    {
+     "source": "samples/proc/BUILDBMS.prc:96", 
+     "program": "IEBGENER", 
+     "name": "DISPLIST"
+    }, 
+    {
+     "source": "samples/proc/BUILDBMS.prc:103", 
+     "program": "IEFBR14", 
+     "name": "DELTEMP"
+    }
+   ], 
+   "output": "&LOADLIB(&MAPNAME)", 
+   "proc_member": "BUILDBMS", 
+   "output_source": "samples/proc/BUILDBMS.prc:70", 
+   "notes": "BMSCMP later issues CEMT SET PROG NEWCOPY through SDSF (samples/jcl/BMSCMP.jcl:42-46)."
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "source": "samples/jcl/IMSMQCMP.jcl:28", 
+   "notes": "This is a sample job. The load member name IMSMQPGM is a literal in that job. No CardDemo program is named IMSMQPGM in the inventory.", 
+   "source_type": "cics-dli-sample", 
+   "job": "IMSMQCMP", 
+   "steps": [
+    {
+     "source": "samples/jcl/IMSMQCMP.jcl:28", 
+     "parm": "CICS,DLI,COBOL3", 
+     "program": "DFHECP1$", 
+     "name": "TRN"
+    }, 
+    {
+     "source": "samples/jcl/IMSMQCMP.jcl:37-38", 
+     "parm": "NODYNAM,OBJECT,RENT,APOST,MAP,XREF", 
+     "program": "IGYCRCTL", 
+     "cond": "(4,LT)", 
+     "name": "COBOL"
+    }, 
+    {
+     "source": "samples/jcl/IMSMQCMP.jcl:100", 
+     "parm": "LIST,XREF", 
+     "program": "IEWL", 
+     "cond": "(4,LT)", 
+     "name": "LKED"
+    }
+   ], 
+   "output": "&HLQ..CICSLOAD(IMSMQPGM)", 
+   "proc_member": null, 
+   "output_source": "samples/jcl/IMSMQCMP.jcl:112"
+  }
+ ], 
+ "schema": "ops-build/1"
+}

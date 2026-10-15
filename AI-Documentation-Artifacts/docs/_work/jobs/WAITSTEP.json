@@ -1,0 +1,169 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "WAIT FOR CENTISECONDS IN THE PARM EG: 00003600  = 36 SECONDS", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/WAITSTEP.jcl:20"
+ }, 
+ "job_card": {
+  "source": "app/jcl/WAITSTEP.jcl:1", 
+  "msgclass": "0", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [
+  {
+   "source": "app/scheduler/CardDemo.ca7", 
+   "calendar": null, 
+   "successors": [
+    "OPENFIL", 
+    "CLOSEFIL1", 
+    "CLOSEFIL2", 
+    "CLOSEFIL"
+   ], 
+   "predecessors": [
+    "POSTTRAN", 
+    "TRANTYPE", 
+    "TRANCATG", 
+    "TCATBALF", 
+    "READXREF", 
+    "TXT2PDF1", 
+    "PRTCATBL"
+   ], 
+   "time": null
+  }, 
+  {
+   "source": "app/scheduler/CardDemo.controlm", 
+   "description": {
+    "text": "DAILY WAITSTEP", 
+    "confidence": "Unverified"
+   }, 
+   "folder_calendar": null, 
+   "time": "23:00", 
+   "folder": "DAILY-TransactionBackup", 
+   "successors": [
+    "OPENFIL"
+   ], 
+   "calendar": "ALL", 
+   "predecessors": [
+    "TRANBKP"
+   ]
+  }, 
+  {
+   "source": "app/scheduler/CardDemo.controlm", 
+   "description": {
+    "text": "MONTHLY WAITSTEP", 
+    "confidence": "Unverified"
+   }, 
+   "folder_calendar": null, 
+   "time": "23:00", 
+   "folder": "MONTHLY-InterestCalculation", 
+   "successors": [
+    "OPENFIL"
+   ], 
+   "calendar": null, 
+   "predecessors": [
+    "COMBTRAN"
+   ]
+  }, 
+  {
+   "source": "app/scheduler/CardDemo.controlm", 
+   "description": {
+    "text": "WEEKLY DisclosureGroupsRefresh WAITSTEP", 
+    "confidence": "Unverified"
+   }, 
+   "folder_calendar": "SA", 
+   "time": "23:00", 
+   "folder": "WEEKLY-DisclosureGroupsRefresh", 
+   "successors": [
+    "OPENFIL"
+   ], 
+   "calendar": null, 
+   "predecessors": [
+    "DISCGRP"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [], 
+ "source_path": "app/jcl/WAITSTEP.jcl", 
+ "steps": [
+  {
+   "function": "Executes program COBSWAIT", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 22, 
+   "kind": "application", 
+   "name": "WAIT", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 23, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 24, 
+     "ddname": "SYSOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 25, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "COBSWAIT", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "36c98a55c7701bfaa9bd6404d2aca95888880d4f908ced678840a37e2e3eac5e", 
+ "job_name": "WAITSTEP"
+}

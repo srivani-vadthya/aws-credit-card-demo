@@ -1,0 +1,160 @@
+{
+ "set_symbols": {}, 
+ "description": null, 
+ "job_card": {
+  "source": "app/jcl/TXT2PDF1.JCL:1", 
+  "msgclass": "X", 
+  "region": null, 
+  "class": "X", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [
+  {
+   "source": "app/scheduler/CardDemo.ca7", 
+   "calendar": null, 
+   "successors": [
+    "WAITSTEP"
+   ], 
+   "predecessors": [
+    "CREASTMT"
+   ], 
+   "time": null
+  }
+ ], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [], 
+ "source_path": "app/jcl/TXT2PDF1.JCL", 
+ "steps": [
+  {
+   "function": "Utility step IKJEFT1B", 
+   "if_condition": null, 
+   "parm": "('')", 
+   "cond": "(0,NE)", 
+   "proc_steps": [], 
+   "line": 24, 
+   "kind": "db2", 
+   "name": "TXT2PDF", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 28, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.LBD.TXT2PDF.LOAD", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 31, 
+     "ddname": "SYSEXEC", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.LBD.TXT2PDF.EXEC", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 33, 
+     "ddname": "INDD", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.STATEMNT.PS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 35, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 36, 
+     "ddname": "SYSTSPRT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 37, 
+     "ddname": "SYSTSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IKJEFT1B", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "a9e9a847c252c9f7bd01b5a0c011f534ee9e01a9045727b2aadd3af93b07f7f0", 
+ "job_name": "TXT2PDF1"
+}

@@ -1,0 +1,273 @@
+{
+ "set_symbols": {}, 
+ "description": null, 
+ "job_card": {
+  "source": "app/jcl/CBEXPORT.jcl:1", 
+  "msgclass": "0", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [
+  {
+   "text": "Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member. Absence does not prove the job never runs.", 
+   "confidence": "Confirmed", 
+   "source": "app/jcl/CBEXPORT.jcl"
+  }
+ ], 
+ "source_path": "app/jcl/CBEXPORT.jcl", 
+ "steps": [
+  {
+   "function": "IDCAMS delete", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 24, 
+   "kind": "utility", 
+   "name": "STEP01", 
+   "control_statements": [
+    {
+     "text": "DELETE AWS.M2.CARDDEMO.EXPORT.DATA CLUSTER PURGE", 
+     "meaning": "IDCAMS delete", 
+     "source": "app/jcl/CBEXPORT.jcl:27"
+    }, 
+    {
+     "text": "DEFINE CLUSTER (NAME(AWS.M2.CARDDEMO.EXPORT.DATA) -", 
+     "meaning": "IDCAMS define VSAM cluster", 
+     "source": "app/jcl/CBEXPORT.jcl:30"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 25, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 26, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "Executes program CBEXPORT", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 43, 
+   "kind": "application", 
+   "name": "STEP02", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 44, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 49, 
+     "ddname": "CUSTFILE", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 51, 
+     "ddname": "ACCTFILE", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 53, 
+     "ddname": "XREFFILE", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 55, 
+     "ddname": "TRANSACT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 57, 
+     "ddname": "CARDFILE", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 62, 
+     "ddname": "EXPFILE", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.EXPORT.DATA", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 67, 
+     "ddname": "SYSOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 68, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "CBEXPORT", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "2af5ab38310c86231f9374618b5ee488b494ff79d0158ab460659616002ca54f", 
+ "job_name": "CBEXPORT"
+}

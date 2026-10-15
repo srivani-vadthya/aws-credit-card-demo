@@ -1,0 +1,943 @@
+{
+ "rows": [
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBACT01C.cbl:290-305", 
+   "program": "CBACT01C", 
+   "store": "VBRC-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBACT01C.cbl:166-319", 
+   "program": "CBACT01C", 
+   "store": "ACCTFILE-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBACT01C.cbl:264", 
+   "program": "CBACT01C", 
+   "store": "ARRY-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBACT01C.cbl:243", 
+   "program": "CBACT01C", 
+   "store": "OUT-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBACT02C.cbl:93-120", 
+   "program": "CBACT02C", 
+   "store": "CARDFILE-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBACT03C.cbl:93-120", 
+   "program": "CBACT03C", 
+   "store": "XREFFILE-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBACT04C.cbl:309", 
+   "program": "CBACT04C", 
+   "store": "TRANSACT-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBACT04C.cbl:236-326", 
+   "program": "CBACT04C", 
+   "store": "TCATBAL-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBACT04C.cbl:254-394", 
+   "program": "CBACT04C", 
+   "store": "XREF-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R", 
+    "U"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBACT04C.cbl:291-373", 
+   "program": "CBACT04C", 
+   "store": "ACCOUNT-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBACT04C.cbl:272-444", 
+   "program": "CBACT04C", 
+   "store": "DISCGRP-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBCUS01C.cbl:93-120", 
+   "program": "CBCUS01C", 
+   "store": "CUSTFILE-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBEXPORT.cbl:200-260", 
+   "program": "CBEXPORT", 
+   "store": "CUSTOMER-INPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBEXPORT.cbl:207-329", 
+   "program": "CBEXPORT", 
+   "store": "ACCOUNT-INPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBEXPORT.cbl:214-393", 
+   "program": "CBEXPORT", 
+   "store": "XREF-INPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBEXPORT.cbl:228-513", 
+   "program": "CBEXPORT", 
+   "store": "CARD-INPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBEXPORT.cbl:235", 
+   "program": "CBEXPORT", 
+   "store": "EXPORT-OUTPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBEXPORT.cbl:221-448", 
+   "program": "CBEXPORT", 
+   "store": "TRANSACTION-INPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBIMPORT.cbl:198-261", 
+   "program": "CBIMPORT", 
+   "store": "EXPORT-INPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBIMPORT.cbl:212", 
+   "program": "CBIMPORT", 
+   "store": "ACCOUNT-OUTPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBIMPORT.cbl:226", 
+   "program": "CBIMPORT", 
+   "store": "TRANSACTION-OUTPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBIMPORT.cbl:219", 
+   "program": "CBIMPORT", 
+   "store": "XREF-OUTPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBIMPORT.cbl:439", 
+   "program": "CBIMPORT", 
+   "store": "ERROR-OUTPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBIMPORT.cbl:205", 
+   "program": "CBIMPORT", 
+   "store": "CUSTOMER-OUTPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBIMPORT.cbl:233", 
+   "program": "CBIMPORT", 
+   "store": "CARD-OUTPUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "D"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:310", 
+   "program": "CBPAUP0C", 
+   "store": "DLI-DLET", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:255", 
+   "program": "CBPAUP0C", 
+   "store": "DLI-GNP", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:223", 
+   "program": "CBPAUP0C", 
+   "store": "DLI-GN", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBSTM03A.CBL:440-721", 
+   "program": "CBSTM03A", 
+   "store": "HTML-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBSTM03A.CBL:293", 
+   "program": "CBSTM03A", 
+   "store": "STMT-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBSTM03B.CBL:209-215", 
+   "program": "CBSTM03B", 
+   "store": "ACCT-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBSTM03B.CBL:160-165", 
+   "program": "CBSTM03B", 
+   "store": "XREF-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBSTM03B.CBL:184-190", 
+   "program": "CBSTM03B", 
+   "store": "CUST-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBSTM03B.CBL:136-141", 
+   "program": "CBSTM03B", 
+   "store": "TRNX-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN01C.cbl:345", 
+   "program": "CBTRN01C", 
+   "store": "TRANSACT-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN01C.cbl:229-291", 
+   "program": "CBTRN01C", 
+   "store": "XREF-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN01C.cbl:309", 
+   "program": "CBTRN01C", 
+   "store": "CARD-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN01C.cbl:243-327", 
+   "program": "CBTRN01C", 
+   "store": "ACCOUNT-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN01C.cbl:273", 
+   "program": "CBTRN01C", 
+   "store": "CUSTOMER-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN01C.cbl:203-254", 
+   "program": "CBTRN01C", 
+   "store": "DALYTRAN-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN02C.cbl:256", 
+   "program": "CBTRN02C", 
+   "store": "TRANSACT-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN02C.cbl:293", 
+   "program": "CBTRN02C", 
+   "store": "DALYREJS-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN02C.cbl:275-383", 
+   "program": "CBTRN02C", 
+   "store": "XREF-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R", 
+    "U"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN02C.cbl:311-395", 
+   "program": "CBTRN02C", 
+   "store": "ACCOUNT-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C", 
+    "R", 
+    "U"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN02C.cbl:329-474", 
+   "program": "CBTRN02C", 
+   "store": "TCATBAL-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN02C.cbl:238-346", 
+   "program": "CBTRN02C", 
+   "store": "DALYTRAN-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN03C.cbl:249-378", 
+   "program": "CBTRN03C", 
+   "store": "TRANSACT-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN03C.cbl:414-485", 
+   "program": "CBTRN03C", 
+   "store": "XREF-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN03C.cbl:450-505", 
+   "program": "CBTRN03C", 
+   "store": "TRANCATG-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN03C.cbl:345", 
+   "program": "CBTRN03C", 
+   "store": "REPORT-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN03C.cbl:221-468", 
+   "program": "CBTRN03C", 
+   "store": "DATE-PARMS-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CBTRN03C.cbl:432-495", 
+   "program": "CBTRN03C", 
+   "store": "TRANTYPE-FILE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "vsammq", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:396", 
+   "program": "COACCT01", 
+   "store": "ACCTDAT", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "vsammq", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:352", 
+   "program": "COACCT01", 
+   "store": "MQ-GET", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "vsammq", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:479", 
+   "program": "COACCT01", 
+   "store": "MQ-PUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "B", 
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COBIL00C.cbl:443-512", 
+   "program": "COBIL00C", 
+   "store": "TRANSACT", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "R", 
+    "U"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COBIL00C.cbl:345-379", 
+   "program": "COBIL00C", 
+   "store": "ACCTDAT", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COBIL00C.cbl:410", 
+   "program": "COBIL00C", 
+   "store": "CXACAIX", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "C", 
+    "D", 
+    "U"
+   ], 
+   "module": "trantype", 
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:137", 
+   "program": "COBTUPDT", 
+   "store": "CARDDEMO.TRANSACTION_TYPE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "vsammq", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:301", 
+   "program": "CODATE01", 
+   "store": "MQ-GET", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "vsammq", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:383", 
+   "program": "CODATE01", 
+   "store": "MQ-PUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:400", 
+   "program": "COPAUA0C", 
+   "store": "MQ-GET", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:477", 
+   "program": "COPAUA0C", 
+   "store": "CCXREF", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "U"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:825", 
+   "program": "COPAUA0C", 
+   "store": "DLI-REPL", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:573", 
+   "program": "COPAUA0C", 
+   "store": "CUSTDAT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:830", 
+   "program": "COPAUA0C", 
+   "store": "DLI-ISRT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:758", 
+   "program": "COPAUA0C", 
+   "store": "MQ-PUT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:525", 
+   "program": "COPAUA0C", 
+   "store": "ACCTDAT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:620", 
+   "program": "COPAUA0C", 
+   "store": "DLI-GU", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:1001", 
+   "program": "COPAUA0C", 
+   "store": "CSSL", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:973", 
+   "program": "COPAUS0C", 
+   "store": "DLI-GU", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:869", 
+   "program": "COPAUS0C", 
+   "store": "ACCTDAT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:461", 
+   "program": "COPAUS0C", 
+   "store": "DLI-GNP", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:818", 
+   "program": "COPAUS0C", 
+   "store": "CXACAIX", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:920", 
+   "program": "COPAUS0C", 
+   "store": "CUSTDAT", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:465", 
+   "program": "COPAUS1C", 
+   "store": "DLI-GNP", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:439", 
+   "program": "COPAUS1C", 
+   "store": "DLI-GU", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "U"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:525", 
+   "program": "COPAUS1C", 
+   "store": "DLI-REPL", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C", 
+    "U"
+   ], 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:141", 
+   "program": "COPAUS2C", 
+   "store": "CARDDEMO.AUTHFRDS", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/CORPT00C.cbl:517", 
+   "program": "CORPT00C", 
+   "store": "JOBS", 
+   "store_kind": "cics-td-queue"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COSGN00C.cbl:211", 
+   "program": "COSGN00C", 
+   "store": "USRSEC", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "B"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COTRN00C.cbl:593-694", 
+   "program": "COTRN00C", 
+   "store": "TRANSACT", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "R", 
+    "U"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COTRN01C.cbl:269", 
+   "program": "COTRN01C", 
+   "store": "TRANSACT", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "B", 
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COTRN02C.cbl:644-713", 
+   "program": "COTRN02C", 
+   "store": "TRANSACT", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COTRN02C.cbl:578", 
+   "program": "COTRN02C", 
+   "store": "CXACAIX", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "R"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COTRN02C.cbl:611", 
+   "program": "COTRN02C", 
+   "store": "CCXREF", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "D", 
+    "R", 
+    "U"
+   ], 
+   "module": "trantype", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1803", 
+   "program": "COTRTLIC", 
+   "store": "CARDDEMO.TRANSACTION_TYPE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "C", 
+    "D", 
+    "R", 
+    "U"
+   ], 
+   "module": "trantype", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1475", 
+   "program": "COTRTUPC", 
+   "store": "CARDDEMO.TRANSACTION_TYPE", 
+   "store_kind": "logical"
+  }, 
+  {
+   "ops": [
+    "B"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COUSR00C.cbl:588-689", 
+   "program": "COUSR00C", 
+   "store": "USRSEC", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "C"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COUSR01C.cbl:240", 
+   "program": "COUSR01C", 
+   "store": "USRSEC", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "R", 
+    "U"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COUSR02C.cbl:322-360", 
+   "program": "COUSR02C", 
+   "store": "USRSEC", 
+   "store_kind": "cics-file"
+  }, 
+  {
+   "ops": [
+    "D", 
+    "R", 
+    "U"
+   ], 
+   "module": "base", 
+   "source": "app/cbl/COUSR03C.cbl:269-307", 
+   "program": "COUSR03C", 
+   "store": "USRSEC", 
+   "store_kind": "cics-file"
+  }
+ ]
+}

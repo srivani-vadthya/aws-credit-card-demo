@@ -1,0 +1,131 @@
+# Project profile for the mainframe documentation toolkit
+# (personal skill: mainframe-doc-orchestrator).
+# Values below were discovered from this repository; each carries its evidence.
+# Anything not confirmable is null and belongs in <work_dir>/gaps.md.
+
+application:
+  name: CardDemo
+  description_source: README.md:7
+  version_source: "README.md:3 (badge 1.0.0); per-file banners like 'Ver: CardDemo_v1.0-15-g27d6c6f-68' (app/cbl/COSGN00C.cbl:259)"
+
+paths:
+  repo_root: .
+  work_dir: docs/_work
+  output_dir: docs/application-documentation
+  template_overrides: null
+
+source_roots:
+  - path: app
+    evidence: "README.md:121-124 (upload application source folders)"
+  - path: samples
+    evidence: "README.md:170 (sample compile JCLs in samples folder)"
+  - path: scripts
+    evidence: "scripts/run_full_batch.sh (job submission order), scripts/compile_batch.jcl.template"
+
+modules:
+  - id: base
+    name: CardDemo base application
+    paths: ["app/asm", "app/bms", "app/catlg", "app/cbl", "app/cpy", "app/cpy-bms", "app/csd",
+            "app/ctl", "app/data", "app/jcl", "app/maclib", "app/proc", "app/scheduler"]
+    optional: false
+    technologies: [COBOL, CICS, BMS, VSAM-KSDS, VSAM-AIX, VSAM-ESDS, VSAM-RRDS, GDG, JCL, Assembler,
+                   DFSORT, IDCAMS, internal-reader, FTP, CA7, Control-M]
+    evidence: ["README.md:40-60", "app/csd/CARDDEMO.CSD", "app/jcl/ESDSRRDS.jcl", "app/jcl/DEFGDGB.jcl",
+               "app/jcl/FTPJCL.JCL", "app/jcl/INTRDRJ1.JCL", "app/scheduler/CardDemo.ca7",
+               "app/scheduler/CardDemo.controlm"]
+  - id: auth
+    name: Credit Card Authorizations with IMS, DB2 and MQ
+    paths: ["app/app-authorization-ims-db2-mq"]
+    optional: true
+    technologies: [COBOL, CICS, BMS, IMS-DB, DB2, MQ, VSAM]
+    evidence: ["README.md:66-75", "app/app-authorization-ims-db2-mq/README.md",
+               "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd"]
+  - id: trantype
+    name: Transaction Type Management with DB2
+    paths: ["app/app-transaction-type-db2"]
+    optional: true
+    technologies: [COBOL, CICS, BMS, DB2, DSNTEP4, DSNTIAUL]
+    evidence: ["README.md:76-80", "app/app-transaction-type-db2/README.md",
+               "app/app-transaction-type-db2/csd/CRDDEMOD.csd"]
+  - id: vsammq
+    name: Account Extractions using MQ and VSAM
+    paths: ["app/app-vsam-mq"]
+    optional: true
+    technologies: [COBOL, CICS, MQ, VSAM]
+    evidence: ["README.md:82-86", "app/app-vsam-mq/README.md", "app/app-vsam-mq/csd/CRDDEMOM.csd"]
+  - id: build
+    name: Build, compile and deployment support
+    paths: ["samples", "scripts"]
+    optional: false
+    technologies: [JCL, shell, awk, IGYCRCTL, DFHECP1, DSNHPC, ASMA90, HEWL, DFHCSDUP]
+    evidence: ["samples/proc/BUILDONL.prc", "samples/proc/BLDCIDB2.prc", "scripts/remote_compile.sh"]
+
+# Pass these to classify_inventory.py as --module <id>=<glob>; the longest matching glob wins.
+module_globs:
+  base: "app/**"
+  auth: "app/app-authorization-ims-db2-mq/**"
+  trantype: "app/app-transaction-type-db2/**"
+  vsammq: "app/app-vsam-mq/**"
+  build: "{samples,scripts}/**"
+
+classification:
+  extension_hints: {}
+  path_hints: []
+  # Verified with classify_inventory.py: 329 files, 0 unclassified with default signatures.
+
+exclude:
+  - glob: "**/*.zip"
+    reason: "Binary runtime archives (samples/m2/mf, samples/m2/unikix); list only, do not unpack"
+  - glob: ".mfdoc-tmp/**"
+    reason: "Toolkit scratch output"
+  - glob: "docs/_work/**"
+    reason: "Pipeline work_dir output; must not be inventoried as application source"
+  - glob: "docs/application-documentation/**"
+    reason: "Pipeline output_dir; must not be inventoried as application source"
+  - glob: "COMBINED_DOCUMENTATION.md"
+    reason: "Reading copy that gathers skills, rules, and docs (COMBINED_DOCUMENTATION.md:1-9); not application source"
+  - glob: "PROJECT_DOCUMENTATION.docx"
+    reason: "Narrative Word guide dated 13 October 2026, drawn from docs/_work and docs/application-documentation; not application source"
+
+data_samples:
+  - glob: "app/data/ASCII/**"
+    encoding: ascii
+  - glob: "app/data/EBCDIC/**"
+    encoding: ebcdic
+  - glob: "app/app-authorization-ims-db2-mq/data/EBCDIC/**"
+    encoding: ebcdic
+
+existing_docs:
+  - {path: README.md, kind: readme}
+  - {path: app/app-authorization-ims-db2-mq/README.md, kind: readme}
+  - {path: app/app-transaction-type-db2/README.md, kind: readme}
+  - {path: app/app-vsam-mq/README.md, kind: readme}
+  - {path: diagrams/CARDDEMO-DataModel.drawio, kind: data-model-diagram}
+  - {path: "diagrams/*.png", kind: screenshots-and-flow-diagrams}
+  - {path: app/catlg/LISTCAT.txt, kind: catalog-report-point-in-time}
+
+placeholders:
+  # Environment tokens to document as parameters (never resolve without source evidence).
+  - {token: "&SYSUID", meaning_source: "JES submitting user id (JOB card NOTIFY=)"}
+  - {token: "&HLQ", meaning_source: "README.md:108 (High Level Qualifier for datasets)"}
+  - {token: "&&SYSPARM", meaning_source: "BMS DFHMSD TYPE= set at assembly time (app/bms/*.bms)"}
+  - {token: "&CARDDEMOPRODJCL", meaning_source: "CA7 JCLLIB symbol (app/scheduler/CardDemo.ca7)"}
+  - {token: "<<db2-schema>>", meaning_source: "app/app-authorization-ims-db2-mq/README.md:113"}
+  - {token: "<<db2-database>>", meaning_source: "app/app-authorization-ims-db2-mq/README.md:141"}
+  - {token: "<<db2-storage-group>>", meaning_source: "app/app-authorization-ims-db2-mq/README.md:146"}
+  - {token: "&SSID / &DB2S", meaning_source: "DB2 subsystem symbolics in build PROCs/JCL (samples/)"}
+  - {token: "&MQHLQ / &CICSHLQ", meaning_source: "Product library qualifiers in build PROCs (samples/proc)"}
+  # PROC symbolic parameters (&MEM, &LOADLIB, ...) are resolved from PROC defaults/overrides per the jcl-proc-reading rule.
+
+observed_conventions:
+  # Observations only; never used to classify artifacts.
+  dataset_qualifier: "AWS.M2.CARDDEMO.* hardcoded in most JCL and CSD DSNAMEs (e.g. app/jcl/POSTTRAN.jcl:25)"
+
+source_format:
+  cobol_fixed_format: true
+  sequence_area_present: mixed   # 17 files carry numeric columns 73-80 (see inventory summary)
+
+documentation:
+  audience: [business-analyst, developer, operations, modernization-architect]
+  diagram_format: mermaid
+  include_modernization_observations: true

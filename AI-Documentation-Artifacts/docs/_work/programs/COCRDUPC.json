@@ -1,0 +1,1038 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "COMEN01C", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:52", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS or DFHCOMMAREA present", 
+   "source": "app/cbl/COCRDUPC.cbl:366"
+  }
+ ], 
+ "source_path": "app/cbl/COCRDUPC.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/COCRDUPC.cbl:1-8", 
+  "author": null, 
+  "description": "Program:     COCRDUPC.CBL Layer:       Business logic Function:    Accept and process credit card detail request All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing,", 
+  "version_banner": "* Ver: CardDemo_v1.0-15-g27d6c6f-68 Date: 2022-07-19 23:12:33 CDT"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "0000-MAIN", 
+   "section": null, 
+   "end_line": 544, 
+   "purpose": "Statements include: EXEC CICS HANDLE, EXEC CICS XCTL, READ", 
+   "performs": [
+    "YYYY-STORE-PFKEY", 
+    "9000-READ-DATA", 
+    "3000-SEND-MAP", 
+    "3000-SEND-MAP", 
+    "3000-SEND-MAP", 
+    "1000-PROCESS-INPUTS", 
+    "2000-DECIDE-ACTION", 
+    "3000-SEND-MAP"
+   ], 
+   "reachable": true, 
+   "start_line": 367, 
+   "go_to": [
+    "COMMON-RETURN", 
+    "COMMON-RETURN", 
+    "COMMON-RETURN", 
+    "COMMON-RETURN"
+   ]
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "COMMON-RETURN", 
+   "section": null, 
+   "end_line": 559, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 546, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "0000-MAIN-EXIT", 
+   "section": null, 
+   "end_line": 562, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": false, 
+   "start_line": 560, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1000-PROCESS-INPUTS", 
+   "section": null, 
+   "end_line": 573, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "1100-RECEIVE-MAP", 
+    "1200-EDIT-MAP-INPUTS"
+   ], 
+   "reachable": true, 
+   "start_line": 564, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1000-PROCESS-INPUTS-EXIT", 
+   "section": null, 
+   "end_line": 577, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 575, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1100-RECEIVE-MAP", 
+   "section": null, 
+   "end_line": 636, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 578, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1100-RECEIVE-MAP-EXIT", 
+   "section": null, 
+   "end_line": 640, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 638, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1200-EDIT-MAP-INPUTS", 
+   "section": null, 
+   "end_line": 715, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "1210-EDIT-ACCOUNT", 
+    "1220-EDIT-CARD", 
+    "1230-EDIT-NAME", 
+    "1240-EDIT-CARDSTATUS", 
+    "1250-EDIT-EXPIRY-MON", 
+    "1260-EDIT-EXPIRY-YEAR"
+   ], 
+   "reachable": true, 
+   "start_line": 641, 
+   "go_to": [
+    "1200-EDIT-MAP-INPUTS-EXIT", 
+    "1200-EDIT-MAP-INPUTS-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1200-EDIT-MAP-INPUTS-EXIT", 
+   "section": null, 
+   "end_line": 719, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 717, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1210-EDIT-ACCOUNT", 
+   "section": null, 
+   "end_line": 756, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 721, 
+   "go_to": [
+    "1210-EDIT-ACCOUNT-EXIT", 
+    "1210-EDIT-ACCOUNT-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1210-EDIT-ACCOUNT-EXIT", 
+   "section": null, 
+   "end_line": 760, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 758, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1220-EDIT-CARD", 
+   "section": null, 
+   "end_line": 800, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 762, 
+   "go_to": [
+    "1220-EDIT-CARD-EXIT", 
+    "1220-EDIT-CARD-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1220-EDIT-CARD-EXIT", 
+   "section": null, 
+   "end_line": 804, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 802, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1230-EDIT-NAME", 
+   "section": null, 
+   "end_line": 840, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 806, 
+   "go_to": [
+    "1230-EDIT-NAME-EXIT", 
+    "1230-EDIT-NAME-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1230-EDIT-NAME-EXIT", 
+   "section": null, 
+   "end_line": 843, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 841, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1240-EDIT-CARDSTATUS", 
+   "section": null, 
+   "end_line": 873, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 845, 
+   "go_to": [
+    "1240-EDIT-CARDSTATUS-EXIT", 
+    "1240-EDIT-CARDSTATUS-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1240-EDIT-CARDSTATUS-EXIT", 
+   "section": null, 
+   "end_line": 876, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 874, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1250-EDIT-EXPIRY-MON", 
+   "section": null, 
+   "end_line": 908, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 877, 
+   "go_to": [
+    "1250-EDIT-EXPIRY-MON-EXIT", 
+    "1250-EDIT-EXPIRY-MON-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1250-EDIT-EXPIRY-MON-EXIT", 
+   "section": null, 
+   "end_line": 912, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 910, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1260-EDIT-EXPIRY-YEAR", 
+   "section": null, 
+   "end_line": 944, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 913, 
+   "go_to": [
+    "1260-EDIT-EXPIRY-YEAR-EXIT", 
+    "1260-EDIT-EXPIRY-YEAR-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1260-EDIT-EXPIRY-YEAR-EXIT", 
+   "section": null, 
+   "end_line": 947, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 945, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2000-DECIDE-ACTION", 
+   "section": null, 
+   "end_line": 1028, 
+   "purpose": "Statements include: READ, WRITE", 
+   "performs": [
+    "9000-READ-DATA", 
+    "9200-WRITE-PROCESSING", 
+    "ABEND-ROUTINE"
+   ], 
+   "reachable": true, 
+   "start_line": 948, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2000-DECIDE-ACTION-EXIT", 
+   "section": null, 
+   "end_line": 1031, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1029, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3000-SEND-MAP", 
+   "section": null, 
+   "end_line": 1046, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "3100-SCREEN-INIT", 
+    "3200-SETUP-SCREEN-VARS", 
+    "3250-SETUP-INFOMSG", 
+    "3300-SETUP-SCREEN-ATTRS", 
+    "3400-SEND-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 1035, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3000-SEND-MAP-EXIT", 
+   "section": null, 
+   "end_line": 1050, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1048, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3100-SCREEN-INIT", 
+   "section": null, 
+   "end_line": 1076, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1052, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3100-SCREEN-INIT-EXIT", 
+   "section": null, 
+   "end_line": 1080, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1078, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3200-SETUP-SCREEN-VARS", 
+   "section": null, 
+   "end_line": 1134, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1082, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3200-SETUP-SCREEN-VARS-EXIT", 
+   "section": null, 
+   "end_line": 1137, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1135, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3250-SETUP-INFOMSG", 
+   "section": null, 
+   "end_line": 1164, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1138, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3250-SETUP-INFOMSG-EXIT", 
+   "section": null, 
+   "end_line": 1167, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1165, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3300-SETUP-SCREEN-ATTRS", 
+   "section": null, 
+   "end_line": 1318, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1168, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3300-SETUP-SCREEN-ATTRS-EXIT", 
+   "section": null, 
+   "end_line": 1321, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1319, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3400-SEND-SCREEN", 
+   "section": null, 
+   "end_line": 1337, 
+   "purpose": "Statements include: EXEC CICS SEND", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1324, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3400-SEND-SCREEN-EXIT", 
+   "section": null, 
+   "end_line": 1340, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1338, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9000-READ-DATA", 
+   "section": null, 
+   "end_line": 1370, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "9100-GETCARD-BYACCTCARD"
+   ], 
+   "reachable": true, 
+   "start_line": 1343, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9000-READ-DATA-EXIT", 
+   "section": null, 
+   "end_line": 1374, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1372, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9100-GETCARD-BYACCTCARD", 
+   "section": null, 
+   "end_line": 1413, 
+   "purpose": "Statements include: EXEC CICS READ, READ", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1376, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9100-GETCARD-BYACCTCARD-EXIT", 
+   "section": null, 
+   "end_line": 1417, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1415, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9200-WRITE-PROCESSING", 
+   "section": null, 
+   "end_line": 1493, 
+   "purpose": "Statements include: EXEC CICS READ, WRITE, REWRITE", 
+   "performs": [
+    "9300-CHECK-CHANGE-IN-REC"
+   ], 
+   "reachable": true, 
+   "start_line": 1420, 
+   "go_to": [
+    "9200-WRITE-PROCESSING-EXIT", 
+    "9200-WRITE-PROCESSING-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9200-WRITE-PROCESSING-EXIT", 
+   "section": null, 
+   "end_line": 1496, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1494, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9300-CHECK-CHANGE-IN-REC", 
+   "section": null, 
+   "end_line": 1520, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1498, 
+   "go_to": [
+    "9200-WRITE-PROCESSING-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9300-CHECK-CHANGE-IN-REC-EXIT", 
+   "section": null, 
+   "end_line": 1529, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": false, 
+   "start_line": 1521, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "ABEND-ROUTINE", 
+   "section": null, 
+   "end_line": 1553, 
+   "purpose": "Statements include: EXEC CICS SEND, EXEC CICS HANDLE, EXEC CICS ABEND", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1531, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "ABEND-ROUTINE-EXIT", 
+   "section": null, 
+   "end_line": 1556, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1554, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "CVCRD01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:268", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVCRD01Y.cpy"
+  }, 
+  {
+   "name": "COCOM01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:272", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (01 at app/cpy/COCOM01Y.cpy:19)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COCOM01Y.cpy"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:327", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:328", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "name": "COTTL01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:332", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COTTL01Y.cpy"
+  }, 
+  {
+   "name": "COCRDUP", 
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:334", 
+   "purpose": "Application copybook (bms-mapset)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/bms/COCRDUP.bms"
+  }, 
+  {
+   "name": "CSDAT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:337", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSDAT01Y.cpy"
+  }, 
+  {
+   "name": "CSMSG01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:340", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSMSG01Y.cpy"
+  }, 
+  {
+   "name": "CSMSG02Y", 
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:343", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSMSG02Y.cpy"
+  }, 
+  {
+   "name": "CSUSR01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:346", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSUSR01Y.cpy"
+  }, 
+  {
+   "name": "CVACT02Y", 
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:353", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT02Y.cpy"
+  }, 
+  {
+   "name": "CVCUS01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COCRDUPC.cbl:359", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVCUS01Y.cpy"
+  }
+ ], 
+ "runtime_type": [
+  "cics-online"
+ ], 
+ "loc": {
+  "comment": 195, 
+  "total": 1560, 
+  "code": 1365
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/COCRDUPC.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Paragraph 0000-MAIN-EXIT has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/COCRDUPC.cbl:560"
+  }, 
+  {
+   "text": "Paragraph 9300-CHECK-CHANGE-IN-REC-EXIT has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/COCRDUPC.cbl:1521"
+  }, 
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COCRDUPC.cbl:11"
+  }, 
+  {
+   "text": "Commented COPY is not expanded: COPY CVACT01Y.", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COCRDUPC.cbl:350"
+  }, 
+  {
+   "text": "Commented COPY is not expanded: COPY CVACT03Y.", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COCRDUPC.cbl:356"
+  }
+ ], 
+ "sha256": "c245cf383a4a3f721773a13ca231eb76bd5ae75c1830d58c7aba898a554a0de9", 
+ "files": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "linkage": [
+   {
+    "source": "app/cbl/COCRDUPC.cbl:362", 
+    "name": "DFHCOMMAREA"
+   }
+  ], 
+  "pcbs": []
+ }, 
+ "crud": [], 
+ "program_id": "COCRDUPC", 
+ "candidate_rules": [], 
+ "error_handling": [
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:370", 
+   "message": null, 
+   "condition": "EXEC CICS HANDLE ABEND", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:371", 
+   "message": null, 
+   "condition": "LABEL(ABEND-ROUTINE)", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1020", 
+   "message": null, 
+   "condition": "MOVE LIT-THISPGM    TO ABEND-CULPRIT", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1021", 
+   "message": null, 
+   "condition": "MOVE '0001'         TO ABEND-CODE", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1022", 
+   "message": null, 
+   "condition": "MOVE SPACES         TO ABEND-REASON", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1024", 
+   "message": null, 
+   "condition": "TO ABEND-MSG", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1025", 
+   "message": null, 
+   "condition": "PERFORM ABEND-ROUTINE", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1026", 
+   "message": null, 
+   "condition": "THRU ABEND-ROUTINE-EXIT", 
+   "abend_code": null
+  }, 
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COCRDUPC.cbl:1392", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }, 
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COCRDUPC.cbl:1441", 
+   "message": null, 
+   "condition": "IF WS-RESP-CD EQUAL TO DFHRESP(NORMAL)", 
+   "abend_code": null
+  }, 
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COCRDUPC.cbl:1488", 
+   "message": null, 
+   "condition": "IF WS-RESP-CD EQUAL TO DFHRESP(NORMAL)", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1531", 
+   "message": null, 
+   "condition": "ABEND-ROUTINE.", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1533", 
+   "message": null, 
+   "condition": "IF ABEND-MSG EQUAL LOW-VALUES", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1534", 
+   "message": null, 
+   "condition": "MOVE 'UNEXPECTED ABEND OCCURRED.' TO ABEND-MSG", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1537", 
+   "message": null, 
+   "condition": "MOVE LIT-THISPGM       TO ABEND-CULPRIT", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1540", 
+   "message": null, 
+   "condition": "FROM (ABEND-DATA)", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1541", 
+   "message": null, 
+   "condition": "LENGTH(LENGTH OF ABEND-DATA)", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1546", 
+   "message": null, 
+   "condition": "EXEC CICS HANDLE ABEND", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1550", 
+   "message": null, 
+   "condition": "EXEC CICS ABEND", 
+   "abend_code": null
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/COCRDUPC.cbl:1554", 
+   "message": null, 
+   "condition": "ABEND-ROUTINE-EXIT.", 
+   "abend_code": null
+  }
+ ], 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "0000-MAIN", 
+   "verb": "HANDLE", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 370
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "0000-MAIN", 
+   "verb": "SYNCPOINT", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 469
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "0000-MAIN", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 473
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "COMMON-RETURN", 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 554
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "1100-RECEIVE-MAP", 
+   "verb": "RECEIVE", 
+   "response_handling": "RESP checked", 
+   "line": 579
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "3400-SEND-SCREEN", 
+   "verb": "SEND", 
+   "response_handling": "RESP checked", 
+   "line": 1329
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "LIT-CARDFILENAME", 
+   "options": {}, 
+   "paragraph": "9100-GETCARD-BYACCTCARD", 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 1382
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "LIT-CARDFILENAME", 
+   "options": {}, 
+   "paragraph": "9200-WRITE-PROCESSING", 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 1427
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "LIT-CARDFILENAME", 
+   "options": {}, 
+   "paragraph": "9200-WRITE-PROCESSING", 
+   "verb": "REWRITE", 
+   "response_handling": "RESP checked", 
+   "line": 1477
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "ABEND-ROUTINE", 
+   "verb": "SEND", 
+   "response_handling": "NOHANDLE", 
+   "line": 1539
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "ABEND-ROUTINE", 
+   "verb": "HANDLE", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 1546
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "ABEND-ROUTINE", 
+   "verb": "ABEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 1550
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COCRDUPC.cbl:473", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "LIT-THISTRANID", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COCRDUPC.cbl:554", 
+   "condition": null
+  }
+ ], 
+ "messages": [
+  {
+   "text": "*", 
+   "source": "app/cbl/COCRDUPC.cbl:1249"
+  }, 
+  {
+   "text": "*", 
+   "source": "app/cbl/COCRDUPC.cbl:1259"
+  }, 
+  {
+   "text": "*", 
+   "source": "app/cbl/COCRDUPC.cbl:1270"
+  }, 
+  {
+   "text": "*", 
+   "source": "app/cbl/COCRDUPC.cbl:1281"
+  }, 
+  {
+   "text": "*", 
+   "source": "app/cbl/COCRDUPC.cbl:1294"
+  }, 
+  {
+   "text": "*", 
+   "source": "app/cbl/COCRDUPC.cbl:1305"
+  }, 
+  {
+   "text": "UNEXPECTED ABEND OCCURRED.", 
+   "source": "app/cbl/COCRDUPC.cbl:1534"
+  }
+ ], 
+ "data_items": []
+}

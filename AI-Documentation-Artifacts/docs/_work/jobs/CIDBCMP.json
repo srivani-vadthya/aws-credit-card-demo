@@ -1,0 +1,69 @@
+{
+ "set_symbols": {
+  "SRCLIB": "&HLQ..CBL", 
+  "SSID": "DAZ1", 
+  "DCLLIB": "&HLQ..DCL", 
+  "COPYLIB": "&HLQ..CPY", 
+  "HLQ": "AWS.M2.CARDDEMO", 
+  "PLAN": "CARDDEMO", 
+  "MEMNAME": "CICSDB2P", 
+  "SYSLBLK": "3200", 
+  "LOADLIB": "&HLQ..LOADLIB", 
+  "DBRMLIB": "&HLQ..DBRMLIB"
+ }, 
+ "description": {
+  "text": "change CICSDB2P to your program name everywhere", 
+  "confidence": "Unverified", 
+  "source": "samples/jcl/CICDBCMP.jcl:4"
+ }, 
+ "job_card": {
+  "source": "samples/jcl/CICDBCMP.jcl:1", 
+  "msgclass": "H", 
+  "region": "0M", 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "build", 
+ "jcllib": [
+  "ORDER=&HLQ..PROC.UTIL"
+ ], 
+ "submitted_by": [], 
+ "findings": [
+  {
+   "text": "Sample JCL under samples/jcl. Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member.", 
+   "confidence": "Confirmed", 
+   "source": "samples/jcl/CICDBCMP.jcl"
+  }
+ ], 
+ "source_path": "samples/jcl/CICDBCMP.jcl", 
+ "steps": [
+  {
+   "function": "Executes procedure BLDCIDB2", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [
+    "PRECMP", 
+    "TRN", 
+    "COBOL", 
+    "LKED", 
+    "BINDPK", 
+    "BINDPL"
+   ], 
+   "line": 54, 
+   "kind": "application", 
+   "name": "CICSCMP", 
+   "control_statements": [], 
+   "dds": [], 
+   "program": null, 
+   "proc": "BLDCIDB2"
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "22088d7b8076fb2a6a81051c35395b654443caee1552d2881850f2009f5e9d1e", 
+ "job_name": "CIDBCMP"
+}

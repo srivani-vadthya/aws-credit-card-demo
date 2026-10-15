@@ -1,0 +1,111 @@
+{
+ "comment": "Unverified comment at app/cpy/COCOM01Y.cpy:2 says this is the communication area. The 01 name is Confirmed.", 
+ "source": "app/cpy/COCOM01Y.cpy:19", 
+ "name": "CARDDEMO-COMMAREA", 
+ "fields": [
+  {
+   "source": "app/cpy/COCOM01Y.cpy:21", 
+   "pic": "X(04)", 
+   "name": "CDEMO-FROM-TRANID"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:22", 
+   "pic": "X(08)", 
+   "name": "CDEMO-FROM-PROGRAM"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:23", 
+   "pic": "X(04)", 
+   "name": "CDEMO-TO-TRANID"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:24", 
+   "pic": "X(08)", 
+   "name": "CDEMO-TO-PROGRAM"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:25", 
+   "pic": "X(08)", 
+   "name": "CDEMO-USER-ID"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:26", 
+   "pic": "X(01)", 
+   "name": "CDEMO-USER-TYPE"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:27", 
+   "name": "CDEMO-USRTYP-ADMIN", 
+   "value": "'A'", 
+   "level": 88
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:28", 
+   "name": "CDEMO-USRTYP-USER", 
+   "value": "'U'", 
+   "level": 88
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:29", 
+   "pic": "9(01)", 
+   "name": "CDEMO-PGM-CONTEXT"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:30", 
+   "name": "CDEMO-PGM-ENTER", 
+   "value": "0", 
+   "level": 88
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:31", 
+   "name": "CDEMO-PGM-REENTER", 
+   "value": "1", 
+   "level": 88
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:33", 
+   "pic": "9(09)", 
+   "name": "CDEMO-CUST-ID"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:34", 
+   "pic": "X(25)", 
+   "name": "CDEMO-CUST-FNAME"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:35", 
+   "pic": "X(25)", 
+   "name": "CDEMO-CUST-MNAME"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:36", 
+   "pic": "X(25)", 
+   "name": "CDEMO-CUST-LNAME"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:38", 
+   "pic": "9(11)", 
+   "name": "CDEMO-ACCT-ID"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:39", 
+   "pic": "X(01)", 
+   "name": "CDEMO-ACCT-STATUS"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:41", 
+   "pic": "9(16)", 
+   "name": "CDEMO-CARD-NUM"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:43", 
+   "pic": "X(7)", 
+   "name": "CDEMO-LAST-MAP"
+  }, 
+  {
+   "source": "app/cpy/COCOM01Y.cpy:44", 
+   "pic": "X(7)", 
+   "name": "CDEMO-LAST-MAPSET"
+  }
+ ]
+}

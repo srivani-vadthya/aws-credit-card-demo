@@ -1,0 +1,226 @@
+{
+ "invoked_by": [], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS present", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:88"
+  }, 
+  {
+   "text": "EXEC SQL present", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:88"
+  }
+ ], 
+ "source_path": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl", 
+ "module": "auth", 
+ "header": {
+  "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:1", 
+  "version_banner": null, 
+  "description": "See the comment block at the top of the source. Unverified until matched to code.", 
+  "author": "AWS"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 220, 
+   "purpose": "Statements include: EXEC CICS ASKTIME, EXEC CICS FORMATTIME, EXEC CICS RETURN", 
+   "performs": [
+    "FRAUD-UPDATE"
+   ], 
+   "reachable": true, 
+   "start_line": 89, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "FRAUD-UPDATE", 
+   "section": null, 
+   "end_line": 244, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 221, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:78", 
+   "resolution": "inventory", 
+   "name": "CIPAUDTY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:33", 
+   "name": "WS-PGMNAME", 
+   "value": "'COPAUS2C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:40", 
+   "name": "FILLER", 
+   "value": "'-'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:42", 
+   "name": "FILLER", 
+   "value": "'-'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:44", 
+   "name": "FILLER", 
+   "value": "' '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:46", 
+   "name": "FILLER", 
+   "value": "'.'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:48", 
+   "name": "FILLER", 
+   "value": "'.'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:51", 
+   "name": "FILLER", 
+   "value": "'000'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:52", 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:53", 
+   "name": "ERR-FLG-ON", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:54", 
+   "name": "ERR-FLG-OF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:81", 
+   "name": "WS-REPORT-FRAUD", 
+   "value": "'F'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:82", 
+   "name": "WS-REMOVE-FRAUD", 
+   "value": "'R'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:84", 
+   "name": "WS-FRD-UPDT-SUCCESS", 
+   "value": "'S'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:85", 
+   "name": "WS-FRD-UPDT-FAILED", 
+   "value": "'F'"
+  }
+ ], 
+ "loc": {
+  "comment": 25, 
+  "total": 244, 
+  "code": 219
+ }, 
+ "evidence_summary": "Structural facts read from app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl. Paragraph purposes are Inferred from statements.", 
+ "source_format": "fixed", 
+ "observations": [], 
+ "sha256": "57232060f8bdaecc679b74e93fcf91d93cffd400326c001bd187ab5fad14789e", 
+ "files": [], 
+ "messages": [
+  {
+   "text": "ADD SUCCESS", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:201"
+  }, 
+  {
+   "text": "UPDT SUCCESS", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:232"
+  }
+ ], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": []
+ }, 
+ "crud": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:141", 
+   "store_kind": "logical", 
+   "store": "CARDDEMO.AUTHFRDS", 
+   "ops": [
+    "C", 
+    "U"
+   ]
+  }
+ ], 
+ "program_id": "COPAUS2C", 
+ "error_handling": [], 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 91, 
+   "paragraph": null, 
+   "verb": "ASKTIME", 
+   "response_handling": "NOHANDLE", 
+   "options": {}
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 95, 
+   "paragraph": null, 
+   "verb": "FORMATTIME", 
+   "response_handling": "NOHANDLE", 
+   "options": {}
+  }, 
+  {
+   "kind": "SQL", 
+   "resource": "CARDDEMO.AUTHFRDS", 
+   "line": 141, 
+   "paragraph": null, 
+   "verb": "INSERT", 
+   "response_handling": null, 
+   "options": {}
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 218, 
+   "paragraph": null, 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "options": {}
+  }, 
+  {
+   "kind": "SQL", 
+   "resource": "CARDDEMO.AUTHFRDS", 
+   "line": 222, 
+   "paragraph": null, 
+   "verb": "UPDATE", 
+   "response_handling": null, 
+   "options": {}
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [], 
+ "candidate_rules": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:141", 
+   "summary": "Fraud authorization detail is inserted into CARDDEMO.AUTHFRDS, and an existing row can be updated."
+  }
+ ], 
+ "runtime_type": [
+  "cics-online", 
+  "db2"
+ ]
+}

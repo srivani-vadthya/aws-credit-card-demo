@@ -1,0 +1,111 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/ACCTFILE.jcl:58", 
+   "via": "jcl-dd", 
+   "by": "ACCTFILE.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CBEXPORT.jcl:51", 
+   "via": "jcl-dd", 
+   "by": "CBEXPORT.STEP02", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CREASTMT.JCL:85", 
+   "via": "jcl-dd", 
+   "by": "CREASTMT.STEP040", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/INTCALC.jcl:33", 
+   "via": "jcl-dd", 
+   "by": "INTCALC.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/POSTTRAN.jcl:39", 
+   "via": "jcl-dd", 
+   "by": "POSTTRAN.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/READACCT.jcl:35", 
+   "via": "jcl-dd", 
+   "by": "READACCT.STEP05", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/ACCTFILE.jcl:36", 
+  "app/csd/CARDDEMO.CSD:1", 
+  "app/catlg/LISTCAT.txt:22"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "keys": "KEYS(11 0)", 
+  "record_max": 300, 
+  "record_size": "RECORDSIZE(300 300)", 
+  "defined_by": [
+   "app/jcl/ACCTFILE.jcl:36"
+  ], 
+  "catalog_facts": {
+   "as_of": "09/01/22", 
+   "point_in_time": true, 
+   "rec_total": 50, 
+   "listcat_org": "INDEXED", 
+   "rec_total_source": "app/catlg/LISTCAT.txt:64", 
+   "keylen_source": "app/catlg/LISTCAT.txt:59", 
+   "source": "app/catlg/LISTCAT.txt:22", 
+   "keylen": 11, 
+   "avglrecl": 300
+  }, 
+  "key_offset": 0, 
+  "key_length": 11
+ }, 
+ "layout": {
+  "key_fields": [
+   "ACCT-ID"
+  ], 
+  "copybook": "CVACT01Y", 
+  "record": "ACCOUNT-RECORD", 
+  "length": 300, 
+  "candidates": [
+   "CVACT01Y:ACCOUNT-RECORD"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/ACCTFILE.jcl:36", 
+    "length": 300, 
+    "agrees": true
+   }
+  ]
+ }, 
+ "name": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-ksds", 
+ "aliases": [
+  {
+   "source": "app/csd/CARDDEMO.CSD:1", 
+   "kind": "cics-file", 
+   "name": "ACCTDAT"
+  }
+ ], 
+ "sample_data": null
+}

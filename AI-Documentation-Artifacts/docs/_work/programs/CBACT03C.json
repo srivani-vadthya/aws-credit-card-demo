@@ -1,0 +1,277 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "READXREF", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/jcl/READXREF.jcl:22", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "No EXEC CICS or DFHCOMMAREA in this source", 
+   "source": "app/cbl/CBACT03C.cbl:70"
+  }
+ ], 
+ "source_path": "app/cbl/CBACT03C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/CBACT03C.cbl:1-8", 
+  "version_banner": "* Ver: CardDemo_v2.0-25-gdb72e6b-235 Date: 2025-04-29 11:01:27 CDT", 
+  "description": "Program     : CBACT03C.CBL Application : CardDemo Type        : BATCH COBOL Program Function    : Read and print account cross reference data file. All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0", 
+  "author": "AWS"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAINLINE", 
+   "section": null, 
+   "end_line": 87, 
+   "purpose": "Statements include: START, OPEN, inline PERFORM at app/cbl/CBACT03C.cbl:74, CLOSE", 
+   "performs": [
+    "0000-XREFFILE-OPEN", 
+    "1000-XREFFILE-GET-NEXT", 
+    "9000-XREFFILE-CLOSE"
+   ], 
+   "reachable": true, 
+   "start_line": 70, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1000-XREFFILE-GET-NEXT", 
+   "section": null, 
+   "end_line": 116, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 92, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "0000-XREFFILE-OPEN", 
+   "section": null, 
+   "end_line": 134, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 118, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9000-XREFFILE-CLOSE", 
+   "section": null, 
+   "end_line": 152, 
+   "purpose": "Statements include: CLOSE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 136, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9999-ABEND-PROGRAM", 
+   "section": null, 
+   "end_line": 158, 
+   "purpose": "Statements include: CALL CEE3ABD", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 154, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9910-DISPLAY-IO-STATUS", 
+   "section": null, 
+   "end_line": 174, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 161, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "CVACT03Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBACT03C.cbl:45", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT03Y.cpy"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/cbl/CBACT03C.cbl:58", 
+   "pic": "9", 
+   "name": "IO-STATUS-0401", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBACT03C.cbl:59", 
+   "pic": "999", 
+   "conditions": [
+    {
+     "name": "APPL-AOK", 
+     "value": "0"
+    }, 
+    {
+     "name": "APPL-EOF", 
+     "value": "16"
+    }
+   ], 
+   "name": "IO-STATUS-0403", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBACT03C.cbl:65", 
+   "pic": "X(01)", 
+   "name": "END-OF-FILE", 
+   "value": "'N'"
+  }
+ ], 
+ "loc": {
+  "comment": 33, 
+  "total": 178, 
+  "code": 145
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/CBACT03C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBACT03C.cbl:12"
+  }
+ ], 
+ "sha256": "ee1019bc3ef7bc4e0f807b6e9b7167c9386ee7c2f647c63dfddc6fc464487855", 
+ "files": [
+  {
+   "logical_name": "XREFFILE-FILE", 
+   "record_layout": "FD-XREFFILE-REC", 
+   "record_key": "FD-XREF-CARD-NUM", 
+   "ddname_or_cics_file": "XREFFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS (app/jcl/CBEXPORT.jcl:53)"
+   ], 
+   "source": "app/cbl/CBACT03C.cbl:29-33", 
+   "file_status_field": "XREFFILE-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }
+ ], 
+ "messages": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": []
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/CBACT03C.cbl:93-120", 
+   "store_kind": "logical", 
+   "store": "XREFFILE-FILE", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "program_id": "CBACT03C", 
+ "error_handling": [
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT03C.cbl:94", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  XREFFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT03C.cbl:98", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  XREFFILE-STATUS = '10'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT03C.cbl:113", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT03C.cbl:121", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  XREFFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT03C.cbl:132", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT03C.cbl:139", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  XREFFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT03C.cbl:150", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT03C.cbl:154", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "9999-ABEND-PROGRAM."
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT03C.cbl:158", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "CALL 'CEE3ABD' USING ABCODE, TIMING."
+  }
+ ], 
+ "commands": [], 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CEE3ABD", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBACT03C.cbl:158", 
+   "condition": null
+  }
+ ], 
+ "language": "COBOL", 
+ "candidate_rules": [], 
+ "runtime_type": [
+  "batch-main"
+ ]
+}

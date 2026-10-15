@@ -1,0 +1,277 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "READCUST", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/jcl/READCUST.jcl:21", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "No EXEC CICS or DFHCOMMAREA in this source", 
+   "source": "app/cbl/CBCUS01C.cbl:70"
+  }
+ ], 
+ "source_path": "app/cbl/CBCUS01C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/CBCUS01C.cbl:1-8", 
+  "version_banner": "* Ver: CardDemo_v2.0-25-gdb72e6b-235 Date: 2025-04-29 11:01:28 CDT", 
+  "description": "Program     : CBCUS01C.CBL Application : CardDemo Type        : BATCH COBOL Program Function    : Read and print customer data file. All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0", 
+  "author": "AWS"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAINLINE", 
+   "section": null, 
+   "end_line": 87, 
+   "purpose": "Statements include: START, OPEN, inline PERFORM at app/cbl/CBCUS01C.cbl:74, CLOSE", 
+   "performs": [
+    "0000-CUSTFILE-OPEN", 
+    "1000-CUSTFILE-GET-NEXT", 
+    "9000-CUSTFILE-CLOSE"
+   ], 
+   "reachable": true, 
+   "start_line": 70, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1000-CUSTFILE-GET-NEXT", 
+   "section": null, 
+   "end_line": 116, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "Z-DISPLAY-IO-STATUS", 
+    "Z-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 92, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "0000-CUSTFILE-OPEN", 
+   "section": null, 
+   "end_line": 134, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "Z-DISPLAY-IO-STATUS", 
+    "Z-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 118, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9000-CUSTFILE-CLOSE", 
+   "section": null, 
+   "end_line": 152, 
+   "purpose": "Statements include: CLOSE", 
+   "performs": [
+    "Z-DISPLAY-IO-STATUS", 
+    "Z-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 136, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "Z-ABEND-PROGRAM", 
+   "section": null, 
+   "end_line": 158, 
+   "purpose": "Statements include: CALL CEE3ABD", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 154, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "Z-DISPLAY-IO-STATUS", 
+   "section": null, 
+   "end_line": 174, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 161, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "CVCUS01Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBCUS01C.cbl:45", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVCUS01Y.cpy"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/cbl/CBCUS01C.cbl:58", 
+   "pic": "9", 
+   "name": "IO-STATUS-0401", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBCUS01C.cbl:59", 
+   "pic": "999", 
+   "conditions": [
+    {
+     "name": "APPL-AOK", 
+     "value": "0"
+    }, 
+    {
+     "name": "APPL-EOF", 
+     "value": "16"
+    }
+   ], 
+   "name": "IO-STATUS-0403", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBCUS01C.cbl:65", 
+   "pic": "X(01)", 
+   "name": "END-OF-FILE", 
+   "value": "'N'"
+  }
+ ], 
+ "loc": {
+  "comment": 33, 
+  "total": 178, 
+  "code": 145
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/CBCUS01C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBCUS01C.cbl:12"
+  }
+ ], 
+ "sha256": "233dbc3bc33a3b9ac555922085a92be56e88d16316bff624b5723c4c36c99714", 
+ "files": [
+  {
+   "logical_name": "CUSTFILE-FILE", 
+   "record_layout": "FD-CUSTFILE-REC", 
+   "record_key": "FD-CUST-ID", 
+   "ddname_or_cics_file": "CUSTFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS (app/jcl/CBEXPORT.jcl:49)"
+   ], 
+   "source": "app/cbl/CBCUS01C.cbl:29-33", 
+   "file_status_field": "CUSTFILE-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }
+ ], 
+ "messages": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": []
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/CBCUS01C.cbl:93-120", 
+   "store_kind": "logical", 
+   "store": "CUSTFILE-FILE", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "program_id": "CBCUS01C", 
+ "error_handling": [
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBCUS01C.cbl:94", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  CUSTFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBCUS01C.cbl:98", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  CUSTFILE-STATUS = '10'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBCUS01C.cbl:113", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM Z-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBCUS01C.cbl:121", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  CUSTFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBCUS01C.cbl:132", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM Z-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBCUS01C.cbl:139", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  CUSTFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBCUS01C.cbl:150", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM Z-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBCUS01C.cbl:154", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "Z-ABEND-PROGRAM."
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBCUS01C.cbl:158", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "CALL 'CEE3ABD' USING ABCODE, TIMING."
+  }
+ ], 
+ "commands": [], 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CEE3ABD", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBCUS01C.cbl:158", 
+   "condition": null
+  }
+ ], 
+ "language": "COBOL", 
+ "candidate_rules": [], 
+ "runtime_type": [
+  "batch-main"
+ ]
+}

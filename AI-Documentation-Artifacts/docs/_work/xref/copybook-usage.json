@@ -1,0 +1,1368 @@
+{
+ "copybooks": {
+  "CCPAURQY": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:178", 
+    "program": "COPAUA0C"
+   }
+  ], 
+  "CVEXPORT": [
+   {
+    "source": "app/cbl/CBEXPORT.cbl:96", 
+    "program": "CBEXPORT"
+   }, 
+   {
+    "source": "app/cbl/CBIMPORT.cbl:113", 
+    "program": "CBIMPORT"
+   }
+  ], 
+  "DFHAID": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:616", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:222", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COADM01C.cbl:60", 
+    "program": "COADM01C"
+   }, 
+   {
+    "source": "app/cbl/COBIL00C.cbl:84", 
+    "program": "COBIL00C"
+   }, 
+   {
+    "source": "app/cbl/COCRDLIC.cbl:268", 
+    "program": "COCRDLIC"
+   }, 
+   {
+    "source": "app/cbl/COCRDSLC.cbl:209", 
+    "program": "COCRDSLC"
+   }, 
+   {
+    "source": "app/cbl/COCRDUPC.cbl:328", 
+    "program": "COCRDUPC"
+   }, 
+   {
+    "source": "app/cbl/COMEN01C.cbl:60", 
+    "program": "COMEN01C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:168", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:148", 
+    "program": "COPAUS1C"
+   }, 
+   {
+    "source": "app/cbl/CORPT00C.cbl:148", 
+    "program": "CORPT00C"
+   }, 
+   {
+    "source": "app/cbl/COSGN00C.cbl:57", 
+    "program": "COSGN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN00C.cbl:80", 
+    "program": "COTRN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN01C.cbl:71", 
+    "program": "COTRN01C"
+   }, 
+   {
+    "source": "app/cbl/COTRN02C.cbl:92", 
+    "program": "COTRN02C"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:426", 
+    "program": "COTRTLIC"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:258", 
+    "program": "COTRTUPC"
+   }, 
+   {
+    "source": "app/cbl/COUSR00C.cbl:83", 
+    "program": "COUSR00C"
+   }, 
+   {
+    "source": "app/cbl/COUSR01C.cbl:55", 
+    "program": "COUSR01C"
+   }, 
+   {
+    "source": "app/cbl/COUSR02C.cbl:67", 
+    "program": "COUSR02C"
+   }, 
+   {
+    "source": "app/cbl/COUSR03C.cbl:67", 
+    "program": "COUSR03C"
+   }
+  ], 
+  "CCPAURLY": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:182", 
+    "program": "COPAUA0C"
+   }
+  ], 
+  "CMQTML": [
+   {
+    "source": "app/app-vsam-mq/cbl/COACCT01.cbl:90", 
+    "program": "COACCT01"
+   }, 
+   {
+    "source": "app/app-vsam-mq/cbl/CODATE01.cbl:90", 
+    "program": "CODATE01"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:164", 
+    "program": "COPAUA0C"
+   }
+  ], 
+  "CSDAT01Y": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:626", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:232", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COADM01C.cbl:56", 
+    "program": "COADM01C"
+   }, 
+   {
+    "source": "app/cbl/COBIL00C.cbl:77", 
+    "program": "COBIL00C"
+   }, 
+   {
+    "source": "app/cbl/COCRDLIC.cbl:279", 
+    "program": "COCRDLIC"
+   }, 
+   {
+    "source": "app/cbl/COCRDSLC.cbl:218", 
+    "program": "COCRDSLC"
+   }, 
+   {
+    "source": "app/cbl/COCRDUPC.cbl:337", 
+    "program": "COCRDUPC"
+   }, 
+   {
+    "source": "app/cbl/COMEN01C.cbl:56", 
+    "program": "COMEN01C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:135", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:129", 
+    "program": "COPAUS1C"
+   }, 
+   {
+    "source": "app/cbl/CORPT00C.cbl:143", 
+    "program": "CORPT00C"
+   }, 
+   {
+    "source": "app/cbl/COSGN00C.cbl:53", 
+    "program": "COSGN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN00C.cbl:75", 
+    "program": "COTRN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN01C.cbl:66", 
+    "program": "COTRN01C"
+   }, 
+   {
+    "source": "app/cbl/COTRN02C.cbl:85", 
+    "program": "COTRN02C"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:480", 
+    "program": "COTRTLIC"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:268", 
+    "program": "COTRTUPC"
+   }, 
+   {
+    "source": "app/cbl/COUSR00C.cbl:79", 
+    "program": "COUSR00C"
+   }, 
+   {
+    "source": "app/cbl/COUSR01C.cbl:51", 
+    "program": "COUSR01C"
+   }, 
+   {
+    "source": "app/cbl/COUSR02C.cbl:63", 
+    "program": "COUSR02C"
+   }, 
+   {
+    "source": "app/cbl/COUSR03C.cbl:63", 
+    "program": "COUSR03C"
+   }
+  ], 
+  "CVTRA02Y": [
+   {
+    "source": "app/cbl/CBACT04C.cbl:107", 
+    "program": "CBACT04C"
+   }
+  ], 
+  "IMSFUNCS": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:136", 
+    "program": "DBUNLDGS"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:142", 
+    "program": "PAUDBLOD"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:132", 
+    "program": "PAUDBUNL"
+   }
+  ], 
+  "CMQMDV": [
+   {
+    "source": "app/app-vsam-mq/cbl/COACCT01.cbl:79", 
+    "program": "COACCT01"
+   }, 
+   {
+    "source": "app/app-vsam-mq/cbl/CODATE01.cbl:79", 
+    "program": "CODATE01"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:152", 
+    "program": "COPAUA0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:158", 
+    "program": "COPAUA0C"
+   }
+  ], 
+  "ASMWAIT": [
+   {
+    "source": "app/asm/MVSWAIT.asm:23", 
+    "program": "MVSWAIT"
+   }
+  ], 
+  "COMEN01": [
+   {
+    "source": "app/cbl/COMEN01C.cbl:53", 
+    "program": "COMEN01C"
+   }
+  ], 
+  "CIPAUDTY": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:121", 
+    "program": "CBPAUP0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:197", 
+    "program": "COPAUA0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:165", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:146", 
+    "program": "COPAUS1C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:78", 
+    "program": "COPAUS2C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:147", 
+    "program": "DBUNLDGS"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:153", 
+    "program": "PAUDBLOD"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:143", 
+    "program": "PAUDBUNL"
+   }
+  ], 
+  "DFHBMSCA": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:615", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:221", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COADM01C.cbl:61", 
+    "program": "COADM01C"
+   }, 
+   {
+    "source": "app/cbl/COBIL00C.cbl:85", 
+    "program": "COBIL00C"
+   }, 
+   {
+    "source": "app/cbl/COCRDLIC.cbl:267", 
+    "program": "COCRDLIC"
+   }, 
+   {
+    "source": "app/cbl/COCRDSLC.cbl:208", 
+    "program": "COCRDSLC"
+   }, 
+   {
+    "source": "app/cbl/COCRDUPC.cbl:327", 
+    "program": "COCRDUPC"
+   }, 
+   {
+    "source": "app/cbl/COMEN01C.cbl:61", 
+    "program": "COMEN01C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:169", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:149", 
+    "program": "COPAUS1C"
+   }, 
+   {
+    "source": "app/cbl/CORPT00C.cbl:149", 
+    "program": "CORPT00C"
+   }, 
+   {
+    "source": "app/cbl/COSGN00C.cbl:58", 
+    "program": "COSGN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN00C.cbl:81", 
+    "program": "COTRN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN01C.cbl:72", 
+    "program": "COTRN01C"
+   }, 
+   {
+    "source": "app/cbl/COTRN02C.cbl:93", 
+    "program": "COTRN02C"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:425", 
+    "program": "COTRTLIC"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:257", 
+    "program": "COTRTUPC"
+   }, 
+   {
+    "source": "app/cbl/COUSR00C.cbl:84", 
+    "program": "COUSR00C"
+   }, 
+   {
+    "source": "app/cbl/COUSR01C.cbl:56", 
+    "program": "COUSR01C"
+   }, 
+   {
+    "source": "app/cbl/COUSR02C.cbl:68", 
+    "program": "COUSR02C"
+   }, 
+   {
+    "source": "app/cbl/COUSR03C.cbl:68", 
+    "program": "COUSR03C"
+   }
+  ], 
+  "COCDATFT": [
+   {
+    "source": "app/asm/COBDATFT.asm:66", 
+    "program": "COBDATFT"
+   }
+  ], 
+  "CODATECN": [
+   {
+    "source": "app/cbl/CBACT01C.cbl:90", 
+    "program": "CBACT01C"
+   }
+  ], 
+  "COTRN01": [
+   {
+    "source": "app/cbl/COTRN01C.cbl:63", 
+    "program": "COTRN01C"
+   }
+  ], 
+  "CVCUS01Y": [
+   {
+    "source": "app/cbl/CBCUS01C.cbl:45", 
+    "program": "CBCUS01C"
+   }, 
+   {
+    "source": "app/cbl/CBEXPORT.cbl:75", 
+    "program": "CBEXPORT"
+   }, 
+   {
+    "source": "app/cbl/CBIMPORT.cbl:84", 
+    "program": "CBIMPORT"
+   }, 
+   {
+    "source": "app/cbl/CBTRN01C.cbl:104", 
+    "program": "CBTRN01C"
+   }, 
+   {
+    "source": "app/cbl/COACTUPC.cbl:646", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:254", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COCRDSLC.cbl:240", 
+    "program": "COCRDSLC"
+   }, 
+   {
+    "source": "app/cbl/COCRDUPC.cbl:359", 
+    "program": "COCRDUPC"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:209", 
+    "program": "COPAUA0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:153", 
+    "program": "COPAUS0C"
+   }
+  ], 
+  "PASFLPCB": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:155", 
+    "program": "DBUNLDGS"
+   }
+  ], 
+  "COTRTLI": [
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:433", 
+    "program": "COTRTLIC"
+   }
+  ], 
+  "DCLTRCAT": [
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:288", 
+    "program": "COTRTUPC"
+   }
+  ], 
+  "CORPT00": [
+   {
+    "source": "app/cbl/CORPT00C.cbl:140", 
+    "program": "CORPT00C"
+   }
+  ], 
+  "CVCRD01Y": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:597", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:207", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COCRDLIC.cbl:221", 
+    "program": "COCRDLIC"
+   }, 
+   {
+    "source": "app/cbl/COCRDSLC.cbl:194", 
+    "program": "COCRDSLC"
+   }, 
+   {
+    "source": "app/cbl/COCRDUPC.cbl:268", 
+    "program": "COCRDUPC"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:327", 
+    "program": "COTRTLIC"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:241", 
+    "program": "COTRTUPC"
+   }
+  ], 
+  "CUSTREC": [
+   {
+    "source": "app/cbl/CBSTM03A.CBL:55", 
+    "program": "CBSTM03A"
+   }
+  ], 
+  "COTRTUP": [
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:265", 
+    "program": "COTRTUPC"
+   }
+  ], 
+  "COCOM01Y": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:650", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:211", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COADM01C.cbl:50", 
+    "program": "COADM01C"
+   }, 
+   {
+    "source": "app/cbl/COBIL00C.cbl:63", 
+    "program": "COBIL00C"
+   }, 
+   {
+    "source": "app/cbl/COCRDLIC.cbl:227", 
+    "program": "COCRDLIC"
+   }, 
+   {
+    "source": "app/cbl/COCRDSLC.cbl:198", 
+    "program": "COCRDSLC"
+   }, 
+   {
+    "source": "app/cbl/COCRDUPC.cbl:272", 
+    "program": "COCRDUPC"
+   }, 
+   {
+    "source": "app/cbl/COMEN01C.cbl:50", 
+    "program": "COMEN01C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:116", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:109", 
+    "program": "COPAUS1C"
+   }, 
+   {
+    "source": "app/cbl/CORPT00C.cbl:138", 
+    "program": "CORPT00C"
+   }, 
+   {
+    "source": "app/cbl/COSGN00C.cbl:48", 
+    "program": "COSGN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN00C.cbl:61", 
+    "program": "COTRN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN01C.cbl:52", 
+    "program": "COTRN01C"
+   }, 
+   {
+    "source": "app/cbl/COTRN02C.cbl:71", 
+    "program": "COTRN02C"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:375", 
+    "program": "COTRTLIC"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:292", 
+    "program": "COTRTUPC"
+   }, 
+   {
+    "source": "app/cbl/COUSR00C.cbl:66", 
+    "program": "COUSR00C"
+   }, 
+   {
+    "source": "app/cbl/COUSR01C.cbl:46", 
+    "program": "COUSR01C"
+   }, 
+   {
+    "source": "app/cbl/COUSR02C.cbl:49", 
+    "program": "COUSR02C"
+   }, 
+   {
+    "source": "app/cbl/COUSR03C.cbl:49", 
+    "program": "COUSR03C"
+   }
+  ], 
+  "CMQODV": [
+   {
+    "source": "app/app-vsam-mq/cbl/COACCT01.cbl:83", 
+    "program": "COACCT01"
+   }, 
+   {
+    "source": "app/app-vsam-mq/cbl/CODATE01.cbl:83", 
+    "program": "CODATE01"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:149", 
+    "program": "COPAUA0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:155", 
+    "program": "COPAUA0C"
+   }
+  ], 
+  "CVTRA06Y": [
+   {
+    "source": "app/cbl/CBTRN01C.cbl:99", 
+    "program": "CBTRN01C"
+   }, 
+   {
+    "source": "app/cbl/CBTRN02C.cbl:102", 
+    "program": "CBTRN02C"
+   }
+  ], 
+  "COCRDUP": [
+   {
+    "source": "app/cbl/COCRDUPC.cbl:334", 
+    "program": "COCRDUPC"
+   }
+  ], 
+  "COBIL00": [
+   {
+    "source": "app/cbl/COBIL00C.cbl:74", 
+    "program": "COBIL00C"
+   }
+  ], 
+  "CVACT01Y": [
+   {
+    "source": "app/cbl/CBACT01C.cbl:89", 
+    "program": "CBACT01C"
+   }, 
+   {
+    "source": "app/cbl/CBACT04C.cbl:112", 
+    "program": "CBACT04C"
+   }, 
+   {
+    "source": "app/cbl/CBEXPORT.cbl:78", 
+    "program": "CBEXPORT"
+   }, 
+   {
+    "source": "app/cbl/CBIMPORT.cbl:89", 
+    "program": "CBIMPORT"
+   }, 
+   {
+    "source": "app/cbl/CBSTM03A.CBL:57", 
+    "program": "CBSTM03A"
+   }, 
+   {
+    "source": "app/cbl/CBTRN01C.cbl:119", 
+    "program": "CBTRN01C"
+   }, 
+   {
+    "source": "app/cbl/CBTRN02C.cbl:121", 
+    "program": "CBTRN02C"
+   }, 
+   {
+    "source": "app/app-vsam-mq/cbl/COACCT01.cbl:171", 
+    "program": "COACCT01"
+   }, 
+   {
+    "source": "app/cbl/COACTUPC.cbl:640", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:244", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COBIL00C.cbl:80", 
+    "program": "COBIL00C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:206", 
+    "program": "COPAUA0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:144", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/cbl/COTRN02C.cbl:89", 
+    "program": "COTRN02C"
+   }
+  ], 
+  "CCPAUERY": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:185", 
+    "program": "COPAUA0C"
+   }
+  ], 
+  "CVTRA04Y": [
+   {
+    "source": "app/cbl/CBTRN03C.cbl:108", 
+    "program": "CBTRN03C"
+   }
+  ], 
+  "COTTL01Y": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:620", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:226", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COADM01C.cbl:55", 
+    "program": "COADM01C"
+   }, 
+   {
+    "source": "app/cbl/COBIL00C.cbl:76", 
+    "program": "COBIL00C"
+   }, 
+   {
+    "source": "app/cbl/COCRDLIC.cbl:272", 
+    "program": "COCRDLIC"
+   }, 
+   {
+    "source": "app/cbl/COCRDSLC.cbl:213", 
+    "program": "COCRDSLC"
+   }, 
+   {
+    "source": "app/cbl/COCRDUPC.cbl:332", 
+    "program": "COCRDUPC"
+   }, 
+   {
+    "source": "app/cbl/COMEN01C.cbl:55", 
+    "program": "COMEN01C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:132", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:126", 
+    "program": "COPAUS1C"
+   }, 
+   {
+    "source": "app/cbl/CORPT00C.cbl:142", 
+    "program": "CORPT00C"
+   }, 
+   {
+    "source": "app/cbl/COSGN00C.cbl:52", 
+    "program": "COSGN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN00C.cbl:74", 
+    "program": "COTRN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN01C.cbl:65", 
+    "program": "COTRN01C"
+   }, 
+   {
+    "source": "app/cbl/COTRN02C.cbl:84", 
+    "program": "COTRN02C"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:430", 
+    "program": "COTRTLIC"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:262", 
+    "program": "COTRTUPC"
+   }, 
+   {
+    "source": "app/cbl/COUSR00C.cbl:78", 
+    "program": "COUSR00C"
+   }, 
+   {
+    "source": "app/cbl/COUSR01C.cbl:50", 
+    "program": "COUSR01C"
+   }, 
+   {
+    "source": "app/cbl/COUSR02C.cbl:62", 
+    "program": "COUSR02C"
+   }, 
+   {
+    "source": "app/cbl/COUSR03C.cbl:62", 
+    "program": "COUSR03C"
+   }
+  ], 
+  "CVACT03Y": [
+   {
+    "source": "app/cbl/CBACT03C.cbl:45", 
+    "program": "CBACT03C"
+   }, 
+   {
+    "source": "app/cbl/CBACT04C.cbl:102", 
+    "program": "CBACT04C"
+   }, 
+   {
+    "source": "app/cbl/CBEXPORT.cbl:81", 
+    "program": "CBEXPORT"
+   }, 
+   {
+    "source": "app/cbl/CBIMPORT.cbl:94", 
+    "program": "CBIMPORT"
+   }, 
+   {
+    "source": "app/cbl/CBSTM03A.CBL:53", 
+    "program": "CBSTM03A"
+   }, 
+   {
+    "source": "app/cbl/CBTRN01C.cbl:109", 
+    "program": "CBTRN01C"
+   }, 
+   {
+    "source": "app/cbl/CBTRN02C.cbl:112", 
+    "program": "CBTRN02C"
+   }, 
+   {
+    "source": "app/cbl/CBTRN03C.cbl:98", 
+    "program": "CBTRN03C"
+   }, 
+   {
+    "source": "app/cbl/COACTUPC.cbl:643", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:251", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COBIL00C.cbl:81", 
+    "program": "COBIL00C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:203", 
+    "program": "COPAUA0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:150", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/cbl/COTRN02C.cbl:90", 
+    "program": "COTRN02C"
+   }
+  ], 
+  "CSUTLDWY": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:166", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:76", 
+    "program": "COTRTUPC"
+   }
+  ], 
+  "COUSR01": [
+   {
+    "source": "app/cbl/COUSR01C.cbl:48", 
+    "program": "COUSR01C"
+   }
+  ], 
+  "CMQPMOV": [
+   {
+    "source": "app/app-vsam-mq/cbl/COACCT01.cbl:75", 
+    "program": "COACCT01"
+   }, 
+   {
+    "source": "app/app-vsam-mq/cbl/CODATE01.cbl:75", 
+    "program": "CODATE01"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:167", 
+    "program": "COPAUA0C"
+   }
+  ], 
+  "CMQV": [
+   {
+    "source": "app/app-vsam-mq/cbl/COACCT01.cbl:87", 
+    "program": "COACCT01"
+   }, 
+   {
+    "source": "app/app-vsam-mq/cbl/CODATE01.cbl:87", 
+    "program": "CODATE01"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:161", 
+    "program": "COPAUA0C"
+   }
+  ], 
+  "CSMSG02Y": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:632", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:238", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COCRDSLC.cbl:224", 
+    "program": "COCRDSLC"
+   }, 
+   {
+    "source": "app/cbl/COCRDUPC.cbl:343", 
+    "program": "COCRDUPC"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:141", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:135", 
+    "program": "COPAUS1C"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:274", 
+    "program": "COTRTUPC"
+   }
+  ], 
+  "CVTRA03Y": [
+   {
+    "source": "app/cbl/CBTRN03C.cbl:103", 
+    "program": "CBTRN03C"
+   }
+  ], 
+  "COACTVW": [
+   {
+    "source": "app/cbl/COACTVWC.cbl:229", 
+    "program": "COACTVWC"
+   }
+  ], 
+  "PAUTBPCB": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:154", 
+    "program": "DBUNLDGS"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:161", 
+    "program": "PAUDBLOD"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:150", 
+    "program": "PAUDBUNL"
+   }
+  ], 
+  "COUSR02": [
+   {
+    "source": "app/cbl/COUSR02C.cbl:60", 
+    "program": "COUSR02C"
+   }
+  ], 
+  "COSTM01": [
+   {
+    "source": "app/cbl/CBSTM03A.CBL:51", 
+    "program": "CBSTM03A"
+   }
+  ], 
+  "COCRDSL": [
+   {
+    "source": "app/cbl/COCRDSLC.cbl:215", 
+    "program": "COCRDSLC"
+   }
+  ], 
+  "SQLCA": [
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:331", 
+    "program": "COTRTLIC"
+   }
+  ], 
+  "COCRDLI": [
+   {
+    "source": "app/cbl/COCRDLIC.cbl:276", 
+    "program": "COCRDLIC"
+   }
+  ], 
+  "CVACT02Y": [
+   {
+    "source": "app/cbl/CBACT02C.cbl:45", 
+    "program": "CBACT02C"
+   }, 
+   {
+    "source": "app/cbl/CBEXPORT.cbl:87", 
+    "program": "CBEXPORT"
+   }, 
+   {
+    "source": "app/cbl/CBIMPORT.cbl:104", 
+    "program": "CBIMPORT"
+   }, 
+   {
+    "source": "app/cbl/CBTRN01C.cbl:114", 
+    "program": "CBTRN01C"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:248", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COCRDLIC.cbl:290", 
+    "program": "COCRDLIC"
+   }, 
+   {
+    "source": "app/cbl/COCRDSLC.cbl:234", 
+    "program": "COCRDSLC"
+   }, 
+   {
+    "source": "app/cbl/COCRDUPC.cbl:353", 
+    "program": "COCRDUPC"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:147", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:490", 
+    "program": "COTRTLIC"
+   }
+  ], 
+  "PADFLPCB": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:156", 
+    "program": "DBUNLDGS"
+   }
+  ], 
+  "COTRN02": [
+   {
+    "source": "app/cbl/COTRN02C.cbl:82", 
+    "program": "COTRN02C"
+   }
+  ], 
+  "COUSR03": [
+   {
+    "source": "app/cbl/COUSR03C.cbl:60", 
+    "program": "COUSR03C"
+   }
+  ], 
+  "COACTUP": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:623", 
+    "program": "COACTUPC"
+   }
+  ], 
+  "COPAU01": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:122", 
+    "program": "COPAUS1C"
+   }
+  ], 
+  "COPAU00": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:129", 
+    "program": "COPAUS0C"
+   }
+  ], 
+  "COADM02Y": [
+   {
+    "source": "app/cbl/COADM01C.cbl:51", 
+    "program": "COADM01C"
+   }
+  ], 
+  "COUSR00": [
+   {
+    "source": "app/cbl/COUSR00C.cbl:76", 
+    "program": "COUSR00C"
+   }
+  ], 
+  "COADM01": [
+   {
+    "source": "app/cbl/COADM01C.cbl:53", 
+    "program": "COADM01C"
+   }
+  ], 
+  "COMEN02Y": [
+   {
+    "source": "app/cbl/COMEN01C.cbl:51", 
+    "program": "COMEN01C"
+   }
+  ], 
+  "CSUSR01Y": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:635", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:241", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COADM01C.cbl:58", 
+    "program": "COADM01C"
+   }, 
+   {
+    "source": "app/cbl/COCRDLIC.cbl:285", 
+    "program": "COCRDLIC"
+   }, 
+   {
+    "source": "app/cbl/COCRDSLC.cbl:227", 
+    "program": "COCRDSLC"
+   }, 
+   {
+    "source": "app/cbl/COCRDUPC.cbl:346", 
+    "program": "COCRDUPC"
+   }, 
+   {
+    "source": "app/cbl/COMEN01C.cbl:58", 
+    "program": "COMEN01C"
+   }, 
+   {
+    "source": "app/cbl/COSGN00C.cbl:55", 
+    "program": "COSGN00C"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:485", 
+    "program": "COTRTLIC"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:277", 
+    "program": "COTRTUPC"
+   }, 
+   {
+    "source": "app/cbl/COUSR00C.cbl:81", 
+    "program": "COUSR00C"
+   }, 
+   {
+    "source": "app/cbl/COUSR01C.cbl:53", 
+    "program": "COUSR01C"
+   }, 
+   {
+    "source": "app/cbl/COUSR02C.cbl:65", 
+    "program": "COUSR02C"
+   }, 
+   {
+    "source": "app/cbl/COUSR03C.cbl:65", 
+    "program": "COUSR03C"
+   }
+  ], 
+  "COTRN00": [
+   {
+    "source": "app/cbl/COTRN00C.cbl:72", 
+    "program": "COTRN00C"
+   }
+  ], 
+  "CVTRA01Y": [
+   {
+    "source": "app/cbl/CBACT04C.cbl:97", 
+    "program": "CBACT04C"
+   }, 
+   {
+    "source": "app/cbl/CBTRN02C.cbl:126", 
+    "program": "CBTRN02C"
+   }
+  ], 
+  "CSLKPCDY": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:602", 
+    "program": "COACTUPC"
+   }
+  ], 
+  "CSDB2RWY": [
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:304", 
+    "program": "COTRTLIC"
+   }
+  ], 
+  "CVTRA07Y": [
+   {
+    "source": "app/cbl/CBTRN03C.cbl:113", 
+    "program": "CBTRN03C"
+   }
+  ], 
+  "CSMSG01Y": [
+   {
+    "source": "app/cbl/COACTUPC.cbl:629", 
+    "program": "COACTUPC"
+   }, 
+   {
+    "source": "app/cbl/COACTVWC.cbl:235", 
+    "program": "COACTVWC"
+   }, 
+   {
+    "source": "app/cbl/COADM01C.cbl:57", 
+    "program": "COADM01C"
+   }, 
+   {
+    "source": "app/cbl/COBIL00C.cbl:78", 
+    "program": "COBIL00C"
+   }, 
+   {
+    "source": "app/cbl/COCRDLIC.cbl:281", 
+    "program": "COCRDLIC"
+   }, 
+   {
+    "source": "app/cbl/COCRDSLC.cbl:221", 
+    "program": "COCRDSLC"
+   }, 
+   {
+    "source": "app/cbl/COCRDUPC.cbl:340", 
+    "program": "COCRDUPC"
+   }, 
+   {
+    "source": "app/cbl/COMEN01C.cbl:57", 
+    "program": "COMEN01C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:138", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:132", 
+    "program": "COPAUS1C"
+   }, 
+   {
+    "source": "app/cbl/CORPT00C.cbl:144", 
+    "program": "CORPT00C"
+   }, 
+   {
+    "source": "app/cbl/COSGN00C.cbl:54", 
+    "program": "COSGN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN00C.cbl:76", 
+    "program": "COTRN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN01C.cbl:67", 
+    "program": "COTRN01C"
+   }, 
+   {
+    "source": "app/cbl/COTRN02C.cbl:86", 
+    "program": "COTRN02C"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:482", 
+    "program": "COTRTLIC"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:271", 
+    "program": "COTRTUPC"
+   }, 
+   {
+    "source": "app/cbl/COUSR00C.cbl:80", 
+    "program": "COUSR00C"
+   }, 
+   {
+    "source": "app/cbl/COUSR01C.cbl:52", 
+    "program": "COUSR01C"
+   }, 
+   {
+    "source": "app/cbl/COUSR02C.cbl:64", 
+    "program": "COUSR02C"
+   }, 
+   {
+    "source": "app/cbl/COUSR03C.cbl:64", 
+    "program": "COUSR03C"
+   }
+  ], 
+  "CMQGMOV": [
+   {
+    "source": "app/app-vsam-mq/cbl/COACCT01.cbl:71", 
+    "program": "COACCT01"
+   }, 
+   {
+    "source": "app/app-vsam-mq/cbl/CODATE01.cbl:71", 
+    "program": "CODATE01"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:170", 
+    "program": "COPAUA0C"
+   }
+  ], 
+  "DCLTRTYP": [
+   {
+    "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:54", 
+    "program": "COBTUPDT"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:333", 
+    "program": "COTRTLIC"
+   }, 
+   {
+    "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:286", 
+    "program": "COTRTUPC"
+   }
+  ], 
+  "CIPAUSMY": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:117", 
+    "program": "CBPAUP0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:193", 
+    "program": "COPAUA0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:161", 
+    "program": "COPAUS0C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:142", 
+    "program": "COPAUS1C"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:143", 
+    "program": "DBUNLDGS"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:149", 
+    "program": "PAUDBLOD"
+   }, 
+   {
+    "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:139", 
+    "program": "PAUDBUNL"
+   }
+  ], 
+  "CVTRA05Y": [
+   {
+    "source": "app/cbl/CBACT04C.cbl:117", 
+    "program": "CBACT04C"
+   }, 
+   {
+    "source": "app/cbl/CBEXPORT.cbl:84", 
+    "program": "CBEXPORT"
+   }, 
+   {
+    "source": "app/cbl/CBIMPORT.cbl:99", 
+    "program": "CBIMPORT"
+   }, 
+   {
+    "source": "app/cbl/CBTRN01C.cbl:124", 
+    "program": "CBTRN01C"
+   }, 
+   {
+    "source": "app/cbl/CBTRN02C.cbl:107", 
+    "program": "CBTRN02C"
+   }, 
+   {
+    "source": "app/cbl/CBTRN03C.cbl:93", 
+    "program": "CBTRN03C"
+   }, 
+   {
+    "source": "app/cbl/COBIL00C.cbl:82", 
+    "program": "COBIL00C"
+   }, 
+   {
+    "source": "app/cbl/CORPT00C.cbl:146", 
+    "program": "CORPT00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN00C.cbl:78", 
+    "program": "COTRN00C"
+   }, 
+   {
+    "source": "app/cbl/COTRN01C.cbl:69", 
+    "program": "COTRN01C"
+   }, 
+   {
+    "source": "app/cbl/COTRN02C.cbl:88", 
+    "program": "COTRN02C"
+   }
+  ], 
+  "COSGN00": [
+   {
+    "source": "app/cbl/COSGN00C.cbl:50", 
+    "program": "COSGN00C"
+   }
+  ]
+ }
+}

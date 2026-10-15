@@ -1,0 +1,101 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "Adding a transaction to a profile (CARD)", 
+  "confidence": "Unverified", 
+  "source": "samples/jcl/RACFCMDS.jcl:22"
+ }, 
+ "job_card": {
+  "source": "samples/jcl/RACFCMDS.jcl:1", 
+  "msgclass": "Y", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "build", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [
+  {
+   "text": "Sample JCL under samples/jcl. Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member.", 
+   "confidence": "Confirmed", 
+   "source": "samples/jcl/RACFCMDS.jcl"
+  }
+ ], 
+ "source_path": "samples/jcl/RACFCMDS.jcl", 
+ "steps": [
+  {
+   "function": "Utility step IKJEFT01", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 19, 
+   "kind": "db2", 
+   "name": "TSOBAT", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 21, 
+     "ddname": "SYSTSPRT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 23, 
+     "ddname": "SYSTSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 28, 
+     "ddname": "SYSTSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IKJEFT01", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "157b253b51c1a0ad8ed7d90ae8468de256b546589e7d857d9ee57035950f8cd9", 
+ "job_name": "RACFCMDS"
+}

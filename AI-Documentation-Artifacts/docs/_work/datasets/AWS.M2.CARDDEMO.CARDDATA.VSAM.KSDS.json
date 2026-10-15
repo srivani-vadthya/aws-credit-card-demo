@@ -1,0 +1,97 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/CARDFILE.jcl:72", 
+   "via": "jcl-dd", 
+   "by": "CARDFILE.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CBEXPORT.jcl:57", 
+   "via": "jcl-dd", 
+   "by": "CBEXPORT.STEP02", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/READCARD.jcl:25", 
+   "via": "jcl-dd", 
+   "by": "READCARD.STEP05", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/CARDFILE.jcl:50", 
+  "app/jcl/CARDFILE.jcl:83", 
+  "app/csd/CARDDEMO.CSD:25", 
+  "app/catlg/LISTCAT.txt:164"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "aix": [
+   {
+    "keys": "KEYS(11 16)", 
+    "path": "AWS.M2.CARDDEMO.CARDDATA.VSAM.AIX.PATH", 
+    "unique": false, 
+    "name": "AWS.M2.CARDDEMO.CARDDATA.VSAM.AIX", 
+    "source": "app/jcl/CARDFILE.jcl:83"
+   }
+  ], 
+  "keys": "KEYS(16 0)", 
+  "record_max": 150, 
+  "record_size": "RECORDSIZE(150 150)", 
+  "defined_by": [
+   "app/jcl/CARDFILE.jcl:50"
+  ], 
+  "catalog_facts": {
+   "as_of": "09/01/22", 
+   "point_in_time": true, 
+   "rec_total": 50, 
+   "listcat_org": "INDEXED", 
+   "rec_total_source": "app/catlg/LISTCAT.txt:207", 
+   "keylen_source": "app/catlg/LISTCAT.txt:202", 
+   "source": "app/catlg/LISTCAT.txt:164", 
+   "keylen": 16, 
+   "avglrecl": 150
+  }, 
+  "key_offset": 0, 
+  "key_length": 16
+ }, 
+ "layout": {
+  "key_fields": [
+   "CARD-NUM"
+  ], 
+  "copybook": "CVACT02Y", 
+  "record": "CARD-RECORD", 
+  "length": 150, 
+  "candidates": [
+   "CVACT02Y:CARD-RECORD"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/CARDFILE.jcl:50", 
+    "length": 150, 
+    "agrees": true
+   }
+  ]
+ }, 
+ "name": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-ksds", 
+ "aliases": [
+  {
+   "source": "app/csd/CARDDEMO.CSD:25", 
+   "kind": "cics-file", 
+   "name": "CARDDAT"
+  }
+ ], 
+ "sample_data": null
+}

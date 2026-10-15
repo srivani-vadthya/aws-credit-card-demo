@@ -1,0 +1,245 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "DELETE ACCOUNT VSAM FILE IF ONE ALREADY EXISTS", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/ACCTFILE.jcl:20"
+ }, 
+ "job_card": {
+  "source": "app/jcl/ACCTFILE.jcl:1", 
+  "msgclass": "0", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [
+  {
+   "source": "scripts/remote_refresh.sh:17", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:17", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:17", 
+   "mechanism": "script-ftp-put"
+  }
+ ], 
+ "findings": [], 
+ "source_path": "app/jcl/ACCTFILE.jcl", 
+ "steps": [
+  {
+   "function": "IDCAMS delete", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 22, 
+   "kind": "utility", 
+   "name": "STEP05", 
+   "control_statements": [
+    {
+     "text": "DELETE AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS -", 
+     "meaning": "IDCAMS delete", 
+     "source": "app/jcl/ACCTFILE.jcl:25"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 23, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 24, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "IDCAMS define VSAM cluster", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 33, 
+   "kind": "utility", 
+   "name": "STEP10", 
+   "control_statements": [
+    {
+     "text": "DEFINE CLUSTER (NAME(AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS) -", 
+     "meaning": "IDCAMS define VSAM cluster", 
+     "source": "app/jcl/ACCTFILE.jcl:36"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 34, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 35, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "IDCAMS REPRO copy", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 54, 
+   "kind": "utility", 
+   "name": "STEP15", 
+   "control_statements": [
+    {
+     "text": "REPRO INFILE(ACCTDATA) OUTFILE(ACCTVSAM)", 
+     "meaning": "IDCAMS REPRO copy", 
+     "source": "app/jcl/ACCTFILE.jcl:61"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 55, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 56, 
+     "ddname": "ACCTDATA", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.PS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 58, 
+     "ddname": "ACCTVSAM", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 60, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "febba716137a3f59302ef1136c60dccce4d07d32e1d118b15d48f99266dea9e7", 
+ "job_name": "ACCTFILE"
+}

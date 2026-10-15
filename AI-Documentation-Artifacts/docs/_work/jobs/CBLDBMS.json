@@ -1,0 +1,132 @@
+{
+ "set_symbols": {
+  "HLQ": "AWS.M2"
+ }, 
+ "description": {
+  "text": "Change CICSMAP to your map name everywhere", 
+  "confidence": "Unverified", 
+  "source": "samples/jcl/BMSCMP.jcl:4"
+ }, 
+ "job_card": {
+  "source": "samples/jcl/BMSCMP.jcl:1", 
+  "msgclass": "H", 
+  "region": "0M", 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "build", 
+ "jcllib": [
+  "ORDER=&HLQ..CARDDEMO.PRC.UTIL"
+ ], 
+ "submitted_by": [], 
+ "findings": [
+  {
+   "text": "Sample JCL under samples/jcl. Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member.", 
+   "confidence": "Confirmed", 
+   "source": "samples/jcl/BMSCMP.jcl"
+  }
+ ], 
+ "source_path": "samples/jcl/BMSCMP.jcl", 
+ "steps": [
+  {
+   "function": "Executes procedure BUILDBMS", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [
+    "PRINT", 
+    "MAP", 
+    "LKED", 
+    "DSECT", 
+    "DISPLIST", 
+    "DELTEMP"
+   ], 
+   "line": 38, 
+   "kind": "utility", 
+   "name": "STEP1", 
+   "control_statements": [], 
+   "dds": [], 
+   "program": null, 
+   "proc": "BUILDBMS"
+  }, 
+  {
+   "function": "Operator command", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 42, 
+   "kind": "other", 
+   "name": "SDSF1", 
+   "control_statements": [
+    {
+     "text": "/MODIFY CICSAWSA,'CEMT SET PROG(CICSMAP) NEWCOPY'", 
+     "meaning": "Operator command", 
+     "source": "samples/jcl/BMSCMP.jcl:46"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 43, 
+     "ddname": "ISFOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 44, 
+     "ddname": "CMDOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 45, 
+     "ddname": "ISFIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "SDSF", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "0f849b796a3005ff05745e9e49639efb39924c4d19033d41170568652b317943", 
+ "job_name": "CBLDBMS"
+}

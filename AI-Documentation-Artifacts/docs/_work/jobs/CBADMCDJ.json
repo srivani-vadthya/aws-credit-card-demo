@@ -1,0 +1,141 @@
+{
+ "set_symbols": {
+  "HLQ": "AWS.M2.CARDDEMO"
+ }, 
+ "description": {
+  "text": "Create Resources for Card Demo application               ******", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/CBADMCDJ.jcl:20"
+ }, 
+ "job_card": {
+  "source": "app/jcl/CBADMCDJ.jcl:1", 
+  "msgclass": "H", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [
+  {
+   "text": "Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member. Absence does not prove the job never runs.", 
+   "confidence": "Confirmed", 
+   "source": "app/jcl/CBADMCDJ.jcl"
+  }
+ ], 
+ "source_path": "app/jcl/CBADMCDJ.jcl", 
+ "steps": [
+  {
+   "function": "Utility step DFHCSDUP", 
+   "if_condition": null, 
+   "parm": "'CSD(READWRITE),PAGESIZE(60),NOCOMPAT'", 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 27, 
+   "kind": "build", 
+   "name": "STEP1", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 29, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.CICSTS.V05R06M0.CICS.SDFHLOAD", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 30, 
+     "ddname": "DFHCSD", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "OEM.CICSTS.DFHCSD", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 31, 
+     "ddname": "OUTDD", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 32, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 33, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "DFHCSDUP", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "364243e503e92d38af82e86459677c92a6cb03c0ecc25c6f81ca29b32780f678", 
+ "job_name": "CBADMCDJ"
+}

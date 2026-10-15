@@ -1,0 +1,43 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/PRTCATBL.jcl:22", 
+   "via": "jcl-dd", 
+   "by": "PRTCATBL.DELDEF", 
+   "ops": [
+    "U", 
+    "D"
+   ]
+  }, 
+  {
+   "source": "app/jcl/PRTCATBL.jcl:59", 
+   "via": "jcl-dd", 
+   "by": "PRTCATBL.STEP10R", 
+   "ops": [
+    "C", 
+    "D"
+   ]
+  }
+ ], 
+ "module": null, 
+ "evidence": [
+  "app/catlg/LISTCAT.txt:1319"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "catalog_facts": {
+   "source": "app/catlg/LISTCAT.txt:1319", 
+   "as_of": "09/01/22", 
+   "point_in_time": true
+  }, 
+  "defined_by": []
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.TCATBALF.REPT", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "sequential", 
+ "aliases": [], 
+ "sample_data": null
+}

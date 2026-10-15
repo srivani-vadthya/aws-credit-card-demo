@@ -1,0 +1,147 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/CBEXPORT.jcl:55", 
+   "via": "jcl-dd", 
+   "by": "CBEXPORT.STEP02", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/COMBTRAN.jcl:45", 
+   "via": "jcl-dd", 
+   "by": "COMBTRAN.STEP10", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CREASTMT.JCL:45", 
+   "via": "jcl-dd", 
+   "by": "CREASTMT.STEP010", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/POSTTRAN.jcl:28", 
+   "via": "jcl-dd", 
+   "by": "POSTTRAN.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANBKP.jcl:26", 
+   "via": "jcl-dd", 
+   "by": "TRANBKP.STEP05R", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANFILE.jcl:71", 
+   "via": "jcl-dd", 
+   "by": "TRANFILE.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANREPT.jcl:26", 
+   "via": "jcl-dd", 
+   "by": "TRANREPT.STEP05R", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "samples/jcl/REPRTEST.jcl:26", 
+   "via": "jcl-dd", 
+   "by": "REPRTEST.STEP05", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/TRANBKP.jcl:54", 
+  "app/jcl/TRANFILE.jcl:49", 
+  "app/jcl/TRANFILE.jcl:82", 
+  "app/jcl/TRANIDX.jcl:25", 
+  "app/csd/CARDDEMO.CSD:76", 
+  "app/catlg/LISTCAT.txt:3555"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "aix": [
+   {
+    "keys": "KEYS(26 304)", 
+    "path": "AWS.M2.CARDDEMO.TRANSACT.VSAM.AIX.PATH", 
+    "unique": false, 
+    "name": "AWS.M2.CARDDEMO.TRANSACT.VSAM.AIX", 
+    "source": "app/jcl/TRANFILE.jcl:82"
+   }, 
+   {
+    "keys": "KEYS(26 304)", 
+    "path": "AWS.M2.CARDDEMO.TRANSACT.VSAM.AIX.PATH", 
+    "unique": false, 
+    "name": "AWS.M2.CARDDEMO.TRANSACT.VSAM.AIX", 
+    "source": "app/jcl/TRANIDX.jcl:25"
+   }
+  ], 
+  "keys": "KEYS(16 0)", 
+  "record_max": 350, 
+  "record_size": "RECORDSIZE(350 350)", 
+  "defined_by": [
+   "app/jcl/TRANBKP.jcl:54", 
+   "app/jcl/TRANFILE.jcl:49"
+  ], 
+  "catalog_facts": {
+   "as_of": "09/01/22", 
+   "point_in_time": true, 
+   "rec_total": 311, 
+   "listcat_org": "INDEXED", 
+   "rec_total_source": "app/catlg/LISTCAT.txt:3598", 
+   "keylen_source": "app/catlg/LISTCAT.txt:3593", 
+   "source": "app/catlg/LISTCAT.txt:3555", 
+   "keylen": 16, 
+   "avglrecl": 350
+  }, 
+  "key_offset": 0, 
+  "key_length": 16
+ }, 
+ "layout": {
+  "key_fields": [], 
+  "copybook": null, 
+  "record": null, 
+  "length": null, 
+  "candidates": [
+   "COSTM01:TRNX-RECORD", 
+   "CVTRA05Y:TRAN-RECORD", 
+   "CVTRA06Y:DALYTRAN-RECORD"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/TRANBKP.jcl:54", 
+    "length": 350, 
+    "agrees": false
+   }
+  ]
+ }, 
+ "name": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-ksds", 
+ "aliases": [
+  {
+   "source": "app/csd/CARDDEMO.CSD:76", 
+   "kind": "cics-file", 
+   "name": "TRANSACT"
+  }
+ ], 
+ "sample_data": null
+}

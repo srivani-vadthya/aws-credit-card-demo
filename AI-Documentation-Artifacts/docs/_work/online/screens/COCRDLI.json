@@ -1,0 +1,763 @@
+{
+ "source": "app/bms/COCRDLI.bms:20", 
+ "name": "COCRDLI", 
+ "module": "base", 
+ "maps": [
+  {
+   "source": "app/bms/COCRDLI.bms:25", 
+   "mockup": [
+    "Tran: XXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "                              List Credit Cards                      Page  XXX", 
+    "", 
+    "                     Account Number    :   ___________", 
+    "                     Credit Card Number:   ________________", 
+    "", 
+    "         Select     Account Number           Card Number         Active", 
+    "         ------    ---------------        ---------------       --------", 
+    "           X         XXXXXXXXXXX          XXXXXXXXXXXXXXXX        X", 
+    "           X X       XXXXXXXXXXX          XXXXXXXXXXXXXXXX        X", 
+    "           X X       XXXXXXXXXXX          XXXXXXXXXXXXXXXX        X", 
+    "           X X       XXXXXXXXXXX          XXXXXXXXXXXXXXXX        X", 
+    "           X X       XXXXXXXXXXX          XXXXXXXXXXXXXXXX        X", 
+    "           X X       XXXXXXXXXXX          XXXXXXXXXXXXXXXX        X", 
+    "           X X       XXXXXXXXXXX          XXXXXXXXXXXXXXXX        X", 
+    "", 
+    "", 
+    "                  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "", 
+    "", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "  F3=Exit F7=Backward  F8=Forward"
+   ], 
+   "name": "CCRDLIA", 
+   "fields": [
+    {
+     "source": "app/bms/COCRDLI.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:75", 
+     "length": 17, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "List Credit Cards", 
+     "col": 31, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:79", 
+     "length": 5, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "Page ", 
+     "col": 70, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:82", 
+     "length": 3, 
+     "attrb": null, 
+     "name": "PAGENO", 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:84", 
+     "length": 19, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Account Number    :", 
+     "col": 22, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:89", 
+     "length": 11, 
+     "attrb": "(FSET,IC,NORM,UNPROT)", 
+     "name": "ACCTSID", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 44, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:94", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 56, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:96", 
+     "length": 19, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Credit Card Number:", 
+     "col": 22, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:101", 
+     "length": 16, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "CARDSID", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 44, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:106", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:108", 
+     "length": 10, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Select    ", 
+     "col": 10, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:112", 
+     "length": 14, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Account Number", 
+     "col": 21, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:116", 
+     "length": 13, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": " Card Number ", 
+     "col": 45, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:120", 
+     "length": 7, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Active ", 
+     "col": 66, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:124", 
+     "length": 6, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "------", 
+     "col": 10, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:128", 
+     "length": 15, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "---------------", 
+     "col": 20, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:132", 
+     "length": 15, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "---------------", 
+     "col": 43, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:136", 
+     "length": 8, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "--------", 
+     "col": 65, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:140", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "CRDSEL1", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 12, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:145", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 14, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:147", 
+     "length": 11, 
+     "attrb": "(NORM,PROT)", 
+     "name": "ACCTNO1", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 22, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:152", 
+     "length": 16, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDNUM1", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 43, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:157", 
+     "length": 1, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDSTS1", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 67, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:162", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "CRDSEL2", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 12, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:167", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 14, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:169", 
+     "length": 1, 
+     "attrb": "(ASKIP,DRK,FSET)", 
+     "name": "CRDSTP2", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 14, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:174", 
+     "length": 11, 
+     "attrb": "(NORM,PROT)", 
+     "name": "ACCTNO2", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 22, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:179", 
+     "length": 16, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDNUM2", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 43, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:184", 
+     "length": 1, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDSTS2", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 67, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:189", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "CRDSEL3", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 12, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:194", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 14, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:196", 
+     "length": 1, 
+     "attrb": "(ASKIP,DRK,FSET)", 
+     "name": "CRDSTP3", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 14, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:201", 
+     "length": 11, 
+     "attrb": "(NORM,PROT)", 
+     "name": "ACCTNO3", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 22, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:206", 
+     "length": 16, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDNUM3", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 43, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:211", 
+     "length": 1, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDSTS3", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 67, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:216", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "CRDSEL4", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 12, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:221", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 14, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:223", 
+     "length": 1, 
+     "attrb": "(ASKIP,DRK,FSET)", 
+     "name": "CRDSTP4", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 14, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:228", 
+     "length": 11, 
+     "attrb": "(NORM,PROT)", 
+     "name": "ACCTNO4", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 22, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:233", 
+     "length": 16, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDNUM4", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 43, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:238", 
+     "length": 1, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDSTS4", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 67, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:243", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "CRDSEL5", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 12, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:248", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 14, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:250", 
+     "length": 1, 
+     "attrb": "(ASKIP,DRK,FSET)", 
+     "name": "CRDSTP5", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 14, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:255", 
+     "length": 11, 
+     "attrb": "(NORM,PROT)", 
+     "name": "ACCTNO5", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 22, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:260", 
+     "length": 16, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDNUM5", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 43, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:265", 
+     "length": 1, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDSTS5", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 67, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:270", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "CRDSEL6", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 12, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:275", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 14, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:277", 
+     "length": 1, 
+     "attrb": "(ASKIP,DRK,FSET)", 
+     "name": "CRDSTP6", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 14, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:282", 
+     "length": 11, 
+     "attrb": "(NORM,PROT)", 
+     "name": "ACCTNO6", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 22, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:287", 
+     "length": 16, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDNUM6", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 43, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:292", 
+     "length": 1, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDSTS6", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 67, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:297", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "CRDSEL7", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 12, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:302", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 14, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:304", 
+     "length": 1, 
+     "attrb": "(ASKIP,DRK,FSET)", 
+     "name": "CRDSTP7", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 14, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:309", 
+     "length": 11, 
+     "attrb": "(NORM,PROT)", 
+     "name": "ACCTNO7", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 22, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:314", 
+     "length": 16, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDNUM7", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 43, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:319", 
+     "length": 1, 
+     "attrb": "(NORM,PROT)", 
+     "name": "CRDSTS7", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 67, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:324", 
+     "length": 45, 
+     "attrb": "(PROT)", 
+     "name": "INFOMSG", 
+     "color": "NEUTRAL", 
+     "initial": null, 
+     "col": 19, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:329", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 65, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:331", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/bms/COCRDLI.bms:335", 
+     "length": 78, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "  F3=Exit F7=Backward  F8=Forward", 
+     "col": 1, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

@@ -1,0 +1,302 @@
+{
+ "set_symbols": {}, 
+ "submitted_by": [], 
+ "description": {
+  "text": "Unload the processed transaction category balance file", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/PRTCATBL.jcl:27"
+ }, 
+ "job_card": {
+  "msgclass": "0", 
+  "source": "app/jcl/PRTCATBL.jcl:1", 
+  "region": null, 
+  "notify": "&SYSUID", 
+  "class": "A"
+ }, 
+ "schedule": [
+  {
+   "source": "app/scheduler/CardDemo.ca7", 
+   "calendar": null, 
+   "successors": [
+    "WAITSTEP"
+   ], 
+   "predecessors": [
+    "CLOSEFIL"
+   ], 
+   "time": null
+  }
+ ], 
+ "source_path": "app/jcl/PRTCATBL.jcl", 
+ "module": "base", 
+ "steps": [
+  {
+   "function": "Utility step IEFBR14", 
+   "kind": "utility", 
+   "if_condition": null, 
+   "name": "DELDEF", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "(MOD,DELETE)", 
+     "dummy": false, 
+     "layout": null, 
+     "space": "(TRK,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "U", 
+      "D"
+     ], 
+     "line": 22, 
+     "ddname": "THEFILE", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.REPT"
+    }
+   ], 
+   "parm": null, 
+   "program": "IEFBR14", 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 21, 
+   "proc": null
+  }, 
+  {
+   "function": "Executes procedure REPROC (IDCAMS REPRO)", 
+   "kind": "utility", 
+   "if_condition": null, 
+   "name": "STEP05R", 
+   "control_statements": [
+    {
+     "text": "REPRO INFILE(FILEIN) OUTFILE(FILEOUT)", 
+     "meaning": "IDCAMS repro from FILEIN to FILEOUT", 
+     "source": "app/ctl/REPROCT.ctl:15", 
+     "also_identical": "app/app-transaction-type-db2/ctl/REPROCT.ctl:15"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "line": 32, 
+     "ddname": "PRC001.FILEIN", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS"
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "layout": null, 
+     "space": "(CYL,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": "50", 
+     "gdg_relative": "+1", 
+     "recfm": "FB", 
+     "sysout": false, 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "line": 35, 
+     "ddname": "PRC001.FILEOUT", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP(+1)"
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "source": "app/proc/REPROC.prc:27-28", 
+     "instream": false, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "from_proc": "REPROC", 
+     "ddname": "PRC001.SYSIN", 
+     "line": 27, 
+     "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)"
+    }
+   ], 
+   "parm": null, 
+   "program": null, 
+   "cond": null, 
+   "proc_steps": [
+    "PRC001"
+   ], 
+   "proc_expansion": {
+    "confidence": "Confirmed", 
+    "proc_source": "app/proc/REPROC.prc:1-29", 
+    "proc_steps": [
+     {
+      "source": "app/proc/REPROC.prc:21", 
+      "program": "IDCAMS", 
+      "name": "PRC001"
+     }
+    ], 
+    "overridden_dds": [
+     "PRC001.FILEIN", 
+     "PRC001.FILEOUT"
+    ], 
+    "proc_default_dsn": {
+     "FILEOUT": "NULLFILE", 
+     "FILEIN": "NULLFILE", 
+     "source": "app/proc/REPROC.prc:23-26"
+    }, 
+    "symbolics": [
+     {
+      "source": "app/jcl/PRTCATBL.jcl:30", 
+      "from": "EXEC override", 
+      "name": "CNTLLIB", 
+      "value": "AWS.M2.CARDDEMO.CNTL"
+     }
+    ], 
+    "control_member_note": "SYSIN resolves to AWS.M2.CARDDEMO.CNTL(REPROCT). The two REPROCT.ctl files in the repository are byte-identical. Which file is loaded into that library is not stated in the repository (see gaps.md)."
+   }, 
+   "line": 29, 
+   "proc": "REPROC"
+  }, 
+  {
+   "function": "SORT control", 
+   "kind": "utility", 
+   "if_condition": null, 
+   "name": "STEP10R", 
+   "control_statements": [
+    {
+     "text": "SORT FIELDS=(TRANCAT-ACCT-ID,A,TRANCAT-TYPE-CD,A,TRANCAT-CD,A)", 
+     "meaning": "SORT control", 
+     "source": "app/jcl/PRTCATBL.jcl:52"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": "+1", 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "line": 44, 
+     "ddname": "SORTIN", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP(+1)"
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [], 
+     "line": 46, 
+     "ddname": "SYMNAMES", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [], 
+     "line": 51, 
+     "ddname": "SYSIN", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": true, 
+     "usage": [], 
+     "line": 58, 
+     "ddname": "SYSOUT", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "layout": null, 
+     "space": "(CYL,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": "40", 
+     "gdg_relative": null, 
+     "recfm": "FB", 
+     "sysout": false, 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "line": 59, 
+     "ddname": "SORTOUT", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.REPT"
+    }
+   ], 
+   "parm": null, 
+   "program": "SORT", 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 43, 
+   "proc": null
+  }
+ ], 
+ "jcllib": [
+  "ORDER=('AWS.M2.CARDDEMO.PROC')"
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "24ba68991b615b24b642ec9365b7a06376f8a813368f6656fcbbb2f4fb2031a2", 
+ "job_name": "PRTCATBL", 
+ "findings": []
+}

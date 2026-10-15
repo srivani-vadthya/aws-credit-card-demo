@@ -1,0 +1,867 @@
+{
+ "jobs_in_scheduler_without_jcl": [
+  {
+   "source": "app/scheduler/CardDemo.ca7", 
+   "job": "CLOSEFIL1", 
+   "jcl_member": "CLOSEFIL"
+  }, 
+  {
+   "source": "app/scheduler/CardDemo.ca7", 
+   "job": "CLOSEFIL2", 
+   "jcl_member": "CLOSEFIL"
+  }
+ ], 
+ "ca7_edges": [
+  {
+   "schid": "030", 
+   "to": "CBPAUP0J", 
+   "kind": "ca7-trigger", 
+   "from": "CLOSEFIL", 
+   "source": "app/scheduler/CardDemo.ca7:43"
+  }, 
+  {
+   "schid": "030", 
+   "to": "POSTTRAN", 
+   "kind": "ca7-trigger", 
+   "from": "CBPAUP0J", 
+   "source": "app/scheduler/CardDemo.ca7:70"
+  }, 
+  {
+   "schid": "030", 
+   "to": "WAITSTEP", 
+   "kind": "ca7-trigger", 
+   "from": "POSTTRAN", 
+   "source": "app/scheduler/CardDemo.ca7:97"
+  }, 
+  {
+   "schid": "030", 
+   "to": "OPENFIL", 
+   "kind": "ca7-trigger", 
+   "from": "WAITSTEP", 
+   "source": "app/scheduler/CardDemo.ca7:124"
+  }, 
+  {
+   "schid": "030", 
+   "to": "TRANTYPE", 
+   "kind": "ca7-trigger", 
+   "from": "CLOSEFIL", 
+   "source": "app/scheduler/CardDemo.ca7:162"
+  }, 
+  {
+   "schid": "030", 
+   "to": "WAITSTEP", 
+   "kind": "ca7-trigger", 
+   "from": "TRANTYPE", 
+   "source": "app/scheduler/CardDemo.ca7:189"
+  }, 
+  {
+   "schid": "031", 
+   "to": "CLOSEFIL1", 
+   "kind": "ca7-trigger", 
+   "from": "WAITSTEP", 
+   "source": "app/scheduler/CardDemo.ca7:216"
+  }, 
+  {
+   "schid": "032", 
+   "to": "CLOSEFIL2", 
+   "kind": "ca7-trigger", 
+   "from": "WAITSTEP", 
+   "source": "app/scheduler/CardDemo.ca7:217"
+  }, 
+  {
+   "schid": "031", 
+   "to": "TRANCATG", 
+   "kind": "ca7-trigger", 
+   "from": "CLOSEFIL1", 
+   "source": "app/scheduler/CardDemo.ca7:244"
+  }, 
+  {
+   "schid": "032", 
+   "to": "TCATBALF", 
+   "kind": "ca7-trigger", 
+   "from": "CLOSEFIL2", 
+   "source": "app/scheduler/CardDemo.ca7:271"
+  }, 
+  {
+   "schid": "031", 
+   "to": "WAITSTEP", 
+   "kind": "ca7-trigger", 
+   "from": "TRANCATG", 
+   "source": "app/scheduler/CardDemo.ca7:298"
+  }, 
+  {
+   "schid": "030", 
+   "to": "CLOSEFIL", 
+   "kind": "ca7-trigger", 
+   "from": "WAITSTEP", 
+   "source": "app/scheduler/CardDemo.ca7:303"
+  }, 
+  {
+   "schid": "032", 
+   "to": "WAITSTEP", 
+   "kind": "ca7-trigger", 
+   "from": "TCATBALF", 
+   "source": "app/scheduler/CardDemo.ca7:330"
+  }, 
+  {
+   "schid": "030", 
+   "to": "CLOSEFIL", 
+   "kind": "ca7-trigger", 
+   "from": "WAITSTEP", 
+   "source": "app/scheduler/CardDemo.ca7:335"
+  }, 
+  {
+   "schid": "030", 
+   "to": "READACCT", 
+   "kind": "ca7-trigger", 
+   "from": "CLOSEFIL", 
+   "source": "app/scheduler/CardDemo.ca7:340"
+  }, 
+  {
+   "schid": "030", 
+   "to": "READCARD", 
+   "kind": "ca7-trigger", 
+   "from": "READACCT", 
+   "source": "app/scheduler/CardDemo.ca7:367"
+  }, 
+  {
+   "schid": "030", 
+   "to": "READCUST", 
+   "kind": "ca7-trigger", 
+   "from": "READCARD", 
+   "source": "app/scheduler/CardDemo.ca7:394"
+  }, 
+  {
+   "schid": "030", 
+   "to": "READXREF", 
+   "kind": "ca7-trigger", 
+   "from": "READCUST", 
+   "source": "app/scheduler/CardDemo.ca7:421"
+  }, 
+  {
+   "schid": "030", 
+   "to": "WAITSTEP", 
+   "kind": "ca7-trigger", 
+   "from": "READXREF", 
+   "source": "app/scheduler/CardDemo.ca7:448"
+  }, 
+  {
+   "schid": "030", 
+   "to": "OPENFIL", 
+   "kind": "ca7-trigger", 
+   "from": "WAITSTEP", 
+   "source": "app/scheduler/CardDemo.ca7:453"
+  }, 
+  {
+   "schid": "030", 
+   "to": "CREASTMT", 
+   "kind": "ca7-trigger", 
+   "from": "CLOSEFIL", 
+   "source": "app/scheduler/CardDemo.ca7:468"
+  }, 
+  {
+   "schid": "030", 
+   "to": "TXT2PDF1", 
+   "kind": "ca7-trigger", 
+   "from": "CREASTMT", 
+   "source": "app/scheduler/CardDemo.ca7:495"
+  }, 
+  {
+   "schid": "030", 
+   "to": "WAITSTEP", 
+   "kind": "ca7-trigger", 
+   "from": "TXT2PDF1", 
+   "source": "app/scheduler/CardDemo.ca7:522"
+  }, 
+  {
+   "schid": "030", 
+   "to": "OPENFIL", 
+   "kind": "ca7-trigger", 
+   "from": "WAITSTEP", 
+   "source": "app/scheduler/CardDemo.ca7:527"
+  }, 
+  {
+   "schid": "031", 
+   "to": "CLOSEFIL", 
+   "kind": "ca7-trigger", 
+   "from": "OPENFIL", 
+   "source": "app/scheduler/CardDemo.ca7:532"
+  }, 
+  {
+   "schid": "031", 
+   "to": "PRTCATBL", 
+   "kind": "ca7-trigger", 
+   "from": "CLOSEFIL", 
+   "source": "app/scheduler/CardDemo.ca7:537"
+  }, 
+  {
+   "schid": "031", 
+   "to": "WAITSTEP", 
+   "kind": "ca7-trigger", 
+   "from": "PRTCATBL", 
+   "source": "app/scheduler/CardDemo.ca7:564"
+  }, 
+  {
+   "schid": "031", 
+   "to": "OPENFIL", 
+   "kind": "ca7-trigger", 
+   "from": "WAITSTEP", 
+   "source": "app/scheduler/CardDemo.ca7:569"
+  }
+ ], 
+ "td_queue_submit": {
+  "note": "CORPT00C writes the 80-byte lines of an in-program job, TRNRPT00, to TD queue JOBS. That job executes PROC TRANREPT and overrides STEP05R.SYMNAMES and STEP10R.DATEPARM with the report dates.", 
+  "confidence": "Confirmed", 
+  "queue_attributes": {
+   "typefile": "OUTPUT", 
+   "recordformat": "FIXED", 
+   "ddname": "INREADER", 
+   "source": "app/csd/CARDDEMO.CSD:499-503", 
+   "type": "EXTRA", 
+   "recordsize": 80
+  }, 
+  "writer": "CORPT00C", 
+  "queue": "JOBS", 
+  "source": "app/cbl/CORPT00C.cbl:517", 
+  "write_loop_source": "app/cbl/CORPT00C.cbl:497-508", 
+  "queue_define": "app/csd/CARDDEMO.CSD:499", 
+  "unresolved": "The CICS region JCL that defines DD INREADER is not in the repository, so the destination of the queue is not confirmed. The CSD DESCRIPTION 'SUBMIT JOBS FROM CICS' (app/csd/CARDDEMO.CSD:500) is Unverified.", 
+  "embedded_jcl_source": "app/cbl/CORPT00C.cbl:81-127", 
+  "proc": "TRANREPT", 
+  "job_name": "TRNRPT00"
+ }, 
+ "ca7_jobs_named": [
+  "CLOSEFIL", 
+  "CBPAUP0J", 
+  "POSTTRAN", 
+  "WAITSTEP", 
+  "OPENFIL", 
+  "TRANTYPE", 
+  "CLOSEFIL1", 
+  "CLOSEFIL2", 
+  "TRANCATG", 
+  "TCATBALF", 
+  "READACCT", 
+  "READCARD", 
+  "READCUST", 
+  "READXREF", 
+  "CREASTMT", 
+  "TXT2PDF1", 
+  "PRTCATBL"
+ ], 
+ "controlm_edges": [
+  {
+   "kind": "controlm-condition", 
+   "from": "CLOSEFIL", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "DAILY-TransactionBackup", 
+   "to": "TRANBKP", 
+   "from_folder": "DAILY-TransactionBackup", 
+   "condition": "DAILY-TransactionBackup-CLOSEFIL"
+  }, 
+  {
+   "kind": "controlm-condition", 
+   "from": "TRANBKP", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "DAILY-TransactionBackup", 
+   "to": "WAITSTEP", 
+   "from_folder": "DAILY-TransactionBackup", 
+   "condition": "DAILY-TransactionBackup-TRANBKP"
+  }, 
+  {
+   "kind": "controlm-condition", 
+   "from": "WAITSTEP", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "DAILY-TransactionBackup", 
+   "to": "OPENFIL", 
+   "from_folder": "DAILY-TransactionBackup", 
+   "condition": "DAILY-TransactionBackup-WAITSTEP"
+  }, 
+  {
+   "kind": "controlm-condition", 
+   "from": "CLOSEFIL", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "MONTHLY-InterestCalculation", 
+   "to": "INTCALC", 
+   "from_folder": "MONTHLY-InterestCalculation", 
+   "condition": "MONTHLY-InterestCalculation-CLOSEFIL"
+  }, 
+  {
+   "kind": "controlm-condition", 
+   "from": "INTCALC", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "MONTHLY-InterestCalculation", 
+   "to": "COMBTRAN", 
+   "from_folder": "MONTHLY-InterestCalculation", 
+   "condition": "MONTHLY-InterestCalculation-INTCALC"
+  }, 
+  {
+   "kind": "controlm-condition", 
+   "from": "COMBTRAN", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "MONTHLY-InterestCalculation", 
+   "to": "WAITSTEP", 
+   "from_folder": "MONTHLY-InterestCalculation", 
+   "condition": "MONTHLY-InterestCalculation-COMBTRAN"
+  }, 
+  {
+   "kind": "controlm-condition", 
+   "from": "WAITSTEP", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "MONTHLY-InterestCalculation", 
+   "to": "OPENFIL", 
+   "from_folder": "MONTHLY-InterestCalculation", 
+   "condition": "MONTHLY-InterestCalculation-WAITSTEP"
+  }, 
+  {
+   "kind": "controlm-condition", 
+   "from": "MNTTRDB2", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "WEEKLY-DisclosureGroupsRefresh", 
+   "to": "CLOSEFIL", 
+   "from_folder": "WEEKLY-TransactionTypesDBRefresh", 
+   "condition": "WEEKLY-TransactionTypesDBRefresh-MNTTRDB2"
+  }, 
+  {
+   "kind": "controlm-condition", 
+   "from": "CLOSEFIL", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "WEEKLY-DisclosureGroupsRefresh", 
+   "to": "DISCGRP", 
+   "from_folder": "WEEKLY-DisclosureGroupsRefresh", 
+   "condition": "WEEKLY-DisclosureGroupsRefresh-CLOSEFIL"
+  }, 
+  {
+   "kind": "controlm-condition", 
+   "from": "DISCGRP", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "WEEKLY-DisclosureGroupsRefresh", 
+   "to": "WAITSTEP", 
+   "from_folder": "WEEKLY-DisclosureGroupsRefresh", 
+   "condition": "WEEKLY-DisclosureGroupsRefresh-DISCGRP"
+  }, 
+  {
+   "kind": "controlm-condition", 
+   "from": "WAITSTEP", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "WEEKLY-DisclosureGroupsRefresh", 
+   "to": "OPENFIL", 
+   "from_folder": "WEEKLY-DisclosureGroupsRefresh", 
+   "condition": "WEEKLY-DisclosureGroupsRefresh-WAITSTEP"
+  }, 
+  {
+   "kind": "controlm-condition", 
+   "from": "MNTTRDB2", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "to_folder": "WEEKLY-TransactionTypesDBRefresh", 
+   "to": "TRANEXTR", 
+   "from_folder": "WEEKLY-TransactionTypesDBRefresh", 
+   "condition": "WEEKLY-TransactionTypesDBRefresh-MNTTRDB2"
+  }
+ ], 
+ "ca7_jcl_members": {
+  "WAITSTEP": "WAITSTEP", 
+  "OPENFIL": "OPENFIL", 
+  "CLOSEFIL1": "CLOSEFIL", 
+  "READCUST": "READCUST", 
+  "READCARD": "READCARD", 
+  "CLOSEFIL2": "CLOSEFIL", 
+  "READACCT": "READACCT", 
+  "READXREF": "READXREF", 
+  "CBPAUP0J": "CBPAUP0J", 
+  "TXT2PDF1": "TXT2PDF1", 
+  "TRANCATG": "TRANCATG", 
+  "CREASTMT": "CREASTMT", 
+  "CLOSEFIL": "CLOSEFIL", 
+  "TRANTYPE": "TRANTYPE", 
+  "PRTCATBL": "PRTCATBL", 
+  "POSTTRAN": "POSTTRAN", 
+  "TCATBALF": "TCATBALF"
+ }, 
+ "script_submits": [
+  {
+   "source": "scripts/remote_refresh.sh:13", 
+   "line": 13, 
+   "verb": "put", 
+   "job": "CLOSEFIL", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/remote_refresh.sh:17", 
+   "line": 17, 
+   "verb": "put", 
+   "job": "ACCTFILE", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/remote_refresh.sh:20", 
+   "line": 20, 
+   "verb": "put", 
+   "job": "CARDFILE", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/remote_refresh.sh:23", 
+   "line": 23, 
+   "verb": "put", 
+   "job": "XREFFILE", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/remote_refresh.sh:26", 
+   "line": 26, 
+   "verb": "put", 
+   "job": "CUSTFILE", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/remote_refresh.sh:29", 
+   "line": 29, 
+   "verb": "put", 
+   "job": "TRANFILE", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/remote_refresh.sh:32", 
+   "line": 32, 
+   "verb": "put", 
+   "job": "DISCGRP", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/remote_refresh.sh:35", 
+   "line": 35, 
+   "verb": "put", 
+   "job": "TCATBALF", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/remote_refresh.sh:38", 
+   "line": 38, 
+   "verb": "put", 
+   "job": "TRANCATG", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/remote_refresh.sh:41", 
+   "line": 41, 
+   "verb": "put", 
+   "job": "TRANTYPE", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/remote_refresh.sh:44", 
+   "line": 44, 
+   "verb": "put", 
+   "job": "DUSRSECJ", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/remote_refresh.sh:50", 
+   "line": 50, 
+   "verb": "put", 
+   "job": "OPENFIL", 
+   "script": "scripts/remote_refresh.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:13", 
+   "line": 13, 
+   "verb": "put", 
+   "job": "CLOSEFIL", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:17", 
+   "line": 17, 
+   "verb": "put", 
+   "job": "ACCTFILE", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:20", 
+   "line": 20, 
+   "verb": "put", 
+   "job": "CARDFILE", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:23", 
+   "line": 23, 
+   "verb": "put", 
+   "job": "XREFFILE", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:26", 
+   "line": 26, 
+   "verb": "put", 
+   "job": "CUSTFILE", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:29", 
+   "line": 29, 
+   "verb": "put", 
+   "job": "TRANBKP", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:32", 
+   "line": 32, 
+   "verb": "put", 
+   "job": "DISCGRP", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:35", 
+   "line": 35, 
+   "verb": "put", 
+   "job": "TCATBALF", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:38", 
+   "line": 38, 
+   "verb": "put", 
+   "job": "TRANTYPE", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:41", 
+   "line": 41, 
+   "verb": "put", 
+   "job": "DUSRSECJ", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:47", 
+   "line": 47, 
+   "verb": "put", 
+   "job": "POSTTRAN", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:51", 
+   "line": 51, 
+   "verb": "put", 
+   "job": "INTCALC", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:55", 
+   "line": 55, 
+   "verb": "put", 
+   "job": "TRANBKP", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:58", 
+   "line": 58, 
+   "verb": "put", 
+   "job": "COMBTRAN", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:62", 
+   "line": 62, 
+   "verb": "put", 
+   "job": "TRANIDX", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:66", 
+   "line": 66, 
+   "verb": "put", 
+   "job": "OPENFIL", 
+   "script": "scripts/run_full_batch.sh"
+  }, 
+  {
+   "source": "scripts/run_interest_calc.sh:15", 
+   "line": 15, 
+   "verb": "put", 
+   "job": "CLOSEFIL", 
+   "script": "scripts/run_interest_calc.sh"
+  }, 
+  {
+   "source": "scripts/run_interest_calc.sh:19", 
+   "line": 19, 
+   "verb": "put", 
+   "job": "INTCALC", 
+   "script": "scripts/run_interest_calc.sh"
+  }, 
+  {
+   "source": "scripts/run_interest_calc.sh:23", 
+   "line": 23, 
+   "verb": "put", 
+   "job": "TRANBKP", 
+   "script": "scripts/run_interest_calc.sh"
+  }, 
+  {
+   "source": "scripts/run_interest_calc.sh:26", 
+   "line": 26, 
+   "verb": "put", 
+   "job": "COMBTRAN", 
+   "script": "scripts/run_interest_calc.sh"
+  }, 
+  {
+   "source": "scripts/run_interest_calc.sh:30", 
+   "line": 30, 
+   "verb": "put", 
+   "job": "TRANIDX", 
+   "script": "scripts/run_interest_calc.sh"
+  }, 
+  {
+   "source": "scripts/run_interest_calc.sh:34", 
+   "line": 34, 
+   "verb": "put", 
+   "job": "OPENFIL", 
+   "script": "scripts/run_interest_calc.sh"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:13", 
+   "line": 13, 
+   "verb": "put", 
+   "job": "CLOSEFIL", 
+   "script": "scripts/run_posting.sh"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:17", 
+   "line": 17, 
+   "verb": "put", 
+   "job": "ACCTFILE", 
+   "script": "scripts/run_posting.sh"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:20", 
+   "line": 20, 
+   "verb": "put", 
+   "job": "TCATBALF", 
+   "script": "scripts/run_posting.sh"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:23", 
+   "line": 23, 
+   "verb": "put", 
+   "job": "TRANBKP", 
+   "script": "scripts/run_posting.sh"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:26", 
+   "line": 26, 
+   "verb": "put", 
+   "job": "POSTTRAN", 
+   "script": "scripts/run_posting.sh"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:30", 
+   "line": 30, 
+   "verb": "put", 
+   "job": "TRANIDX", 
+   "script": "scripts/run_posting.sh"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:34", 
+   "line": 34, 
+   "verb": "put", 
+   "job": "OPENFIL", 
+   "script": "scripts/run_posting.sh"
+  }
+ ], 
+ "controlm_jobs": [
+  {
+   "folder_days": null, 
+   "description": {
+    "text": "DAILY CLOSEFIL", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "DAILY-TransactionBackup", 
+   "days": "ALL", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "CLOSEFIL", 
+   "time_to": "23:00", 
+   "folder": "DAILY-TransactionBackup"
+  }, 
+  {
+   "folder_days": null, 
+   "description": {
+    "text": "DAILY TRANBKP", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "DAILY-TransactionBackup", 
+   "days": "ALL", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "TRANBKP", 
+   "time_to": "23:00", 
+   "folder": "DAILY-TransactionBackup"
+  }, 
+  {
+   "folder_days": null, 
+   "description": {
+    "text": "DAILY WAITSTEP", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "DAILY-TransactionBackup", 
+   "days": "ALL", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "WAITSTEP", 
+   "time_to": "23:00", 
+   "folder": "DAILY-TransactionBackup"
+  }, 
+  {
+   "folder_days": null, 
+   "description": {
+    "text": "DAILY OPENFIL", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "DAILY-TransactionBackup", 
+   "days": "ALL", 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "OPENFIL", 
+   "time_to": "23:00", 
+   "folder": "DAILY-TransactionBackup"
+  }, 
+  {
+   "folder_days": null, 
+   "description": {
+    "text": "WEEKLY MNTTRDB2", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "WEEKLY-TransactionTypesDBRefresh", 
+   "days": null, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "MNTTRDB2", 
+   "time_to": "23:00", 
+   "folder": "WEEKLY-TransactionTypesDBRefresh"
+  }, 
+  {
+   "folder_days": null, 
+   "description": {
+    "text": "MONTHLY CLOSEFIL", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "MONTHLY-InterestCalculation", 
+   "days": null, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "CLOSEFIL", 
+   "time_to": "23:00", 
+   "folder": "MONTHLY-InterestCalculation"
+  }, 
+  {
+   "folder_days": null, 
+   "description": {
+    "text": "MONTHLY INTCALC", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "MONTHLY-InterestCalculation", 
+   "days": null, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "INTCALC", 
+   "time_to": "23:00", 
+   "folder": "MONTHLY-InterestCalculation"
+  }, 
+  {
+   "folder_days": null, 
+   "description": {
+    "text": "MONTHLY COMBTRAN", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "MONTHLY-InterestCalculation", 
+   "days": null, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "COMBTRAN", 
+   "time_to": "23:00", 
+   "folder": "MONTHLY-InterestCalculation"
+  }, 
+  {
+   "folder_days": null, 
+   "description": {
+    "text": "MONTHLY WAITSTEP", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "MONTHLY-InterestCalculation", 
+   "days": null, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "WAITSTEP", 
+   "time_to": "23:00", 
+   "folder": "MONTHLY-InterestCalculation"
+  }, 
+  {
+   "folder_days": null, 
+   "description": {
+    "text": "MONTHLY OPENFIL", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "MONTHLY-InterestCalculation", 
+   "days": null, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "OPENFIL", 
+   "time_to": "23:00", 
+   "folder": "MONTHLY-InterestCalculation"
+  }, 
+  {
+   "folder_days": "SA", 
+   "description": {
+    "text": "WEEKLY DisclosureGroupsRefresh CLOSEFIL", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "WEEKLY-DisclosureGroupsRefresh", 
+   "days": null, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "CLOSEFIL", 
+   "time_to": "23:00", 
+   "folder": "WEEKLY-DisclosureGroupsRefresh"
+  }, 
+  {
+   "folder_days": "SA", 
+   "description": {
+    "text": "WEEKLY DisclosureGroupsRefresh DISCGRP", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "WEEKLY-DisclosureGroupsRefresh", 
+   "days": null, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "DISCGRP", 
+   "time_to": "23:00", 
+   "folder": "WEEKLY-DisclosureGroupsRefresh"
+  }, 
+  {
+   "folder_days": "SA", 
+   "description": {
+    "text": "WEEKLY DisclosureGroupsRefresh WAITSTEP", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "WEEKLY-DisclosureGroupsRefresh", 
+   "days": null, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "WAITSTEP", 
+   "time_to": "23:00", 
+   "folder": "WEEKLY-DisclosureGroupsRefresh"
+  }, 
+  {
+   "folder_days": "SA", 
+   "description": {
+    "text": "WEEKLY DisclosureGroupsRefresh OPENFIL", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "WEEKLY-DisclosureGroupsRefresh", 
+   "days": null, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "OPENFIL", 
+   "time_to": "23:00", 
+   "folder": "WEEKLY-DisclosureGroupsRefresh"
+  }, 
+  {
+   "folder_days": "SA", 
+   "description": {
+    "text": "WEEKLY TransactionTypesDBRefresh TRANEXTR", 
+    "confidence": "Unverified"
+   }, 
+   "parent_folder_attribute": "WEEKLY-DisclosureGroupsRefresh", 
+   "days": null, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "job": "TRANEXTR", 
+   "time_to": "23:00", 
+   "folder": "WEEKLY-TransactionTypesDBRefresh"
+  }
+ ]
+}

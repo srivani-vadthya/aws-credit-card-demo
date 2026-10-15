@@ -1,0 +1,45 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/COMBTRAN.jcl:25", 
+   "via": "jcl-dd", 
+   "by": "COMBTRAN.STEP05R", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/INTCALC.jcl:37", 
+   "via": "jcl-dd", 
+   "by": "INTCALC.STEP15", 
+   "ops": [
+    "C", 
+    "D"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/DEFGDGB.jcl:48"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "gdg": {
+   "scratch": true, 
+   "limit": 5, 
+   "empty": false, 
+   "source": "app/jcl/DEFGDGB.jcl:48"
+  }, 
+  "defined_by": [
+   "app/jcl/DEFGDGB.jcl:48"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.SYSTRAN", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "gdg-base", 
+ "aliases": [], 
+ "sample_data": null
+}

@@ -1,0 +1,54 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/TRANREPT.jcl:51", 
+   "via": "jcl-dd", 
+   "by": "TRANREPT.STEP05R", 
+   "ops": [
+    "C", 
+    "D"
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANREPT.jcl:65", 
+   "via": "jcl-dd", 
+   "by": "TRANREPT.STEP10R", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "samples/jcl/SORTTEST.jcl:31", 
+   "via": "jcl-dd", 
+   "by": "SORTTEST.STEP05R", 
+   "ops": [
+    "C", 
+    "D"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/DEFGDGB.jcl:30"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "gdg": {
+   "scratch": true, 
+   "limit": 5, 
+   "empty": false, 
+   "source": "app/jcl/DEFGDGB.jcl:30"
+  }, 
+  "defined_by": [
+   "app/jcl/DEFGDGB.jcl:30"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.TRANSACT.DALY", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "gdg-base", 
+ "aliases": [], 
+ "sample_data": null
+}

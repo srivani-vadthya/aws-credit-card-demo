@@ -1,0 +1,1083 @@
+{
+ "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:19", 
+ "name": "COPAU00", 
+ "module": "auth", 
+ "maps": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:26", 
+   "mockup": [
+    "Tran: XXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "                             View Authorizations", 
+    "", 
+    "  Search Acct Id: ___________", 
+    "  Name:  XXXXXXXXXXXXXXXXXXXXXXXXX         Customer Id:  XXXXXXXXX", 
+    "         XXXXXXXXXXXXXXXXXXXXXXXXX         Acct Status:  X", 
+    "         XXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "         PH:  XXXXXXXXXXXXX                Approval # :  XXX   Decline #:  XXX", 
+    "", 
+    "     Credit Lim:                  Cash Lim:              Appr Amt:", 
+    "     Credit Bal:                  Cash Bal:              Decl Amt:", 
+    "", 
+    " Sel    Transaction ID      Date       Time     Type   A/D  STS      Amount", 
+    " ---   ----------------   --------  --------    ----   ---  ---   ------------", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "           Type", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "ENTER=Continue  F3=Back  F7=Backward  F8=Forwar-"
+   ], 
+   "name": "COPAU0A", 
+   "fields": [
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:75", 
+     "length": 19, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "View Authorizations", 
+     "col": 30, 
+     "row": 3
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:79", 
+     "length": 15, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Search Acct Id:", 
+     "col": 3, 
+     "row": 5
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:84", 
+     "length": 11, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "ACCTID", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 19, 
+     "row": 5
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:89", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 31, 
+     "row": 5
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:92", 
+     "length": 6, 
+     "attrb": null, 
+     "name": null, 
+     "color": "DEFAULT", 
+     "initial": "Name: ", 
+     "col": 3, 
+     "row": 6
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:96", 
+     "length": 25, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 10, 
+     "row": 6
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:100", 
+     "length": 13, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "Customer Id: ", 
+     "col": 44, 
+     "row": 6
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:103", 
+     "length": 9, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CUSTID", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 58, 
+     "row": 6
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:107", 
+     "length": 25, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "ADDR001", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 10, 
+     "row": 7
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:111", 
+     "length": 13, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "Acct Status: ", 
+     "col": 44, 
+     "row": 7
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:114", 
+     "length": 1, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "ACCSTAT", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 58, 
+     "row": 7
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:118", 
+     "length": 25, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "ADDR002", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 10, 
+     "row": 8
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:122", 
+     "length": 3, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "PH:", 
+     "col": 10, 
+     "row": 9
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:125", 
+     "length": 13, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "PHONE1", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 15, 
+     "row": 9
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:129", 
+     "length": 13, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "Approval # : ", 
+     "col": 44, 
+     "row": 9
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:132", 
+     "length": 3, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "APPRCNT", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 58, 
+     "row": 9
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:136", 
+     "length": 10, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "Decline #:", 
+     "col": 64, 
+     "row": 9
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:139", 
+     "length": 3, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "DECLCNT", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 76, 
+     "row": 9
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:143", 
+     "length": 11, 
+     "attrb": null, 
+     "name": null, 
+     "color": "DEFAULT", 
+     "initial": "Credit Lim:", 
+     "col": 6, 
+     "row": 11
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:147", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CREDLIM", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 19, 
+     "row": 11
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:152", 
+     "length": 9, 
+     "attrb": null, 
+     "name": null, 
+     "color": "DEFAULT", 
+     "initial": "Cash Lim:", 
+     "col": 35, 
+     "row": 11
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:156", 
+     "length": 9, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CASHLIM", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 46, 
+     "row": 11
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:161", 
+     "length": 9, 
+     "attrb": null, 
+     "name": null, 
+     "color": "DEFAULT", 
+     "initial": "Appr Amt:", 
+     "col": 58, 
+     "row": 11
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:165", 
+     "length": 10, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "APPRAMT", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 69, 
+     "row": 11
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:170", 
+     "length": 11, 
+     "attrb": null, 
+     "name": null, 
+     "color": "DEFAULT", 
+     "initial": "Credit Bal:", 
+     "col": 6, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:174", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CREDBAL", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 19, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:179", 
+     "length": 9, 
+     "attrb": null, 
+     "name": null, 
+     "color": "DEFAULT", 
+     "initial": "Cash Bal:", 
+     "col": 35, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:183", 
+     "length": 9, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CASHBAL", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 46, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:188", 
+     "length": 9, 
+     "attrb": null, 
+     "name": null, 
+     "color": "DEFAULT", 
+     "initial": "Decl Amt:", 
+     "col": 58, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:192", 
+     "length": 10, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "DECLAMT", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 69, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:197", 
+     "length": 3, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Sel", 
+     "col": 2, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:202", 
+     "length": 16, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": " Transaction ID ", 
+     "col": 8, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:207", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "  Date  ", 
+     "col": 27, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:212", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "  Time  ", 
+     "col": 38, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:217", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Type ", 
+     "col": 49, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:222", 
+     "length": 3, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "A/D", 
+     "col": 56, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:227", 
+     "length": 3, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "STS", 
+     "col": 61, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:232", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "   Amount   ", 
+     "col": 67, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:237", 
+     "length": 3, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "---", 
+     "col": 2, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:242", 
+     "length": 16, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "----------------", 
+     "col": 8, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:247", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "--------", 
+     "col": 27, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:252", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "--------", 
+     "col": 37, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:257", 
+     "length": 4, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "----", 
+     "col": 49, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:262", 
+     "length": 3, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "---", 
+     "col": 56, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:267", 
+     "length": 3, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "---", 
+     "col": 61, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:272", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "------------", 
+     "col": 67, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:277", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0001", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:283", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:286", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID01", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:291", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PDATE01", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:296", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PTIME01", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:301", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PTYPE01", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 49, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:306", 
+     "length": 1, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PAPRV01", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 58, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:311", 
+     "length": 1, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PSTAT01", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 63, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:316", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PAMT001", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:321", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0002", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:327", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:330", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID02", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:335", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PDATE02", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:340", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PTIME02", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:345", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PTYPE02", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 49, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:350", 
+     "length": 1, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PAPRV02", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 58, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:355", 
+     "length": 1, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PSTAT02", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 63, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:360", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PAMT002", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:365", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0003", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:371", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:374", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID03", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:379", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PDATE03", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:384", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PTIME03", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:389", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PTYPE03", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 49, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:394", 
+     "length": 1, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PAPRV03", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 58, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:399", 
+     "length": 1, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PSTAT03", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 63, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:404", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PAMT003", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:409", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0004", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:415", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:418", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID04", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:423", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PDATE04", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:428", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PTIME04", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:433", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PTYPE04", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 49, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:438", 
+     "length": 1, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PAPRV04", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 58, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:443", 
+     "length": 1, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PSTAT04", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 63, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:448", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PAMT004", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:453", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID05", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 20
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:458", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PDATE05", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 20
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:463", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PTIME05", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 20
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:468", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PTYPE05", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 49, 
+     "row": 20
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:473", 
+     "length": 1, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PAPRV05", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 58, 
+     "row": 20
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:478", 
+     "length": 1, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PSTAT05", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 63, 
+     "row": 20
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:483", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PAMT005", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 20
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:488", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0005", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 20
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:494", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 20
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:497", 
+     "length": 52, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Type ", 
+     "col": 12, 
+     "row": 22
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:503", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:507", 
+     "length": 48, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "YELLOW", 
+     "initial": "ENTER=Continue  F3=Back  F7=Backward  F8=Forwar- d", 
+     "col": 1, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

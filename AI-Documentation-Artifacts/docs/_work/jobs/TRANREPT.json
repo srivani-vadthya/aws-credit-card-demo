@@ -1,0 +1,449 @@
+{
+ "set_symbols": {}, 
+ "submitted_by": [], 
+ "description": {
+  "text": "Unload the processed transaction file", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/TRANREPT.jcl:21"
+ }, 
+ "job_card": {
+  "msgclass": "0", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID", 
+  "source": "app/jcl/TRANREPT.jcl:1"
+ }, 
+ "schedule": [], 
+ "source_path": "app/jcl/TRANREPT.jcl", 
+ "findings": [
+  {
+   "text": "Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member. Absence does not prove the job never runs.", 
+   "confidence": "Confirmed", 
+   "source": "app/jcl/TRANREPT.jcl"
+  }, 
+  {
+   "finding": "Step name STEP05R is used by more than one EXEC statement (lines 23, 37). DD statements are assigned to the step by line range.", 
+   "source": "app/jcl/TRANREPT.jcl:23, app/jcl/TRANREPT.jcl:37", 
+   "confidence": "Confirmed"
+  }
+ ], 
+ "module": "base", 
+ "steps": [
+  {
+   "function": "Executes procedure REPROC (IDCAMS REPRO)", 
+   "kind": "utility", 
+   "if_condition": null, 
+   "name": "STEP05R", 
+   "control_statements": [
+    {
+     "text": "REPRO INFILE(FILEIN) OUTFILE(FILEOUT)", 
+     "meaning": "IDCAMS repro from FILEIN to FILEOUT", 
+     "also_identical": "app/app-transaction-type-db2/ctl/REPROCT.ctl:15", 
+     "source": "app/ctl/REPROCT.ctl:15"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "line": 26, 
+     "ddname": "PRC001.FILEIN", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS"
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "layout": null, 
+     "space": "(CYL,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": "350", 
+     "gdg_relative": "+1", 
+     "recfm": "FB", 
+     "sysout": false, 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "line": 29, 
+     "ddname": "PRC001.FILEOUT", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)"
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "line": 27, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "source": "app/proc/REPROC.prc:27-28", 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "from_proc": "REPROC", 
+     "ddname": "PRC001.SYSIN", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)"
+    }
+   ], 
+   "parm": null, 
+   "program": null, 
+   "cond": null, 
+   "proc_steps": [
+    "PRC001"
+   ], 
+   "proc_expansion": {
+    "confidence": "Confirmed", 
+    "proc_source": "app/proc/REPROC.prc:1-29", 
+    "proc_steps": [
+     {
+      "source": "app/proc/REPROC.prc:21", 
+      "program": "IDCAMS", 
+      "name": "PRC001"
+     }
+    ], 
+    "overridden_dds": [
+     "PRC001.FILEIN", 
+     "PRC001.FILEOUT"
+    ], 
+    "proc_default_dsn": {
+     "FILEOUT": "NULLFILE", 
+     "FILEIN": "NULLFILE", 
+     "source": "app/proc/REPROC.prc:23-26"
+    }, 
+    "symbolics": [
+     {
+      "source": "app/jcl/TRANREPT.jcl:24", 
+      "from": "EXEC override", 
+      "name": "CNTLLIB", 
+      "value": "AWS.M2.CARDDEMO.CNTL"
+     }
+    ], 
+    "control_member_note": "SYSIN resolves to AWS.M2.CARDDEMO.CNTL(REPROCT). The two REPROCT.ctl files in the repository are byte-identical. Which file is loaded into that library is not stated in the repository (see gaps.md)."
+   }, 
+   "line": 23, 
+   "proc": "REPROC"
+  }, 
+  {
+   "function": "SORT control", 
+   "kind": "utility", 
+   "if_condition": null, 
+   "name": "STEP05R", 
+   "control_statements": [
+    {
+     "text": "SORT FIELDS=(TRAN-CARD-NUM,A)", 
+     "meaning": "SORT control", 
+     "source": "app/jcl/TRANREPT.jcl:46"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": "+1", 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "line": 38, 
+     "ddname": "SORTIN", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)"
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [], 
+     "line": 40, 
+     "ddname": "SYMNAMES", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [], 
+     "line": 45, 
+     "ddname": "SYSIN", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": true, 
+     "usage": [], 
+     "line": 50, 
+     "ddname": "SYSOUT", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "layout": null, 
+     "space": "(CYL,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": "+1", 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "line": 51, 
+     "ddname": "SORTOUT", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)"
+    }
+   ], 
+   "parm": null, 
+   "program": "SORT", 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 37, 
+   "proc": null
+  }, 
+  {
+   "function": "Executes program CBTRN03C", 
+   "kind": "application", 
+   "if_condition": null, 
+   "name": "STEP10R", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "line": 60, 
+     "ddname": "STEPLIB", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB"
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": true, 
+     "usage": [], 
+     "line": 62, 
+     "ddname": "SYSOUT", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": true, 
+     "usage": [], 
+     "line": 63, 
+     "ddname": "SYSPRINT", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": "+1", 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "line": 65, 
+     "ddname": "TRANFILE", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)"
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "line": 67, 
+     "ddname": "CARDXREF", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS"
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "line": 69, 
+     "ddname": "TRANTYPE", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TRANTYPE.VSAM.KSDS"
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "line": 71, 
+     "ddname": "TRANCATG", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TRANCATG.VSAM.KSDS"
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "line": 73, 
+     "ddname": "DATEPARM", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.DATEPARM"
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "layout": null, 
+     "space": "(CYL,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": "133", 
+     "gdg_relative": "+1", 
+     "recfm": "FB", 
+     "sysout": false, 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "line": 76, 
+     "ddname": "TRANREPT", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TRANREPT(+1)"
+    }
+   ], 
+   "parm": null, 
+   "program": "CBTRN03C", 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 59, 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "7d8fc0777e6b9fb1c62aee6b4b10a67d127057c84b92203c7152f230b3db9571", 
+ "job_name": "TRANREPT", 
+ "jcllib": [
+  "ORDER=('AWS.M2.CARDDEMO.PROC')"
+ ]
+}

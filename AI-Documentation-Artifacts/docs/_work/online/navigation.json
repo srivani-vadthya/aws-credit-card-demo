@@ -1,0 +1,1369 @@
+{
+ "aid_keys": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:225", 
+   "program": "COPAUS0C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:235", 
+   "program": "COPAUS0C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:239", 
+   "program": "COPAUS0C", 
+   "key": "DFHPF7", 
+   "text": "WHEN DFHPF7"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:242", 
+   "program": "COPAUS0C", 
+   "key": "DFHPF8", 
+   "text": "WHEN DFHPF8"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:181", 
+   "program": "COPAUS1C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:184", 
+   "program": "COPAUS1C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:187", 
+   "program": "COPAUS1C", 
+   "key": "DFHPF5", 
+   "text": "WHEN DFHPF5"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:190", 
+   "program": "COPAUS1C", 
+   "key": "DFHPF8", 
+   "text": "WHEN DFHPF8"
+  }, 
+  {
+   "source": "app/cbl/COADM01C.cbl:98", 
+   "program": "COADM01C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/COADM01C.cbl:100", 
+   "program": "COADM01C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:126", 
+   "program": "COBIL00C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:128", 
+   "program": "COBIL00C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/COBIL00C.cbl:136", 
+   "program": "COBIL00C", 
+   "key": "DFHPF4", 
+   "text": "WHEN DFHPF4"
+  }, 
+  {
+   "source": "app/cbl/COMEN01C.cbl:94", 
+   "program": "COMEN01C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/COMEN01C.cbl:96", 
+   "program": "COMEN01C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:185", 
+   "program": "CORPT00C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/CORPT00C.cbl:187", 
+   "program": "CORPT00C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/COSGN00C.cbl:86", 
+   "program": "COSGN00C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/COSGN00C.cbl:88", 
+   "program": "COSGN00C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:120", 
+   "program": "COTRN00C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:122", 
+   "program": "COTRN00C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:125", 
+   "program": "COTRN00C", 
+   "key": "DFHPF7", 
+   "text": "WHEN DFHPF7"
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:127", 
+   "program": "COTRN00C", 
+   "key": "DFHPF8", 
+   "text": "WHEN DFHPF8"
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:113", 
+   "program": "COTRN01C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:115", 
+   "program": "COTRN01C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:123", 
+   "program": "COTRN01C", 
+   "key": "DFHPF4", 
+   "text": "WHEN DFHPF4"
+  }, 
+  {
+   "source": "app/cbl/COTRN01C.cbl:125", 
+   "program": "COTRN01C", 
+   "key": "DFHPF5", 
+   "text": "WHEN DFHPF5"
+  }, 
+  {
+   "source": "app/cbl/COTRN02C.cbl:134", 
+   "program": "COTRN02C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/COTRN02C.cbl:136", 
+   "program": "COTRN02C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/COTRN02C.cbl:144", 
+   "program": "COTRN02C", 
+   "key": "DFHPF4", 
+   "text": "WHEN DFHPF4"
+  }, 
+  {
+   "source": "app/cbl/COTRN02C.cbl:146", 
+   "program": "COTRN02C", 
+   "key": "DFHPF5", 
+   "text": "WHEN DFHPF5"
+  }, 
+  {
+   "source": "app/cbl/COUSR00C.cbl:123", 
+   "program": "COUSR00C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/COUSR00C.cbl:125", 
+   "program": "COUSR00C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/COUSR00C.cbl:128", 
+   "program": "COUSR00C", 
+   "key": "DFHPF7", 
+   "text": "WHEN DFHPF7"
+  }, 
+  {
+   "source": "app/cbl/COUSR00C.cbl:130", 
+   "program": "COUSR00C", 
+   "key": "DFHPF8", 
+   "text": "WHEN DFHPF8"
+  }, 
+  {
+   "source": "app/cbl/COUSR01C.cbl:91", 
+   "program": "COUSR01C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/COUSR01C.cbl:93", 
+   "program": "COUSR01C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/COUSR01C.cbl:96", 
+   "program": "COUSR01C", 
+   "key": "DFHPF4", 
+   "text": "WHEN DFHPF4"
+  }, 
+  {
+   "source": "app/cbl/COUSR02C.cbl:109", 
+   "program": "COUSR02C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/COUSR02C.cbl:111", 
+   "program": "COUSR02C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/COUSR02C.cbl:120", 
+   "program": "COUSR02C", 
+   "key": "DFHPF4", 
+   "text": "WHEN DFHPF4"
+  }, 
+  {
+   "source": "app/cbl/COUSR02C.cbl:122", 
+   "program": "COUSR02C", 
+   "key": "DFHPF5", 
+   "text": "WHEN DFHPF5"
+  }, 
+  {
+   "source": "app/cbl/COUSR02C.cbl:124", 
+   "program": "COUSR02C", 
+   "key": "DFHPF12", 
+   "text": "WHEN DFHPF12"
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:109", 
+   "program": "COUSR03C", 
+   "key": "DFHENTER", 
+   "text": "WHEN DFHENTER"
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:111", 
+   "program": "COUSR03C", 
+   "key": "DFHPF3", 
+   "text": "WHEN DFHPF3"
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:119", 
+   "program": "COUSR03C", 
+   "key": "DFHPF4", 
+   "text": "WHEN DFHPF4"
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:121", 
+   "program": "COUSR03C", 
+   "key": "DFHPF5", 
+   "text": "WHEN DFHPF5"
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:123", 
+   "program": "COUSR03C", 
+   "key": "DFHPF12", 
+   "text": "WHEN DFHPF12"
+  }
+ ], 
+ "resolution_note": "Dynamic targets resolved 2026-10-12 from MOVE statements and VALUE clauses in the same program. Program-name constants are never the target of another MOVE. A move from CDEMO-FROM-PROGRAM returns to the caller; callers are the programs found transferring to that program after setting CDEMO-FROM-PROGRAM to their own name (Inferred).", 
+ "edges": [
+  {
+   "confidence": "Inferred", 
+   "from": "COACTUPC", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COACTUPC.cbl:558", 
+     "confidence": "Confirmed", 
+     "via": "LIT-MENUPGM", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COACTUPC.cbl:939"
+    }, 
+    {
+     "caller_evidence": "app/cbl/COMEN01C.cbl:179-185", 
+     "confidence": "Inferred", 
+     "via": "CDEMO-FROM-PROGRAM (return to caller)", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COACTUPC.cbl:941"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COACTUPC.cbl:956", 
+   "resolution_confidence": "Inferred", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COACTUPC", 
+   "to": "LIT-THISTRANID", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COACTUPC.cbl:536", 
+     "confidence": "Confirmed", 
+     "target": "CAUP"
+    }
+   ], 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COACTUPC.cbl:1015", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COACTVWC", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COACTVWC.cbl:169", 
+     "confidence": "Confirmed", 
+     "via": "LIT-MENUPGM", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COACTVWC.cbl:336"
+    }, 
+    {
+     "caller_evidence": "app/cbl/COMEN01C.cbl:179-185", 
+     "confidence": "Inferred", 
+     "via": "CDEMO-FROM-PROGRAM (return to caller)", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COACTVWC.cbl:338"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COACTVWC.cbl:349", 
+   "resolution_confidence": "Inferred", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COACTVWC", 
+   "to": "LIT-THISTRANID", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COACTVWC.cbl:146", 
+     "confidence": "Confirmed", 
+     "target": "CAVW"
+    }
+   ], 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COACTVWC.cbl:402", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COADM01C", 
+   "to": "CA00", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COADM01C.cbl:111", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COADM01C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COADM01C.cbl:101"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COADM01C.cbl:166"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:168", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COADM01C", 
+   "to": "CA00", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COADM01C.cbl:280", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COADM01C", 
+   "to": "COUSR00C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COADM01C", 
+   "to": "COUSR01C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COADM01C", 
+   "to": "COUSR02C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COADM01C", 
+   "to": "COUSR03C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COADM01C", 
+   "to": "COTRTLIC", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COADM01C", 
+   "to": "COTRTUPC", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COADM01C", 
+   "to": "COSGN00C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:166", 
+   "condition": "CDEMO-TO-PROGRAM is spaces or low-values"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COBIL00C", 
+   "to": "CB00", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COBIL00C.cbl:146", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COBIL00C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COBIL00C.cbl:108"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COBIL00C.cbl:130"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COBIL00C.cbl:276"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COBIL00C.cbl:281", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COCRDLIC", 
+   "to": "LIT-MENUPGM", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COCRDLIC.cbl:188", 
+     "confidence": "Confirmed", 
+     "via": "LIT-MENUPGM", 
+     "target": "COMEN01C", 
+     "set_at": null
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COCRDLIC.cbl:402", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COCRDLIC", 
+   "to": "CCARD-NEXT-PROG", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COCRDLIC.cbl:196", 
+     "confidence": "Confirmed", 
+     "via": "LIT-CARDDTLPGM", 
+     "target": "COCRDSLC", 
+     "set_at": "app/cbl/COCRDLIC.cbl:526"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COCRDLIC.cbl:538", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COCRDLIC", 
+   "to": "CCARD-NEXT-PROG", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COCRDLIC.cbl:204", 
+     "confidence": "Confirmed", 
+     "via": "LIT-CARDUPDPGM", 
+     "target": "COCRDUPC", 
+     "set_at": "app/cbl/COCRDLIC.cbl:554"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COCRDLIC.cbl:566", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COCRDLIC", 
+   "to": "LIT-THISTRANID", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COCRDLIC.cbl:182", 
+     "confidence": "Confirmed", 
+     "target": "CCLI"
+    }
+   ], 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COCRDLIC.cbl:615", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COCRDSLC", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COCRDSLC.cbl:180", 
+     "confidence": "Confirmed", 
+     "via": "LIT-MENUPGM", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COCRDSLC.cbl:318"
+    }, 
+    {
+     "caller_evidence": "app/cbl/COMEN01C.cbl:179-185", 
+     "confidence": "Inferred", 
+     "via": "CDEMO-FROM-PROGRAM (return to caller)", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COCRDSLC.cbl:320"
+    }, 
+    {
+     "caller_evidence": "app/cbl/COCRDLIC.cbl:521, app/cbl/COCRDLIC.cbl:538-539", 
+     "confidence": "Inferred", 
+     "via": "CDEMO-FROM-PROGRAM (return to caller)", 
+     "target": "COCRDLIC", 
+     "set_at": "app/cbl/COCRDSLC.cbl:320"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COCRDSLC.cbl:331", 
+   "resolution_confidence": "Inferred", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COCRDSLC", 
+   "to": "LIT-THISTRANID", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COCRDSLC.cbl:166", 
+     "confidence": "Confirmed", 
+     "target": "CCDL"
+    }
+   ], 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COCRDSLC.cbl:402", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COCRDUPC", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COCRDUPC.cbl:236", 
+     "confidence": "Confirmed", 
+     "via": "LIT-MENUPGM", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COCRDUPC.cbl:451"
+    }, 
+    {
+     "caller_evidence": "app/cbl/COMEN01C.cbl:179-185", 
+     "confidence": "Inferred", 
+     "via": "CDEMO-FROM-PROGRAM (return to caller)", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COCRDUPC.cbl:453"
+    }, 
+    {
+     "caller_evidence": "app/cbl/COCRDLIC.cbl:549, app/cbl/COCRDLIC.cbl:566-567", 
+     "confidence": "Inferred", 
+     "via": "CDEMO-FROM-PROGRAM (return to caller)", 
+     "target": "COCRDLIC", 
+     "set_at": "app/cbl/COCRDUPC.cbl:453"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COCRDUPC.cbl:473", 
+   "resolution_confidence": "Inferred", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COCRDUPC", 
+   "to": "LIT-THISTRANID", 
+   "resolved_to": [
+    {
+     "value_source": "app/cbl/COCRDUPC.cbl:222", 
+     "confidence": "Confirmed", 
+     "target": "CCUP"
+    }
+   ], 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COCRDUPC.cbl:554", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "CM00", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COMEN01C.cbl:107", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COMEN01C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COMEN01C.cbl:97"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COMEN01C.cbl:199"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:201", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "COACTVWC", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "COACTUPC", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "COCRDLIC", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "COCRDSLC", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "COCRDUPC", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "COTRN00C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "COTRN01C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "COTRN02C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "CORPT00C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "COBIL00C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "COPAUS0C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COMEN01C", 
+   "to": "COSGN00C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:199", 
+   "condition": "CDEMO-TO-PROGRAM is spaces or low-values"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COPAUS0C", 
+   "to": "CPVS", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:254", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COPAUS0C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "value_source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:34", 
+     "confidence": "Confirmed", 
+     "via": "WS-PGM-AUTH-DTL", 
+     "target": "COPAUS1C", 
+     "set_at": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:316"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:322", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COPAUS0C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "value_source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:35", 
+     "confidence": "Confirmed", 
+     "via": "WS-PGM-MENU", 
+     "target": "COMEN01C", 
+     "set_at": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:236"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:669"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:674", 
+   "resolution_confidence": "Confirmed", 
+   "excluded_moves": [
+    {
+     "value_source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:33", 
+     "confidence": "Confirmed", 
+     "via": "WS-PGM-AUTH-SMRY", 
+     "target": "COPAUS0C", 
+     "set_at": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:192", 
+     "excluded_reason": "Set on first entry (EIBCALEN = 0), after which the screen is sent without a transfer (app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:190-198)."
+    }
+   ], 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COPAUS1C", 
+   "to": "CPVD", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:202", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COPAUS1C", 
+   "to": "COPAUS2C", 
+   "mechanism": "LINK", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:248", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COPAUS1C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "value_source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:34", 
+     "confidence": "Confirmed", 
+     "via": "WS-PGM-AUTH-SMRY", 
+     "target": "COPAUS0C", 
+     "set_at": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:168"
+    }, 
+    {
+     "value_source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:34", 
+     "confidence": "Confirmed", 
+     "via": "WS-PGM-AUTH-SMRY", 
+     "target": "COPAUS0C", 
+     "set_at": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:185"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:367", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "CORPT00C", 
+   "to": "CR00", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/CORPT00C.cbl:199", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "CORPT00C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/CORPT00C.cbl:173"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/CORPT00C.cbl:188"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/CORPT00C.cbl:543"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/CORPT00C.cbl:548", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "CORPT00C", 
+   "to": "CR00", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/CORPT00C.cbl:587", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COSGN00C", 
+   "to": "CC00", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COSGN00C.cbl:98", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COSGN00C", 
+   "to": "COADM01C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COSGN00C.cbl:231", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COSGN00C", 
+   "to": "COMEN01C", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COSGN00C.cbl:236", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COTRN00C", 
+   "to": "CT00", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COTRN00C.cbl:138", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COTRN00C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COTRN01C", 
+     "set_at": "app/cbl/COTRN00C.cbl:188"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COTRN00C.cbl:192", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COTRN00C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COTRN00C.cbl:108"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COTRN00C.cbl:123"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COTRN00C.cbl:513"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COTRN00C.cbl:518", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COTRN01C", 
+   "to": "CT01", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COTRN01C.cbl:136", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COTRN01C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COTRN01C.cbl:95"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COTRN01C.cbl:117"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COTRN00C", 
+     "set_at": "app/cbl/COTRN01C.cbl:126"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COTRN01C.cbl:200"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COTRN01C.cbl:205", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COTRN02C", 
+   "to": "CT02", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COTRN02C.cbl:156", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COTRN02C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COTRN02C.cbl:116"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COMEN01C", 
+     "set_at": "app/cbl/COTRN02C.cbl:138"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COTRN02C.cbl:503"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COTRN02C.cbl:508", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COTRN02C", 
+   "to": "CT02", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COTRN02C.cbl:530", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COTRTLIC", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "value_source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:47", 
+     "confidence": "Confirmed", 
+     "via": "LIT-ADMINPGM", 
+     "target": "COADM01C", 
+     "set_at": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:603"
+    }, 
+    {
+     "caller_evidence": "app/cbl/COADM01C.cbl:142-146", 
+     "confidence": "Inferred", 
+     "via": "CDEMO-FROM-PROGRAM (return to caller)", 
+     "target": "COADM01C", 
+     "set_at": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:605"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:620", 
+   "resolution_confidence": "Inferred", 
+   "excluded_moves": [
+    {
+     "value_source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:50", 
+     "confidence": "Confirmed", 
+     "via": "LIT-ADDTPGM", 
+     "target": "COTRTUPC", 
+     "set_at": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:638", 
+     "excluded_reason": "Feeds the separate XCTL PROGRAM(LIT-ADDTPGM) at app/app-transaction-type-db2/cbl/COTRTLIC.cbl:648-649."
+    }
+   ], 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COTRTLIC", 
+   "to": "COTRTUPC", 
+   "mechanism": "XCTL", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:648", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COTRTLIC", 
+   "to": "CTLI", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:910", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COTRTUPC", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "value_source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:210", 
+     "confidence": "Confirmed", 
+     "via": "LIT-ADMINPGM", 
+     "target": "COADM01C", 
+     "set_at": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:440"
+    }, 
+    {
+     "caller_evidence": "app/cbl/COADM01C.cbl:142-146", 
+     "confidence": "Inferred", 
+     "via": "CDEMO-FROM-PROGRAM (return to caller)", 
+     "target": "COADM01C", 
+     "set_at": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:442"
+    }, 
+    {
+     "caller_evidence": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:633, app/app-transaction-type-db2/cbl/COTRTLIC.cbl:648-649", 
+     "confidence": "Inferred", 
+     "via": "CDEMO-FROM-PROGRAM (return to caller)", 
+     "target": "COTRTLIC", 
+     "set_at": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:442"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:457", 
+   "resolution_confidence": "Inferred", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COTRTUPC", 
+   "to": "LIT-THISTRANID", 
+   "resolved_to": [
+    {
+     "value_source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:204", 
+     "confidence": "Confirmed", 
+     "target": "CTTU"
+    }
+   ], 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:567", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COUSR00C", 
+   "to": "CU00", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COUSR00C.cbl:141", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COUSR00C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COUSR02C", 
+     "set_at": "app/cbl/COUSR00C.cbl:192"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COUSR00C.cbl:196", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COUSR00C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COUSR03C", 
+     "set_at": "app/cbl/COUSR00C.cbl:202"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COUSR00C.cbl:206", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COUSR00C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COUSR00C.cbl:111"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COADM01C", 
+     "set_at": "app/cbl/COUSR00C.cbl:126"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COUSR00C.cbl:509"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COUSR00C.cbl:514", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COUSR01C", 
+   "to": "CU01", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COUSR01C.cbl:107", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COUSR01C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COUSR01C.cbl:79"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COADM01C", 
+     "set_at": "app/cbl/COUSR01C.cbl:94"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COUSR01C.cbl:168"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COUSR01C.cbl:175", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COUSR02C", 
+   "to": "CU02", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COUSR02C.cbl:135", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COUSR02C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COUSR02C.cbl:91"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COADM01C", 
+     "set_at": "app/cbl/COUSR02C.cbl:114"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COADM01C", 
+     "set_at": "app/cbl/COUSR02C.cbl:125"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COUSR02C.cbl:253"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COUSR02C.cbl:258", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "from": "COUSR03C", 
+   "to": "CU03", 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COUSR03C.cbl:134", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "from": "COUSR03C", 
+   "to": "CDEMO-TO-PROGRAM", 
+   "resolved_to": [
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COUSR03C.cbl:91"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COADM01C", 
+     "set_at": "app/cbl/COUSR03C.cbl:113"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COADM01C", 
+     "set_at": "app/cbl/COUSR03C.cbl:124"
+    }, 
+    {
+     "confidence": "Confirmed", 
+     "target": "COSGN00C", 
+     "set_at": "app/cbl/COUSR03C.cbl:200"
+    }
+   ], 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COUSR03C.cbl:205", 
+   "resolution_confidence": "Confirmed", 
+   "condition": null
+  }
+ ]
+}

@@ -1,0 +1,233 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "Process and load daily transaction file and create transaction", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/POSTTRAN.jcl:20"
+ }, 
+ "job_card": {
+  "source": "app/jcl/POSTTRAN.jcl:1", 
+  "msgclass": "0", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [
+  {
+   "source": "app/scheduler/CardDemo.ca7", 
+   "calendar": null, 
+   "successors": [
+    "WAITSTEP"
+   ], 
+   "predecessors": [
+    "CBPAUP0J"
+   ], 
+   "time": null
+  }
+ ], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [
+  {
+   "source": "scripts/run_full_batch.sh:47", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:26", 
+   "mechanism": "script-ftp-put"
+  }
+ ], 
+ "findings": [], 
+ "source_path": "app/jcl/POSTTRAN.jcl", 
+ "steps": [
+  {
+   "function": "Executes program CBTRN02C", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 23, 
+   "kind": "application", 
+   "name": "STEP15", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 24, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 26, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 27, 
+     "ddname": "SYSOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 28, 
+     "ddname": "TRANFILE", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 30, 
+     "ddname": "DALYTRAN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.DALYTRAN.PS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 32, 
+     "ddname": "XREFFILE", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "lrecl": "430", 
+     "gdg_relative": "+1", 
+     "sysout": false, 
+     "line": 34, 
+     "ddname": "DALYREJS", 
+     "recfm": "F", 
+     "layout": null, 
+     "space": "(CYL,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.DALYREJS(+1)", 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 39, 
+     "ddname": "ACCTFILE", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 41, 
+     "ddname": "TCATBALF", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }
+   ], 
+   "program": "CBTRN02C", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "ecff62c691e6ce101de08690e72ec065bc98bd845744ddf914899097d37c9191", 
+ "job_name": "POSTTRAN"
+}

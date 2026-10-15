@@ -1,0 +1,461 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "RESTART=STEP30                                                     JOB05067", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/DEFGDGD.jcl:2"
+ }, 
+ "job_card": {
+  "source": "app/jcl/DEFGDGD.jcl:1", 
+  "msgclass": "0", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [
+  {
+   "text": "Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member. Absence does not prove the job never runs.", 
+   "confidence": "Confirmed", 
+   "source": "app/jcl/DEFGDGD.jcl"
+  }
+ ], 
+ "source_path": "app/jcl/DEFGDGD.jcl", 
+ "steps": [
+  {
+   "function": "IDCAMS define GDG", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 24, 
+   "kind": "utility", 
+   "name": "STEP10", 
+   "control_statements": [
+    {
+     "text": "DEFINE GENERATIONDATAGROUP -", 
+     "meaning": "IDCAMS define GDG", 
+     "source": "app/jcl/DEFGDGD.jcl:27"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 25, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 26, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "Utility step IEBGENER", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": "(0,NE)", 
+   "proc_steps": [], 
+   "line": 36, 
+   "kind": "utility", 
+   "name": "STEP20", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 37, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": true, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 38, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 39, 
+     "ddname": "SYSUT1", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.TRANTYPE.PS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(NEW,CATLG)", 
+     "dummy": false, 
+     "lrecl": "60", 
+     "gdg_relative": "+1", 
+     "sysout": false, 
+     "line": 40, 
+     "ddname": "SYSUT2", 
+     "recfm": "FB", 
+     "layout": null, 
+     "space": "(TRK,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.TRANTYPE.BKUP(+1)", 
+     "usage": [
+      "C"
+     ], 
+     "instream": false
+    }
+   ], 
+   "program": "IEBGENER", 
+   "proc": null
+  }, 
+  {
+   "function": "IDCAMS define GDG", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": "(0,NE)", 
+   "proc_steps": [], 
+   "line": 47, 
+   "kind": "utility", 
+   "name": "STEP30", 
+   "control_statements": [
+    {
+     "text": "DEFINE GENERATIONDATAGROUP -", 
+     "meaning": "IDCAMS define GDG", 
+     "source": "app/jcl/DEFGDGD.jcl:50"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 48, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 49, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "Utility step IEBGENER", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": "(0,NE)", 
+   "proc_steps": [], 
+   "line": 59, 
+   "kind": "utility", 
+   "name": "STEP40", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 60, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": true, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 61, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 62, 
+     "ddname": "SYSUT1", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(NEW,CATLG)", 
+     "dummy": false, 
+     "lrecl": "60", 
+     "gdg_relative": "+1", 
+     "sysout": false, 
+     "line": 63, 
+     "ddname": "SYSUT2", 
+     "recfm": "FB", 
+     "layout": null, 
+     "space": "(TRK,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS.BKUP(+1)", 
+     "usage": [
+      "C"
+     ], 
+     "instream": false
+    }
+   ], 
+   "program": "IEBGENER", 
+   "proc": null
+  }, 
+  {
+   "function": "IDCAMS define GDG", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 70, 
+   "kind": "utility", 
+   "name": "STEP50", 
+   "control_statements": [
+    {
+     "text": "DEFINE GENERATIONDATAGROUP -", 
+     "meaning": "IDCAMS define GDG", 
+     "source": "app/jcl/DEFGDGD.jcl:73"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 71, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 72, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }, 
+  {
+   "function": "Utility step IEBGENER", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": "(0,NE)", 
+   "proc_steps": [], 
+   "line": 82, 
+   "kind": "utility", 
+   "name": "STEP60", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 83, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": true, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 84, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 85, 
+     "ddname": "SYSUT1", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.DISCGRP.PS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(NEW,CATLG)", 
+     "dummy": false, 
+     "lrecl": "50", 
+     "gdg_relative": "+1", 
+     "sysout": false, 
+     "line": 86, 
+     "ddname": "SYSUT2", 
+     "recfm": "FB", 
+     "layout": null, 
+     "space": "(TRK,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.DISCGRP.BKUP(+1)", 
+     "usage": [
+      "C"
+     ], 
+     "instream": false
+    }
+   ], 
+   "program": "IEBGENER", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "278015ffb3a0c0b4694a0a5e4ade10060bf6c6fca10413353bf92c5fc64e7a02", 
+ "job_name": "DEFGDGD"
+}

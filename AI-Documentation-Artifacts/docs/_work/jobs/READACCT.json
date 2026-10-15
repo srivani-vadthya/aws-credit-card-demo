@@ -1,0 +1,263 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "PRE DELETE STEP", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/READACCT.jcl:20"
+ }, 
+ "job_card": {
+  "source": "app/jcl/READACCT.jcl:1", 
+  "msgclass": null, 
+  "region": "8M", 
+  "class": "A", 
+  "notify": null
+ }, 
+ "schedule": [
+  {
+   "source": "app/scheduler/CardDemo.ca7", 
+   "calendar": null, 
+   "successors": [
+    "READCARD"
+   ], 
+   "predecessors": [
+    "CLOSEFIL"
+   ], 
+   "time": null
+  }
+ ], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [], 
+ "source_path": "app/jcl/READACCT.jcl", 
+ "steps": [
+  {
+   "function": "Utility step IEFBR14", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 22, 
+   "kind": "utility", 
+   "name": "PREDEL", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "(MOD,DELETE,DELETE)", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 23, 
+     "ddname": "DD01", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.PSCOMP", 
+     "usage": [
+      "U", 
+      "D"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(MOD,DELETE,DELETE)", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 25, 
+     "ddname": "DD02", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.ARRYPS", 
+     "usage": [
+      "U", 
+      "D"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(MOD,DELETE,DELETE)", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 27, 
+     "ddname": "DD03", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VBPS", 
+     "usage": [
+      "U", 
+      "D"
+     ], 
+     "instream": false
+    }
+   ], 
+   "program": "IEFBR14", 
+   "proc": null
+  }, 
+  {
+   "function": "Executes program CBACT01C", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 32, 
+   "kind": "application", 
+   "name": "STEP05", 
+   "control_statements": [], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 33, 
+     "ddname": "STEPLIB", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 35, 
+     "ddname": "ACCTFILE", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "lrecl": "107", 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 37, 
+     "ddname": "OUTFILE", 
+     "recfm": "FB", 
+     "layout": null, 
+     "space": "(CYL,(1,2)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.PSCOMP", 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "lrecl": "110", 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 41, 
+     "ddname": "ARRYFILE", 
+     "recfm": "FB", 
+     "layout": null, 
+     "space": "(CYL,(1,2)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.ARRYPS", 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "lrecl": "84", 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 45, 
+     "ddname": "VBRCFILE", 
+     "recfm": "VB", 
+     "layout": null, 
+     "space": "(CYL,(1,2)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VBPS", 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 49, 
+     "ddname": "SYSOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 50, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "CBACT01C", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "0965badda9c801df4f86e74755b66325764d8d1a840c615e6552b660f6401f15", 
+ "job_name": "READACCT"
+}

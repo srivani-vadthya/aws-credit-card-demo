@@ -1,0 +1,146 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "Ver: CardDemo_v1.0-57-g40b7caa-110 Date: 2022-08-19 18:00:43 CDT", 
+  "confidence": "Unverified", 
+  "source": "samples/jcl/SORTTEST.jcl:37"
+ }, 
+ "job_card": {
+  "source": "samples/jcl/SORTTEST.jcl:1", 
+  "msgclass": "0", 
+  "region": "0M", 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "build", 
+ "jcllib": [], 
+ "submitted_by": [], 
+ "findings": [
+  {
+   "text": "Sample JCL under samples/jcl. Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member.", 
+   "confidence": "Confirmed", 
+   "source": "samples/jcl/SORTTEST.jcl"
+  }
+ ], 
+ "source_path": "samples/jcl/SORTTEST.jcl", 
+ "steps": [
+  {
+   "function": "SORT control", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 19, 
+   "kind": "utility", 
+   "name": "STEP05R", 
+   "control_statements": [
+    {
+     "text": "SORT FIELDS=(TRAN-CARD-NUM,A)", 
+     "meaning": "SORT control", 
+     "source": "samples/jcl/SORTTEST.jcl:27"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": "0", 
+     "sysout": false, 
+     "line": 20, 
+     "ddname": "SORTIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(0)", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 22, 
+     "ddname": "SYMNAMES", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 26, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 30, 
+     "ddname": "SYSOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": "+1", 
+     "sysout": false, 
+     "line": 31, 
+     "ddname": "SORTOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": "(CYL,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)", 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "instream": false
+    }
+   ], 
+   "program": "SORT", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "718453aa02b44f965579fa73ab85a8f192753f9c1346f140f3306724adaa8266", 
+ "job_name": "SORTTEST"
+}

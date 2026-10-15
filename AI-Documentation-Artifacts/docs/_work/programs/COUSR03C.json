@@ -1,0 +1,483 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "COADM01C", 
+   "resolved_from": "app/cpy/COADM02Y.cpy:44", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS or DFHCOMMAREA present", 
+   "source": "app/cbl/COUSR03C.cbl:81"
+  }
+ ], 
+ "source_path": "app/cbl/COUSR03C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/COUSR03C.cbl:1-8", 
+  "author": "AWS", 
+  "description": "Program     : COUSR03C.CBL Application : CardDemo Type        : CICS COBOL Program Function    : Delete a user from USRSEC file All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0", 
+  "version_banner": "* Ver: CardDemo_v1.0-15-g27d6c6f-68 Date: 2022-07-19 23:12:35 CDT"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 137, 
+   "purpose": "Statements include: DELETE, EXEC CICS RETURN", 
+   "performs": [
+    "RETURN-TO-PREV-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "SEND-USRDEL-SCREEN", 
+    "RECEIVE-USRDEL-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "RETURN-TO-PREV-SCREEN", 
+    "CLEAR-CURRENT-SCREEN", 
+    "DELETE-USER-INFO", 
+    "RETURN-TO-PREV-SCREEN", 
+    "SEND-USRDEL-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 82, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "PROCESS-ENTER-KEY", 
+   "section": null, 
+   "end_line": 169, 
+   "purpose": "Statements include: READ", 
+   "performs": [
+    "SEND-USRDEL-SCREEN", 
+    "READ-USER-SEC-FILE", 
+    "SEND-USRDEL-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 142, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "DELETE-USER-INFO", 
+   "section": null, 
+   "end_line": 192, 
+   "purpose": "Statements include: READ, DELETE", 
+   "performs": [
+    "SEND-USRDEL-SCREEN", 
+    "READ-USER-SEC-FILE", 
+    "DELETE-USER-SEC-FILE"
+   ], 
+   "reachable": true, 
+   "start_line": 174, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "RETURN-TO-PREV-SCREEN", 
+   "section": null, 
+   "end_line": 208, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 197, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SEND-USRDEL-SCREEN", 
+   "section": null, 
+   "end_line": 225, 
+   "purpose": "Statements include: EXEC CICS SEND", 
+   "performs": [
+    "POPULATE-HEADER-INFO"
+   ], 
+   "reachable": true, 
+   "start_line": 213, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "RECEIVE-USRDEL-SCREEN", 
+   "section": null, 
+   "end_line": 238, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 230, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-HEADER-INFO", 
+   "section": null, 
+   "end_line": 262, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 243, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "READ-USER-SEC-FILE", 
+   "section": null, 
+   "end_line": 300, 
+   "purpose": "Statements include: EXEC CICS READ, DELETE", 
+   "performs": [
+    "SEND-USRDEL-SCREEN", 
+    "SEND-USRDEL-SCREEN", 
+    "SEND-USRDEL-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 267, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "DELETE-USER-SEC-FILE", 
+   "section": null, 
+   "end_line": 336, 
+   "purpose": "Statements include: EXEC CICS DELETE", 
+   "performs": [
+    "INITIALIZE-ALL-FIELDS", 
+    "SEND-USRDEL-SCREEN", 
+    "SEND-USRDEL-SCREEN", 
+    "SEND-USRDEL-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 305, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "CLEAR-CURRENT-SCREEN", 
+   "section": null, 
+   "end_line": 344, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "INITIALIZE-ALL-FIELDS", 
+    "SEND-USRDEL-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 341, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "INITIALIZE-ALL-FIELDS", 
+   "section": null, 
+   "end_line": 356, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 349, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "COCOM01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR03C.cbl:49", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (01 at app/cpy/COCOM01Y.cpy:19)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COCOM01Y.cpy"
+  }, 
+  {
+   "name": "COUSR03", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR03C.cbl:60", 
+   "purpose": "Application copybook (bms-mapset)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/bms/COUSR03.bms"
+  }, 
+  {
+   "name": "COTTL01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR03C.cbl:62", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COTTL01Y.cpy"
+  }, 
+  {
+   "name": "CSDAT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR03C.cbl:63", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSDAT01Y.cpy"
+  }, 
+  {
+   "name": "CSMSG01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR03C.cbl:64", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSMSG01Y.cpy"
+  }, 
+  {
+   "name": "CSUSR01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR03C.cbl:65", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSUSR01Y.cpy"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COUSR03C.cbl:67", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COUSR03C.cbl:68", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }
+ ], 
+ "runtime_type": [
+  "cics-online"
+ ], 
+ "loc": {
+  "comment": 63, 
+  "total": 359, 
+  "code": 296
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/COUSR03C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COUSR03C.cbl:12"
+  }
+ ], 
+ "sha256": "bcd68f08c145b3b9b9c809a7082834e9519d78b6f363a0d1c5ff9d9576dcf888", 
+ "files": [
+  {
+   "logical_name": "USRSEC", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "USRSEC", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.USRSEC.VSAM.KSDS"
+   ], 
+   "source": "app/csd/CARDDEMO.CSD:88", 
+   "file_status_field": null, 
+   "organization": null, 
+   "access_mode": null, 
+   "alternate_keys": []
+  }
+ ], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "linkage": [
+   {
+    "source": "app/cbl/COUSR03C.cbl:74", 
+    "name": "DFHCOMMAREA"
+   }
+  ], 
+  "pcbs": []
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/COUSR03C.cbl:269-307", 
+   "store": "USRSEC", 
+   "store_kind": "cics-file", 
+   "ops": [
+    "D", 
+    "R", 
+    "U"
+   ]
+  }
+ ], 
+ "program_id": "COUSR03C", 
+ "candidate_rules": [], 
+ "error_handling": [
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COUSR03C.cbl:280", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }, 
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COUSR03C.cbl:313", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }
+ ], 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "MAIN-PARA", 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 134
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RETURN-TO-PREV-SCREEN", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 205
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "SEND-USRDEL-SCREEN", 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 219
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RECEIVE-USRDEL-SCREEN", 
+   "verb": "RECEIVE", 
+   "response_handling": "RESP checked", 
+   "line": 232
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "USRSEC", 
+   "options": {}, 
+   "paragraph": "READ-USER-SEC-FILE", 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 269
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "USRSEC", 
+   "options": {}, 
+   "paragraph": "DELETE-USER-SEC-FILE", 
+   "verb": "DELETE", 
+   "response_handling": "RESP checked", 
+   "line": 307
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CU03", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COUSR03C.cbl:134", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COUSR03C.cbl:205", 
+   "condition": null
+  }
+ ], 
+ "messages": [], 
+ "data_items": [
+  {
+   "source": "app/cbl/COUSR03C.cbl:36", 
+   "pic": "X(08)", 
+   "name": "WS-PGMNAME", 
+   "value": "'COUSR03C'"
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:37", 
+   "pic": "X(04)", 
+   "name": "WS-TRANID", 
+   "value": "'CU03'"
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:38", 
+   "pic": "X(80)", 
+   "name": "WS-MESSAGE", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:39", 
+   "pic": "X(08)", 
+   "name": "WS-USRSEC-FILE", 
+   "value": "'USRSEC  '"
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:40", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "ERR-FLG-ON", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "ERR-FLG-OFF", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:43", 
+   "pic": "S9(09)", 
+   "name": "WS-RESP-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:44", 
+   "pic": "S9(09)", 
+   "name": "WS-REAS-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:45", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "USR-MODIFIED-YES", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "USR-MODIFIED-NO", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-USR-MODIFIED", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COUSR03C.cbl:54", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "NEXT-PAGE-YES", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "NEXT-PAGE-NO", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "CDEMO-CU03-NEXT-PAGE-FLG", 
+   "value": "'N'"
+  }
+ ]
+}

@@ -1,0 +1,202 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "Close files in CICS region", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/CLOSEFIL.jcl:20"
+ }, 
+ "job_card": {
+  "source": "app/jcl/CLOSEFIL.jcl:1", 
+  "msgclass": "0", 
+  "region": null, 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [
+  {
+   "source": "app/scheduler/CardDemo.ca7", 
+   "calendar": null, 
+   "successors": [
+    "CBPAUP0J", 
+    "TRANTYPE", 
+    "READACCT", 
+    "CREASTMT", 
+    "PRTCATBL"
+   ], 
+   "predecessors": [
+    "WAITSTEP", 
+    "OPENFIL"
+   ], 
+   "time": null
+  }, 
+  {
+   "source": "app/scheduler/CardDemo.controlm", 
+   "description": {
+    "text": "DAILY CLOSEFIL", 
+    "confidence": "Unverified"
+   }, 
+   "folder_calendar": null, 
+   "time": "23:00", 
+   "folder": "DAILY-TransactionBackup", 
+   "successors": [
+    "TRANBKP"
+   ], 
+   "calendar": "ALL", 
+   "predecessors": []
+  }, 
+  {
+   "source": "app/scheduler/CardDemo.controlm", 
+   "description": {
+    "text": "MONTHLY CLOSEFIL", 
+    "confidence": "Unverified"
+   }, 
+   "folder_calendar": null, 
+   "time": "23:00", 
+   "folder": "MONTHLY-InterestCalculation", 
+   "successors": [
+    "INTCALC"
+   ], 
+   "calendar": null, 
+   "predecessors": []
+  }, 
+  {
+   "source": "app/scheduler/CardDemo.controlm", 
+   "description": {
+    "text": "WEEKLY DisclosureGroupsRefresh CLOSEFIL", 
+    "confidence": "Unverified"
+   }, 
+   "folder_calendar": "SA", 
+   "time": "23:00", 
+   "folder": "WEEKLY-DisclosureGroupsRefresh", 
+   "successors": [
+    "DISCGRP"
+   ], 
+   "calendar": null, 
+   "predecessors": [
+    "MNTTRDB2"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [
+  {
+   "source": "scripts/remote_refresh.sh:13", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:13", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_interest_calc.sh:15", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:13", 
+   "mechanism": "script-ftp-put"
+  }
+ ], 
+ "findings": [], 
+ "source_path": "app/jcl/CLOSEFIL.jcl", 
+ "steps": [
+  {
+   "function": "Operator command", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 22, 
+   "kind": "other", 
+   "name": "CLCIFIL", 
+   "control_statements": [
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(TRANSACT ) CLO'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/CLOSEFIL.jcl:26"
+    }, 
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(CCXREF ) CLO'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/CLOSEFIL.jcl:27"
+    }, 
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(ACCTDAT ) CLO'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/CLOSEFIL.jcl:28"
+    }, 
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(CXACAIX ) CLO'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/CLOSEFIL.jcl:29"
+    }, 
+    {
+     "text": "/F CICSAWSA,'CEMT SET FIL(USRSEC ) CLO'", 
+     "meaning": "Operator command", 
+     "source": "app/jcl/CLOSEFIL.jcl:30"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 23, 
+     "ddname": "ISFOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 24, 
+     "ddname": "CMDOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 25, 
+     "ddname": "ISFIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "SDSF", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "6a9adef38b7b67074851ac6263a5f40b9d47e51aa0e03f98ab87a201c3b6032b", 
+ "job_name": "CLOSEFIL"
+}

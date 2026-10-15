@@ -1,0 +1,36 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/DEFGDGD.jcl:63", 
+   "via": "jcl-dd", 
+   "by": "DEFGDGD.STEP40", 
+   "ops": [
+    "C"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/DEFGDGD.jcl:50"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "gdg": {
+   "scratch": true, 
+   "limit": 5, 
+   "empty": false, 
+   "source": "app/jcl/DEFGDGD.jcl:50"
+  }, 
+  "defined_by": [
+   "app/jcl/DEFGDGD.jcl:50"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.TRANCATG.PS.BKUP", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "gdg-base", 
+ "aliases": [], 
+ "sample_data": null
+}

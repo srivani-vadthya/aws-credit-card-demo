@@ -1,0 +1,41 @@
+---
+description: How to read JCL, cataloged/in-stream PROCs and control cards for batch reverse engineering
+globs: **/*.{jcl,JCL,prc,PRC,proc,PROC,ctl,CTL,jcllib}
+alwaysApply: false
+---
+
+# Reading JCL, PROCs and Control Cards
+
+## Syntax
+- `//` starts a statement, `//*` is a comment, `/*` ends in-stream data,
+  `//` alone ends the job. Columns 73-80 are ignored.
+- Continuation: a statement continues when the operand field ends with a
+  comma and the next line starts with `//` and the operand begins in
+  columns 4-16. Join continuations before parsing.
+- In-stream data (`DD *`, `DD DATA,DLM=xx`) holds control statements
+  (IDCAMS, SORT, DSNTEP4/DSNTIAUL SQL, IKJEFT01 TSO/DSN commands, FTP
+  scripts). Parse it with the rules for that utility.
+
+## Resolution
+- Expand `EXEC procname` / `EXEC PROC=` using PROCs from the inventory
+  (JCLLIB ORDER, in-stream PROC...PEND). Apply step-qualified DD and
+  parameter overrides (`//STEP.DD DD ...`, `PARM.STEP=`).
+- Substitute symbolics only from `SET`, PROC defaults or EXEC overrides
+  that appear in source. Unresolved symbolics stay as `&NAME` parameters.
+- `DSN=&&TEMP` is a temporary dataset; `(+1)`, `(0)`, `(-1)` are GDG
+  relative generations - record base name and generation separately.
+
+## What to capture per step
+- Program (`PGM=`) or PROC, PARM, COND / IF-THEN-ELSE / RESTART, REGION.
+- Each DD: ddname, DSN, DISP (status, normal, abnormal), DCB/RECFM/LRECL,
+  SPACE, UNIT, SYSOUT, DUMMY, concatenations.
+- Map ddnames to program `SELECT ... ASSIGN TO` names to link files to
+  record layouts.
+- Utilities: record the operation performed (e.g. IDCAMS DEFINE CLUSTER,
+  REPRO, DELETE; SORT FIELDS/INCLUDE/OUTREC; IEBGENER copy).
+
+## Caution
+- A job may be submitted by a CICS program (TDQ to internal reader) or by
+  another job (`INTRDR`): capture the submitter.
+- Job order is not implied by file names; take it from schedulers, scripts,
+  or documented run books, with evidence.

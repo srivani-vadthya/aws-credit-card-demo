@@ -1,0 +1,130 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/CBEXPORT.jcl:53", 
+   "via": "jcl-dd", 
+   "by": "CBEXPORT.STEP02", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CREASTMT.JCL:84", 
+   "via": "jcl-dd", 
+   "by": "CREASTMT.STEP040", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/INTCALC.jcl:29", 
+   "via": "jcl-dd", 
+   "by": "INTCALC.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/POSTTRAN.jcl:32", 
+   "via": "jcl-dd", 
+   "by": "POSTTRAN.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/READXREF.jcl:25", 
+   "via": "jcl-dd", 
+   "by": "READXREF.STEP05", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANREPT.jcl:67", 
+   "via": "jcl-dd", 
+   "by": "TRANREPT.STEP10R", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/XREFFILE.jcl:61", 
+   "via": "jcl-dd", 
+   "by": "XREFFILE.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/XREFFILE.jcl:39", 
+  "app/jcl/XREFFILE.jcl:72", 
+  "app/csd/CARDDEMO.CSD:37", 
+  "app/catlg/LISTCAT.txt:365"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "aix": [
+   {
+    "keys": "KEYS(11 25)", 
+    "path": "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX.PATH", 
+    "unique": false, 
+    "name": "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX", 
+    "source": "app/jcl/XREFFILE.jcl:72"
+   }
+  ], 
+  "keys": "KEYS(16 0)", 
+  "record_max": 50, 
+  "record_size": "RECORDSIZE(50 50)", 
+  "defined_by": [
+   "app/jcl/XREFFILE.jcl:39"
+  ], 
+  "catalog_facts": {
+   "as_of": "09/01/22", 
+   "point_in_time": true, 
+   "rec_total": 50, 
+   "listcat_org": "INDEXED", 
+   "rec_total_source": "app/catlg/LISTCAT.txt:408", 
+   "keylen_source": "app/catlg/LISTCAT.txt:403", 
+   "source": "app/catlg/LISTCAT.txt:365", 
+   "keylen": 16, 
+   "avglrecl": 50
+  }, 
+  "key_offset": 0, 
+  "key_length": 16
+ }, 
+ "layout": {
+  "key_fields": [], 
+  "copybook": null, 
+  "record": null, 
+  "length": null, 
+  "candidates": [
+   "CSMSG01Y:CCDA-COMMON-MESSAGES", 
+   "CVACT03Y:CARD-XREF-RECORD", 
+   "CVTRA01Y:TRAN-CAT-BAL-RECORD", 
+   "CVTRA02Y:DIS-GROUP-RECORD"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/XREFFILE.jcl:39", 
+    "length": 50, 
+    "agrees": false
+   }
+  ]
+ }, 
+ "name": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-ksds", 
+ "aliases": [
+  {
+   "source": "app/csd/CARDDEMO.CSD:37", 
+   "kind": "cics-file", 
+   "name": "CCXREF"
+  }
+ ], 
+ "sample_data": null
+}

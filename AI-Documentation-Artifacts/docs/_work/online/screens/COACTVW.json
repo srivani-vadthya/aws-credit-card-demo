@@ -1,0 +1,1043 @@
+{
+ "source": "app/bms/COACTVW.bms:20", 
+ "name": "COACTVW", 
+ "module": "base", 
+ "maps": [
+  {
+   "source": "app/bms/COACTVW.bms:25", 
+   "mockup": [
+    "XXXXXXXXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "                                View Account", 
+    "                  Account Number :   ___________        Active Y/N:  X", 
+    "       Opened:  XXXXXXXXXX            Credit Limit        : XXXXXXXXXXXXXXX", 
+    "       Expiry:  XXXXXXXXXX            Cash credit Limit   : XXXXXXXXXXXXXXX", 
+    "       Reissue: XXXXXXXXXX            Current Balance     : XXXXXXXXXXXXXXX", 
+    "                                      Current Cycle Credit: XXXXXXXXXXXXXXX", 
+    "       Account Group: XXXXXXXXXX      Current Cycle Debit : XXXXXXXXXXXXXXX", 
+    "                               Customer Details", 
+    "       Customer id  : XXXXXXXXX                 SSN: XXXXXXXXXXXX", 
+    "       Date of birth: XXXXXXXXXX                FICO Score: XXX", 
+    "First Name                 Middle Name:               Last Name :", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXXXXXXXXXXXX  XXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "Address: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   State     XX", 
+    "         XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   Zip       XXXXX", 
+    "City     XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   Country   XXX", 
+    "Phone 1: XXXXXXXXXXXXX Government Issued Id Ref    :     XXXXXXXXXXXXXXXXXXXX", 
+    "Phone 2: XXXXXXXXXXXXX EFT Account Id:  XXXXXXXXXX  Primary Card Holder Y/N: X", 
+    "", 
+    "                      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "  F3=Exit"
+   ], 
+   "name": "CACTVWA", 
+   "fields": [
+    {
+     "source": "app/bms/COACTVW.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:75", 
+     "length": 12, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "View Account", 
+     "col": 33, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:79", 
+     "length": 16, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Account Number :", 
+     "col": 19, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:84", 
+     "length": 11, 
+     "attrb": "(FSET,IC,NORM,UNPROT)", 
+     "name": "ACCTSID", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 38, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:91", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 50, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:93", 
+     "length": 12, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Active Y/N: ", 
+     "col": 57, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:97", 
+     "length": 1, 
+     "attrb": "(ASKIP)", 
+     "name": "ACSTTUS", 
+     "color": null, 
+     "initial": null, 
+     "col": 70, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:101", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 72, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:103", 
+     "length": 7, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Opened:", 
+     "col": 8, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:107", 
+     "length": 10, 
+     "attrb": null, 
+     "name": "ADTOPEN", 
+     "color": null, 
+     "initial": null, 
+     "col": 17, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:110", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 28, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:112", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Credit Limit        :", 
+     "col": 39, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:117", 
+     "length": 15, 
+     "attrb": null, 
+     "name": "ACRDLIM", 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:122", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:124", 
+     "length": 7, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Expiry:", 
+     "col": 8, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:128", 
+     "length": 10, 
+     "attrb": null, 
+     "name": "AEXPDT", 
+     "color": null, 
+     "initial": null, 
+     "col": 17, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:131", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 28, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:133", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Cash credit Limit   :", 
+     "col": 39, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:138", 
+     "length": 15, 
+     "attrb": null, 
+     "name": "ACSHLIM", 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:143", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:145", 
+     "length": 8, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Reissue:", 
+     "col": 8, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:149", 
+     "length": 10, 
+     "attrb": null, 
+     "name": "AREISDT", 
+     "color": null, 
+     "initial": null, 
+     "col": 17, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:152", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 28, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:154", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Current Balance     :", 
+     "col": 39, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:159", 
+     "length": 15, 
+     "attrb": null, 
+     "name": "ACURBAL", 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:164", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:166", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Current Cycle Credit:", 
+     "col": 39, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:171", 
+     "length": 15, 
+     "attrb": null, 
+     "name": "ACRCYCR", 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:176", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:178", 
+     "length": 14, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Account Group:", 
+     "col": 8, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:182", 
+     "length": 10, 
+     "attrb": null, 
+     "name": "AADDGRP", 
+     "color": null, 
+     "initial": null, 
+     "col": 23, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:185", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 34, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:187", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Current Cycle Debit :", 
+     "col": 39, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:192", 
+     "length": 15, 
+     "attrb": null, 
+     "name": "ACRCYDB", 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:197", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:199", 
+     "length": 16, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Customer Details", 
+     "col": 32, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:203", 
+     "length": 14, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Customer id  :", 
+     "col": 8, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:207", 
+     "length": 9, 
+     "attrb": null, 
+     "name": "ACSTNUM", 
+     "color": null, 
+     "initial": null, 
+     "col": 23, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:210", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 33, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:212", 
+     "length": 4, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "SSN:", 
+     "col": 49, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:216", 
+     "length": 12, 
+     "attrb": null, 
+     "name": "ACSTSSN", 
+     "color": null, 
+     "initial": null, 
+     "col": 54, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:219", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 67, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:221", 
+     "length": 14, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Date of birth:", 
+     "col": 8, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:225", 
+     "length": 10, 
+     "attrb": null, 
+     "name": "ACSTDOB", 
+     "color": null, 
+     "initial": null, 
+     "col": 23, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:228", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 34, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:230", 
+     "length": 11, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "FICO Score:", 
+     "col": 49, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:234", 
+     "length": 3, 
+     "attrb": null, 
+     "name": "ACSTFCO", 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:237", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 65, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:239", 
+     "length": 10, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "First Name", 
+     "col": 1, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:243", 
+     "length": 13, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Middle Name: ", 
+     "col": 28, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:247", 
+     "length": 12, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Last Name : ", 
+     "col": 55, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:251", 
+     "length": 25, 
+     "attrb": null, 
+     "name": "ACSFNAM", 
+     "color": null, 
+     "initial": null, 
+     "col": 1, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:254", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 27, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:256", 
+     "length": 25, 
+     "attrb": null, 
+     "name": "ACSMNAM", 
+     "color": null, 
+     "initial": null, 
+     "col": 28, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:259", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 54, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:261", 
+     "length": 25, 
+     "attrb": null, 
+     "name": "ACSLNAM", 
+     "color": null, 
+     "initial": null, 
+     "col": 55, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:264", 
+     "length": 8, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Address:", 
+     "col": 1, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:268", 
+     "length": 50, 
+     "attrb": null, 
+     "name": "ACSADL1", 
+     "color": null, 
+     "initial": null, 
+     "col": 10, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:271", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:273", 
+     "length": 6, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "State ", 
+     "col": 63, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:277", 
+     "length": 2, 
+     "attrb": null, 
+     "name": "ACSSTTE", 
+     "color": null, 
+     "initial": null, 
+     "col": 73, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:280", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:282", 
+     "length": 50, 
+     "attrb": null, 
+     "name": "ACSADL2", 
+     "color": null, 
+     "initial": null, 
+     "col": 10, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:285", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:287", 
+     "length": 3, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Zip", 
+     "col": 63, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:291", 
+     "length": 5, 
+     "attrb": null, 
+     "name": "ACSZIPC", 
+     "color": null, 
+     "initial": null, 
+     "col": 73, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:295", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 79, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:297", 
+     "length": 5, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "City ", 
+     "col": 1, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:301", 
+     "length": 50, 
+     "attrb": null, 
+     "name": "ACSCITY", 
+     "color": null, 
+     "initial": null, 
+     "col": 10, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:304", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:306", 
+     "length": 7, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Country", 
+     "col": 63, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:310", 
+     "length": 3, 
+     "attrb": null, 
+     "name": "ACSCTRY", 
+     "color": null, 
+     "initial": null, 
+     "col": 73, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:313", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:315", 
+     "length": 8, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Phone 1:", 
+     "col": 1, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:319", 
+     "length": 13, 
+     "attrb": null, 
+     "name": "ACSPHN1", 
+     "color": null, 
+     "initial": null, 
+     "col": 10, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:322", 
+     "length": 30, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Government Issued Id Ref    : ", 
+     "col": 24, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:326", 
+     "length": 20, 
+     "attrb": null, 
+     "name": "ACSGOVT", 
+     "color": null, 
+     "initial": null, 
+     "col": 58, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:329", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 79, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:331", 
+     "length": 8, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Phone 2:", 
+     "col": 1, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:335", 
+     "length": 13, 
+     "attrb": null, 
+     "name": "ACSPHN2", 
+     "color": null, 
+     "initial": null, 
+     "col": 10, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:338", 
+     "length": 16, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "EFT Account Id: ", 
+     "col": 24, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:342", 
+     "length": 10, 
+     "attrb": null, 
+     "name": "ACSEFTC", 
+     "color": null, 
+     "initial": null, 
+     "col": 41, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:345", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 52, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:347", 
+     "length": 24, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Primary Card Holder Y/N:", 
+     "col": 53, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:351", 
+     "length": 1, 
+     "attrb": null, 
+     "name": "ACSPFLG", 
+     "color": null, 
+     "initial": null, 
+     "col": 78, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:354", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 80, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:356", 
+     "length": 45, 
+     "attrb": "(PROT)", 
+     "name": "INFOMSG", 
+     "color": "NEUTRAL", 
+     "initial": null, 
+     "col": 23, 
+     "row": 22
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:361", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 69, 
+     "row": 22
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:363", 
+     "length": 9, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:365", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/bms/COACTVW.bms:369", 
+     "length": 60, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "  F3=Exit ", 
+     "col": 1, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

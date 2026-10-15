@@ -1,0 +1,49 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/ESDSRRDS.jcl:82", 
+   "via": "jcl-dd", 
+   "by": "ESDSRRDS.STEP03", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/ESDSRRDS.jcl:65"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "record_max": 80, 
+  "record_size": "RECORDSIZE(80 80)", 
+  "defined_by": [
+   "app/jcl/ESDSRRDS.jcl:65"
+  ]
+ }, 
+ "layout": {
+  "key_fields": [], 
+  "copybook": null, 
+  "record": null, 
+  "length": null, 
+  "candidates": [
+   "CODATECN:CODATECN-REC", 
+   "CSUSR01Y:SEC-USER-DATA", 
+   "UNUSED1Y:UNUSED-DATA"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/ESDSRRDS.jcl:65", 
+    "length": 80, 
+    "agrees": false
+   }
+  ]
+ }, 
+ "name": "AWS.M2.CARDDEMO.USRSEC.VSAM.ESDS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-esds", 
+ "aliases": [], 
+ "sample_data": null
+}

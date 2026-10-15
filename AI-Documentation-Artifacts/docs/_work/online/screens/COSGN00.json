@@ -1,0 +1,413 @@
+{
+ "source": "app/bms/COSGN00.bms:19", 
+ "name": "COSGN00", 
+ "module": "base", 
+ "maps": [
+  {
+   "source": "app/bms/COSGN00.bms:26", 
+   "mockup": [
+    "Tran : XXXX         XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   Date : mm/dd/yy", 
+    "Prog : XXXXXXXX     XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX   Time : Ahh:mm:ss", 
+    "AppID: XXXXXXXX                                                SysID:", 
+    "", 
+    "     This is a Credit Card Demo Application for Main- frame Modernizati", 
+    "", 
+    "                    +========================================+", 
+    "                    |%%%%%%%  NATIONAL RESERVE NOTE  %%%%%%%%|", 
+    "                    |%(1)  THE UNITED STATES OF KICSLAND (1)%|", 
+    "                    |%$$              ___       ********  $$%|", 
+    "                    |%$    {x}       (o o)                 $%|", 
+    "                    |%$     ******  (  V  )      O N E     $%|", 
+    "                    |%(1)          ---m-m---             (1)%|", 
+    "                    |%%~~~~~~~~~~~ ONE DOLLAR ~~~~~~~~~~~~~%%|", 
+    "                    +========================================+", 
+    "", 
+    "               Type your User ID and Password, then press ENTE-", 
+    "", 
+    "                            User ID     : ________ (8 Char)", 
+    "                            Password    : ________ (8 Char)", 
+    "", 
+    "", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "ENTER=Sign-on  F3=Exit"
+   ], 
+   "name": "COSGN0A", 
+   "fields": [
+    {
+     "source": "app/bms/COSGN00.bms:29", 
+     "length": 6, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran :", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 8, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:42", 
+     "length": 6, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date :", 
+     "col": 64, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:52", 
+     "length": 6, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog :", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:57", 
+     "length": 8, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 8, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:65", 
+     "length": 6, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time :", 
+     "col": 64, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:70", 
+     "length": 9, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "Ahh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:75", 
+     "length": 6, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "AppID:", 
+     "col": 1, 
+     "row": 3
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:80", 
+     "length": 8, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "APPLID", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 8, 
+     "row": 3
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:84", 
+     "length": 6, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "SysID:", 
+     "col": 64, 
+     "row": 3
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:89", 
+     "length": 8, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "SYSID", 
+     "color": "BLUE", 
+     "initial": "        ", 
+     "col": 71, 
+     "row": 3
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:94", 
+     "length": 66, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "This is a Credit Card Demo Application for Main- frame Modernization", 
+     "col": 6, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:100", 
+     "length": 42, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "+========================================+", 
+     "col": 21, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:105", 
+     "length": 42, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "|%%%%%%%  NATIONAL RESERVE NOTE  %%%%%%%%|", 
+     "col": 21, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:110", 
+     "length": 42, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "|%(1)  THE UNITED STATES OF KICSLAND (1)%|", 
+     "col": 21, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:115", 
+     "length": 42, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "|%$$              ___       ********  $$%|", 
+     "col": 21, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:120", 
+     "length": 42, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "|%$    {x}       (o o)                 $%|", 
+     "col": 21, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:125", 
+     "length": 42, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "|%$     ******  (  V  )      O N E     $%|", 
+     "col": 21, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:130", 
+     "length": 42, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "|%(1)          ---m-m---             (1)%|", 
+     "col": 21, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:135", 
+     "length": 42, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "|%%~~~~~~~~~~~ ONE DOLLAR ~~~~~~~~~~~~~%%|", 
+     "col": 21, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:140", 
+     "length": 42, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "+========================================+", 
+     "col": 21, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:145", 
+     "length": 49, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Type your User ID and Password, then press ENTE- R:", 
+     "col": 16, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:151", 
+     "length": 13, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "User ID     :", 
+     "col": 29, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:156", 
+     "length": 8, 
+     "attrb": "(FSET,IC,NORM,UNPROT)", 
+     "name": "USERID", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 43, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:161", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 52, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:165", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "(8 Char)", 
+     "col": 52, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:170", 
+     "length": 13, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Password    :", 
+     "col": 29, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:175", 
+     "length": 8, 
+     "attrb": "(DRK,FSET,UNPROT)", 
+     "name": "PASSWD", 
+     "color": "GREEN", 
+     "initial": "________", 
+     "col": 43, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:181", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 52, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:185", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "(8 Char)", 
+     "col": 52, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:190", 
+     "length": 1, 
+     "attrb": "(DRK,UNPROT)", 
+     "name": null, 
+     "color": null, 
+     "initial": " ", 
+     "col": 61, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:194", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 63, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:197", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/bms/COSGN00.bms:201", 
+     "length": 22, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "YELLOW", 
+     "initial": "ENTER=Sign-on  F3=Exit", 
+     "col": 1, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

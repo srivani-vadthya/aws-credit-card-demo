@@ -1,0 +1,853 @@
+{
+ "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:20", 
+ "name": "COTRTLI", 
+ "module": "trantype", 
+ "maps": [
+  {
+   "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:25", 
+   "mockup": [
+    "Tran: XXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "                           Maintain Transaction Type                 Page  XXX", 
+    "", 
+    "                             Type Filter:  __", 
+    "", 
+    "   Description Filter:  __________________________________________________", 
+    "", 
+    "   Select      Type                      Description", 
+    "   ------     -----     ------------------------------------------------ -", 
+    "     X          XX      __________________________________________________", 
+    "     X          XX      __________________________________________________", 
+    "     X          XX      __________________________________________________", 
+    "     X          XX      __________________________________________________", 
+    "     X          XX      __________________________________________________", 
+    "     X          XX      __________________________________________________", 
+    "     X          XX      __________________________________________________", 
+    "     X          XX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "", 
+    "                  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "F2=Add   F3=Exit  F7=Page Up   F8=Page Dn  F10=Save"
+   ], 
+   "name": "CTRTLIA", 
+   "fields": [
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:75", 
+     "length": 25, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Maintain Transaction Type", 
+     "col": 28, 
+     "row": 4
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:79", 
+     "length": 5, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "Page ", 
+     "col": 70, 
+     "row": 4
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:82", 
+     "length": 3, 
+     "attrb": null, 
+     "name": "PAGENO", 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 4
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:84", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Type Filter:", 
+     "col": 30, 
+     "row": 6
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:89", 
+     "length": 2, 
+     "attrb": "(FSET,IC,NORM,UNPROT)", 
+     "name": "TRTYPE", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 44, 
+     "row": 6
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:94", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 47, 
+     "row": 6
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:96", 
+     "length": 19, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Description Filter:", 
+     "col": 4, 
+     "row": 8
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:101", 
+     "length": 50, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "TRDESC", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 25, 
+     "row": 8
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:106", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 8
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:108", 
+     "length": 10, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Select    ", 
+     "col": 4, 
+     "row": 10
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:112", 
+     "length": 4, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Type", 
+     "col": 16, 
+     "row": 10
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:116", 
+     "length": 11, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Description", 
+     "col": 42, 
+     "row": 10
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:120", 
+     "length": 6, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "------", 
+     "col": 4, 
+     "row": 11
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:124", 
+     "length": 5, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "-----", 
+     "col": 15, 
+     "row": 11
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:128", 
+     "length": 50, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "------------------------------------------------ ---", 
+     "col": 25, 
+     "row": 11
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:133", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTSEL1", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 6, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:138", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 8, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:140", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTTYP1", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 17, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:145", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 20, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:147", 
+     "length": 50, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "TRTYPD1", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 25, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:152", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 12
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:154", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTSEL2", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 6, 
+     "row": 13
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:159", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 8, 
+     "row": 13
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:161", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTTYP2", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 17, 
+     "row": 13
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:166", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 20, 
+     "row": 13
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:168", 
+     "length": 50, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "TRTYPD2", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 25, 
+     "row": 13
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:173", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 13
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:175", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTSEL3", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 6, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:180", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 8, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:182", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTTYP3", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 17, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:187", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 20, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:189", 
+     "length": 50, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "TRTYPD3", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 25, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:194", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 14
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:196", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTSEL4", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 6, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:201", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 8, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:203", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTTYP4", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 17, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:208", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 20, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:210", 
+     "length": 50, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "TRTYPD4", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 25, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:215", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 15
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:217", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTSEL5", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 6, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:222", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 8, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:224", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTTYP5", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 17, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:229", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 20, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:231", 
+     "length": 50, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "TRTYPD5", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 25, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:236", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 16
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:238", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTSEL6", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 6, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:243", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 8, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:245", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTTYP6", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 17, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:250", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 20, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:252", 
+     "length": 50, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "TRTYPD6", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 25, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:257", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 17
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:259", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTSEL7", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 6, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:264", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 8, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:266", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTTYP7", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 17, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:271", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 20, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:273", 
+     "length": 50, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "TRTYPD7", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 25, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:278", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 18
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:280", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTSELA", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 6, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:285", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 8, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:287", 
+     "length": 2, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTTYPA", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 17, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:292", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 20, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:294", 
+     "length": 50, 
+     "attrb": "(FSET,NORM,PROT)", 
+     "name": "TRTDSCA", 
+     "color": "DEFAULT", 
+     "initial": null, 
+     "col": 25, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:299", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 19
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:301", 
+     "length": 45, 
+     "attrb": "(PROT)", 
+     "name": "INFOMSG", 
+     "color": "NEUTRAL", 
+     "initial": null, 
+     "col": 19, 
+     "row": 21
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:306", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 65, 
+     "row": 21
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:308", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:312", 
+     "length": 7, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "BUTNF02", 
+     "color": "TURQUOISE", 
+     "initial": "F2=Add", 
+     "col": 1, 
+     "row": 24
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:317", 
+     "length": 7, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "BUTNF03", 
+     "color": "TURQUOISE", 
+     "initial": "F3=Exit", 
+     "col": 10, 
+     "row": 24
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:322", 
+     "length": 10, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "BUTNF07", 
+     "color": "TURQUOISE", 
+     "initial": "F7=Page Up", 
+     "col": 19, 
+     "row": 24
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:327", 
+     "length": 10, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "BUTNF08", 
+     "color": "TURQUOISE", 
+     "initial": "F8=Page Dn", 
+     "col": 32, 
+     "row": 24
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:332", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "BUTNF10", 
+     "color": "TURQUOISE", 
+     "initial": "F10=Save", 
+     "col": 44, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

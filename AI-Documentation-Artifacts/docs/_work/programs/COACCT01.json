@@ -1,0 +1,615 @@
+{
+ "invoked_by": [], 
+ "runtime_type_evidence": [
+  {
+   "text": "CICS RETRIEVE of an MQ trigger message plus MQ calls", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:176"
+  }
+ ], 
+ "source_path": "app/app-vsam-mq/cbl/COACCT01.cbl", 
+ "module": "vsammq", 
+ "header": {
+  "source": "app/app-vsam-mq/cbl/COACCT01.cbl:1", 
+  "version_banner": null, 
+  "description": "See the comment block at the top of the source. Unverified until matched to code.", 
+  "author": "AWS"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "1000-CONTROL", 
+   "section": null, 
+   "end_line": 220, 
+   "purpose": "Statements include: EXEC CICS RETRIEVE", 
+   "performs": [
+    "2100-OPEN-ERROR-QUEUE", 
+    "9000-ERROR", 
+    "8000-TERMINATION", 
+    "2300-OPEN-INPUT-QUEUE", 
+    "2400-OPEN-OUTPUT-QUEUE", 
+    "3000-GET-REQUEST", 
+    "4000-MAIN-PROCESS", 
+    "8000-TERMINATION"
+   ], 
+   "reachable": true, 
+   "start_line": 178, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2300-OPEN-INPUT-QUEUE", 
+   "section": null, 
+   "end_line": 253, 
+   "purpose": "Statements include: CALL MQOPEN", 
+   "performs": [
+    "9000-ERROR", 
+    "8000-TERMINATION"
+   ], 
+   "reachable": true, 
+   "start_line": 222, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2400-OPEN-OUTPUT-QUEUE", 
+   "section": null, 
+   "end_line": 287, 
+   "purpose": "Statements include: CALL MQOPEN", 
+   "performs": [
+    "9000-ERROR", 
+    "8000-TERMINATION"
+   ], 
+   "reachable": true, 
+   "start_line": 255, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2100-OPEN-ERROR-QUEUE", 
+   "section": null, 
+   "end_line": 322, 
+   "purpose": "Statements include: CALL MQOPEN", 
+   "performs": [
+    "8000-TERMINATION"
+   ], 
+   "reachable": true, 
+   "start_line": 289, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "4000-MAIN-PROCESS", 
+   "section": null, 
+   "end_line": 331, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "3000-GET-REQUEST"
+   ], 
+   "reachable": true, 
+   "start_line": 325, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3000-GET-REQUEST", 
+   "section": null, 
+   "end_line": 388, 
+   "purpose": "Statements include: CALL MQGET", 
+   "performs": [
+    "4000-PROCESS-REQUEST-REPLY", 
+    "9000-ERROR", 
+    "8000-TERMINATION"
+   ], 
+   "reachable": true, 
+   "start_line": 334, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "4000-PROCESS-REQUEST-REPLY", 
+   "section": null, 
+   "end_line": 460, 
+   "purpose": "Statements include: EXEC CICS READ", 
+   "performs": [
+    "4100-PUT-REPLY", 
+    "4100-PUT-REPLY", 
+    "9000-ERROR", 
+    "8000-TERMINATION", 
+    "4100-PUT-REPLY"
+   ], 
+   "reachable": true, 
+   "start_line": 390, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "4100-PUT-REPLY", 
+   "section": null, 
+   "end_line": 499, 
+   "purpose": "Statements include: CALL MQPUT", 
+   "performs": [
+    "9000-ERROR", 
+    "8000-TERMINATION"
+   ], 
+   "reachable": true, 
+   "start_line": 462, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9000-ERROR", 
+   "section": null, 
+   "end_line": 537, 
+   "purpose": "Statements include: CALL MQPUT", 
+   "performs": [
+    "8000-TERMINATION"
+   ], 
+   "reachable": true, 
+   "start_line": 501, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "8000-TERMINATION", 
+   "section": null, 
+   "end_line": 550, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "5000-CLOSE-INPUT-QUEUE", 
+    "5100-CLOSE-OUTPUT-QUEUE", 
+    "5200-CLOSE-ERROR-QUEUE"
+   ], 
+   "reachable": true, 
+   "start_line": 538, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5000-CLOSE-INPUT-QUEUE", 
+   "section": null, 
+   "end_line": 573, 
+   "purpose": "Statements include: CALL MQCLOSE", 
+   "performs": [
+    "8000-TERMINATION"
+   ], 
+   "reachable": true, 
+   "start_line": 552, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5100-CLOSE-OUTPUT-QUEUE", 
+   "section": null, 
+   "end_line": 595, 
+   "purpose": "Statements include: CALL MQCLOSE", 
+   "performs": [
+    "8000-TERMINATION"
+   ], 
+   "reachable": true, 
+   "start_line": 574, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5200-CLOSE-ERROR-QUEUE", 
+   "section": null, 
+   "end_line": 619, 
+   "purpose": "Statements include: CALL MQCLOSE", 
+   "performs": [
+    "9000-ERROR", 
+    "8000-TERMINATION"
+   ], 
+   "reachable": true, 
+   "start_line": 597, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "replacing": null, 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:71", 
+   "resolution": "external-or-missing", 
+   "name": "CMQGMOV", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:75", 
+   "resolution": "external-or-missing", 
+   "name": "CMQPMOV", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:79", 
+   "resolution": "external-or-missing", 
+   "name": "CMQMDV", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:83", 
+   "resolution": "external-or-missing", 
+   "name": "CMQODV", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:87", 
+   "resolution": "system", 
+   "name": "CMQV", 
+   "purpose": "IBM MQ constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:90", 
+   "resolution": "external-or-missing", 
+   "name": "CMQTML", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:171", 
+   "resolution": "inventory", 
+   "name": "CVACT01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:13", 
+   "name": "WS-MQ-MSG-FLAG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:14", 
+   "name": "NO-MORE-MSGS", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:16", 
+   "name": "WS-RESP-QUEUE-STS", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:17", 
+   "name": "RESP-QUEUE-OPEN", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:19", 
+   "name": "WS-ERR-QUEUE-STS", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:20", 
+   "name": "ERR-QUEUE-OPEN", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:22", 
+   "name": "WS-REPLY-QUEUE-STS", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:23", 
+   "name": "REPLY-QUEUE-OPEN", 
+   "value": "'Y'"
+  }
+ ], 
+ "loc": {
+  "comment": 19, 
+  "total": 620, 
+  "code": 601
+ }, 
+ "evidence_summary": "Structural facts read from app/app-vsam-mq/cbl/COACCT01.cbl. Paragraph purposes are Inferred from statements.", 
+ "source_format": "fixed-with-sequence-area", 
+ "observations": [
+  {
+   "text": "DATASET(LIT-ACCTFILENAME) is the literal ACCTDAT (VALUE at app/app-vsam-mq/cbl/COACCT01.cbl:116).", 
+   "confidence": "Confirmed", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:396"
+  }
+ ], 
+ "sha256": "92776ed2801da1148839a9ed98b6537de4b41e0c7f050c8dcaae0d4e4ea543b5", 
+ "files": [
+  {
+   "logical_name": "ACCTDAT", 
+   "record_layout": "CVACT01Y", 
+   "record_key": null, 
+   "ddname_or_cics_file": "ACCTDAT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS"
+   ], 
+   "source": "app/csd/CARDDEMO.CSD:1", 
+   "file_status_field": null, 
+   "organization": null, 
+   "access_mode": null, 
+   "alternate_keys": []
+  }
+ ], 
+ "messages": [
+  {
+   "text": "queue literal CARD.DEMO.REPLY.ACCT -> REPLY-QUEUE-NAME", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:198"
+  }, 
+  {
+   "text": "INP MQOPEN ERR", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:250"
+  }, 
+  {
+   "text": "OUT MQOPEN ERR", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:284"
+  }, 
+  {
+   "text": "queue literal CARD.DEMO.ERROR -> ERROR-QUEUE-NAME", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:294"
+  }, 
+  {
+   "text": "ERR MQOPEN ERR", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:319"
+  }, 
+  {
+   "text": "INP MQGET ERR:", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:384"
+  }, 
+  {
+   "text": "MQPUT ERR", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:496"
+  }, 
+  {
+   "text": "MQPUT ERR", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:533"
+  }, 
+  {
+   "text": "MQCLOSE ERR", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:571"
+  }, 
+  {
+   "text": "MQCLOSE ERR", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:593"
+  }, 
+  {
+   "text": "MQCLOSE ERR", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:616"
+  }
+ ], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": []
+ }, 
+ "crud": [
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:396", 
+   "store_kind": "cics-file", 
+   "store": "ACCTDAT", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:352", 
+   "store_kind": "logical", 
+   "store": "MQ-GET", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:479", 
+   "store_kind": "logical", 
+   "store": "MQ-PUT", 
+   "ops": [
+    "C"
+   ]
+  }
+ ], 
+ "program_id": "COACCT01", 
+ "error_handling": [], 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 191, 
+   "paragraph": null, 
+   "verb": "RETRIEVE", 
+   "response_handling": "RESP checked", 
+   "options": {}
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "line": 233, 
+   "paragraph": null, 
+   "verb": "MQOPEN", 
+   "response_handling": null, 
+   "options": {}
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "line": 267, 
+   "paragraph": null, 
+   "verb": "MQOPEN", 
+   "response_handling": null, 
+   "options": {}
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "line": 302, 
+   "paragraph": null, 
+   "verb": "MQOPEN", 
+   "response_handling": null, 
+   "options": {}
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 326, 
+   "paragraph": null, 
+   "verb": "SYNCPOINT", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "options": {}
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "line": 352, 
+   "paragraph": null, 
+   "verb": "MQGET", 
+   "response_handling": null, 
+   "options": {}
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "LIT-ACCTFILENAME", 
+   "line": 396, 
+   "paragraph": null, 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "options": {}
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "line": 479, 
+   "paragraph": null, 
+   "verb": "MQPUT", 
+   "response_handling": null, 
+   "options": {}
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "line": 516, 
+   "paragraph": null, 
+   "verb": "MQPUT", 
+   "response_handling": null, 
+   "options": {}
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "line": 549, 
+   "paragraph": null, 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "options": {}
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "line": 557, 
+   "paragraph": null, 
+   "verb": "MQCLOSE", 
+   "response_handling": null, 
+   "options": {}
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "line": 579, 
+   "paragraph": null, 
+   "verb": "MQCLOSE", 
+   "response_handling": null, 
+   "options": {}
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "line": 602, 
+   "paragraph": null, 
+   "verb": "MQCLOSE", 
+   "response_handling": null, 
+   "options": {}
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "MQOPEN", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:233", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "MQOPEN", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:267", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "MQOPEN", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:302", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "MQGET", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:352", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "MQPUT", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:479", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "MQPUT", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:516", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "MQCLOSE", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:557", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "MQCLOSE", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:579", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "MQCLOSE", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:602", 
+   "condition": null
+  }
+ ], 
+ "candidate_rules": [
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:191-198", 
+   "summary": "The request queue name is taken from the MQ trigger message (MQTM-QNAME). The reply queue is the literal CARD.DEMO.REPLY.ACCT."
+  }
+ ], 
+ "runtime_type": [
+  "cics-mq-triggered", 
+  "mq"
+ ]
+}

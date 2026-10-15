@@ -1,0 +1,58 @@
+{
+ "source": "app/cpy/CSMSG01Y.cpy", 
+ "notes": [], 
+ "conventions": "offset/end are 1-based byte positions; ODO at maximum", 
+ "records": [
+  {
+   "redefines": null, 
+   "length": 50, 
+   "line": 17, 
+   "name": "CCDA-COMMON-MESSAGES", 
+   "fields": [
+    {
+     "category": null, 
+     "redefines": null, 
+     "scale": null, 
+     "end": 50, 
+     "name": "CCDA-COMMON-MESSAGES", 
+     "level": 1, 
+     "pic": null, 
+     "line": 17, 
+     "length": 50, 
+     "signed": null, 
+     "occurs_min": null, 
+     "depth": 0, 
+     "value": null, 
+     "offset": 1, 
+     "usage": null, 
+     "total_length": 50, 
+     "depending_on": null, 
+     "conditions": [], 
+     "occurs": null
+    }, 
+    {
+     "category": "alphanumeric", 
+     "redefines": null, 
+     "scale": 0, 
+     "end": 50, 
+     "name": "CCDA-MSG-THANK-YOU", 
+     "level": 5, 
+     "pic": "X(50)", 
+     "line": 18, 
+     "length": 50, 
+     "signed": false, 
+     "occurs_min": null, 
+     "depth": 1, 
+     "value": "'THANK YOU FOR USING CARDDEMO APPLICATION... '. 05 CCDA-MSG-INVALID-KEY PIC X(50) VALUE 'INVALID KEY PRESSED. PLEASE SEE BELOW... '.", 
+     "offset": 1, 
+     "usage": "DISPLAY", 
+     "total_length": 50, 
+     "depending_on": null, 
+     "conditions": [], 
+     "occurs": null
+    }
+   ]
+  }
+ ], 
+ "schema": "copybook-layout/1"
+}

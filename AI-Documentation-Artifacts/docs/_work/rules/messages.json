@@ -1,0 +1,210 @@
+{
+ "count": 34, 
+ "messages": [
+  {
+   "text": "IMS SCHD FAILED", 
+   "line": 315, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:315"
+  }, 
+  {
+   "text": "IMS GET SUMMARY FAILED", 
+   "line": 637, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:637"
+  }, 
+  {
+   "text": "IMS UPDATE SUMRY FAILED", 
+   "line": 844, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:844"
+  }, 
+  {
+   "text": "IMS INSERT DETL FAILED", 
+   "line": 929, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:929"
+  }, 
+  {
+   "text": "Please enter Acct Id...", 
+   "line": 269, 
+   "program": "COPAUS0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:269"
+  }, 
+  {
+   "text": "Acct Id must be Numeric ...", 
+   "line": 278, 
+   "program": "COPAUS0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:278"
+  }, 
+  {
+   "text": "AUTH FRAUD REMOVED...", 
+   "line": 535, 
+   "program": "COPAUS1C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:535"
+  }, 
+  {
+   "text": "AUTH MARKED FRAUD...", 
+   "line": 537, 
+   "program": "COPAUS1C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:537"
+  }, 
+  {
+   "text": "Delete failed with message:", 
+   "line": 1929, 
+   "program": "COTRTLIC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1929"
+  }, 
+  {
+   "text": "Delete failed with message:", 
+   "line": 1654, 
+   "program": "COTRTUPC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1654"
+  }, 
+  {
+   "text": "INP MQOPEN ERR", 
+   "line": 250, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:250"
+  }, 
+  {
+   "text": "OUT MQOPEN ERR", 
+   "line": 284, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:284"
+  }, 
+  {
+   "text": "ERR MQOPEN ERR", 
+   "line": 319, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:319"
+  }, 
+  {
+   "text": "INP MQGET ERR:", 
+   "line": 384, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:384"
+  }, 
+  {
+   "text": "MQPUT ERR", 
+   "line": 496, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:496"
+  }, 
+  {
+   "text": "MQPUT ERR", 
+   "line": 533, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:533"
+  }, 
+  {
+   "text": "MQCLOSE ERR", 
+   "line": 571, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:571"
+  }, 
+  {
+   "text": "MQCLOSE ERR", 
+   "line": 593, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:593"
+  }, 
+  {
+   "text": "MQCLOSE ERR", 
+   "line": 616, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:616"
+  }, 
+  {
+   "text": "INP MQOPEN ERR", 
+   "line": 199, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:199"
+  }, 
+  {
+   "text": "OUT MQOPEN ERR", 
+   "line": 233, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:233"
+  }, 
+  {
+   "text": "ERR MQOPEN ERR", 
+   "line": 268, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:268"
+  }, 
+  {
+   "text": "INP MQGET ERR:", 
+   "line": 333, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:333"
+  }, 
+  {
+   "text": "MQPUT ERR", 
+   "line": 400, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:400"
+  }, 
+  {
+   "text": "MQPUT ERR", 
+   "line": 437, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:437"
+  }, 
+  {
+   "text": "MQCLOSE ERR", 
+   "line": 475, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:475"
+  }, 
+  {
+   "text": "MQCLOSE ERR", 
+   "line": 497, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:497"
+  }, 
+  {
+   "text": "MQCLOSE ERR", 
+   "line": 520, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:520"
+  }, 
+  {
+   "text": "INVALID INPUT", 
+   "line": 56, 
+   "program": "COBDATFT", 
+   "source": "app/asm/COBDATFT.asm:56"
+  }, 
+  {
+   "text": "Unknown record type encountered", 
+   "line": 432, 
+   "program": "CBIMPORT", 
+   "source": "app/cbl/CBIMPORT.cbl:432"
+  }, 
+  {
+   "text": "Please enter User ID ...", 
+   "line": 120, 
+   "program": "COSGN00C", 
+   "source": "app/cbl/COSGN00C.cbl:120"
+  }, 
+  {
+   "text": "Please enter Password ...", 
+   "line": 125, 
+   "program": "COSGN00C", 
+   "source": "app/cbl/COSGN00C.cbl:125"
+  }, 
+  {
+   "text": "User not found. Try again ...", 
+   "line": 249, 
+   "program": "COSGN00C", 
+   "source": "app/cbl/COSGN00C.cbl:249"
+  }, 
+  {
+   "text": "Unable to verify the User ...", 
+   "line": 254, 
+   "program": "COSGN00C", 
+   "source": "app/cbl/COSGN00C.cbl:254"
+  }
+ ], 
+ "schema": "message-index/1"
+}

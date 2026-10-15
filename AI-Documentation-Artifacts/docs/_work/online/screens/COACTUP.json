@@ -1,0 +1,1323 @@
+{
+ "source": "app/bms/COACTUP.bms:20", 
+ "name": "COACTUP", 
+ "module": "base", 
+ "maps": [
+  {
+   "source": "app/bms/COACTUP.bms:25", 
+   "mockup": [
+    "XXXXXXXXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "                                Update Account", 
+    "                  Account Number :   ___________        Active Y/N:  _", 
+    "       Opened : ____ - __ - __        Credit Limit        : _______________", 
+    "       Expiry : ____ - __ - __        Cash credit Limit   : _______________", 
+    "       Reissue: ____ - __ - __        Current Balance     : _______________", 
+    "                                      Current Cycle Credit: _______________", 
+    "       Account Group: __________      Current Cycle Debit : _______________", 
+    "                               Customer Details", 
+    "       Customer id  : _________                 SSN:  999 - 99 - 9999", 
+    "       Date of birth: ____ - __ - __            FICO Score:  ___", 
+    "First Name                 Middle Name:               Last Name :", 
+    "_________________________  _________________________  _________________________", 
+    "Address: __________________________________________________   State     __", 
+    "         __________________________________________________   Zip       _____", 
+    "City     __________________________________________________   Country   ___", 
+    "Phone 1: ___ ___ ____  Government Issued Id Ref    :     ____________________", 
+    "Phone 2: ___ ___ ____  EFT Account Id:  __________  Primary Card Holder Y/N: _", 
+    "", 
+    "                      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "ENTER=Process F3=Exit F5=Save F12=Cancel"
+   ], 
+   "name": "CACTUPA", 
+   "fields": [
+    {
+     "source": "app/bms/COACTUP.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:75", 
+     "length": 14, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Update Account", 
+     "col": 33, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:79", 
+     "length": 16, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Account Number :", 
+     "col": 19, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:84", 
+     "length": 11, 
+     "attrb": "(IC,UNPROT)", 
+     "name": "ACCTSID", 
+     "color": null, 
+     "initial": null, 
+     "col": 38, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:88", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 50, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:90", 
+     "length": 12, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Active Y/N: ", 
+     "col": 57, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:94", 
+     "length": 1, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSTTUS", 
+     "color": null, 
+     "initial": null, 
+     "col": 70, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:98", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 72, 
+     "row": 5
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:100", 
+     "length": 8, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Opened :", 
+     "col": 8, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:104", 
+     "length": 4, 
+     "attrb": "(FSET,UNPROT)", 
+     "name": "OPNYEAR", 
+     "color": null, 
+     "initial": null, 
+     "col": 17, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:109", 
+     "length": 1, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "-", 
+     "col": 22, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:112", 
+     "length": 2, 
+     "attrb": "(UNPROT)", 
+     "name": "OPNMON", 
+     "color": null, 
+     "initial": null, 
+     "col": 24, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:117", 
+     "length": 1, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "-", 
+     "col": 27, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:120", 
+     "length": 2, 
+     "attrb": "(UNPROT)", 
+     "name": "OPNDAY", 
+     "color": null, 
+     "initial": null, 
+     "col": 29, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:125", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 32, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:127", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Credit Limit        :", 
+     "col": 39, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:132", 
+     "length": 15, 
+     "attrb": "(FSET,UNPROT)", 
+     "name": "ACRDLIM", 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:136", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:138", 
+     "length": 8, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Expiry :", 
+     "col": 8, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:142", 
+     "length": 4, 
+     "attrb": "(UNPROT)", 
+     "name": "EXPYEAR", 
+     "color": null, 
+     "initial": null, 
+     "col": 17, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:147", 
+     "length": 1, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "-", 
+     "col": 22, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:150", 
+     "length": 2, 
+     "attrb": "(UNPROT)", 
+     "name": "EXPMON", 
+     "color": null, 
+     "initial": null, 
+     "col": 24, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:155", 
+     "length": 1, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "-", 
+     "col": 27, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:158", 
+     "length": 2, 
+     "attrb": "(UNPROT)", 
+     "name": "EXPDAY", 
+     "color": null, 
+     "initial": null, 
+     "col": 29, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:163", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 32, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:165", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Cash credit Limit   :", 
+     "col": 39, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:170", 
+     "length": 15, 
+     "attrb": "(FSET,UNPROT)", 
+     "name": "ACSHLIM", 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:174", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 7
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:176", 
+     "length": 8, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Reissue:", 
+     "col": 8, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:180", 
+     "length": 4, 
+     "attrb": "(UNPROT)", 
+     "name": "RISYEAR", 
+     "color": null, 
+     "initial": null, 
+     "col": 17, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:185", 
+     "length": 1, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "-", 
+     "col": 22, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:188", 
+     "length": 2, 
+     "attrb": "(UNPROT)", 
+     "name": "RISMON", 
+     "color": null, 
+     "initial": null, 
+     "col": 24, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:193", 
+     "length": 1, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "-", 
+     "col": 27, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:196", 
+     "length": 2, 
+     "attrb": "(UNPROT)", 
+     "name": "RISDAY", 
+     "color": null, 
+     "initial": null, 
+     "col": 29, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:201", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 32, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:203", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Current Balance     :", 
+     "col": 39, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:208", 
+     "length": 15, 
+     "attrb": "(FSET,UNPROT)", 
+     "name": "ACURBAL", 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:212", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:214", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Current Cycle Credit:", 
+     "col": 39, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:219", 
+     "length": 15, 
+     "attrb": "(FSET,UNPROT)", 
+     "name": "ACRCYCR", 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:223", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:225", 
+     "length": 14, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Account Group:", 
+     "col": 8, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:229", 
+     "length": 10, 
+     "attrb": "(UNPROT)", 
+     "name": "AADDGRP", 
+     "color": null, 
+     "initial": null, 
+     "col": 23, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:233", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 34, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:235", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Current Cycle Debit :", 
+     "col": 39, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:240", 
+     "length": 15, 
+     "attrb": "(FSET,UNPROT)", 
+     "name": "ACRCYDB", 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:244", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:246", 
+     "length": 16, 
+     "attrb": null, 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Customer Details", 
+     "col": 32, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:250", 
+     "length": 14, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Customer id  :", 
+     "col": 8, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:254", 
+     "length": 9, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSTNUM", 
+     "color": null, 
+     "initial": null, 
+     "col": 23, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:258", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 33, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:260", 
+     "length": 4, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "SSN:", 
+     "col": 49, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:264", 
+     "length": 3, 
+     "attrb": "(UNPROT)", 
+     "name": "ACTSSN1", 
+     "color": null, 
+     "initial": "999", 
+     "col": 55, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:269", 
+     "length": 1, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "-", 
+     "col": 59, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:272", 
+     "length": 2, 
+     "attrb": "(UNPROT)", 
+     "name": "ACTSSN2", 
+     "color": null, 
+     "initial": "99", 
+     "col": 61, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:277", 
+     "length": 1, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "-", 
+     "col": 64, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:280", 
+     "length": 4, 
+     "attrb": "(UNPROT)", 
+     "name": "ACTSSN3", 
+     "color": null, 
+     "initial": "9999", 
+     "col": 66, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:285", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 71, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:287", 
+     "length": 14, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Date of birth:", 
+     "col": 8, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:291", 
+     "length": 4, 
+     "attrb": "(UNPROT)", 
+     "name": "DOBYEAR", 
+     "color": null, 
+     "initial": null, 
+     "col": 23, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:296", 
+     "length": 1, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "-", 
+     "col": 28, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:299", 
+     "length": 2, 
+     "attrb": "(UNPROT)", 
+     "name": "DOBMON", 
+     "color": null, 
+     "initial": null, 
+     "col": 30, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:304", 
+     "length": 1, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": "-", 
+     "col": 33, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:307", 
+     "length": 2, 
+     "attrb": "(UNPROT)", 
+     "name": "DOBDAY", 
+     "color": null, 
+     "initial": null, 
+     "col": 35, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:312", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 38, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:314", 
+     "length": 11, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "FICO Score:", 
+     "col": 49, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:318", 
+     "length": 3, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSTFCO", 
+     "color": null, 
+     "initial": null, 
+     "col": 62, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:322", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 66, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:324", 
+     "length": 10, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "First Name", 
+     "col": 1, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:328", 
+     "length": 13, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Middle Name: ", 
+     "col": 28, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:332", 
+     "length": 12, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Last Name : ", 
+     "col": 55, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:336", 
+     "length": 25, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSFNAM", 
+     "color": null, 
+     "initial": null, 
+     "col": 1, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:340", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 27, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:342", 
+     "length": 25, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSMNAM", 
+     "color": null, 
+     "initial": null, 
+     "col": 28, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:346", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 54, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:348", 
+     "length": 25, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSLNAM", 
+     "color": null, 
+     "initial": null, 
+     "col": 55, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:352", 
+     "length": 8, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Address:", 
+     "col": 1, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:356", 
+     "length": 50, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSADL1", 
+     "color": null, 
+     "initial": null, 
+     "col": 10, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:360", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:362", 
+     "length": 6, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "State ", 
+     "col": 63, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:366", 
+     "length": 2, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSSTTE", 
+     "color": null, 
+     "initial": null, 
+     "col": 73, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:370", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 76, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:372", 
+     "length": 50, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSADL2", 
+     "color": null, 
+     "initial": null, 
+     "col": 10, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:376", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:378", 
+     "length": 3, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Zip", 
+     "col": 63, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:382", 
+     "length": 5, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSZIPC", 
+     "color": null, 
+     "initial": null, 
+     "col": 73, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:386", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 79, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:388", 
+     "length": 5, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "City ", 
+     "col": 1, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:392", 
+     "length": 50, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSCITY", 
+     "color": null, 
+     "initial": null, 
+     "col": 10, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:396", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 61, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:398", 
+     "length": 7, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Country", 
+     "col": 63, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:402", 
+     "length": 3, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSCTRY", 
+     "color": null, 
+     "initial": null, 
+     "col": 73, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:406", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 77, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:408", 
+     "length": 8, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Phone 1:", 
+     "col": 1, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:412", 
+     "length": 3, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSPH1A", 
+     "color": null, 
+     "initial": null, 
+     "col": 10, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:417", 
+     "length": 3, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSPH1B", 
+     "color": null, 
+     "initial": null, 
+     "col": 14, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:422", 
+     "length": 4, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSPH1C", 
+     "color": null, 
+     "initial": null, 
+     "col": 18, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:427", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 23, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:429", 
+     "length": 30, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Government Issued Id Ref    : ", 
+     "col": 24, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:433", 
+     "length": 20, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSGOVT", 
+     "color": null, 
+     "initial": null, 
+     "col": 58, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:437", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 79, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:439", 
+     "length": 8, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Phone 2:", 
+     "col": 1, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:443", 
+     "length": 3, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSPH2A", 
+     "color": null, 
+     "initial": null, 
+     "col": 10, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:448", 
+     "length": 3, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSPH2B", 
+     "color": null, 
+     "initial": null, 
+     "col": 14, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:453", 
+     "length": 4, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSPH2C", 
+     "color": null, 
+     "initial": null, 
+     "col": 18, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:458", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 23, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:460", 
+     "length": 16, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "EFT Account Id: ", 
+     "col": 24, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:464", 
+     "length": 10, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSEFTC", 
+     "color": null, 
+     "initial": null, 
+     "col": 41, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:468", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 52, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:470", 
+     "length": 24, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Primary Card Holder Y/N:", 
+     "col": 53, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:474", 
+     "length": 1, 
+     "attrb": "(UNPROT)", 
+     "name": "ACSPFLG", 
+     "color": null, 
+     "initial": null, 
+     "col": 78, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:478", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 80, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:480", 
+     "length": 45, 
+     "attrb": "(ASKIP)", 
+     "name": "INFOMSG", 
+     "color": "NEUTRAL", 
+     "initial": null, 
+     "col": 23, 
+     "row": 22
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:485", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 69, 
+     "row": 22
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:487", 
+     "length": 9, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:489", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:493", 
+     "length": 21, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "FKEYS", 
+     "color": "YELLOW", 
+     "initial": "ENTER=Process F3=Exit", 
+     "col": 1, 
+     "row": 24
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:498", 
+     "length": 7, 
+     "attrb": "(ASKIP,DRK)", 
+     "name": "FKEY05", 
+     "color": "YELLOW", 
+     "initial": "F5=Save", 
+     "col": 23, 
+     "row": 24
+    }, 
+    {
+     "source": "app/bms/COACTUP.bms:503", 
+     "length": 10, 
+     "attrb": "(ASKIP,DRK)", 
+     "name": "FKEY12", 
+     "color": "YELLOW", 
+     "initial": "F12=Cancel", 
+     "col": 31, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

@@ -1,0 +1,2243 @@
+{
+ "edges": [
+  {
+   "dsn": "IMS.SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBPAUP0J", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:26"
+  }, 
+  {
+   "dsn": "XXXXXXXX.PROD.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBPAUP0J", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:27"
+  }, 
+  {
+   "dsn": "IMS.SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBPAUP0J", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:28"
+  }, 
+  {
+   "dsn": "IMS.PROCLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBPAUP0J", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:29"
+  }, 
+  {
+   "dsn": "IMS.SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBPAUP0J", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:31"
+  }, 
+  {
+   "dsn": "IMS.PSBLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBPAUP0J", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:33"
+  }, 
+  {
+   "dsn": "IMS.DBDLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBPAUP0J", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:34"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.IMSDATA.DBPAUTP0", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "STEPDEL", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:9"
+  }, 
+  {
+   "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:18"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:19"
+  }, 
+  {
+   "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:20"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.PSBLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:21"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.DBDLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:22"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.IMSDATA.DBPAUTP0", 
+   "usage": [
+    "D"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:25"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.PAUTHDB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:31"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.PAUTHDBX", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:32"
+  }, 
+  {
+   "dsn": "OEMPP.IMS.V15R01MB.PROCLIB(DFSVSMDB)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:33"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.RECON1", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:40"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.RECON2", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:41"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.RECON3", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DBPAUTP0", 
+   "step": "UNLOAD", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:42"
+  }, 
+  {
+   "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "LOADPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:28"
+  }, 
+  {
+   "dsn": "OEMA.IMS.IMSP.SDFSRESL.V151", 
+   "usage": [
+    "R"
+   ], 
+   "job": "LOADPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:29"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "LOADPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:30"
+  }, 
+  {
+   "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "LOADPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:31"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.PSBLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "LOADPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:33"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.DBDLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "LOADPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:34"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.PAUTDB.ROOT.FILEO", 
+   "usage": [
+    "R"
+   ], 
+   "job": "LOADPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:36"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.PAUTDB.CHILD.FILEO", 
+   "usage": [
+    "R"
+   ], 
+   "job": "LOADPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:38"
+  }, 
+  {
+   "dsn": "OEMPP.IMS.V15R01MB.PROCLIB(DFSVSMDB)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "LOADPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:44"
+  }, 
+  {
+   "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDGSAM", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:28"
+  }, 
+  {
+   "dsn": "OEMA.IMS.IMSP.SDFSRESL.V151", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDGSAM", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:29"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDGSAM", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:30"
+  }, 
+  {
+   "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDGSAM", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:31"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.PSBLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDGSAM", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:33"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.DBDLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDGSAM", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:34"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.PAUTDB.ROOT.GSAM", 
+   "usage": [
+    "U"
+   ], 
+   "job": "UNLDGSAM", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:36"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.PAUTDB.CHILD.GSAM", 
+   "usage": [
+    "U"
+   ], 
+   "job": "UNLDGSAM", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:39"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.PAUTHDB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDGSAM", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:42"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.PAUTHDBX", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDGSAM", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:43"
+  }, 
+  {
+   "dsn": "OEMPP.IMS.V15R01MB.PROCLIB(DFSVSMDB)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDGSAM", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:46"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.PAUTDB.ROOT.FILEO", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP0", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:33"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.PAUTDB.CHILD.FILEO", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP0", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:35"
+  }, 
+  {
+   "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:40"
+  }, 
+  {
+   "dsn": "OEMA.IMS.IMSP.SDFSRESL.V151", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:41"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:42"
+  }, 
+  {
+   "dsn": "OEMA.IMS.IMSP.SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:43"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.PSBLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:45"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.DBDLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:46"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.PAUTDB.ROOT.FILEO", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:48"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.PAUTDB.CHILD.FILEO", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:53"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.PAUTHDB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:58"
+  }, 
+  {
+   "dsn": "OEM.IMS.IMSP.PAUTHDBX", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:59"
+  }, 
+  {
+   "dsn": "OEMPP.IMS.V15R01MB.PROCLIB(DFSVSMDB)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "UNLDPADB", 
+   "step": "STEP01", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:62"
+  }, 
+  {
+   "dsn": "OEM.DB2.DAZ1.SDSNEXIT", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "FREEPLN", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:41"
+  }, 
+  {
+   "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "FREEPLN", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:42"
+  }, 
+  {
+   "dsn": "&LBNM..CNTL(DB2FREE)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "FREEPLN", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:46"
+  }, 
+  {
+   "dsn": "OEM.DB2.&DB2S..RUNLIB.LOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "CRCRDDB", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:53"
+  }, 
+  {
+   "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "CRCRDDB", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:54"
+  }, 
+  {
+   "dsn": "&LBNM..CNTL(DB2TIAD1)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "CRCRDDB", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:58"
+  }, 
+  {
+   "dsn": "&LBNM..CNTL(DB2CREAT)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "CRCRDDB", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:59"
+  }, 
+  {
+   "dsn": "OEM.DB2.&DB2S..RUNLIB.LOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "RUNTEP2", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:66"
+  }, 
+  {
+   "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "RUNTEP2", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:67"
+  }, 
+  {
+   "dsn": "&LBNM..CNTL(DB2TEP41)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "RUNTEP2", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:71"
+  }, 
+  {
+   "dsn": "&LBNM..CNTL(DB2LTTYP)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "RUNTEP2", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:72"
+  }, 
+  {
+   "dsn": "OEM.DB2.&DB2S..RUNLIB.LOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "LDTCCAT", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:78"
+  }, 
+  {
+   "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "LDTCCAT", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:79"
+  }, 
+  {
+   "dsn": "&LBNM..CNTL(DB2TEP41)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "LDTCCAT", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:83"
+  }, 
+  {
+   "dsn": "&LBNM..CNTL(DB2LTCAT)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREADB2", 
+   "step": "LDTCCAT", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:84"
+  }, 
+  {
+   "dsn": "OEM.DB2.DAZ1.SDSNEXIT", 
+   "usage": [
+    "R"
+   ], 
+   "job": "MNTTRDB2", 
+   "step": "STEP1", 
+   "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:22"
+  }, 
+  {
+   "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "MNTTRDB2", 
+   "step": "STEP1", 
+   "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:23"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "MNTTRDB2", 
+   "step": "STEP1", 
+   "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:24"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DBRMLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "MNTTRDB2", 
+   "step": "STEP1", 
+   "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:25"
+  }, 
+  {
+   "dsn": "INPFILE", 
+   "usage": [
+    "R"
+   ], 
+   "job": "MNTTRDB2", 
+   "step": "STEP1", 
+   "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:27"
+  }, 
+  {
+   "dsn": "&HLQ..TRANTYPE.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP10", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:34"
+  }, 
+  {
+   "dsn": "&HLQ..TRANTYPE.BKUP(+1)", 
+   "usage": [
+    "C"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP10", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:35"
+  }, 
+  {
+   "dsn": "&HLQ..TRANCATG.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP20", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:45"
+  }, 
+  {
+   "dsn": "&HLQ..TRANCATG.PS.BKUP(+1)", 
+   "usage": [
+    "C"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP20", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:46"
+  }, 
+  {
+   "dsn": "&HLQ..TRANTYPE.PS", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP30", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:54"
+  }, 
+  {
+   "dsn": "&HLQ..TRANCATG.PS", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP30", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:58"
+  }, 
+  {
+   "dsn": "OEM.DB2.DAZ1.RUNLIB.LOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP40", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:66"
+  }, 
+  {
+   "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP40", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:67"
+  }, 
+  {
+   "dsn": "&HLQ..TRANTYPE.PS", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP40", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:72"
+  }, 
+  {
+   "dsn": "OEM.DB2.DAZ1.RUNLIB.LOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP50", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:96"
+  }, 
+  {
+   "dsn": "OEMA.DB2.VERSIONA.SDSNLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP50", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:97"
+  }, 
+  {
+   "dsn": "&HLQ..TRANCATG.PS", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "TRANEXTR", 
+   "step": "STEP50", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:102"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "ACCTFILE", 
+   "step": "STEP15", 
+   "source": "app/jcl/ACCTFILE.jcl:56"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "ACCTFILE", 
+   "step": "STEP15", 
+   "source": "app/jcl/ACCTFILE.jcl:58"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDDATA.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CARDFILE", 
+   "step": "STEP15", 
+   "source": "app/jcl/CARDFILE.jcl:70"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CARDFILE", 
+   "step": "STEP15", 
+   "source": "app/jcl/CARDFILE.jcl:72"
+  }, 
+  {
+   "dsn": "OEM.CICSTS.V05R06M0.CICS.SDFHLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBADMCDJ", 
+   "step": "STEP1", 
+   "source": "app/jcl/CBADMCDJ.jcl:29"
+  }, 
+  {
+   "dsn": "OEM.CICSTS.DFHCSD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBADMCDJ", 
+   "step": "STEP1", 
+   "source": "app/jcl/CBADMCDJ.jcl:30"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBEXPORT", 
+   "step": "STEP02", 
+   "source": "app/jcl/CBEXPORT.jcl:44"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBEXPORT", 
+   "step": "STEP02", 
+   "source": "app/jcl/CBEXPORT.jcl:49"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBEXPORT", 
+   "step": "STEP02", 
+   "source": "app/jcl/CBEXPORT.jcl:51"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBEXPORT", 
+   "step": "STEP02", 
+   "source": "app/jcl/CBEXPORT.jcl:53"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBEXPORT", 
+   "step": "STEP02", 
+   "source": "app/jcl/CBEXPORT.jcl:55"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBEXPORT", 
+   "step": "STEP02", 
+   "source": "app/jcl/CBEXPORT.jcl:57"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.EXPORT.DATA", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBEXPORT", 
+   "step": "STEP02", 
+   "source": "app/jcl/CBEXPORT.jcl:62"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBIMPORT", 
+   "step": "STEP01", 
+   "source": "app/jcl/CBIMPORT.jcl:23"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.EXPORT.DATA", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CBIMPORT", 
+   "step": "STEP01", 
+   "source": "app/jcl/CBIMPORT.jcl:28"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CUSTDATA.IMPORT", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "CBIMPORT", 
+   "step": "STEP01", 
+   "source": "app/jcl/CBIMPORT.jcl:33"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.IMPORT", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "CBIMPORT", 
+   "step": "STEP01", 
+   "source": "app/jcl/CBIMPORT.jcl:38"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.IMPORT", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "CBIMPORT", 
+   "step": "STEP01", 
+   "source": "app/jcl/CBIMPORT.jcl:43"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.IMPORT", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "CBIMPORT", 
+   "step": "STEP01", 
+   "source": "app/jcl/CBIMPORT.jcl:48"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.IMPORT.ERRORS", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "CBIMPORT", 
+   "step": "STEP01", 
+   "source": "app/jcl/CBIMPORT.jcl:56"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(0)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "COMBTRAN", 
+   "step": "STEP05R", 
+   "source": "app/jcl/COMBTRAN.jcl:23"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.SYSTRAN(0)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "COMBTRAN", 
+   "step": "STEP05R", 
+   "source": "app/jcl/COMBTRAN.jcl:25"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED(+1)", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "COMBTRAN", 
+   "step": "STEP05R", 
+   "source": "app/jcl/COMBTRAN.jcl:33"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED(+1)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "COMBTRAN", 
+   "step": "STEP10", 
+   "source": "app/jcl/COMBTRAN.jcl:43"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "COMBTRAN", 
+   "step": "STEP10", 
+   "source": "app/jcl/COMBTRAN.jcl:45"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP010", 
+   "source": "app/jcl/CREASTMT.JCL:45"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRXFL.SEQ", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP010", 
+   "source": "app/jcl/CREASTMT.JCL:48"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRXFL.SEQ", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP020", 
+   "source": "app/jcl/CREASTMT.JCL:58"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRXFL.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP020", 
+   "source": "app/jcl/CREASTMT.JCL:59"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.STATEMNT.HTML", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP030", 
+   "source": "app/jcl/CREASTMT.JCL:67"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.STATEMNT.PS", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP030", 
+   "source": "app/jcl/CREASTMT.JCL:72"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP040", 
+   "source": "app/jcl/CREASTMT.JCL:80"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRXFL.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP040", 
+   "source": "app/jcl/CREASTMT.JCL:83"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP040", 
+   "source": "app/jcl/CREASTMT.JCL:84"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP040", 
+   "source": "app/jcl/CREASTMT.JCL:85"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP040", 
+   "source": "app/jcl/CREASTMT.JCL:86"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.STATEMNT.PS", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP040", 
+   "source": "app/jcl/CREASTMT.JCL:87"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.STATEMNT.HTML", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "CREASTMT", 
+   "step": "STEP040", 
+   "source": "app/jcl/CREASTMT.JCL:92"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CUSTDATA.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CUSTFILE", 
+   "step": "STEP15", 
+   "source": "app/jcl/CUSTFILE.jcl:66"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "CUSTFILE", 
+   "step": "STEP15", 
+   "source": "app/jcl/CUSTFILE.jcl:68"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANTYPE.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DEFGDGD", 
+   "step": "STEP20", 
+   "source": "app/jcl/DEFGDGD.jcl:39"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANTYPE.BKUP(+1)", 
+   "usage": [
+    "C"
+   ], 
+   "job": "DEFGDGD", 
+   "step": "STEP20", 
+   "source": "app/jcl/DEFGDGD.jcl:40"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DEFGDGD", 
+   "step": "STEP40", 
+   "source": "app/jcl/DEFGDGD.jcl:62"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS.BKUP(+1)", 
+   "usage": [
+    "C"
+   ], 
+   "job": "DEFGDGD", 
+   "step": "STEP40", 
+   "source": "app/jcl/DEFGDGD.jcl:63"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DISCGRP.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DEFGDGD", 
+   "step": "STEP60", 
+   "source": "app/jcl/DEFGDGD.jcl:85"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DISCGRP.BKUP(+1)", 
+   "usage": [
+    "C"
+   ], 
+   "job": "DEFGDGD", 
+   "step": "STEP60", 
+   "source": "app/jcl/DEFGDGD.jcl:86"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DISCGRP.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DISCGRP", 
+   "step": "STEP15", 
+   "source": "app/jcl/DISCGRP.jcl:56"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DISCGRP.VSAM.KSDS", 
+   "usage": [
+    "U"
+   ], 
+   "job": "DISCGRP", 
+   "step": "STEP15", 
+   "source": "app/jcl/DISCGRP.jcl:58"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.USRSEC.PS", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "DUSRSECJ", 
+   "step": "PREDEL", 
+   "source": "app/jcl/DUSRSECJ.jcl:25"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.USRSEC.PS", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "DUSRSECJ", 
+   "step": "STEP01", 
+   "source": "app/jcl/DUSRSECJ.jcl:46"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.USRSEC.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DUSRSECJ", 
+   "step": "STEP03", 
+   "source": "app/jcl/DUSRSECJ.jcl:82"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "DUSRSECJ", 
+   "step": "STEP03", 
+   "source": "app/jcl/DUSRSECJ.jcl:83"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ESDSRRDS.PS", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "ESDSRRDS", 
+   "step": "PREDEL", 
+   "source": "app/jcl/ESDSRRDS.jcl:26"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ESDSRRDS.PS", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "ESDSRRDS", 
+   "step": "STEP01", 
+   "source": "app/jcl/ESDSRRDS.jcl:47"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ESDSRRDS.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "ESDSRRDS", 
+   "step": "STEP03", 
+   "source": "app/jcl/ESDSRRDS.jcl:81"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.ESDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "ESDSRRDS", 
+   "step": "STEP03", 
+   "source": "app/jcl/ESDSRRDS.jcl:82"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ESDSRRDS.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "ESDSRRDS", 
+   "step": "STEP05", 
+   "source": "app/jcl/ESDSRRDS.jcl:115"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.RRDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "ESDSRRDS", 
+   "step": "STEP05", 
+   "source": "app/jcl/ESDSRRDS.jcl:116"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "INTCALC", 
+   "step": "STEP15", 
+   "source": "app/jcl/INTCALC.jcl:23"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "INTCALC", 
+   "step": "STEP15", 
+   "source": "app/jcl/INTCALC.jcl:27"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "INTCALC", 
+   "step": "STEP15", 
+   "source": "app/jcl/INTCALC.jcl:29"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX.PATH", 
+   "usage": [
+    "R"
+   ], 
+   "job": "INTCALC", 
+   "step": "STEP15", 
+   "source": "app/jcl/INTCALC.jcl:31"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "INTCALC", 
+   "step": "STEP15", 
+   "source": "app/jcl/INTCALC.jcl:33"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DISCGRP.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "INTCALC", 
+   "step": "STEP15", 
+   "source": "app/jcl/INTCALC.jcl:35"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.SYSTRAN(+1)", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "INTCALC", 
+   "step": "STEP15", 
+   "source": "app/jcl/INTCALC.jcl:37"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDEMO.FTP.TEST", 
+   "usage": [
+    "R"
+   ], 
+   "job": "INTRDRJ1", 
+   "step": "IDCAMS", 
+   "source": "app/jcl/INTRDRJ1.JCL:8"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDEMO.FTP.TEST.BKUP", 
+   "usage": [
+    "R"
+   ], 
+   "job": "INTRDRJ1", 
+   "step": "IDCAMS", 
+   "source": "app/jcl/INTRDRJ1.JCL:9"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.JCL(INTRDRJ2)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "INTRDRJ1", 
+   "step": "STEP01", 
+   "source": "app/jcl/INTRDRJ1.JCL:17"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDEMO.FTP.TEST.BKUP", 
+   "usage": [
+    "R"
+   ], 
+   "job": "INTRDRJ2", 
+   "step": "IDCAMS", 
+   "source": "app/jcl/INTRDRJ2.JCL:9"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDEMO.FTP.TEST.BKUP.INTRDR", 
+   "usage": [
+    "R"
+   ], 
+   "job": "INTRDRJ2", 
+   "step": "IDCAMS", 
+   "source": "app/jcl/INTRDRJ2.JCL:10"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "POSTTRAN", 
+   "step": "STEP15", 
+   "source": "app/jcl/POSTTRAN.jcl:24"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "POSTTRAN", 
+   "step": "STEP15", 
+   "source": "app/jcl/POSTTRAN.jcl:28"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DALYTRAN.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "POSTTRAN", 
+   "step": "STEP15", 
+   "source": "app/jcl/POSTTRAN.jcl:30"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "POSTTRAN", 
+   "step": "STEP15", 
+   "source": "app/jcl/POSTTRAN.jcl:32"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DALYREJS(+1)", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "POSTTRAN", 
+   "step": "STEP15", 
+   "source": "app/jcl/POSTTRAN.jcl:34"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "POSTTRAN", 
+   "step": "STEP15", 
+   "source": "app/jcl/POSTTRAN.jcl:39"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "POSTTRAN", 
+   "step": "STEP15", 
+   "source": "app/jcl/POSTTRAN.jcl:41"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.REPT", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "PRTCATBL", 
+   "step": "DELDEF", 
+   "source": "app/jcl/PRTCATBL.jcl:22"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "PRTCATBL", 
+   "step": "STEP05R", 
+   "source": "app/jcl/PRTCATBL.jcl:32"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP(+1)", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "PRTCATBL", 
+   "step": "STEP05R", 
+   "source": "app/jcl/PRTCATBL.jcl:35"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP(+1)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "PRTCATBL", 
+   "step": "STEP10R", 
+   "source": "app/jcl/PRTCATBL.jcl:44"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.REPT", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "PRTCATBL", 
+   "step": "STEP10R", 
+   "source": "app/jcl/PRTCATBL.jcl:59"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.PSCOMP", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "READACCT", 
+   "step": "PREDEL", 
+   "source": "app/jcl/READACCT.jcl:23"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.ARRYPS", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "READACCT", 
+   "step": "PREDEL", 
+   "source": "app/jcl/READACCT.jcl:25"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VBPS", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "READACCT", 
+   "step": "PREDEL", 
+   "source": "app/jcl/READACCT.jcl:27"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "READACCT", 
+   "step": "STEP05", 
+   "source": "app/jcl/READACCT.jcl:33"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "READACCT", 
+   "step": "STEP05", 
+   "source": "app/jcl/READACCT.jcl:35"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.PSCOMP", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "READACCT", 
+   "step": "STEP05", 
+   "source": "app/jcl/READACCT.jcl:37"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.ARRYPS", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "READACCT", 
+   "step": "STEP05", 
+   "source": "app/jcl/READACCT.jcl:41"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VBPS", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "READACCT", 
+   "step": "STEP05", 
+   "source": "app/jcl/READACCT.jcl:45"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "READCARD", 
+   "step": "STEP05", 
+   "source": "app/jcl/READCARD.jcl:23"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "READCARD", 
+   "step": "STEP05", 
+   "source": "app/jcl/READCARD.jcl:25"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "READCUST", 
+   "step": "STEP05", 
+   "source": "app/jcl/READCUST.jcl:22"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "READCUST", 
+   "step": "STEP05", 
+   "source": "app/jcl/READCUST.jcl:24"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "READXREF", 
+   "step": "STEP05", 
+   "source": "app/jcl/READXREF.jcl:23"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "READXREF", 
+   "step": "STEP05", 
+   "source": "app/jcl/READXREF.jcl:25"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TCATBALF", 
+   "step": "STEP15", 
+   "source": "app/jcl/TCATBALF.jcl:56"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+   "usage": [
+    "U"
+   ], 
+   "job": "TCATBALF", 
+   "step": "STEP15", 
+   "source": "app/jcl/TCATBALF.jcl:58"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANBKP", 
+   "step": "STEP05R", 
+   "source": "app/jcl/TRANBKP.jcl:26"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "TRANBKP", 
+   "step": "STEP05R", 
+   "source": "app/jcl/TRANBKP.jcl:29"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANCATG", 
+   "step": "STEP15", 
+   "source": "app/jcl/TRANCATG.jcl:56"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANCATG.VSAM.KSDS", 
+   "usage": [
+    "U"
+   ], 
+   "job": "TRANCATG", 
+   "step": "STEP15", 
+   "source": "app/jcl/TRANCATG.jcl:58"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DALYTRAN.PS.INIT", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANFILE", 
+   "step": "STEP15", 
+   "source": "app/jcl/TRANFILE.jcl:69"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANFILE", 
+   "step": "STEP15", 
+   "source": "app/jcl/TRANFILE.jcl:71"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANREPT", 
+   "step": "STEP05R", 
+   "source": "app/jcl/TRANREPT.jcl:26"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "TRANREPT", 
+   "step": "STEP05R", 
+   "source": "app/jcl/TRANREPT.jcl:29"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANREPT", 
+   "step": "STEP05R", 
+   "source": "app/jcl/TRANREPT.jcl:38"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "TRANREPT", 
+   "step": "STEP05R", 
+   "source": "app/jcl/TRANREPT.jcl:51"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANREPT", 
+   "step": "STEP10R", 
+   "source": "app/jcl/TRANREPT.jcl:60"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANREPT", 
+   "step": "STEP10R", 
+   "source": "app/jcl/TRANREPT.jcl:65"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANREPT", 
+   "step": "STEP10R", 
+   "source": "app/jcl/TRANREPT.jcl:67"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANTYPE.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANREPT", 
+   "step": "STEP10R", 
+   "source": "app/jcl/TRANREPT.jcl:69"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANCATG.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANREPT", 
+   "step": "STEP10R", 
+   "source": "app/jcl/TRANREPT.jcl:71"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DATEPARM", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANREPT", 
+   "step": "STEP10R", 
+   "source": "app/jcl/TRANREPT.jcl:73"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANREPT(+1)", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "TRANREPT", 
+   "step": "STEP10R", 
+   "source": "app/jcl/TRANREPT.jcl:76"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANTYPE.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TRANTYPE", 
+   "step": "STEP15", 
+   "source": "app/jcl/TRANTYPE.jcl:56"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANTYPE.VSAM.KSDS", 
+   "usage": [
+    "U"
+   ], 
+   "job": "TRANTYPE", 
+   "step": "STEP15", 
+   "source": "app/jcl/TRANTYPE.jcl:58"
+  }, 
+  {
+   "dsn": "AWS.M2.LBD.TXT2PDF.LOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TXT2PDF1", 
+   "step": "TXT2PDF", 
+   "source": "app/jcl/TXT2PDF1.JCL:28"
+  }, 
+  {
+   "dsn": "AWS.M2.LBD.TXT2PDF.EXEC", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TXT2PDF1", 
+   "step": "TXT2PDF", 
+   "source": "app/jcl/TXT2PDF1.JCL:31"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.STATEMNT.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "TXT2PDF1", 
+   "step": "TXT2PDF", 
+   "source": "app/jcl/TXT2PDF1.JCL:33"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "WAITSTEP", 
+   "step": "WAIT", 
+   "source": "app/jcl/WAITSTEP.jcl:23"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.PS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "XREFFILE", 
+   "step": "STEP15", 
+   "source": "app/jcl/XREFFILE.jcl:59"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "XREFFILE", 
+   "step": "STEP15", 
+   "source": "app/jcl/XREFFILE.jcl:61"
+  }, 
+  {
+   "dsn": "&CICSHLQ..CICS.SDFHLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "TRN", 
+   "source": "samples/jcl/IMSMQCMP.jcl:29"
+  }, 
+  {
+   "dsn": "&HLQ..COBOL.SRC(IMSMQPGM)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "TRN", 
+   "source": "samples/jcl/IMSMQCMP.jcl:30"
+  }, 
+  {
+   "dsn": "IGY.SIGYCOMP.V63", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COBOL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:39"
+  }, 
+  {
+   "dsn": "CEE.SCEERUN", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COBOL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:40"
+  }, 
+  {
+   "dsn": "CEE.SCEERUN2", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COBOL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:41"
+  }, 
+  {
+   "dsn": "&&LOADSET", 
+   "usage": [
+    "U"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COBOL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:43"
+  }, 
+  {
+   "dsn": "CEE.SCEESAMP", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COBOL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:62"
+  }, 
+  {
+   "dsn": "&CICSHLQ..CICS.SDFHCOB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COBOL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:63"
+  }, 
+  {
+   "dsn": "&MQHLQ..SCSQCOBC", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COBOL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:64"
+  }, 
+  {
+   "dsn": "&HLQ..COBCOPY", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COBOL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:65"
+  }, 
+  {
+   "dsn": "&&SYSCIN", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COBOL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:66"
+  }, 
+  {
+   "dsn": "&&COPYIMS", 
+   "usage": [
+    "C"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COPYIMS", 
+   "source": "samples/jcl/IMSMQCMP.jcl:76"
+  }, 
+  {
+   "dsn": "&&COPYLINK", 
+   "usage": [
+    "C"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COPYLINK", 
+   "source": "samples/jcl/IMSMQCMP.jcl:85"
+  }, 
+  {
+   "dsn": "&&COPYMQ", 
+   "usage": [
+    "C"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "COPYMQ", 
+   "source": "samples/jcl/IMSMQCMP.jcl:94"
+  }, 
+  {
+   "dsn": "&MQHLQ..SCSQLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "LKED", 
+   "source": "samples/jcl/IMSMQCMP.jcl:101"
+  }, 
+  {
+   "dsn": "SYS1.LINKLIB", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "LKED", 
+   "source": "samples/jcl/IMSMQCMP.jcl:102"
+  }, 
+  {
+   "dsn": "CEE.SCEELKED", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "LKED", 
+   "source": "samples/jcl/IMSMQCMP.jcl:103"
+  }, 
+  {
+   "dsn": "&CICSHLQ..CICS.SDFHLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "LKED", 
+   "source": "samples/jcl/IMSMQCMP.jcl:104"
+  }, 
+  {
+   "dsn": "&IMSHLQ..SDFSRESL", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "LKED", 
+   "source": "samples/jcl/IMSMQCMP.jcl:105"
+  }, 
+  {
+   "dsn": "&MQHLQ..SCSQLOAD", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "LKED", 
+   "source": "samples/jcl/IMSMQCMP.jcl:106"
+  }, 
+  {
+   "dsn": "&&COPYLINK", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "LKED", 
+   "source": "samples/jcl/IMSMQCMP.jcl:107"
+  }, 
+  {
+   "dsn": "&&COPYMQ", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "LKED", 
+   "source": "samples/jcl/IMSMQCMP.jcl:108"
+  }, 
+  {
+   "dsn": "&&LOADSET", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "LKED", 
+   "source": "samples/jcl/IMSMQCMP.jcl:109"
+  }, 
+  {
+   "dsn": "&&COPYIMS", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "LKED", 
+   "source": "samples/jcl/IMSMQCMP.jcl:110"
+  }, 
+  {
+   "dsn": "&HLQ..CICSLOAD(IMSMQPGM)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "IMSMQCMP", 
+   "step": "LKED", 
+   "source": "samples/jcl/IMSMQCMP.jcl:112"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LISTCAT", 
+   "usage": [
+    "U", 
+    "D"
+   ], 
+   "job": "LISTFILS", 
+   "step": "STEP01", 
+   "source": "samples/jcl/LISTCAT.jcl:22"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LISTCAT", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "LISTFILS", 
+   "step": "STEP05", 
+   "source": "samples/jcl/LISTCAT.jcl:28"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+   "usage": [
+    "R"
+   ], 
+   "job": "REPRTEST", 
+   "step": "STEP05", 
+   "source": "samples/jcl/REPRTEST.jcl:26"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "REPRTEST", 
+   "step": "STEP05", 
+   "source": "samples/jcl/REPRTEST.jcl:29"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(0)", 
+   "usage": [
+    "R"
+   ], 
+   "job": "SORTTEST", 
+   "step": "STEP05R", 
+   "source": "samples/jcl/SORTTEST.jcl:20"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)", 
+   "usage": [
+    "C", 
+    "D"
+   ], 
+   "job": "SORTTEST", 
+   "step": "STEP05R", 
+   "source": "samples/jcl/SORTTEST.jcl:31"
+  }, 
+  {
+   "symbolic_source": "app/jcl/PRTCATBL.jcl:30", 
+   "step": "STEP05R", 
+   "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+   "source": "app/proc/REPROC.prc:27-28", 
+   "job": "PRTCATBL", 
+   "usage": [
+    "R"
+   ]
+  }, 
+  {
+   "symbolic_source": "app/jcl/TRANREPT.jcl:24", 
+   "step": "STEP05R", 
+   "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+   "source": "app/proc/REPROC.prc:27-28", 
+   "job": "TRANREPT", 
+   "usage": [
+    "R"
+   ]
+  }, 
+  {
+   "symbolic_source": "app/jcl/TRANBKP.jcl:24", 
+   "step": "STEP05R", 
+   "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+   "source": "app/proc/REPROC.prc:27-28", 
+   "job": "TRANBKP", 
+   "usage": [
+    "R"
+   ]
+  }, 
+  {
+   "symbolic_source": "samples/jcl/REPRTEST.jcl:24", 
+   "step": "STEP05", 
+   "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+   "source": "app/proc/REPROC.prc:27-28", 
+   "job": "REPRTEST", 
+   "usage": [
+    "R"
+   ]
+  }
+ ]
+}

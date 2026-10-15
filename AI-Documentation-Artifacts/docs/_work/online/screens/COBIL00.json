@@ -1,0 +1,283 @@
+{
+ "source": "app/bms/COBIL00.bms:19", 
+ "name": "COBIL00", 
+ "module": "base", 
+ "maps": [
+  {
+   "source": "app/bms/COBIL00.bms:26", 
+   "mockup": [
+    "Tran: XXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "                                  Bill Payment", 
+    "", 
+    "     Enter Acct ID: ___________", 
+    "", 
+    "     ------------------------------------------------ ---------------------", 
+    "", 
+    "", 
+    "     Your current balance is:  XXXXXXXXXXXXXX", 
+    "", 
+    "", 
+    "", 
+    "     Do you want to pay your balance now. Please con- firm _  (Y/N)", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "ENTER=Continue  F3=Back  F4=Clear"
+   ], 
+   "name": "COBIL0A", 
+   "fields": [
+    {
+     "source": "app/bms/COBIL00.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:75", 
+     "length": 12, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Bill Payment", 
+     "col": 35, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:80", 
+     "length": 14, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "GREEN", 
+     "initial": "Enter Acct ID:", 
+     "col": 6, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:85", 
+     "length": 11, 
+     "attrb": "(FSET,IC,NORM,UNPROT)", 
+     "name": "ACTIDIN", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 21, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:90", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 33, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:93", 
+     "length": 70, 
+     "attrb": null, 
+     "name": null, 
+     "color": "YELLOW", 
+     "initial": "------------------------------------------------ -----------------------", 
+     "col": 6, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:98", 
+     "length": 25, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Your current balance is: ", 
+     "col": 6, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:103", 
+     "length": 14, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURBAL", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 32, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:107", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 47, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:109", 
+     "length": 53, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Do you want to pay your balance now. Please con- firm: ", 
+     "col": 6, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:115", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "CONFIRM", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 60, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:120", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 62, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:122", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "(Y/N)", 
+     "col": 63, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:127", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/bms/COBIL00.bms:131", 
+     "length": 33, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "YELLOW", 
+     "initial": "ENTER=Continue  F3=Back  F4=Clear", 
+     "col": 1, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

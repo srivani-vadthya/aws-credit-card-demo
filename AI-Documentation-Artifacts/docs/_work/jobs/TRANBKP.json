@@ -1,0 +1,299 @@
+{
+ "set_symbols": {}, 
+ "submitted_by": [
+  {
+   "source": "scripts/run_full_batch.sh:29", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_full_batch.sh:55", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_interest_calc.sh:23", 
+   "mechanism": "script-ftp-put"
+  }, 
+  {
+   "source": "scripts/run_posting.sh:23", 
+   "mechanism": "script-ftp-put"
+  }
+ ], 
+ "description": {
+  "text": "Repro the processed transaction file", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/TRANBKP.jcl:21"
+ }, 
+ "job_card": {
+  "msgclass": "0", 
+  "source": "app/jcl/TRANBKP.jcl:1", 
+  "region": null, 
+  "notify": "&SYSUID", 
+  "class": "A"
+ }, 
+ "schedule": [
+  {
+   "description": {
+    "text": "DAILY TRANBKP", 
+    "confidence": "Unverified"
+   }, 
+   "source": "app/scheduler/CardDemo.controlm", 
+   "folder_calendar": null, 
+   "time": "23:00", 
+   "folder": "DAILY-TransactionBackup", 
+   "successors": [
+    "WAITSTEP"
+   ], 
+   "calendar": "ALL", 
+   "predecessors": [
+    "CLOSEFIL"
+   ]
+  }
+ ], 
+ "source_path": "app/jcl/TRANBKP.jcl", 
+ "module": "base", 
+ "steps": [
+  {
+   "function": "Executes procedure REPROC (IDCAMS REPRO)", 
+   "kind": "utility", 
+   "if_condition": null, 
+   "name": "STEP05R", 
+   "control_statements": [
+    {
+     "text": "REPRO INFILE(FILEIN) OUTFILE(FILEOUT)", 
+     "meaning": "IDCAMS repro from FILEIN to FILEOUT", 
+     "source": "app/ctl/REPROCT.ctl:15", 
+     "also_identical": "app/app-transaction-type-db2/ctl/REPROCT.ctl:15"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "line": 26, 
+     "ddname": "PRC001.FILEIN", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS"
+    }, 
+    {
+     "disp": "(NEW,CATLG,DELETE)", 
+     "dummy": false, 
+     "layout": null, 
+     "space": "(CYL,(1,1)", 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": "350", 
+     "gdg_relative": "+1", 
+     "recfm": "FB", 
+     "sysout": false, 
+     "usage": [
+      "C", 
+      "D"
+     ], 
+     "line": 29, 
+     "ddname": "PRC001.FILEOUT", 
+     "instream": false, 
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)"
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "source": "app/proc/REPROC.prc:27-28", 
+     "instream": false, 
+     "sysout": false, 
+     "usage": [
+      "R"
+     ], 
+     "from_proc": "REPROC", 
+     "ddname": "PRC001.SYSIN", 
+     "line": 27, 
+     "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)"
+    }
+   ], 
+   "parm": null, 
+   "program": null, 
+   "cond": null, 
+   "proc_steps": [
+    "PRC001"
+   ], 
+   "proc_expansion": {
+    "confidence": "Confirmed", 
+    "proc_source": "app/proc/REPROC.prc:1-29", 
+    "proc_steps": [
+     {
+      "source": "app/proc/REPROC.prc:21", 
+      "program": "IDCAMS", 
+      "name": "PRC001"
+     }
+    ], 
+    "overridden_dds": [
+     "PRC001.FILEIN", 
+     "PRC001.FILEOUT"
+    ], 
+    "proc_default_dsn": {
+     "FILEOUT": "NULLFILE", 
+     "FILEIN": "NULLFILE", 
+     "source": "app/proc/REPROC.prc:23-26"
+    }, 
+    "symbolics": [
+     {
+      "source": "app/jcl/TRANBKP.jcl:24", 
+      "from": "EXEC override", 
+      "name": "CNTLLIB", 
+      "value": "AWS.M2.CARDDEMO.CNTL"
+     }
+    ], 
+    "control_member_note": "SYSIN resolves to AWS.M2.CARDDEMO.CNTL(REPROCT). The two REPROCT.ctl files in the repository are byte-identical. Which file is loaded into that library is not stated in the repository (see gaps.md)."
+   }, 
+   "line": 23, 
+   "proc": "REPROC"
+  }, 
+  {
+   "function": "IDCAMS delete", 
+   "kind": "utility", 
+   "if_condition": null, 
+   "name": "STEP05", 
+   "control_statements": [
+    {
+     "text": "DELETE AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS -", 
+     "meaning": "IDCAMS delete", 
+     "source": "app/jcl/TRANBKP.jcl:40"
+    }, 
+    {
+     "text": "DELETE AWS.M2.CARDDEMO.TRANSACT.VSAM.AIX -", 
+     "meaning": "IDCAMS delete", 
+     "source": "app/jcl/TRANBKP.jcl:43"
+    }, 
+    {
+     "text": "ALTERNATEINDEX", 
+     "meaning": "IDCAMS define alternate index", 
+     "source": "app/jcl/TRANBKP.jcl:44"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": true, 
+     "usage": [], 
+     "line": 38, 
+     "ddname": "SYSPRINT", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [], 
+     "line": 39, 
+     "ddname": "SYSIN", 
+     "instream": true, 
+     "dsn": null
+    }
+   ], 
+   "parm": null, 
+   "program": "IDCAMS", 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 37, 
+   "proc": null
+  }, 
+  {
+   "function": "IDCAMS define VSAM cluster", 
+   "kind": "utility", 
+   "if_condition": null, 
+   "name": "STEP10", 
+   "control_statements": [
+    {
+     "text": "DEFINE CLUSTER (NAME(AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS) -", 
+     "meaning": "IDCAMS define VSAM cluster", 
+     "source": "app/jcl/TRANBKP.jcl:54"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": true, 
+     "usage": [], 
+     "line": 52, 
+     "ddname": "SYSPRINT", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [], 
+     "line": 53, 
+     "ddname": "SYSIN", 
+     "instream": true, 
+     "dsn": null
+    }
+   ], 
+   "parm": null, 
+   "program": "IDCAMS", 
+   "cond": "(4,LT)", 
+   "proc_steps": [], 
+   "line": 51, 
+   "proc": null
+  }
+ ], 
+ "jcllib": [
+  "ORDER=('AWS.M2.CARDDEMO.PROC')"
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "457cd00d14a1d9ac9983d92212541df3456e8428862b97cf10bab7249b9e6183", 
+ "job_name": "TRANBKP", 
+ "findings": []
+}

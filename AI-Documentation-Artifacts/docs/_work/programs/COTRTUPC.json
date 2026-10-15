@@ -1,0 +1,1245 @@
+{
+ "invoked_by": [], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS present", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:344"
+  }, 
+  {
+   "text": "EXEC SQL present", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:344"
+  }
+ ], 
+ "candidate_rules": [], 
+ "module": "trantype", 
+ "header": {
+  "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1", 
+  "author": null, 
+  "description": "See the comment block at the top of the source. Unverified until matched to code.", 
+  "version_banner": null
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "0000-MAIN", 
+   "section": null, 
+   "end_line": 557, 
+   "purpose": "Statements include: EXEC CICS HANDLE, EXEC CICS XCTL", 
+   "performs": [
+    "YYYY-STORE-PFKEY", 
+    "0001-CHECK-PFKEYS", 
+    "3000-SEND-MAP", 
+    "9800-DELETE-PROCESSING", 
+    "3000-SEND-MAP", 
+    "3000-SEND-MAP", 
+    "3000-SEND-MAP", 
+    "9600-WRITE-PROCESSING", 
+    "3000-SEND-MAP", 
+    "2000-DECIDE-ACTION", 
+    "3000-SEND-MAP", 
+    "3000-SEND-MAP", 
+    "1000-PROCESS-INPUTS", 
+    "2000-DECIDE-ACTION", 
+    "3000-SEND-MAP"
+   ], 
+   "reachable": true, 
+   "start_line": 345, 
+   "go_to": [
+    "COMMON-RETURN", 
+    "COMMON-RETURN", 
+    "COMMON-RETURN", 
+    "COMMON-RETURN", 
+    "COMMON-RETURN", 
+    "COMMON-RETURN", 
+    "COMMON-RETURN", 
+    "COMMON-RETURN"
+   ]
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "COMMON-RETURN", 
+   "section": null, 
+   "end_line": 572, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 559, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "0000-MAIN-EXIT", 
+   "section": null, 
+   "end_line": 575, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 573, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "0001-CHECK-PFKEYS", 
+   "section": null, 
+   "end_line": 618, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 577, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "0001-CHECK-PFKEYS-EXIT", 
+   "section": null, 
+   "end_line": 623, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 621, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1000-PROCESS-INPUTS", 
+   "section": null, 
+   "end_line": 636, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "1100-RECEIVE-MAP", 
+    "1150-STORE-MAP-IN-NEW", 
+    "1200-EDIT-MAP-INPUTS"
+   ], 
+   "reachable": true, 
+   "start_line": 625, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1000-PROCESS-INPUTS-EXIT", 
+   "section": null, 
+   "end_line": 640, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 638, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1100-RECEIVE-MAP", 
+   "section": null, 
+   "end_line": 648, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 641, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1100-RECEIVE-MAP-EXIT", 
+   "section": null, 
+   "end_line": 650, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 649, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1150-STORE-MAP-IN-NEW", 
+   "section": null, 
+   "end_line": 685, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 652, 
+   "go_to": [
+    "1150-STORE-MAP-IN-NEW-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1150-STORE-MAP-IN-NEW-EXIT", 
+   "section": null, 
+   "end_line": 688, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 686, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1200-EDIT-MAP-INPUTS", 
+   "section": null, 
+   "end_line": 777, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "1210-EDIT-TRANTYPE", 
+    "1205-COMPARE-OLD-NEW", 
+    "1230-EDIT-ALPHANUM-REQD"
+   ], 
+   "reachable": true, 
+   "start_line": 689, 
+   "go_to": [
+    "1200-EDIT-MAP-INPUTS-EXIT", 
+    "1200-EDIT-MAP-INPUTS-EXIT", 
+    "1200-EDIT-MAP-INPUTS-EXIT", 
+    "1200-EDIT-MAP-INPUTS-EXIT", 
+    "1200-EDIT-MAP-INPUTS-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1200-EDIT-MAP-INPUTS-EXIT", 
+   "section": null, 
+   "end_line": 781, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 779, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1205-COMPARE-OLD-NEW", 
+   "section": null, 
+   "end_line": 812, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 783, 
+   "go_to": [
+    "1205-COMPARE-OLD-NEW-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1205-COMPARE-OLD-NEW-EXIT", 
+   "section": null, 
+   "end_line": 816, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 814, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1210-EDIT-TRANTYPE", 
+   "section": null, 
+   "end_line": 843, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "1245-EDIT-NUM-REQD"
+   ], 
+   "reachable": true, 
+   "start_line": 820, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1210-EDIT-TRANTYPE-EXIT", 
+   "section": null, 
+   "end_line": 847, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 845, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1230-EDIT-ALPHANUM-REQD", 
+   "section": null, 
+   "end_line": 902, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 849, 
+   "go_to": [
+    "1230-EDIT-ALPHANUM-REQD-EXIT", 
+    "1230-EDIT-ALPHANUM-REQD-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1230-EDIT-ALPHANUM-REQD-EXIT", 
+   "section": null, 
+   "end_line": 905, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 903, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1245-EDIT-NUM-REQD", 
+   "section": null, 
+   "end_line": 973, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 907, 
+   "go_to": [
+    "1245-EDIT-NUM-REQD-EXIT", 
+    "1245-EDIT-NUM-REQD-EXIT", 
+    "1245-EDIT-NUM-REQD-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1245-EDIT-NUM-REQD-EXIT", 
+   "section": null, 
+   "end_line": 976, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 974, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2000-DECIDE-ACTION", 
+   "section": null, 
+   "end_line": 1082, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "9000-READ-TRANTYPE", 
+    "ABEND-ROUTINE"
+   ], 
+   "reachable": true, 
+   "start_line": 978, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2000-DECIDE-ACTION-EXIT", 
+   "section": null, 
+   "end_line": 1085, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1083, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3000-SEND-MAP", 
+   "section": null, 
+   "end_line": 1104, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "3100-SCREEN-INIT", 
+    "3200-SETUP-SCREEN-VARS", 
+    "3250-SETUP-INFOMSG", 
+    "3300-SETUP-SCREEN-ATTRS", 
+    "3390-SETUP-INFOMSG-ATTRS", 
+    "3391-SETUP-PFKEY-ATTRS", 
+    "3400-SEND-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 1089, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3000-SEND-MAP-EXIT", 
+   "section": null, 
+   "end_line": 1108, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1106, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3100-SCREEN-INIT", 
+   "section": null, 
+   "end_line": 1134, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1110, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3100-SCREEN-INIT-EXIT", 
+   "section": null, 
+   "end_line": 1138, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1136, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3200-SETUP-SCREEN-VARS", 
+   "section": null, 
+   "end_line": 1171, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "3201-SHOW-INITIAL-VALUES", 
+    "3202-SHOW-ORIGINAL-VALUES", 
+    "3203-SHOW-UPDATED-VALUES", 
+    "3202-SHOW-ORIGINAL-VALUES"
+   ], 
+   "reachable": true, 
+   "start_line": 1140, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3200-SETUP-SCREEN-VARS-EXIT", 
+   "section": null, 
+   "end_line": 1174, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1172, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3201-SHOW-INITIAL-VALUES", 
+   "section": null, 
+   "end_line": 1179, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1176, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3201-SHOW-INITIAL-VALUES-EXIT", 
+   "section": null, 
+   "end_line": 1183, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1181, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3202-SHOW-ORIGINAL-VALUES", 
+   "section": null, 
+   "end_line": 1192, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1185, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3202-SHOW-ORIGINAL-VALUES-EXIT", 
+   "section": null, 
+   "end_line": 1196, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1194, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3203-SHOW-UPDATED-VALUES", 
+   "section": null, 
+   "end_line": 1201, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1197, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3203-SHOW-UPDATED-VALUES-EXIT", 
+   "section": null, 
+   "end_line": 1205, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1203, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3250-SETUP-INFOMSG", 
+   "section": null, 
+   "end_line": 1265, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1210, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3250-SETUP-INFOMSG-EXIT", 
+   "section": null, 
+   "end_line": 1268, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1266, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3300-SETUP-SCREEN-ATTRS", 
+   "section": null, 
+   "end_line": 1363, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "3310-PROTECT-ALL-ATTRS", 
+    "3320-UNPROTECT-FEW-ATTRS"
+   ], 
+   "reachable": true, 
+   "start_line": 1269, 
+   "go_to": [
+    "3300-SETUP-SCREEN-ATTRS-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3300-SETUP-SCREEN-ATTRS-EXIT", 
+   "section": null, 
+   "end_line": 1366, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1364, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3310-PROTECT-ALL-ATTRS", 
+   "section": null, 
+   "end_line": 1372, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1368, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3310-PROTECT-ALL-ATTRS-EXIT", 
+   "section": null, 
+   "end_line": 1375, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1373, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3320-UNPROTECT-FEW-ATTRS", 
+   "section": null, 
+   "end_line": 1381, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1377, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3320-UNPROTECT-FEW-ATTRS-EXIT", 
+   "section": null, 
+   "end_line": 1384, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1382, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3390-SETUP-INFOMSG-ATTRS", 
+   "section": null, 
+   "end_line": 1392, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1386, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3390-SETUP-INFOMSG-ATTRS-EXIT", 
+   "section": null, 
+   "end_line": 1395, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1393, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3391-SETUP-PFKEY-ATTRS", 
+   "section": null, 
+   "end_line": 1423, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1397, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3391-SETUP-PFKEY-ATTRS-EXIT", 
+   "section": null, 
+   "end_line": 1426, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1424, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3400-SEND-SCREEN", 
+   "section": null, 
+   "end_line": 1441, 
+   "purpose": "Statements include: EXEC CICS SEND", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1428, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3400-SEND-SCREEN-EXIT", 
+   "section": null, 
+   "end_line": 1444, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1442, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9000-READ-TRANTYPE", 
+   "section": null, 
+   "end_line": 1463, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "9100-GET-TRANSACTION-TYPE", 
+    "9500-STORE-FETCHED-DATA"
+   ], 
+   "reachable": true, 
+   "start_line": 1447, 
+   "go_to": [
+    "9000-READ-TRANTYPE-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9000-READ-TRANTYPE-EXIT", 
+   "section": null, 
+   "end_line": 1468, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1466, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9100-GET-TRANSACTION-TYPE", 
+   "section": null, 
+   "end_line": 1511, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1469, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9100-GET-TRANSACTION-TYPE-EXIT", 
+   "section": null, 
+   "end_line": 1514, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1512, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9500-STORE-FETCHED-DATA", 
+   "section": null, 
+   "end_line": 1527, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1517, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9500-STORE-FETCHED-DATA-EXIT", 
+   "section": null, 
+   "end_line": 1530, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1528, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9600-WRITE-PROCESSING", 
+   "section": null, 
+   "end_line": 1592, 
+   "purpose": "Statements include: EXEC CICS SYNCPOINT", 
+   "performs": [
+    "9700-INSERT-RECORD"
+   ], 
+   "reachable": true, 
+   "start_line": 1531, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9600-WRITE-PROCESSING-EXIT", 
+   "section": null, 
+   "end_line": 1595, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1593, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9700-INSERT-RECORD", 
+   "section": null, 
+   "end_line": 1620, 
+   "purpose": "Statements include: EXEC CICS SYNCPOINT", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1596, 
+   "go_to": [
+    "9700-INSERT-RECORD-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9700-INSERT-RECORD-EXIT", 
+   "section": null, 
+   "end_line": 1623, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1621, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9800-DELETE-PROCESSING", 
+   "section": null, 
+   "end_line": 1663, 
+   "purpose": "Statements include: EXEC CICS SYNCPOINT", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1624, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9800-DELETE-PROCESSING-EXIT", 
+   "section": null, 
+   "end_line": 1672, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1664, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "ABEND-ROUTINE", 
+   "section": null, 
+   "end_line": 1698, 
+   "purpose": "Statements include: EXEC CICS SEND, EXEC CICS HANDLE, EXEC CICS ABEND", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1675, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "ABEND-ROUTINE-EXIT", 
+   "section": null, 
+   "end_line": 1701, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1699, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:76", 
+   "resolution": "inventory", 
+   "name": "CSUTLDWY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:241", 
+   "resolution": "inventory", 
+   "name": "CVCRD01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:257", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:258", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:262", 
+   "resolution": "inventory", 
+   "name": "COTTL01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:265", 
+   "resolution": "inventory", 
+   "name": "COTRTUP", 
+   "purpose": "Application copybook (bms-mapset)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:268", 
+   "resolution": "inventory", 
+   "name": "CSDAT01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:271", 
+   "resolution": "inventory", 
+   "name": "CSMSG01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:274", 
+   "resolution": "inventory", 
+   "name": "CSMSG02Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:277", 
+   "resolution": "inventory", 
+   "name": "CSUSR01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:286", 
+   "resolution": "inventory", 
+   "name": "DCLTRTYP", 
+   "purpose": "DB2 DCLGEN host structure"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:288", 
+   "resolution": "inventory", 
+   "name": "DCLTRCAT", 
+   "purpose": "DB2 DCLGEN host structure"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:292", 
+   "resolution": "inventory", 
+   "name": "COCOM01Y", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (app/cpy/COCOM01Y.cpy:19)"
+  }
+ ], 
+ "runtime_type": [
+  "cics-online", 
+  "db2"
+ ], 
+ "loc": {
+  "comment": 273, 
+  "total": 1702, 
+  "code": 1429
+ }, 
+ "evidence_summary": "Structural facts read from app/app-transaction-type-db2/cbl/COTRTUPC.cbl. Paragraph purposes are Inferred from statements.", 
+ "source_format": "fixed-with-sequence-area", 
+ "observations": [], 
+ "sha256": "c16e40c391c0ad2d3e797a0e01144ef5b78d3b0db0a1771411a95a9d08b01f67", 
+ "files": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "linkage": [], 
+  "pcbs": []
+ }, 
+ "crud": [
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1475", 
+   "store": "CARDDEMO.TRANSACTION_TYPE", 
+   "store_kind": "logical", 
+   "ops": [
+    "C", 
+    "D", 
+    "R", 
+    "U"
+   ]
+  }
+ ], 
+ "program_id": "COTRTUPC", 
+ "error_handling": [], 
+ "source_path": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl", 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "HANDLE", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 348
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SYNCPOINT", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 453
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 457
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 567
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "RECEIVE", 
+   "response_handling": "RESP checked", 
+   "line": 642
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SEND", 
+   "response_handling": "RESP checked", 
+   "line": 1433
+  }, 
+  {
+   "kind": "SQL", 
+   "resource": "CARDDEMO.TRANSACTION_TYPE", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SELECT", 
+   "response_handling": null, 
+   "line": 1475
+  }, 
+  {
+   "kind": "SQL", 
+   "resource": "CARDDEMO.TRANSACTION_TYPE", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "UPDATE", 
+   "response_handling": null, 
+   "line": 1544
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SYNCPOINT", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 1557
+  }, 
+  {
+   "kind": "SQL", 
+   "resource": "CARDDEMO.TRANSACTION_TYPE", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "INSERT", 
+   "response_handling": null, 
+   "line": 1597
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SYNCPOINT", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 1606
+  }, 
+  {
+   "kind": "SQL", 
+   "resource": "CARDDEMO.TRANSACTION_TYPE", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "DELETE", 
+   "response_handling": null, 
+   "line": 1627
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SYNCPOINT", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 1637
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SEND", 
+   "response_handling": "NOHANDLE", 
+   "line": 1684
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "HANDLE", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 1691
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "ABEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 1695
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:457", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "LIT-THISTRANID", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:567", 
+   "condition": null
+  }
+ ], 
+ "messages": [
+  {
+   "text": "UNEXPECTED ABEND OCCURRED.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1678"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:60", 
+   "name": "FLG-ALPHNANUM-NOT-OK", 
+   "value": "'0'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:61", 
+   "name": "FLG-ALPHNANUM-BLANK", 
+   "value": "'B'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:79", 
+   "name": "NO-CHANGES-FOUND", 
+   "value": "'0'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:80", 
+   "name": "CHANGE-HAS-OCCURRED", 
+   "value": "'1'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:82", 
+   "name": "INPUT-OK", 
+   "value": "'0'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:83", 
+   "name": "INPUT-ERROR", 
+   "value": "'1'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:87", 
+   "name": "WS-RETURN-FLAG-ON", 
+   "value": "'1'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:89", 
+   "name": "PFK-VALID", 
+   "value": "'0'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:90", 
+   "name": "PFK-INVALID", 
+   "value": "'1'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:96", 
+   "name": "FLG-TRANFILTER-NOT-OK", 
+   "value": "'0'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:97", 
+   "name": "FLG-TRANFILTER-BLANK", 
+   "value": "'B'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:102", 
+   "name": "FLG-DESCRIPTION-NOT-OK", 
+   "value": "'0'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:103", 
+   "name": "FLG-DESCRIPTION-BLANK", 
+   "value": "'B'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:127", 
+   "name": "FOUND-TRANTYPE-IN-TABLE", 
+   "value": "'1'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:301", 
+   "name": "TTUP-INVALID-SEARCH-KEYS", 
+   "value": "'K'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:302", 
+   "name": "TTUP-DETAILS-NOT-FOUND", 
+   "value": "'X'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:303", 
+   "name": "TTUP-SHOW-DETAILS", 
+   "value": "'S'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:305", 
+   "name": "TTUP-CREATE-NEW-RECORD", 
+   "value": "'R'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:306", 
+   "name": "TTUP-REVIEW-NEW-RECORD", 
+   "value": "'V'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:310", 
+   "name": "TTUP-CONFIRM-DELETE", 
+   "value": "'9'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:311", 
+   "name": "TTUP-START-DELETE", 
+   "value": "'8'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:312", 
+   "name": "TTUP-DELETE-DONE", 
+   "value": "'7'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:313", 
+   "name": "TTUP-DELETE-FAILED", 
+   "value": "'6'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:318", 
+   "name": "TTUP-CHANGES-NOT-OK", 
+   "value": "'E'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:319", 
+   "name": "TTUP-CHANGES-OK-NOT-CONFIRMED", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:323", 
+   "name": "TTUP-CHANGES-OKAYED-LOCK-ERROR", 
+   "value": "'L'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:324", 
+   "name": "TTUP-CHANGES-OKAYED-BUT-FAILED", 
+   "value": "'F'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:326", 
+   "name": "TTUP-CHANGES-OKAYED-AND-DONE", 
+   "value": "'C'"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:327", 
+   "name": "TTUP-CHANGES-BACKED-OUT", 
+   "value": "'B'"
+  }
+ ]
+}

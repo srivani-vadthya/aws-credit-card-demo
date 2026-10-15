@@ -1,0 +1,83 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "WAITSTEP", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/jcl/WAITSTEP.jcl:22", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "No EXEC CICS or DFHCOMMAREA in this source", 
+   "source": "app/cbl/COBSWAIT.cbl:34"
+  }
+ ], 
+ "source_path": "app/cbl/COBSWAIT.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/COBSWAIT.cbl:1-8", 
+  "version_banner": null, 
+  "description": "PROGRAM     : COBSWAIT.CBL Application : CardDemo Type        : BATCH COBOL Program FUNCTION    : UTILITY PROGRAM TO WAIT (PARM IN CENTISECONDS) All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0", 
+  "author": null
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAINLINE", 
+   "section": null, 
+   "end_line": 40, 
+   "purpose": "Statements include: CALL MVSWAIT", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 34, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [], 
+ "data_items": [], 
+ "loc": {
+  "comment": 22, 
+  "total": 41, 
+  "code": 19
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/COBSWAIT.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed-with-sequence-area", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COBSWAIT.cbl:12"
+  }
+ ], 
+ "sha256": "38a8d28235e58509776f5c8c74c113d5848a7ac68fab753c55ab887221c3b43a", 
+ "files": [], 
+ "messages": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": []
+ }, 
+ "crud": [], 
+ "program_id": "COBSWAIT", 
+ "error_handling": [], 
+ "commands": [], 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "MVSWAIT", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/COBSWAIT.cbl:38", 
+   "condition": null
+  }
+ ], 
+ "language": "COBOL", 
+ "candidate_rules": [], 
+ "runtime_type": [
+  "batch-main"
+ ]
+}

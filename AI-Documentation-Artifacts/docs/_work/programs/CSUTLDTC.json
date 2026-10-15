@@ -1,0 +1,232 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "COTRN02C", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/COTRN02C.cbl:393", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COTRN02C", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/COTRN02C.cbl:413", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CORPT00C", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CORPT00C.cbl:392", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CORPT00C", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CORPT00C.cbl:412", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "No EXEC CICS or DFHCOMMAREA in this source", 
+   "source": "app/cbl/CSUTLDTC.cbl:88"
+  }, 
+  {
+   "text": "PROCEDURE DIVISION USING", 
+   "source": "app/cbl/CSUTLDTC.cbl:88"
+  }
+ ], 
+ "source_path": "app/cbl/CSUTLDTC.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/CSUTLDTC.cbl:1-8", 
+  "author": null, 
+  "description": "All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,", 
+  "version_banner": "* Ver: CardDemo_v1.0-15-g27d6c6f-68 Date: 2022-07-19 23:12:35 CDT"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "name": "MAINLINE", 
+   "section": null, 
+   "end_line": 102, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "A000-MAIN"
+   ], 
+   "reachable": true, 
+   "start_line": 88, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "A000-MAIN", 
+   "section": null, 
+   "end_line": 151, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 103, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "A000-MAIN-EXIT", 
+   "section": null, 
+   "end_line": 154, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 152, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [], 
+ "runtime_type": [
+  "subprogram"
+ ], 
+ "loc": {
+  "comment": 29, 
+  "total": 157, 
+  "code": 128
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/CSUTLDTC.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CSUTLDTC.cbl:9"
+  }
+ ], 
+ "sha256": "58c165dcfc3927232c02c152c673e3dee551587b85e7fe56ca67325c980eebb6", 
+ "files": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "linkage": [
+   {
+    "source": "app/cbl/CSUTLDTC.cbl:84", 
+    "name": "LS-DATE"
+   }, 
+   {
+    "source": "app/cbl/CSUTLDTC.cbl:85", 
+    "name": "LS-DATE-FORMAT"
+   }, 
+   {
+    "source": "app/cbl/CSUTLDTC.cbl:86", 
+    "name": "LS-RESULT"
+   }
+  ], 
+  "pcbs": []
+ }, 
+ "crud": [], 
+ "program_id": "CSUTLDTC", 
+ "candidate_rules": [], 
+ "error_handling": [], 
+ "commands": [], 
+ "language": "COBOL", 
+ "calls": [], 
+ "messages": [], 
+ "data_items": [
+  {
+   "source": "app/cbl/CSUTLDTC.cbl:45", 
+   "pic": "X(11)", 
+   "name": "FILLER", 
+   "value": "'Mesg Code:'"
+  }, 
+  {
+   "source": "app/cbl/CSUTLDTC.cbl:48", 
+   "pic": "X(01)", 
+   "name": "FILLER", 
+   "value": "SPACE."
+  }, 
+  {
+   "source": "app/cbl/CSUTLDTC.cbl:50", 
+   "pic": "X(01)", 
+   "name": "FILLER", 
+   "value": "SPACE."
+  }, 
+  {
+   "source": "app/cbl/CSUTLDTC.cbl:51", 
+   "pic": "X(09)", 
+   "name": "FILLER", 
+   "value": "'TstDate:'"
+  }, 
+  {
+   "source": "app/cbl/CSUTLDTC.cbl:52", 
+   "pic": "X(10)", 
+   "name": "WS-DATE", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/CSUTLDTC.cbl:53", 
+   "pic": "X(01)", 
+   "name": "FILLER", 
+   "value": "SPACE."
+  }, 
+  {
+   "source": "app/cbl/CSUTLDTC.cbl:54", 
+   "pic": "X(10)", 
+   "name": "FILLER", 
+   "value": "'Mask used:'"
+  }, 
+  {
+   "source": "app/cbl/CSUTLDTC.cbl:56", 
+   "pic": "X(01)", 
+   "name": "FILLER", 
+   "value": "SPACE."
+  }, 
+  {
+   "source": "app/cbl/CSUTLDTC.cbl:57", 
+   "pic": "X(03)", 
+   "conditions": [
+    {
+     "name": "FC-INVALID-DATE", 
+     "value": "X'0000000000000000'"
+    }, 
+    {
+     "name": "FC-INSUFFICIENT-DATA", 
+     "value": "X'000309CB59C3C5C5'"
+    }, 
+    {
+     "name": "FC-BAD-DATE-VALUE", 
+     "value": "X'000309CC59C3C5C5'"
+    }, 
+    {
+     "name": "FC-INVALID-ERA", 
+     "value": "X'000309CD59C3C5C5'"
+    }, 
+    {
+     "name": "FC-UNSUPP-RANGE", 
+     "value": "X'000309D159C3C5C5'"
+    }, 
+    {
+     "name": "FC-INVALID-MONTH", 
+     "value": "X'000309D559C3C5C5'"
+    }, 
+    {
+     "name": "FC-BAD-PIC-STRING", 
+     "value": "X'000309D659C3C5C5'"
+    }, 
+    {
+     "name": "FC-NON-NUMERIC-DATA", 
+     "value": "X'000309D859C3C5C5'"
+    }, 
+    {
+     "name": "FC-YEAR-IN-ERA-ZERO", 
+     "value": "X'000309D959C3C5C5'"
+    }
+   ], 
+   "name": "FILLER", 
+   "value": "SPACES."
+  }
+ ]
+}

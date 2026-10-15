@@ -1,0 +1,183 @@
+{
+ "files": [
+  {
+   "values_copied": false, 
+   "path": "app/app-authorization-ims-db2-mq/data/EBCDIC/AWS.M2.CARDDEMO.IMSDATA.DBPAUTP0.dat", 
+   "bytes": 51736, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "path": "app/data/ASCII/acctdata.txt", 
+   "values_copied": false, 
+   "length_counts": {
+    "300": 50
+   }, 
+   "records": 50, 
+   "encoding": "text"
+  }, 
+  {
+   "path": "app/data/ASCII/carddata.txt", 
+   "values_copied": false, 
+   "length_counts": {
+    "150": 50
+   }, 
+   "records": 50, 
+   "encoding": "text"
+  }, 
+  {
+   "path": "app/data/ASCII/cardxref.txt", 
+   "values_copied": false, 
+   "length_counts": {
+    "36": 50
+   }, 
+   "records": 50, 
+   "encoding": "text"
+  }, 
+  {
+   "path": "app/data/ASCII/custdata.txt", 
+   "values_copied": false, 
+   "length_counts": {
+    "500": 50
+   }, 
+   "records": 50, 
+   "encoding": "text"
+  }, 
+  {
+   "path": "app/data/ASCII/dailytran.txt", 
+   "values_copied": false, 
+   "length_counts": {
+    "350": 300
+   }, 
+   "records": 300, 
+   "encoding": "text"
+  }, 
+  {
+   "path": "app/data/ASCII/discgrp.txt", 
+   "values_copied": false, 
+   "length_counts": {
+    "50": 51
+   }, 
+   "records": 51, 
+   "encoding": "text"
+  }, 
+  {
+   "path": "app/data/ASCII/tcatbal.txt", 
+   "values_copied": false, 
+   "length_counts": {
+    "50": 50
+   }, 
+   "records": 50, 
+   "encoding": "text"
+  }, 
+  {
+   "path": "app/data/ASCII/trancatg.txt", 
+   "values_copied": false, 
+   "length_counts": {
+    "60": 18
+   }, 
+   "records": 18, 
+   "encoding": "text"
+  }, 
+  {
+   "path": "app/data/ASCII/trantype.txt", 
+   "values_copied": false, 
+   "length_counts": {
+    "60": 7
+   }, 
+   "records": 7, 
+   "encoding": "text"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.ACCDATA.PS", 
+   "bytes": 15000, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.ACCTDATA.PS", 
+   "bytes": 15000, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.CARDDATA.PS", 
+   "bytes": 7500, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.CARDXREF.PS", 
+   "bytes": 2500, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.CUSTDATA.PS", 
+   "bytes": 25000, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.DALYTRAN.PS", 
+   "bytes": 105000, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.DALYTRAN.PS.INIT", 
+   "bytes": 350, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.DISCGRP.PS", 
+   "bytes": 2550, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.EXPORT.DATA.PS", 
+   "bytes": 250000, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.TCATBALF.PS", 
+   "bytes": 2500, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.TRANCATG.PS", 
+   "bytes": 1080, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.TRANTYPE.PS", 
+   "bytes": 420, 
+   "records": null, 
+   "encoding": "binary"
+  }, 
+  {
+   "values_copied": false, 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.USRSEC.PS", 
+   "bytes": 800, 
+   "records": null, 
+   "encoding": "binary"
+  }
+ ]
+}

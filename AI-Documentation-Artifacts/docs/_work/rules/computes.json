@@ -1,0 +1,534 @@
+{
+ "count": 88, 
+ "computes": [
+  {
+   "text": "COMPUTE WS-AUTH-DATE = 99999 - PA-AUTH-DATE-9C", 
+   "line": 280, 
+   "program": "CBPAUP0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:280"
+  }, 
+  {
+   "text": "COMPUTE WS-DAY-DIFF = CURRENT-YYDDD - WS-AUTH-DATE", 
+   "line": 282, 
+   "program": "CBPAUP0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:282"
+  }, 
+  {
+   "text": "COMPUTE WS-OPTIONS = MQOO-INPUT-SHARED", 
+   "line": 260, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:260"
+  }, 
+  {
+   "text": "COMPUTE PA-RQ-TRANSACTION-AMT =", 
+   "line": 376, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:376"
+  }, 
+  {
+   "text": "COMPUTE MQGMO-OPTIONS  =  MQGMO-NO-SYNCPOINT + MQGMO-WAIT", 
+   "line": 389, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:389"
+  }, 
+  {
+   "text": "COMPUTE WS-AVAILABLE-AMT = PA-CREDIT-LIMIT", 
+   "line": 666, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:666"
+  }, 
+  {
+   "text": "COMPUTE WS-AVAILABLE-AMT = ACCT-CREDIT-LIMIT", 
+   "line": 674, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:674"
+  }, 
+  {
+   "text": "COMPUTE MQPMO-OPTIONS     =  MQPMO-NO-SYNCPOINT +", 
+   "line": 753, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:753"
+  }, 
+  {
+   "text": "COMPUTE WS-TIME-WITH-MS = (WS-CUR-TIME-N6 * 1000) +", 
+   "line": 871, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:871"
+  }, 
+  {
+   "text": "COMPUTE PA-AUTH-DATE-9C = 99999 - WS-YYDDD", 
+   "line": 874, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:874"
+  }, 
+  {
+   "text": "COMPUTE PA-AUTH-TIME-9C = 999999999 - WS-TIME-WITH-MS", 
+   "line": 875, 
+   "program": "COPAUA0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:875"
+  }, 
+  {
+   "text": "COMPUTE CDEMO-CPVS-PAGE-NUM = CDEMO-CPVS-PAGE-NUM - 1", 
+   "line": 366, 
+   "program": "COPAUS0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:366"
+  }, 
+  {
+   "text": "COMPUTE WS-IDX = WS-IDX + 1", 
+   "line": 432, 
+   "program": "COPAUS0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:432"
+  }, 
+  {
+   "text": "COMPUTE CDEMO-CPVS-PAGE-NUM =", 
+   "line": 437, 
+   "program": "COPAUS0C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:437"
+  }, 
+  {
+   "text": "COMPUTE WS-AUTH-TIME = 999999999 - PA-AUTH-TIME-9C", 
+   "line": 107, 
+   "program": "COPAUS2C", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:107"
+  }, 
+  {
+   "text": "COMPUTE  WS-ACTIONS-REQUESTED", 
+   "line": 1003, 
+   "program": "COTRTLIC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1003"
+  }, 
+  {
+   "text": "END-COMPUTE", 
+   "line": 1006, 
+   "program": "COTRTLIC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1006"
+  }, 
+  {
+   "text": "COMPUTE WS-VALID-ACTIONS-SELECTED =", 
+   "line": 1009, 
+   "program": "COTRTLIC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1009"
+  }, 
+  {
+   "text": "END-COMPUTE", 
+   "line": 1012, 
+   "program": "COTRTLIC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1012"
+  }, 
+  {
+   "text": "COMPUTE WS-STRING-LEN =", 
+   "line": 1562, 
+   "program": "COTRTLIC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1562"
+  }, 
+  {
+   "text": "COMPUTE WS-STRING-MID =", 
+   "line": 1566, 
+   "program": "COTRTLIC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1566"
+  }, 
+  {
+   "text": "COMPUTE WS-ROW-NUMBER =", 
+   "line": 1735, 
+   "program": "COTRTLIC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1735"
+  }, 
+  {
+   "text": "END-COMPUTE", 
+   "line": 1737, 
+   "program": "COTRTLIC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1737"
+  }, 
+  {
+   "text": "COMPUTE DCL-TR-DESCRIPTION-LEN", 
+   "line": 1843, 
+   "program": "COTRTLIC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1843"
+  }, 
+  {
+   "text": "COMPUTE WS-EDIT-NUMERIC-2", 
+   "line": 835, 
+   "program": "COTRTUPC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:835"
+  }, 
+  {
+   "text": "END-COMPUTE", 
+   "line": 837, 
+   "program": "COTRTUPC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:837"
+  }, 
+  {
+   "text": "COMPUTE WS-STRING-LEN =", 
+   "line": 1251, 
+   "program": "COTRTUPC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1251"
+  }, 
+  {
+   "text": "COMPUTE WS-STRING-MID =", 
+   "line": 1255, 
+   "program": "COTRTUPC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1255"
+  }, 
+  {
+   "text": "COMPUTE DCL-TR-DESCRIPTION-LEN", 
+   "line": 1541, 
+   "program": "COTRTUPC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1541"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQOO-INPUT-SHARED", 
+   "line": 229, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:229"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQOO-OUTPUT", 
+   "line": 263, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:263"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQOO-OUTPUT", 
+   "line": 298, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:298"
+  }, 
+  {
+   "text": "COMPUTE MQGMO-OPTIONS = MQGMO-SYNCPOINT", 
+   "line": 347, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:347"
+  }, 
+  {
+   "text": "COMPUTE MQMD-CODEDCHARSETID      =  MQCCSI-Q-MGR", 
+   "line": 473, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:473"
+  }, 
+  {
+   "text": "COMPUTE MQPMO-OPTIONS = MQPMO-SYNCPOINT", 
+   "line": 475, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:475"
+  }, 
+  {
+   "text": "COMPUTE MQMD-CODEDCHARSETID      =  MQCCSI-Q-MGR", 
+   "line": 510, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:510"
+  }, 
+  {
+   "text": "COMPUTE MQPMO-OPTIONS = MQPMO-SYNCPOINT", 
+   "line": 512, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:512"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQCO-NONE", 
+   "line": 555, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:555"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQCO-NONE", 
+   "line": 577, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:577"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQCO-NONE", 
+   "line": 600, 
+   "program": "COACCT01", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:600"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQOO-INPUT-SHARED", 
+   "line": 178, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:178"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQOO-OUTPUT", 
+   "line": 212, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:212"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQOO-OUTPUT", 
+   "line": 247, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:247"
+  }, 
+  {
+   "text": "COMPUTE MQGMO-OPTIONS = MQGMO-SYNCPOINT", 
+   "line": 296, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:296"
+  }, 
+  {
+   "text": "COMPUTE MQMD-CODEDCHARSETID      =  MQCCSI-Q-MGR", 
+   "line": 377, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:377"
+  }, 
+  {
+   "text": "COMPUTE MQPMO-OPTIONS = MQPMO-SYNCPOINT", 
+   "line": 379, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:379"
+  }, 
+  {
+   "text": "COMPUTE MQMD-CODEDCHARSETID      =  MQCCSI-Q-MGR", 
+   "line": 414, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:414"
+  }, 
+  {
+   "text": "COMPUTE MQPMO-OPTIONS = MQPMO-SYNCPOINT", 
+   "line": 416, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:416"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQCO-NONE", 
+   "line": 459, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:459"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQCO-NONE", 
+   "line": 481, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:481"
+  }, 
+  {
+   "text": "COMPUTE MQ-OPTIONS = MQCO-NONE", 
+   "line": 504, 
+   "program": "CODATE01", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:504"
+  }, 
+  {
+   "text": "PERFORM 1300-COMPUTE-INTEREST", 
+   "line": 215, 
+   "program": "CBACT04C", 
+   "source": "app/cbl/CBACT04C.cbl:215"
+  }, 
+  {
+   "text": "PERFORM 1400-COMPUTE-FEES", 
+   "line": 216, 
+   "program": "CBACT04C", 
+   "source": "app/cbl/CBACT04C.cbl:216"
+  }, 
+  {
+   "text": "1300-COMPUTE-INTEREST.", 
+   "line": 462, 
+   "program": "CBACT04C", 
+   "source": "app/cbl/CBACT04C.cbl:462"
+  }, 
+  {
+   "text": "COMPUTE WS-MONTHLY-INT", 
+   "line": 464, 
+   "program": "CBACT04C", 
+   "source": "app/cbl/CBACT04C.cbl:464"
+  }, 
+  {
+   "text": "1400-COMPUTE-FEES.", 
+   "line": 518, 
+   "program": "CBACT04C", 
+   "source": "app/cbl/CBACT04C.cbl:518"
+  }, 
+  {
+   "text": "COMPUTE BUMP-TIOT = BUMP-TIOT + LENGTH OF TIOT-BLOCK.", 
+   "line": 272, 
+   "program": "CBSTM03A", 
+   "source": "app/cbl/CBSTM03A.CBL:272"
+  }, 
+  {
+   "text": "COMPUTE BUMP-TIOT = BUMP-TIOT + LENGTH OF TIOT-SEG", 
+   "line": 283, 
+   "program": "CBSTM03A", 
+   "source": "app/cbl/CBSTM03A.CBL:283"
+  }, 
+  {
+   "text": "COMPUTE WS-M03B-KEY-LN = LENGTH OF XREF-CUST-ID.", 
+   "line": 374, 
+   "program": "CBSTM03A", 
+   "source": "app/cbl/CBSTM03A.CBL:374"
+  }, 
+  {
+   "text": "COMPUTE WS-M03B-KEY-LN = LENGTH OF XREF-ACCT-ID.", 
+   "line": 398, 
+   "program": "CBSTM03A", 
+   "source": "app/cbl/CBSTM03A.CBL:398"
+  }, 
+  {
+   "text": "COMPUTE WS-TEMP-BAL = ACCT-CURR-CYC-CREDIT", 
+   "line": 403, 
+   "program": "CBTRN02C", 
+   "source": "app/cbl/CBTRN02C.cbl:403"
+  }, 
+  {
+   "text": "COMPUTE ACUP-NEW-CREDIT-LIMIT-N =", 
+   "line": 1079, 
+   "program": "COACTUPC", 
+   "source": "app/cbl/COACTUPC.cbl:1079"
+  }, 
+  {
+   "text": "COMPUTE ACUP-NEW-CASH-CREDIT-LIMIT-N =", 
+   "line": 1093, 
+   "program": "COACTUPC", 
+   "source": "app/cbl/COACTUPC.cbl:1093"
+  }, 
+  {
+   "text": "COMPUTE ACUP-NEW-CURR-BAL-N =", 
+   "line": 1107, 
+   "program": "COACTUPC", 
+   "source": "app/cbl/COACTUPC.cbl:1107"
+  }, 
+  {
+   "text": "COMPUTE ACUP-NEW-CURR-CYC-CREDIT-N =", 
+   "line": 1121, 
+   "program": "COACTUPC", 
+   "source": "app/cbl/COACTUPC.cbl:1121"
+  }, 
+  {
+   "text": "COMPUTE ACUP-NEW-CURR-CYC-DEBIT-N =", 
+   "line": 1135, 
+   "program": "COACTUPC", 
+   "source": "app/cbl/COACTUPC.cbl:1135"
+  }, 
+  {
+   "text": "COMPUTE ACCT-CURR-BAL = ACCT-CURR-BAL - TRAN-AMT", 
+   "line": 234, 
+   "program": "COBIL00C", 
+   "source": "app/cbl/COBIL00C.cbl:234"
+  }, 
+  {
+   "text": "COMPUTE WS-SCRN-COUNTER =", 
+   "line": 1284, 
+   "program": "COCRDLIC", 
+   "source": "app/cbl/COCRDLIC.cbl:1284"
+  }, 
+  {
+   "text": "END-COMPUTE", 
+   "line": 1286, 
+   "program": "COCRDLIC", 
+   "source": "app/cbl/COCRDLIC.cbl:1286"
+  }, 
+  {
+   "text": "COMPUTE WS-CURDATE-N = FUNCTION DATE-OF-INTEGER(", 
+   "line": 229, 
+   "program": "CORPT00C", 
+   "source": "app/cbl/CORPT00C.cbl:229"
+  }, 
+  {
+   "text": "COMPUTE WS-NUM-99 = FUNCTION NUMVAL-C", 
+   "line": 305, 
+   "program": "CORPT00C", 
+   "source": "app/cbl/CORPT00C.cbl:305"
+  }, 
+  {
+   "text": "COMPUTE WS-NUM-99 = FUNCTION NUMVAL-C", 
+   "line": 309, 
+   "program": "CORPT00C", 
+   "source": "app/cbl/CORPT00C.cbl:309"
+  }, 
+  {
+   "text": "COMPUTE WS-NUM-9999 = FUNCTION NUMVAL-C", 
+   "line": 313, 
+   "program": "CORPT00C", 
+   "source": "app/cbl/CORPT00C.cbl:313"
+  }, 
+  {
+   "text": "COMPUTE WS-NUM-99 = FUNCTION NUMVAL-C", 
+   "line": 317, 
+   "program": "CORPT00C", 
+   "source": "app/cbl/CORPT00C.cbl:317"
+  }, 
+  {
+   "text": "COMPUTE WS-NUM-99 = FUNCTION NUMVAL-C", 
+   "line": 321, 
+   "program": "CORPT00C", 
+   "source": "app/cbl/CORPT00C.cbl:321"
+  }, 
+  {
+   "text": "COMPUTE WS-NUM-9999 = FUNCTION NUMVAL-C", 
+   "line": 325, 
+   "program": "CORPT00C", 
+   "source": "app/cbl/CORPT00C.cbl:325"
+  }, 
+  {
+   "text": "COMPUTE WS-IDX = WS-IDX + 1", 
+   "line": 301, 
+   "program": "COTRN00C", 
+   "source": "app/cbl/COTRN00C.cbl:301"
+  }, 
+  {
+   "text": "COMPUTE CDEMO-CT00-PAGE-NUM =", 
+   "line": 306, 
+   "program": "COTRN00C", 
+   "source": "app/cbl/COTRN00C.cbl:306"
+  }, 
+  {
+   "text": "COMPUTE CDEMO-CT00-PAGE-NUM = CDEMO-CT00-PAGE-NUM", 
+   "line": 317, 
+   "program": "COTRN00C", 
+   "source": "app/cbl/COTRN00C.cbl:317"
+  }, 
+  {
+   "text": "COMPUTE WS-IDX = WS-IDX - 1", 
+   "line": 355, 
+   "program": "COTRN00C", 
+   "source": "app/cbl/COTRN00C.cbl:355"
+  }, 
+  {
+   "text": "COMPUTE WS-ACCT-ID-N = FUNCTION NUMVAL(ACTIDINI OF", 
+   "line": 204, 
+   "program": "COTRN02C", 
+   "source": "app/cbl/COTRN02C.cbl:204"
+  }, 
+  {
+   "text": "COMPUTE WS-CARD-NUM-N = FUNCTION NUMVAL(CARDNINI OF", 
+   "line": 218, 
+   "program": "COTRN02C", 
+   "source": "app/cbl/COTRN02C.cbl:218"
+  }, 
+  {
+   "text": "COMPUTE WS-TRAN-AMT-N = FUNCTION NUMVAL-C(TRNAMTI OF", 
+   "line": 383, 
+   "program": "COTRN02C", 
+   "source": "app/cbl/COTRN02C.cbl:383"
+  }, 
+  {
+   "text": "COMPUTE WS-TRAN-AMT-N = FUNCTION NUMVAL-C(TRNAMTI OF", 
+   "line": 456, 
+   "program": "COTRN02C", 
+   "source": "app/cbl/COTRN02C.cbl:456"
+  }, 
+  {
+   "text": "COMPUTE WS-IDX = WS-IDX + 1", 
+   "line": 304, 
+   "program": "COUSR00C", 
+   "source": "app/cbl/COUSR00C.cbl:304"
+  }, 
+  {
+   "text": "COMPUTE CDEMO-CU00-PAGE-NUM =", 
+   "line": 309, 
+   "program": "COUSR00C", 
+   "source": "app/cbl/COUSR00C.cbl:309"
+  }, 
+  {
+   "text": "COMPUTE CDEMO-CU00-PAGE-NUM = CDEMO-CU00-PAGE-NUM", 
+   "line": 320, 
+   "program": "COUSR00C", 
+   "source": "app/cbl/COUSR00C.cbl:320"
+  }, 
+  {
+   "text": "COMPUTE WS-IDX = WS-IDX - 1", 
+   "line": 358, 
+   "program": "COUSR00C", 
+   "source": "app/cbl/COUSR00C.cbl:358"
+  }
+ ], 
+ "schema": "compute-index/1"
+}

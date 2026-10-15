@@ -1,0 +1,71 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/DUSRSECJ.jcl:83", 
+   "via": "jcl-dd", 
+   "by": "DUSRSECJ.STEP03", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/DUSRSECJ.jcl:64", 
+  "app/csd/CARDDEMO.CSD:88", 
+  "app/catlg/LISTCAT.txt:3846"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "keys": "KEYS(8 0)", 
+  "record_max": 80, 
+  "record_size": "RECORDSIZE(80 80)", 
+  "defined_by": [
+   "app/jcl/DUSRSECJ.jcl:64"
+  ], 
+  "catalog_facts": {
+   "as_of": "09/01/22", 
+   "point_in_time": true, 
+   "rec_total": 10, 
+   "listcat_org": "INDEXED", 
+   "rec_total_source": "app/catlg/LISTCAT.txt:3888", 
+   "keylen_source": "app/catlg/LISTCAT.txt:3883", 
+   "source": "app/catlg/LISTCAT.txt:3846", 
+   "keylen": 8, 
+   "avglrecl": 80
+  }, 
+  "key_offset": 0, 
+  "key_length": 8
+ }, 
+ "layout": {
+  "key_fields": [], 
+  "copybook": null, 
+  "record": null, 
+  "length": null, 
+  "candidates": [
+   "CODATECN:CODATECN-REC", 
+   "CSUSR01Y:SEC-USER-DATA", 
+   "UNUSED1Y:UNUSED-DATA"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/DUSRSECJ.jcl:64", 
+    "length": 80, 
+    "agrees": false
+   }
+  ]
+ }, 
+ "name": "AWS.M2.CARDDEMO.USRSEC.VSAM.KSDS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-ksds", 
+ "aliases": [
+  {
+   "source": "app/csd/CARDDEMO.CSD:88", 
+   "kind": "cics-file", 
+   "name": "USRSEC"
+  }
+ ], 
+ "sample_data": null
+}

@@ -1,0 +1,150 @@
+{
+ "set_symbols": {}, 
+ "submitted_by": [], 
+ "description": {
+  "text": "DELETE CUSTOMER VSAM FILE IF ONE ALREADY EXISTS", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/DEFCUST.jcl:20"
+ }, 
+ "job_card": {
+  "msgclass": "0", 
+  "source": "app/jcl/DEFCUST.jcl:1", 
+  "region": null, 
+  "notify": "&SYSUID", 
+  "class": "A"
+ }, 
+ "schedule": [], 
+ "source_path": "app/jcl/DEFCUST.jcl", 
+ "module": "base", 
+ "steps": [
+  {
+   "function": "IDCAMS delete", 
+   "kind": "utility", 
+   "if_condition": null, 
+   "name": "STEP05", 
+   "control_statements": [
+    {
+     "text": "DELETE AWS.CCDA.CUSTDATA.CLUSTER -", 
+     "meaning": "IDCAMS delete", 
+     "source": "app/jcl/DEFCUST.jcl:25"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": true, 
+     "usage": [], 
+     "line": 23, 
+     "ddname": "SYSPRINT", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [], 
+     "line": 24, 
+     "ddname": "SYSIN", 
+     "instream": true, 
+     "dsn": null
+    }
+   ], 
+   "parm": null, 
+   "program": "IDCAMS", 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 22, 
+   "proc": null
+  }, 
+  {
+   "function": "IDCAMS define VSAM cluster", 
+   "kind": "utility", 
+   "if_condition": null, 
+   "name": "STEP05", 
+   "control_statements": [
+    {
+     "text": "DEFINE CLUSTER (NAME(AWS.CUSTDATA.CLUSTER) -", 
+     "meaning": "IDCAMS define VSAM cluster", 
+     "source": "app/jcl/DEFCUST.jcl:35"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": true, 
+     "usage": [], 
+     "line": 33, 
+     "ddname": "SYSPRINT", 
+     "instream": true, 
+     "dsn": null
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "recfm": null, 
+     "sysout": false, 
+     "usage": [], 
+     "line": 34, 
+     "ddname": "SYSIN", 
+     "instream": true, 
+     "dsn": null
+    }
+   ], 
+   "parm": null, 
+   "program": "IDCAMS", 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 32, 
+   "proc": null
+  }
+ ], 
+ "jcllib": [], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "488bddaab9561e741bff7569c17413bed9fc833e17b658dbbe94ca663de980b3", 
+ "job_name": "DEFCUST", 
+ "findings": [
+  {
+   "text": "Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member. Absence does not prove the job never runs.", 
+   "confidence": "Confirmed", 
+   "source": "app/jcl/DEFCUST.jcl"
+  }, 
+  {
+   "finding": "Step name STEP05 is used by more than one EXEC statement (lines 22, 32). DD statements are assigned to the step by line range.", 
+   "source": "app/jcl/DEFCUST.jcl:22, app/jcl/DEFCUST.jcl:32", 
+   "confidence": "Confirmed"
+  }
+ ]
+}

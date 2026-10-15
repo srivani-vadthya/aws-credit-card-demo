@@ -1,0 +1,73 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/DISCGRP.jcl:58", 
+   "via": "jcl-dd", 
+   "by": "DISCGRP.STEP15", 
+   "ops": [
+    "U"
+   ]
+  }, 
+  {
+   "source": "app/jcl/INTCALC.jcl:35", 
+   "via": "jcl-dd", 
+   "by": "INTCALC.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/DISCGRP.jcl:36", 
+  "app/catlg/LISTCAT.txt:859"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "keys": "KEYS(16 0)", 
+  "record_max": 50, 
+  "record_size": "RECORDSIZE(50 50)", 
+  "defined_by": [
+   "app/jcl/DISCGRP.jcl:36"
+  ], 
+  "catalog_facts": {
+   "as_of": "09/01/22", 
+   "point_in_time": true, 
+   "rec_total": 51, 
+   "listcat_org": "INDEXED", 
+   "rec_total_source": "app/catlg/LISTCAT.txt:901", 
+   "keylen_source": "app/catlg/LISTCAT.txt:896", 
+   "source": "app/catlg/LISTCAT.txt:859", 
+   "keylen": 16, 
+   "avglrecl": 50
+  }, 
+  "key_offset": 0, 
+  "key_length": 16
+ }, 
+ "layout": {
+  "key_fields": [], 
+  "copybook": null, 
+  "record": null, 
+  "length": null, 
+  "candidates": [
+   "CSMSG01Y:CCDA-COMMON-MESSAGES", 
+   "CVACT03Y:CARD-XREF-RECORD", 
+   "CVTRA01Y:TRAN-CAT-BAL-RECORD", 
+   "CVTRA02Y:DIS-GROUP-RECORD"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/DISCGRP.jcl:36", 
+    "length": 50, 
+    "agrees": false
+   }
+  ]
+ }, 
+ "name": "AWS.M2.CARDDEMO.DISCGRP.VSAM.KSDS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-ksds", 
+ "aliases": [], 
+ "sample_data": null
+}

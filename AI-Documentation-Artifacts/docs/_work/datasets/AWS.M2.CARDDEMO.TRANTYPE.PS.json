@@ -1,0 +1,41 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/DEFGDGD.jcl:39", 
+   "via": "jcl-dd", 
+   "by": "DEFGDGD.STEP20", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANTYPE.jcl:56", 
+   "via": "jcl-dd", 
+   "by": "TRANTYPE.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": null, 
+ "evidence": [
+  "app/catlg/LISTCAT.txt:3727"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "catalog_facts": {
+   "source": "app/catlg/LISTCAT.txt:3727", 
+   "as_of": "09/01/22", 
+   "point_in_time": true
+  }, 
+  "defined_by": []
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.TRANTYPE.PS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "sequential", 
+ "aliases": [], 
+ "sample_data": null
+}

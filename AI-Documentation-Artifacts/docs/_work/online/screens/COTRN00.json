@@ -1,0 +1,933 @@
+{
+ "source": "app/bms/COTRN00.bms:19", 
+ "name": "COTRN00", 
+ "module": "base", 
+ "maps": [
+  {
+   "source": "app/bms/COTRN00.bms:26", 
+   "mockup": [
+    "Tran: XXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "                             List Transactions                  Page:", 
+    "", 
+    "    Search Tran ID: ________________", 
+    "", 
+    " Sel    Transaction ID      Date          Description                Amount", 
+    " ---   ----------------   --------   --------------------------   ------------", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "           Type", 
+    "", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "ENTER=Continue  F3=Back  F7=Backward  F8=Forwar-"
+   ], 
+   "name": "COTRN0A", 
+   "fields": [
+    {
+     "source": "app/bms/COTRN00.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:75", 
+     "length": 17, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "List Transactions", 
+     "col": 30, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:80", 
+     "length": 5, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Page:", 
+     "col": 65, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:85", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PAGENUM", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 71, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:90", 
+     "length": 15, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Search Tran ID:", 
+     "col": 5, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:95", 
+     "length": 16, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "TRNIDIN", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 21, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:100", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 38, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:103", 
+     "length": 3, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Sel", 
+     "col": 2, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:108", 
+     "length": 16, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": " Transaction ID ", 
+     "col": 8, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:113", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "  Date  ", 
+     "col": 27, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:118", 
+     "length": 26, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "     Description          ", 
+     "col": 38, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:123", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "   Amount   ", 
+     "col": 67, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:128", 
+     "length": 3, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "---", 
+     "col": 2, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:133", 
+     "length": 16, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "----------------", 
+     "col": 8, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:138", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "--------", 
+     "col": 27, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:143", 
+     "length": 26, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "--------------------------", 
+     "col": 38, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:148", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "------------", 
+     "col": 67, 
+     "row": 9
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:153", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0001", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:159", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:162", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID01", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:167", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDATE01", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:172", 
+     "length": 26, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDESC01", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:177", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TAMT001", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:182", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0002", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:188", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:191", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID02", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:196", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDATE02", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:201", 
+     "length": 26, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDESC02", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:206", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TAMT002", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:211", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0003", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:217", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:220", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID03", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:225", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDATE03", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:230", 
+     "length": 26, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDESC03", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:235", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TAMT003", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:240", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0004", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:246", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:249", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID04", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:254", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDATE04", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:259", 
+     "length": 26, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDESC04", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:264", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TAMT004", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 13
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:269", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0005", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:275", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:278", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID05", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:283", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDATE05", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:288", 
+     "length": 26, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDESC05", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:293", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TAMT005", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:298", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0006", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:304", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:307", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID06", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:312", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDATE06", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:317", 
+     "length": 26, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDESC06", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:322", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TAMT006", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 15
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:327", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0007", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:333", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:336", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID07", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:341", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDATE07", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:346", 
+     "length": 26, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDESC07", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:351", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TAMT007", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:356", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0008", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:362", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:365", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID08", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:370", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDATE08", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:375", 
+     "length": 26, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDESC08", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:380", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TAMT008", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 17
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:385", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0009", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:391", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:394", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID09", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:399", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDATE09", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:404", 
+     "length": 26, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDESC09", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:409", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TAMT009", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:414", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "SEL0010", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 3, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:420", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 5, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:423", 
+     "length": 16, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNID10", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 8, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:428", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDATE10", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 27, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:433", 
+     "length": 26, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TDESC10", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 38, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:438", 
+     "length": 12, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TAMT010", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 19
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:444", 
+     "length": 50, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Type ", 
+     "col": 12, 
+     "row": 21
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:450", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/bms/COTRN00.bms:454", 
+     "length": 48, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "YELLOW", 
+     "initial": "ENTER=Continue  F3=Back  F7=Backward  F8=Forwar- d", 
+     "col": 1, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

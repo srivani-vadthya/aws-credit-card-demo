@@ -1,0 +1,552 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "LOADPADB", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:26", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC DLI or CALL CBLTDLI", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:164"
+  }
+ ], 
+ "candidate_rules": [], 
+ "module": "auth", 
+ "header": {
+  "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:1", 
+  "author": "AWS", 
+  "description": "See the comment block at the top of the source. Unverified until matched to code.", 
+  "version_banner": null
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "name": "MAINLINE", 
+   "section": null, 
+   "end_line": 165, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 164, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 187, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "1000-INITIALIZE", 
+    "2000-READ-ROOT-SEG-FILE", 
+    "3000-READ-CHILD-SEG-FILE", 
+    "4000-FILE-CLOSE"
+   ], 
+   "reachable": true, 
+   "start_line": 169, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1000-INITIALIZE", 
+   "section": null, 
+   "end_line": 215, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "9999-ABEND", 
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 190, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1000-EXIT", 
+   "section": null, 
+   "end_line": 219, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 218, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2000-READ-ROOT-SEG-FILE", 
+   "section": null, 
+   "end_line": 237, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "2100-INSERT-ROOT-SEG"
+   ], 
+   "reachable": true, 
+   "start_line": 222, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2000-EXIT", 
+   "section": null, 
+   "end_line": 240, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 239, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2100-INSERT-ROOT-SEG", 
+   "section": null, 
+   "end_line": 263, 
+   "purpose": "Statements include: CALL CBLTDLI", 
+   "performs": [
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 242, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2100-EXIT", 
+   "section": null, 
+   "end_line": 265, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 264, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3000-READ-CHILD-SEG-FILE", 
+   "section": null, 
+   "end_line": 289, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "3100-INSERT-CHILD-SEG"
+   ], 
+   "reachable": true, 
+   "start_line": 269, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3000-EXIT", 
+   "section": null, 
+   "end_line": 291, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 290, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3100-INSERT-CHILD-SEG", 
+   "section": null, 
+   "end_line": 314, 
+   "purpose": "Statements include: CALL CBLTDLI", 
+   "performs": [
+    "3200-INSERT-IMS-CALL", 
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 292, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3100-EXIT", 
+   "section": null, 
+   "end_line": 316, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 315, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3200-INSERT-IMS-CALL", 
+   "section": null, 
+   "end_line": 336, 
+   "purpose": "Statements include: CALL CBLTDLI", 
+   "performs": [
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 318, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3200-EXIT", 
+   "section": null, 
+   "end_line": 339, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 338, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "4000-FILE-CLOSE", 
+   "section": null, 
+   "end_line": 356, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 341, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "4000-EXIT", 
+   "section": null, 
+   "end_line": 358, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 357, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9999-ABEND", 
+   "section": null, 
+   "end_line": 366, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 360, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9999-EXIT", 
+   "section": null, 
+   "end_line": 369, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 368, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:142", 
+   "resolution": "inventory", 
+   "name": "IMSFUNCS", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:149", 
+   "resolution": "inventory", 
+   "name": "CIPAUSMY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:153", 
+   "resolution": "inventory", 
+   "name": "CIPAUDTY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:161", 
+   "resolution": "inventory", 
+   "name": "PAUTBPCB", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }
+ ], 
+ "runtime_type": [
+  "ims-bmp"
+ ], 
+ "loc": {
+  "comment": 95, 
+  "total": 369, 
+  "code": 274
+ }, 
+ "evidence_summary": "Structural facts read from app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL. Paragraph purposes are Inferred from statements.", 
+ "source_format": "fixed-with-sequence-area", 
+ "observations": [], 
+ "sha256": "5694a2ed8a12dd4dc82717b401c655866a0e1f9abb0acf395151ead2b0cb31a7", 
+ "files": [
+  {
+   "logical_name": "INFILE1", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "INFILE1", 
+   "physical_names": [], 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:26", 
+   "file_status_field": "WS-INFIL1-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "INFILE2", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "INFILE2", 
+   "physical_names": [], 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:32", 
+   "file_status_field": "WS-INFIL2-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }
+ ], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "linkage": [], 
+  "pcbs": []
+ }, 
+ "crud": [], 
+ "program_id": "PAUDBLOD", 
+ "error_handling": [], 
+ "source_path": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL", 
+ "commands": [
+  {
+   "kind": "CBLTDLI", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "ISRT", 
+   "response_handling": null, 
+   "line": 244
+  }, 
+  {
+   "kind": "CBLTDLI", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "GU", 
+   "response_handling": null, 
+   "line": 296
+  }, 
+  {
+   "kind": "CBLTDLI", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "ISRT", 
+   "response_handling": null, 
+   "line": 321
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CBLTDLI", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:244", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBLTDLI", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:296", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBLTDLI", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:321", 
+   "condition": null
+  }
+ ], 
+ "messages": [], 
+ "data_items": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:54", 
+   "name": "WS-PGMNAME", 
+   "value": "'IMSUNLOD'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:71", 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:72", 
+   "name": "ERR-FLG-ON", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:73", 
+   "name": "ERR-FLG-OFF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:74", 
+   "name": "WS-END-OF-AUTHDB-FLAG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:75", 
+   "name": "END-OF-AUTHDB", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:76", 
+   "name": "NOT-END-OF-AUTHDB", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:77", 
+   "name": "WS-MORE-AUTHS-FLAG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:78", 
+   "name": "MORE-AUTHS", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:79", 
+   "name": "NO-MORE-AUTHS", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:88", 
+   "name": "END-OF-FILE", 
+   "value": "'10'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:91", 
+   "name": "FILLER", 
+   "value": "'RMAD'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:99", 
+   "name": "STATUS-OK", 
+   "value": "'  '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:100", 
+   "name": "SEGMENT-NOT-FOUND", 
+   "value": "'GE'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:101", 
+   "name": "DUPLICATE-SEGMENT-FOUND", 
+   "value": "'II'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:102", 
+   "name": "WRONG-PARENTAGE", 
+   "value": "'GP'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:103", 
+   "name": "END-OF-DB", 
+   "value": "'GB'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:104", 
+   "name": "DATABASE-UNAVAILABLE", 
+   "value": "'BA'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:105", 
+   "name": "PSB-SCHEDULED-MORE-THAN-ONCE", 
+   "value": "'TC'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:106", 
+   "name": "COULD-NOT-SCHEDULE-PSB", 
+   "value": "'TE'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:107", 
+   "name": "RETRY-CONDITION", 
+   "value": "'BA'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:109", 
+   "name": "IMS-PSB-SCHD", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:110", 
+   "name": "IMS-PSB-NOT-SCHD", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:114", 
+   "name": "QUAL-SSA-SEG-NAME", 
+   "value": "'PAUTSUM0'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:115", 
+   "name": "FILLER", 
+   "value": "'('"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:116", 
+   "name": "QUAL-SSA-KEY-FIELD", 
+   "value": "'ACCNTID '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:117", 
+   "name": "QUAL-SSA-REL-OPER", 
+   "value": "'EQ'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:119", 
+   "name": "FILLER", 
+   "value": "')'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:122", 
+   "name": "FILLER", 
+   "value": "'PAUTSUM0'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:123", 
+   "name": "FILLER", 
+   "value": "' '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:126", 
+   "name": "FILLER", 
+   "value": "'PAUTDTL1'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:127", 
+   "name": "FILLER", 
+   "value": "' '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:137", 
+   "name": "DEBUG-ON", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:138", 
+   "name": "DEBUG-OFF", 
+   "value": "'N'"
+  }
+ ]
+}

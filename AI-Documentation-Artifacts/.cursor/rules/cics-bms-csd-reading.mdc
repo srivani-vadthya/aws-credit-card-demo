@@ -1,0 +1,38 @@
+---
+description: How to read CICS CSD resource definitions and BMS mapsets for online reverse engineering
+globs: **/*.{bms,BMS,csd,CSD,rdo,RDO}
+alwaysApply: false
+---
+
+# Reading CICS CSD and BMS
+
+## CSD (DFHCSDUP / RDO definitions)
+- A resource starts with `DEFINE <TYPE>(<name>) GROUP(<group>)`; attributes
+  continue until the next `DEFINE`. Types include TRANSACTION, PROGRAM,
+  MAPSET, FILE, LIBRARY, TDQUEUE, TSMODEL, DB2CONN, DB2ENTRY, DB2TRAN,
+  URIMAP, WEBSERVICE, PIPELINE, CONNECTION. Capture every type found, not
+  just a fixed list.
+- Key attributes: TRANSACTION -> PROGRAM, TWASIZE, TASKDATALOC;
+  PROGRAM -> LANGUAGE, EXECKEY, CONCURRENCY, DATALOCATION;
+  FILE -> DSNAME, ADD/BROWSE/DELETE/READ/UPDATE, RECORDFORMAT, STRINGS;
+  TDQUEUE -> TYPE, DDNAME/DSNAME, TRIGGERLEVEL, TRANSID;
+  DB2ENTRY/DB2TRAN -> PLAN, TRANSID.
+- Several CSD files may exist (base plus optional modules); keep the source
+  file and group with each resource.
+- Program-referenced FILE names (EXEC CICS READ DATASET/FILE) must be
+  matched to CSD FILE entries to get physical DSNs.
+
+## BMS macros
+- `DFHMSD` = mapset (TYPE, MODE, LANG, CTRL, STORAGE, TIOAPFX, EXTATT).
+  `DFHMDI` = map (SIZE, LINE, COLUMN). `DFHMDF` = field.
+- Continuation is a non-blank in column 72; join lines first.
+- For each DFHMDF capture: label (unnamed = literal), POS=(row,col), LENGTH,
+  ATTRB (ASKIP/PROT/UNPROT, NUM, BRT/NORM/DRK, IC, FSET), COLOR, HILIGHT,
+  INITIAL, PICIN/PICOUT, JUSTIFY, GRPNAME, OCCURS.
+- Named fields generate symbolic-map fields with suffixes L (length),
+  F/A (flag/attribute), I (input), O (output), C/P/H/V (extended attrs).
+  Link program references (e.g. `USERIDI OF COSGN0AI`) back to the BMS
+  field.
+- Input fields = UNPROT; protected/ASKIP named fields are output only;
+  DRK fields are hidden (often passwords).
+- Build the screen mockup from POS and LENGTH, not from guesses.

@@ -1,0 +1,35 @@
+{
+ "accessors": [], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/CARDFILE.jcl:100", 
+  "app/csd/CARDDEMO.CSD:13", 
+  "app/catlg/LISTCAT.txt:150"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "catalog_facts": {
+   "source": "app/catlg/LISTCAT.txt:150", 
+   "as_of": "09/01/22", 
+   "point_in_time": true
+  }, 
+  "pathentry": "AWS.M2.CARDDEMO.CARDDATA.VSAM.AIX", 
+  "defined_by": [
+   "app/jcl/CARDFILE.jcl:100"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.CARDDATA.VSAM.AIX.PATH", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-path", 
+ "aliases": [
+  {
+   "source": "app/csd/CARDDEMO.CSD:13", 
+   "kind": "cics-file", 
+   "name": "CARDAIX"
+  }
+ ], 
+ "sample_data": null
+}

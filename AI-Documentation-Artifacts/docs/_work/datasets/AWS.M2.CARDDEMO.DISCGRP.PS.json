@@ -1,0 +1,41 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/DEFGDGD.jcl:85", 
+   "via": "jcl-dd", 
+   "by": "DEFGDGD.STEP60", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/DISCGRP.jcl:56", 
+   "via": "jcl-dd", 
+   "by": "DISCGRP.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": null, 
+ "evidence": [
+  "app/catlg/LISTCAT.txt:844"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "catalog_facts": {
+   "source": "app/catlg/LISTCAT.txt:844", 
+   "as_of": "09/01/22", 
+   "point_in_time": true
+  }, 
+  "defined_by": []
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.DISCGRP.PS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "sequential", 
+ "aliases": [], 
+ "sample_data": null
+}

@@ -1,0 +1,408 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "COADM01C", 
+   "resolved_from": "app/cpy/COADM02Y.cpy:34", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS or DFHCOMMAREA present", 
+   "source": "app/cbl/COUSR01C.cbl:70"
+  }
+ ], 
+ "source_path": "app/cbl/COUSR01C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/COUSR01C.cbl:1-8", 
+  "author": "AWS", 
+  "description": "Program     : COUSR01C.CBL Application : CardDemo Type        : CICS COBOL Program Function    : Add a new Regular/Admin user to USRSEC file All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0", 
+  "version_banner": "* Ver: CardDemo_v1.0-15-g27d6c6f-68 Date: 2022-07-19 23:12:34 CDT"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 110, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "RETURN-TO-PREV-SCREEN", 
+    "SEND-USRADD-SCREEN", 
+    "RECEIVE-USRADD-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "RETURN-TO-PREV-SCREEN", 
+    "CLEAR-CURRENT-SCREEN", 
+    "SEND-USRADD-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 71, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "PROCESS-ENTER-KEY", 
+   "section": null, 
+   "end_line": 160, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "SEND-USRADD-SCREEN", 
+    "SEND-USRADD-SCREEN", 
+    "SEND-USRADD-SCREEN", 
+    "SEND-USRADD-SCREEN", 
+    "SEND-USRADD-SCREEN", 
+    "WRITE-USER-SEC-FILE"
+   ], 
+   "reachable": true, 
+   "start_line": 115, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "RETURN-TO-PREV-SCREEN", 
+   "section": null, 
+   "end_line": 178, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 165, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SEND-USRADD-SCREEN", 
+   "section": null, 
+   "end_line": 196, 
+   "purpose": "Statements include: EXEC CICS SEND", 
+   "performs": [
+    "POPULATE-HEADER-INFO"
+   ], 
+   "reachable": true, 
+   "start_line": 184, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "RECEIVE-USRADD-SCREEN", 
+   "section": null, 
+   "end_line": 209, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 201, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-HEADER-INFO", 
+   "section": null, 
+   "end_line": 233, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 214, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "WRITE-USER-SEC-FILE", 
+   "section": null, 
+   "end_line": 274, 
+   "purpose": "Statements include: EXEC CICS WRITE", 
+   "performs": [
+    "INITIALIZE-ALL-FIELDS", 
+    "SEND-USRADD-SCREEN", 
+    "SEND-USRADD-SCREEN", 
+    "SEND-USRADD-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 238, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "CLEAR-CURRENT-SCREEN", 
+   "section": null, 
+   "end_line": 282, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "INITIALIZE-ALL-FIELDS", 
+    "SEND-USRADD-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 279, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "INITIALIZE-ALL-FIELDS", 
+   "section": null, 
+   "end_line": 295, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 287, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "COCOM01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR01C.cbl:46", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (01 at app/cpy/COCOM01Y.cpy:19)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COCOM01Y.cpy"
+  }, 
+  {
+   "name": "COUSR01", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR01C.cbl:48", 
+   "purpose": "Application copybook (bms-mapset)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/bms/COUSR01.bms"
+  }, 
+  {
+   "name": "COTTL01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR01C.cbl:50", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COTTL01Y.cpy"
+  }, 
+  {
+   "name": "CSDAT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR01C.cbl:51", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSDAT01Y.cpy"
+  }, 
+  {
+   "name": "CSMSG01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR01C.cbl:52", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSMSG01Y.cpy"
+  }, 
+  {
+   "name": "CSUSR01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COUSR01C.cbl:53", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSUSR01Y.cpy"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COUSR01C.cbl:55", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COUSR01C.cbl:56", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }
+ ], 
+ "runtime_type": [
+  "cics-online"
+ ], 
+ "loc": {
+  "comment": 61, 
+  "total": 299, 
+  "code": 238
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/COUSR01C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COUSR01C.cbl:12"
+  }, 
+  {
+   "text": "Commented COPY is not expanded: COPY DFHATTR.", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COUSR01C.cbl:57"
+  }
+ ], 
+ "sha256": "aa131b1e3382dc6d101b42f1c97d4fb0c2fdd706819ed9f9a0187c82b30f3019", 
+ "files": [
+  {
+   "logical_name": "USRSEC", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "USRSEC", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.USRSEC.VSAM.KSDS"
+   ], 
+   "source": "app/csd/CARDDEMO.CSD:88", 
+   "file_status_field": null, 
+   "organization": null, 
+   "access_mode": null, 
+   "alternate_keys": []
+  }
+ ], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "linkage": [
+   {
+    "source": "app/cbl/COUSR01C.cbl:63", 
+    "name": "DFHCOMMAREA"
+   }
+  ], 
+  "pcbs": []
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/COUSR01C.cbl:240", 
+   "store": "USRSEC", 
+   "store_kind": "cics-file", 
+   "ops": [
+    "C"
+   ]
+  }
+ ], 
+ "program_id": "COUSR01C", 
+ "candidate_rules": [], 
+ "error_handling": [
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COUSR01C.cbl:250", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }
+ ], 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "MAIN-PARA", 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 107
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RETURN-TO-PREV-SCREEN", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 175
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "SEND-USRADD-SCREEN", 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 190
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RECEIVE-USRADD-SCREEN", 
+   "verb": "RECEIVE", 
+   "response_handling": "RESP checked", 
+   "line": 203
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "USRSEC", 
+   "options": {}, 
+   "paragraph": "WRITE-USER-SEC-FILE", 
+   "verb": "WRITE", 
+   "response_handling": "RESP checked", 
+   "line": 240
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CU01", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COUSR01C.cbl:107", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COUSR01C.cbl:175", 
+   "condition": null
+  }
+ ], 
+ "messages": [], 
+ "data_items": [
+  {
+   "source": "app/cbl/COUSR01C.cbl:36", 
+   "pic": "X(08)", 
+   "name": "WS-PGMNAME", 
+   "value": "'COUSR01C'"
+  }, 
+  {
+   "source": "app/cbl/COUSR01C.cbl:37", 
+   "pic": "X(04)", 
+   "name": "WS-TRANID", 
+   "value": "'CU01'"
+  }, 
+  {
+   "source": "app/cbl/COUSR01C.cbl:38", 
+   "pic": "X(80)", 
+   "name": "WS-MESSAGE", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/COUSR01C.cbl:39", 
+   "pic": "X(08)", 
+   "name": "WS-USRSEC-FILE", 
+   "value": "'USRSEC  '"
+  }, 
+  {
+   "source": "app/cbl/COUSR01C.cbl:40", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "ERR-FLG-ON", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "ERR-FLG-OFF", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COUSR01C.cbl:43", 
+   "pic": "S9(09)", 
+   "name": "WS-RESP-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COUSR01C.cbl:44", 
+   "pic": "S9(09)", 
+   "name": "WS-REAS-CD", 
+   "value": "ZEROS."
+  }
+ ]
+}

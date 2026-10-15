@@ -1,0 +1,323 @@
+{
+ "source": "app/bms/COUSR01.bms:19", 
+ "name": "COUSR01", 
+ "module": "base", 
+ "maps": [
+  {
+   "source": "app/bms/COUSR01.bms:26", 
+   "mockup": [
+    "Tran: XXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "                                  Add User", 
+    "", 
+    "", 
+    "", 
+    "     First Name: ____________________       Last Name: ____________________", 
+    "", 
+    "", 
+    "     User ID: ________ (8 Char)             Password: ******** (8 Char)", 
+    "", 
+    "", 
+    "     User Type: _ (A=Admin, U=User)", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "ENTER=Add User  F3=Back  F4=Clear  F12=Exit"
+   ], 
+   "name": "COUSR1A", 
+   "fields": [
+    {
+     "source": "app/bms/COUSR01.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:75", 
+     "length": 9, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "Add User", 
+     "col": 35, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:80", 
+     "length": 11, 
+     "attrb": null, 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "First Name:", 
+     "col": 6, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:84", 
+     "length": 20, 
+     "attrb": "(FSET,IC,NORM,UNPROT)", 
+     "name": "FNAME", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 18, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:89", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 39, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:92", 
+     "length": 10, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Last Name:", 
+     "col": 45, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:97", 
+     "length": 20, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "LNAME", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 56, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:102", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 77, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:106", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "User ID:", 
+     "col": 6, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:111", 
+     "length": 8, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "USERID", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 15, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:116", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "(8 Char)", 
+     "col": 24, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:121", 
+     "length": 9, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Password:", 
+     "col": 45, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:126", 
+     "length": 8, 
+     "attrb": "(DRK,FSET,UNPROT)", 
+     "name": "PASSWD", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 55, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:131", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "(8 Char)", 
+     "col": 64, 
+     "row": 11
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:136", 
+     "length": 11, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "User Type: ", 
+     "col": 6, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:141", 
+     "length": 1, 
+     "attrb": "(FSET,NORM,UNPROT)", 
+     "name": "USRTYPE", 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 17, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:146", 
+     "length": 17, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "(A=Admin, U=User)", 
+     "col": 19, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:151", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/bms/COUSR01.bms:155", 
+     "length": 43, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "YELLOW", 
+     "initial": "ENTER=Add User  F3=Back  F4=Clear  F12=Exit", 
+     "col": 1, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

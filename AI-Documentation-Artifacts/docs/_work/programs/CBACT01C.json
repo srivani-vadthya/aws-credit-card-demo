@@ -1,0 +1,622 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "READACCT", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/jcl/READACCT.jcl:32", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "No EXEC CICS or DFHCOMMAREA in this source", 
+   "source": "app/cbl/CBACT01C.cbl:140"
+  }
+ ], 
+ "source_path": "app/cbl/CBACT01C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/CBACT01C.cbl:1-8", 
+  "version_banner": "* Ver: CardDemo_v2.0-25-gdb72e6b-235 Date: 2025-04-29 11:01:27 CDT", 
+  "description": "PROGRAM     : CBACT01C.CBL Application : CardDemo Type        : BATCH COBOL Program FUNCTION    : READ THE ACCOUNT FILE AND WRITE INTO FILES. All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0", 
+  "author": "AWS"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAINLINE", 
+   "section": null, 
+   "end_line": 160, 
+   "purpose": "Statements include: START, OPEN, inline PERFORM at app/cbl/CBACT01C.cbl:147, CLOSE", 
+   "performs": [
+    "0000-ACCTFILE-OPEN", 
+    "2000-OUTFILE-OPEN", 
+    "3000-ARRFILE-OPEN", 
+    "4000-VBRFILE-OPEN", 
+    "1000-ACCTFILE-GET-NEXT", 
+    "9000-ACCTFILE-CLOSE"
+   ], 
+   "reachable": true, 
+   "start_line": 140, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1000-ACCTFILE-GET-NEXT", 
+   "section": null, 
+   "end_line": 198, 
+   "purpose": "Statements include: READ, WRITE", 
+   "performs": [
+    "1100-DISPLAY-ACCT-RECORD", 
+    "1300-POPUL-ACCT-RECORD", 
+    "1350-WRITE-ACCT-RECORD", 
+    "1400-POPUL-ARRAY-RECORD", 
+    "1450-WRITE-ARRY-RECORD", 
+    "1500-POPUL-VBRC-RECORD", 
+    "1550-WRITE-VB1-RECORD", 
+    "1575-WRITE-VB2-RECORD", 
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 165, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1100-DISPLAY-ACCT-RECORD", 
+   "section": null, 
+   "end_line": 213, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 200, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1300-POPUL-ACCT-RECORD", 
+   "section": null, 
+   "end_line": 240, 
+   "purpose": "Statements include: OPEN, CALL COBDATFT", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 215, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1350-WRITE-ACCT-RECORD", 
+   "section": null, 
+   "end_line": 251, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 242, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1400-POPUL-ARRAY-RECORD", 
+   "section": null, 
+   "end_line": 261, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 253, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1450-WRITE-ARRY-RECORD", 
+   "section": null, 
+   "end_line": 274, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 263, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1500-POPUL-VBRC-RECORD", 
+   "section": null, 
+   "end_line": 285, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 276, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1550-WRITE-VB1-RECORD", 
+   "section": null, 
+   "end_line": 300, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 287, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1575-WRITE-VB2-RECORD", 
+   "section": null, 
+   "end_line": 315, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 302, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "0000-ACCTFILE-OPEN", 
+   "section": null, 
+   "end_line": 333, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 317, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2000-OUTFILE-OPEN", 
+   "section": null, 
+   "end_line": 350, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 334, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3000-ARRFILE-OPEN", 
+   "section": null, 
+   "end_line": 368, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 352, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "4000-VBRFILE-OPEN", 
+   "section": null, 
+   "end_line": 386, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 370, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9000-ACCTFILE-CLOSE", 
+   "section": null, 
+   "end_line": 404, 
+   "purpose": "Statements include: CLOSE", 
+   "performs": [
+    "9910-DISPLAY-IO-STATUS", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 388, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9999-ABEND-PROGRAM", 
+   "section": null, 
+   "end_line": 410, 
+   "purpose": "Statements include: CALL CEE3ABD", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 406, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9910-DISPLAY-IO-STATUS", 
+   "section": null, 
+   "end_line": 426, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 413, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "CVACT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBACT01C.cbl:89", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT01Y.cpy"
+  }, 
+  {
+   "name": "CODATECN", 
+   "replacing": null, 
+   "source": "app/cbl/CBACT01C.cbl:90", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CODATECN.cpy"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/cbl/CBACT01C.cbl:74", 
+   "name": "ARR-ACCT-BAL", 
+   "value": "OCCURS 5", 
+   "purpose": "table"
+  }, 
+  {
+   "source": "app/cbl/CBACT01C.cbl:112", 
+   "pic": "9", 
+   "name": "IO-STATUS-0401", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBACT01C.cbl:113", 
+   "pic": "999", 
+   "conditions": [
+    {
+     "name": "APPL-AOK", 
+     "value": "0"
+    }, 
+    {
+     "name": "APPL-EOF", 
+     "value": "16"
+    }
+   ], 
+   "name": "IO-STATUS-0403", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBACT01C.cbl:119", 
+   "pic": "X(01)", 
+   "name": "END-OF-FILE", 
+   "value": "'N'"
+  }
+ ], 
+ "loc": {
+  "comment": 51, 
+  "total": 430, 
+  "code": 379
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/CBACT01C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBACT01C.cbl:12"
+  }, 
+  {
+   "text": "DD name OUTFILE is used with more than one dataset name across jobs. Each name is tied to the JCL line in physical_names.", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBACT01C.cbl:35-38"
+  }
+ ], 
+ "sha256": "f8eb6e3a561ff96a1889a8f777a8998850a11dddae221da2c5018067d7b95551", 
+ "files": [
+  {
+   "logical_name": "ACCTFILE-FILE", 
+   "record_layout": "FD-ACCTFILE-REC", 
+   "record_key": "FD-ACCT-ID", 
+   "ddname_or_cics_file": "ACCTFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS (app/jcl/CBEXPORT.jcl:51)"
+   ], 
+   "source": "app/cbl/CBACT01C.cbl:29-33", 
+   "file_status_field": "ACCTFILE-STATUS", 
+   "organization": "INDEXED", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "OUT-FILE", 
+   "record_layout": "OUT-ACCT-REC", 
+   "record_key": null, 
+   "ddname_or_cics_file": "OUTFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.TRXFL.VSAM.KSDS (app/jcl/CREASTMT.JCL:59)", 
+    "AWS.M2.CARDDEMO.ACCTDATA.PSCOMP (app/jcl/READACCT.jcl:37)"
+   ], 
+   "source": "app/cbl/CBACT01C.cbl:35-38", 
+   "file_status_field": "OUTFILE-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "ARRY-FILE", 
+   "record_layout": "ARR-ARRAY-REC", 
+   "record_key": null, 
+   "ddname_or_cics_file": "ARRYFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.ACCTDATA.ARRYPS (app/jcl/READACCT.jcl:41)"
+   ], 
+   "source": "app/cbl/CBACT01C.cbl:40-43", 
+   "file_status_field": "ARRYFILE-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "VBRC-FILE", 
+   "record_layout": "VBR-REC", 
+   "record_key": null, 
+   "ddname_or_cics_file": "VBRCFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.ACCTDATA.VBPS (app/jcl/READACCT.jcl:45)"
+   ], 
+   "source": "app/cbl/CBACT01C.cbl:45-48", 
+   "file_status_field": "VBRCFILE-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }
+ ], 
+ "messages": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": []
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/CBACT01C.cbl:290-305", 
+   "store_kind": "logical", 
+   "store": "VBRC-FILE", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBACT01C.cbl:166-319", 
+   "store_kind": "logical", 
+   "store": "ACCTFILE-FILE", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBACT01C.cbl:264", 
+   "store_kind": "logical", 
+   "store": "ARRY-FILE", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBACT01C.cbl:243", 
+   "store_kind": "logical", 
+   "store": "OUT-FILE", 
+   "ops": [
+    "C"
+   ]
+  }
+ ], 
+ "program_id": "CBACT01C", 
+ "error_handling": [
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT01C.cbl:167", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  ACCTFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT01C.cbl:180", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  ACCTFILE-STATUS = '10'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:195", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT01C.cbl:245", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF OUTFILE-STATUS NOT = '00' AND OUTFILE-STATUS NOT = '10'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:249", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT01C.cbl:266", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF ARRYFILE-STATUS NOT = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:272", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT01C.cbl:292", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF VBRCFILE-STATUS NOT = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:298", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT01C.cbl:307", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF VBRCFILE-STATUS NOT = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:313", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT01C.cbl:320", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  ACCTFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:331", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT01C.cbl:337", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF   OUTFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:348", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT01C.cbl:355", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF   ARRYFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:366", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT01C.cbl:373", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF   VBRCFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:384", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "see following statements", 
+   "source": "app/cbl/CBACT01C.cbl:391", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "IF  ACCTFILE-STATUS = '00'"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:402", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:406", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "9999-ABEND-PROGRAM."
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBACT01C.cbl:410", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "CALL 'CEE3ABD' USING ABCODE, TIMING."
+  }
+ ], 
+ "commands": [], 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "COBDATFT", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBACT01C.cbl:231", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CEE3ABD", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBACT01C.cbl:410", 
+   "condition": null
+  }
+ ], 
+ "language": "COBOL", 
+ "candidate_rules": [], 
+ "runtime_type": [
+  "batch-main"
+ ]
+}

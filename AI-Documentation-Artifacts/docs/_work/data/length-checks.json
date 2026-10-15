@@ -1,0 +1,180 @@
+{
+ "checks": [
+  {
+   "copybook": "app/cpy/CVACT01Y.cpy", 
+   "agrees": true, 
+   "field": "ACCT-ID", 
+   "expected": "offset 1 length 11", 
+   "check": "key", 
+   "store": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS"
+  }, 
+  {
+   "agrees": true, 
+   "copybook_length": 300, 
+   "source": "app/jcl/ACCTFILE.jcl:36", 
+   "length": 300, 
+   "check": "length", 
+   "store": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS"
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "CODATECN:CODATECN-REC", 
+    "CSUSR01Y:SEC-USER-DATA", 
+    "UNUSED1Y:UNUSED-DATA"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.USRSEC.VSAM.RRDS", 
+   "agrees": null
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "CSMSG01Y:CCDA-COMMON-MESSAGES", 
+    "CVACT03Y:CARD-XREF-RECORD", 
+    "CVTRA01Y:TRAN-CAT-BAL-RECORD", 
+    "CVTRA02Y:DIS-GROUP-RECORD"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.DISCGRP.VSAM.KSDS", 
+   "agrees": null
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "COSTM01:TRNX-RECORD", 
+    "CVTRA05Y:TRAN-RECORD", 
+    "CVTRA06Y:DALYTRAN-RECORD"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.TRXFL.VSAM.KSDS", 
+   "agrees": null
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "CUSTREC:CUSTOMER-RECORD", 
+    "CVCUS01Y:CUSTOMER-RECORD", 
+    "CVEXPORT:EXPORT-RECORD"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.EXPORT.DATA", 
+   "agrees": null
+  }, 
+  {
+   "copybook": "app/cpy/CVACT02Y.cpy", 
+   "agrees": true, 
+   "field": "CARD-NUM", 
+   "expected": "offset 1 length 16", 
+   "check": "key", 
+   "store": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS"
+  }, 
+  {
+   "agrees": true, 
+   "copybook_length": 150, 
+   "source": "app/jcl/CARDFILE.jcl:50", 
+   "length": 150, 
+   "check": "length", 
+   "store": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS"
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "CSMSG01Y:CCDA-COMMON-MESSAGES", 
+    "CVACT03Y:CARD-XREF-RECORD", 
+    "CVTRA01Y:TRAN-CAT-BAL-RECORD", 
+    "CVTRA02Y:DIS-GROUP-RECORD"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+   "agrees": null
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "CODATECN:CODATECN-REC", 
+    "CSUSR01Y:SEC-USER-DATA", 
+    "UNUSED1Y:UNUSED-DATA"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.USRSEC.VSAM.KSDS", 
+   "agrees": null
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "CUSTREC:CUSTOMER-RECORD", 
+    "CVCUS01Y:CUSTOMER-RECORD", 
+    "CVEXPORT:EXPORT-RECORD"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.CUSTDATA.CLUSTER", 
+   "agrees": null
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "CVTRA03Y:TRAN-TYPE-RECORD", 
+    "CVTRA04Y:TRAN-CAT-RECORD"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.TRANTYPE.VSAM.KSDS", 
+   "agrees": null
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "CODATECN:CODATECN-REC", 
+    "CSUSR01Y:SEC-USER-DATA", 
+    "UNUSED1Y:UNUSED-DATA"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.USRSEC.VSAM.ESDS", 
+   "agrees": null
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "CUSTREC:CUSTOMER-RECORD", 
+    "CVCUS01Y:CUSTOMER-RECORD", 
+    "CVEXPORT:EXPORT-RECORD"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+   "agrees": null
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "CSMSG01Y:CCDA-COMMON-MESSAGES", 
+    "CVACT03Y:CARD-XREF-RECORD", 
+    "CVTRA01Y:TRAN-CAT-BAL-RECORD", 
+    "CVTRA02Y:DIS-GROUP-RECORD"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+   "agrees": null
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "CVTRA03Y:TRAN-TYPE-RECORD", 
+    "CVTRA04Y:TRAN-CAT-RECORD"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.TRANCATG.VSAM.KSDS", 
+   "agrees": null
+  }, 
+  {
+   "note": "More than one record copybook has this length. No single layout was selected.", 
+   "candidates": [
+    "COSTM01:TRNX-RECORD", 
+    "CVTRA05Y:TRAN-RECORD", 
+    "CVTRA06Y:DALYTRAN-RECORD"
+   ], 
+   "check": "layout-unbound", 
+   "store": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+   "agrees": null
+  }
+ ]
+}

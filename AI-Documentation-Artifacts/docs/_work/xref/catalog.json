@@ -1,0 +1,37 @@
+{
+ "select_names": "COBOL SELECT names stay in crud-matrix.json. They are not copied onto dataset rows, because a shared record length does not identify the dataset.", 
+ "counts": {
+  "datasets": 204, 
+  "jobs": 55, 
+  "programs": 46, 
+  "rules": 18, 
+  "interfaces": 14, 
+  "transactions": 25, 
+  "programs_not_referenced": [
+   "CBTRN01C"
+  ]
+ },
+ "programs_not_referenced_note": "CBTRN01C is not the target of a CALL, XCTL, or LINK, is not a job-step program or an invoked BMP, DLI, or RUN PROGRAM name, and has no CICS transaction.", 
+ "added": [
+  "online-trace.json", 
+  "batch-trace.json", 
+  "dataset-names.json", 
+  "rule-trace.json", 
+  "interface-trace.json"
+ ], 
+ "kept": {
+  "crud-matrix.json": {
+   "note": "Program stores by logical SELECT name, CICS file, or other store id. Not rewritten in this pass.", 
+   "rows": 92
+  }, 
+  "call-graph.json": {
+   "note": "Program CALL, XCTL, and LINK edges. Not rewritten in this pass.", 
+   "edges": 134
+  }, 
+  "copybook-usage.json": {
+   "note": "Not rewritten in this pass.", 
+   "copybooks": 70
+  }
+ }, 
+ "schema": "xref-catalog/1"
+}

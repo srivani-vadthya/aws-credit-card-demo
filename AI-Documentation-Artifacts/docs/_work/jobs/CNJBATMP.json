@@ -1,0 +1,58 @@
+{
+ "set_symbols": {
+  "MEMNAME": "BATCHPGM", 
+  "HLQ": "AWS.M2"
+ }, 
+ "description": {
+  "text": "change BATCHPGM to your program name everywhere", 
+  "confidence": "Unverified", 
+  "source": "samples/jcl/BATCMP.jcl:4"
+ }, 
+ "job_card": {
+  "source": "samples/jcl/BATCMP.jcl:1", 
+  "msgclass": "H", 
+  "region": "0M", 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "build", 
+ "jcllib": [
+  "ORDER=&HLQ..CARDDEMO.PRC.UTIL"
+ ], 
+ "submitted_by": [], 
+ "findings": [
+  {
+   "text": "Sample JCL under samples/jcl. Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member.", 
+   "confidence": "Confirmed", 
+   "source": "samples/jcl/BATCMP.jcl"
+  }
+ ], 
+ "source_path": "samples/jcl/BATCMP.jcl", 
+ "steps": [
+  {
+   "function": "Executes procedure BUILDBAT", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [
+    "COMPILE", 
+    "CBLPRINT", 
+    "LKED"
+   ], 
+   "line": 42, 
+   "kind": "build", 
+   "name": "BATCMP", 
+   "control_statements": [], 
+   "dds": [], 
+   "program": null, 
+   "proc": "BUILDBAT"
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "ae512920b80849a064cfdc93eb5f629902ffd6b70f8158a594dae08daf4f2eef", 
+ "job_name": "CNJBATMP"
+}

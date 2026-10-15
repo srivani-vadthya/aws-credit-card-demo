@@ -1,0 +1,136 @@
+{
+ "set_symbols": {}, 
+ "description": {
+  "text": "THIS JOB IS TO CREATE PHYSICAL VSAM FILE FOR IMS DEMODB    ****", 
+  "confidence": "Unverified", 
+  "source": "app/jcl/INTRDRJ2.JCL:4"
+ }, 
+ "job_card": {
+  "source": "app/jcl/INTRDRJ2.JCL:1", 
+  "msgclass": "H", 
+  "region": "5M", 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "base", 
+ "jcllib": [], 
+ "submitted_by": [
+  {
+   "source": "app/jcl/INTRDRJ1.JCL:18", 
+   "job": "INTRDRJ1", 
+   "input_dsn": "AWS.M2.CARDDEMO.JCL(INTRDRJ2)", 
+   "step": "STEP01", 
+   "mechanism": "internal-reader"
+  }
+ ], 
+ "findings": [
+  {
+   "text": "Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member. Absence does not prove the job never runs.", 
+   "confidence": "Confirmed", 
+   "source": "app/jcl/INTRDRJ2.JCL"
+  }
+ ], 
+ "source_path": "app/jcl/INTRDRJ2.JCL", 
+ "steps": [
+  {
+   "function": "IDCAMS REPRO copy", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [], 
+   "line": 7, 
+   "kind": "utility", 
+   "name": "IDCAMS", 
+   "control_statements": [
+    {
+     "text": "REPRO IFILE(IN) OFILE(OUT)", 
+     "meaning": "IDCAMS REPRO copy", 
+     "source": "app/jcl/INTRDRJ2.JCL:12"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 8, 
+     "ddname": "SYSPRINT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 9, 
+     "ddname": "IN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDEMO.FTP.TEST.BKUP", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": "SHR", 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 10, 
+     "ddname": "OUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": "AWS.M2.CARDEMO.FTP.TEST.BKUP.INTRDR", 
+     "usage": [
+      "R"
+     ], 
+     "instream": false
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 11, 
+     "ddname": "SYSIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "IDCAMS", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "aac63659b8c44b39c31d6e3ddf510f780f69341a734b66ba879ffcea1c060134", 
+ "job_name": "INTRDRJ2"
+}

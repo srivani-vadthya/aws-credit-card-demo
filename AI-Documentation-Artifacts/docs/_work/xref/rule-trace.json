@@ -1,0 +1,1113 @@
+{
+ "rows": [
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CC00"
+   ], 
+   "programs": [
+    "COSGN00C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:118-122", 
+     "program": "COSGN00C"
+    }
+   ], 
+   "id": "BR-BASE-COSGN00C-001"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CC00"
+   ], 
+   "programs": [
+    "COSGN00C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:123-127", 
+     "program": "COSGN00C"
+    }
+   ], 
+   "id": "BR-BASE-COSGN00C-002"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CC00"
+   ], 
+   "programs": [
+    "COSGN00C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:132-136", 
+     "program": "COSGN00C"
+    }
+   ], 
+   "id": "BR-BASE-COSGN00C-003"
+  }, 
+  {
+   "category": "authorization", 
+   "jobs": [], 
+   "transactions": [
+    "CC00"
+   ], 
+   "programs": [
+    "COSGN00C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:241-246", 
+     "program": "COSGN00C"
+    }
+   ], 
+   "id": "BR-BASE-COSGN00C-004"
+  }, 
+  {
+   "category": "routing", 
+   "jobs": [], 
+   "transactions": [
+    "CC00"
+   ], 
+   "programs": [
+    "COSGN00C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:223-239", 
+     "program": "COSGN00C"
+    }
+   ], 
+   "id": "BR-BASE-COSGN00C-005"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CC00"
+   ], 
+   "programs": [
+    "COSGN00C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:221-256", 
+     "program": "COSGN00C"
+    }
+   ], 
+   "id": "BR-BASE-COSGN00C-006"
+  }, 
+  {
+   "category": "routing", 
+   "jobs": [], 
+   "transactions": [
+    "CM00", 
+    "CA00"
+   ], 
+   "programs": [
+    "COMEN01C", 
+    "COADM01C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COMEN01C.cbl:198-200", 
+     "program": "COMEN01C"
+    }, 
+    {
+     "source": "app/cbl/COADM01C.cbl:165-167", 
+     "program": "COADM01C"
+    }
+   ], 
+   "id": "BR-BASE-001"
+  }, 
+  {
+   "category": "routing", 
+   "jobs": [], 
+   "transactions": [
+    "CM00", 
+    "CA00"
+   ], 
+   "programs": [
+    "COMEN01C", 
+    "COADM01C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COMEN01C.cbl:96-98", 
+     "program": "COMEN01C"
+    }, 
+    {
+     "source": "app/cbl/COADM01C.cbl:100-102", 
+     "program": "COADM01C"
+    }
+   ], 
+   "id": "BR-BASE-002"
+  }, 
+  {
+   "category": "routing", 
+   "jobs": [], 
+   "transactions": [
+    "CM00"
+   ], 
+   "programs": [
+    "COMEN01C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COMEN01C.cbl:147-168", 
+     "program": "COMEN01C"
+    }
+   ], 
+   "id": "BR-BASE-COMEN01C-001"
+  }, 
+  {
+   "category": "routing", 
+   "jobs": [], 
+   "transactions": [
+    "CM00"
+   ], 
+   "programs": [
+    "COMEN01C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COMEN01C.cbl:169-176", 
+     "program": "COMEN01C"
+    }
+   ], 
+   "id": "BR-BASE-COMEN01C-002"
+  }, 
+  {
+   "category": "routing", 
+   "jobs": [], 
+   "transactions": [
+    "CA00"
+   ], 
+   "programs": [
+    "COADM01C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COADM01C.cbl:141-146", 
+     "program": "COADM01C"
+    }
+   ], 
+   "id": "BR-BASE-COADM01C-001"
+  }, 
+  {
+   "category": "calculation", 
+   "jobs": [
+    "INTCALC"
+   ], 
+   "transactions": [], 
+   "programs": [
+    "CBACT04C"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/CBACT04C.cbl:464-465", 
+     "program": "CBACT04C"
+    }
+   ], 
+   "id": "BR-BASE-CBACT04C-001"
+  }, 
+  {
+   "category": "decision", 
+   "jobs": [
+    "MNTTRDB2"
+   ], 
+   "transactions": [], 
+   "programs": [
+    "COBTUPDT"
+   ], 
+   "sources": [
+    {
+     "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:111-128", 
+     "program": "COBTUPDT"
+    }
+   ], 
+   "id": "BR-TRANTYPE-COBTUPDT-001"
+  }, 
+  {
+   "category": "temporal", 
+   "jobs": [
+    "CBPAUP0J"
+   ], 
+   "transactions": [], 
+   "programs": [
+    "CBPAUP0C"
+   ], 
+   "sources": [
+    {
+     "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:280-286", 
+     "program": "CBPAUP0C"
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:196-199", 
+     "program": "CBPAUP0C"
+    }
+   ], 
+   "id": "BR-AUTH-CBPAUP0C-001"
+  }, 
+  {
+   "category": "calculation", 
+   "jobs": [
+    "CBPAUP0J"
+   ], 
+   "transactions": [], 
+   "programs": [
+    "CBPAUP0C"
+   ], 
+   "sources": [
+    {
+     "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:287-293", 
+     "program": "CBPAUP0C"
+    }
+   ], 
+   "id": "BR-AUTH-CBPAUP0C-002"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [], 
+   "programs": [
+    "COBDATFT"
+   ], 
+   "sources": [
+    {
+     "source": "app/asm/COBDATFT.asm:30-45", 
+     "program": "COBDATFT"
+    }
+   ], 
+   "id": "BR-BASE-COBDATFT-001"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [], 
+   "programs": [
+    "COBDATFT"
+   ], 
+   "sources": [
+    {
+     "source": "app/asm/COBDATFT.asm:46-54", 
+     "program": "COBDATFT"
+    }
+   ], 
+   "id": "BR-BASE-COBDATFT-002"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [], 
+   "programs": [
+    "COBDATFT"
+   ], 
+   "sources": [
+    {
+     "source": "app/asm/COBDATFT.asm:34-56", 
+     "program": "COBDATFT"
+    }
+   ], 
+   "id": "BR-BASE-COBDATFT-003"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COCRDUPC"
+   ], 
+   "transactions": [
+    "CCUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:721-756", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:176-177", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-001"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COCRDUPC"
+   ], 
+   "transactions": [
+    "CCUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:762-800", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:178-180", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-002"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COCRDUPC"
+   ], 
+   "transactions": [
+    "CCUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:644-662", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:184-185", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-003"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COCRDUPC"
+   ], 
+   "transactions": [
+    "CCUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:680-693", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:186-187", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-004"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COCRDUPC"
+   ], 
+   "transactions": [
+    "CCUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:806-840", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:255-260", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:181-184", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-005"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COCRDUPC"
+   ], 
+   "transactions": [
+    "CCUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:845-873", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:89-91", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:194-195", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-006"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COCRDUPC"
+   ], 
+   "transactions": [
+    "CCUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:877-908", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:92-95", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:196-197", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-007"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COCRDUPC"
+   ], 
+   "transactions": [
+    "CCUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:913-944", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:96-99", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:198-200", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-008"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1433-1446", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1783-1818", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:483-490", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-001"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1681-1775", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1460-1467", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:491-492", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-002"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1472-1476", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1657-1662", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1856-1892", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-003"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1484-1527", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2180-2219", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-004"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1478-1507", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1533-1538", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cpy/CSUTLDPY.cpy:25-205", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cpy/CSUTLDWY.cpy:9-32", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-005"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cpy/CSUTLDPY.cpy:209-272", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cpy/CSUTLDWY.cpy:21-32", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-006"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cpy/CSUTLDPY.cpy:273-321", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-007"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1533-1543", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cpy/CSUTLDPY.cpy:341-368", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-008"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:2431-2487", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:121-123", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2109-2174", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-009"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1545-1557", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2514-2529", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:848-849", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-010"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1560-1582", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1898-1949", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2012-2055", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-011"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1584-1602", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1613-1630", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1824-1850", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2493-2509", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cpy/CSLKPCDY.cpy:1013-1069", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-012"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1605-1611", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1665-1669", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2536-2556", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cpy/CSLKPCDY.cpy:1073-1313", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-013"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1632-1646", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2225-2423", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cpy/CSLKPCDY.cpy:521-930", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-014"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "transactions": [
+    "CAUP"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1648-1655", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2109-2174", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-015"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CCUP", 
+    "CAUP", 
+    "CCDL", 
+    "CAVW", 
+    "CTTU"
+   ], 
+   "programs": [
+    "COCRDUPC", 
+    "COACTUPC", 
+    "COCRDSLC", 
+    "COACTVWC", 
+    "COTRTUPC"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:173-174", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:730-732", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:480", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1805-1812", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:135", 
+     "program": "COCRDSLC"
+    }, 
+    {
+     "source": "app/cbl/COACTVWC.cbl:118", 
+     "program": "COACTVWC"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:863-868", 
+     "program": "COTRTUPC"
+    }
+   ], 
+   "id": "BR-BASE-003"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CCUP", 
+    "CAUP", 
+    "CTTU"
+   ], 
+   "programs": [
+    "COCRDUPC", 
+    "COACTUPC", 
+    "COTRTUPC"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:710-714", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1671-1675", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:772-775", 
+     "program": "COTRTUPC"
+    }
+   ], 
+   "id": "BR-BASE-004"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CCDL"
+   ], 
+   "programs": [
+    "COCRDSLC"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDSLC.cbl:608-620", 
+     "program": "COCRDSLC"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:647-679", 
+     "program": "COCRDSLC"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:138-139", 
+     "program": "COCRDSLC"
+    }
+   ], 
+   "id": "BR-BASE-COCRDSLC-001"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CCDL"
+   ], 
+   "programs": [
+    "COCRDSLC"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDSLC.cbl:622-634", 
+     "program": "COCRDSLC"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:685-719", 
+     "program": "COCRDSLC"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:140-141", 
+     "program": "COCRDSLC"
+    }
+   ], 
+   "id": "BR-BASE-COCRDSLC-002"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CCDL"
+   ], 
+   "programs": [
+    "COCRDSLC"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COCRDSLC.cbl:636-640", 
+     "program": "COCRDSLC"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:142-143", 
+     "program": "COCRDSLC"
+    }
+   ], 
+   "id": "BR-BASE-COCRDSLC-003"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CAVW"
+   ], 
+   "programs": [
+    "COACTVWC"
+   ], 
+   "sources": [
+    {
+     "source": "app/cbl/COACTVWC.cbl:627-642", 
+     "program": "COACTVWC"
+    }, 
+    {
+     "source": "app/cbl/COACTVWC.cbl:649-680", 
+     "program": "COACTVWC"
+    }, 
+    {
+     "source": "app/cbl/COACTVWC.cbl:121-124", 
+     "program": "COACTVWC"
+    }
+   ], 
+   "id": "BR-BASE-COACTVWC-001"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CTTU"
+   ], 
+   "programs": [
+    "COTRTUPC"
+   ], 
+   "sources": [
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:820-842", 
+     "program": "COTRTUPC"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:907-974", 
+     "program": "COTRTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COTRTUPC-001"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CTTU"
+   ], 
+   "programs": [
+    "COTRTUPC"
+   ], 
+   "sources": [
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:755-764", 
+     "program": "COTRTUPC"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:849-903", 
+     "program": "COTRTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COTRTUPC-002"
+  }, 
+  {
+   "category": "validation", 
+   "jobs": [], 
+   "transactions": [
+    "CTTU"
+   ], 
+   "programs": [
+    "COTRTUPC"
+   ], 
+   "sources": [
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:783-811", 
+     "program": "COTRTUPC"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:743-750", 
+     "program": "COTRTUPC"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:179-180", 
+     "program": "COTRTUPC"
+    }
+   ], 
+   "id": "BR-BASE-COTRTUPC-003"
+  }
+ ], 
+ "schema": "rule-trace/1"
+}

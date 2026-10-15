@@ -1,0 +1,1270 @@
+{
+ "invoked_by": [], 
+ "runtime_type_evidence": [
+  {
+   "text": "CICS RETRIEVE of an MQ trigger message plus MQ calls", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:218"
+  }, 
+  {
+   "text": "EXEC DLI or CALL CBLTDLI from a CICS program", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:218"
+  }
+ ], 
+ "candidate_rules": [], 
+ "module": "auth", 
+ "header": {
+  "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:1", 
+  "author": "SOUMA", 
+  "description": "See the comment block at the top of the source. Unverified until matched to code.", 
+  "version_banner": null
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 227, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "1000-INITIALIZE", 
+    "2000-MAIN-PROCESS", 
+    "9000-TERMINATE"
+   ], 
+   "reachable": true, 
+   "start_line": 220, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1000-INITIALIZE", 
+   "section": null, 
+   "end_line": 247, 
+   "purpose": "Statements include: EXEC CICS RETRIEVE", 
+   "performs": [
+    "1100-OPEN-REQUEST-QUEUE", 
+    "3100-READ-REQUEST-MQ"
+   ], 
+   "reachable": true, 
+   "start_line": 230, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1000-EXIT", 
+   "section": null, 
+   "end_line": 250, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 249, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1100-OPEN-REQUEST-QUEUE", 
+   "section": null, 
+   "end_line": 284, 
+   "purpose": "Statements include: CALL MQOPEN", 
+   "performs": [
+    "9500-LOG-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 255, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1100-EXIT", 
+   "section": null, 
+   "end_line": 287, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 286, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1200-SCHEDULE-PSB", 
+   "section": null, 
+   "end_line": 318, 
+   "purpose": "Statements include: EXEC DLI SCHD, EXEC DLI TERM", 
+   "performs": [
+    "9500-LOG-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 292, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1200-EXIT", 
+   "section": null, 
+   "end_line": 321, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 319, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2000-MAIN-PROCESS", 
+   "section": null, 
+   "end_line": 345, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "2100-EXTRACT-REQUEST-MSG", 
+    "5000-PROCESS-AUTH", 
+    "3100-READ-REQUEST-MQ"
+   ], 
+   "reachable": true, 
+   "start_line": 323, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2000-EXIT", 
+   "section": null, 
+   "end_line": 348, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 347, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2100-EXTRACT-REQUEST-MSG", 
+   "section": null, 
+   "end_line": 380, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 351, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2100-EXIT", 
+   "section": null, 
+   "end_line": 383, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 382, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3100-READ-REQUEST-MQ", 
+   "section": null, 
+   "end_line": 432, 
+   "purpose": "Statements include: CALL MQGET", 
+   "performs": [
+    "9500-LOG-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 386, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "3100-EXIT", 
+   "section": null, 
+   "end_line": 435, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 434, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "5000-PROCESS-AUTH", 
+   "section": null, 
+   "end_line": 466, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "1200-SCHEDULE-PSB", 
+    "5100-READ-XREF-RECORD", 
+    "5200-READ-ACCT-RECORD", 
+    "5300-READ-CUST-RECORD", 
+    "5500-READ-AUTH-SUMMRY", 
+    "5600-READ-PROFILE-DATA", 
+    "6000-MAKE-DECISION", 
+    "7100-SEND-RESPONSE", 
+    "8000-WRITE-AUTH-TO-DB"
+   ], 
+   "reachable": true, 
+   "start_line": 438, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "5000-EXIT", 
+   "section": null, 
+   "end_line": 469, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 468, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5100-READ-XREF-RECORD", 
+   "section": null, 
+   "end_line": 514, 
+   "purpose": "Statements include: EXEC CICS READ", 
+   "performs": [
+    "9500-LOG-ERROR", 
+    "9500-LOG-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 472, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "5100-EXIT", 
+   "section": null, 
+   "end_line": 517, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 516, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5200-READ-ACCT-RECORD", 
+   "section": null, 
+   "end_line": 562, 
+   "purpose": "Statements include: EXEC CICS READ", 
+   "performs": [
+    "9500-LOG-ERROR", 
+    "9500-LOG-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 520, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "5200-EXIT", 
+   "section": null, 
+   "end_line": 565, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 564, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5300-READ-CUST-RECORD", 
+   "section": null, 
+   "end_line": 610, 
+   "purpose": "Statements include: EXEC CICS READ", 
+   "performs": [
+    "9500-LOG-ERROR", 
+    "9500-LOG-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 568, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "5300-EXIT", 
+   "section": null, 
+   "end_line": 613, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 612, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5500-READ-AUTH-SUMMRY", 
+   "section": null, 
+   "end_line": 641, 
+   "purpose": "Statements include: EXEC DLI GU", 
+   "performs": [
+    "9500-LOG-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 616, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "5500-EXIT", 
+   "section": null, 
+   "end_line": 644, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 643, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "5600-READ-PROFILE-DATA", 
+   "section": null, 
+   "end_line": 651, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 647, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "5600-EXIT", 
+   "section": null, 
+   "end_line": 654, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 653, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "6000-MAKE-DECISION", 
+   "section": null, 
+   "end_line": 732, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 657, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "6000-EXIT", 
+   "section": null, 
+   "end_line": 735, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 734, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "7100-SEND-RESPONSE", 
+   "section": null, 
+   "end_line": 780, 
+   "purpose": "Statements include: CALL MQPUT1", 
+   "performs": [
+    "9500-LOG-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 738, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "7100-EXIT", 
+   "section": null, 
+   "end_line": 783, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 782, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "8000-WRITE-AUTH-TO-DB", 
+   "section": null, 
+   "end_line": 792, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "8400-UPDATE-SUMMARY", 
+    "8500-INSERT-AUTH"
+   ], 
+   "reachable": true, 
+   "start_line": 786, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "8000-EXIT", 
+   "section": null, 
+   "end_line": 795, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 794, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "8400-UPDATE-SUMMARY", 
+   "section": null, 
+   "end_line": 848, 
+   "purpose": "Statements include: EXEC DLI REPL, EXEC DLI ISRT", 
+   "performs": [
+    "9500-LOG-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 798, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "8400-EXIT", 
+   "section": null, 
+   "end_line": 851, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 850, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "8500-INSERT-AUTH", 
+   "section": null, 
+   "end_line": 933, 
+   "purpose": "Statements include: EXEC CICS ASKTIME, EXEC CICS FORMATTIME, EXEC DLI ISRT", 
+   "performs": [
+    "9500-LOG-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 854, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "8500-EXIT", 
+   "section": null, 
+   "end_line": 936, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 935, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9000-TERMINATE", 
+   "section": null, 
+   "end_line": 948, 
+   "purpose": "Statements include: EXEC DLI TERM", 
+   "performs": [
+    "9100-CLOSE-REQUEST-QUEUE"
+   ], 
+   "reachable": true, 
+   "start_line": 940, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9000-EXIT", 
+   "section": null, 
+   "end_line": 951, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 950, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9100-CLOSE-REQUEST-QUEUE", 
+   "section": null, 
+   "end_line": 977, 
+   "purpose": "Statements include: CALL MQCLOSE", 
+   "performs": [
+    "9500-LOG-ERROR"
+   ], 
+   "reachable": true, 
+   "start_line": 953, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9100-EXIT", 
+   "section": null, 
+   "end_line": 980, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 979, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9500-LOG-ERROR", 
+   "section": null, 
+   "end_line": 1011, 
+   "purpose": "Statements include: EXEC CICS ASKTIME, EXEC CICS FORMATTIME, EXEC CICS WRITEQ", 
+   "performs": [
+    "9990-END-ROUTINE"
+   ], 
+   "reachable": true, 
+   "start_line": 983, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9500-EXIT", 
+   "section": null, 
+   "end_line": 1013, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1012, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9990-END-ROUTINE", 
+   "section": null, 
+   "end_line": 1023, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "9000-TERMINATE"
+   ], 
+   "reachable": true, 
+   "start_line": 1016, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9990-EXIT", 
+   "section": null, 
+   "end_line": 1025, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 1024, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:149", 
+   "resolution": "external-or-missing", 
+   "name": "CMQODV", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:152", 
+   "resolution": "external-or-missing", 
+   "name": "CMQMDV", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:155", 
+   "resolution": "external-or-missing", 
+   "name": "CMQODV", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:158", 
+   "resolution": "external-or-missing", 
+   "name": "CMQMDV", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:161", 
+   "resolution": "system", 
+   "name": "CMQV", 
+   "purpose": "IBM MQ constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:164", 
+   "resolution": "external-or-missing", 
+   "name": "CMQTML", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:167", 
+   "resolution": "external-or-missing", 
+   "name": "CMQPMOV", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:170", 
+   "resolution": "external-or-missing", 
+   "name": "CMQGMOV", 
+   "purpose": "No matching member in the inventory"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:178", 
+   "resolution": "inventory", 
+   "name": "CCPAURQY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:182", 
+   "resolution": "inventory", 
+   "name": "CCPAURLY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:185", 
+   "resolution": "inventory", 
+   "name": "CCPAUERY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:193", 
+   "resolution": "inventory", 
+   "name": "CIPAUSMY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:197", 
+   "resolution": "inventory", 
+   "name": "CIPAUDTY", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:203", 
+   "resolution": "inventory", 
+   "name": "CVACT03Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:206", 
+   "resolution": "inventory", 
+   "name": "CVACT01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:209", 
+   "resolution": "inventory", 
+   "name": "CVCUS01Y", 
+   "purpose": "Application copybook (cobol-copybook)"
+  }
+ ], 
+ "runtime_type": [
+  "cics-mq-triggered", 
+  "mq"
+ ], 
+ "loc": {
+  "comment": 152, 
+  "total": 1026, 
+  "code": 874
+ }, 
+ "evidence_summary": "Structural facts read from app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl. Paragraph purposes are Inferred from statements.", 
+ "source_format": "fixed", 
+ "observations": [], 
+ "sha256": "224856ce6ef1b7417aefcec033a36a9315c0005decf9f11d21d11e9240e3f8fa", 
+ "files": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "linkage": [], 
+  "pcbs": []
+ }, 
+ "crud": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:400", 
+   "store": "MQ-GET", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:477", 
+   "store": "CCXREF", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:825", 
+   "store": "DLI-REPL", 
+   "store_kind": "logical", 
+   "ops": [
+    "U"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:573", 
+   "store": "CUSTDAT", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:830", 
+   "store": "DLI-ISRT", 
+   "store_kind": "logical", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:758", 
+   "store": "MQ-PUT", 
+   "store_kind": "logical", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:525", 
+   "store": "ACCTDAT", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:620", 
+   "store": "DLI-GU", 
+   "store_kind": "logical", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:1001", 
+   "store": "CSSL", 
+   "store_kind": "logical", 
+   "ops": [
+    "C"
+   ]
+  }
+ ], 
+ "program_id": "COPAUA0C", 
+ "error_handling": [], 
+ "source_path": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl", 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 226
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "RETRIEVE", 
+   "response_handling": "NOHANDLE", 
+   "line": 233
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "MQOPEN", 
+   "response_handling": null, 
+   "line": 262
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "SCHD", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SCHD", 
+   "response_handling": null, 
+   "line": 293
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "TERM", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "TERM", 
+   "response_handling": null, 
+   "line": 299
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "SCHD", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SCHD", 
+   "response_handling": null, 
+   "line": 302
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "SYNCPOINT", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 334
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "MQGET", 
+   "response_handling": null, 
+   "line": 400
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "CCXREF", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 477
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "ACCTDAT", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 525
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "CUSTDAT", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "READ", 
+   "response_handling": "RESP checked", 
+   "line": 573
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "GU", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "GU", 
+   "response_handling": null, 
+   "line": 620
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "MQPUT1", 
+   "response_handling": null, 
+   "line": 758
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "REPL", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "REPL", 
+   "response_handling": null, 
+   "line": 825
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "ISRT", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "ISRT", 
+   "response_handling": null, 
+   "line": 830
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "ASKTIME", 
+   "response_handling": "NOHANDLE", 
+   "line": 857
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "FORMATTIME", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 861
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "ISRT", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "ISRT", 
+   "response_handling": null, 
+   "line": 913
+  }, 
+  {
+   "kind": "DLI", 
+   "resource": "TERM", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "TERM", 
+   "response_handling": null, 
+   "line": 944
+  }, 
+  {
+   "kind": "MQ", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "MQCLOSE", 
+   "response_handling": null, 
+   "line": 956
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "ASKTIME", 
+   "response_handling": "NOHANDLE", 
+   "line": 986
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "FORMATTIME", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 990
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "CSSL", 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "WRITEQ", 
+   "response_handling": "NOHANDLE", 
+   "line": 1001
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": null, 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 1021
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "MQOPEN", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:262", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "MQGET", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:400", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "MQPUT1", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:758", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "MQCLOSE", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:956", 
+   "condition": null
+  }
+ ], 
+ "messages": [
+  {
+   "text": "IMS SCHD FAILED", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:315"
+  }, 
+  {
+   "text": "IMS GET SUMMARY FAILED", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:637"
+  }, 
+  {
+   "text": "IMS UPDATE SUMRY FAILED", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:844"
+  }, 
+  {
+   "text": "IMS INSERT DETL FAILED", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:929"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:33", 
+   "name": "WS-PGM-AUTH", 
+   "value": "'COPAUA0C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:34", 
+   "name": "WS-CICS-TRANID", 
+   "value": "'CP00'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:35", 
+   "name": "WS-ACCTFILENAME", 
+   "value": "'ACCTDAT '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:36", 
+   "name": "WS-CUSTFILENAME", 
+   "value": "'CUSTDAT '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:37", 
+   "name": "WS-CARDFILENAME", 
+   "value": "'CARDDAT '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:38", 
+   "name": "WS-CARDFILENAME-ACCT-PATH", 
+   "value": "'CARDAIX '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:39", 
+   "name": "WS-CCXREF-FILE", 
+   "value": "'CCXREF  '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:82", 
+   "name": "PSB-NAME", 
+   "value": "'PSBPAUTB'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:86", 
+   "name": "STATUS-OK", 
+   "value": "'  '"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:87", 
+   "name": "SEGMENT-NOT-FOUND", 
+   "value": "'GE'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:88", 
+   "name": "DUPLICATE-SEGMENT-FOUND", 
+   "value": "'II'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:89", 
+   "name": "WRONG-PARENTAGE", 
+   "value": "'GP'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:90", 
+   "name": "END-OF-DB", 
+   "value": "'GB'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:91", 
+   "name": "DATABASE-UNAVAILABLE", 
+   "value": "'BA'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:92", 
+   "name": "PSB-SCHEDULED-MORE-THAN-ONCE", 
+   "value": "'TC'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:93", 
+   "name": "COULD-NOT-SCHEDULE-PSB", 
+   "value": "'TE'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:94", 
+   "name": "RETRY-CONDITION", 
+   "value": "'BA'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:96", 
+   "name": "IMS-PSB-SCHD", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:97", 
+   "name": "IMS-PSB-NOT-SCHD", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:112", 
+   "name": "AUTH-RESP-APPROVED", 
+   "value": "'A'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:113", 
+   "name": "AUTH-RESP-DECLINED", 
+   "value": "'D'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:114", 
+   "name": "WS-MSG-LOOP-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:115", 
+   "name": "WS-LOOP-END", 
+   "value": "'E'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:116", 
+   "name": "WS-MSG-AVAILABLE-FLG", 
+   "value": "'M'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:117", 
+   "name": "NO-MORE-MSG-AVAILABLE", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:118", 
+   "name": "MORE-MSG-AVAILABLE", 
+   "value": "'M'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:119", 
+   "name": "WS-REQUEST-MQ-FLG", 
+   "value": "'C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:120", 
+   "name": "WS-REQUEST-MQ-OPEN", 
+   "value": "'O'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:121", 
+   "name": "WS-REQUEST-MQ-CLSE", 
+   "value": "'C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:122", 
+   "name": "WS-REPLY-MQ-FLG", 
+   "value": "'C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:123", 
+   "name": "WS-REPLY-MQ-OPEN", 
+   "value": "'O'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:124", 
+   "name": "WS-REPLY-MQ-CLSE", 
+   "value": "'C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:126", 
+   "name": "CARD-NFOUND-XREF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:127", 
+   "name": "CARD-FOUND-XREF", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:129", 
+   "name": "FOUND-ACCT-IN-MSTR", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:130", 
+   "name": "NFOUND-ACCT-IN-MSTR", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:132", 
+   "name": "FOUND-CUST-IN-MSTR", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:133", 
+   "name": "NFOUND-CUST-IN-MSTR", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:135", 
+   "name": "FOUND-PAUT-SMRY-SEG", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:136", 
+   "name": "NFOUND-PAUT-SMRY-SEG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:138", 
+   "name": "APPROVE-AUTH", 
+   "value": "'A'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:139", 
+   "name": "DECLINE-AUTH", 
+   "value": "'D'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:141", 
+   "name": "INSUFFICIENT-FUND", 
+   "value": "'I'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:142", 
+   "name": "CARD-NOT-ACTIVE", 
+   "value": "'A'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:143", 
+   "name": "ACCOUNT-CLOSED", 
+   "value": "'C'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:144", 
+   "name": "CARD-FRAUD", 
+   "value": "'F'"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:145", 
+   "name": "MERCHANT-FRAUD", 
+   "value": "'M'"
+  }
+ ]
+}

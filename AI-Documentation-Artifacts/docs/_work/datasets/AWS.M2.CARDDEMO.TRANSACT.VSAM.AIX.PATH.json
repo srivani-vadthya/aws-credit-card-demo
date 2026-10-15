@@ -1,0 +1,30 @@
+{
+ "accessors": [], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/TRANFILE.jcl:99", 
+  "app/jcl/TRANIDX.jcl:42", 
+  "app/catlg/LISTCAT.txt:3541"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "catalog_facts": {
+   "source": "app/catlg/LISTCAT.txt:3541", 
+   "as_of": "09/01/22", 
+   "point_in_time": true
+  }, 
+  "pathentry": "AWS.M2.CARDDEMO.TRANSACT.VSAM.AIX", 
+  "defined_by": [
+   "app/jcl/TRANFILE.jcl:99", 
+   "app/jcl/TRANIDX.jcl:42"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.TRANSACT.VSAM.AIX.PATH", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-path", 
+ "aliases": [], 
+ "sample_data": null
+}

@@ -1,0 +1,2161 @@
+{
+ "rules": [
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "sign-on", 
+   "conditions": [
+    {
+     "field": "USERIDI OF COSGN0AI", 
+     "op": "= spaces or low-values"
+    }
+   ], 
+   "messages": [
+    "Please enter User ID ..."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:118-122", 
+     "program": "COSGN00C", 
+     "paragraph": "PROCESS-ENTER-KEY"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "redisplay sign-on screen", 
+     "message": "Please enter User ID ..."
+    }
+   ], 
+   "trigger": "ENTER on map COSGN0A", 
+   "statement": "Sign-on stops before the password is checked when the entered user id is spaces or low-values, and the screen is redisplayed with 'Please enter User ID ...'.", 
+   "data": [
+    "COSGN0A"
+   ], 
+   "id": "BR-BASE-COSGN00C-001"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "sign-on", 
+   "conditions": [
+    {
+     "field": "PASSWDI OF COSGN0AI", 
+     "op": "= spaces or low-values"
+    }
+   ], 
+   "messages": [
+    "Please enter Password ..."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:123-127", 
+     "program": "COSGN00C", 
+     "paragraph": "PROCESS-ENTER-KEY"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "redisplay sign-on screen", 
+     "message": "Please enter Password ..."
+    }
+   ], 
+   "trigger": "ENTER on map COSGN0A", 
+   "statement": "Sign-on stops when a user id is present and the password is spaces or low-values, and the screen is redisplayed with 'Please enter Password ...'.", 
+   "data": [
+    "COSGN0A"
+   ], 
+   "id": "BR-BASE-COSGN00C-002"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "sign-on", 
+   "conditions": [], 
+   "implementations": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:132-136", 
+     "program": "COSGN00C", 
+     "paragraph": "PROCESS-ENTER-KEY"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "upper-case USERIDI into WS-USER-ID and PASSWDI into WS-USER-PWD"
+    }
+   ], 
+   "trigger": "ENTER on map COSGN0A", 
+   "statement": "The entered user id and password are converted to upper case before the user-security file is read and the password is compared.", 
+   "data": [
+    "USRSEC"
+   ], 
+   "id": "BR-BASE-COSGN00C-003"
+  }, 
+  {
+   "category": "authorization", 
+   "confidence": "Confirmed", 
+   "group": "sign-on", 
+   "conditions": [
+    {
+     "field": "SEC-USR-PWD", 
+     "op": "!=", 
+     "value_field": "WS-USER-PWD"
+    }
+   ], 
+   "messages": [
+    "Wrong Password. Try again ..."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:241-246", 
+     "program": "COSGN00C", 
+     "paragraph": "READ-USER-SEC-FILE"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "redisplay sign-on screen", 
+     "message": "Wrong Password. Try again ..."
+    }
+   ], 
+   "trigger": "CICS READ of USRSEC returns response 0", 
+   "statement": "Sign-on is refused when the stored password does not equal the upper-cased entered password, and the screen is redisplayed with 'Wrong Password. Try again ...'.", 
+   "data": [
+    "USRSEC: SEC-USR-PWD"
+   ], 
+   "id": "BR-BASE-COSGN00C-004"
+  }, 
+  {
+   "category": "routing", 
+   "confidence": "Confirmed", 
+   "group": "sign-on", 
+   "conditions": [
+    {
+     "field": "CDEMO-USRTYP-ADMIN", 
+     "value": "A", 
+     "op": "88-level"
+    }
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:223-239", 
+     "program": "COSGN00C", 
+     "paragraph": "READ-USER-SEC-FILE"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "XCTL", 
+     "target": "COADM01C"
+    }, 
+    {
+     "action": "XCTL", 
+     "target": "COMEN01C"
+    }
+   ], 
+   "trigger": "SEC-USR-PWD equals WS-USER-PWD", 
+   "statement": "A matching password transfers an admin user to COADM01C and any other user to COMEN01C. Admin means CDEMO-USER-TYPE equals 'A'.", 
+   "data": [
+    "COCOM01Y: CDEMO-USER-TYPE", 
+    "SEC-USR-TYPE"
+   ], 
+   "id": "BR-BASE-COSGN00C-005", 
+   "constants": [
+    {
+     "source": "app/cpy/COCOM01Y.cpy:27", 
+     "value": "A"
+    }
+   ]
+  }, 
+  {
+   "category": "validation", 
+   "decision_table": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:222", 
+     "outcome": "password comparison", 
+     "response": "0"
+    }, 
+    {
+     "source": "app/cbl/COSGN00C.cbl:247-251", 
+     "outcome": "User not found", 
+     "response": "13"
+    }, 
+    {
+     "source": "app/cbl/COSGN00C.cbl:252-256", 
+     "outcome": "Unable to verify the User", 
+     "response": "other"
+    }
+   ], 
+   "confidence": "Confirmed", 
+   "group": "sign-on", 
+   "conditions": [
+    {
+     "field": "WS-RESP-CD", 
+     "value": "13", 
+     "op": "="
+    }
+   ], 
+   "notes": "Response 13 is the value tested by the program. The CICS symbolic name for 13 is not stated in this paragraph.", 
+   "messages": [
+    "User not found. Try again ...", 
+    "Unable to verify the User ..."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COSGN00C.cbl:221-256", 
+     "program": "COSGN00C", 
+     "paragraph": "READ-USER-SEC-FILE"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "redisplay sign-on screen", 
+     "message": "User not found. Try again ...", 
+     "code": "13"
+    }, 
+    {
+     "action": "redisplay sign-on screen", 
+     "message": "Unable to verify the User ..."
+    }
+   ], 
+   "trigger": "CICS READ of USRSEC", 
+   "statement": "A user-security read response of 13 redisplays sign-on with 'User not found. Try again ...'. Any other non-zero response redisplays sign-on with 'Unable to verify the User ...'.", 
+   "data": [
+    "USRSEC"
+   ], 
+   "id": "BR-BASE-COSGN00C-006"
+  }, 
+  {
+   "category": "routing", 
+   "confidence": "Confirmed", 
+   "group": "navigation", 
+   "implementations": [
+    {
+     "source": "app/cbl/COMEN01C.cbl:198-200", 
+     "program": "COMEN01C", 
+     "paragraph": "RETURN-TO-SIGNON-SCREEN"
+    }, 
+    {
+     "source": "app/cbl/COADM01C.cbl:165-167", 
+     "program": "COADM01C", 
+     "paragraph": "RETURN-TO-SIGNON-SCREEN"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "XCTL", 
+     "target": "COSGN00C"
+    }
+   ], 
+   "trigger": "RETURN-TO-SIGNON-SCREEN", 
+   "statement": "When the return target is spaces or low-values, the user menu and the admin menu both set it to COSGN00C before the transfer.", 
+   "conditions": [
+    {
+     "field": "CDEMO-TO-PROGRAM", 
+     "op": "= spaces or low-values"
+    }
+   ], 
+   "id": "BR-BASE-001"
+  }, 
+  {
+   "category": "routing", 
+   "confidence": "Confirmed", 
+   "group": "navigation", 
+   "implementations": [
+    {
+     "source": "app/cbl/COMEN01C.cbl:96-98", 
+     "program": "COMEN01C"
+    }, 
+    {
+     "source": "app/cbl/COADM01C.cbl:100-102", 
+     "program": "COADM01C"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "XCTL", 
+     "target": "COSGN00C"
+    }
+   ], 
+   "trigger": "PF3", 
+   "statement": "PF3 on the user menu and on the admin menu sets the return target to COSGN00C and returns to sign-on.", 
+   "conditions": [
+    {
+     "field": "EIBAID", 
+     "value": "DFHPF3", 
+     "op": "="
+    }
+   ], 
+   "id": "BR-BASE-002"
+  }, 
+  {
+   "category": "routing", 
+   "confidence": "Confirmed", 
+   "group": "user menu", 
+   "messages": [
+    "is not installed..."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COMEN01C.cbl:147-168", 
+     "program": "COMEN01C"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "XCTL", 
+     "target": "COPAUS0C"
+    }, 
+    {
+     "action": "redisplay menu", 
+     "message": "This option ... is not installed..."
+    }
+   ], 
+   "trigger": "ENTER on the user menu when the selected program name is COPAUS0C", 
+   "statement": "Menu option COPAUS0C is started only when INQUIRE PROGRAM returns a normal response. Otherwise the menu shows that the option is not installed.", 
+   "conditions": [
+    {
+     "field": "EIBRESP", 
+     "value": "DFHRESP(NORMAL)", 
+     "op": "="
+    }
+   ], 
+   "id": "BR-BASE-COMEN01C-001"
+  }, 
+  {
+   "category": "routing", 
+   "confidence": "Confirmed", 
+   "group": "user menu", 
+   "messages": [
+    "is coming soon ..."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COMEN01C.cbl:169-176", 
+     "program": "COMEN01C"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "redisplay menu", 
+     "message": "This option ... is coming soon ..."
+    }
+   ], 
+   "trigger": "ENTER on the user menu", 
+   "statement": "A user-menu option whose program name begins with DUMMY is not started. The menu shows that the option is coming soon.", 
+   "conditions": [
+    {
+     "field": "CDEMO-MENU-OPT-PGMNAME(WS-OPTION)", 
+     "value": "DUMMY", 
+     "op": "starts with"
+    }
+   ], 
+   "id": "BR-BASE-COMEN01C-002"
+  }, 
+  {
+   "category": "routing", 
+   "confidence": "Confirmed", 
+   "group": "admin menu", 
+   "implementations": [
+    {
+     "source": "app/cbl/COADM01C.cbl:141-146", 
+     "program": "COADM01C"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "XCTL", 
+     "target": "CDEMO-ADMIN-OPT-PGMNAME(WS-OPTION)"
+    }
+   ], 
+   "trigger": "ENTER on the admin menu after the option number is accepted", 
+   "statement": "An admin-menu option is started when its program name does not begin with DUMMY.", 
+   "conditions": [
+    {
+     "field": "CDEMO-ADMIN-OPT-PGMNAME(WS-OPTION)", 
+     "value": "DUMMY", 
+     "op": "does not start with"
+    }
+   ], 
+   "id": "BR-BASE-COADM01C-001"
+  }, 
+  {
+   "category": "calculation", 
+   "inputs": [
+    "TRAN-CAT-BAL", 
+    "DIS-INT-RATE"
+   ], 
+   "confidence": "Confirmed", 
+   "group": "interest", 
+   "notes": "The result picture is at app/cbl/CBACT04C.cbl:168. The monthly interest is then added to WS-TOTAL-INT at line 467 and moved to TRAN-AMT at line 490.", 
+   "precision": "WS-MONTHLY-INT is PIC S9(09)V99. The COMPUTE has no ROUNDED keyword.", 
+   "implementations": [
+    {
+     "source": "app/cbl/CBACT04C.cbl:464-465", 
+     "program": "CBACT04C", 
+     "paragraph": "1300-COMPUTE-INTEREST"
+    }
+   ], 
+   "trigger": "batch paragraph 1300-COMPUTE-INTEREST", 
+   "statement": "Monthly interest for a category balance is the category balance times the disclosure interest rate, divided by 1200.", 
+   "formula": "WS-MONTHLY-INT = (TRAN-CAT-BAL * DIS-INT-RATE) / 1200", 
+   "id": "BR-BASE-CBACT04C-001", 
+   "constants": [
+    {
+     "source": "app/cbl/CBACT04C.cbl:465", 
+     "value": "1200"
+    }
+   ]
+  }, 
+  {
+   "category": "decision", 
+   "decision_table": [
+    {
+     "INPUT-REC-TYPE": "A", 
+     "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:111-113", 
+     "outcome": "10031-INSERT-DB"
+    }, 
+    {
+     "INPUT-REC-TYPE": "U", 
+     "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:114-116", 
+     "outcome": "10032-UPDATE-DB"
+    }, 
+    {
+     "INPUT-REC-TYPE": "D", 
+     "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:117-119", 
+     "outcome": "10033-DELETE-DB"
+    }, 
+    {
+     "INPUT-REC-TYPE": "*", 
+     "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:120-121", 
+     "outcome": "ignore"
+    }, 
+    {
+     "INPUT-REC-TYPE": "OTHER", 
+     "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:122-128", 
+     "outcome": "abend"
+    }
+   ], 
+   "confidence": "Confirmed", 
+   "group": "transaction type maintenance", 
+   "conditions": [
+    {
+     "field": "INPUT-REC-TYPE", 
+     "op": "EVALUATE"
+    }
+   ], 
+   "messages": [
+    "ERROR: TYPE NOT VALID"
+   ], 
+   "implementations": [
+    {
+     "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:111-128", 
+     "program": "COBTUPDT", 
+     "paragraph": "1003-TREAT-RECORD"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "INSERT", 
+     "code": "A"
+    }, 
+    {
+     "action": "UPDATE", 
+     "code": "U"
+    }, 
+    {
+     "action": "DELETE", 
+     "code": "D"
+    }, 
+    {
+     "action": "ignore", 
+     "code": "*"
+    }, 
+    {
+     "action": "abend", 
+     "message": "ERROR: TYPE NOT VALID"
+    }
+   ], 
+   "trigger": "batch record in 1003-TREAT-RECORD", 
+   "statement": "A transaction-type maintenance record inserts when the type is A, updates when the type is U, deletes when the type is D, and is ignored when the type is asterisk. Any other type abends with message ERROR: TYPE NOT VALID.", 
+   "data": [
+    "CARDDEMO.TRANSACTION_TYPE"
+   ], 
+   "id": "BR-TRANTYPE-COBTUPDT-001"
+  }, 
+  {
+   "category": "temporal", 
+   "confidence": "Confirmed", 
+   "group": "authorization expiry", 
+   "conditions": [
+    {
+     "field": "WS-DAY-DIFF", 
+     "op": ">=", 
+     "value_field": "WS-EXPIRY-DAYS"
+    }
+   ], 
+   "notes": "The business meaning of subtracting PA-AUTH-DATE-9C from 99999 is not stated in the paragraph. The formula is recorded as written.", 
+   "implementations": [
+    {
+     "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:280-286", 
+     "program": "CBPAUP0C", 
+     "paragraph": "4000-CHECK-IF-EXPIRED"
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:196-199", 
+     "program": "CBPAUP0C"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "SET QUALIFIED-FOR-DELETE TO TRUE"
+    }
+   ], 
+   "trigger": "IMS BMP paragraph 4000-CHECK-IF-EXPIRED", 
+   "statement": "A pending authorization qualifies for delete when the computed day difference is greater than or equal to the expiry days. Expiry days are the numeric parm value, or 5 when that parm is not numeric.", 
+   "formula": "WS-AUTH-DATE = 99999 - PA-AUTH-DATE-9C; WS-DAY-DIFF = CURRENT-YYDDD - WS-AUTH-DATE", 
+   "data": [
+    "DBPAUTP0: PA-AUTH-DATE-9C"
+   ], 
+   "id": "BR-AUTH-CBPAUP0C-001", 
+   "constants": [
+    {
+     "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:199", 
+     "value": "5"
+    }, 
+    {
+     "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:280", 
+     "value": "99999"
+    }
+   ]
+  }, 
+  {
+   "category": "calculation", 
+   "confidence": "Confirmed", 
+   "group": "authorization expiry", 
+   "implementations": [
+    {
+     "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:287-293", 
+     "program": "CBPAUP0C", 
+     "paragraph": "4000-CHECK-IF-EXPIRED"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "subtract 1 from PA-APPROVED-AUTH-CNT and PA-APPROVED-AMT from PA-APPROVED-AUTH-AMT", 
+     "code": "00"
+    }, 
+    {
+     "action": "subtract 1 from PA-DECLINED-AUTH-CNT and PA-TRANSACTION-AMT from PA-DECLINED-AUTH-AMT"
+    }
+   ], 
+   "trigger": "QUALIFIED-FOR-DELETE is true", 
+   "statement": "When a pending authorization qualifies for delete and its response code is 00, the approved count and approved amount are reduced. Any other response code reduces the declined count and the declined amount.", 
+   "conditions": [
+    {
+     "field": "PA-AUTH-RESP-CODE", 
+     "value": "00", 
+     "op": "="
+    }
+   ], 
+   "id": "BR-AUTH-CBPAUP0C-002", 
+   "constants": [
+    {
+     "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:287", 
+     "value": "00"
+    }
+   ]
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "date edit", 
+   "messages": [
+    "INVALID INPUT"
+   ], 
+   "implementations": [
+    {
+     "source": "app/asm/COBDATFT.asm:30-45", 
+     "program": "COBDATFT"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "move INVALID INPUT to COERMSG"
+    }, 
+    {
+     "action": "insert hyphens into the output date"
+    }
+   ], 
+   "trigger": "CALL from CBACT01C", 
+   "statement": "Date input type 1 is rejected when character 5 of the input is a hyphen or the requested output type is 2. Otherwise hyphens are inserted after the year and after the month.", 
+   "conditions": [
+    {
+     "field": "COINTYPE", 
+     "value": "1", 
+     "op": "="
+    }, 
+    {
+     "field": "COINPDT+4", 
+     "value": "-", 
+     "op": "="
+    }, 
+    {
+     "field": "COOUTYPE", 
+     "value": "2", 
+     "op": "="
+    }
+   ], 
+   "id": "BR-BASE-COBDATFT-001"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "date edit", 
+   "notes": "The compare of COINPDT+4 to a hyphen is commented at app/asm/COBDATFT.asm:47-48.", 
+   "implementations": [
+    {
+     "source": "app/asm/COBDATFT.asm:46-54", 
+     "program": "COBDATFT"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "copy date characters skipping hyphen positions"
+    }
+   ], 
+   "trigger": "CALL from CBACT01C", 
+   "statement": "Date input type 2 is rejected when the requested output type is 1. Otherwise characters are copied while skipping the hyphen positions. The hyphen-position check for type 2 is present only as a comment.", 
+   "conditions": [
+    {
+     "field": "COINTYPE", 
+     "value": "2", 
+     "op": "="
+    }, 
+    {
+     "field": "COOUTYPE", 
+     "value": "1", 
+     "op": "="
+    }
+   ], 
+   "id": "BR-BASE-COBDATFT-002"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "date edit", 
+   "messages": [
+    "INVALID INPUT"
+   ], 
+   "implementations": [
+    {
+     "source": "app/asm/COBDATFT.asm:34-56", 
+     "program": "COBDATFT"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "move INVALID INPUT to COERMSG", 
+     "message": "INVALID INPUT"
+    }
+   ], 
+   "trigger": "CALL from CBACT01C", 
+   "statement": "A date input type other than 1 or 2 moves INVALID INPUT into the error message field.", 
+   "conditions": [
+    {
+     "field": "COINTYPE", 
+     "op": "not 1 and not 2"
+    }
+   ], 
+   "id": "BR-BASE-COBDATFT-003"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "update screen edits", 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:173-174", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:730-732", 
+     "program": "COCRDUPC", 
+     "paragraph": "1210-EDIT-ACCOUNT"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:480", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1805-1812", 
+     "program": "COACTUPC", 
+     "paragraph": "1210-EDIT-ACCOUNT"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:135", 
+     "program": "COCRDSLC"
+    }, 
+    {
+     "source": "app/cbl/COACTVWC.cbl:118", 
+     "program": "COACTVWC"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:863-868", 
+     "program": "COTRTUPC", 
+     "paragraph": "1230-EDIT-ALPHANUM-REQD"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "write the edit message into WS-RETURN-MSG"
+    }
+   ], 
+   "trigger": "Any field edit in 1200-EDIT-MAP-INPUTS", 
+   "statement": "Each field edit writes its message only when no message is set yet, so the screen shows the first failing edit.", 
+   "conditions": [
+    {
+     "field": "WS-RETURN-MSG", 
+     "op": "= spaces (WS-RETURN-MSG-OFF)"
+    }
+   ], 
+   "id": "BR-BASE-003"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "update screen edits", 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:710-714", 
+     "program": "COCRDUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1671-1675", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:772-775", 
+     "program": "COTRTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set CCUP-CHANGES-OK-NOT-CONFIRMED or ACUP-CHANGES-OK-NOT-CONFIRMED"
+    }
+   ], 
+   "trigger": "End of 1200-EDIT-MAP-INPUTS", 
+   "statement": "When no field edit sets INPUT-ERROR, the card update, account update and transaction-type update programs mark the changes as validated but not yet confirmed.", 
+   "conditions": [
+    {
+     "field": "INPUT-ERROR", 
+     "op": "not set"
+    }
+   ], 
+   "id": "BR-BASE-004"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "card update edits", 
+   "notes": "A zero account number gets the not-provided message here, while COACTUPC rejects zero with the non-zero message (app/cbl/COACTUPC.cbl:1802-1808).", 
+   "messages": [
+    "Account number not provided", 
+    "ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:721-756", 
+     "program": "COCRDUPC", 
+     "paragraph": "1210-EDIT-ACCOUNT"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:176-177", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Account number not provided"
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER"
+    }
+   ], 
+   "trigger": "ENTER on the card update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "Before card details are fetched, an account number that is low-values, spaces or zero is reported as not provided. A supplied account number that is not numeric is rejected.", 
+   "conditions": [
+    {
+     "field": "CC-ACCT-ID", 
+     "op": "= low-values or spaces, or CC-ACCT-ID-N = zeros"
+    }, 
+    {
+     "field": "CC-ACCT-ID", 
+     "op": "is not numeric"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-001"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "card update edits", 
+   "messages": [
+    "Card number not provided", 
+    "CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:762-800", 
+     "program": "COCRDUPC", 
+     "paragraph": "1220-EDIT-CARD"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:178-180", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Card number not provided"
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER"
+    }
+   ], 
+   "trigger": "ENTER on the card update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "Before card details are fetched, a card number that is low-values, spaces or zero is reported as not provided. A supplied card number that is not numeric is rejected.", 
+   "conditions": [
+    {
+     "field": "CC-CARD-NUM", 
+     "op": "= low-values or spaces, or CC-CARD-NUM-N = zeros"
+    }, 
+    {
+     "field": "CC-CARD-NUM", 
+     "op": "is not numeric"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-002"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "card update edits", 
+   "messages": [
+    "No input received"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:644-662", 
+     "program": "COCRDUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:184-185", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "skip the card detail edits", 
+     "message": "No input received"
+    }
+   ], 
+   "trigger": "ENTER on the card update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "Before card details are fetched, only the account and card search keys are edited. When both are blank the message is No input received.", 
+   "conditions": [
+    {
+     "field": "CCUP-DETAILS-NOT-FETCHED", 
+     "op": "true"
+    }, 
+    {
+     "field": "FLG-ACCTFILTER-BLANK and FLG-CARDFILTER-BLANK", 
+     "op": "true"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-003"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "card update edits", 
+   "messages": [
+    "No change detected with respect to values fetched."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:680-693", 
+     "program": "COCRDUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:186-187", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "skip the card detail edits", 
+     "message": "No change detected with respect to values fetched."
+    }
+   ], 
+   "trigger": "ENTER on the card update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "When the new card data equals the fetched card data after both are converted to upper case, no change is reported and the card detail edits are skipped.", 
+   "conditions": [
+    {
+     "field": "UPPER-CASE(CCUP-NEW-CARDDATA)", 
+     "value": "UPPER-CASE(CCUP-OLD-CARDDATA)", 
+     "op": "="
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-004"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "card update edits", 
+   "messages": [
+    "Card name not provided", 
+    "Card name can only contain alphabets and spaces"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:806-840", 
+     "program": "COCRDUPC", 
+     "paragraph": "1230-EDIT-NAME"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:255-260", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:181-184", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Card name not provided"
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Card name can only contain alphabets and spaces"
+    }
+   ], 
+   "trigger": "ENTER on the card update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "The embossed card name is required and may contain only letters A-Z, a-z and spaces. A name of low-values, spaces or zeros counts as not provided.", 
+   "conditions": [
+    {
+     "field": "CCUP-NEW-CRDNAME", 
+     "op": "= low-values, spaces or zeros"
+    }, 
+    {
+     "field": "CCUP-NEW-CRDNAME", 
+     "op": "contains a character other than a letter or space"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-005"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "card update edits", 
+   "messages": [
+    "Card Active Status must be Y or N"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:845-873", 
+     "program": "COCRDUPC", 
+     "paragraph": "1240-EDIT-CARDSTATUS"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:89-91", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:194-195", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Card Active Status must be Y or N"
+    }
+   ], 
+   "trigger": "ENTER on the card update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "The card active status must be Y or N. A blank status gets the same message.", 
+   "conditions": [
+    {
+     "field": "CCUP-NEW-CRDSTCD", 
+     "value": "'Y','N'", 
+     "op": "not in"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-006"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "card update edits", 
+   "notes": "The comment at app/cbl/COCRDUPC.cbl:894 says must be numeric, but the code tests only the 88-level VALID-MONTH on a PIC 9(2) redefinition of the PIC X(2) input. No IS NUMERIC test is present.", 
+   "messages": [
+    "Card expiry month must be between 1 and 12"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:877-908", 
+     "program": "COCRDUPC", 
+     "paragraph": "1250-EDIT-EXPIRY-MON"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:92-95", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:196-197", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Card expiry month must be between 1 and 12"
+    }
+   ], 
+   "trigger": "ENTER on the card update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "The card expiry month is required and must be 1 through 12.", 
+   "conditions": [
+    {
+     "field": "CARD-MONTH-CHECK-N", 
+     "op": "not 1 thru 12"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-007"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "card update edits", 
+   "notes": "The comment at app/cbl/COCRDUPC.cbl:928-929 says must be numeric and must be 1 to 12. The code uses VALID-YEAR 1950 thru 2099 (app/cbl/COCRDUPC.cbl:99). Code wins.", 
+   "messages": [
+    "Invalid card expiry year"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDUPC.cbl:913-944", 
+     "program": "COCRDUPC", 
+     "paragraph": "1260-EDIT-EXPIRY-YEAR"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:96-99", 
+     "program": "COCRDUPC"
+    }, 
+    {
+     "source": "app/cbl/COCRDUPC.cbl:198-200", 
+     "program": "COCRDUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Invalid card expiry year"
+    }
+   ], 
+   "trigger": "ENTER on the card update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "The card expiry year is required and must be 1950 through 2099.", 
+   "conditions": [
+    {
+     "field": "CARD-YEAR-CHECK-N", 
+     "op": "not 1950 thru 2099"
+    }
+   ], 
+   "id": "BR-BASE-COCRDUPC-008"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account update edits", 
+   "messages": [
+    "Account number not provided", 
+    "No input received", 
+    "Account Number if supplied must be a 11 digit Non-Zero Number"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1433-1446", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1783-1818", 
+     "program": "COACTUPC", 
+     "paragraph": "1210-EDIT-ACCOUNT"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:483-490", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "No input received"
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Account Number if supplied must be a 11 digit Non-Zero Number"
+    }
+   ], 
+   "trigger": "ENTER on the account update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "Before account details are fetched, a blank account number is reported as not provided, and the message becomes No input received. A supplied account number that is not numeric or is zero is rejected.", 
+   "conditions": [
+    {
+     "field": "CC-ACCT-ID", 
+     "op": "= low-values or spaces"
+    }, 
+    {
+     "field": "CC-ACCT-ID", 
+     "op": "is not numeric, or CC-ACCT-ID-N = zeros"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-001"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account update edits", 
+   "messages": [
+    "No change detected with respect to values fetched."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1681-1775", 
+     "program": "COACTUPC", 
+     "paragraph": "1205-COMPARE-OLD-NEW"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1460-1467", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:491-492", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "skip the field edits", 
+     "message": "No change detected with respect to values fetched."
+    }
+   ], 
+   "trigger": "ENTER on the account update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "No change is reported when every account and customer field equals the fetched value. Text fields are compared after trim and upper case. Amounts, dates, phone parts, SSN, EFT account and FICO score are compared exactly. Field edits are then skipped.", 
+   "conditions": [
+    {
+     "field": "all ACUP-NEW-* fields", 
+     "value": "matching ACUP-OLD-* fields", 
+     "op": "="
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-002"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account update edits", 
+   "messages": [
+    "<field> must be supplied.", 
+    "<field> must be Y or N."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1472-1476", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1657-1662", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1856-1892", 
+     "program": "COACTUPC", 
+     "paragraph": "1220-EDIT-YESNO"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> must be supplied."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> must be Y or N."
+    }
+   ], 
+   "trigger": "ENTER on the account update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "Account Status and Primary Card Holder are required and must be Y or N. Low-values, spaces or zeros count as not supplied.", 
+   "conditions": [
+    {
+     "field": "field", 
+     "op": "= low-values, spaces or zeros"
+    }, 
+    {
+     "field": "field", 
+     "op": "not Y or N"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-003"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account update edits", 
+   "messages": [
+    "<field> must be supplied.", 
+    "<field> is not valid"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1484-1527", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2180-2219", 
+     "program": "COACTUPC", 
+     "paragraph": "1250-EDIT-SIGNED-9V2"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> must be supplied."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> is not valid"
+    }
+   ], 
+   "trigger": "ENTER on the account update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "Credit Limit, Cash Credit Limit, Current Balance, Current Cycle Credit and Current Cycle Debit are required and must pass the TEST-NUMVAL-C numeric test.", 
+   "conditions": [
+    {
+     "field": "WS-EDIT-SIGNED-NUMBER-9V2-X", 
+     "op": "= low-values or spaces"
+    }, 
+    {
+     "field": "TEST-NUMVAL-C(field)", 
+     "op": "not 0"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-004"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "date edit", 
+   "messages": [
+    "Year must be supplied.", 
+    "must be 4 digit number.", 
+    "Century is not valid.", 
+    "Month must be supplied.", 
+    "Month must be a number between 1 and 12.", 
+    "Day must be supplied.", 
+    "day must be a number between 1 and 31."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1478-1507", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1533-1538", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cpy/CSUTLDPY.cpy:25-205", 
+     "program": "COACTUPC", 
+     "paragraph": "EDIT-YEAR-CCYY, EDIT-MONTH, EDIT-DAY"
+    }, 
+    {
+     "source": "app/cpy/CSUTLDWY.cpy:9-32", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> : Year must be supplied."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> must be 4 digit number."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> : Century is not valid."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> : Month must be supplied."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field>: Month must be a number between 1 and 12."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> : Day must be supplied."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field>:day must be a number between 1 and 31."
+    }
+   ], 
+   "trigger": "Open Date, Expiry Date, Reissue Date and Date of Birth edits", 
+   "statement": "A date year is required, must be numeric, and its century must be 19 or 20. The month is required and must be 1 through 12. The day is required and must be 1 through 31.", 
+   "conditions": [
+    {
+     "field": "WS-EDIT-DATE-CCYY", 
+     "op": "blank, not numeric, or century not 19 or 20"
+    }, 
+    {
+     "field": "WS-EDIT-DATE-MM", 
+     "op": "blank or not 1 thru 12"
+    }, 
+    {
+     "field": "WS-EDIT-DATE-DD", 
+     "op": "blank or not 1 thru 31"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-005"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "date edit", 
+   "messages": [
+    "Cannot have 31 days in this month.", 
+    "Cannot have 30 days in this month.", 
+    "Not a leap year.Cannot have 29 days in this month."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cpy/CSUTLDPY.cpy:209-272", 
+     "program": "COACTUPC", 
+     "paragraph": "EDIT-DAY-MONTH-YEAR"
+    }, 
+    {
+     "source": "app/cpy/CSUTLDWY.cpy:21-32", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field>:Cannot have 31 days in this month."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field>:Cannot have 30 days in this month."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field>:Not a leap year.Cannot have 29 days in this month."
+    }
+   ], 
+   "trigger": "Open Date, Expiry Date, Reissue Date and Date of Birth edits", 
+   "statement": "Day 31 is rejected outside months 1, 3, 5, 7, 8, 10 and 12. Day 30 is rejected in February. Day 29 in February is accepted only in a leap year: a year ending in 00 must divide by 400, any other year by 4.", 
+   "conditions": [
+    {
+     "field": "WS-EDIT-DATE-DD", 
+     "op": "= 31 and month not a 31-day month"
+    }, 
+    {
+     "field": "WS-EDIT-DATE-DD", 
+     "op": "= 30 and month = 2"
+    }, 
+    {
+     "field": "WS-EDIT-DATE-DD", 
+     "op": "= 29 and month = 2 and CCYY not divisible by 400 (YY = 00) or by 4"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-006"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "date edit", 
+   "notes": "After a CSUTLDTC failure, GO TO EDIT-DATE-LE-EXIT (app/cpy/CSUTLDPY.cpy:315) falls through to SET WS-EDIT-DATE-IS-VALID (app/cpy/CSUTLDPY.cpy:327), so the date flags read valid although INPUT-ERROR stays set.", 
+   "messages": [
+    "validation error Sev code: ... Message code: ..."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cpy/CSUTLDPY.cpy:273-321", 
+     "program": "COACTUPC", 
+     "paragraph": "EDIT-DATE-LE"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> validation error Sev code: <sev> Message code: <msg>"
+    }
+   ], 
+   "trigger": "Open Date, Expiry Date, Reissue Date and Date of Birth edits", 
+   "statement": "A date that passes the year, month and day edits is checked again by CALL CSUTLDTC with format YYYYMMDD. A non-zero severity rejects the date.", 
+   "conditions": [
+    {
+     "field": "WS-SEVERITY-N", 
+     "op": "not 0"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-007"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "date edit", 
+   "messages": [
+    "cannot be in the future"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1533-1543", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cpy/CSUTLDPY.cpy:341-368", 
+     "program": "COACTUPC", 
+     "paragraph": "EDIT-DATE-OF-BIRTH"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field>:cannot be in the future"
+    }
+   ], 
+   "trigger": "Date of Birth edit", 
+   "statement": "A date of birth that passes the date edits must be earlier than the current date. A date equal to today is rejected.", 
+   "conditions": [
+    {
+     "field": "INTEGER-OF-DATE(current date)", 
+     "value": "INTEGER-OF-DATE(date of birth)", 
+     "op": "not >"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-008"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account update edits", 
+   "messages": [
+    "must be supplied.", 
+    "must be all numeric.", 
+    "must not be zero.", 
+    ": should not be 000, 666, or between 900 and 999"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:2431-2487", 
+     "program": "COACTUPC", 
+     "paragraph": "1265-EDIT-US-SSN"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:121-123", 
+     "program": "COACTUPC"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2109-2174", 
+     "program": "COACTUPC", 
+     "paragraph": "1245-EDIT-NUM-REQD"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "SSN: First 3 chars: should not be 000, 666, or between 900 and 999"
+    }
+   ], 
+   "trigger": "ENTER on the account update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "The SSN is entered in three parts of 3, 2 and 4 digits. Each part is required, must be numeric and must not be zero. The first part must also not be 000, 666 or 900 through 999.", 
+   "conditions": [
+    {
+     "field": "ACUP-NEW-CUST-SSN-1/2/3", 
+     "op": "blank, not numeric, or zero"
+    }, 
+    {
+     "field": "ACUP-NEW-CUST-SSN-1", 
+     "value": "0, 666, 900 thru 999", 
+     "op": "in"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-009"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account update edits", 
+   "messages": [
+    ": should be between 300 and 850"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1545-1557", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2514-2529", 
+     "program": "COACTUPC", 
+     "paragraph": "1275-EDIT-FICO-SCORE"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:848-849", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "FICO Score: should be between 300 and 850"
+    }
+   ], 
+   "trigger": "ENTER on the account update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "The FICO score is required, must be a 3-digit non-zero number, and must be 300 through 850.", 
+   "conditions": [
+    {
+     "field": "FICO score", 
+     "op": "blank, not numeric, or zero"
+    }, 
+    {
+     "field": "FICO score", 
+     "op": "not 300 thru 850"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-010"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account update edits", 
+   "messages": [
+    "<field> must be supplied.", 
+    "<field> can have alphabets only."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1560-1582", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1898-1949", 
+     "program": "COACTUPC", 
+     "paragraph": "1225-EDIT-ALPHA-REQD"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2012-2055", 
+     "program": "COACTUPC", 
+     "paragraph": "1235-EDIT-ALPHA-OPT"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> must be supplied."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> can have alphabets only."
+    }
+   ], 
+   "trigger": "ENTER on the account update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "First Name and Last Name are required and may contain only letters and spaces, within 25 characters. Middle Name is optional, but when supplied it may contain only letters and spaces.", 
+   "conditions": [
+    {
+     "field": "first or last name", 
+     "op": "blank"
+    }, 
+    {
+     "field": "name", 
+     "op": "contains a character other than a letter or space"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-011"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account update edits", 
+   "messages": [
+    "<field> must be supplied.", 
+    "<field> can have alphabets only.", 
+    ": is not a valid state code"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1584-1602", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1613-1630", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1824-1850", 
+     "program": "COACTUPC", 
+     "paragraph": "1215-EDIT-MANDATORY"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2493-2509", 
+     "program": "COACTUPC", 
+     "paragraph": "1270-EDIT-US-STATE-CD"
+    }, 
+    {
+     "source": "app/cpy/CSLKPCDY.cpy:1013-1069", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> must be supplied."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> can have alphabets only."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "State: is not a valid state code"
+    }
+   ], 
+   "trigger": "ENTER on the account update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "Address Line 1 is required. City (address line 3) and Country are required and letters-and-spaces only. State is required, letters only, and must be one of 56 US state and territory codes. Address Line 2 is not edited.", 
+   "conditions": [
+    {
+     "field": "Address Line 1, City, Country, State", 
+     "op": "blank"
+    }, 
+    {
+     "field": "City, Country, State", 
+     "op": "not letters and spaces"
+    }, 
+    {
+     "field": "State", 
+     "op": "not VALID-US-STATE-CODE"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-012"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account update edits", 
+   "messages": [
+    "must be supplied.", 
+    "must be all numeric.", 
+    "must not be zero.", 
+    "Invalid zip code for state"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1605-1611", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:1665-1669", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2536-2556", 
+     "program": "COACTUPC", 
+     "paragraph": "1280-EDIT-US-STATE-ZIP-CD"
+    }, 
+    {
+     "source": "app/cpy/CSLKPCDY.cpy:1073-1313", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Invalid zip code for state"
+    }
+   ], 
+   "trigger": "ENTER on the account update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "Zip is required, must be a 5-digit number and must not be zero. When State and Zip each pass, the state code plus the first two zip digits must be one of 240 listed combinations.", 
+   "conditions": [
+    {
+     "field": "Zip", 
+     "op": "blank, not numeric, or zero"
+    }, 
+    {
+     "field": "state code + zip(1:2)", 
+     "op": "not VALID-US-STATE-ZIP-CD2-COMBO"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-013"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account update edits", 
+   "notes": "The not-entered test at app/cbl/COACTUPC.cbl:2238-2239 checks WS-EDIT-US-PHONE-NUMA for spaces where the line-number part NUMC is expected. A number with blank area code and prefix is accepted as not entered even when a line number is keyed.", 
+   "messages": [
+    ": Area code must be supplied.", 
+    ": Area code must be A 3 digit number.", 
+    ": Area code cannot be zero", 
+    ": Not valid North America general purpose area code", 
+    ": Prefix code must be supplied.", 
+    ": Prefix code must be A 3 digit number.", 
+    ": Prefix code cannot be zero", 
+    ": Line number code must be supplied.", 
+    ": Line number code must be A 4 digit number.", 
+    ": Line number code cannot be zero"
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1632-1646", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2225-2423", 
+     "program": "COACTUPC", 
+     "paragraph": "1260-EDIT-US-PHONE-NUM"
+    }, 
+    {
+     "source": "app/cpy/CSLKPCDY.cpy:521-930", 
+     "program": "COACTUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": ": Area code must be supplied."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": ": Not valid North America general purpose area code"
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": ": Prefix code must be A 3 digit number."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": ": Line number code cannot be zero"
+    }
+   ], 
+   "trigger": "ENTER on the account update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "Phone Number 1 and 2 are optional. When a number is entered, the area code must be a 3-digit non-zero number in the list of 410 North American general purpose area codes, the prefix must be a 3-digit non-zero number, and the line number must be a 4-digit non-zero number.", 
+   "conditions": [
+    {
+     "field": "area code", 
+     "op": "blank, not numeric, zero, or not VALID-GENERAL-PURP-CODE"
+    }, 
+    {
+     "field": "prefix", 
+     "op": "blank, not numeric, or zero"
+    }, 
+    {
+     "field": "line number", 
+     "op": "blank, not numeric, or zero"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-014"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account update edits", 
+   "messages": [
+    "<field> must be supplied.", 
+    "<field> must be all numeric.", 
+    "<field> must not be zero."
+   ], 
+   "implementations": [
+    {
+     "source": "app/cbl/COACTUPC.cbl:1648-1655", 
+     "program": "COACTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTUPC.cbl:2109-2174", 
+     "program": "COACTUPC", 
+     "paragraph": "1245-EDIT-NUM-REQD"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> must be supplied."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> must be all numeric."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "<field> must not be zero."
+    }
+   ], 
+   "trigger": "ENTER on the account update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "statement": "EFT Account Id is required, must be a 10-digit number and must not be zero.", 
+   "conditions": [
+    {
+     "field": "EFT Account Id", 
+     "op": "blank, not numeric, or zero"
+    }
+   ], 
+   "id": "BR-BASE-COACTUPC-015"
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "trigger": "ENTER on the card list screen, paragraph 2200-EDIT-MAP-INPUTS", 
+   "group": "card list search", 
+   "statement": "A card-list account filter of low-values, spaces or zero is reported as not provided. A supplied account number that is not numeric is rejected. An asterisk or spaces on the screen field is treated as not supplied.", 
+   "messages": [
+    "Account number not provided", 
+    "ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER"
+   ], 
+   "conditions": [
+    {
+     "field": "CC-ACCT-ID", 
+     "op": "= low-values or spaces, or CC-ACCT-ID-N = zeros"
+    }, 
+    {
+     "field": "CC-ACCT-ID", 
+     "op": "is not numeric"
+    }
+   ], 
+   "id": "BR-BASE-COCRDSLC-001", 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDSLC.cbl:608-620", 
+     "program": "COCRDSLC", 
+     "paragraph": "2200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:647-679", 
+     "program": "COCRDSLC", 
+     "paragraph": "2210-EDIT-ACCOUNT"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:138-139", 
+     "program": "COCRDSLC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Account number not provided"
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER"
+    }
+   ]
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "trigger": "ENTER on the card list screen, paragraph 2200-EDIT-MAP-INPUTS", 
+   "group": "card list search", 
+   "statement": "A card-list card filter of low-values, spaces or zero is reported as not provided. A supplied card number that is not numeric is rejected. An asterisk or spaces on the screen field is treated as not supplied.", 
+   "messages": [
+    "Card number not provided", 
+    "CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER"
+   ], 
+   "conditions": [
+    {
+     "field": "CC-CARD-NUM", 
+     "op": "= low-values or spaces, or CC-CARD-NUM-N = zeros"
+    }, 
+    {
+     "field": "CC-CARD-NUM", 
+     "op": "is not numeric"
+    }
+   ], 
+   "id": "BR-BASE-COCRDSLC-002", 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDSLC.cbl:622-634", 
+     "program": "COCRDSLC", 
+     "paragraph": "2200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:685-719", 
+     "program": "COCRDSLC", 
+     "paragraph": "2220-EDIT-CARD"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:140-141", 
+     "program": "COCRDSLC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Card number not provided"
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER"
+    }
+   ]
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "trigger": "ENTER on the card list screen, paragraph 2200-EDIT-MAP-INPUTS", 
+   "group": "card list search", 
+   "statement": "When both the account filter and the card filter are blank, the card list screen reports that no input was received.", 
+   "messages": [
+    "No input received"
+   ], 
+   "conditions": [
+    {
+     "field": "FLG-ACCTFILTER-BLANK and FLG-CARDFILTER-BLANK", 
+     "op": "true"
+    }
+   ], 
+   "id": "BR-BASE-COCRDSLC-003", 
+   "implementations": [
+    {
+     "source": "app/cbl/COCRDSLC.cbl:636-640", 
+     "program": "COCRDSLC", 
+     "paragraph": "2200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COCRDSLC.cbl:142-143", 
+     "program": "COCRDSLC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "No input received"
+    }
+   ]
+  }, 
+  {
+   "implementations": [
+    {
+     "source": "app/cbl/COACTVWC.cbl:627-642", 
+     "program": "COACTVWC", 
+     "paragraph": "2200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/cbl/COACTVWC.cbl:649-680", 
+     "program": "COACTVWC", 
+     "paragraph": "2210-EDIT-ACCOUNT"
+    }, 
+    {
+     "source": "app/cbl/COACTVWC.cbl:121-124", 
+     "program": "COACTVWC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "No input received"
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Account Filter must  be a non-zero 11 digit number"
+    }
+   ], 
+   "id": "BR-BASE-COACTVWC-001", 
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "group": "account view search", 
+   "notes": "A zero account number is rejected by the numeric-or-zero test at app/cbl/COACTVWC.cbl:666-667. It is not in the not-provided test at app/cbl/COACTVWC.cbl:653-654. COCRDSLC puts zero in the not-provided test (app/cbl/COCRDSLC.cbl:651-653).", 
+   "messages": [
+    "Account number not provided", 
+    "No input received", 
+    "Account Filter must  be a non-zero 11 digit number"
+   ], 
+   "trigger": "ENTER on the account view screen, paragraph 2200-EDIT-MAP-INPUTS", 
+   "statement": "An account-view filter of low-values or spaces is reported as not provided, and the message becomes No input received. A supplied account number that is not numeric or is zeros is rejected. An asterisk or spaces on the screen field is treated as not supplied.", 
+   "conditions": [
+    {
+     "field": "CC-ACCT-ID", 
+     "op": "= low-values or spaces"
+    }, 
+    {
+     "field": "CC-ACCT-ID", 
+     "op": "is not numeric, or = zeros"
+    }
+   ]
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "trigger": "ENTER on the transaction-type update screen, paragraph 1210-EDIT-TRANTYPE", 
+   "group": "transaction type maintenance", 
+   "statement": "The transaction type code is required, must be numeric, and must not be zero, within 2 characters. A code that passes is rewritten with leading zeros.", 
+   "messages": [
+    "must be supplied.", 
+    "must be numeric.", 
+    "must not be zero."
+   ], 
+   "conditions": [
+    {
+     "field": "TTUP-NEW-TTYP-TYPE", 
+     "op": "blank, not numeric, or zero"
+    }
+   ], 
+   "id": "BR-BASE-COTRTUPC-001", 
+   "implementations": [
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:820-842", 
+     "program": "COTRTUPC", 
+     "paragraph": "1210-EDIT-TRANTYPE"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:907-974", 
+     "program": "COTRTUPC", 
+     "paragraph": "1245-EDIT-NUM-REQD"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Tran Type code must be supplied."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Tran Type code must be numeric."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Tran Type code must not be zero."
+    }, 
+    {
+     "action": "zero-pad the type code to 2 characters"
+    }
+   ]
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "trigger": "ENTER on the transaction-type update screen, paragraph 1200-EDIT-MAP-INPUTS", 
+   "group": "transaction type maintenance", 
+   "statement": "The transaction description is required and may contain only letters, digits and spaces, within 50 characters.", 
+   "messages": [
+    "must be supplied.", 
+    "can have numbers or alphabets only."
+   ], 
+   "conditions": [
+    {
+     "field": "TTUP-NEW-TTYP-TYPE-DESC", 
+     "op": "blank"
+    }, 
+    {
+     "field": "description", 
+     "op": "contains a character other than a letter, digit or space"
+    }
+   ], 
+   "id": "BR-BASE-COTRTUPC-002", 
+   "implementations": [
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:755-764", 
+     "program": "COTRTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:849-903", 
+     "program": "COTRTUPC", 
+     "paragraph": "1230-EDIT-ALPHANUM-REQD"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Transaction Desc must be supplied."
+    }, 
+    {
+     "action": "set INPUT-ERROR and redisplay the screen", 
+     "message": "Transaction Desc can have numbers or alphabets only."
+    }
+   ]
+  }, 
+  {
+   "category": "validation", 
+   "confidence": "Confirmed", 
+   "trigger": "ENTER on the transaction-type update screen, paragraph 1205-COMPARE-OLD-NEW", 
+   "group": "transaction type maintenance", 
+   "statement": "No change is reported when the type code matches after upper case, and the description matches after trim and upper case and has the same trimmed length. Field edits are then skipped.", 
+   "messages": [
+    "No change detected with respect to values fetched."
+   ], 
+   "conditions": [
+    {
+     "field": "UPPER-CASE(new type)", 
+     "value": "UPPER-CASE(old type)", 
+     "op": "="
+    }, 
+    {
+     "field": "trimmed upper-case description and its length", 
+     "value": "old description", 
+     "op": "="
+    }
+   ], 
+   "id": "BR-BASE-COTRTUPC-003", 
+   "implementations": [
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:783-811", 
+     "program": "COTRTUPC", 
+     "paragraph": "1205-COMPARE-OLD-NEW"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:743-750", 
+     "program": "COTRTUPC", 
+     "paragraph": "1200-EDIT-MAP-INPUTS"
+    }, 
+    {
+     "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:179-180", 
+     "program": "COTRTUPC"
+    }
+   ], 
+   "outcomes": [
+    {
+     "action": "skip the field edits", 
+     "message": "No change detected with respect to values fetched."
+    }
+   ]
+  }
+ ], 
+ "schema": "rules/1", 
+ "retired": [], 
+ "indexes": {
+  "computes": "docs/_work/rules/computes.json", 
+  "messages": "docs/_work/rules/messages.json"
+ }
+}

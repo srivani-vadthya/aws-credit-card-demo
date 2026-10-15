@@ -1,0 +1,42 @@
+{
+ "sample_data": null, 
+ "layout": null, 
+ "accessors": [
+  {
+   "source": "app/cbl/CORPT00C.cbl:517", 
+   "via": "WRITEQ TD", 
+   "by": "CORPT00C", 
+   "ops": [
+    "C"
+   ]
+  }
+ ], 
+ "name": "JOBS", 
+ "aliases": [], 
+ "module": null, 
+ "evidence": [
+  "app/csd/CARDDEMO.CSD:499", 
+  "app/cbl/CORPT00C.cbl:81-127", 
+  "app/csd/CARDDEMO.CSD:499-503"
+ ], 
+ "ims": null, 
+ "mq": null, 
+ "purpose": {
+  "text": "Receives the 80-byte JCL lines of job TRNRPT00 written by CORPT00C.", 
+  "confidence": "Confirmed", 
+  "source": "app/cbl/CORPT00C.cbl:497-520"
+ }, 
+ "db2": null, 
+ "store_kind": "cics-tdq", 
+ "physical": {
+  "cics_tdq": {
+   "typefile": "OUTPUT", 
+   "recordformat": "FIXED", 
+   "ddname": "INREADER", 
+   "source": "app/csd/CARDDEMO.CSD:499-503", 
+   "type": "EXTRA", 
+   "recordsize": 80
+  }, 
+  "defined_by": []
+ }
+}

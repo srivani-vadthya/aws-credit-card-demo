@@ -1,0 +1,603 @@
+{
+ "source": "app/bms/COTRN01.bms:19", 
+ "name": "COTRN01", 
+ "module": "base", 
+ "maps": [
+  {
+   "source": "app/bms/COTRN01.bms:26", 
+   "mockup": [
+    "Tran: XXXX          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Date: mm/dd/yy", 
+    "Prog: XXXXXXXX      XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    Time: hh:mm:ss", 
+    "", 
+    "                             View Transaction", 
+    "", 
+    "     Enter Tran ID:", 
+    "", 
+    "     ------------------------------------------------ ---------------------", 
+    "", 
+    "     Transaction ID:                        Card Number:", 
+    "", 
+    "     Type CD:         Category CD:           Source:", 
+    "", 
+    "     Description:", 
+    "", 
+    "     Amount:                  Orig Date:                Proc Date:", 
+    "", 
+    "     Merchant ID:               Merchant Name:", 
+    "", 
+    "     Merchant City:                                 Merchant Zip:", 
+    "", 
+    "", 
+    "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", 
+    "ENTER=Fetch  F3=Back  F4=Clear  F5=Browse Tran."
+   ], 
+   "name": "COTRN1A", 
+   "fields": [
+    {
+     "source": "app/bms/COTRN01.bms:29", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Tran:", 
+     "col": 1, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:34", 
+     "length": 4, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TRNNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:38", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE01", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:42", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Date:", 
+     "col": 65, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:47", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURDATE", 
+     "color": "BLUE", 
+     "initial": "mm/dd/yy", 
+     "col": 71, 
+     "row": 1
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:52", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Prog:", 
+     "col": 1, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:57", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "PGMNAME", 
+     "color": "BLUE", 
+     "initial": null, 
+     "col": 7, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:61", 
+     "length": 40, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "TITLE02", 
+     "color": "YELLOW", 
+     "initial": null, 
+     "col": 21, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:65", 
+     "length": 5, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "BLUE", 
+     "initial": "Time:", 
+     "col": 65, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:70", 
+     "length": 8, 
+     "attrb": "(ASKIP,FSET,NORM)", 
+     "name": "CURTIME", 
+     "color": "BLUE", 
+     "initial": "hh:mm:ss", 
+     "col": 71, 
+     "row": 2
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:75", 
+     "length": 16, 
+     "attrb": "(ASKIP,BRT)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "View Transaction", 
+     "col": 30, 
+     "row": 4
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:80", 
+     "length": 14, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Enter Tran ID:", 
+     "col": 6, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:85", 
+     "length": 16, 
+     "attrb": "(FSET,IC,NORM,UNPROT)", 
+     "name": "TRNIDIN", 
+     "color": "GREEN", 
+     "initial": " ", 
+     "col": 21, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:91", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 38, 
+     "row": 6
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:94", 
+     "length": 70, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "NEUTRAL", 
+     "initial": "------------------------------------------------ -----------------------", 
+     "col": 6, 
+     "row": 8
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:100", 
+     "length": 15, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Transaction ID:", 
+     "col": 6, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:105", 
+     "length": 16, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TRNID", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 22, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:110", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 39, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:113", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Card Number:", 
+     "col": 45, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:118", 
+     "length": 16, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "CARDNUM", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 58, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:123", 
+     "length": 0, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "GREEN", 
+     "initial": null, 
+     "col": 75, 
+     "row": 10
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:127", 
+     "length": 8, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Type CD:", 
+     "col": 6, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:132", 
+     "length": 2, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TTYPCD", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 15, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:137", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 18, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:139", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Category CD:", 
+     "col": 23, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:144", 
+     "length": 4, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TCATCD", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 36, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:149", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 41, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:151", 
+     "length": 7, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Source:", 
+     "col": 46, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:156", 
+     "length": 10, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TRNSRC", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 54, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:161", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 65, 
+     "row": 12
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:163", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Description:", 
+     "col": 6, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:168", 
+     "length": 60, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TDESC", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 19, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:173", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 80, 
+     "row": 14
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:175", 
+     "length": 7, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Amount:", 
+     "col": 6, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:180", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TRNAMT", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 14, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:185", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 27, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:187", 
+     "length": 10, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Orig Date:", 
+     "col": 31, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:192", 
+     "length": 10, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TORIGDT", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 42, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:197", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 53, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:199", 
+     "length": 10, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Proc Date:", 
+     "col": 57, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:204", 
+     "length": 10, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "TPROCDT", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 68, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:209", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 79, 
+     "row": 16
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:211", 
+     "length": 12, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Merchant ID:", 
+     "col": 6, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:216", 
+     "length": 9, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "MID", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 19, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:221", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 29, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:223", 
+     "length": 14, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Merchant Name:", 
+     "col": 33, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:228", 
+     "length": 30, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "MNAME", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 48, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:233", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 79, 
+     "row": 18
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:235", 
+     "length": 14, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Merchant City:", 
+     "col": 6, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:240", 
+     "length": 25, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "MCITY", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 21, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:245", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 47, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:247", 
+     "length": 13, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "TURQUOISE", 
+     "initial": "Merchant Zip:", 
+     "col": 53, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:252", 
+     "length": 10, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": "MZIP", 
+     "color": "BLUE", 
+     "initial": " ", 
+     "col": 67, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:257", 
+     "length": 0, 
+     "attrb": null, 
+     "name": null, 
+     "color": null, 
+     "initial": null, 
+     "col": 78, 
+     "row": 20
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:259", 
+     "length": 78, 
+     "attrb": "(ASKIP,BRT,FSET)", 
+     "name": "ERRMSG", 
+     "color": "RED", 
+     "initial": null, 
+     "col": 1, 
+     "row": 23
+    }, 
+    {
+     "source": "app/bms/COTRN01.bms:263", 
+     "length": 47, 
+     "attrb": "(ASKIP,NORM)", 
+     "name": null, 
+     "color": "YELLOW", 
+     "initial": "ENTER=Fetch  F3=Back  F4=Clear  F5=Browse Tran.- ", 
+     "col": 1, 
+     "row": 24
+    }
+   ], 
+   "size": [
+    24, 
+    80
+   ]
+  }
+ ]
+}

@@ -1,0 +1,2300 @@
+{
+ "note": "select_names is empty on every row. Logical file names remain in crud-matrix.json.", 
+ "rows": [
+  {
+   "dsn": "AWS.CUSTDATA.CLUSTER", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.PS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.PS", 
+     "source": "app/jcl/ACCTFILE.jcl:56", 
+     "job": "ACCTFILE", 
+     "step": "STEP15", 
+     "ddname": "ACCTDATA"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+   "select_names": [], 
+   "cics_files": [
+    {
+     "source": "app/csd/CARDDEMO.CSD:1", 
+     "name": "ACCTDAT"
+    }
+   ], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+     "source": "app/jcl/ACCTFILE.jcl:58", 
+     "job": "ACCTFILE", 
+     "step": "STEP15", 
+     "ddname": "ACCTVSAM"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+     "source": "app/jcl/CBEXPORT.jcl:51", 
+     "job": "CBEXPORT", 
+     "step": "STEP02", 
+     "ddname": "ACCTFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+     "source": "app/jcl/CREASTMT.JCL:85", 
+     "job": "CREASTMT", 
+     "step": "STEP040", 
+     "ddname": "ACCTFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+     "source": "app/jcl/INTCALC.jcl:33", 
+     "job": "INTCALC", 
+     "step": "STEP15", 
+     "ddname": "ACCTFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+     "source": "app/jcl/POSTTRAN.jcl:39", 
+     "job": "POSTTRAN", 
+     "step": "STEP15", 
+     "ddname": "ACCTFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+     "source": "app/jcl/READACCT.jcl:35", 
+     "job": "READACCT", 
+     "step": "STEP05", 
+     "ddname": "ACCTFILE"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.BIND", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.BMS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDDATA.PS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDDATA.PS", 
+     "source": "app/jcl/CARDFILE.jcl:70", 
+     "job": "CARDFILE", 
+     "step": "STEP15", 
+     "ddname": "CARDDATA"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.AIX.PATH", 
+   "select_names": [], 
+   "cics_files": [
+    {
+     "source": "app/csd/CARDDEMO.CSD:13", 
+     "name": "CARDAIX"
+    }
+   ], 
+   "dd_names": [], 
+   "store_kind": "vsam-path"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.AIX", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "vsam-aix"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+   "select_names": [], 
+   "cics_files": [
+    {
+     "source": "app/csd/CARDDEMO.CSD:25", 
+     "name": "CARDDAT"
+    }
+   ], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+     "source": "app/jcl/CARDFILE.jcl:72", 
+     "job": "CARDFILE", 
+     "step": "STEP15", 
+     "ddname": "CARDVSAM"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+     "source": "app/jcl/CBEXPORT.jcl:57", 
+     "job": "CBEXPORT", 
+     "step": "STEP02", 
+     "ddname": "CARDFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+     "source": "app/jcl/READCARD.jcl:25", 
+     "job": "READCARD", 
+     "step": "STEP05", 
+     "ddname": "CARDFILE"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.PS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.PS", 
+     "source": "app/jcl/XREFFILE.jcl:59", 
+     "job": "XREFFILE", 
+     "step": "STEP15", 
+     "ddname": "XREFDATA"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX.PATH", 
+   "select_names": [], 
+   "cics_files": [
+    {
+     "source": "app/csd/CARDDEMO.CSD:63", 
+     "name": "CXACAIX"
+    }
+   ], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX.PATH", 
+     "source": "app/jcl/INTCALC.jcl:31", 
+     "job": "INTCALC", 
+     "step": "STEP15", 
+     "ddname": "XREFFIL1"
+    }
+   ], 
+   "store_kind": "vsam-path"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "vsam-aix"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+   "select_names": [], 
+   "cics_files": [
+    {
+     "source": "app/csd/CARDDEMO.CSD:37", 
+     "name": "CCXREF"
+    }
+   ], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+     "source": "app/jcl/CBEXPORT.jcl:53", 
+     "job": "CBEXPORT", 
+     "step": "STEP02", 
+     "ddname": "XREFFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+     "source": "app/jcl/CREASTMT.JCL:84", 
+     "job": "CREASTMT", 
+     "step": "STEP040", 
+     "ddname": "XREFFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+     "source": "app/jcl/INTCALC.jcl:29", 
+     "job": "INTCALC", 
+     "step": "STEP15", 
+     "ddname": "XREFFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+     "source": "app/jcl/POSTTRAN.jcl:32", 
+     "job": "POSTTRAN", 
+     "step": "STEP15", 
+     "ddname": "XREFFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+     "source": "app/jcl/READXREF.jcl:25", 
+     "job": "READXREF", 
+     "step": "STEP05", 
+     "ddname": "XREFFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+     "source": "app/jcl/TRANREPT.jcl:67", 
+     "job": "TRANREPT", 
+     "step": "STEP10R", 
+     "ddname": "CARDXREF"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+     "source": "app/jcl/XREFFILE.jcl:61", 
+     "job": "XREFFILE", 
+     "step": "STEP15", 
+     "ddname": "XREFVSAM"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CBL", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CNTL", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+     "source": "app/proc/REPROC.prc:27-28", 
+     "job": "PRTCATBL", 
+     "step": "STEP05R", 
+     "ddname": "PRC001.SYSIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+     "source": "app/proc/REPROC.prc:27-28", 
+     "job": "TRANREPT", 
+     "step": "STEP05R", 
+     "ddname": "PRC001.SYSIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+     "source": "app/proc/REPROC.prc:27-28", 
+     "job": "TRANBKP", 
+     "step": "STEP05R", 
+     "ddname": "PRC001.SYSIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CNTL(REPROCT)", 
+     "source": "app/proc/REPROC.prc:27-28", 
+     "job": "REPRTEST", 
+     "step": "STEP05", 
+     "ddname": "PRC001.SYSIN"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CPY", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CUSTDATA.PS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.CUSTDATA.PS", 
+     "source": "app/jcl/CUSTFILE.jcl:66", 
+     "job": "CUSTFILE", 
+     "step": "STEP15", 
+     "ddname": "CUSTDATA"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+   "select_names": [], 
+   "cics_files": [
+    {
+     "source": "app/csd/CARDDEMO.CSD:50", 
+     "name": "CUSTDAT"
+    }
+   ], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+     "source": "app/jcl/CBEXPORT.jcl:49", 
+     "job": "CBEXPORT", 
+     "step": "STEP02", 
+     "ddname": "CUSTFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+     "source": "app/jcl/CREASTMT.JCL:86", 
+     "job": "CREASTMT", 
+     "step": "STEP040", 
+     "ddname": "CUSTFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+     "source": "app/jcl/CUSTFILE.jcl:68", 
+     "job": "CUSTFILE", 
+     "step": "STEP15", 
+     "ddname": "CUSTVSAM"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+     "source": "app/jcl/READCUST.jcl:24", 
+     "job": "READCUST", 
+     "step": "STEP05", 
+     "ddname": "CUSTFILE"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DALYREJS.G0022V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DALYREJS.G0023V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DALYREJS.G0024V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DALYREJS.G0025V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DALYREJS.G0026V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DALYREJS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.DALYREJS(+1)", 
+     "source": "app/jcl/POSTTRAN.jcl:34", 
+     "job": "POSTTRAN", 
+     "step": "STEP15", 
+     "ddname": "DALYREJS"
+    }
+   ], 
+   "store_kind": "gdg-base"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DALYTRAN.PS.INIT", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.DALYTRAN.PS.INIT", 
+     "source": "app/jcl/TRANFILE.jcl:69", 
+     "job": "TRANFILE", 
+     "step": "STEP15", 
+     "ddname": "TRANSACT"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DALYTRAN.PS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.DALYTRAN.PS", 
+     "source": "app/jcl/POSTTRAN.jcl:30", 
+     "job": "POSTTRAN", 
+     "step": "STEP15", 
+     "ddname": "DALYTRAN"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DATEPARM", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.DATEPARM", 
+     "source": "app/jcl/TRANREPT.jcl:73", 
+     "job": "TRANREPT", 
+     "step": "STEP10R", 
+     "ddname": "DATEPARM"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DCL", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DISCGRP.BKUP", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.DISCGRP.BKUP(+1)", 
+     "source": "app/jcl/DEFGDGD.jcl:86", 
+     "job": "DEFGDGD", 
+     "step": "STEP60", 
+     "ddname": "SYSUT2"
+    }
+   ], 
+   "store_kind": "gdg-base"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DISCGRP.PS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.DISCGRP.PS", 
+     "source": "app/jcl/DEFGDGD.jcl:85", 
+     "job": "DEFGDGD", 
+     "step": "STEP60", 
+     "ddname": "SYSUT1"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.DISCGRP.PS", 
+     "source": "app/jcl/DISCGRP.jcl:56", 
+     "job": "DISCGRP", 
+     "step": "STEP15", 
+     "ddname": "DISCGRP"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.DISCGRP.VSAM.KSDS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.DISCGRP.VSAM.KSDS", 
+     "source": "app/jcl/DISCGRP.jcl:58", 
+     "job": "DISCGRP", 
+     "step": "STEP15", 
+     "ddname": "DISCVSAM"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.DISCGRP.VSAM.KSDS", 
+     "source": "app/jcl/INTCALC.jcl:35", 
+     "job": "INTCALC", 
+     "step": "STEP15", 
+     "ddname": "DISCGRP"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.EXPORT.DATA", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.EXPORT.DATA", 
+     "source": "app/jcl/CBEXPORT.jcl:62", 
+     "job": "CBEXPORT", 
+     "step": "STEP02", 
+     "ddname": "EXPFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.EXPORT.DATA", 
+     "source": "app/jcl/CBIMPORT.jcl:28", 
+     "job": "CBIMPORT", 
+     "step": "STEP01", 
+     "ddname": "EXPFILE"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.JCL.UTIL", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.JCL", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.JCL(INTRDRJ2)", 
+     "source": "app/jcl/INTRDRJ1.JCL:17", 
+     "job": "INTRDRJ1", 
+     "step": "STEP01", 
+     "ddname": "SYSUT1"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LISTCAT", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.LISTCAT", 
+     "source": "samples/jcl/LISTCAT.jcl:22", 
+     "job": "LISTFILS", 
+     "step": "STEP01", 
+     "ddname": "DD1"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LISTCAT", 
+     "source": "samples/jcl/LISTCAT.jcl:28", 
+     "job": "LISTFILS", 
+     "step": "STEP05", 
+     "ddname": "SYSPRINT"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LISTING", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/jcl/CBEXPORT.jcl:44", 
+     "job": "CBEXPORT", 
+     "step": "STEP02", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/jcl/CBIMPORT.jcl:23", 
+     "job": "CBIMPORT", 
+     "step": "STEP01", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/jcl/CREASTMT.JCL:80", 
+     "job": "CREASTMT", 
+     "step": "STEP040", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:19", 
+     "job": "DBPAUTP0", 
+     "step": "UNLOAD", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/jcl/INTCALC.jcl:23", 
+     "job": "INTCALC", 
+     "step": "STEP15", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:30", 
+     "job": "LOADPADB", 
+     "step": "STEP01", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:24", 
+     "job": "MNTTRDB2", 
+     "step": "STEP1", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/jcl/POSTTRAN.jcl:24", 
+     "job": "POSTTRAN", 
+     "step": "STEP15", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/jcl/READACCT.jcl:33", 
+     "job": "READACCT", 
+     "step": "STEP05", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/jcl/READCARD.jcl:23", 
+     "job": "READCARD", 
+     "step": "STEP05", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/jcl/READCUST.jcl:22", 
+     "job": "READCUST", 
+     "step": "STEP05", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/jcl/READXREF.jcl:23", 
+     "job": "READXREF", 
+     "step": "STEP05", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/jcl/TRANREPT.jcl:60", 
+     "job": "TRANREPT", 
+     "step": "STEP10R", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:30", 
+     "job": "UNLDGSAM", 
+     "step": "STEP01", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:42", 
+     "job": "UNLDPADB", 
+     "step": "STEP01", 
+     "ddname": "STEPLIB"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.LOADLIB", 
+     "source": "app/jcl/WAITSTEP.jcl:23", 
+     "job": "WAITSTEP", 
+     "step": "WAIT", 
+     "ddname": "STEPLIB"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.LST", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.PRC.UTIL", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.PROC", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.REXX.UTIL", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.SECURITY.PS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.SYSTRAN.G0018V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.SYSTRAN.G0019V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.SYSTRAN.G0020V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.SYSTRAN.G0021V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.SYSTRAN.G0022V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.SYSTRAN", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.SYSTRAN(0)", 
+     "source": "app/jcl/COMBTRAN.jcl:25", 
+     "job": "COMBTRAN", 
+     "step": "STEP05R", 
+     "ddname": "SORTIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.SYSTRAN(+1)", 
+     "source": "app/jcl/INTCALC.jcl:37", 
+     "job": "INTCALC", 
+     "step": "STEP15", 
+     "ddname": "TRANSACT"
+    }
+   ], 
+   "store_kind": "gdg-base"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP.G0005V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP.G0006V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP.G0007V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP.G0008V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP.G0009V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP(+1)", 
+     "source": "app/jcl/PRTCATBL.jcl:35", 
+     "job": "PRTCATBL", 
+     "step": "STEP05R", 
+     "ddname": "PRC001.FILEOUT"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.BKUP(+1)", 
+     "source": "app/jcl/PRTCATBL.jcl:44", 
+     "job": "PRTCATBL", 
+     "step": "STEP10R", 
+     "ddname": "SORTIN"
+    }
+   ], 
+   "store_kind": "gdg-base"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.PS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.PS", 
+     "source": "app/jcl/TCATBALF.jcl:56", 
+     "job": "TCATBALF", 
+     "step": "STEP15", 
+     "ddname": "TCATBAL"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.REPT", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.REPT", 
+     "source": "app/jcl/PRTCATBL.jcl:22", 
+     "job": "PRTCATBL", 
+     "step": "DELDEF", 
+     "ddname": "THEFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.REPT", 
+     "source": "app/jcl/PRTCATBL.jcl:59", 
+     "job": "PRTCATBL", 
+     "step": "STEP10R", 
+     "ddname": "SORTOUT"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+     "source": "app/jcl/INTCALC.jcl:27", 
+     "job": "INTCALC", 
+     "step": "STEP15", 
+     "ddname": "TCATBALF"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+     "source": "app/jcl/POSTTRAN.jcl:41", 
+     "job": "POSTTRAN", 
+     "step": "STEP15", 
+     "ddname": "TCATBALF"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+     "source": "app/jcl/PRTCATBL.jcl:32", 
+     "job": "PRTCATBL", 
+     "step": "STEP05R", 
+     "ddname": "PRC001.FILEIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TCATBALF.VSAM.KSDS", 
+     "source": "app/jcl/TCATBALF.jcl:58", 
+     "job": "TCATBALF", 
+     "step": "STEP15", 
+     "ddname": "TCATBALV"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS.BKUP", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS.BKUP(+1)", 
+     "source": "app/jcl/DEFGDGD.jcl:63", 
+     "job": "DEFGDGD", 
+     "step": "STEP40", 
+     "ddname": "SYSUT2"
+    }
+   ], 
+   "store_kind": "gdg-base"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS", 
+     "source": "app/jcl/DEFGDGD.jcl:62", 
+     "job": "DEFGDGD", 
+     "step": "STEP40", 
+     "ddname": "SYSUT1"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANCATG.PS", 
+     "source": "app/jcl/TRANCATG.jcl:56", 
+     "job": "TRANCATG", 
+     "step": "STEP15", 
+     "ddname": "TRANCATG"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANCATG.VSAM.KSDS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANCATG.VSAM.KSDS", 
+     "source": "app/jcl/TRANCATG.jcl:58", 
+     "job": "TRANCATG", 
+     "step": "STEP15", 
+     "ddname": "TCATVSAM"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANCATG.VSAM.KSDS", 
+     "source": "app/jcl/TRANREPT.jcl:71", 
+     "job": "TRANREPT", 
+     "step": "STEP10R", 
+     "ddname": "TRANCATG"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANREPT.G0010V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANREPT.G0011V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANREPT.G0012V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANREPT.G0013V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANREPT.G0014V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANREPT", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANREPT(+1)", 
+     "source": "app/jcl/TRANREPT.jcl:76", 
+     "job": "TRANREPT", 
+     "step": "STEP10R", 
+     "ddname": "TRANREPT"
+    }
+   ], 
+   "store_kind": "gdg-base"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0001V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0002V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0003V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0004V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0005V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0006V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0007V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0008V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0009V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0010V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0011V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0012V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0013V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0014V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0015V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0016V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0017V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0018V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0019V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0020V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0021V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0022V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0023V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0024V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0025V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0026V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0027V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0028V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0029V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0030V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0031V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0032V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0033V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0034V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0035V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0036V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0037V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0038V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0039V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0040V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0041V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0042V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0043V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0044V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0045V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0046V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0047V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0048V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0049V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0050V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0051V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0052V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0053V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0054V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0055V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0056V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0057V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0058V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0059V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0060V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0061V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0062V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0063V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0064V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0065V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0066V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0067V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0068V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0069V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0070V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0071V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0072V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0073V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0074V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0075V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP.G0076V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(0)", 
+     "source": "app/jcl/COMBTRAN.jcl:23", 
+     "job": "COMBTRAN", 
+     "step": "STEP05R", 
+     "ddname": "SORTIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+     "source": "samples/jcl/REPRTEST.jcl:29", 
+     "job": "REPRTEST", 
+     "step": "STEP05", 
+     "ddname": "PRC001.FILEOUT"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(0)", 
+     "source": "samples/jcl/SORTTEST.jcl:20", 
+     "job": "SORTTEST", 
+     "step": "STEP05R", 
+     "ddname": "SORTIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+     "source": "app/jcl/TRANBKP.jcl:29", 
+     "job": "TRANBKP", 
+     "step": "STEP05R", 
+     "ddname": "PRC001.FILEOUT"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+     "source": "app/jcl/TRANREPT.jcl:29", 
+     "job": "TRANREPT", 
+     "step": "STEP05R", 
+     "ddname": "PRC001.FILEOUT"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+     "source": "app/jcl/TRANREPT.jcl:38", 
+     "job": "TRANREPT", 
+     "step": "STEP05R", 
+     "ddname": "SORTIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+     "source": "app/jcl/TRANREPT.jcl:29", 
+     "job": "TRANREPT", 
+     "step": "STEP05R", 
+     "ddname": "PRC001.FILEOUT"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.BKUP(+1)", 
+     "source": "app/jcl/TRANREPT.jcl:38", 
+     "job": "TRANREPT", 
+     "step": "STEP05R", 
+     "ddname": "SORTIN"
+    }
+   ], 
+   "store_kind": "gdg-base"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED.G0015V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED.G0016V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED.G0017V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED.G0018V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED.G0019V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED(+1)", 
+     "source": "app/jcl/COMBTRAN.jcl:33", 
+     "job": "COMBTRAN", 
+     "step": "STEP05R", 
+     "ddname": "SORTOUT"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.COMBINED(+1)", 
+     "source": "app/jcl/COMBTRAN.jcl:43", 
+     "job": "COMBTRAN", 
+     "step": "STEP10", 
+     "ddname": "TRANSACT"
+    }
+   ], 
+   "store_kind": "gdg-base"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0001V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0002V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0003V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0004V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0005V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0006V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0007V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0008V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0009V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0010V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0011V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0012V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0013V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0014V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0015V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0016V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0017V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0018V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0019V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0020V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0021V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0022V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0023V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0024V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0025V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0026V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0027V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0028V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0029V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY.G0030V00", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)", 
+     "source": "samples/jcl/SORTTEST.jcl:31", 
+     "job": "SORTTEST", 
+     "step": "STEP05R", 
+     "ddname": "SORTOUT"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)", 
+     "source": "app/jcl/TRANREPT.jcl:51", 
+     "job": "TRANREPT", 
+     "step": "STEP05R", 
+     "ddname": "SORTOUT"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)", 
+     "source": "app/jcl/TRANREPT.jcl:51", 
+     "job": "TRANREPT", 
+     "step": "STEP05R", 
+     "ddname": "SORTOUT"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.DALY(+1)", 
+     "source": "app/jcl/TRANREPT.jcl:65", 
+     "job": "TRANREPT", 
+     "step": "STEP10R", 
+     "ddname": "TRANFILE"
+    }
+   ], 
+   "store_kind": "gdg-base"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.AIX.PATH", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "vsam-path"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.AIX", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "vsam-aix"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+   "select_names": [], 
+   "cics_files": [
+    {
+     "source": "app/csd/CARDDEMO.CSD:76", 
+     "name": "TRANSACT"
+    }
+   ], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+     "source": "app/jcl/CBEXPORT.jcl:55", 
+     "job": "CBEXPORT", 
+     "step": "STEP02", 
+     "ddname": "TRANSACT"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+     "source": "app/jcl/COMBTRAN.jcl:45", 
+     "job": "COMBTRAN", 
+     "step": "STEP10", 
+     "ddname": "TRANVSAM"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+     "source": "app/jcl/CREASTMT.JCL:45", 
+     "job": "CREASTMT", 
+     "step": "STEP010", 
+     "ddname": "SORTIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+     "source": "app/jcl/POSTTRAN.jcl:28", 
+     "job": "POSTTRAN", 
+     "step": "STEP15", 
+     "ddname": "TRANFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+     "source": "samples/jcl/REPRTEST.jcl:26", 
+     "job": "REPRTEST", 
+     "step": "STEP05", 
+     "ddname": "PRC001.FILEIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+     "source": "app/jcl/TRANBKP.jcl:26", 
+     "job": "TRANBKP", 
+     "step": "STEP05R", 
+     "ddname": "PRC001.FILEIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+     "source": "app/jcl/TRANFILE.jcl:71", 
+     "job": "TRANFILE", 
+     "step": "STEP15", 
+     "ddname": "TRANVSAM"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+     "source": "app/jcl/TRANREPT.jcl:26", 
+     "job": "TRANREPT", 
+     "step": "STEP05R", 
+     "ddname": "PRC001.FILEIN"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+     "source": "app/jcl/TRANREPT.jcl:26", 
+     "job": "TRANREPT", 
+     "step": "STEP05R", 
+     "ddname": "PRC001.FILEIN"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANTYPE.BKUP", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANTYPE.BKUP(+1)", 
+     "source": "app/jcl/DEFGDGD.jcl:40", 
+     "job": "DEFGDGD", 
+     "step": "STEP20", 
+     "ddname": "SYSUT2"
+    }
+   ], 
+   "store_kind": "gdg-base"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANTYPE.PS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANTYPE.PS", 
+     "source": "app/jcl/DEFGDGD.jcl:39", 
+     "job": "DEFGDGD", 
+     "step": "STEP20", 
+     "ddname": "SYSUT1"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANTYPE.PS", 
+     "source": "app/jcl/TRANTYPE.jcl:56", 
+     "job": "TRANTYPE", 
+     "step": "STEP15", 
+     "ddname": "TRANTYPE"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRANTYPE.VSAM.KSDS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANTYPE.VSAM.KSDS", 
+     "source": "app/jcl/TRANREPT.jcl:69", 
+     "job": "TRANREPT", 
+     "step": "STEP10R", 
+     "ddname": "TRANTYPE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRANTYPE.VSAM.KSDS", 
+     "source": "app/jcl/TRANTYPE.jcl:58", 
+     "job": "TRANTYPE", 
+     "step": "STEP15", 
+     "ddname": "TTYPVSAM"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.TRXFL.VSAM.KSDS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRXFL.VSAM.KSDS", 
+     "source": "app/jcl/CREASTMT.JCL:59", 
+     "job": "CREASTMT", 
+     "step": "STEP020", 
+     "ddname": "OUTFILE"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.TRXFL.VSAM.KSDS", 
+     "source": "app/jcl/CREASTMT.JCL:83", 
+     "job": "CREASTMT", 
+     "step": "STEP040", 
+     "ddname": "TRNXFILE"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.USRSEC.PS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.USRSEC.PS", 
+     "source": "app/jcl/DUSRSECJ.jcl:25", 
+     "job": "DUSRSECJ", 
+     "step": "PREDEL", 
+     "ddname": "DD01"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.USRSEC.PS", 
+     "source": "app/jcl/DUSRSECJ.jcl:46", 
+     "job": "DUSRSECJ", 
+     "step": "STEP01", 
+     "ddname": "SYSUT2"
+    }, 
+    {
+     "dsn": "AWS.M2.CARDDEMO.USRSEC.PS", 
+     "source": "app/jcl/DUSRSECJ.jcl:82", 
+     "job": "DUSRSECJ", 
+     "step": "STEP03", 
+     "ddname": "IN"
+    }
+   ], 
+   "store_kind": "sequential"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.ESDS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.ESDS", 
+     "source": "app/jcl/ESDSRRDS.jcl:82", 
+     "job": "ESDSRRDS", 
+     "step": "STEP03", 
+     "ddname": "OUT"
+    }
+   ], 
+   "store_kind": "vsam-esds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.KSDS", 
+   "select_names": [], 
+   "cics_files": [
+    {
+     "source": "app/csd/CARDDEMO.CSD:88", 
+     "name": "USRSEC"
+    }
+   ], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.KSDS", 
+     "source": "app/jcl/DUSRSECJ.jcl:83", 
+     "job": "DUSRSECJ", 
+     "step": "STEP03", 
+     "ddname": "OUT"
+    }
+   ], 
+   "store_kind": "vsam-ksds"
+  }, 
+  {
+   "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.RRDS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [
+    {
+     "dsn": "AWS.M2.CARDDEMO.USRSEC.VSAM.RRDS", 
+     "source": "app/jcl/ESDSRRDS.jcl:116", 
+     "job": "ESDSRRDS", 
+     "step": "STEP05", 
+     "ddname": "OUT"
+    }
+   ], 
+   "store_kind": "vsam-rrds"
+  }, 
+  {
+   "dsn": "CARD.DEMO.ERROR", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "mq-queue"
+  }, 
+  {
+   "dsn": "CARD.DEMO.REPLY.ACCT", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "mq-queue"
+  }, 
+  {
+   "dsn": "CARD.DEMO.REPLY.DATE", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "mq-queue"
+  }, 
+  {
+   "dsn": "CARDDEMO.AUTHFRDS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "db2-table"
+  }, 
+  {
+   "dsn": "CARDDEMO.TRANSACTION_TYPE", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "db2-table"
+  }, 
+  {
+   "dsn": "CARDDEMO.TRANSACTION_TYPE_CATEGORY", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "db2-table"
+  }, 
+  {
+   "dsn": "DBPAUTP0", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "ims-database"
+  }, 
+  {
+   "dsn": "DBPAUTX0", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "ims-index"
+  }, 
+  {
+   "dsn": "JOBS", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "cics-tdq"
+  }, 
+  {
+   "dsn": "PADFLDBD", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "gsam"
+  }, 
+  {
+   "dsn": "PASFLDBD", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "gsam"
+  }, 
+  {
+   "dsn": "(MQMD-REPLYTOQ)", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "mq-queue"
+  }, 
+  {
+   "dsn": "(MQTM-QNAME)", 
+   "select_names": [], 
+   "cics_files": [], 
+   "dd_names": [], 
+   "store_kind": "mq-queue"
+  }
+ ], 
+ "schema": "dataset-names/1"
+}

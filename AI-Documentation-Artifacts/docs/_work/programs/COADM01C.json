@@ -1,0 +1,458 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "COSGN00C", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COSGN00C.cbl:231", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS or DFHCOMMAREA present", 
+   "source": "app/cbl/COADM01C.cbl:74"
+  }
+ ], 
+ "source_path": "app/cbl/COADM01C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/COADM01C.cbl:1-8", 
+  "author": "AWS", 
+  "description": "Program     : COADM01C.CBL Application : CardDemo Type        : CICS COBOL Program Function    : Admin Menu for Admin users All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0", 
+  "version_banner": "* Ver: CardDemo_v1.0-15-g27d6c6f-68 Date: 2022-07-19 23:12:32 CDT"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 114, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "RETURN-TO-SIGNON-SCREEN", 
+    "SEND-MENU-SCREEN", 
+    "RECEIVE-MENU-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "RETURN-TO-SIGNON-SCREEN", 
+    "SEND-MENU-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 75, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "PROCESS-ENTER-KEY", 
+   "section": null, 
+   "end_line": 158, 
+   "purpose": "Statements include: inline PERFORM at app/cbl/COADM01C.cbl:121", 
+   "performs": [
+    "SEND-MENU-SCREEN", 
+    "SEND-MENU-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 119, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "RETURN-TO-SIGNON-SCREEN", 
+   "section": null, 
+   "end_line": 170, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 163, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SEND-MENU-SCREEN", 
+   "section": null, 
+   "end_line": 187, 
+   "purpose": "Statements include: EXEC CICS SEND", 
+   "performs": [
+    "POPULATE-HEADER-INFO", 
+    "BUILD-MENU-OPTIONS"
+   ], 
+   "reachable": true, 
+   "start_line": 175, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "RECEIVE-MENU-SCREEN", 
+   "section": null, 
+   "end_line": 200, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 192, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-HEADER-INFO", 
+   "section": null, 
+   "end_line": 224, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 205, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "BUILD-MENU-OPTIONS", 
+   "section": null, 
+   "end_line": 266, 
+   "purpose": "Statements include: inline PERFORM at app/cbl/COADM01C.cbl:231", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 229, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "PGMIDERR-ERR-PARA", 
+   "section": null, 
+   "end_line": 284, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "SEND-MENU-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 270, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "COCOM01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COADM01C.cbl:50", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (01 at app/cpy/COCOM01Y.cpy:19)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COCOM01Y.cpy"
+  }, 
+  {
+   "name": "COADM02Y", 
+   "replacing": null, 
+   "source": "app/cbl/COADM01C.cbl:51", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COADM02Y.cpy"
+  }, 
+  {
+   "name": "COADM01", 
+   "replacing": null, 
+   "source": "app/cbl/COADM01C.cbl:53", 
+   "purpose": "Application copybook (bms-mapset)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/bms/COADM01.bms"
+  }, 
+  {
+   "name": "COTTL01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COADM01C.cbl:55", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COTTL01Y.cpy"
+  }, 
+  {
+   "name": "CSDAT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COADM01C.cbl:56", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSDAT01Y.cpy"
+  }, 
+  {
+   "name": "CSMSG01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COADM01C.cbl:57", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSMSG01Y.cpy"
+  }, 
+  {
+   "name": "CSUSR01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COADM01C.cbl:58", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSUSR01Y.cpy"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COADM01C.cbl:60", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COADM01C.cbl:61", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }
+ ], 
+ "runtime_type": [
+  "cics-online"
+ ], 
+ "loc": {
+  "comment": 58, 
+  "total": 288, 
+  "code": 230
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/COADM01C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COADM01C.cbl:12"
+  }
+ ], 
+ "sha256": "4e49afda5f685f3ebeb95ed04a93cf88df93d39c66d8d7f9ba2b9a3e00a1f690", 
+ "files": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "linkage": [
+   {
+    "source": "app/cbl/COADM01C.cbl:67", 
+    "name": "DFHCOMMAREA"
+   }
+  ], 
+  "pcbs": []
+ }, 
+ "crud": [], 
+ "program_id": "COADM01C", 
+ "candidate_rules": [], 
+ "error_handling": [], 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "MAIN-PARA", 
+   "verb": "HANDLE", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 77
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "MAIN-PARA", 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 111
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 145
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RETURN-TO-SIGNON-SCREEN", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 168
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "SEND-MENU-SCREEN", 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 182
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RECEIVE-MENU-SCREEN", 
+   "verb": "RECEIVE", 
+   "response_handling": "RESP checked", 
+   "line": 194
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "PGMIDERR-ERR-PARA", 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 280
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CA00", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COADM01C.cbl:111", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:168", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CA00", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COADM01C.cbl:280", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COUSR00C", 
+   "resolved_from": "app/cpy/COADM02Y.cpy:29", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COUSR01C", 
+   "resolved_from": "app/cpy/COADM02Y.cpy:34", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COUSR02C", 
+   "resolved_from": "app/cpy/COADM02Y.cpy:39", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COUSR03C", 
+   "resolved_from": "app/cpy/COADM02Y.cpy:44", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COTRTLIC", 
+   "resolved_from": "app/cpy/COADM02Y.cpy:49", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COTRTUPC", 
+   "resolved_from": "app/cpy/COADM02Y.cpy:53", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:146", 
+   "condition": "admin option program name is not prefixed DUMMY (app/cbl/COADM01C.cbl:141-148)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "COSGN00C", 
+   "resolved_from": "app/cbl/COADM01C.cbl MOVE literal", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COADM01C.cbl:166", 
+   "condition": "CDEMO-TO-PROGRAM is spaces or low-values"
+  }
+ ], 
+ "messages": [], 
+ "data_items": [
+  {
+   "source": "app/cbl/COADM01C.cbl:36", 
+   "pic": "X(08)", 
+   "name": "WS-PGMNAME", 
+   "value": "'COADM01C'"
+  }, 
+  {
+   "source": "app/cbl/COADM01C.cbl:37", 
+   "pic": "X(04)", 
+   "name": "WS-TRANID", 
+   "value": "'CA00'"
+  }, 
+  {
+   "source": "app/cbl/COADM01C.cbl:38", 
+   "pic": "X(80)", 
+   "name": "WS-MESSAGE", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/COADM01C.cbl:39", 
+   "pic": "X(08)", 
+   "name": "WS-USRSEC-FILE", 
+   "value": "'USRSEC  '"
+  }, 
+  {
+   "source": "app/cbl/COADM01C.cbl:40", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "ERR-FLG-ON", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "ERR-FLG-OFF", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COADM01C.cbl:43", 
+   "pic": "S9(09)", 
+   "name": "WS-RESP-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COADM01C.cbl:44", 
+   "pic": "S9(09)", 
+   "name": "WS-REAS-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COADM01C.cbl:46", 
+   "pic": "9(02)", 
+   "name": "WS-OPTION", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/COADM01C.cbl:47", 
+   "pic": "S9(04)", 
+   "name": "WS-IDX", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COADM01C.cbl:48", 
+   "pic": "X(40)", 
+   "name": "WS-ADMIN-OPT-TXT", 
+   "value": "SPACES."
+  }
+ ]
+}

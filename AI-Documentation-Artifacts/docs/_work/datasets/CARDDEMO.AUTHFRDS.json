@@ -1,0 +1,224 @@
+{
+ "accessors": [], 
+ "module": "auth", 
+ "evidence": [
+  "app/app-authorization-ims-db2-mq/ddl/AUTHFRDS.ddl:1", 
+  "app/app-authorization-ims-db2-mq/ddl/XAUTHFRD.ddl:1"
+ ], 
+ "purpose": null, 
+ "db2": {
+  "foreign_keys": [], 
+  "tablespace": null, 
+  "primary_key": [
+   "CARD_NUM", 
+   "AUTH_TS"
+  ], 
+  "columns": [
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(16)", 
+    "name": "CARD_NUM", 
+    "nullable": false
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "TIMESTAMP", 
+    "name": "AUTH_TS", 
+    "nullable": false
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(4)", 
+    "name": "AUTH_TYPE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(4)", 
+    "name": "CARD_EXPIRY_DATE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(6)", 
+    "name": "MESSAGE_TYPE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(6)", 
+    "name": "MESSAGE_SOURCE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(6)", 
+    "name": "AUTH_ID_CODE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(2)", 
+    "name": "AUTH_RESP_CODE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(4)", 
+    "name": "AUTH_RESP_REASON", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(6)", 
+    "name": "PROCESSING_CODE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "DECIMAL(12,2)", 
+    "name": "TRANSACTION_AMT", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "DECIMAL(12,2)", 
+    "name": "APPROVED_AMT", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(4)", 
+    "name": "MERCHANT_CATAGORY_CODE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(3)", 
+    "name": "ACQR_COUNTRY_CODE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "SMALLINT", 
+    "name": "POS_ENTRY_MODE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(15)", 
+    "name": "MERCHANT_ID", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "VARCHAR(22)", 
+    "name": "MERCHANT_NAME", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(13)", 
+    "name": "MERCHANT_CITY", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(02)", 
+    "name": "MERCHANT_STATE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(09)", 
+    "name": "MERCHANT_ZIP", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(15)", 
+    "name": "TRANSACTION_ID", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(1)", 
+    "name": "MATCH_STATUS", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "CHAR(1)", 
+    "name": "AUTH_FRAUD", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "DATE", 
+    "name": "FRAUD_RPT_DATE", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "DECIMAL(11)", 
+    "name": "ACCT_ID", 
+    "nullable": true
+   }, 
+   {
+    "default": null, 
+    "host_variable": null, 
+    "type": "DECIMAL(9)", 
+    "name": "CUST_ID", 
+    "nullable": true
+   }
+  ], 
+  "indexes": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/ddl/XAUTHFRD.ddl:1", 
+    "unique": true, 
+    "name": "CARDDEMO.XAUTHFRD", 
+    "columns": [
+     "CARD_NUM", 
+     "AUTH_TS"
+    ]
+   }
+  ]
+ }, 
+ "physical": {
+  "defined_by": [
+   "app/app-authorization-ims-db2-mq/ddl/AUTHFRDS.ddl:1"
+  ]
+ }, 
+ "layout": null, 
+ "name": "CARDDEMO.AUTHFRDS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "db2-table", 
+ "aliases": [], 
+ "sample_data": null
+}

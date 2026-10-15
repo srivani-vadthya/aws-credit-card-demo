@@ -1,0 +1,51 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/DUSRSECJ.jcl:25", 
+   "via": "jcl-dd", 
+   "by": "DUSRSECJ.PREDEL", 
+   "ops": [
+    "U", 
+    "D"
+   ]
+  }, 
+  {
+   "source": "app/jcl/DUSRSECJ.jcl:46", 
+   "via": "jcl-dd", 
+   "by": "DUSRSECJ.STEP01", 
+   "ops": [
+    "C", 
+    "D"
+   ]
+  }, 
+  {
+   "source": "app/jcl/DUSRSECJ.jcl:82", 
+   "via": "jcl-dd", 
+   "by": "DUSRSECJ.STEP03", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": null, 
+ "evidence": [
+  "app/catlg/LISTCAT.txt:3831"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "catalog_facts": {
+   "source": "app/catlg/LISTCAT.txt:3831", 
+   "as_of": "09/01/22", 
+   "point_in_time": true
+  }, 
+  "defined_by": []
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.USRSEC.PS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "sequential", 
+ "aliases": [], 
+ "sample_data": null
+}

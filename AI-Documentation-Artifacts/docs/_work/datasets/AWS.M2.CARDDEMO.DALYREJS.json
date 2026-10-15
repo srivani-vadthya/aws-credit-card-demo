@@ -1,0 +1,37 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/POSTTRAN.jcl:34", 
+   "via": "jcl-dd", 
+   "by": "POSTTRAN.STEP15", 
+   "ops": [
+    "C", 
+    "D"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/DALYREJS.jcl:24"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "gdg": {
+   "scratch": true, 
+   "limit": 5, 
+   "empty": false, 
+   "source": "app/jcl/DALYREJS.jcl:24"
+  }, 
+  "defined_by": [
+   "app/jcl/DALYREJS.jcl:24"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.DALYREJS", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "gdg-base", 
+ "aliases": [], 
+ "sample_data": null
+}

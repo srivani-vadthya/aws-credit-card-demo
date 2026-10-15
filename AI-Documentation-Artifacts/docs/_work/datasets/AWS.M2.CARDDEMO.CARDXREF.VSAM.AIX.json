@@ -1,0 +1,36 @@
+{
+ "accessors": [], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/XREFFILE.jcl:72", 
+  "app/catlg/LISTCAT.txt:455"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "keys": "KEYS(11 25)", 
+  "catalog_facts": {
+   "as_of": "09/01/22", 
+   "point_in_time": true, 
+   "rec_total": 50, 
+   "listcat_org": "INDEXED", 
+   "rec_total_source": "app/catlg/LISTCAT.txt:490", 
+   "keylen_source": "app/catlg/LISTCAT.txt:482", 
+   "source": "app/catlg/LISTCAT.txt:455", 
+   "keylen": 11, 
+   "avglrecl": 50
+  }, 
+  "unique": false, 
+  "aix_relate": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+  "defined_by": [
+   "app/jcl/XREFFILE.jcl:72"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-aix", 
+ "aliases": [], 
+ "sample_data": null
+}

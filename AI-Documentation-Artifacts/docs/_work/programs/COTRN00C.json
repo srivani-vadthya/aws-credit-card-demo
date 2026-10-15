@@ -1,0 +1,642 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "COMEN01C", 
+   "resolved_from": "app/cpy/COMEN02Y.cpy:58", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COMEN01C.cbl:185", 
+   "condition": "menu option whose program name is this value (app/cbl/COMEN01C.cbl:177-187); COPAUS0C also requires INQUIRE NORMAL at app/cbl/COMEN01C.cbl:147-159"
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC CICS or DFHCOMMAREA present", 
+   "source": "app/cbl/COTRN00C.cbl:94"
+  }
+ ], 
+ "source_path": "app/cbl/COTRN00C.cbl", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/COTRN00C.cbl:1-8", 
+  "author": "AWS", 
+  "description": "Program     : COTRN00C.CBL Application : CardDemo Type        : CICS COBOL Program Function    : List Transactions from TRANSACT file All Rights Reserved. http://www.apache.org/licenses/LICENSE-2.0", 
+  "version_banner": "* Ver: CardDemo_v1.0-15-g27d6c6f-68 Date: 2022-07-19 23:12:34 CDT"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAIN-PARA", 
+   "section": null, 
+   "end_line": 141, 
+   "purpose": "Statements include: EXEC CICS RETURN", 
+   "performs": [
+    "RETURN-TO-PREV-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "SEND-TRNLST-SCREEN", 
+    "RECEIVE-TRNLST-SCREEN", 
+    "PROCESS-ENTER-KEY", 
+    "RETURN-TO-PREV-SCREEN", 
+    "PROCESS-PF7-KEY", 
+    "PROCESS-PF8-KEY", 
+    "SEND-TRNLST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 95, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "PROCESS-ENTER-KEY", 
+   "section": null, 
+   "end_line": 229, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "SEND-TRNLST-SCREEN", 
+    "PROCESS-PAGE-FORWARD"
+   ], 
+   "reachable": true, 
+   "start_line": 146, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "PROCESS-PF7-KEY", 
+   "section": null, 
+   "end_line": 252, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "PROCESS-PAGE-BACKWARD", 
+    "SEND-TRNLST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 234, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "PROCESS-PF8-KEY", 
+   "section": null, 
+   "end_line": 274, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [
+    "PROCESS-PAGE-FORWARD", 
+    "SEND-TRNLST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 257, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "PROCESS-PAGE-FORWARD", 
+   "section": null, 
+   "end_line": 328, 
+   "purpose": "Statements include: inline PERFORM at app/cbl/COTRN00C.cbl:290, inline PERFORM at app/cbl/COTRN00C.cbl:297", 
+   "performs": [
+    "STARTBR-TRANSACT-FILE", 
+    "READNEXT-TRANSACT-FILE", 
+    "INITIALIZE-TRAN-DATA", 
+    "READNEXT-TRANSACT-FILE", 
+    "POPULATE-TRAN-DATA", 
+    "READNEXT-TRANSACT-FILE", 
+    "ENDBR-TRANSACT-FILE", 
+    "SEND-TRNLST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 279, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "PROCESS-PAGE-BACKWARD", 
+   "section": null, 
+   "end_line": 376, 
+   "purpose": "Statements include: inline PERFORM at app/cbl/COTRN00C.cbl:344, inline PERFORM at app/cbl/COTRN00C.cbl:351", 
+   "performs": [
+    "STARTBR-TRANSACT-FILE", 
+    "READPREV-TRANSACT-FILE", 
+    "INITIALIZE-TRAN-DATA", 
+    "READPREV-TRANSACT-FILE", 
+    "POPULATE-TRAN-DATA", 
+    "READPREV-TRANSACT-FILE", 
+    "ENDBR-TRANSACT-FILE", 
+    "SEND-TRNLST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 333, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-TRAN-DATA", 
+   "section": null, 
+   "end_line": 445, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 381, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "INITIALIZE-TRAN-DATA", 
+   "section": null, 
+   "end_line": 505, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 450, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "RETURN-TO-PREV-SCREEN", 
+   "section": null, 
+   "end_line": 521, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 510, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "SEND-TRNLST-SCREEN", 
+   "section": null, 
+   "end_line": 549, 
+   "purpose": "Statements include: EXEC CICS SEND", 
+   "performs": [
+    "POPULATE-HEADER-INFO"
+   ], 
+   "reachable": true, 
+   "start_line": 527, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "RECEIVE-TRNLST-SCREEN", 
+   "section": null, 
+   "end_line": 562, 
+   "purpose": "Statements include: EXEC CICS RECEIVE", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 554, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "POPULATE-HEADER-INFO", 
+   "section": null, 
+   "end_line": 586, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 567, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "STARTBR-TRANSACT-FILE", 
+   "section": null, 
+   "end_line": 619, 
+   "purpose": "Statements include: EXEC CICS STARTBR", 
+   "performs": [
+    "SEND-TRNLST-SCREEN", 
+    "SEND-TRNLST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 591, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "READNEXT-TRANSACT-FILE", 
+   "section": null, 
+   "end_line": 653, 
+   "purpose": "Statements include: EXEC CICS READNEXT", 
+   "performs": [
+    "SEND-TRNLST-SCREEN", 
+    "SEND-TRNLST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 624, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "READPREV-TRANSACT-FILE", 
+   "section": null, 
+   "end_line": 687, 
+   "purpose": "Statements include: EXEC CICS READPREV", 
+   "performs": [
+    "SEND-TRNLST-SCREEN", 
+    "SEND-TRNLST-SCREEN"
+   ], 
+   "reachable": true, 
+   "start_line": 658, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "ENDBR-TRANSACT-FILE", 
+   "section": null, 
+   "end_line": 696, 
+   "purpose": "Statements include: EXEC CICS ENDBR", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 692, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "COCOM01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN00C.cbl:61", 
+   "purpose": "Layout of CARDDEMO-COMMAREA (01 at app/cpy/COCOM01Y.cpy:19)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COCOM01Y.cpy"
+  }, 
+  {
+   "name": "COTRN00", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN00C.cbl:72", 
+   "purpose": "Application copybook (bms-mapset)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/bms/COTRN00.bms"
+  }, 
+  {
+   "name": "COTTL01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN00C.cbl:74", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COTTL01Y.cpy"
+  }, 
+  {
+   "name": "CSDAT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN00C.cbl:75", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSDAT01Y.cpy"
+  }, 
+  {
+   "name": "CSMSG01Y", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN00C.cbl:76", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CSMSG01Y.cpy"
+  }, 
+  {
+   "name": "CVTRA05Y", 
+   "replacing": null, 
+   "source": "app/cbl/COTRN00C.cbl:78", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVTRA05Y.cpy"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COTRN00C.cbl:80", 
+   "resolution": "system", 
+   "name": "DFHAID", 
+   "purpose": "CICS attention-identifier constants"
+  }, 
+  {
+   "replacing": null, 
+   "source": "app/cbl/COTRN00C.cbl:81", 
+   "resolution": "system", 
+   "name": "DFHBMSCA", 
+   "purpose": "CICS BMS attribute constants"
+  }
+ ], 
+ "runtime_type": [
+  "cics-online"
+ ], 
+ "loc": {
+  "comment": 82, 
+  "total": 699, 
+  "code": 617
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/COTRN00C.cbl. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/COTRN00C.cbl:12"
+  }
+ ], 
+ "sha256": "51479f131b4fb300008403f0c4f9fdbde56f22a7fb341c782492da29f0d23bbe", 
+ "files": [
+  {
+   "logical_name": "TRANSACT", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "TRANSACT", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS"
+   ], 
+   "source": "app/csd/CARDDEMO.CSD:76", 
+   "file_status_field": null, 
+   "organization": null, 
+   "access_mode": null, 
+   "alternate_keys": []
+  }
+ ], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": "COCOM01Y", 
+  "linkage": [
+   {
+    "source": "app/cbl/COTRN00C.cbl:87", 
+    "name": "DFHCOMMAREA"
+   }
+  ], 
+  "pcbs": []
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/COTRN00C.cbl:593-694", 
+   "store": "TRANSACT", 
+   "store_kind": "cics-file", 
+   "ops": [
+    "B"
+   ]
+  }
+ ], 
+ "program_id": "COTRN00C", 
+ "candidate_rules": [], 
+ "error_handling": [
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COTRN00C.cbl:602", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }, 
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COTRN00C.cbl:636", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }, 
+  {
+   "action": "CICS response check", 
+   "source": "app/cbl/COTRN00C.cbl:670", 
+   "message": null, 
+   "condition": "EVALUATE WS-RESP-CD", 
+   "abend_code": null
+  }
+ ], 
+ "commands": [
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "MAIN-PARA", 
+   "verb": "RETURN", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 138
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 192
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RETURN-TO-PREV-SCREEN", 
+   "verb": "XCTL", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 518
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "SEND-TRNLST-SCREEN", 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 534
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "SEND-TRNLST-SCREEN", 
+   "verb": "SEND", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 542
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": null, 
+   "options": {}, 
+   "paragraph": "RECEIVE-TRNLST-SCREEN", 
+   "verb": "RECEIVE", 
+   "response_handling": "RESP checked", 
+   "line": 556
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "TRANSACT", 
+   "options": {}, 
+   "paragraph": "STARTBR-TRANSACT-FILE", 
+   "verb": "STARTBR", 
+   "response_handling": "RESP checked", 
+   "line": 593
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "TRANSACT", 
+   "options": {}, 
+   "paragraph": "READNEXT-TRANSACT-FILE", 
+   "verb": "READNEXT", 
+   "response_handling": "RESP checked", 
+   "line": 626
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "TRANSACT", 
+   "options": {}, 
+   "paragraph": "READPREV-TRANSACT-FILE", 
+   "verb": "READPREV", 
+   "response_handling": "RESP checked", 
+   "line": 660
+  }, 
+  {
+   "kind": "CICS", 
+   "resource": "TRANSACT", 
+   "options": {}, 
+   "paragraph": "ENDBR-TRANSACT-FILE", 
+   "verb": "ENDBR", 
+   "response_handling": "no RESP or NOHANDLE on this command", 
+   "line": 694
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CT00", 
+   "resolved_from": null, 
+   "mechanism": "RETURN-TRANSID", 
+   "source": "app/cbl/COTRN00C.cbl:138", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COTRN00C.cbl:192", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Inferred", 
+   "target": "CDEMO-TO-PROGRAM", 
+   "resolved_from": null, 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COTRN00C.cbl:518", 
+   "condition": null
+  }
+ ], 
+ "messages": [], 
+ "data_items": [
+  {
+   "source": "app/cbl/COTRN00C.cbl:36", 
+   "pic": "X(08)", 
+   "name": "WS-PGMNAME", 
+   "value": "'COTRN00C'"
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:37", 
+   "pic": "X(04)", 
+   "name": "WS-TRANID", 
+   "value": "'CT00'"
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:38", 
+   "pic": "X(80)", 
+   "name": "WS-MESSAGE", 
+   "value": "SPACES."
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:39", 
+   "pic": "X(08)", 
+   "name": "WS-TRANSACT-FILE", 
+   "value": "'TRANSACT'"
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:40", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "ERR-FLG-ON", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "ERR-FLG-OFF", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-ERR-FLG", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:43", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "TRANSACT-EOF", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "TRANSACT-NOT-EOF", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-TRANSACT-EOF", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:46", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "SEND-ERASE-YES", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "SEND-ERASE-NO", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "WS-SEND-ERASE-FLG", 
+   "value": "'Y'"
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:50", 
+   "pic": "S9(09)", 
+   "name": "WS-RESP-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:51", 
+   "pic": "S9(09)", 
+   "name": "WS-REAS-CD", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:52", 
+   "pic": "S9(04)", 
+   "name": "WS-REC-COUNT", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:53", 
+   "pic": "S9(04)", 
+   "name": "WS-IDX", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:54", 
+   "pic": "S9(04)", 
+   "name": "WS-PAGE-NUM", 
+   "value": "ZEROS."
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:57", 
+   "pic": "X(08)", 
+   "name": "WS-TRAN-DATE", 
+   "value": "'00/00/00'"
+  }, 
+  {
+   "source": "app/cbl/COTRN00C.cbl:66", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "NEXT-PAGE-YES", 
+     "value": "'Y'"
+    }, 
+    {
+     "name": "NEXT-PAGE-NO", 
+     "value": "'N'"
+    }
+   ], 
+   "name": "CDEMO-CT00-NEXT-PAGE-FLG", 
+   "value": "'N'"
+  }
+ ]
+}

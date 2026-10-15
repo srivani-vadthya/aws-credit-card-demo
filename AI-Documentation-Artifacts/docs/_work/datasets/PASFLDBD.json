@@ -1,0 +1,43 @@
+{
+ "accessors": [], 
+ "module": "auth", 
+ "evidence": [
+  "app/app-authorization-ims-db2-mq/ims/PASFLDBD.DBD:22"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "record_max": 100, 
+  "record_size": "RECORD(100)", 
+  "defined_by": [
+   "app/app-authorization-ims-db2-mq/ims/PASFLDBD.DBD:22"
+  ]
+ }, 
+ "layout": {
+  "key_fields": [], 
+  "copybook": null, 
+  "record": null, 
+  "length": null, 
+  "candidates": [], 
+  "length_checks": [
+   {
+    "source": "app/app-authorization-ims-db2-mq/ims/PASFLDBD.DBD:22", 
+    "length": 100, 
+    "agrees": false
+   }
+  ]
+ }, 
+ "name": "PASFLDBD", 
+ "ims": {
+  "access": "GSAM,BSAM", 
+  "segments": [], 
+  "dataset_dd": [
+   "PASFILIP"
+  ], 
+  "psbs": []
+ }, 
+ "mq": null, 
+ "store_kind": "gsam", 
+ "aliases": [], 
+ "sample_data": null
+}

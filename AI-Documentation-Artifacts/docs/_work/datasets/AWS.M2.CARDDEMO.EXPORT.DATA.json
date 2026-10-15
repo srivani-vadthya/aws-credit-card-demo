@@ -1,0 +1,60 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/CBEXPORT.jcl:62", 
+   "via": "jcl-dd", 
+   "by": "CBEXPORT.STEP02", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CBIMPORT.jcl:28", 
+   "via": "jcl-dd", 
+   "by": "CBIMPORT.STEP01", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/CBEXPORT.jcl:30"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "keys": "KEYS(4 28)", 
+  "record_max": 500, 
+  "record_size": "RECORDSIZE(500 500)", 
+  "defined_by": [
+   "app/jcl/CBEXPORT.jcl:30"
+  ], 
+  "key_offset": 28, 
+  "key_length": 4
+ }, 
+ "layout": {
+  "key_fields": [], 
+  "copybook": null, 
+  "record": null, 
+  "length": null, 
+  "candidates": [
+   "CUSTREC:CUSTOMER-RECORD", 
+   "CVCUS01Y:CUSTOMER-RECORD", 
+   "CVEXPORT:EXPORT-RECORD"
+  ], 
+  "length_checks": [
+   {
+    "source": "app/jcl/CBEXPORT.jcl:30", 
+    "length": 500, 
+    "agrees": false
+   }
+  ]
+ }, 
+ "name": "AWS.M2.CARDDEMO.EXPORT.DATA", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "vsam-ksds", 
+ "aliases": [], 
+ "sample_data": null
+}

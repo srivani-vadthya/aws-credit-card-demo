@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "mainframe-doc/inventory/1",
+  "title": "Repository inventory produced by mainframe-inventory-discovery",
+  "type": "object",
+  "required": ["schema", "repo_root", "summary", "unclassified", "files"],
+  "properties": {
+    "schema": {"const": "inventory/1"},
+    "generated_by": {"type": "string"},
+    "repo_root": {"type": "string"},
+    "options": {"type": "object"},
+    "summary": {
+      "type": "object",
+      "required": ["file_count", "by_type"],
+      "properties": {
+        "file_count": {"type": "integer"},
+        "by_type": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "by_module": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "files_with_sequence_area": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "unclassified": {"type": "array", "items": {"type": "string"}},
+    "technologies": {
+      "description": "Added during discovery review: technology -> evidence per module",
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {"$ref": "#/definitions/techEvidence"}
+      }
+    },
+    "files": {"type": "array", "items": {"$ref": "#/definitions/file"}}
+  },
+  "definitions": {
+    "file": {
+      "type": "object",
+      "required": ["path", "name", "member", "ext", "size", "sha256", "type", "analysis_status"],
+      "properties": {
+        "path": {"type": "string", "description": "repo-relative, forward slashes"},
+        "name": {"type": "string"},
+        "member": {"type": "string", "description": "upper-case name without extension"},
+        "ext": {"type": "string"},
+        "size": {"type": "integer"},
+        "sha256": {"type": "string"},
+        "encoding": {"enum": ["ascii", "ascii-with-high-bytes", "ebcdic", "binary", "empty"]},
+        "type": {"type": "string", "description": "taxonomy value from mainframe-inventory-discovery/reference.md"},
+        "classified_by": {"type": ["string", "null"]},
+        "evidence_line": {"type": ["integer", "null"]},
+        "module": {"type": ["string", "null"]},
+        "format": {
+          "type": "object",
+          "properties": {
+            "line_count": {"type": "integer"},
+            "max_line_length": {"type": "integer"},
+            "has_tabs": {"type": "boolean"},
+            "sequence_area": {"type": "boolean"},
+            "lines_with_numeric_cols_73_80": {"type": "integer"}
+          }
+        },
+        "analysis_status": {"enum": ["pending", "in-progress", "done", "excluded", "not-analyzable", "failed"]},
+        "resolved_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["kind", "target", "resolution"],
+            "properties": {
+              "kind": {"type": "string"},
+              "target": {"type": "string"},
+              "resolution": {"enum": ["inventory", "system", "external-or-missing", "dynamic-unresolved"]},
+              "resolved_path": {"type": ["string", "null"]},
+              "line": {"type": ["integer", "null"]}
+            }
+          }
+        }
+      }
+    },
+    "techEvidence": {
+      "type": "object",
+      "required": ["technology", "source"],
+      "properties": {
+        "technology": {"type": "string"},
+        "source": {"type": "string", "description": "path:line"}
+      }
+    }
+  }
+}

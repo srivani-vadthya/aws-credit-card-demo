@@ -1,0 +1,79 @@
+{
+ "accessors": [
+  {
+   "source": "app/jcl/COMBTRAN.jcl:23", 
+   "via": "jcl-dd", 
+   "by": "COMBTRAN.STEP05R", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANBKP.jcl:29", 
+   "via": "jcl-dd", 
+   "by": "TRANBKP.STEP05R", 
+   "ops": [
+    "C", 
+    "D"
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANREPT.jcl:29", 
+   "via": "jcl-dd", 
+   "by": "TRANREPT.STEP05R", 
+   "ops": [
+    "C", 
+    "D"
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANREPT.jcl:38", 
+   "via": "jcl-dd", 
+   "by": "TRANREPT.STEP05R", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "samples/jcl/REPRTEST.jcl:29", 
+   "via": "jcl-dd", 
+   "by": "REPRTEST.STEP05", 
+   "ops": [
+    "C", 
+    "D"
+   ]
+  }, 
+  {
+   "source": "samples/jcl/SORTTEST.jcl:20", 
+   "via": "jcl-dd", 
+   "by": "SORTTEST.STEP05R", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": "base", 
+ "evidence": [
+  "app/jcl/DEFGDGB.jcl:24"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "gdg": {
+   "scratch": true, 
+   "limit": 5, 
+   "empty": false, 
+   "source": "app/jcl/DEFGDGB.jcl:24"
+  }, 
+  "defined_by": [
+   "app/jcl/DEFGDGB.jcl:24"
+  ]
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.TRANSACT.BKUP", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "gdg-base", 
+ "aliases": [], 
+ "sample_data": null
+}

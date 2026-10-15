@@ -1,0 +1,267 @@
+{
+ "rows": [
+  {
+   "direction": "inbound", 
+   "endpoint": "(MQTM-QNAME)", 
+   "producer": [
+    "MQ trigger monitor (process definition is not in this repository)"
+   ], 
+   "type": "MQ", 
+   "evidence": [
+    "app/app-vsam-mq/cbl/COACCT01.cbl:191-198", 
+    "app/app-vsam-mq/cbl/COACCT01.cbl:337-352", 
+    "app/app-vsam-mq/cbl/CODATE01.cbl:140", 
+    "app/app-vsam-mq/cbl/CODATE01.cbl:286-296", 
+    "app/app-vsam-mq/csd/CRDDEMOM.csd:23", 
+    "app/app-vsam-mq/csd/CRDDEMOM.csd:33"
+   ], 
+   "consumer": [
+    "COACCT01", 
+    "CODATE01"
+   ], 
+   "id": "IF-vsammq-001"
+  }, 
+  {
+   "direction": "outbound", 
+   "endpoint": "CARD.DEMO.REPLY.ACCT", 
+   "producer": [
+    "COACCT01"
+   ], 
+   "type": "MQ", 
+   "evidence": [
+    "app/app-vsam-mq/cbl/COACCT01.cbl:198", 
+    "app/app-vsam-mq/cbl/COACCT01.cbl:261", 
+    "app/app-vsam-mq/cbl/COACCT01.cbl:327", 
+    "app/app-vsam-mq/cbl/COACCT01.cbl:366-372", 
+    "app/app-vsam-mq/cbl/COACCT01.cbl:469-479"
+   ], 
+   "consumer": [
+    "queue CARD.DEMO.REPLY.ACCT"
+   ], 
+   "id": "IF-vsammq-002"
+  }, 
+  {
+   "direction": "outbound", 
+   "endpoint": "CARD.DEMO.REPLY.DATE", 
+   "producer": [
+    "CODATE01"
+   ], 
+   "type": "MQ", 
+   "evidence": [
+    "app/app-vsam-mq/cbl/CODATE01.cbl:147", 
+    "app/app-vsam-mq/cbl/CODATE01.cbl:276", 
+    "app/app-vsam-mq/cbl/CODATE01.cbl:379"
+   ], 
+   "consumer": [
+    "queue CARD.DEMO.REPLY.DATE"
+   ], 
+   "id": "IF-vsammq-003"
+  }, 
+  {
+   "direction": "outbound", 
+   "endpoint": "CARD.DEMO.ERROR", 
+   "producer": [
+    "COACCT01", 
+    "CODATE01"
+   ], 
+   "type": "MQ", 
+   "evidence": [
+    "app/app-vsam-mq/cbl/COACCT01.cbl:294", 
+    "app/app-vsam-mq/cbl/COACCT01.cbl:512-516", 
+    "app/app-vsam-mq/cbl/CODATE01.cbl:243", 
+    "app/app-vsam-mq/cbl/CODATE01.cbl:416"
+   ], 
+   "consumer": [
+    "queue CARD.DEMO.ERROR"
+   ], 
+   "id": "IF-vsammq-004"
+  }, 
+  {
+   "direction": "bidirectional", 
+   "endpoint": "request (MQTM-QNAME); reply (MQMD-REPLYTOQ)", 
+   "producer": [
+    "COPAUA0C"
+   ], 
+   "type": "MQ", 
+   "evidence": [
+    "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:238", 
+    "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:354-374", 
+    "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:400-414", 
+    "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:59-60"
+   ], 
+   "consumer": [
+    "COPAUA0C"
+   ], 
+   "id": "IF-auth-001"
+  }, 
+  {
+   "direction": "internal", 
+   "endpoint": "PSB PSBPAUTB, DBD DBPAUTP0", 
+   "producer": [
+    "COPAUA0C", 
+    "COPAUS0C", 
+    "COPAUS1C", 
+    "CBPAUP0C", 
+    "PAUDBLOD"
+   ], 
+   "type": "IMS-DLI", 
+   "evidence": [
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:75", 
+    "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:82", 
+    "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:80", 
+    "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:201-205", 
+    "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:355", 
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:567", 
+    "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:25", 
+    "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:27"
+   ], 
+   "consumer": [
+    "DBPAUTP0"
+   ], 
+   "id": "IF-auth-002"
+  }, 
+  {
+   "direction": "internal", 
+   "endpoint": "PAUDBUNL uses PSB PAUTBUNL. DBUNLDGS uses PSB DLIGSAMP.", 
+   "producer": [
+    "PAUDBUNL", 
+    "DBUNLDGS"
+   ], 
+   "type": "IMS-DLI", 
+   "evidence": [
+    "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:39", 
+    "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:213", 
+    "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:257", 
+    "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:27", 
+    "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:222", 
+    "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:302"
+   ], 
+   "consumer": [
+    "IMS PCB from the job PARM"
+   ], 
+   "id": "IF-auth-003"
+  }, 
+  {
+   "direction": "internal", 
+   "endpoint": "CARDDEMO.TRANSACTION_TYPE", 
+   "producer": [
+    "COTRTLIC", 
+    "COTRTUPC", 
+    "COBTUPDT"
+   ], 
+   "type": "DB2", 
+   "evidence": [
+    "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:30", 
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1856", 
+    "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1557"
+   ], 
+   "consumer": [
+    "CARDDEMO.TRANSACTION_TYPE"
+   ], 
+   "id": "IF-trantype-001"
+  }, 
+  {
+   "direction": "inbound", 
+   "endpoint": "CARDDEMO.TRANSACTION_TYPE_CATEGORY", 
+   "producer": [
+    "CREADB21 step LDTCCAT"
+   ], 
+   "type": "DB2", 
+   "evidence": [
+    "app/app-transaction-type-db2/jcl/CREADB21.jcl:77-84", 
+    "app/app-transaction-type-db2/ctl/DB2TEP41.ctl:16-17", 
+    "app/app-transaction-type-db2/ctl/DB2LTCAT.ctl:15", 
+    "app/app-transaction-type-db2/ddl/TRNTYCAT.ddl:1"
+   ], 
+   "consumer": [
+    "CARDDEMO.TRANSACTION_TYPE_CATEGORY"
+   ], 
+   "id": "IF-trantype-002"
+  }, 
+  {
+   "direction": "internal", 
+   "endpoint": "CARDDEMO.AUTHFRDS", 
+   "producer": [
+    "COPAUS2C"
+   ], 
+   "type": "DB2", 
+   "evidence": [
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:68", 
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:141", 
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:222", 
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:35"
+   ], 
+   "consumer": [
+    "CARDDEMO.AUTHFRDS"
+   ], 
+   "id": "IF-auth-004"
+  }, 
+  {
+   "direction": "internal", 
+   "endpoint": "JOBS", 
+   "producer": [
+    "CORPT00C"
+   ], 
+   "type": "TDQ", 
+   "evidence": [
+    "app/cbl/CORPT00C.cbl:517", 
+    "app/csd/CARDDEMO.CSD:499"
+   ], 
+   "consumer": [
+    "TD queue JOBS"
+   ], 
+   "id": "IF-base-001"
+  }, 
+  {
+   "direction": "internal", 
+   "endpoint": "AWS.M2.CARDDEMO.JCL(INTRDRJ2) written to SYSOUT=(A,INTRDR)", 
+   "producer": [
+    "INTRDRJ1 step STEP01"
+   ], 
+   "type": "INTRDR", 
+   "evidence": [
+    "app/jcl/INTRDRJ1.JCL:14-18"
+   ], 
+   "consumer": [
+    "job INTRDRJ2"
+   ], 
+   "id": "IF-base-002"
+  }, 
+  {
+   "direction": "outbound", 
+   "endpoint": "app/jcl/FTPJCL.JCL:33", 
+   "producer": [
+    "job FTPJCLS step STEP1"
+   ], 
+   "type": "FILE-TRANSFER", 
+   "evidence": [
+    "app/jcl/FTPJCL.JCL:22", 
+    "app/jcl/FTPJCL.JCL:30", 
+    "app/jcl/FTPJCL.JCL:33", 
+    "app/jcl/FTPJCL.JCL:36", 
+    "app/jcl/FTPJCL.JCL:40"
+   ], 
+   "consumer": [
+    "FTP server named on the first SYSIN record"
+   ], 
+   "id": "IF-base-003"
+  }, 
+  {
+   "direction": "outbound", 
+   "endpoint": "jcl member named in each put", 
+   "producer": [
+    "scripts/run_full_batch.sh, scripts/run_posting.sh, scripts/run_interest_calc.sh, scripts/remote_refresh.sh"
+   ], 
+   "type": "FILE-TRANSFER", 
+   "evidence": [
+    "scripts/run_full_batch.sh:13", 
+    "docs/_work/batch/schedule.json"
+   ], 
+   "consumer": [
+    "host JES via FTP put of a jcl/ member"
+   ], 
+   "id": "IF-build-001"
+  }
+ ], 
+ "schema": "interface-trace/1"
+}

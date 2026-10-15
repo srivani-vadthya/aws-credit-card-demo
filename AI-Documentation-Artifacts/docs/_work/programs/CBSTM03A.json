@@ -1,0 +1,1001 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CREASTMT", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/jcl/CREASTMT.JCL:79", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "No EXEC CICS or DFHCOMMAREA in this source", 
+   "source": "app/cbl/CBSTM03A.CBL:262"
+  }
+ ], 
+ "source_path": "app/cbl/CBSTM03A.CBL", 
+ "module": "base", 
+ "header": {
+  "source": "app/cbl/CBSTM03A.CBL:1-8", 
+  "version_banner": null, 
+  "description": "Program     : CBSTM03A.CBL Application : CardDemo Type        : BATCH COBOL Program Function    : Print Account Statements from Transaction data in two formats : 1/plain text and 2/HTML All Rights Reserved.", 
+  "author": "AWS"
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Inferred", 
+   "name": "MAINLINE", 
+   "section": null, 
+   "end_line": 294, 
+   "purpose": "Statements include: inline PERFORM at app/cbl/CBSTM03A.CBL:276, OPEN", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 262, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "0000-START", 
+   "section": null, 
+   "end_line": 314, 
+   "purpose": "Statements include: OPEN, READ", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 296, 
+   "go_to": [
+    "8100-FILE-OPEN", 
+    "8100-FILE-OPEN", 
+    "8100-FILE-OPEN", 
+    "8100-FILE-OPEN", 
+    "8500-READTRNX-READ", 
+    "9999-GOBACK"
+   ]
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1000-MAINLINE", 
+   "section": null, 
+   "end_line": 339, 
+   "purpose": "Statements include: inline PERFORM at app/cbl/CBSTM03A.CBL:317, CLOSE", 
+   "performs": [
+    "1000-XREFFILE-GET-NEXT", 
+    "2000-CUSTFILE-GET", 
+    "3000-ACCTFILE-GET", 
+    "5000-CREATE-STATEMENT", 
+    "4000-TRNXFILE-GET", 
+    "9100-TRNXFILE-CLOSE", 
+    "9200-XREFFILE-CLOSE", 
+    "9300-CUSTFILE-CLOSE", 
+    "9400-ACCTFILE-CLOSE"
+   ], 
+   "reachable": false, 
+   "start_line": 316, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9999-GOBACK", 
+   "section": null, 
+   "end_line": 342, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 341, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "1000-XREFFILE-GET-NEXT", 
+   "section": null, 
+   "end_line": 366, 
+   "purpose": "Statements include: READ, CALL CBSTM03B", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": false, 
+   "start_line": 345, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "2000-CUSTFILE-GET", 
+   "section": null, 
+   "end_line": 390, 
+   "purpose": "Statements include: READ, CALL CBSTM03B", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": false, 
+   "start_line": 368, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "3000-ACCTFILE-GET", 
+   "section": null, 
+   "end_line": 414, 
+   "purpose": "Statements include: READ, CALL CBSTM03B", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": false, 
+   "start_line": 392, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "4000-TRNXFILE-GET", 
+   "section": null, 
+   "end_line": 456, 
+   "purpose": "Statements include: inline PERFORM at app/cbl/CBSTM03A.CBL:417, inline PERFORM at app/cbl/CBSTM03A.CBL:422, WRITE", 
+   "performs": [
+    "6000-WRITE-TRANS"
+   ], 
+   "reachable": false, 
+   "start_line": 416, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5000-CREATE-STATEMENT", 
+   "section": null, 
+   "end_line": 504, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [
+    "5100-WRITE-HTML-HEADER", 
+    "5100-EXIT", 
+    "5200-WRITE-HTML-NMADBS", 
+    "5200-EXIT"
+   ], 
+   "reachable": false, 
+   "start_line": 458, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5100-WRITE-HTML-HEADER", 
+   "section": null, 
+   "end_line": 552, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [], 
+   "reachable": false, 
+   "start_line": 506, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "5100-EXIT", 
+   "section": null, 
+   "end_line": 555, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": false, 
+   "start_line": 554, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "5200-WRITE-HTML-NMADBS", 
+   "section": null, 
+   "end_line": 669, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [], 
+   "reachable": false, 
+   "start_line": 558, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "5200-EXIT", 
+   "section": null, 
+   "end_line": 672, 
+   "purpose": "No I/O, CALL, or EXEC statements in this paragraph", 
+   "performs": [], 
+   "reachable": false, 
+   "start_line": 671, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "6000-WRITE-TRANS", 
+   "section": null, 
+   "end_line": 723, 
+   "purpose": "Statements include: WRITE", 
+   "performs": [], 
+   "reachable": false, 
+   "start_line": 675, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "8100-FILE-OPEN", 
+   "section": null, 
+   "end_line": 728, 
+   "purpose": "Statements include: OPEN", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 726, 
+   "go_to": [
+    "8100-TRNXFILE-OPEN"
+   ]
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "8100-TRNXFILE-OPEN", 
+   "section": null, 
+   "end_line": 762, 
+   "purpose": "Statements include: OPEN, CALL CBSTM03B, READ, START", 
+   "performs": [
+    "9999-ABEND-PROGRAM", 
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 730, 
+   "go_to": [
+    "0000-START"
+   ]
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "8200-XREFFILE-OPEN", 
+   "section": null, 
+   "end_line": 781, 
+   "purpose": "Statements include: OPEN, CALL CBSTM03B, START", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": false, 
+   "start_line": 765, 
+   "go_to": [
+    "0000-START"
+   ]
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "8300-CUSTFILE-OPEN", 
+   "section": null, 
+   "end_line": 799, 
+   "purpose": "Statements include: OPEN, CALL CBSTM03B, START", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": false, 
+   "start_line": 783, 
+   "go_to": [
+    "0000-START"
+   ]
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "8400-ACCTFILE-OPEN", 
+   "section": null, 
+   "end_line": 816, 
+   "purpose": "Statements include: OPEN, CALL CBSTM03B", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": false, 
+   "start_line": 801, 
+   "go_to": [
+    "1000-MAINLINE"
+   ]
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "8500-READTRNX-READ", 
+   "section": null, 
+   "end_line": 847, 
+   "purpose": "Statements include: READ, CALL CBSTM03B", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": true, 
+   "start_line": 818, 
+   "go_to": [
+    "8500-READTRNX-READ", 
+    "8599-EXIT"
+   ]
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "8599-EXIT", 
+   "section": null, 
+   "end_line": 853, 
+   "purpose": "Statements include: START", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 849, 
+   "go_to": [
+    "0000-START"
+   ]
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9100-TRNXFILE-CLOSE", 
+   "section": null, 
+   "end_line": 870, 
+   "purpose": "Statements include: CLOSE, CALL CBSTM03B", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": false, 
+   "start_line": 856, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9200-XREFFILE-CLOSE", 
+   "section": null, 
+   "end_line": 887, 
+   "purpose": "Statements include: CLOSE, CALL CBSTM03B", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": false, 
+   "start_line": 873, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9300-CUSTFILE-CLOSE", 
+   "section": null, 
+   "end_line": 903, 
+   "purpose": "Statements include: CLOSE, CALL CBSTM03B", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": false, 
+   "start_line": 889, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9400-ACCTFILE-CLOSE", 
+   "section": null, 
+   "end_line": 919, 
+   "purpose": "Statements include: CLOSE, CALL CBSTM03B", 
+   "performs": [
+    "9999-ABEND-PROGRAM"
+   ], 
+   "reachable": false, 
+   "start_line": 905, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Inferred", 
+   "name": "9999-ABEND-PROGRAM", 
+   "section": null, 
+   "end_line": 923, 
+   "purpose": "Statements include: CALL CEE3ABD", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 921, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "name": "COSTM01", 
+   "replacing": null, 
+   "source": "app/cbl/CBSTM03A.CBL:51", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/COSTM01.CPY"
+  }, 
+  {
+   "name": "CVACT03Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBSTM03A.CBL:53", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT03Y.cpy"
+  }, 
+  {
+   "name": "CUSTREC", 
+   "replacing": null, 
+   "source": "app/cbl/CBSTM03A.CBL:55", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CUSTREC.cpy"
+  }, 
+  {
+   "name": "CVACT01Y", 
+   "replacing": null, 
+   "source": "app/cbl/CBSTM03A.CBL:57", 
+   "purpose": "Application copybook (cobol-copybook)", 
+   "resolution": "inventory", 
+   "resolved_path": "app/cpy/CVACT01Y.cpy"
+  }
+ ], 
+ "data_items": [
+  {
+   "source": "app/cbl/CBSTM03A.CBL:60", 
+   "pic": "S9(4)", 
+   "name": "CR-CNT", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:61", 
+   "pic": "S9(4)", 
+   "name": "TR-CNT", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:62", 
+   "pic": "S9(4)", 
+   "name": "CR-JMP", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:63", 
+   "pic": "S9(4)", 
+   "name": "TR-JMP", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:65", 
+   "pic": "S9(9)V99", 
+   "name": "WS-TOTAL-AMT", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:67", 
+   "pic": "X(8)", 
+   "name": "WS-FL-DD", 
+   "value": "'TRNXFILE'"
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:68", 
+   "pic": "S9(9)V99", 
+   "name": "WS-TRN-AMT", 
+   "value": "0."
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:70", 
+   "pic": "X(01)", 
+   "conditions": [
+    {
+     "name": "M03B-OPEN", 
+     "value": "'O'"
+    }, 
+    {
+     "name": "M03B-CLOSE", 
+     "value": "'C'"
+    }, 
+    {
+     "name": "M03B-READ", 
+     "value": "'R'"
+    }, 
+    {
+     "name": "M03B-READ-K", 
+     "value": "'K'"
+    }, 
+    {
+     "name": "M03B-WRITE", 
+     "value": "'W'"
+    }, 
+    {
+     "name": "M03B-REWRITE", 
+     "value": "'Z'"
+    }, 
+    {
+     "name": "HTML-L01", 
+     "value": "'<!DOCTYPE html>'"
+    }, 
+    {
+     "name": "HTML-L02", 
+     "value": "'<html lang=\"en\">'"
+    }, 
+    {
+     "name": "HTML-L03", 
+     "value": "'<head>'"
+    }, 
+    {
+     "name": "HTML-L04", 
+     "value": "'<meta charset=\"utf-8\">'"
+    }, 
+    {
+     "name": "HTML-L05", 
+     "value": "'<title>HTML Table Layout</title>'"
+    }, 
+    {
+     "name": "HTML-L06", 
+     "value": "'</head>'"
+    }, 
+    {
+     "name": "HTML-L07", 
+     "value": "'<body style=\"margin:0px;\">'"
+    }, 
+    {
+     "name": "HTML-L08", 
+     "value": "'<table  align=\"center\" frame=\"box\" styl 'e=\"width:70%; font:12px Segoe UI,sans-serif;\">'"
+    }, 
+    {
+     "name": "HTML-LTRS", 
+     "value": "'<tr>'"
+    }, 
+    {
+     "name": "HTML-LTRE", 
+     "value": "'</tr>'"
+    }, 
+    {
+     "name": "HTML-LTDS", 
+     "value": "'<td>'"
+    }, 
+    {
+     "name": "HTML-LTDE", 
+     "value": "'</td>'"
+    }, 
+    {
+     "name": "HTML-L10", 
+     "value": "'<td colspan=\"3\" style=\"padding:0px 5px; 'background-color:#1d1d96b3;\">'"
+    }, 
+    {
+     "name": "HTML-L15", 
+     "value": "'<td colspan=\"3\" style=\"padding:0px 5px; 'background-color:#FFAF33;\">'"
+    }, 
+    {
+     "name": "HTML-L78", 
+     "value": "'</table>'"
+    }, 
+    {
+     "name": "HTML-L79", 
+     "value": "'</body>'"
+    }, 
+    {
+     "name": "HTML-L80", 
+     "value": "'</html>'"
+    }
+   ], 
+   "name": "END-OF-FILE", 
+   "value": "'N'"
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:216", 
+   "pic": "X(05)", 
+   "name": "FILLER", 
+   "value": "'</h3>'"
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:226", 
+   "name": "WS-CARD-TBL", 
+   "value": "OCCURS 51", 
+   "purpose": "table"
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:228", 
+   "name": "WS-TRAN-TBL", 
+   "value": "OCCURS 10", 
+   "purpose": "table"
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:232", 
+   "name": "WS-TRN-TBL-CTR", 
+   "value": "OCCURS 51", 
+   "purpose": "table"
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:236", 
+   "pic": "S9(08)", 
+   "conditions": [
+    {
+     "name": "END-OF-TIOT", 
+     "value": "LOW-VALUES"
+    }
+   ], 
+   "name": "BUMP-TIOT", 
+   "value": "ZERO."
+  }
+ ], 
+ "loc": {
+  "comment": 50, 
+  "total": 924, 
+  "code": 874
+ }, 
+ "evidence_summary": "Structural facts extracted from app/cbl/CBSTM03A.CBL. Header description is Unverified comment text. Paragraph purposes are Inferred from the statements in each paragraph.", 
+ "source_format": "fixed", 
+ "observations": [
+  {
+   "text": "Paragraph 1000-MAINLINE has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:316"
+  }, 
+  {
+   "text": "Paragraph 1000-XREFFILE-GET-NEXT has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:345"
+  }, 
+  {
+   "text": "Paragraph 2000-CUSTFILE-GET has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:368"
+  }, 
+  {
+   "text": "Paragraph 3000-ACCTFILE-GET has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:392"
+  }, 
+  {
+   "text": "Paragraph 4000-TRNXFILE-GET has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:416"
+  }, 
+  {
+   "text": "Paragraph 5000-CREATE-STATEMENT has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:458"
+  }, 
+  {
+   "text": "Paragraph 5100-WRITE-HTML-HEADER has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:506"
+  }, 
+  {
+   "text": "Paragraph 5100-EXIT has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:554"
+  }, 
+  {
+   "text": "Paragraph 5200-WRITE-HTML-NMADBS has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:558"
+  }, 
+  {
+   "text": "Paragraph 5200-EXIT has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:671"
+  }, 
+  {
+   "text": "Paragraph 6000-WRITE-TRANS has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:675"
+  }, 
+  {
+   "text": "Paragraph 8200-XREFFILE-OPEN has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:765"
+  }, 
+  {
+   "text": "Paragraph 8300-CUSTFILE-OPEN has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:783"
+  }, 
+  {
+   "text": "Paragraph 8400-ACCTFILE-OPEN has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:801"
+  }, 
+  {
+   "text": "Paragraph 9100-TRNXFILE-CLOSE has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:856"
+  }, 
+  {
+   "text": "Paragraph 9200-XREFFILE-CLOSE has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:873"
+  }, 
+  {
+   "text": "Paragraph 9300-CUSTFILE-CLOSE has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:889"
+  }, 
+  {
+   "text": "Paragraph 9400-ACCTFILE-CLOSE has no PERFORM, GO TO, or fall-through path from the first paragraph", 
+   "confidence": "Inferred", 
+   "source": "app/cbl/CBSTM03A.CBL:905"
+  }, 
+  {
+   "text": "Commented COPY is not expanded: You may obtain a copy of the License at", 
+   "confidence": "Confirmed", 
+   "source": "app/cbl/CBSTM03A.CBL:16"
+  }
+ ], 
+ "sha256": "23c8753b6b4e0c24d4560c83861fe8162626bab195faec0fe88cf80b8bf432b5", 
+ "files": [
+  {
+   "logical_name": "STMT-FILE", 
+   "record_layout": "FD-STMTFILE-REC", 
+   "record_key": null, 
+   "ddname_or_cics_file": "STMTFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.STATEMNT.PS (app/jcl/CREASTMT.JCL:72)"
+   ], 
+   "source": "app/cbl/CBSTM03A.CBL:39", 
+   "file_status_field": null, 
+   "organization": null, 
+   "access_mode": null, 
+   "alternate_keys": []
+  }, 
+  {
+   "logical_name": "HTML-FILE", 
+   "record_layout": "FD-HTMLFILE-REC", 
+   "record_key": null, 
+   "ddname_or_cics_file": "HTMLFILE", 
+   "physical_names": [
+    "AWS.M2.CARDDEMO.STATEMNT.HTML (app/jcl/CREASTMT.JCL:67)"
+   ], 
+   "source": "app/cbl/CBSTM03A.CBL:40", 
+   "file_status_field": null, 
+   "organization": null, 
+   "access_mode": null, 
+   "alternate_keys": []
+  }
+ ], 
+ "messages": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": [
+   {
+    "source": "app/cbl/CBSTM03A.CBL:240", 
+    "name": "ALIGN-PSA"
+   }, 
+   {
+    "source": "app/cbl/CBSTM03A.CBL:241", 
+    "name": "PSA-BLOCK"
+   }, 
+   {
+    "source": "app/cbl/CBSTM03A.CBL:244", 
+    "name": "TCB-BLOCK"
+   }, 
+   {
+    "source": "app/cbl/CBSTM03A.CBL:247", 
+    "name": "TIOT-BLOCK"
+   }, 
+   {
+    "source": "app/cbl/CBSTM03A.CBL:251", 
+    "name": "TIOT-ENTRY"
+   }
+  ]
+ }, 
+ "crud": [
+  {
+   "source": "app/cbl/CBSTM03A.CBL:440-721", 
+   "store_kind": "logical", 
+   "store": "HTML-FILE", 
+   "ops": [
+    "C"
+   ]
+  }, 
+  {
+   "source": "app/cbl/CBSTM03A.CBL:293", 
+   "store_kind": "logical", 
+   "store": "STMT-FILE", 
+   "ops": [
+    "C"
+   ]
+  }
+ ], 
+ "program_id": "CBSTM03A", 
+ "error_handling": [
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:361", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:385", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:409", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:741", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:753", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:776", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:794", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:812", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:846", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:867", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:884", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:900", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:916", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "PERFORM 9999-ABEND-PROGRAM"
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:921", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "9999-ABEND-PROGRAM."
+  }, 
+  {
+   "action": "abend", 
+   "source": "app/cbl/CBSTM03A.CBL:923", 
+   "message": null, 
+   "abend_code": null, 
+   "condition": "CALL 'CEE3ABD'."
+  }
+ ], 
+ "commands": [], 
+ "calls": [
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:351", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:377", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:401", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:734", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:746", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:769", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:787", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:805", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:835", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:860", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:877", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:893", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CBSTM03B", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:909", 
+   "condition": null
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "target": "CEE3ABD", 
+   "resolved_from": null, 
+   "mechanism": "CALL-static", 
+   "source": "app/cbl/CBSTM03A.CBL:923", 
+   "condition": null
+  }
+ ], 
+ "language": "COBOL", 
+ "candidate_rules": [], 
+ "runtime_type": [
+  "batch-main"
+ ]
+}

@@ -1,0 +1,153 @@
+{
+ "accessors": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:19", 
+   "via": "jcl-dd", 
+   "by": "DBPAUTP0.UNLOAD", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:30", 
+   "via": "jcl-dd", 
+   "by": "LOADPADB.STEP01", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:30", 
+   "via": "jcl-dd", 
+   "by": "UNLDGSAM.STEP01", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:42", 
+   "via": "jcl-dd", 
+   "by": "UNLDPADB.STEP01", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:24", 
+   "via": "jcl-dd", 
+   "by": "MNTTRDB2.STEP1", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CBEXPORT.jcl:44", 
+   "via": "jcl-dd", 
+   "by": "CBEXPORT.STEP02", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CBIMPORT.jcl:23", 
+   "via": "jcl-dd", 
+   "by": "CBIMPORT.STEP01", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/CREASTMT.JCL:80", 
+   "via": "jcl-dd", 
+   "by": "CREASTMT.STEP040", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/INTCALC.jcl:23", 
+   "via": "jcl-dd", 
+   "by": "INTCALC.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/POSTTRAN.jcl:24", 
+   "via": "jcl-dd", 
+   "by": "POSTTRAN.STEP15", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/READACCT.jcl:33", 
+   "via": "jcl-dd", 
+   "by": "READACCT.STEP05", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/READCARD.jcl:23", 
+   "via": "jcl-dd", 
+   "by": "READCARD.STEP05", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/READCUST.jcl:22", 
+   "via": "jcl-dd", 
+   "by": "READCUST.STEP05", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/READXREF.jcl:23", 
+   "via": "jcl-dd", 
+   "by": "READXREF.STEP05", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/TRANREPT.jcl:60", 
+   "via": "jcl-dd", 
+   "by": "TRANREPT.STEP10R", 
+   "ops": [
+    "R"
+   ]
+  }, 
+  {
+   "source": "app/jcl/WAITSTEP.jcl:23", 
+   "via": "jcl-dd", 
+   "by": "WAITSTEP.WAIT", 
+   "ops": [
+    "R"
+   ]
+  }
+ ], 
+ "module": null, 
+ "evidence": [
+  "app/catlg/LISTCAT.txt:1009"
+ ], 
+ "purpose": null, 
+ "db2": null, 
+ "physical": {
+  "catalog_facts": {
+   "source": "app/catlg/LISTCAT.txt:1009", 
+   "as_of": "09/01/22", 
+   "point_in_time": true
+  }, 
+  "defined_by": []
+ }, 
+ "layout": null, 
+ "name": "AWS.M2.CARDDEMO.LOADLIB", 
+ "ims": null, 
+ "mq": null, 
+ "store_kind": "sequential", 
+ "aliases": [], 
+ "sample_data": null
+}

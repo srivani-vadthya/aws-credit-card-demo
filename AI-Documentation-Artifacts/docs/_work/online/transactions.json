@@ -1,0 +1,1857 @@
+{
+ "mapsets": [
+  {
+   "maps": [
+    "COPAU0A"
+   ], 
+   "mapset": "COPAU00", 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms:19"
+  }, 
+  {
+   "maps": [
+    "COPAU1A"
+   ], 
+   "mapset": "COPAU01", 
+   "module": "auth", 
+   "source": "app/app-authorization-ims-db2-mq/bms/COPAU01.bms:19"
+  }, 
+  {
+   "maps": [
+    "CTRTLIA"
+   ], 
+   "mapset": "COTRTLI", 
+   "module": "trantype", 
+   "source": "app/app-transaction-type-db2/bms/COTRTLI.bms:20"
+  }, 
+  {
+   "maps": [
+    "CTRTUPA"
+   ], 
+   "mapset": "COTRTUP", 
+   "module": "trantype", 
+   "source": "app/app-transaction-type-db2/bms/COTRTUP.bms:20"
+  }, 
+  {
+   "maps": [
+    "CACTUPA"
+   ], 
+   "mapset": "COACTUP", 
+   "module": "base", 
+   "source": "app/bms/COACTUP.bms:20"
+  }, 
+  {
+   "maps": [
+    "CACTVWA"
+   ], 
+   "mapset": "COACTVW", 
+   "module": "base", 
+   "source": "app/bms/COACTVW.bms:20"
+  }, 
+  {
+   "maps": [
+    "COADM1A"
+   ], 
+   "mapset": "COADM01", 
+   "module": "base", 
+   "source": "app/bms/COADM01.bms:19"
+  }, 
+  {
+   "maps": [
+    "COBIL0A"
+   ], 
+   "mapset": "COBIL00", 
+   "module": "base", 
+   "source": "app/bms/COBIL00.bms:19"
+  }, 
+  {
+   "maps": [
+    "CCRDLIA"
+   ], 
+   "mapset": "COCRDLI", 
+   "module": "base", 
+   "source": "app/bms/COCRDLI.bms:20"
+  }, 
+  {
+   "maps": [
+    "CCRDSLA"
+   ], 
+   "mapset": "COCRDSL", 
+   "module": "base", 
+   "source": "app/bms/COCRDSL.bms:20"
+  }, 
+  {
+   "maps": [
+    "CCRDUPA"
+   ], 
+   "mapset": "COCRDUP", 
+   "module": "base", 
+   "source": "app/bms/COCRDUP.bms:20"
+  }, 
+  {
+   "maps": [
+    "COMEN1A"
+   ], 
+   "mapset": "COMEN01", 
+   "module": "base", 
+   "source": "app/bms/COMEN01.bms:19"
+  }, 
+  {
+   "maps": [
+    "CORPT0A"
+   ], 
+   "mapset": "CORPT00", 
+   "module": "base", 
+   "source": "app/bms/CORPT00.bms:19"
+  }, 
+  {
+   "maps": [
+    "COSGN0A"
+   ], 
+   "mapset": "COSGN00", 
+   "module": "base", 
+   "source": "app/bms/COSGN00.bms:19"
+  }, 
+  {
+   "maps": [
+    "COTRN0A"
+   ], 
+   "mapset": "COTRN00", 
+   "module": "base", 
+   "source": "app/bms/COTRN00.bms:19"
+  }, 
+  {
+   "maps": [
+    "COTRN1A"
+   ], 
+   "mapset": "COTRN01", 
+   "module": "base", 
+   "source": "app/bms/COTRN01.bms:19"
+  }, 
+  {
+   "maps": [
+    "COTRN2A"
+   ], 
+   "mapset": "COTRN02", 
+   "module": "base", 
+   "source": "app/bms/COTRN02.bms:19"
+  }, 
+  {
+   "maps": [
+    "COUSR0A"
+   ], 
+   "mapset": "COUSR00", 
+   "module": "base", 
+   "source": "app/bms/COUSR00.bms:19"
+  }, 
+  {
+   "maps": [
+    "COUSR1A"
+   ], 
+   "mapset": "COUSR01", 
+   "module": "base", 
+   "source": "app/bms/COUSR01.bms:19"
+  }, 
+  {
+   "maps": [
+    "COUSR2A"
+   ], 
+   "mapset": "COUSR02", 
+   "module": "base", 
+   "source": "app/bms/COUSR02.bms:19"
+  }, 
+  {
+   "maps": [
+    "COUSR3A"
+   ], 
+   "mapset": "COUSR03", 
+   "module": "base", 
+   "source": "app/bms/COUSR03.bms:19"
+  }
+ ], 
+ "consistency": [
+  {
+   "note": "CSD program has no source member in the inventory", 
+   "source": "app/csd/CARDDEMO.CSD:388", 
+   "transid": "CDV1", 
+   "program": "COCRDSEC"
+  }, 
+  {
+   "note": "CSD PROGRAM has no source member", 
+   "source": "app/csd/CARDDEMO.CSD:211", 
+   "program": "COCRDSEC"
+  }
+ ], 
+ "screen_bindings": [
+  {
+   "map": "COPAU0A", 
+   "program": "COPAUS0C", 
+   "mapset": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:696"
+  }, 
+  {
+   "map": null, 
+   "program": "COPAUS0C", 
+   "mapset": "COPAU00", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:697"
+  }, 
+  {
+   "map": "COPAU0A", 
+   "program": "COPAUS0C", 
+   "mapset": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:704"
+  }, 
+  {
+   "map": null, 
+   "program": "COPAUS0C", 
+   "mapset": "COPAU00", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:705"
+  }, 
+  {
+   "map": "COPAU0A", 
+   "program": "COPAUS0C", 
+   "mapset": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:716"
+  }, 
+  {
+   "map": null, 
+   "program": "COPAUS0C", 
+   "mapset": "COPAU00", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:717"
+  }, 
+  {
+   "map": "COPAU1A", 
+   "program": "COPAUS1C", 
+   "mapset": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:382"
+  }, 
+  {
+   "map": null, 
+   "program": "COPAUS1C", 
+   "mapset": "COPAU01", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:383"
+  }, 
+  {
+   "map": "COPAU1A", 
+   "program": "COPAUS1C", 
+   "mapset": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:390"
+  }, 
+  {
+   "map": null, 
+   "program": "COPAUS1C", 
+   "mapset": "COPAU01", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:391"
+  }, 
+  {
+   "map": "COPAU1A", 
+   "program": "COPAUS1C", 
+   "mapset": null, 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:401"
+  }, 
+  {
+   "map": null, 
+   "program": "COPAUS1C", 
+   "mapset": "COPAU01", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:402"
+  }, 
+  {
+   "map": "COADM1A", 
+   "program": "COADM01C", 
+   "mapset": null, 
+   "source": "app/cbl/COADM01C.cbl:183"
+  }, 
+  {
+   "map": null, 
+   "program": "COADM01C", 
+   "mapset": "COADM01", 
+   "source": "app/cbl/COADM01C.cbl:184"
+  }, 
+  {
+   "map": "COADM1A", 
+   "program": "COADM01C", 
+   "mapset": null, 
+   "source": "app/cbl/COADM01C.cbl:195"
+  }, 
+  {
+   "map": null, 
+   "program": "COADM01C", 
+   "mapset": "COADM01", 
+   "source": "app/cbl/COADM01C.cbl:196"
+  }, 
+  {
+   "map": "COBIL0A", 
+   "program": "COBIL00C", 
+   "mapset": null, 
+   "source": "app/cbl/COBIL00C.cbl:296"
+  }, 
+  {
+   "map": null, 
+   "program": "COBIL00C", 
+   "mapset": "COBIL00", 
+   "source": "app/cbl/COBIL00C.cbl:297"
+  }, 
+  {
+   "map": "COBIL0A", 
+   "program": "COBIL00C", 
+   "mapset": null, 
+   "source": "app/cbl/COBIL00C.cbl:309"
+  }, 
+  {
+   "map": null, 
+   "program": "COBIL00C", 
+   "mapset": "COBIL00", 
+   "source": "app/cbl/COBIL00C.cbl:310"
+  }, 
+  {
+   "map": "COMEN1A", 
+   "program": "COMEN01C", 
+   "mapset": null, 
+   "source": "app/cbl/COMEN01C.cbl:216"
+  }, 
+  {
+   "map": null, 
+   "program": "COMEN01C", 
+   "mapset": "COMEN01", 
+   "source": "app/cbl/COMEN01C.cbl:217"
+  }, 
+  {
+   "map": "COMEN1A", 
+   "program": "COMEN01C", 
+   "mapset": null, 
+   "source": "app/cbl/COMEN01C.cbl:228"
+  }, 
+  {
+   "map": null, 
+   "program": "COMEN01C", 
+   "mapset": "COMEN01", 
+   "source": "app/cbl/COMEN01C.cbl:229"
+  }, 
+  {
+   "map": "CORPT0A", 
+   "program": "CORPT00C", 
+   "mapset": null, 
+   "source": "app/cbl/CORPT00C.cbl:564"
+  }, 
+  {
+   "map": null, 
+   "program": "CORPT00C", 
+   "mapset": "CORPT00", 
+   "source": "app/cbl/CORPT00C.cbl:565"
+  }, 
+  {
+   "map": "CORPT0A", 
+   "program": "CORPT00C", 
+   "mapset": null, 
+   "source": "app/cbl/CORPT00C.cbl:572"
+  }, 
+  {
+   "map": null, 
+   "program": "CORPT00C", 
+   "mapset": "CORPT00", 
+   "source": "app/cbl/CORPT00C.cbl:573"
+  }, 
+  {
+   "map": "CORPT0A", 
+   "program": "CORPT00C", 
+   "mapset": null, 
+   "source": "app/cbl/CORPT00C.cbl:599"
+  }, 
+  {
+   "map": null, 
+   "program": "CORPT00C", 
+   "mapset": "CORPT00", 
+   "source": "app/cbl/CORPT00C.cbl:600"
+  }, 
+  {
+   "map": "COSGN0A", 
+   "program": "COSGN00C", 
+   "mapset": null, 
+   "source": "app/cbl/COSGN00C.cbl:111"
+  }, 
+  {
+   "map": null, 
+   "program": "COSGN00C", 
+   "mapset": "COSGN00", 
+   "source": "app/cbl/COSGN00C.cbl:112"
+  }, 
+  {
+   "map": "COSGN0A", 
+   "program": "COSGN00C", 
+   "mapset": null, 
+   "source": "app/cbl/COSGN00C.cbl:152"
+  }, 
+  {
+   "map": null, 
+   "program": "COSGN00C", 
+   "mapset": "COSGN00", 
+   "source": "app/cbl/COSGN00C.cbl:153"
+  }, 
+  {
+   "map": "COTRN0A", 
+   "program": "COTRN00C", 
+   "mapset": null, 
+   "source": "app/cbl/COTRN00C.cbl:535"
+  }, 
+  {
+   "map": null, 
+   "program": "COTRN00C", 
+   "mapset": "COTRN00", 
+   "source": "app/cbl/COTRN00C.cbl:536"
+  }, 
+  {
+   "map": "COTRN0A", 
+   "program": "COTRN00C", 
+   "mapset": null, 
+   "source": "app/cbl/COTRN00C.cbl:543"
+  }, 
+  {
+   "map": null, 
+   "program": "COTRN00C", 
+   "mapset": "COTRN00", 
+   "source": "app/cbl/COTRN00C.cbl:544"
+  }, 
+  {
+   "map": "COTRN0A", 
+   "program": "COTRN00C", 
+   "mapset": null, 
+   "source": "app/cbl/COTRN00C.cbl:557"
+  }, 
+  {
+   "map": null, 
+   "program": "COTRN00C", 
+   "mapset": "COTRN00", 
+   "source": "app/cbl/COTRN00C.cbl:558"
+  }, 
+  {
+   "map": "COTRN1A", 
+   "program": "COTRN01C", 
+   "mapset": null, 
+   "source": "app/cbl/COTRN01C.cbl:220"
+  }, 
+  {
+   "map": null, 
+   "program": "COTRN01C", 
+   "mapset": "COTRN01", 
+   "source": "app/cbl/COTRN01C.cbl:221"
+  }, 
+  {
+   "map": "COTRN1A", 
+   "program": "COTRN01C", 
+   "mapset": null, 
+   "source": "app/cbl/COTRN01C.cbl:233"
+  }, 
+  {
+   "map": null, 
+   "program": "COTRN01C", 
+   "mapset": "COTRN01", 
+   "source": "app/cbl/COTRN01C.cbl:234"
+  }, 
+  {
+   "map": "COTRN2A", 
+   "program": "COTRN02C", 
+   "mapset": null, 
+   "source": "app/cbl/COTRN02C.cbl:523"
+  }, 
+  {
+   "map": null, 
+   "program": "COTRN02C", 
+   "mapset": "COTRN02", 
+   "source": "app/cbl/COTRN02C.cbl:524"
+  }, 
+  {
+   "map": "COTRN2A", 
+   "program": "COTRN02C", 
+   "mapset": null, 
+   "source": "app/cbl/COTRN02C.cbl:542"
+  }, 
+  {
+   "map": null, 
+   "program": "COTRN02C", 
+   "mapset": "COTRN02", 
+   "source": "app/cbl/COTRN02C.cbl:543"
+  }, 
+  {
+   "map": "COUSR0A", 
+   "program": "COUSR00C", 
+   "mapset": null, 
+   "source": "app/cbl/COUSR00C.cbl:530"
+  }, 
+  {
+   "map": null, 
+   "program": "COUSR00C", 
+   "mapset": "COUSR00", 
+   "source": "app/cbl/COUSR00C.cbl:531"
+  }, 
+  {
+   "map": "COUSR0A", 
+   "program": "COUSR00C", 
+   "mapset": null, 
+   "source": "app/cbl/COUSR00C.cbl:538"
+  }, 
+  {
+   "map": null, 
+   "program": "COUSR00C", 
+   "mapset": "COUSR00", 
+   "source": "app/cbl/COUSR00C.cbl:539"
+  }, 
+  {
+   "map": "COUSR0A", 
+   "program": "COUSR00C", 
+   "mapset": null, 
+   "source": "app/cbl/COUSR00C.cbl:552"
+  }, 
+  {
+   "map": null, 
+   "program": "COUSR00C", 
+   "mapset": "COUSR00", 
+   "source": "app/cbl/COUSR00C.cbl:553"
+  }, 
+  {
+   "map": "COUSR1A", 
+   "program": "COUSR01C", 
+   "mapset": null, 
+   "source": "app/cbl/COUSR01C.cbl:191"
+  }, 
+  {
+   "map": null, 
+   "program": "COUSR01C", 
+   "mapset": "COUSR01", 
+   "source": "app/cbl/COUSR01C.cbl:192"
+  }, 
+  {
+   "map": "COUSR1A", 
+   "program": "COUSR01C", 
+   "mapset": null, 
+   "source": "app/cbl/COUSR01C.cbl:204"
+  }, 
+  {
+   "map": null, 
+   "program": "COUSR01C", 
+   "mapset": "COUSR01", 
+   "source": "app/cbl/COUSR01C.cbl:205"
+  }, 
+  {
+   "map": "COUSR2A", 
+   "program": "COUSR02C", 
+   "mapset": null, 
+   "source": "app/cbl/COUSR02C.cbl:273"
+  }, 
+  {
+   "map": null, 
+   "program": "COUSR02C", 
+   "mapset": "COUSR02", 
+   "source": "app/cbl/COUSR02C.cbl:274"
+  }, 
+  {
+   "map": "COUSR2A", 
+   "program": "COUSR02C", 
+   "mapset": null, 
+   "source": "app/cbl/COUSR02C.cbl:286"
+  }, 
+  {
+   "map": null, 
+   "program": "COUSR02C", 
+   "mapset": "COUSR02", 
+   "source": "app/cbl/COUSR02C.cbl:287"
+  }, 
+  {
+   "map": "COUSR3A", 
+   "program": "COUSR03C", 
+   "mapset": null, 
+   "source": "app/cbl/COUSR03C.cbl:220"
+  }, 
+  {
+   "map": null, 
+   "program": "COUSR03C", 
+   "mapset": "COUSR03", 
+   "source": "app/cbl/COUSR03C.cbl:221"
+  }, 
+  {
+   "map": "COUSR3A", 
+   "program": "COUSR03C", 
+   "mapset": null, 
+   "source": "app/cbl/COUSR03C.cbl:233"
+  }, 
+  {
+   "map": null, 
+   "program": "COUSR03C", 
+   "mapset": "COUSR03", 
+   "source": "app/cbl/COUSR03C.cbl:234"
+  }
+ ], 
+ "resources": [
+  {
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:1", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COPAU00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": "CREDIT CARD AUTHORIZATION SUMMARY MAP"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:6", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COPAU01", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": "CREDIT CARD AUTHORIZATION DETAILS MAP"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:11", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COPAUA0C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CP00", 
+   "description": null
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:18", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COPAUS0C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CPVS", 
+   "description": null
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:25", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COPAUS1C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CPVD", 
+   "description": null
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:32", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COPAUS2C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CPVD", 
+   "description": null
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:39", 
+   "program": "COPAUS1C", 
+   "group": "CARDDEMO", 
+   "name": "CPVD", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:49", 
+   "program": "COPAUS0C", 
+   "group": "CARDDEMO", 
+   "name": "CPVS", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:59", 
+   "program": "COPAUA0C", 
+   "group": "CARDDEMO", 
+   "name": "CP00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:69", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "AWS01PLN", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": "AWS01PLN", 
+   "type": "DB2ENTRY", 
+   "transid": null, 
+   "description": "DB2 RETRY FOR AWS01PLN PLAN"
+  }, 
+  {
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:75", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CPVDTRAN", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "DB2TRAN", 
+   "transid": "CPVD", 
+   "description": "DB2TRAN FOR SDB2 TRANSACTION"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:1", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COTRTLI", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": "CREDIT CARD TRAN TYPE INQ MAP"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:6", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COTRTUP", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": "CREDIT CARD TRAN TYPE MAINT MAP"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:11", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COTRTLIC", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CTLI", 
+   "description": null
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:18", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COTRTUPC", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CTTU", 
+   "description": null
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:25", 
+   "program": "COTRTLIC", 
+   "group": "CARDDEMO", 
+   "name": "CTLI", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:35", 
+   "program": "COTRTUPC", 
+   "group": "CARDDEMO", 
+   "name": "CTTU", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:45", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CARDDEMO", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": "CARDDEMO", 
+   "type": "DB2ENTRY", 
+   "transid": null, 
+   "description": "DB2 RETRY FOR CARDDEMO PLAN"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:51", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CTLITRAN", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "DB2TRAN", 
+   "transid": "CTLI", 
+   "description": "DB2TRAN FOR CTLI TRANSACTION"
+  }, 
+  {
+   "source": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:56", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CTTUTRAN", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "DB2TRAN", 
+   "transid": "CTTU", 
+   "description": "DB2TRAN FOR CTTU TRANSACTION"
+  }, 
+  {
+   "source": "app/app-vsam-mq/csd/CRDDEMOM.csd:1", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COACCT01", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CDRA", 
+   "description": "LIST CARDS"
+  }, 
+  {
+   "source": "app/app-vsam-mq/csd/CRDDEMOM.csd:9", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CODATE01", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CDRD", 
+   "description": "LIST CARDS"
+  }, 
+  {
+   "source": "app/app-vsam-mq/csd/CRDDEMOM.csd:17", 
+   "program": "COACCT01", 
+   "group": "CARDDEMO", 
+   "name": "CDRA", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/app-vsam-mq/csd/CRDDEMOM.csd:27", 
+   "program": "CODATE01", 
+   "group": "CARDDEMO", 
+   "name": "CDRD", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/app-vsam-mq/csd/CRDDEMOM.csd:37", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CARDDLIB", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "LIBRARY", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:1", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "ACCTDAT", 
+   "attributes": {}, 
+   "dsname": "AWS.M2.CARDDEMO.ACCTDATA.VSAM.KSDS", 
+   "plan": null, 
+   "type": "FILE", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:13", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CARDAIX", 
+   "attributes": {}, 
+   "dsname": "AWS.M2.CARDDEMO.CARDDATA.VSAM.AIX.PATH", 
+   "plan": null, 
+   "type": "FILE", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:25", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CARDDAT", 
+   "attributes": {}, 
+   "dsname": "AWS.M2.CARDDEMO.CARDDATA.VSAM.KSDS", 
+   "plan": null, 
+   "type": "FILE", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:37", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CCXREF", 
+   "attributes": {}, 
+   "dsname": "AWS.M2.CARDDEMO.CARDXREF.VSAM.KSDS", 
+   "plan": null, 
+   "type": "FILE", 
+   "transid": null, 
+   "description": "CARD TO ACCOUNT XREF"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:50", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CUSTDAT", 
+   "attributes": {}, 
+   "dsname": "AWS.M2.CARDDEMO.CUSTDATA.VSAM.KSDS", 
+   "plan": null, 
+   "type": "FILE", 
+   "transid": null, 
+   "description": "CARDDEMO CUSTOMER DATA"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:63", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CXACAIX", 
+   "attributes": {}, 
+   "dsname": "AWS.M2.CARDDEMO.CARDXREF.VSAM.AIX.PATH", 
+   "plan": null, 
+   "type": "FILE", 
+   "transid": null, 
+   "description": "ALTERNATE INDEX TO CCXREF VIA ACCOUNT KEY"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:76", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "TRANSACT", 
+   "attributes": {}, 
+   "dsname": "AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS", 
+   "plan": null, 
+   "type": "FILE", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:88", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "USRSEC", 
+   "attributes": {}, 
+   "dsname": "AWS.M2.CARDDEMO.USRSEC.VSAM.KSDS", 
+   "plan": null, 
+   "type": "FILE", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:100", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COACTUP", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": "CREDIT CARD ACCOUNT UPDATE MAP"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:105", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COACTVW", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": "VIEW ACCOUNT"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:110", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COADM01", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:114", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COBIL00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:118", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COCRDLI", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": "LIST CARDS"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:123", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COCRDSL", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": "SEARCH CARDS"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:128", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COCRDUP", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": "CREDIT CARD UPDATE MAPSET"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:133", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COMEN01", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:137", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CORPT00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:141", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COSGN00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:145", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COTRN00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:149", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COTRN01", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:153", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COTRN02", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:157", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COUSR00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:161", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COUSR01", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:165", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COUSR02", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:169", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COUSR03", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "MAPSET", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:173", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COACTUPC", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": "CREDIT CARD DEMO ACCOUNT UPDATE"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:181", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COACTVWC", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CAVW", 
+   "description": "VIEW ACCT"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:189", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COADM01C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:196", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COBIL00C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:203", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COCRDLIC", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CC00", 
+   "description": "LIST CARDS"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:211", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COCRDSEC", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": "CREDIT CARD SEARCH"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:219", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COCRDSLC", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CCDL", 
+   "description": "VIEW CARD DETAIL"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:227", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COCRDUPC", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": "CREDIT CARD UPDATE SCREEN"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:235", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COMEN01C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:242", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CORPT00C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:249", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COSGN00C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": "CC00", 
+   "description": "LOGIN"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:257", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COTRN00C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:264", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COTRN01C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:271", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COTRN02C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:278", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COUSR00C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:285", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COUSR01C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:292", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COUSR02C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:299", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COUSR03C", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "PROGRAM", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:306", 
+   "program": "COACTUPC", 
+   "group": "CARDDEMO", 
+   "name": "CAUP", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": "CREDIT CARD DEMO ACCOUNT UPDATE"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:317", 
+   "program": "COACTVWC", 
+   "group": "CARDDEMO", 
+   "name": "CAVW", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:327", 
+   "program": "COADM01C", 
+   "group": "CARDDEMO", 
+   "name": "CA00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:337", 
+   "program": "COBIL00C", 
+   "group": "CARDDEMO", 
+   "name": "CB00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:347", 
+   "program": "COCRDSLC", 
+   "group": "CARDDEMO", 
+   "name": "CCDL", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:357", 
+   "program": "COCRDLIC", 
+   "group": "CARDDEMO", 
+   "name": "CCLI", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:367", 
+   "program": "COCRDUPC", 
+   "group": "CARDDEMO", 
+   "name": "CCUP", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": "CREDIT CARD UPDATE TRANSACTION"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:378", 
+   "program": "COSGN00C", 
+   "group": "CARDDEMO", 
+   "name": "CC00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:388", 
+   "program": "COCRDSEC", 
+   "group": "CARDDEMO", 
+   "name": "CDV1", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": "DEVELOPER TRANSACTION - 1"
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:399", 
+   "program": "COMEN01C", 
+   "group": "CARDDEMO", 
+   "name": "CM00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:409", 
+   "program": "CORPT00C", 
+   "group": "CARDDEMO", 
+   "name": "CR00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:419", 
+   "program": "COTRN00C", 
+   "group": "CARDDEMO", 
+   "name": "CT00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:429", 
+   "program": "COTRN01C", 
+   "group": "CARDDEMO", 
+   "name": "CT01", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:439", 
+   "program": "COTRN02C", 
+   "group": "CARDDEMO", 
+   "name": "CT02", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:449", 
+   "program": "COUSR00C", 
+   "group": "CARDDEMO", 
+   "name": "CU00", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:459", 
+   "program": "COUSR01C", 
+   "group": "CARDDEMO", 
+   "name": "CU01", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:469", 
+   "program": "COUSR02C", 
+   "group": "CARDDEMO", 
+   "name": "CU02", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:479", 
+   "program": "COUSR03C", 
+   "group": "CARDDEMO", 
+   "name": "CU03", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TRANSACTION", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:489", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "CARDDLIB", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "LIBRARY", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:494", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "COM2DOLL", 
+   "attributes": {}, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "LIBRARY", 
+   "transid": null, 
+   "description": null
+  }, 
+  {
+   "source": "app/csd/CARDDEMO.CSD:499", 
+   "program": null, 
+   "group": "CARDDEMO", 
+   "name": "JOBS", 
+   "attributes": {
+    "td_type": "EXTRA"
+   }, 
+   "dsname": null, 
+   "plan": null, 
+   "type": "TDQUEUE", 
+   "transid": null, 
+   "description": "SUBMIT JOBS FROM CICS"
+  }
+ ], 
+ "transactions": [
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:39", 
+   "program": "COPAUS1C", 
+   "transid": "CPVD", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:49", 
+   "program": "COPAUS0C", 
+   "transid": "CPVS", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:59", 
+   "program": "COPAUA0C", 
+   "transid": "CP00", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:25", 
+   "program": "COTRTLIC", 
+   "transid": "CTLI", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:35", 
+   "program": "COTRTUPC", 
+   "transid": "CTTU", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/app-vsam-mq/csd/CRDDEMOM.csd:17", 
+   "program": "COACCT01", 
+   "transid": "CDRA", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/app-vsam-mq/csd/CRDDEMOM.csd:27", 
+   "program": "CODATE01", 
+   "transid": "CDRD", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": "CREDIT CARD DEMO ACCOUNT UPDATE", 
+   "source": "app/csd/CARDDEMO.CSD:306", 
+   "program": "COACTUPC", 
+   "transid": "CAUP", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:317", 
+   "program": "COACTVWC", 
+   "transid": "CAVW", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:327", 
+   "program": "COADM01C", 
+   "transid": "CA00", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:337", 
+   "program": "COBIL00C", 
+   "transid": "CB00", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:347", 
+   "program": "COCRDSLC", 
+   "transid": "CCDL", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:357", 
+   "program": "COCRDLIC", 
+   "transid": "CCLI", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": "CREDIT CARD UPDATE TRANSACTION", 
+   "source": "app/csd/CARDDEMO.CSD:367", 
+   "program": "COCRDUPC", 
+   "transid": "CCUP", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:378", 
+   "program": "COSGN00C", 
+   "transid": "CC00", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": "DEVELOPER TRANSACTION - 1", 
+   "source": "app/csd/CARDDEMO.CSD:388", 
+   "program": "COCRDSEC", 
+   "transid": "CDV1", 
+   "program_in_inventory": false
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:399", 
+   "program": "COMEN01C", 
+   "transid": "CM00", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:409", 
+   "program": "CORPT00C", 
+   "transid": "CR00", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:419", 
+   "program": "COTRN00C", 
+   "transid": "CT00", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:429", 
+   "program": "COTRN01C", 
+   "transid": "CT01", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:439", 
+   "program": "COTRN02C", 
+   "transid": "CT02", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:449", 
+   "program": "COUSR00C", 
+   "transid": "CU00", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:459", 
+   "program": "COUSR01C", 
+   "transid": "CU01", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:469", 
+   "program": "COUSR02C", 
+   "transid": "CU02", 
+   "program_in_inventory": true
+  }, 
+  {
+   "group": "CARDDEMO", 
+   "description": null, 
+   "source": "app/csd/CARDDEMO.CSD:479", 
+   "program": "COUSR03C", 
+   "transid": "CU03", 
+   "program_in_inventory": true
+  }
+ ]
+}

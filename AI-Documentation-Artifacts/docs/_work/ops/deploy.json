@@ -1,0 +1,112 @@
+{
+ "schema": "ops-deploy/1",
+ "setup_sequence": {
+  "confidence": "Unverified",
+  "source": "README.md:147-166",
+  "note": "The README lists this order. Each named member exists. The README does not prove the jobs must run in this order.",
+  "steps": [
+   {"n": 1, "job": "DUSRSECJ", "purpose_in_readme": "Sets up user security VSAM file", "member": "app/jcl/DUSRSECJ.jcl"},
+   {"n": 2, "job": "CLOSEFIL", "purpose_in_readme": "Closes files opened by CICS", "member": "app/jcl/CLOSEFIL.jcl"},
+   {"n": 3, "job": "ACCTFILE", "member": "app/jcl/ACCTFILE.jcl"},
+   {"n": 4, "job": "CARDFILE", "member": "app/jcl/CARDFILE.jcl"},
+   {"n": 5, "job": "CUSTFILE", "member": "app/jcl/CUSTFILE.jcl"},
+   {"n": 6, "job": "XREFFILE", "member": "app/jcl/XREFFILE.jcl"},
+   {"n": 7, "job": "CREADB21", "purpose_in_readme": "Creates CardDemo Db2 database and loads tables", "member": "app/app-transaction-type-db2/jcl/CREADB21.jcl", "optional_in_readme": "Db2: Transaction Type Mgmt"},
+   {"n": 8, "job": "TRANFILE", "member": "app/jcl/TRANFILE.jcl"},
+   {"n": 9, "job": "TRANEXTR", "member": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl", "optional_in_readme": "Db2: Transaction Type Mgmt"},
+   {"n": 10, "job": "DISCGRP", "member": "app/jcl/DISCGRP.jcl"},
+   {"n": 11, "job": "TCATBALF", "member": "app/jcl/TCATBALF.jcl"},
+   {"n": 12, "job": "TRANCATG", "member": "app/jcl/TRANCATG.jcl"},
+   {"n": 13, "job": "TRANTYPE", "member": "app/jcl/TRANTYPE.jcl"},
+   {"n": 14, "job": "OPENFIL", "member": "app/jcl/OPENFIL.jcl"},
+   {"n": 15, "job": "DEFGDGB", "member": "app/jcl/DEFGDGB.jcl"},
+   {"n": 16, "job": "DEFGDGD", "member": "app/jcl/DEFGDGD.jcl"}
+  ]
+ },
+ "cics_install": {
+  "job": "CBADMCDJ",
+  "program": "DFHCSDUP",
+  "parm": "CSD(READWRITE),PAGESIZE(60),NOCOMPAT",
+  "source": "app/jcl/CBADMCDJ.jcl:27-28",
+  "csd": "OEM.CICSTS.DFHCSD",
+  "csd_source": "app/jcl/CBADMCDJ.jcl:30",
+  "steplib": "OEM.CICSTS.V05R06M0.CICS.SDFHLOAD",
+  "steplib_source": "app/jcl/CBADMCDJ.jcl:29",
+  "hlq_set": "AWS.M2.CARDDEMO",
+  "hlq_source": "app/jcl/CBADMCDJ.jcl:25",
+  "defines_library": "COM2DOLL DSNAME01(&HLQ..LOADLIB) GROUP(CARDDEMO)",
+  "library_source": "app/jcl/CBADMCDJ.jcl:44-45",
+  "install_command": "The line INSTALL GROUP(CARDDEMO) is a comment, not a DFHCSDUP command.",
+  "install_source": "app/jcl/CBADMCDJ.jcl:37"
+ },
+ "db2_setup": {
+  "create_job": "CREADB21",
+  "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:77-84",
+  "bind": "BLDCIDB2 steps BINDPK and BINDPL bind package CARDDEMO and plan &PLAN with PKLIST CARDDEMO.*",
+  "bind_source": "samples/proc/BLDCIDB2.prc:144-169"
+ },
+ "ims_setup": {
+  "load_job": "LOADPADB",
+  "note": "LOADPADB runs DFSRRC00 BMP. No DBDGEN, PSBGEN, or ACBGEN job was found.",
+  "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:26"
+ },
+ "scripts": [
+  {
+   "script": "scripts/remote_refresh.sh",
+   "order": ["CLOSEFIL", "ACCTFILE", "CARDFILE", "XREFFILE", "CUSTFILE", "TRANFILE", "DISCGRP", "TCATBALF", "TRANCATG", "TRANTYPE", "DUSRSECJ", "OPENFIL"],
+   "mechanism": "tnftp localhost 2121, site filetype=JES, put jcl/<job>",
+   "source": "scripts/remote_refresh.sh:9-50"
+  },
+  {
+   "script": "scripts/run_full_batch.sh",
+   "order": ["CLOSEFIL", "ACCTFILE", "CARDFILE", "XREFFILE", "CUSTFILE", "TRANBKP", "DISCGRP", "TCATBALF", "TRANTYPE", "DUSRSECJ", "POSTTRAN", "INTCALC", "TRANBKP", "COMBTRAN", "TRANIDX", "OPENFIL"],
+   "source": "scripts/run_full_batch.sh:9-66"
+  },
+  {
+   "script": "scripts/run_posting.sh",
+   "order": ["CLOSEFIL", "ACCTFILE", "TCATBALF", "TRANBKP", "POSTTRAN", "TRANIDX", "OPENFIL"],
+   "source": "scripts/run_posting.sh:9-34"
+  },
+  {
+   "script": "scripts/run_interest_calc.sh",
+   "order": ["CLOSEFIL", "INTCALC", "TRANBKP", "COMBTRAN", "TRANIDX", "OPENFIL"],
+   "source": "scripts/run_interest_calc.sh:11-34"
+  },
+  {
+   "script": "scripts/remote_compile.sh",
+   "actions": ["accepts a .cbl path", "substitutes ZZZZZZZZ in scripts/compile_batch.jcl.template", "puts the temp JCL to JES on localhost 2121"],
+   "source": "scripts/remote_compile.sh:20-38"
+  },
+  {
+   "script": "scripts/remote_submit.sh",
+   "actions": ["accepts a .jcl path and puts it to JES on localhost 2121"],
+   "source": "scripts/remote_submit.sh:14-24"
+  },
+  {
+   "script": "scripts/upld_module.sh",
+   "actions": ["pads the file to 80 columns with scripts/pad.awk", "puts the member to 'AWS.M2.CARDDEMO.<module_type>(<module_name>)'"],
+   "source": "scripts/upld_module.sh:29-38"
+  },
+  {
+   "script": "scripts/local_compile.sh",
+   "actions": ["runs cobc on sample/cobol/SIZING.cbl"],
+   "source": "scripts/local_compile.sh:2",
+   "note": "sample/cobol/SIZING.cbl is not in this repository."
+  }
+ ],
+ "runtime_packages": [],
+ "runtime_packages_note": "No zip, tar, or other runtime archive is in the repository. Profile excludes **/*.zip. None were present to list.",
+ "parameters": [
+  {"token": "&HLQ", "value": "deployment-provided", "defined": "README.md:108 describes it. CBADMCDJ sets HLQ=AWS.M2.CARDDEMO at app/jcl/CBADMCDJ.jcl:25. BUILDONL defaults HLQ to empty at samples/proc/BUILDONL.prc:26."},
+  {"token": "&SYSUID", "value": "deployment-provided", "defined": "NOTIFY=&SYSUID on the CBADMCDJ job card at app/jcl/CBADMCDJ.jcl:2."},
+  {"token": "&SSID", "value": "deployment-provided", "defined": "Passed by CICDBCMP and used as DSN SYSTEM (&SSID) at samples/proc/BLDCIDB2.prc:143."},
+  {"token": "&PLAN", "value": "deployment-provided", "defined": "BIND PLAN (&PLAN) at samples/proc/BLDCIDB2.prc:168. MNTTRDB2 uses the literal PLAN(CARDDEMO) at app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:30."},
+  {"token": "&DBRMLIB", "value": "deployment-provided", "defined": "samples/proc/BLDCIDB2.prc:138"},
+  {"token": "&LOADLIB", "value": "default &HLQ..CARDDEMO.LOADLIB", "defined": "samples/proc/BUILDONL.prc:33"},
+  {"token": "&CARDDEMOPRODJCL", "value": "deployment-provided", "defined": "CA7 JCLLIB symbol. See docs/_work/gaps.md."},
+  {"token": "CICSAWSA", "value": "CICSAWSA", "defined": "Literal CICS region name in operator commands, app/jcl/CLOSEFIL.jcl:26."},
+  {"token": "CARDDEMO", "value": "CARDDEMO", "defined": "Literal DB2 qualifier and package collection in samples/proc/BLDCIDB2.prc:144-146 and in the DDL. This is not the <<db2-schema>> placeholder."},
+  {"token": "<<db2-schema>>", "value": "deployment-provided", "defined": "Named in app/app-authorization-ims-db2-mq/README.md. The transaction-type DDL uses the literal CARDDEMO."},
+  {"token": "&&SYSPARM", "value": "MAP or DSECT at assembly", "defined": "BUILDBMS sets SYSPARM(MAP) at samples/proc/BUILDBMS.prc:49 and SYSPARM(DSECT) at samples/proc/BUILDBMS.prc:78."}
+ ]
+}

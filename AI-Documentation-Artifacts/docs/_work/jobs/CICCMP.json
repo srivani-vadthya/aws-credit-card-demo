@@ -1,0 +1,131 @@
+{
+ "set_symbols": {
+  "MEMNAME": "CICSPGMN", 
+  "HLQ": "AWS.M2"
+ }, 
+ "description": {
+  "text": "change CICSPGMN to your program name everywhere", 
+  "confidence": "Unverified", 
+  "source": "samples/jcl/CICCMP.jcl:4"
+ }, 
+ "job_card": {
+  "source": "samples/jcl/CICCMP.jcl:1", 
+  "msgclass": "H", 
+  "region": "0M", 
+  "class": "A", 
+  "notify": "&SYSUID"
+ }, 
+ "schedule": [], 
+ "module": "build", 
+ "jcllib": [
+  "ORDER=&HLQ..CARDDEMO.PRC.UTIL"
+ ], 
+ "submitted_by": [], 
+ "findings": [
+  {
+   "text": "Sample JCL under samples/jcl. Not named in CardDemo.ca7, CardDemo.controlm, or a shell script that puts a jcl/ member.", 
+   "confidence": "Confirmed", 
+   "source": "samples/jcl/CICCMP.jcl"
+  }
+ ], 
+ "source_path": "samples/jcl/CICCMP.jcl", 
+ "steps": [
+  {
+   "function": "Executes procedure BUILDONL", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": null, 
+   "proc_steps": [
+    "COB", 
+    "DISPLIST", 
+    "COPYLINK", 
+    "LKED"
+   ], 
+   "line": 41, 
+   "kind": "build", 
+   "name": "CICSCMP", 
+   "control_statements": [], 
+   "dds": [], 
+   "program": null, 
+   "proc": "BUILDONL"
+  }, 
+  {
+   "function": "Operator command", 
+   "if_condition": null, 
+   "parm": null, 
+   "cond": "(4,LT)", 
+   "proc_steps": [], 
+   "line": 45, 
+   "kind": "other", 
+   "name": "NEWCOPY", 
+   "control_statements": [
+    {
+     "text": "/MODIFY CICSAWSA,'CEMT SET PROG(CICSPGMN) NEWCOPY'", 
+     "meaning": "Operator command", 
+     "source": "samples/jcl/CICCMP.jcl:49"
+    }
+   ], 
+   "dds": [
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 46, 
+     "ddname": "ISFOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": true, 
+     "line": 47, 
+     "ddname": "CMDOUT", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }, 
+    {
+     "disp": null, 
+     "dummy": false, 
+     "lrecl": null, 
+     "gdg_relative": null, 
+     "sysout": false, 
+     "line": 48, 
+     "ddname": "ISFIN", 
+     "recfm": null, 
+     "layout": null, 
+     "space": null, 
+     "internal_reader": false, 
+     "program_file": null, 
+     "dsn": null, 
+     "usage": [], 
+     "instream": true
+    }
+   ], 
+   "program": "SDSF", 
+   "proc": null
+  }
+ ], 
+ "restart_notes": null, 
+ "unresolved_symbols": [
+  "SYSUID"
+ ], 
+ "sha256": "09d5e665e1918631acba7e60f5fb9524d40480208de5d36687452dd219dcc4ee", 
+ "job_name": "CICCMP"
+}

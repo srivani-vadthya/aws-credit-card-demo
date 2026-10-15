@@ -1,0 +1,244 @@
+{
+ "invoked_by": [
+  {
+   "confidence": "Confirmed", 
+   "target": "MNTTRDB2", 
+   "resolved_from": null, 
+   "mechanism": "JCL-EXEC", 
+   "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:30", 
+   "condition": null
+  }
+ ], 
+ "runtime_type_evidence": [
+  {
+   "text": "EXEC SQL present", 
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:80"
+  }, 
+  {
+   "text": "No EXEC CICS. Run from batch SYSIN RUN PROGRAM.", 
+   "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:30"
+  }
+ ], 
+ "source_path": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl", 
+ "module": "trantype", 
+ "header": {
+  "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:1", 
+  "version_banner": null, 
+  "description": "See the comment block at the top of the source. Unverified until matched to code.", 
+  "author": null
+ }, 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "name": "0001-OPEN-FILES", 
+   "section": null, 
+   "end_line": 89, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 82, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1001-READ-NEXT-RECORDS", 
+   "section": null, 
+   "end_line": 99, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "1002-READ-RECORDS", 
+    "1003-TREAT-RECORD", 
+    "1002-READ-RECORDS", 
+    "2001-CLOSE-STOP"
+   ], 
+   "reachable": true, 
+   "start_line": 91, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1002-READ-RECORDS", 
+   "section": null, 
+   "end_line": 107, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 100, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "1003-TREAT-RECORD", 
+   "section": null, 
+   "end_line": 130, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "10031-INSERT-DB", 
+    "10032-UPDATE-DB", 
+    "10033-DELETE-DB", 
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 109, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "10031-INSERT-DB", 
+   "section": null, 
+   "end_line": 164, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 132, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "10032-UPDATE-DB", 
+   "section": null, 
+   "end_line": 195, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "9999-ABEND", 
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 166, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "10033-DELETE-DB", 
+   "section": null, 
+   "end_line": 226, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [
+    "9999-ABEND", 
+    "9999-ABEND"
+   ], 
+   "reachable": true, 
+   "start_line": 196, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "9999-ABEND", 
+   "section": null, 
+   "end_line": 233, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 230, 
+   "go_to": []
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "name": "2001-CLOSE-STOP", 
+   "section": null, 
+   "end_line": 236, 
+   "purpose": "No I/O, CALL, or EXEC in this paragraph", 
+   "performs": [], 
+   "reachable": true, 
+   "start_line": 234, 
+   "go_to": []
+  }
+ ], 
+ "copybooks": [
+  {
+   "replacing": null, 
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:54", 
+   "resolution": "inventory", 
+   "name": "DCLTRTYP", 
+   "purpose": "DB2 DCLGEN host structure"
+  }
+ ], 
+ "data_items": [], 
+ "loc": {
+  "comment": 32, 
+  "total": 237, 
+  "code": 205
+ }, 
+ "evidence_summary": "Structural facts read from app/app-transaction-type-db2/cbl/COBTUPDT.cbl. Paragraph purposes are Inferred from statements.", 
+ "source_format": "fixed-with-sequence-area", 
+ "observations": [], 
+ "sha256": "0213fd5718c6aadd3fba6bbfb1818456d75d10843181bff63aca9ff57d39e87c", 
+ "files": [
+  {
+   "logical_name": "TR-RECORD", 
+   "record_layout": null, 
+   "record_key": null, 
+   "ddname_or_cics_file": "INPFILE", 
+   "physical_names": [], 
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:31", 
+   "file_status_field": "WS-INF-STATUS", 
+   "organization": "SEQUENTIAL", 
+   "access_mode": "SEQUENTIAL", 
+   "alternate_keys": []
+  }
+ ], 
+ "messages": [], 
+ "interfaces": {
+  "return_code_usage": [], 
+  "commarea": null, 
+  "pcbs": [], 
+  "linkage": []
+ }, 
+ "crud": [
+  {
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:137", 
+   "store_kind": "logical", 
+   "store": "CARDDEMO.TRANSACTION_TYPE", 
+   "ops": [
+    "C", 
+    "D", 
+    "U"
+   ]
+  }
+ ], 
+ "program_id": "COBTUPDT", 
+ "error_handling": [], 
+ "commands": [
+  {
+   "kind": "SQL", 
+   "resource": "CARDDEMO.TRANSACTION_TYPE", 
+   "line": 137, 
+   "paragraph": null, 
+   "verb": "INSERT", 
+   "response_handling": null, 
+   "options": {}
+  }, 
+  {
+   "kind": "SQL", 
+   "resource": "CARDDEMO.TRANSACTION_TYPE", 
+   "line": 171, 
+   "paragraph": null, 
+   "verb": "UPDATE", 
+   "response_handling": null, 
+   "options": {}
+  }, 
+  {
+   "kind": "SQL", 
+   "resource": "CARDDEMO.TRANSACTION_TYPE", 
+   "line": 201, 
+   "paragraph": null, 
+   "verb": "DELETE", 
+   "response_handling": null, 
+   "options": {}
+  }
+ ], 
+ "language": "COBOL", 
+ "calls": [], 
+ "candidate_rules": [
+  {
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:120-148", 
+   "summary": "A transaction-type input record is inserted into CARDDEMO.TRANSACTION_TYPE. A row whose type is not a recognized code is reported as not valid and the program abends."
+  }
+ ], 
+ "runtime_type": [
+  "db2", 
+  "batch-main"
+ ]
+}
