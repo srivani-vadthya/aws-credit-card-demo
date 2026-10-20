@@ -276,7 +276,15 @@ foreach ($entry in $entries) {
     $entry.Body = $linkRegex.Replace($entry.Body, [System.Text.RegularExpressions.MatchEvaluator]{
         param($m)
         $resolved = Resolve-DocLink $entry.FullPath $entry.Id $m.Groups[3].Value
-        if ($null -eq $resolved) { return $m.Value }
+        if ($null -eq $resolved) {
+            $dst = $m.Groups[3].Value.Trim()
+            if ($entry.FullPath.StartsWith($skillRoot, [System.StringComparison]::OrdinalIgnoreCase) -and $dst -notmatch '^(https?:|mailto:|ftp:|#)') {
+                $full = [System.IO.Path]::GetFullPath((Join-Path (Split-Path $entry.FullPath -Parent) ($dst -replace '#.*$', '')))
+                $skillRel = 'skills/' + $full.Substring($skillRoot.Length).TrimStart('\').Replace('\', '/')
+                return $m.Groups[2].Value + ' (`' + $skillRel + '` in the skills folder)'
+            }
+            return $m.Value
+        }
         $suffix = ''
         if ($resolved.Title) { $suffix = ' "' + $resolved.Title + '"' }
         return $m.Groups[1].Value + '[' + $m.Groups[2].Value + '](' + $resolved.Href + $suffix + ')'
@@ -292,7 +300,16 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('Four kinds of material are included.')
 [void]$sb.AppendLine()
 [void]$sb.AppendLine('- **Skills.** The mainframe documentation skills that drive discovery, analysis, and assembly, including their templates and the rule text shipped inside the skill package.')
-[void]$sb.AppendLine('- **Rules.** The copies installed in `.cursor/rules` for this repository. They are not byte-identical to the copies shipped with the skills, so both sets are kept.')
+$installedRules = @(Get-ChildItem (Join-Path $root '.cursor\rules') -File -Filter *.mdc)
+$differingRules = @($installedRules | Where-Object {
+    $shipped = Join-Path $assetRules $_.Name
+    -not (Test-Path $shipped) -or (Get-FileHash $_.FullName).Hash -ne (Get-FileHash $shipped).Hash
+} | ForEach-Object { '`' + $_.Name + '`' })
+if ($differingRules.Count -eq 0) {
+    [void]$sb.AppendLine('- **Rules.** The copies installed in `.cursor/rules` for this repository. All ' + $installedRules.Count + ' are byte-identical to the copies shipped with the skills (compared by sha256 when this file was built); both sets are kept so each part reads on its own.')
+} else {
+    [void]$sb.AppendLine('- **Rules.** The copies installed in `.cursor/rules` for this repository. These differ from the copies shipped with the skills (compared by sha256 when this file was built): ' + ($differingRules -join ', ') + '; both sets are kept.')
+}
 [void]$sb.AppendLine('- **Documents.** Every Markdown file under `docs/application-documentation` and `docs/_work`.')
 [void]$sb.AppendLine('- **Skill scripts and schemas.** The Python scripts, JSON schemas and YAML templates shipped inside the skills, as code listings in Part 5.')
 [void]$sb.AppendLine()

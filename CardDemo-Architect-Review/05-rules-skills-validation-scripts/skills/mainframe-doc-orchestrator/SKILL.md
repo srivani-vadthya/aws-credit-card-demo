@@ -135,7 +135,7 @@ coverage/coverage.json, coverage/gaps.json, coverage/check_package.json
 | `scripts/schedule_lines.py` | this skill | `<work_dir> [--repo .]`: adds OUTCOND/INCOND/JOB line numbers to Control-M facts in `batch/schedule.json`; exit 1 lists facts it cannot locate exactly once |
 | `scripts/render_detail.py` | this skill | `<work_dir> <output_dir>`: detailed pages from structure + validated semantics; statement inventory, statements in source order, copybook field references by program, PROC-supplied datasets on job steps |
 | `scripts/coverage_validate.py` | this skill | `<work_dir> <output_dir>`: coverage.json + 18-coverage/coverage-report.md; exit 1 on any failed criterion. Includes procedure statements, all decision points, logic grounding, rule traceability, scheduler and dataflow edges, data items by name and line |
-| `scripts/gap_report.py` | this skill | `<work_dir> <output_dir> [--claimed-pages N]`: gaps.json + 18-coverage/gap-report.md |
+| `scripts/gap_report.py` | this skill | `<work_dir> <output_dir> [--claimed-pages N]`: gaps.json + 18-coverage/gap-report.md + 18-coverage/gap-register.md; exit line reports `register_without_line` (must be 0) |
 
 Script output is a baseline: always confirm against the source before
 stating a fact as Confirmed.
@@ -183,7 +183,13 @@ program, paragraph, source lines, CICS transactions that start or reach the
 program, and JCL steps; online and batch flows) and replaces program, layout
 and job pages with the detailed versions; the validators add `18-coverage/`.
 `gap_report.py` also lists every Unverified statement found in the work
-folder JSON, with its source. `build_docx.py`
+folder JSON, with its source, and writes `18-coverage/gap-register.md`: one
+row per unresolved item, SME question, conflict (with its kind),
+Unverified statement and ambiguous dependency, each with evidence class,
+line-level source, impact where the work files support it, status, owner
+(technical investigation or SME) and next action. In the traceability page,
+rules that name no paragraph show the enclosing paragraph or division looked
+up from the cited line, marked *(derived)*. `build_docx.py`
 writes the whole package as one Word file; a summary DOCX is never a
 substitute for the pages.
 

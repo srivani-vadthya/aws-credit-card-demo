@@ -34,6 +34,198 @@ def esc(s):
     return str(s if s is not None else "").replace("|", "\\|").replace("\n", " ")
 
 
+_line_cache = {}
+
+
+def file_lines(path):
+    if path not in _line_cache:
+        if os.path.isfile(path):
+            f = open(path, "rb")
+            try:
+                _line_cache[path] = f.read().decode("latin-1").replace("\r\n", "\n").replace("\r", "\n").split("\n")
+            finally:
+                f.close()
+        else:
+            _line_cache[path] = []
+    return _line_cache[path]
+
+
+def first_line(path, pattern):
+    """path:N of the first line matching pattern (regex), or the bare path."""
+    rx = re.compile(pattern)
+    for i, l in enumerate(file_lines(path)):
+        if rx.search(l):
+            return "%s:%d" % (path, i + 1)
+    return path
+
+
+CONFLICT_CLASSES = {
+    "batch analysis": "code-vs-comment-or-definition",
+    "copybook resolution": "code-vs-comment-or-definition",
+    "JCL": "dd-reuse-across-jobs",
+    "rule review": "rule-correction",
+    "earlier facts vs parser": "parser-reconciliation",
+}
+
+
+def runtime_scope(progs, jcl, csd, callgraph):
+    """program -> sorted list of 'CICS <tran> (starts|reached, conf)' and 'JCL <job>.<step>' entries."""
+    have = set(progs)
+    out_edges = {}
+    for e in callgraph:
+        if e.get("mechanism") not in ("XCTL", "LINK", "CALL-static", "CALL-dynamic"):
+            continue
+        tg = [(t.get("target"), t.get("confidence") or "Inferred") for t in e.get("resolved_to", []) if t.get("target")] or [(e.get("to"), e.get("confidence") or "Confirmed")]
+        for t, conf in tg:
+            out_edges.setdefault(e["from"], []).append((t, conf))
+    scope = {}
+    for r in csd["resources"]:
+        if r["type"] != "TRANSACTION" or not r["attrs"].get("PROGRAM"):
+            continue
+        tran, start = r["name"], r["attrs"]["PROGRAM"]
+        best = {start: "starts"}
+        todo = [start]
+        while todo:
+            p = todo.pop()
+            for t, conf in out_edges.get(p, []):
+                c = "Confirmed" if best[p] in ("starts", "Confirmed") and conf == "Confirmed" else "Inferred"
+                if t not in best or (best[t] == "Inferred" and c == "Confirmed"):
+                    best[t] = c
+                    todo.append(t)
+        for p, c in best.items():
+            scope.setdefault(p, set()).add("CICS %s (%s)" % (tran, c if c == "starts" else "reached, " + c))
+    for j in jcl:
+        if j["artifact_type"] != "jcl-job":
+            continue
+        name = ((j.get("job") or {}).get("name") or j["member"]).upper()
+        for st in j["steps"]:
+            pg = ((st.get("application_program") or {}).get("program") or st.get("pgm") or "").upper()
+            if pg in have or pg in scope:
+                scope.setdefault(pg, set()).add("JCL %s.%s (`%s`)" % (name, st.get("name") or "?", st.get("source")))
+    return dict((k, sorted(v)) for k, v in scope.items())
+
+
+def build_register(progs, cpys, jcl, usage, csd, callgraph, sme, conflicts, ambiguous, unresolved, unverified):
+    """One row per gap with evidence class, source, supported impact, status, owner and next action."""
+    scope = runtime_scope(progs, jcl, csd, callgraph)
+    users = {}
+    for u in usage:
+        if not u["commented"]:
+            users.setdefault(u["copybook"], set()).add(u["from_member"])
+    jobs = {}
+    for j in jcl:
+        jobs[((j.get("job") or {}).get("name") or j["member"]).upper() if j["artifact_type"] == "jcl-job" else j["member"]] = j
+
+    def scope_of(name):
+        if name in scope:
+            s = scope[name]
+            return "Runs under %d entry point(s): %s" % (len(s), "; ".join(s[:6]) + ("; ..." if len(s) > 6 else ""))
+        if name in users:
+            u = sorted(users[name])
+            return "Copied by %d member(s): %s" % (len(u), ", ".join(u))
+        if name in jobs:
+            return "JCL member `%s`" % jobs[name]["source_path"]
+        return ""
+
+    reg = []
+
+    def add(prefix, kind, component, summary, evidence, source, impact, status, owner, action):
+        reg.append({"id": "%s-%03d" % (prefix, 1 + len([r for r in reg if r["id"].startswith(prefix + "-")])),
+                    "kind": kind, "component": component, "summary": summary, "evidence": evidence, "source": source or "",
+                    "impact": impact, "status": status, "owner": owner, "next_action": action})
+
+    for u in unresolved:
+        if u["kind"] == "JCL symbolic parameter":
+            syms = [s.strip() for s in u["item"].split(",")]
+            src = first_line(u["source"], "|".join(re.escape(s) + r"(?![A-Z0-9#@$])" for s in syms))
+            u["source"] = src
+            j = jobs.get(u["component"])
+            n_dd, procs, n_other = 0, set(), 0
+            if j:
+                for st in j["steps"]:
+                    n_dd += len([d for d in st["dds"] if "&" in (d.get("dsn") or "").replace("&&", "")])
+                    if "&" in st["operands"].replace("&&", ""):
+                        if st.get("proc"):
+                            procs.add(st["proc"])
+                        else:
+                            n_other += 1
+            parts = []
+            if n_dd:
+                parts.append("%d DD statement(s) build dataset names from these symbolics, so their physical dataset names cannot be stated" % n_dd)
+            if procs:
+                parts.append("passed as parameters to PROC %s, whose resolved libraries and members cannot be stated" % ", ".join(sorted(procs)))
+            if n_other:
+                parts.append("%d EXEC statement(s) use them in parameters" % n_other)
+            add("GAP-U", "unresolved symbolic", u["component"], "Symbolic parameters without a value in the repository: %s" % u["item"],
+                "Confirmed: symbolics present in source; values unknown", src,
+                ("; ".join(parts) + " (Confirmed from the JCL structure)") if parts else "Not assessed",
+                "Open", "Technical investigation",
+                "Obtain the submit-time values (JCL SET, PROC defaults, scheduler variables) from the target environment and re-run dataset lineage")
+        elif u["kind"] == "external-or-missing program":
+            refs = [r["name"] for r in csd["resources"] if r["type"] == "TRANSACTION" and r["attrs"].get("PROGRAM") == u["component"]]
+            add("GAP-U", "missing program source", u["component"], "CICS PROGRAM definition with no source member in the repository",
+                "Confirmed: CSD entry exists; no source file inventoried", u["source"],
+                ("Transaction(s) %s start this program; their behaviour cannot be documented beyond the CSD entry (Confirmed)" % ", ".join(refs)) if refs else "No transaction starts it",
+                "Open", "Technical investigation", u["resolution"][0].upper() + u["resolution"][1:])
+        else:
+            add("GAP-U", u["kind"], u["component"], u["item"], "Confirmed", u.get("source"), scope_of(u["component"]), "Open", "Technical investigation", u["resolution"])
+    for q in sme:
+        add("GAP-S", "SME question", q["component"], q["question"], "Requires confirmation: code behaviour is Confirmed at the source, intent is not",
+            q.get("source"), scope_of(q["component"]) or "Not assessed", "Open", "SME clarification",
+            "Answer the question; record whether the coded behaviour is intended or a defect")
+    for cf in conflicts:
+        cls = CONFLICT_CLASSES.get(cf["origin"], "other")
+        cf["class"] = cls
+        if cls == "parser-reconciliation" and ":" not in (cf.get("source") or ""):
+            cf["source"] = first_line(cf["source"], r"^.{6}\s*PROCEDURE\s+DIVISION|^\s*PROCEDURE\s+DIVISION")
+        if cls == "code-vs-comment-or-definition":
+            add("GAP-C", "conflict: " + cls, cf["component"], cf["text"],
+                "Confirmed conflict: both sides are in the cited source; the pages document the code" + ("" if "Inferred" not in cf["text"] else " (impact statement Inferred)"),
+                cf.get("source"), scope_of(cf["component"]) or "Not assessed", "Open", "SME clarification",
+                "Confirm which side is intended; until then the documented behaviour follows the code")
+        elif cls == "rule-correction":
+            add("GAP-C", "conflict: " + cls, cf["component"], cf["text"], "Confirmed: corrected against the cited source lines", cf.get("source"),
+                "The catalog carries the corrected rule; the earlier wording is not used", "Closed (corrected)", "SME review optional",
+                "Optional: SME confirms the corrected rule wording")
+        elif cls == "dd-reuse-across-jobs":
+            add("GAP-C", "conflict: " + cls, cf["component"], cf["text"], "Confirmed: each binding is cited", cf.get("source"),
+                "Informational: the same program/utility DD name is bound to different datasets in different jobs or concatenations; each job page shows its own binding",
+                "Informational", "None", "No action unless a binding is expected to be identical across jobs")
+        elif cls == "parser-reconciliation":
+            add("GAP-C", "conflict: " + cls, cf["component"], cf["text"], "Confirmed: tooling difference, not an application conflict", cf.get("source"),
+                "None on the documentation: pages use the parser output (the unnamed first paragraph is shown as the PROCEDURE DIVISION entry)",
+                "Closed (parser output used)", "None", "None")
+        else:
+            add("GAP-C", "conflict: " + cls, cf["component"], cf["text"], "Confirmed", cf.get("source"), scope_of(cf["component"]), "Open", "Technical investigation", "Review")
+    for u in unverified:
+        f = u["facts"]
+        if f.startswith("batch/"):
+            impact = "Run frequency/cycle is taken from a scheduler folder or job label only"
+            owner, action = "Technical investigation", "Confirm the run calendar with the scheduler administrators"
+        elif f.startswith("jobs/") or f.startswith("ops/build"):
+            impact = "Description text only; the documented step behaviour comes from the EXEC/DD statements"
+            owner, action = "None required", "Confirm with the job owner only if the comment is used as a requirement"
+        else:
+            impact = "Not assessed"
+            owner, action = "Technical investigation", "Confirm in the target environment"
+        add("GAP-V", "unverified statement", u["component"], u["statement"], "Unverified: comment, README or label only", u["source"], impact,
+            "Open (low)" if owner == "None required" else "Open", owner, action)
+    for a in ambiguous:
+        if a["mechanism"] in ("XCTL", "LINK", "CALL-dynamic"):
+            impact = ("Edge %s -> %s is Inferred; rules and transactions reached through it carry Inferred confidence on the traceability page"
+                      % (a["from"], ", ".join(x for x in a["candidates"] if x) or "(no candidate)"))
+            action = "Confirm targets with a CICS trace (for example CEDX or auxiliary trace) or by review of the MOVE paths"
+        elif a["mechanism"] == "CA7 job":
+            impact = "Scheduler job %s is mapped to JCL member %s by name only (Inferred)" % (a["variable"], ", ".join(a["candidates"]))
+            action = "Confirm the CA7 job-to-member mapping with the scheduler administrators"
+        else:
+            impact = "The submitted job stream is built at run time; jobs it submits are not in the static dependency graph"
+            action = "Review the job stream the program writes and confirm the internal reader setup in the target region"
+        add("GAP-A", "ambiguous dependency", a["from"], "%s %s: %s" % (a["mechanism"], a["variable"], a["why"]), "Inferred", a.get("source"),
+            impact, "Open", "Technical investigation", action)
+    return reg
+
+
 def main(argv):
     if len(argv) < 3:
         raise SystemExit(__doc__)
@@ -238,8 +430,11 @@ def main(argv):
             ambiguous.append({"from": e.get("from"), "mechanism": e.get("mechanism"), "variable": e.get("to"), "candidates": [],
                               "source": e.get("source"), "why": "variable target not resolved"})
     for j in schedule.get("jobs_in_scheduler_without_jcl", []):
+        src = j.get("source") or ""
+        if src and ":" not in src and j.get("job") and j.get("jcl_member"):
+            src = first_line(src, r"^\s*%s\s+\d+\s+%s(\s|$)" % (re.escape(j["job"]), re.escape(j["jcl_member"])))
         ambiguous.append({"from": "scheduler", "mechanism": "CA7 job", "variable": j.get("job"), "candidates": [j.get("jcl_member")],
-                          "source": j.get("source"), "why": "scheduler job name has no job card of that name; it names JCL member %s" % j.get("jcl_member")})
+                          "source": src, "why": "scheduler job name has no job card of that name; it names JCL member %s" % j.get("jcl_member")})
     q = schedule.get("td_queue_submit")
     if q:
         ambiguous.append({"from": q.get("writer"), "mechanism": "TD queue %s -> internal reader" % q.get("queue"), "variable": "job stream built in program",
@@ -333,13 +528,15 @@ def main(argv):
                 collect_unverified(load(fp, {}), {}, os.path.relpath(fp, work).replace("\\", "/"))
     unverified.sort(key=lambda u: (u["facts"].split("/")[0], u["component"], u["source"]))
 
+    register = build_register(progs, cpys, jcl, usage, csd, callgraph, sme, conflicts, ambiguous, unresolved, unverified)
+
     counts = {}
     for c in comps:
         counts.setdefault(c["kind"], {})
         counts[c["kind"]][c["status"]] = counts[c["kind"]].get(c["status"], 0) + 1
     result = {"schema": "gaps/1", "generated": time.strftime("%Y-%m-%dT%H:%M:%S"), "components": comps, "counts": counts,
               "sme_questions": sme, "conflicts": conflicts, "ambiguous_dependencies": ambiguous, "unresolved": unresolved,
-              "unverified": unverified,
+              "unverified": unverified, "register": register,
               "excluded": excluded, "pages": pages, "markdown_pages": total_md, "claimed_pages": claimed}
     f = open(os.path.join(work, "coverage", "gaps.json"), "w", encoding="utf-8", newline="\n")
     try:
@@ -361,6 +558,33 @@ def main(argv):
         L.append("| %s | %s | %d |" % (k, " | ".join(str(n) for n in row), sum(row)))
     L.append("| **all** | %s | %d |" % (" | ".join(str(tot[o]) for o in ORDER), sum(tot.values())))
     L += ["", "Excluded from documentation with a reason: %d inventory entries (placeholders, repository metadata, excluded binaries). They are listed in `docs/_work/coverage/gaps.json` under `excluded`." % len(excluded)]
+    L += ["", "## How the counts relate", "",
+          "Every open item is also a row in the [gap register](gap-register.md), with evidence class, source, impact, status, owner and next action.", "",
+          "| Register | Rows | By status | By owner |", "|---|---|---|---|"]
+    for prefix, label in (("GAP-U", "Unresolved items"), ("GAP-S", "SME questions"), ("GAP-C", "Conflicting definitions"),
+                          ("GAP-V", "Unverified statements"), ("GAP-A", "Ambiguous dependencies")):
+        rs = [r for r in register if r["id"].startswith(prefix + "-")]
+        bs, bo = {}, {}
+        for r in rs:
+            bs[r["status"]] = bs.get(r["status"], 0) + 1
+            bo[r["owner"]] = bo.get(r["owner"], 0) + 1
+        L.append("| %s | %d | %s | %s |" % (label, len(rs), ", ".join("%s %d" % kv for kv in sorted(bs.items())), ", ".join("%s %d" % kv for kv in sorted(bo.items()))))
+    cls_n = {}
+    for cf in conflicts:
+        cls_n[cf.get("class")] = cls_n.get(cf.get("class"), 0) + 1
+    unres_comp = [c["name"] for c in comps if c["status"] == "unresolved"]
+    unres_items = set(u["component"] for u in unresolved)
+    sme_comp = [c["name"] for c in comps if c["status"] == "requires SME clarification"]
+    L += ["",
+          "- Unresolved: %d components have primary status unresolved and %d unresolved items are listed. Components without an item of their own: %s."
+          % (len(unres_comp), len(unresolved), ", ".join(sorted(set(unres_comp) - unres_items)) or "none")
+          + (" CDV1 is unresolved only because the program it starts, COCRDSEC, has no source." if "CDV1" in unres_comp and "CDV1" not in unres_items else ""),
+          "- SME: %d components have primary status requires SME clarification; together they carry %d of the %d SME questions (a component can have several). Components with SME questions but a higher-precedence status are counted under that status."
+          % (len(sme_comp), len([q for q in sme if q["component"] in set(sme_comp)]), len(sme)),
+          "- Conflicting definitions (%d) are of four kinds: %s. Only code-vs-comment-or-definition rows are open questions; rule corrections and parser reconciliations are closed, and DD reuse rows are informational."
+          % (len(conflicts), ", ".join("%s %d" % kv for kv in sorted(cls_n.items()))),
+          "- Unverified statements (%d): the core rule (`mainframe-doc-core.mdc`) forbids using them as evidence for a Confirmed fact; this is a process rule, not a measured check. Ambiguous dependencies (%d) are Inferred edges or run-time behaviour."
+          % (len(unverified), len(ambiguous))]
     L += ["", "## Page count reconciliation", ""]
     if claimed is not None:
         added = []
@@ -399,7 +623,7 @@ def main(argv):
     for q in sme:
         L.append("| %s | %s | %s |" % (esc(q["component"]), esc(q["question"]), ("`%s`" % q["source"]) if q.get("source") else ""))
     L += ["", "## Unverified statements", "",
-          "Statements whose only evidence is a source comment, a README, a diagram or a scheduler label. They are reported as written and are not used as "
+          "Statements whose only evidence is a source comment, a README, a diagram or a scheduler label. They are reported as written; the core rule forbids using them as "
           "evidence for any Confirmed fact; an SME or the runtime environment must confirm them. %d statements." % len(unverified), ""]
     if unverified:
         L += ["| Component | Statement | Source | Facts file |", "|---|---|---|---|"]
@@ -407,9 +631,9 @@ def main(argv):
             L.append("| %s | %s | %s | `docs/_work/%s` |" % (esc(u["component"]), esc(u["statement"]), ("`%s`" % u["source"]) if u["source"] else "", u["facts"]))
     else:
         L.append("None.")
-    L += ["", "## Conflicting definitions", "", "| Component | Conflict | Origin | Source |", "|---|---|---|---|"]
+    L += ["", "## Conflicting definitions", "", "| Component | Conflict | Origin | Kind | Source |", "|---|---|---|---|---|"]
     for cf in conflicts:
-        L.append("| %s | %s | %s | %s |" % (esc(cf["component"]), esc(cf["text"]), esc(cf["origin"]), ("`%s`" % cf["source"]) if cf.get("source") else ""))
+        L.append("| %s | %s | %s | %s | %s |" % (esc(cf["component"]), esc(cf["text"]), esc(cf["origin"]), cf.get("class", ""), ("`%s`" % cf["source"]) if cf.get("source") else ""))
     L += ["", "## Ambiguous dependencies", "", "| From | Mechanism | Target expression | Candidates | Why ambiguous | Source |", "|---|---|---|---|---|---|"]
     for a in ambiguous:
         L.append("| %s | %s | %s | %s | %s | %s |" % (esc(a["from"]), esc(a["mechanism"]), esc(a["variable"]), esc(", ".join(str(x) for x in a["candidates"] if x)), esc(a["why"]),
@@ -424,8 +648,44 @@ def main(argv):
         f.write("\n".join(L) + "\n")
     finally:
         f.close()
-    sys.stdout.write("components=%d %s sme=%d conflicts=%d ambiguous=%d unresolved=%d unverified=%d pages=%d\n" % (
-        len(comps), json.dumps(tot), len(sme), len(conflicts), len(ambiguous), len(unresolved), len(unverified), total_md))
+    write_register(out, register, result["generated"])
+    no_src = len([r for r in register if ":" not in r["source"]])
+    sys.stdout.write("components=%d %s sme=%d conflicts=%d ambiguous=%d unresolved=%d unverified=%d register=%d register_without_line=%d pages=%d\n" % (
+        len(comps), json.dumps(tot), len(sme), len(conflicts), len(ambiguous), len(unresolved), len(unverified), len(register), no_src, total_md))
+
+
+def write_register(out, register, generated):
+    L = ["# Gap register", "",
+         "Generated by `gap_report.py` on %s. One row per open or reviewed item from the [gap report](gap-report.md): unresolved items (GAP-U), "
+         "SME questions (GAP-S), conflicting definitions (GAP-C), Unverified statements (GAP-V) and ambiguous dependencies (GAP-A)." % generated, "",
+         "Evidence classes: **Confirmed** = stated by code or definitions at the cited lines; **Inferred** = derived from several Confirmed facts; "
+         "**Unverified** = comment, README or label only; **Requires confirmation** = the code is Confirmed but its business intent is not. "
+         "Impact is stated only where the work files support it (entry points that run the code, copybook users, DD counts); otherwise it says *Not assessed*. "
+         "Business impact of SME questions is not assessed by the pipeline.", "",
+         "## Summary", "", "| Owner | Status | Rows |", "|---|---|---|"]
+    agg = {}
+    for r in register:
+        agg[(r["owner"], r["status"])] = agg.get((r["owner"], r["status"]), 0) + 1
+    for (o, s), n in sorted(agg.items()):
+        L.append("| %s | %s | %d |" % (o, s, n))
+    for prefix, title in (("GAP-U", "Unresolved items (technical investigation)"), ("GAP-S", "SME questions"),
+                          ("GAP-C", "Conflicting definitions"), ("GAP-A", "Ambiguous dependencies"), ("GAP-V", "Unverified statements")):
+        rs = [r for r in register if r["id"].startswith(prefix + "-")]
+        L += ["", "## " + title, "", "| ID | Component | Item | Evidence | Source | Impact | Status | Owner | Next action |", "|---|---|---|---|---|---|---|---|---|"]
+        for r in rs:
+            L.append("| %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (r["id"], esc(r["component"]), esc(r["summary"]), esc(r["evidence"]),
+                                                                      ("`%s`" % r["source"]) if r["source"] else "", esc(r["impact"]), r["status"], r["owner"], esc(r["next_action"])))
+        if not rs:
+            L.append("| - | - | None | - | - | - | - | - | - |")
+    L += ["", "## Sources", "", "- `docs/_work/coverage/gaps.json` (key `register`)", "- [gap-report.md](gap-report.md)", "",
+          "## Confidence", "", "Rows, sources and counts are computed by script from the work files. Impact scope uses the CSD, JCL steps and the call graph; "
+          "reach through a resolved dynamic target is Inferred."]
+    p = os.path.join(out, "18-coverage", "gap-register.md")
+    f = open(p, "w", encoding="utf-8", newline="\n")
+    try:
+        f.write("\n".join(L) + "\n")
+    finally:
+        f.close()
 
 
 if __name__ == "__main__":

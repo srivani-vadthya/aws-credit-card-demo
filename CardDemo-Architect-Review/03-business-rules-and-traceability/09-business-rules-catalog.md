@@ -19,15 +19,15 @@ All business rules: 50 legacy rules from the first pass (each re-reviewed in the
 
 | Program | Reason |
 |---|---|
-| [CBACT02C](07-programs/CBACT02C.md) | CBACT02C is a pure file-print utility: it opens the card KSDS (CARDFILE) for sequential input, DISPLAYs every CARD-RECORD to SYSOUT, and closes the file. It makes no data-driven decisions; its only conditional logic is file-status handling (end of file, abend code 999 on any I/O error). |
-| [CBACT03C](07-programs/CBACT03C.md) | CBACT03C is a pure file-print utility: it opens the card cross-reference KSDS (XREFFILE) for sequential input, DISPLAYs every CARD-XREF-RECORD to SYSOUT, and closes the file. Its only conditional logic is file-status handling (end of file, abend code 999 on any I/O error). |
-| [CBCUS01C](07-programs/CBCUS01C.md) | CBCUS01C is a pure file-print utility: it opens the customer KSDS (CUSTFILE) for sequential input, DISPLAYs every CUSTOMER-RECORD to SYSOUT, and closes the file. Its only conditional logic is file-status handling (end of file, abend code 999 on any I/O error). |
-| [CBSTM03B](07-programs/CBSTM03B.md) | CBSTM03B is a file-access subroutine for CBSTM03A. Based on the DD name and operation code passed in LK-M03B-AREA it opens, reads (sequentially or by key) or closes one of four indexed files and returns the file status in LK-M03B-RC. It makes no business decisions; its conditional logic is only the dispatch on file name and operation code. |
-| [COBSWAIT](07-programs/COBSWAIT.md) | COBSWAIT is a technical batch utility: it reads a wait duration from SYSIN and calls the external routine MVSWAIT to suspend the step. It contains no decisions, validations, calculations or data processing with business meaning. |
+| [CBACT02C](../01-detailed-documentation/application-documentation/07-programs/CBACT02C.md) | CBACT02C is a pure file-print utility: it opens the card KSDS (CARDFILE) for sequential input, DISPLAYs every CARD-RECORD to SYSOUT, and closes the file. It makes no data-driven decisions; its only conditional logic is file-status handling (end of file, abend code 999 on any I/O error). |
+| [CBACT03C](../01-detailed-documentation/application-documentation/07-programs/CBACT03C.md) | CBACT03C is a pure file-print utility: it opens the card cross-reference KSDS (XREFFILE) for sequential input, DISPLAYs every CARD-XREF-RECORD to SYSOUT, and closes the file. Its only conditional logic is file-status handling (end of file, abend code 999 on any I/O error). |
+| [CBCUS01C](../01-detailed-documentation/application-documentation/07-programs/CBCUS01C.md) | CBCUS01C is a pure file-print utility: it opens the customer KSDS (CUSTFILE) for sequential input, DISPLAYs every CUSTOMER-RECORD to SYSOUT, and closes the file. Its only conditional logic is file-status handling (end of file, abend code 999 on any I/O error). |
+| [CBSTM03B](../01-detailed-documentation/application-documentation/07-programs/CBSTM03B.md) | CBSTM03B is a file-access subroutine for CBSTM03A. Based on the DD name and operation code passed in LK-M03B-AREA it opens, reads (sequentially or by key) or closes one of four indexed files and returns the file status in LK-M03B-RC. It makes no business decisions; its conditional logic is only the dispatch on file name and operation code. |
+| [COBSWAIT](../01-detailed-documentation/application-documentation/07-programs/COBSWAIT.md) | COBSWAIT is a technical batch utility: it reads a wait duration from SYSIN and calls the external routine MVSWAIT to suspend the step. It contains no decisions, validations, calculations or data processing with business meaning. |
 
 ## CBACT01C
 
-Program page: [CBACT01C](07-programs/CBACT01C.md).
+Program page: [CBACT01C](../01-detailed-documentation/application-documentation/07-programs/CBACT01C.md).
 
 ### BR-CBACT01C-001
 
@@ -75,7 +75,7 @@ Any account-file read status other than '00' (record) or '10' (end of file) stop
 
 ## CBACT04C
 
-Program page: [CBACT04C](07-programs/CBACT04C.md).
+Program page: [CBACT04C](../01-detailed-documentation/application-documentation/07-programs/CBACT04C.md).
 
 ### BR-BASE-CBACT04C-001
 
@@ -175,7 +175,7 @@ A transaction-category balance whose account is missing from the account master 
 
 ## CBEXPORT
 
-Program page: [CBEXPORT](07-programs/CBEXPORT.md).
+Program page: [CBEXPORT](../01-detailed-documentation/application-documentation/07-programs/CBEXPORT.md).
 
 ### BR-CBEXPORT-001
 
@@ -248,7 +248,7 @@ A failed write of any export record (status not '00') aborts the whole export ru
 
 ## CBIMPORT
 
-Program page: [CBIMPORT](07-programs/CBIMPORT.md).
+Program page: [CBIMPORT](../01-detailed-documentation/application-documentation/07-programs/CBIMPORT.md).
 
 ### BR-CBIMPORT-001
 
@@ -318,7 +318,7 @@ Imported records are rebuilt field by field into the standard CardDemo master la
 
 ## CBPAUP0C
 
-Program page: [CBPAUP0C](07-programs/CBPAUP0C.md).
+Program page: [CBPAUP0C](../01-detailed-documentation/application-documentation/07-programs/CBPAUP0C.md).
 
 ### BR-AUTH-CBPAUP0C-001
 
@@ -436,7 +436,7 @@ Any DL/I status other than the expected ones (spaces; 'GB' end of database on su
 
 ## CBSTM03A
 
-Program page: [CBSTM03A](07-programs/CBSTM03A.md).
+Program page: [CBSTM03A](../01-detailed-documentation/application-documentation/07-programs/CBSTM03A.md).
 
 ### BR-CBSTM03A-001
 
@@ -527,7 +527,7 @@ One statement (text and HTML) is produced for every record in the card cross-ref
 
 ## CBTRN01C
 
-Program page: [CBTRN01C](07-programs/CBTRN01C.md).
+Program page: [CBTRN01C](../01-detailed-documentation/application-documentation/07-programs/CBTRN01C.md).
 
 ### BR-CBTRN01C-001
 
@@ -576,7 +576,7 @@ A read error on the daily transaction file (status other than '00' or '10') abor
 
 ## CBTRN02C
 
-Program page: [CBTRN02C](07-programs/CBTRN02C.md).
+Program page: [CBTRN02C](../01-detailed-documentation/application-documentation/07-programs/CBTRN02C.md).
 
 ### BR-CBTRN02C-001
 
@@ -814,7 +814,7 @@ Any fatal file error (open, read, write, rewrite or close failure that the progr
 
 ## CBTRN03C
 
-Program page: [CBTRN03C](07-programs/CBTRN03C.md).
+Program page: [CBTRN03C](../01-detailed-documentation/application-documentation/07-programs/CBTRN03C.md).
 
 ### BR-CBTRN03C-001
 
@@ -1013,7 +1013,7 @@ Any fatal file error tested by the program terminates the step with user abend c
 
 ## COACCT01
 
-Program page: [COACCT01](07-programs/COACCT01.md).
+Program page: [COACCT01](../01-detailed-documentation/application-documentation/07-programs/COACCT01.md).
 
 ### BR-COACCT01-001
 
@@ -1139,7 +1139,7 @@ If the CICS trigger data cannot be retrieved (RETRIEVE response not NORMAL), the
 
 ## COACTUPC
 
-Program page: [COACTUPC](07-programs/COACTUPC.md).
+Program page: [COACTUPC](../01-detailed-documentation/application-documentation/07-programs/COACTUPC.md).
 
 ### BR-BASE-003
 
@@ -1700,7 +1700,7 @@ A first entry (no commarea, or arrival from the main menu COMEN01C that is not a
 
 ## COACTVWC
 
-Program page: [COACTVWC](07-programs/COACTVWC.md).
+Program page: [COACTVWC](../01-detailed-documentation/application-documentation/07-programs/COACTVWC.md).
 
 ### BR-BASE-COACTVWC-001
 
@@ -1832,7 +1832,7 @@ Account financial and date fields are displayed when the account or customer rec
 
 ## COADM01C
 
-Program page: [COADM01C](07-programs/COADM01C.md).
+Program page: [COADM01C](../01-detailed-documentation/application-documentation/07-programs/COADM01C.md).
 
 ### BR-BASE-001
 
@@ -1968,7 +1968,7 @@ A date input type other than 1 or 2 moves INVALID INPUT into the error message f
 
 ## COBIL00C
 
-Program page: [COBIL00C](07-programs/COBIL00C.md).
+Program page: [COBIL00C](../01-detailed-documentation/application-documentation/07-programs/COBIL00C.md).
 
 ### BR-COBIL00C-001
 
@@ -2156,7 +2156,7 @@ When returning to a previous screen and no target program is set, the bill-payme
 
 ## COBTUPDT
 
-Program page: [COBTUPDT](07-programs/COBTUPDT.md).
+Program page: [COBTUPDT](../01-detailed-documentation/application-documentation/07-programs/COBTUPDT.md).
 
 ### BR-TRANTYPE-COBTUPDT-001
 
@@ -2234,7 +2234,7 @@ A delete record for a transaction type code that does not exist (SQLCODE +100) i
 
 ## COCRDLIC
 
-Program page: [COCRDLIC](07-programs/COCRDLIC.md).
+Program page: [COCRDLIC](../01-detailed-documentation/application-documentation/07-programs/COCRDLIC.md).
 
 ### BR-COCRDLIC-001
 
@@ -2529,7 +2529,7 @@ Record selection filter: a card is listed only if it matches every supplied filt
 
 ## COCRDSLC
 
-Program page: [COCRDSLC](07-programs/COCRDSLC.md).
+Program page: [COCRDSLC](../01-detailed-documentation/application-documentation/07-programs/COCRDSLC.md).
 
 ### BR-BASE-COCRDSLC-001
 
@@ -2676,7 +2676,7 @@ When the card detail screen was reached from the card list (last mapset COCRDLI 
 
 ## COCRDUPC
 
-Program page: [COCRDUPC](07-programs/COCRDUPC.md).
+Program page: [COCRDUPC](../01-detailed-documentation/application-documentation/07-programs/COCRDUPC.md).
 
 ### BR-BASE-COCRDUPC-001
 
@@ -3049,7 +3049,7 @@ Which fields may be edited depends on the update state: before fetch only the ac
 
 ## CODATE01
 
-Program page: [CODATE01](07-programs/CODATE01.md).
+Program page: [CODATE01](../01-detailed-documentation/application-documentation/07-programs/CODATE01.md).
 
 ### BR-CODATE01-001
 
@@ -3130,7 +3130,7 @@ If the CICS trigger data cannot be retrieved (RETRIEVE response not NORMAL), the
 
 ## COMEN01C
 
-Program page: [COMEN01C](07-programs/COMEN01C.md).
+Program page: [COMEN01C](../01-detailed-documentation/application-documentation/07-programs/COMEN01C.md).
 
 ### BR-BASE-COMEN01C-001
 
@@ -3237,7 +3237,7 @@ On the main menu any key other than ENTER or PF3 is rejected: the menu is redisp
 
 ## COPAUA0C
 
-Program page: [COPAUA0C](07-programs/COPAUA0C.md).
+Program page: [COPAUA0C](../01-detailed-documentation/application-documentation/07-programs/COPAUA0C.md).
 
 ### BR-COPAUA0C-001
 
@@ -3353,7 +3353,7 @@ Every error is logged to TD queue CSSL; errors classified critical (MQ open/get/
 
 ## COPAUS0C
 
-Program page: [COPAUS0C](07-programs/COPAUS0C.md).
+Program page: [COPAUS0C](../01-detailed-documentation/application-documentation/07-programs/COPAUS0C.md).
 
 ### BR-COPAUS0C-001
 
@@ -3484,7 +3484,7 @@ Unexpected IMS statuses while reading the summary or detail segments set the err
 
 ## COPAUS1C
 
-Program page: [COPAUS1C](07-programs/COPAUS1C.md).
+Program page: [COPAUS1C](../01-detailed-documentation/application-documentation/07-programs/COPAUS1C.md).
 
 ### BR-COPAUS1C-001
 
@@ -3599,7 +3599,7 @@ PF3, or entry without a commarea, returns to the authorization summary program C
 
 ## COPAUS2C
 
-Program page: [COPAUS2C](07-programs/COPAUS2C.md).
+Program page: [COPAUS2C](../01-detailed-documentation/application-documentation/07-programs/COPAUS2C.md).
 
 ### BR-COPAUS2C-001
 
@@ -3649,7 +3649,7 @@ Any DB2 error other than duplicate key on insert, or any error on the update, is
 
 ## CORPT00C
 
-Program page: [CORPT00C](07-programs/CORPT00C.md).
+Program page: [CORPT00C](../01-detailed-documentation/application-documentation/07-programs/CORPT00C.md).
 
 ### BR-CORPT00C-001
 
@@ -3822,7 +3822,7 @@ When returning to a previous screen and no target program is set, the sign-on pr
 
 ## COSGN00C
 
-Program page: [COSGN00C](07-programs/COSGN00C.md).
+Program page: [COSGN00C](../01-detailed-documentation/application-documentation/07-programs/COSGN00C.md).
 
 ### BR-BASE-COSGN00C-001
 
@@ -3937,7 +3937,7 @@ On successful sign-on the commarea passed to the menu carries the signed-on user
 
 ## COTRN00C
 
-Program page: [COTRN00C](07-programs/COTRN00C.md).
+Program page: [COTRN00C](../01-detailed-documentation/application-documentation/07-programs/COTRN00C.md).
 
 ### BR-COTRN00C-001
 
@@ -4186,7 +4186,7 @@ Reading backward: start of file stops the list with a top-of-page message; any o
 
 ## COTRN01C
 
-Program page: [COTRN01C](07-programs/COTRN01C.md).
+Program page: [COTRN01C](../01-detailed-documentation/application-documentation/07-programs/COTRN01C.md).
 
 ### BR-COTRN01C-001
 
@@ -4273,7 +4273,7 @@ A found transaction is displayed with its amount edited with sign and two decima
 
 ## COTRN02C
 
-Program page: [COTRN02C](07-programs/COTRN02C.md).
+Program page: [COTRN02C](../01-detailed-documentation/application-documentation/07-programs/COTRN02C.md).
 
 ### BR-COTRN02C-001
 
@@ -4488,7 +4488,7 @@ When returning to a previous screen with no target program set, the sign-on prog
 
 ## COTRTLIC
 
-Program page: [COTRTLIC](07-programs/COTRTLIC.md).
+Program page: [COTRTLIC](../01-detailed-documentation/application-documentation/07-programs/COTRTLIC.md).
 
 ### BR-COTRTLIC-001
 
@@ -4827,7 +4827,7 @@ A transaction type that still has category rows cannot be deleted: SQLCODE -532 
 
 ## COTRTUPC
 
-Program page: [COTRTUPC](07-programs/COTRTUPC.md).
+Program page: [COTRTUPC](../01-detailed-documentation/application-documentation/07-programs/COTRTUPC.md).
 
 ### BR-BASE-COTRTUPC-001
 
@@ -5121,7 +5121,7 @@ A confirmed delete removes the transaction type by its fetched code and commits 
 
 ## COUSR00C
 
-Program page: [COUSR00C](07-programs/COUSR00C.md).
+Program page: [COUSR00C](../01-detailed-documentation/application-documentation/07-programs/COUSR00C.md).
 
 ### BR-COUSR00C-001
 
@@ -5330,7 +5330,7 @@ Reading backward: start of file stops the list with a top-of-page message; other
 
 ## COUSR01C
 
-Program page: [COUSR01C](07-programs/COUSR01C.md).
+Program page: [COUSR01C](../01-detailed-documentation/application-documentation/07-programs/COUSR01C.md).
 
 ### BR-COUSR01C-001
 
@@ -5404,7 +5404,7 @@ User IDs must be unique: the add is rejected when a record with the same user ID
 
 ## COUSR02C
 
-Program page: [COUSR02C](07-programs/COUSR02C.md).
+Program page: [COUSR02C](../01-detailed-documentation/application-documentation/07-programs/COUSR02C.md).
 
 ### BR-COUSR02C-001
 
@@ -5533,7 +5533,7 @@ Saving the user: a successful rewrite shows a green confirmation naming the user
 
 ## COUSR03C
 
-Program page: [COUSR03C](07-programs/COUSR03C.md).
+Program page: [COUSR03C](../01-detailed-documentation/application-documentation/07-programs/COUSR03C.md).
 
 ### BR-COUSR03C-001
 
@@ -5635,7 +5635,7 @@ Deleting the user: success clears the screen and shows a green confirmation nami
 
 ## CSUTLDTC
 
-Program page: [CSUTLDTC](07-programs/CSUTLDTC.md).
+Program page: [CSUTLDTC](../01-detailed-documentation/application-documentation/07-programs/CSUTLDTC.md).
 
 ### BR-CSUTLDTC-001
 
@@ -5682,7 +5682,7 @@ The validation outcome is returned to the caller as an 80-byte result (severity 
 
 ## DBUNLDGS
 
-Program page: [DBUNLDGS](07-programs/DBUNLDGS.md).
+Program page: [DBUNLDGS](../01-detailed-documentation/application-documentation/07-programs/DBUNLDGS.md).
 
 ### BR-DBUNLDGS-001
 
@@ -5718,7 +5718,7 @@ The unload stops with return code 16 on any IMS status other than blank or 'GB' 
 
 ## PAUDBLOD
 
-Program page: [PAUDBLOD](07-programs/PAUDBLOD.md).
+Program page: [PAUDBLOD](../01-detailed-documentation/application-documentation/07-programs/PAUDBLOD.md).
 
 ### BR-PAUDBLOD-001
 
@@ -5767,7 +5767,7 @@ An input file that cannot be opened ends the run with return code 16; read error
 
 ## PAUDBUNL
 
-Program page: [PAUDBUNL](07-programs/PAUDBUNL.md).
+Program page: [PAUDBUNL](../01-detailed-documentation/application-documentation/07-programs/PAUDBUNL.md).
 
 ### BR-PAUDBUNL-001
 

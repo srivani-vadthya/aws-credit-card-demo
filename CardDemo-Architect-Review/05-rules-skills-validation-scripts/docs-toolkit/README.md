@@ -62,10 +62,22 @@ powershell -File docs/_work/build_review_bundle.ps1              # CardDemo-Arch
 
 `build_review_bundle.ps1` copies the validated package into five folders
 (detailed documentation, coverage validation, business rules and
-traceability, gap report, rules/skills/scripts), writes a README with
-metrics read from the JSON reports, and stops if
-`check_instream_secrets.py` finds FTP host or login data from
-`app/jcl/FTPJCL.JCL` in any copied file.
+traceability, gap report, rules/skills/scripts), then:
+
+- `prepare_review_bundle.py` adds `06-source-snapshot/` (in-scope source,
+  FTP connection lines of `app/jcl/FTPJCL.JCL` redacted in place), points the
+  report copies' links into folder 01 and removes compiled files;
+- `verify_review_bundle.py --repo .` runs ten independent checks (source
+  recount by extension and JOB card, page counts, every citation against the
+  snapshot, rule paragraphs by Area A label scan, links and anchors, hygiene,
+  secrets including the DOCX, snapshot sha256, report consistency, duplicates);
+- `write_review_readme.py` writes the architect README from the JSON reports;
+- `check_instream_secrets.py` stops the build if FTP connection data appears;
+- the ZIP is unzipped to a temporary folder and verified again offline.
+
+`gap_report.py` runs twice in the chain above when the gap register page is
+new, so that `coverage_validate.py` also checks the register's citations:
+`coverage_validate.py`, `gap_report.py`, `coverage_validate.py`, `gap_report.py`.
 
 `build_docx.py` writes every page of the package into one Word file; the
 older `PROJECT_DOCUMENTATION.docx` at the repository root is a summary from

@@ -46,12 +46,13 @@ Share [CardDemo, end to end](CardDemo-end-to-end.md) when one document has to de
 | 11 | [Security](11-security-access.md) | Sign-on, roles, platform security |
 | 12 | [Messages](12-error-handling-messages.md) | Message literals |
 | 13 | [Build and operations](13-build-deploy-operations.md) | Compile, setup, run book |
-| 14 | [Cross-reference](14-cross-reference-traceability.md) | Calls, copybooks, rules |
+| 14 | [Cross-reference](14-cross-reference-traceability.md) | Rules to program, paragraph, lines, transactions and job steps; online and batch flows; calls, copybooks |
 | 15 | [Glossary](15-glossary.md) | Terms used in this package |
 | 16 | [Gaps](16-gaps-assumptions-open-questions.md) | Unknowns and QA |
 | 17 | [Dependencies](17-dependencies/index.md) | Program, copybook, and job dependencies |
 | 18 | [Coverage report](18-coverage/coverage-report.md) | Measured coverage and acceptance criteria |
 | 18 | [Gap report](18-coverage/gap-report.md) | Per-component status, conflicts, SME questions |
+| 18 | [Gap register](18-coverage/gap-register.md) | Every gap with evidence, source, impact, status, owner and next action |
 
 ### Detailed pages
 

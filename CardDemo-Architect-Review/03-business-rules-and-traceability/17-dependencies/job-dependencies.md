@@ -4,7 +4,7 @@ Programs, PROCs, datasets and scheduler links for every JCL job.
 
 ## ACCTFILE
 
-Page: [ACCTFILE](../06-batch/jobs/ACCTFILE.md). Source `app/jcl/ACCTFILE.jcl`.
+Page: [ACCTFILE](../../01-detailed-documentation/application-documentation/06-batch/jobs/ACCTFILE.md). Source `app/jcl/ACCTFILE.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -16,7 +16,7 @@ Page: [ACCTFILE](../06-batch/jobs/ACCTFILE.md). Source `app/jcl/ACCTFILE.jcl`.
 
 ## CARDFILE
 
-Page: [CARDFILE](../06-batch/jobs/CARDFILE.md). Source `app/jcl/CARDFILE.jcl`.
+Page: [CARDFILE](../../01-detailed-documentation/application-documentation/06-batch/jobs/CARDFILE.md). Source `app/jcl/CARDFILE.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -33,7 +33,7 @@ Page: [CARDFILE](../06-batch/jobs/CARDFILE.md). Source `app/jcl/CARDFILE.jcl`.
 
 ## CBADMCDJ
 
-Page: [CBADMCDJ](../06-batch/jobs/CBADMCDJ.md). Source `app/jcl/CBADMCDJ.jcl`.
+Page: [CBADMCDJ](../../01-detailed-documentation/application-documentation/06-batch/jobs/CBADMCDJ.md). Source `app/jcl/CBADMCDJ.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -42,7 +42,7 @@ Page: [CBADMCDJ](../06-batch/jobs/CBADMCDJ.md). Source `app/jcl/CBADMCDJ.jcl`.
 
 ## CBEXPORT
 
-Page: [CBEXPORT](../06-batch/jobs/CBEXPORT.md). Source `app/jcl/CBEXPORT.jcl`.
+Page: [CBEXPORT](../../01-detailed-documentation/application-documentation/06-batch/jobs/CBEXPORT.md). Source `app/jcl/CBEXPORT.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -57,7 +57,7 @@ Page: [CBEXPORT](../06-batch/jobs/CBEXPORT.md). Source `app/jcl/CBEXPORT.jcl`.
 
 ## CBIMPORT
 
-Page: [CBIMPORT](../06-batch/jobs/CBIMPORT.md). Source `app/jcl/CBIMPORT.jcl`.
+Page: [CBIMPORT](../../01-detailed-documentation/application-documentation/06-batch/jobs/CBIMPORT.md). Source `app/jcl/CBIMPORT.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -71,7 +71,7 @@ Page: [CBIMPORT](../06-batch/jobs/CBIMPORT.md). Source `app/jcl/CBIMPORT.jcl`.
 
 ## CBLDBMS
 
-Page: [CBLDBMS](../06-batch/jobs/CBLDBMS.md). Source `samples/jcl/BMSCMP.jcl`.
+Page: [CBLDBMS](../../01-detailed-documentation/application-documentation/06-batch/jobs/CBLDBMS.md). Source `samples/jcl/BMSCMP.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -80,7 +80,7 @@ Page: [CBLDBMS](../06-batch/jobs/CBLDBMS.md). Source `samples/jcl/BMSCMP.jcl`.
 
 ## CBPAUP0J
 
-Page: [CBPAUP0J](../06-batch/jobs/CBPAUP0J.md). Source `app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl`.
+Page: [CBPAUP0J](../../01-detailed-documentation/application-documentation/06-batch/jobs/CBPAUP0J.md). Source `app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -95,7 +95,7 @@ Page: [CBPAUP0J](../06-batch/jobs/CBPAUP0J.md). Source `app/app-authorization-im
 
 ## CICCMP
 
-Page: [CICCMP](../06-batch/jobs/CICCMP.md). Source `samples/jcl/CICCMP.jcl`.
+Page: [CICCMP](../../01-detailed-documentation/application-documentation/06-batch/jobs/CICCMP.md). Source `samples/jcl/CICCMP.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -104,7 +104,7 @@ Page: [CICCMP](../06-batch/jobs/CICCMP.md). Source `samples/jcl/CICCMP.jcl`.
 
 ## CIDBCMP
 
-Page: [CIDBCMP](../06-batch/jobs/CIDBCMP.md). Source `samples/jcl/CICDBCMP.jcl`.
+Page: [CIDBCMP](../../01-detailed-documentation/application-documentation/06-batch/jobs/CIDBCMP.md). Source `samples/jcl/CICDBCMP.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -112,7 +112,7 @@ Page: [CIDBCMP](../06-batch/jobs/CIDBCMP.md). Source `samples/jcl/CICDBCMP.jcl`.
 
 ## CLOSEFIL
 
-Page: [CLOSEFIL](../06-batch/jobs/CLOSEFIL.md). Source `app/jcl/CLOSEFIL.jcl`.
+Page: [CLOSEFIL](../../01-detailed-documentation/application-documentation/06-batch/jobs/CLOSEFIL.md). Source `app/jcl/CLOSEFIL.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -132,7 +132,7 @@ Page: [CLOSEFIL](../06-batch/jobs/CLOSEFIL.md). Source `app/jcl/CLOSEFIL.jcl`.
 
 ## CNJBATMP
 
-Page: [CNJBATMP](../06-batch/jobs/CNJBATMP.md). Source `samples/jcl/BATCMP.jcl`.
+Page: [CNJBATMP](../../01-detailed-documentation/application-documentation/06-batch/jobs/CNJBATMP.md). Source `samples/jcl/BATCMP.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -140,7 +140,7 @@ Page: [CNJBATMP](../06-batch/jobs/CNJBATMP.md). Source `samples/jcl/BATCMP.jcl`.
 
 ## COMBTRAN
 
-Page: [COMBTRAN](../06-batch/jobs/COMBTRAN.md). Source `app/jcl/COMBTRAN.jcl`.
+Page: [COMBTRAN](../../01-detailed-documentation/application-documentation/06-batch/jobs/COMBTRAN.md). Source `app/jcl/COMBTRAN.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -156,7 +156,7 @@ Page: [COMBTRAN](../06-batch/jobs/COMBTRAN.md). Source `app/jcl/COMBTRAN.jcl`.
 
 ## CREADB2
 
-Page: [CREADB2](../06-batch/jobs/CREADB2.md). Source `app/app-transaction-type-db2/jcl/CREADB21.jcl`.
+Page: [CREADB2](../../01-detailed-documentation/application-documentation/06-batch/jobs/CREADB2.md). Source `app/app-transaction-type-db2/jcl/CREADB21.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -175,7 +175,7 @@ Page: [CREADB2](../06-batch/jobs/CREADB2.md). Source `app/app-transaction-type-d
 
 ## CREASTMT
 
-Page: [CREASTMT](../06-batch/jobs/CREASTMT.md). Source `app/jcl/CREASTMT.JCL`.
+Page: [CREASTMT](../../01-detailed-documentation/application-documentation/06-batch/jobs/CREASTMT.md). Source `app/jcl/CREASTMT.JCL`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -201,7 +201,7 @@ Page: [CREASTMT](../06-batch/jobs/CREASTMT.md). Source `app/jcl/CREASTMT.JCL`.
 
 ## CUSTFILE
 
-Page: [CUSTFILE](../06-batch/jobs/CUSTFILE.md). Source `app/jcl/CUSTFILE.jcl`.
+Page: [CUSTFILE](../../01-detailed-documentation/application-documentation/06-batch/jobs/CUSTFILE.md). Source `app/jcl/CUSTFILE.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -215,7 +215,7 @@ Page: [CUSTFILE](../06-batch/jobs/CUSTFILE.md). Source `app/jcl/CUSTFILE.jcl`.
 
 ## DALYREJS
 
-Page: [DALYREJS](../06-batch/jobs/DALYREJS.md). Source `app/jcl/DALYREJS.jcl`.
+Page: [DALYREJS](../../01-detailed-documentation/application-documentation/06-batch/jobs/DALYREJS.md). Source `app/jcl/DALYREJS.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -223,7 +223,7 @@ Page: [DALYREJS](../06-batch/jobs/DALYREJS.md). Source `app/jcl/DALYREJS.jcl`.
 
 ## DBPAUTP0
 
-Page: [DBPAUTP0](../06-batch/jobs/DBPAUTP0.md). Source `app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl`.
+Page: [DBPAUTP0](../../01-detailed-documentation/application-documentation/06-batch/jobs/DBPAUTP0.md). Source `app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -243,7 +243,7 @@ Page: [DBPAUTP0](../06-batch/jobs/DBPAUTP0.md). Source `app/app-authorization-im
 
 ## DEFCUST
 
-Page: [DEFCUST](../06-batch/jobs/DEFCUST.md). Source `app/jcl/DEFCUST.jcl`.
+Page: [DEFCUST](../../01-detailed-documentation/application-documentation/06-batch/jobs/DEFCUST.md). Source `app/jcl/DEFCUST.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -252,7 +252,7 @@ Page: [DEFCUST](../06-batch/jobs/DEFCUST.md). Source `app/jcl/DEFCUST.jcl`.
 
 ## DEFGDGB
 
-Page: [DEFGDGB](../06-batch/jobs/DEFGDGB.md). Source `app/jcl/DEFGDGB.jcl`.
+Page: [DEFGDGB](../../01-detailed-documentation/application-documentation/06-batch/jobs/DEFGDGB.md). Source `app/jcl/DEFGDGB.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -260,7 +260,7 @@ Page: [DEFGDGB](../06-batch/jobs/DEFGDGB.md). Source `app/jcl/DEFGDGB.jcl`.
 
 ## DEFGDGD
 
-Page: [DEFGDGD](../06-batch/jobs/DEFGDGD.md). Source `app/jcl/DEFGDGD.jcl`.
+Page: [DEFGDGD](../../01-detailed-documentation/application-documentation/06-batch/jobs/DEFGDGD.md). Source `app/jcl/DEFGDGD.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -279,7 +279,7 @@ Page: [DEFGDGD](../06-batch/jobs/DEFGDGD.md). Source `app/jcl/DEFGDGD.jcl`.
 
 ## DISCGRP
 
-Page: [DISCGRP](../06-batch/jobs/DISCGRP.md). Source `app/jcl/DISCGRP.jcl`.
+Page: [DISCGRP](../../01-detailed-documentation/application-documentation/06-batch/jobs/DISCGRP.md). Source `app/jcl/DISCGRP.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -293,7 +293,7 @@ Page: [DISCGRP](../06-batch/jobs/DISCGRP.md). Source `app/jcl/DISCGRP.jcl`.
 
 ## DUSRSECJ
 
-Page: [DUSRSECJ](../06-batch/jobs/DUSRSECJ.md). Source `app/jcl/DUSRSECJ.jcl`.
+Page: [DUSRSECJ](../../01-detailed-documentation/application-documentation/06-batch/jobs/DUSRSECJ.md). Source `app/jcl/DUSRSECJ.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -308,7 +308,7 @@ Page: [DUSRSECJ](../06-batch/jobs/DUSRSECJ.md). Source `app/jcl/DUSRSECJ.jcl`.
 
 ## ESDSRRDS
 
-Page: [ESDSRRDS](../06-batch/jobs/ESDSRRDS.md). Source `app/jcl/ESDSRRDS.jcl`.
+Page: [ESDSRRDS](../../01-detailed-documentation/application-documentation/06-batch/jobs/ESDSRRDS.md). Source `app/jcl/ESDSRRDS.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -327,7 +327,7 @@ Page: [ESDSRRDS](../06-batch/jobs/ESDSRRDS.md). Source `app/jcl/ESDSRRDS.jcl`.
 
 ## FTPJCLS
 
-Page: [FTPJCLS](../06-batch/jobs/FTPJCLS.md). Source `app/jcl/FTPJCL.JCL`.
+Page: [FTPJCLS](../../01-detailed-documentation/application-documentation/06-batch/jobs/FTPJCLS.md). Source `app/jcl/FTPJCL.JCL`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -335,7 +335,7 @@ Page: [FTPJCLS](../06-batch/jobs/FTPJCLS.md). Source `app/jcl/FTPJCL.JCL`.
 
 ## IMSMQCMP
 
-Page: [IMSMQCMP](../06-batch/jobs/IMSMQCMP.md). Source `samples/jcl/IMSMQCMP.jcl`.
+Page: [IMSMQCMP](../../01-detailed-documentation/application-documentation/06-batch/jobs/IMSMQCMP.md). Source `samples/jcl/IMSMQCMP.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -370,7 +370,7 @@ Page: [IMSMQCMP](../06-batch/jobs/IMSMQCMP.md). Source `samples/jcl/IMSMQCMP.jcl
 
 ## INTCALC
 
-Page: [INTCALC](../06-batch/jobs/INTCALC.md). Source `app/jcl/INTCALC.jcl`.
+Page: [INTCALC](../../01-detailed-documentation/application-documentation/06-batch/jobs/INTCALC.md). Source `app/jcl/INTCALC.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -386,7 +386,7 @@ Page: [INTCALC](../06-batch/jobs/INTCALC.md). Source `app/jcl/INTCALC.jcl`.
 
 ## INTRDRJ1
 
-Page: [INTRDRJ1](../06-batch/jobs/INTRDRJ1.md). Source `app/jcl/INTRDRJ1.JCL`.
+Page: [INTRDRJ1](../../01-detailed-documentation/application-documentation/06-batch/jobs/INTRDRJ1.md). Source `app/jcl/INTRDRJ1.JCL`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -398,7 +398,7 @@ Page: [INTRDRJ1](../06-batch/jobs/INTRDRJ1.md). Source `app/jcl/INTRDRJ1.JCL`.
 
 ## INTRDRJ2
 
-Page: [INTRDRJ2](../06-batch/jobs/INTRDRJ2.md). Source `app/jcl/INTRDRJ2.JCL`.
+Page: [INTRDRJ2](../../01-detailed-documentation/application-documentation/06-batch/jobs/INTRDRJ2.md). Source `app/jcl/INTRDRJ2.JCL`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -408,7 +408,7 @@ Page: [INTRDRJ2](../06-batch/jobs/INTRDRJ2.md). Source `app/jcl/INTRDRJ2.JCL`.
 
 ## LISTFILS
 
-Page: [LISTFILS](../06-batch/jobs/LISTFILS.md). Source `samples/jcl/LISTCAT.jcl`.
+Page: [LISTFILS](../../01-detailed-documentation/application-documentation/06-batch/jobs/LISTFILS.md). Source `samples/jcl/LISTCAT.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -419,7 +419,7 @@ Page: [LISTFILS](../06-batch/jobs/LISTFILS.md). Source `samples/jcl/LISTCAT.jcl`
 
 ## LOADPADB
 
-Page: [LOADPADB](../06-batch/jobs/LOADPADB.md). Source `app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL`.
+Page: [LOADPADB](../../01-detailed-documentation/application-documentation/06-batch/jobs/LOADPADB.md). Source `app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -433,7 +433,7 @@ Page: [LOADPADB](../06-batch/jobs/LOADPADB.md). Source `app/app-authorization-im
 
 ## MNTTRDB2
 
-Page: [MNTTRDB2](../06-batch/jobs/MNTTRDB2.md). Source `app/app-transaction-type-db2/jcl/MNTTRDB2.jcl`.
+Page: [MNTTRDB2](../../01-detailed-documentation/application-documentation/06-batch/jobs/MNTTRDB2.md). Source `app/app-transaction-type-db2/jcl/MNTTRDB2.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -445,7 +445,7 @@ Page: [MNTTRDB2](../06-batch/jobs/MNTTRDB2.md). Source `app/app-transaction-type
 
 ## OPENFIL
 
-Page: [OPENFIL](../06-batch/jobs/OPENFIL.md). Source `app/jcl/OPENFIL.jcl`.
+Page: [OPENFIL](../../01-detailed-documentation/application-documentation/06-batch/jobs/OPENFIL.md). Source `app/jcl/OPENFIL.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -461,7 +461,7 @@ Page: [OPENFIL](../06-batch/jobs/OPENFIL.md). Source `app/jcl/OPENFIL.jcl`.
 
 ## POSTTRAN
 
-Page: [POSTTRAN](../06-batch/jobs/POSTTRAN.md). Source `app/jcl/POSTTRAN.jcl`.
+Page: [POSTTRAN](../../01-detailed-documentation/application-documentation/06-batch/jobs/POSTTRAN.md). Source `app/jcl/POSTTRAN.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -477,7 +477,7 @@ Page: [POSTTRAN](../06-batch/jobs/POSTTRAN.md). Source `app/jcl/POSTTRAN.jcl`.
 
 ## PRTCATBL
 
-Page: [PRTCATBL](../06-batch/jobs/PRTCATBL.md). Source `app/jcl/PRTCATBL.jcl`.
+Page: [PRTCATBL](../../01-detailed-documentation/application-documentation/06-batch/jobs/PRTCATBL.md). Source `app/jcl/PRTCATBL.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -494,7 +494,7 @@ Page: [PRTCATBL](../06-batch/jobs/PRTCATBL.md). Source `app/jcl/PRTCATBL.jcl`.
 
 ## RACFCMDS
 
-Page: [RACFCMDS](../06-batch/jobs/RACFCMDS.md). Source `samples/jcl/RACFCMDS.jcl`.
+Page: [RACFCMDS](../../01-detailed-documentation/application-documentation/06-batch/jobs/RACFCMDS.md). Source `samples/jcl/RACFCMDS.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -502,7 +502,7 @@ Page: [RACFCMDS](../06-batch/jobs/RACFCMDS.md). Source `samples/jcl/RACFCMDS.jcl
 
 ## READACCT
 
-Page: [READACCT](../06-batch/jobs/READACCT.md). Source `app/jcl/READACCT.jcl`.
+Page: [READACCT](../../01-detailed-documentation/application-documentation/06-batch/jobs/READACCT.md). Source `app/jcl/READACCT.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -520,7 +520,7 @@ Page: [READACCT](../06-batch/jobs/READACCT.md). Source `app/jcl/READACCT.jcl`.
 
 ## READCARD
 
-Page: [READCARD](../06-batch/jobs/READCARD.md). Source `app/jcl/READCARD.jcl`.
+Page: [READCARD](../../01-detailed-documentation/application-documentation/06-batch/jobs/READCARD.md). Source `app/jcl/READCARD.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -531,7 +531,7 @@ Page: [READCARD](../06-batch/jobs/READCARD.md). Source `app/jcl/READCARD.jcl`.
 
 ## READCUST
 
-Page: [READCUST](../06-batch/jobs/READCUST.md). Source `app/jcl/READCUST.jcl`.
+Page: [READCUST](../../01-detailed-documentation/application-documentation/06-batch/jobs/READCUST.md). Source `app/jcl/READCUST.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -542,7 +542,7 @@ Page: [READCUST](../06-batch/jobs/READCUST.md). Source `app/jcl/READCUST.jcl`.
 
 ## READXREF
 
-Page: [READXREF](../06-batch/jobs/READXREF.md). Source `app/jcl/READXREF.jcl`.
+Page: [READXREF](../../01-detailed-documentation/application-documentation/06-batch/jobs/READXREF.md). Source `app/jcl/READXREF.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -553,7 +553,7 @@ Page: [READXREF](../06-batch/jobs/READXREF.md). Source `app/jcl/READXREF.jcl`.
 
 ## REPRTEST
 
-Page: [REPRTEST](../06-batch/jobs/REPRTEST.md). Source `samples/jcl/REPRTEST.jcl`.
+Page: [REPRTEST](../../01-detailed-documentation/application-documentation/06-batch/jobs/REPRTEST.md). Source `samples/jcl/REPRTEST.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -563,7 +563,7 @@ Page: [REPRTEST](../06-batch/jobs/REPRTEST.md). Source `samples/jcl/REPRTEST.jcl
 
 ## REPTFILE
 
-Page: [REPTFILE](../06-batch/jobs/REPTFILE.md). Source `app/jcl/REPTFILE.jcl`.
+Page: [REPTFILE](../../01-detailed-documentation/application-documentation/06-batch/jobs/REPTFILE.md). Source `app/jcl/REPTFILE.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -571,7 +571,7 @@ Page: [REPTFILE](../06-batch/jobs/REPTFILE.md). Source `app/jcl/REPTFILE.jcl`.
 
 ## SORTTEST
 
-Page: [SORTTEST](../06-batch/jobs/SORTTEST.md). Source `samples/jcl/SORTTEST.jcl`.
+Page: [SORTTEST](../../01-detailed-documentation/application-documentation/06-batch/jobs/SORTTEST.md). Source `samples/jcl/SORTTEST.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -581,7 +581,7 @@ Page: [SORTTEST](../06-batch/jobs/SORTTEST.md). Source `samples/jcl/SORTTEST.jcl
 
 ## TCATBALF
 
-Page: [TCATBALF](../06-batch/jobs/TCATBALF.md). Source `app/jcl/TCATBALF.jcl`.
+Page: [TCATBALF](../../01-detailed-documentation/application-documentation/06-batch/jobs/TCATBALF.md). Source `app/jcl/TCATBALF.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -595,7 +595,7 @@ Page: [TCATBALF](../06-batch/jobs/TCATBALF.md). Source `app/jcl/TCATBALF.jcl`.
 
 ## TRANBKP
 
-Page: [TRANBKP](../06-batch/jobs/TRANBKP.md). Source `app/jcl/TRANBKP.jcl`.
+Page: [TRANBKP](../../01-detailed-documentation/application-documentation/06-batch/jobs/TRANBKP.md). Source `app/jcl/TRANBKP.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -609,7 +609,7 @@ Page: [TRANBKP](../06-batch/jobs/TRANBKP.md). Source `app/jcl/TRANBKP.jcl`.
 
 ## TRANCATG
 
-Page: [TRANCATG](../06-batch/jobs/TRANCATG.md). Source `app/jcl/TRANCATG.jcl`.
+Page: [TRANCATG](../../01-detailed-documentation/application-documentation/06-batch/jobs/TRANCATG.md). Source `app/jcl/TRANCATG.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -623,7 +623,7 @@ Page: [TRANCATG](../06-batch/jobs/TRANCATG.md). Source `app/jcl/TRANCATG.jcl`.
 
 ## TRANEXTR
 
-Page: [TRANEXTR](../06-batch/jobs/TRANEXTR.md). Source `app/app-transaction-type-db2/jcl/TRANEXTR.jcl`.
+Page: [TRANEXTR](../../01-detailed-documentation/application-documentation/06-batch/jobs/TRANEXTR.md). Source `app/app-transaction-type-db2/jcl/TRANEXTR.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -644,7 +644,7 @@ Page: [TRANEXTR](../06-batch/jobs/TRANEXTR.md). Source `app/app-transaction-type
 
 ## TRANFILE
 
-Page: [TRANFILE](../06-batch/jobs/TRANFILE.md). Source `app/jcl/TRANFILE.jcl`.
+Page: [TRANFILE](../../01-detailed-documentation/application-documentation/06-batch/jobs/TRANFILE.md). Source `app/jcl/TRANFILE.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -661,7 +661,7 @@ Page: [TRANFILE](../06-batch/jobs/TRANFILE.md). Source `app/jcl/TRANFILE.jcl`.
 
 ## TRANIDX
 
-Page: [TRANIDX](../06-batch/jobs/TRANIDX.md). Source `app/jcl/TRANIDX.jcl`.
+Page: [TRANIDX](../../01-detailed-documentation/application-documentation/06-batch/jobs/TRANIDX.md). Source `app/jcl/TRANIDX.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -671,7 +671,7 @@ Page: [TRANIDX](../06-batch/jobs/TRANIDX.md). Source `app/jcl/TRANIDX.jcl`.
 
 ## TRANREPT
 
-Page: [TRANREPT](../06-batch/jobs/TRANREPT.md). Source `app/jcl/TRANREPT.jcl`.
+Page: [TRANREPT](../../01-detailed-documentation/application-documentation/06-batch/jobs/TRANREPT.md). Source `app/jcl/TRANREPT.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -691,7 +691,7 @@ Page: [TRANREPT](../06-batch/jobs/TRANREPT.md). Source `app/jcl/TRANREPT.jcl`.
 
 ## TRANTYPE
 
-Page: [TRANTYPE](../06-batch/jobs/TRANTYPE.md). Source `app/jcl/TRANTYPE.jcl`.
+Page: [TRANTYPE](../../01-detailed-documentation/application-documentation/06-batch/jobs/TRANTYPE.md). Source `app/jcl/TRANTYPE.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -705,7 +705,7 @@ Page: [TRANTYPE](../06-batch/jobs/TRANTYPE.md). Source `app/jcl/TRANTYPE.jcl`.
 
 ## TXT2PDF1
 
-Page: [TXT2PDF1](../06-batch/jobs/TXT2PDF1.md). Source `app/jcl/TXT2PDF1.JCL`.
+Page: [TXT2PDF1](../../01-detailed-documentation/application-documentation/06-batch/jobs/TXT2PDF1.md). Source `app/jcl/TXT2PDF1.JCL`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -717,7 +717,7 @@ Page: [TXT2PDF1](../06-batch/jobs/TXT2PDF1.md). Source `app/jcl/TXT2PDF1.JCL`.
 
 ## UNLDGSAM
 
-Page: [UNLDGSAM](../06-batch/jobs/UNLDGSAM.md). Source `app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL`.
+Page: [UNLDGSAM](../../01-detailed-documentation/application-documentation/06-batch/jobs/UNLDGSAM.md). Source `app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -733,7 +733,7 @@ Page: [UNLDGSAM](../06-batch/jobs/UNLDGSAM.md). Source `app/app-authorization-im
 
 ## UNLDPADB
 
-Page: [UNLDPADB](../06-batch/jobs/UNLDPADB.md). Source `app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL`.
+Page: [UNLDPADB](../../01-detailed-documentation/application-documentation/06-batch/jobs/UNLDPADB.md). Source `app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -752,7 +752,7 @@ Page: [UNLDPADB](../06-batch/jobs/UNLDPADB.md). Source `app/app-authorization-im
 
 ## WAITSTEP
 
-Page: [WAITSTEP](../06-batch/jobs/WAITSTEP.md). Source `app/jcl/WAITSTEP.jcl`.
+Page: [WAITSTEP](../../01-detailed-documentation/application-documentation/06-batch/jobs/WAITSTEP.md). Source `app/jcl/WAITSTEP.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|
@@ -781,7 +781,7 @@ Page: [WAITSTEP](../06-batch/jobs/WAITSTEP.md). Source `app/jcl/WAITSTEP.jcl`.
 
 ## XREFFILE
 
-Page: [XREFFILE](../06-batch/jobs/XREFFILE.md). Source `app/jcl/XREFFILE.jcl`.
+Page: [XREFFILE](../../01-detailed-documentation/application-documentation/06-batch/jobs/XREFFILE.md). Source `app/jcl/XREFFILE.jcl`.
 
 | Step / relation | Target | Evidence |
 |---|---|---|

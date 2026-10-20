@@ -4,11 +4,11 @@ For each COBOL program: what starts it, what it calls or transfers to, the copyb
 
 ## CBACT01C
 
-Page: [CBACT01C](../07-programs/CBACT01C.md).
+Page: [CBACT01C](../../01-detailed-documentation/application-documentation/07-programs/CBACT01C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [READACCT](../06-batch/jobs/READACCT.md) step STEP05 | `app/jcl/READACCT.jcl:32` |
+| started by | job [READACCT](../../01-detailed-documentation/application-documentation/06-batch/jobs/READACCT.md) step STEP05 | `app/jcl/READACCT.jcl:32` |
 | calls/transfers to | COBDATFT (CALL-static) | `app/cbl/CBACT01C.cbl:231` |
 | calls/transfers to | CEE3ABD (CALL-static) | `app/cbl/CBACT01C.cbl:410` |
 | copies | CVACT01Y | `app/cbl/CBACT01C.cbl:89` |
@@ -20,33 +20,33 @@ Page: [CBACT01C](../07-programs/CBACT01C.md).
 
 ## CBACT02C
 
-Page: [CBACT02C](../07-programs/CBACT02C.md).
+Page: [CBACT02C](../../01-detailed-documentation/application-documentation/07-programs/CBACT02C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [READCARD](../06-batch/jobs/READCARD.md) step STEP05 | `app/jcl/READCARD.jcl:22` |
+| started by | job [READCARD](../../01-detailed-documentation/application-documentation/06-batch/jobs/READCARD.md) step STEP05 | `app/jcl/READCARD.jcl:22` |
 | calls/transfers to | CEE3ABD (CALL-static) | `app/cbl/CBACT02C.cbl:158` |
 | copies | CVACT02Y | `app/cbl/CBACT02C.cbl:45` |
 | data store | CARDFILE-FILE [R] | `app/cbl/CBACT02C.cbl:93-120` |
 
 ## CBACT03C
 
-Page: [CBACT03C](../07-programs/CBACT03C.md).
+Page: [CBACT03C](../../01-detailed-documentation/application-documentation/07-programs/CBACT03C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [READXREF](../06-batch/jobs/READXREF.md) step STEP05 | `app/jcl/READXREF.jcl:22` |
+| started by | job [READXREF](../../01-detailed-documentation/application-documentation/06-batch/jobs/READXREF.md) step STEP05 | `app/jcl/READXREF.jcl:22` |
 | calls/transfers to | CEE3ABD (CALL-static) | `app/cbl/CBACT03C.cbl:158` |
 | copies | CVACT03Y | `app/cbl/CBACT03C.cbl:45` |
 | data store | XREFFILE-FILE [R] | `app/cbl/CBACT03C.cbl:93-120` |
 
 ## CBACT04C
 
-Page: [CBACT04C](../07-programs/CBACT04C.md).
+Page: [CBACT04C](../../01-detailed-documentation/application-documentation/07-programs/CBACT04C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [INTCALC](../06-batch/jobs/INTCALC.md) step STEP15 | `app/jcl/INTCALC.jcl:22` |
+| started by | job [INTCALC](../../01-detailed-documentation/application-documentation/06-batch/jobs/INTCALC.md) step STEP15 | `app/jcl/INTCALC.jcl:22` |
 | calls/transfers to | CEE3ABD (CALL-static) | `app/cbl/CBACT04C.cbl:632` |
 | copies | CVTRA01Y | `app/cbl/CBACT04C.cbl:97` |
 | copies | CVACT03Y | `app/cbl/CBACT04C.cbl:102` |
@@ -61,22 +61,22 @@ Page: [CBACT04C](../07-programs/CBACT04C.md).
 
 ## CBCUS01C
 
-Page: [CBCUS01C](../07-programs/CBCUS01C.md).
+Page: [CBCUS01C](../../01-detailed-documentation/application-documentation/07-programs/CBCUS01C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [READCUST](../06-batch/jobs/READCUST.md) step STEP05 | `app/jcl/READCUST.jcl:21` |
+| started by | job [READCUST](../../01-detailed-documentation/application-documentation/06-batch/jobs/READCUST.md) step STEP05 | `app/jcl/READCUST.jcl:21` |
 | calls/transfers to | CEE3ABD (CALL-static) | `app/cbl/CBCUS01C.cbl:158` |
 | copies | CVCUS01Y | `app/cbl/CBCUS01C.cbl:45` |
 | data store | CUSTFILE-FILE [R] | `app/cbl/CBCUS01C.cbl:93-120` |
 
 ## CBEXPORT
 
-Page: [CBEXPORT](../07-programs/CBEXPORT.md).
+Page: [CBEXPORT](../../01-detailed-documentation/application-documentation/07-programs/CBEXPORT.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [CBEXPORT](../06-batch/jobs/CBEXPORT.md) step STEP02 | `app/jcl/CBEXPORT.jcl:43` |
+| started by | job [CBEXPORT](../../01-detailed-documentation/application-documentation/06-batch/jobs/CBEXPORT.md) step STEP02 | `app/jcl/CBEXPORT.jcl:43` |
 | calls/transfers to | CEE3ABD (CALL-static) | `app/cbl/CBEXPORT.cbl:579` |
 | copies | CVCUS01Y | `app/cbl/CBEXPORT.cbl:75` |
 | copies | CVACT01Y | `app/cbl/CBEXPORT.cbl:78` |
@@ -93,11 +93,11 @@ Page: [CBEXPORT](../07-programs/CBEXPORT.md).
 
 ## CBIMPORT
 
-Page: [CBIMPORT](../07-programs/CBIMPORT.md).
+Page: [CBIMPORT](../../01-detailed-documentation/application-documentation/07-programs/CBIMPORT.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [CBIMPORT](../06-batch/jobs/CBIMPORT.md) step STEP01 | `app/jcl/CBIMPORT.jcl:22` |
+| started by | job [CBIMPORT](../../01-detailed-documentation/application-documentation/06-batch/jobs/CBIMPORT.md) step STEP01 | `app/jcl/CBIMPORT.jcl:22` |
 | calls/transfers to | CEE3ABD (CALL-static) | `app/cbl/CBIMPORT.cbl:484` |
 | copies | CVCUS01Y | `app/cbl/CBIMPORT.cbl:84` |
 | copies | CVACT01Y | `app/cbl/CBIMPORT.cbl:89` |
@@ -115,11 +115,11 @@ Page: [CBIMPORT](../07-programs/CBIMPORT.md).
 
 ## CBPAUP0C
 
-Page: [CBPAUP0C](../07-programs/CBPAUP0C.md).
+Page: [CBPAUP0C](../../01-detailed-documentation/application-documentation/07-programs/CBPAUP0C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [CBPAUP0J](../06-batch/jobs/CBPAUP0J.md) step STEP01 | `app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:24-25` |
+| started by | job [CBPAUP0J](../../01-detailed-documentation/application-documentation/06-batch/jobs/CBPAUP0J.md) step STEP01 | `app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:24-25` |
 | copies | CIPAUSMY | `app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:117` |
 | copies | CIPAUDTY | `app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:121` |
 | data store | DLI-DLET [D] | `app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:310` |
@@ -133,11 +133,11 @@ Page: [CBPAUP0C](../07-programs/CBPAUP0C.md).
 
 ## CBSTM03A
 
-Page: [CBSTM03A](../07-programs/CBSTM03A.md).
+Page: [CBSTM03A](../../01-detailed-documentation/application-documentation/07-programs/CBSTM03A.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [CREASTMT](../06-batch/jobs/CREASTMT.md) step STEP040 | `app/jcl/CREASTMT.JCL:79` |
+| started by | job [CREASTMT](../../01-detailed-documentation/application-documentation/06-batch/jobs/CREASTMT.md) step STEP040 | `app/jcl/CREASTMT.JCL:79` |
 | calls/transfers to | CBSTM03B (CALL-static) | `app/cbl/CBSTM03A.CBL:351` |
 | calls/transfers to | CBSTM03B (CALL-static) | `app/cbl/CBSTM03A.CBL:377` |
 | calls/transfers to | CBSTM03B (CALL-static) | `app/cbl/CBSTM03A.CBL:401` |
@@ -161,7 +161,7 @@ Page: [CBSTM03A](../07-programs/CBSTM03A.md).
 
 ## CBSTM03B
 
-Page: [CBSTM03B](../07-programs/CBSTM03B.md).
+Page: [CBSTM03B](../../01-detailed-documentation/application-documentation/07-programs/CBSTM03B.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -185,7 +185,7 @@ Page: [CBSTM03B](../07-programs/CBSTM03B.md).
 
 ## CBTRN01C
 
-Page: [CBTRN01C](../07-programs/CBTRN01C.md).
+Page: [CBTRN01C](../../01-detailed-documentation/application-documentation/07-programs/CBTRN01C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -205,11 +205,11 @@ Page: [CBTRN01C](../07-programs/CBTRN01C.md).
 
 ## CBTRN02C
 
-Page: [CBTRN02C](../07-programs/CBTRN02C.md).
+Page: [CBTRN02C](../../01-detailed-documentation/application-documentation/07-programs/CBTRN02C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [POSTTRAN](../06-batch/jobs/POSTTRAN.md) step STEP15 | `app/jcl/POSTTRAN.jcl:23` |
+| started by | job [POSTTRAN](../../01-detailed-documentation/application-documentation/06-batch/jobs/POSTTRAN.md) step STEP15 | `app/jcl/POSTTRAN.jcl:23` |
 | calls/transfers to | CEE3ABD (CALL-static) | `app/cbl/CBTRN02C.cbl:711` |
 | copies | CVTRA06Y | `app/cbl/CBTRN02C.cbl:102` |
 | copies | CVTRA05Y | `app/cbl/CBTRN02C.cbl:107` |
@@ -225,11 +225,11 @@ Page: [CBTRN02C](../07-programs/CBTRN02C.md).
 
 ## CBTRN03C
 
-Page: [CBTRN03C](../07-programs/CBTRN03C.md).
+Page: [CBTRN03C](../../01-detailed-documentation/application-documentation/07-programs/CBTRN03C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [TRANREPT](../06-batch/jobs/TRANREPT.md) step STEP10R | `app/jcl/TRANREPT.jcl:59` |
+| started by | job [TRANREPT](../../01-detailed-documentation/application-documentation/06-batch/jobs/TRANREPT.md) step STEP10R | `app/jcl/TRANREPT.jcl:59` |
 | calls/transfers to | CEE3ABD (CALL-static) | `app/cbl/CBTRN03C.cbl:630` |
 | copies | CVTRA05Y | `app/cbl/CBTRN03C.cbl:93` |
 | copies | CVACT03Y | `app/cbl/CBTRN03C.cbl:98` |
@@ -245,7 +245,7 @@ Page: [CBTRN03C](../07-programs/CBTRN03C.md).
 
 ## COACCT01
 
-Page: [COACCT01](../07-programs/COACCT01.md).
+Page: [COACCT01](../../01-detailed-documentation/application-documentation/07-programs/COACCT01.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -272,7 +272,7 @@ Page: [COACCT01](../07-programs/COACCT01.md).
 
 ## COACTUPC
 
-Page: [COACTUPC](../07-programs/COACTUPC.md).
+Page: [COACTUPC](../../01-detailed-documentation/application-documentation/07-programs/COACTUPC.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -339,7 +339,7 @@ Page: [COACTUPC](../07-programs/COACTUPC.md).
 
 ## COACTVWC
 
-Page: [COACTVWC](../07-programs/COACTVWC.md).
+Page: [COACTVWC](../../01-detailed-documentation/application-documentation/07-programs/COACTVWC.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -365,7 +365,7 @@ Page: [COACTVWC](../07-programs/COACTVWC.md).
 
 ## COADM01C
 
-Page: [COADM01C](../07-programs/COADM01C.md).
+Page: [COADM01C](../../01-detailed-documentation/application-documentation/07-programs/COADM01C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -399,7 +399,7 @@ Page: [COADM01C](../07-programs/COADM01C.md).
 
 ## COBIL00C
 
-Page: [COBIL00C](../07-programs/COBIL00C.md).
+Page: [COBIL00C](../../01-detailed-documentation/application-documentation/07-programs/COBIL00C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -423,20 +423,20 @@ Page: [COBIL00C](../07-programs/COBIL00C.md).
 
 ## COBSWAIT
 
-Page: [COBSWAIT](../07-programs/COBSWAIT.md).
+Page: [COBSWAIT](../../01-detailed-documentation/application-documentation/07-programs/COBSWAIT.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [WAITSTEP](../06-batch/jobs/WAITSTEP.md) step WAIT | `app/jcl/WAITSTEP.jcl:22` |
+| started by | job [WAITSTEP](../../01-detailed-documentation/application-documentation/06-batch/jobs/WAITSTEP.md) step WAIT | `app/jcl/WAITSTEP.jcl:22` |
 | calls/transfers to | MVSWAIT (CALL-static) | `app/cbl/COBSWAIT.cbl:38` |
 
 ## COBTUPDT
 
-Page: [COBTUPDT](../07-programs/COBTUPDT.md).
+Page: [COBTUPDT](../../01-detailed-documentation/application-documentation/07-programs/COBTUPDT.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [MNTTRDB2](../06-batch/jobs/MNTTRDB2.md) step STEP1 | `app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:21` |
+| started by | job [MNTTRDB2](../../01-detailed-documentation/application-documentation/06-batch/jobs/MNTTRDB2.md) step STEP1 | `app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:21` |
 | copies | SQLCA (system) | `app/app-transaction-type-db2/cbl/COBTUPDT.cbl:50-52` |
 | copies | DCLTRTYP | `app/app-transaction-type-db2/cbl/COBTUPDT.cbl:54` |
 | data store | CARDDEMO.TRANSACTION_TYPE [C, D, U] | `app/app-transaction-type-db2/cbl/COBTUPDT.cbl:137` |
@@ -446,7 +446,7 @@ Page: [COBTUPDT](../07-programs/COBTUPDT.md).
 
 ## COCRDLIC
 
-Page: [COCRDLIC](../07-programs/COCRDLIC.md).
+Page: [COCRDLIC](../../01-detailed-documentation/application-documentation/07-programs/COCRDLIC.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -472,7 +472,7 @@ Page: [COCRDLIC](../07-programs/COCRDLIC.md).
 
 ## COCRDSLC
 
-Page: [COCRDSLC](../07-programs/COCRDSLC.md).
+Page: [COCRDSLC](../../01-detailed-documentation/application-documentation/07-programs/COCRDSLC.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -497,7 +497,7 @@ Page: [COCRDSLC](../07-programs/COCRDSLC.md).
 
 ## COCRDUPC
 
-Page: [COCRDUPC](../07-programs/COCRDUPC.md).
+Page: [COCRDUPC](../../01-detailed-documentation/application-documentation/07-programs/COCRDUPC.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -522,7 +522,7 @@ Page: [COCRDUPC](../07-programs/COCRDUPC.md).
 
 ## CODATE01
 
-Page: [CODATE01](../07-programs/CODATE01.md).
+Page: [CODATE01](../../01-detailed-documentation/application-documentation/07-programs/CODATE01.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -547,7 +547,7 @@ Page: [CODATE01](../07-programs/CODATE01.md).
 
 ## COMEN01C
 
-Page: [COMEN01C](../07-programs/COMEN01C.md).
+Page: [COMEN01C](../../01-detailed-documentation/application-documentation/07-programs/COMEN01C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -590,7 +590,7 @@ Page: [COMEN01C](../07-programs/COMEN01C.md).
 
 ## COPAUA0C
 
-Page: [COPAUA0C](../07-programs/COPAUA0C.md).
+Page: [COPAUA0C](../../01-detailed-documentation/application-documentation/07-programs/COPAUA0C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -635,7 +635,7 @@ Page: [COPAUA0C](../07-programs/COPAUA0C.md).
 
 ## COPAUS0C
 
-Page: [COPAUS0C](../07-programs/COPAUS0C.md).
+Page: [COPAUS0C](../../01-detailed-documentation/application-documentation/07-programs/COPAUS0C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -673,7 +673,7 @@ Page: [COPAUS0C](../07-programs/COPAUS0C.md).
 
 ## COPAUS1C
 
-Page: [COPAUS1C](../07-programs/COPAUS1C.md).
+Page: [COPAUS1C](../../01-detailed-documentation/application-documentation/07-programs/COPAUS1C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -705,7 +705,7 @@ Page: [COPAUS1C](../07-programs/COPAUS1C.md).
 
 ## COPAUS2C
 
-Page: [COPAUS2C](../07-programs/COPAUS2C.md).
+Page: [COPAUS2C](../../01-detailed-documentation/application-documentation/07-programs/COPAUS2C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -719,7 +719,7 @@ Page: [COPAUS2C](../07-programs/COPAUS2C.md).
 
 ## CORPT00C
 
-Page: [CORPT00C](../07-programs/CORPT00C.md).
+Page: [CORPT00C](../../01-detailed-documentation/application-documentation/07-programs/CORPT00C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -742,7 +742,7 @@ Page: [CORPT00C](../07-programs/CORPT00C.md).
 
 ## COSGN00C
 
-Page: [COSGN00C](../07-programs/COSGN00C.md).
+Page: [COSGN00C](../../01-detailed-documentation/application-documentation/07-programs/COSGN00C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -776,7 +776,7 @@ Page: [COSGN00C](../07-programs/COSGN00C.md).
 
 ## COTRN00C
 
-Page: [COTRN00C](../07-programs/COTRN00C.md).
+Page: [COTRN00C](../../01-detailed-documentation/application-documentation/07-programs/COTRN00C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -798,7 +798,7 @@ Page: [COTRN00C](../07-programs/COTRN00C.md).
 
 ## COTRN01C
 
-Page: [COTRN01C](../07-programs/COTRN01C.md).
+Page: [COTRN01C](../../01-detailed-documentation/application-documentation/07-programs/COTRN01C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -819,7 +819,7 @@ Page: [COTRN01C](../07-programs/COTRN01C.md).
 
 ## COTRN02C
 
-Page: [COTRN02C](../07-programs/COTRN02C.md).
+Page: [COTRN02C](../../01-detailed-documentation/application-documentation/07-programs/COTRN02C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -846,7 +846,7 @@ Page: [COTRN02C](../07-programs/COTRN02C.md).
 
 ## COTRTLIC
 
-Page: [COTRTLIC](../07-programs/COTRTLIC.md).
+Page: [COTRTLIC](../../01-detailed-documentation/application-documentation/07-programs/COTRTLIC.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -879,7 +879,7 @@ Page: [COTRTLIC](../07-programs/COTRTLIC.md).
 
 ## COTRTUPC
 
-Page: [COTRTUPC](../07-programs/COTRTUPC.md).
+Page: [COTRTUPC](../../01-detailed-documentation/application-documentation/07-programs/COTRTUPC.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -912,7 +912,7 @@ Page: [COTRTUPC](../07-programs/COTRTUPC.md).
 
 ## COUSR00C
 
-Page: [COUSR00C](../07-programs/COUSR00C.md).
+Page: [COUSR00C](../../01-detailed-documentation/application-documentation/07-programs/COUSR00C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -934,7 +934,7 @@ Page: [COUSR00C](../07-programs/COUSR00C.md).
 
 ## COUSR01C
 
-Page: [COUSR01C](../07-programs/COUSR01C.md).
+Page: [COUSR01C](../../01-detailed-documentation/application-documentation/07-programs/COUSR01C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -954,7 +954,7 @@ Page: [COUSR01C](../07-programs/COUSR01C.md).
 
 ## COUSR02C
 
-Page: [COUSR02C](../07-programs/COUSR02C.md).
+Page: [COUSR02C](../../01-detailed-documentation/application-documentation/07-programs/COUSR02C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -975,7 +975,7 @@ Page: [COUSR02C](../07-programs/COUSR02C.md).
 
 ## COUSR03C
 
-Page: [COUSR03C](../07-programs/COUSR03C.md).
+Page: [COUSR03C](../../01-detailed-documentation/application-documentation/07-programs/COUSR03C.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -996,7 +996,7 @@ Page: [COUSR03C](../07-programs/COUSR03C.md).
 
 ## CSUTLDTC
 
-Page: [CSUTLDTC](../07-programs/CSUTLDTC.md).
+Page: [CSUTLDTC](../../01-detailed-documentation/application-documentation/07-programs/CSUTLDTC.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
@@ -1007,11 +1007,11 @@ Page: [CSUTLDTC](../07-programs/CSUTLDTC.md).
 
 ## DBUNLDGS
 
-Page: [DBUNLDGS](../07-programs/DBUNLDGS.md).
+Page: [DBUNLDGS](../../01-detailed-documentation/application-documentation/07-programs/DBUNLDGS.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [UNLDGSAM](../06-batch/jobs/UNLDGSAM.md) step STEP01 | `app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:26-27` |
+| started by | job [UNLDGSAM](../../01-detailed-documentation/application-documentation/06-batch/jobs/UNLDGSAM.md) step STEP01 | `app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:26-27` |
 | calls/transfers to | CBLTDLI (CALL-static) | `app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:222` |
 | calls/transfers to | CBLTDLI (CALL-static) | `app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:267` |
 | calls/transfers to | CBLTDLI (CALL-static) | `app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:302` |
@@ -1025,11 +1025,11 @@ Page: [DBUNLDGS](../07-programs/DBUNLDGS.md).
 
 ## PAUDBLOD
 
-Page: [PAUDBLOD](../07-programs/PAUDBLOD.md).
+Page: [PAUDBLOD](../../01-detailed-documentation/application-documentation/07-programs/PAUDBLOD.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [LOADPADB](../06-batch/jobs/LOADPADB.md) step STEP01 | `app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:26-27` |
+| started by | job [LOADPADB](../../01-detailed-documentation/application-documentation/06-batch/jobs/LOADPADB.md) step STEP01 | `app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:26-27` |
 | calls/transfers to | CBLTDLI (CALL-static) | `app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:244` |
 | calls/transfers to | CBLTDLI (CALL-static) | `app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:296` |
 | calls/transfers to | CBLTDLI (CALL-static) | `app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:321` |
@@ -1040,11 +1040,11 @@ Page: [PAUDBLOD](../07-programs/PAUDBLOD.md).
 
 ## PAUDBUNL
 
-Page: [PAUDBUNL](../07-programs/PAUDBUNL.md).
+Page: [PAUDBUNL](../../01-detailed-documentation/application-documentation/07-programs/PAUDBUNL.md).
 
 | Relation | Target | Evidence |
 |---|---|---|
-| started by | job [UNLDPADB](../06-batch/jobs/UNLDPADB.md) step STEP01 | `app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:38-39` |
+| started by | job [UNLDPADB](../../01-detailed-documentation/application-documentation/06-batch/jobs/UNLDPADB.md) step STEP01 | `app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:38-39` |
 | calls/transfers to | CBLTDLI (CALL-static) | `app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:213` |
 | calls/transfers to | CBLTDLI (CALL-static) | `app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:257` |
 | copies | IMSFUNCS | `app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:132` |

@@ -300,6 +300,14 @@ Changes:
 
 Validation: see the final run at the end of this pass (`coverage_validate.py` all_pass, `check_package.py` issues, secrets check findings) recorded in `CardDemo-Architect-Review/README.md`.
 
+## Final architect review pass (2026-10-20)
+
+Audit of the first `CardDemo-Architect-Review.zip` and fixes; full list in `docs/_work/review-changelog.md` (copied to the bundle as `CHANGELOG.md`).
+- Counts recounted from source: 44 `.cbl`; 41 `.cpy` + 3 `.dcl` = 44 layout pages (the DCLGEN members are `EXEC SQL INCLUDE`d, `app/app-transaction-type-db2/cbl/COTRTUPC.cbl:286`, `app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:69`); 21 BMS symbolic maps; 46 `.jcl` in `app/` + 9 in `samples/jcl/` = 55 job pages; 6 `.prc` + 1 template = 7 PROC pages.
+- `gap_report.py`: gap register (290 rows, all with line-level sources), conflict kinds, count reconciliation section. `render_detail.py`: derived paragraph/division on the traceability page.
+- New `prepare_review_bundle.py`, `verify_review_bundle.py`, `write_review_readme.py`; `build_review_bundle.ps1` rebuilt (snapshot with redaction, link repair, independent verification, README, secrets check, ZIP re-verification).
+- `00-index.md` links the gap register.
+
 ## Resume here
 
 Run `batch_manager.py status docs/_work` first. If every batch is `validated` and no source changed, regenerate with `render_detail.py`, `coverage_validate.py`, `gap_report.py --claimed-pages 404`, `check_package.py`, `build_docx.py`, `build_combined_markdown.ps1` and `build_review_bundle.ps1` (commands in `docs-toolkit/README.md`). If a source changed: re-run discovery, then `extract_structure.py`, then `batch_manager.py check docs/_work all`; stale programs show `failed` with a sha256 issue and must be re-analysed per `batch-analysis.md` before re-rendering. Do not run `batch_manager.py init` on this work folder unless a new batch plan is intended. Python 3.1 is the interpreter; set `PYTHONIOENCODING=utf-8`.

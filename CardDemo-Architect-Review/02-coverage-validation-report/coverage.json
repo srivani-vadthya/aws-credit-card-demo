@@ -195,7 +195,7 @@
   }, 
   {
    "criterion": "every source reference resolves", 
-   "measured": "15808 of 15808 distinct references valid", 
+   "measured": "15824 of 15824 distinct references valid", 
    "pass": true, 
    "target": "0 invalid"
   }
@@ -517,8 +517,8 @@
   "source-references": [], 
   "unclassified-statements": []
  }, 
- "documents": 419, 
- "generated": "2026-10-20T03:47:19", 
+ "documents": 420, 
+ "generated": "2026-10-20T04:36:27", 
  "schema": "coverage/1", 
  "summaries": [
   {
@@ -877,12 +877,12 @@
    "category": "source-references", 
    "classified_other": 0, 
    "description": "Every `path:line` reference in the package resolves to an existing file and line range", 
-   "documented": 15808, 
+   "documented": 15824, 
    "kind": "traceability", 
    "missing": 0, 
    "partial": 0, 
    "percent_documented": 100.0, 
-   "total": 15808
+   "total": 15824
   }
  ]
 }
