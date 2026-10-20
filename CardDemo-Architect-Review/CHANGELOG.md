@@ -21,6 +21,7 @@ Changes relative to the first `CardDemo-Architect-Review.zip` (commit e27ca5c). 
 | 13 | The inventory sha256 values were taken on LF files; the working tree is now CRLF (`core.autocrlf=true`), so 226 files differ byte-wise | Line numbers are unaffected; V8 reports raw matches and matches after normalisation separately |
 | 14 | BR-BASE-COACTUPC-007 cites `app/cpy/CSUTLDPY.cpy:273-321`, which starts 11 lines before paragraph `EDIT-DATE-LE` (line 284) | Left as is and reported as the V4c warning; the cited code is inside the range |
 | 15 | `app/`, `samples/` and `scripts/` are untracked in this git repository, so commit e27ca5c does not identify the application source version | README states this; the analysed version is identified by the inventory sha256 values, checked by V8 |
+| 16 | The README and gap register showed 138 open "SME clarification" items next to "120 SME questions" without saying how they relate | Recounted from the register entries: 138 = 120 SME questions (GAP-S) + 18 open code-vs-comment conflicts (GAP-C). The 120 match the semantic files one-to-one (111 written during analysis + 9 from copybook dead-code observations, 48 components). Neither count changed; the owner summaries now have a "Made up of" column, and V9 checks the breakdown and the source match |
 
 ## Scripts and skills changed
 

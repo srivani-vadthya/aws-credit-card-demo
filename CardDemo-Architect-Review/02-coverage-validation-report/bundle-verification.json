@@ -99,13 +99,16 @@
     "gap components 361, sum of per-type counts 361", 
     "register rows 290 = unresolved 14 + SME 120 + conflicts 74 + unverified 72 + ambiguous 10 = 290", 
     "register rows without a line-level source: 0 ", 
+    "SME: 120 GAP-S rows, 120 sme_questions (same entries: yes); SME-clarification rows 138 = 120 questions + 18 open code-vs-comment conflicts", 
+    "gap-register.md owner/status summary agrees with the register rows: yes", 
+    "SME questions traced to docs/_work/semantic: 120 source entries, 120 matched, 0 only in register, 0 only in source", 
     "coverage_validate criteria 33, failed 0", 
     "check_package issues 0", 
     "rule-traceability total 392, rules.json 392", 
     "coverage_validate source references 15824 distinct (documentation folder only); this check 15824 distinct (documentation + report copies)"
    ], 
    "id": "V9", 
-   "measured": "7 cross-checks", 
+   "measured": "10 cross-checks", 
    "status": "pass"
   }, 
   {
@@ -131,7 +134,7 @@
   }
  ], 
  "failed": 0, 
- "generated": "2026-10-20T04:49:33", 
+ "generated": "2026-10-20T05:07:10", 
  "metrics": {
   "layout_pages": 44, 
   "links": {

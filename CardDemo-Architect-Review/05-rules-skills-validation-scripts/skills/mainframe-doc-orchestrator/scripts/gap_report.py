@@ -575,12 +575,17 @@ def main(argv):
     unres_comp = [c["name"] for c in comps if c["status"] == "unresolved"]
     unres_items = set(u["component"] for u in unresolved)
     sme_comp = [c["name"] for c in comps if c["status"] == "requires SME clarification"]
+    n_dead_q = len([q for q in sme if (q.get("question") or "").startswith("Is this copybook still needed? ")])
+    n_open_cf = len([r for r in register if r["id"].startswith("GAP-C-") and r["owner"] == "SME clarification"])
     L += ["",
           "- Unresolved: %d components have primary status unresolved and %d unresolved items are listed. Components without an item of their own: %s."
           % (len(unres_comp), len(unresolved), ", ".join(sorted(set(unres_comp) - unres_items)) or "none")
           + (" CDV1 is unresolved only because the program it starts, COCRDSEC, has no source." if "CDV1" in unres_comp and "CDV1" not in unres_items else ""),
           "- SME: %d components have primary status requires SME clarification; together they carry %d of the %d SME questions (a component can have several). Components with SME questions but a higher-precedence status are counted under that status."
-          % (len(sme_comp), len([q for q in sme if q["component"] in set(sme_comp)]), len(sme)),
+          % (len(sme_comp), len([q for q in sme if q["component"] in set(sme_comp)]), len(sme))
+          + " The %d questions are %d written during batch analysis (`sme_questions` in `docs/_work/semantic/`) and %d generated from copybook dead-code observations. "
+            "Together with the %d open code-vs-comment-or-definition conflicts they make %d register rows owned by SME clarification."
+          % (len(sme), len(sme) - n_dead_q, n_dead_q, n_open_cf, len(sme) + n_open_cf),
           "- Conflicting definitions (%d) are of four kinds: %s. Only code-vs-comment-or-definition rows are open questions; rule corrections and parser reconciliations are closed, and DD reuse rows are informational."
           % (len(conflicts), ", ".join("%s %d" % kv for kv in sorted(cls_n.items()))),
           "- Unverified statements (%d): the core rule (`mainframe-doc-core.mdc`) forbids using them as evidence for a Confirmed fact; this is a process rule, not a measured check. Ambiguous dependencies (%d) are Inferred edges or run-time behaviour."
@@ -662,12 +667,19 @@ def write_register(out, register, generated):
          "**Unverified** = comment, README or label only; **Requires confirmation** = the code is Confirmed but its business intent is not. "
          "Impact is stated only where the work files support it (entry points that run the code, copybook users, DD counts); otherwise it says *Not assessed*. "
          "Business impact of SME questions is not assessed by the pipeline.", "",
-         "## Summary", "", "| Owner | Status | Rows |", "|---|---|---|"]
-    agg = {}
+         "## Summary", "", "| Owner | Status | Rows | Made up of |", "|---|---|---|---|"]
+    labels = {"GAP-U": "unresolved items", "GAP-S": "SME questions", "GAP-C": "conflicting definitions",
+              "GAP-V": "Unverified statements", "GAP-A": "ambiguous dependencies"}
+    agg, parts = {}, {}
     for r in register:
-        agg[(r["owner"], r["status"])] = agg.get((r["owner"], r["status"]), 0) + 1
+        k = (r["owner"], r["status"])
+        agg[k] = agg.get(k, 0) + 1
+        pre = r["id"].rsplit("-", 1)[0]
+        parts.setdefault(k, {})
+        parts[k][pre] = parts[k].get(pre, 0) + 1
     for (o, s), n in sorted(agg.items()):
-        L.append("| %s | %s | %d |" % (o, s, n))
+        L.append("| %s | %s | %d | %s |" % (o, s, n, " + ".join("%d %s (%s)" % (c, labels.get(p, p), p) for p, c in sorted(parts[(o, s)].items()))))
+    L += ["", "An owner total can combine several kinds of row: the SME clarification total counts SME questions and open conflicting definitions together."]
     for prefix, title in (("GAP-U", "Unresolved items (technical investigation)"), ("GAP-S", "SME questions"),
                           ("GAP-C", "Conflicting definitions"), ("GAP-A", "Ambiguous dependencies"), ("GAP-V", "Unverified statements")):
         rs = [r for r in register if r["id"].startswith(prefix + "-")]

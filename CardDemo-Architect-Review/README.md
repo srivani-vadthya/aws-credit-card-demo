@@ -1,6 +1,6 @@
 # CardDemo legacy documentation POC - architect review package
 
-Repository commit `e27ca5c`; application source in the working tree is not tracked by this git repository (app/, samples/ and scripts/ are untracked), so the commit does not identify it; the analysed version is identified by the inventory sha256 values, which every snapshot file still matches (V8). Documentation, reports and scripts include the uncommitted changes of the final review pass (see CHANGELOG.md). Pipeline validation run 2026-10-20T04:36:27; bundle verification run 2026-10-20T04:49:33 (13 checks, 0 failed, 1 warning(s)).
+Repository commit `350c9d0`; application source in the working tree is not tracked by this git repository (app/, samples/ and scripts/ are untracked), so the commit does not identify it; the analysed version is identified by the inventory sha256 values, which every snapshot file still matches (V8). Documentation, reports and scripts include the uncommitted changes of the final review pass (see CHANGELOG.md). Pipeline validation run 2026-10-20T05:06:22; bundle verification run 2026-10-20T05:07:10 (13 checks, 0 failed, 1 warning(s)).
 
 ## 1. What this POC documents
 
@@ -74,7 +74,8 @@ Report pages in folders 02-04 are copies of pages in `01-detailed-documentation/
 - **CICS transactions 24 of 25**: transaction CDV1 starts program COCRDSEC, which is defined in the CSD but has no source in the repository (GAP-U-014).
 - **Inventory artifacts 276 of 331 (83.4%)**: the other 55 entries are excluded with a reason, not missing.
 - **Source references**: the pipeline counts 15824 distinct citations in the documentation folder; the bundle check counts 15824 distinct in the documentation plus the report copies (the counts agree).
-- **15 unresolved components vs 14 unresolved items**: CDV1 is unresolved only through COCRDSEC. **48 SME components vs 120 SME questions**: a component can carry several questions.
+- **15 unresolved components vs 14 unresolved items**: CDV1 is unresolved only through COCRDSEC.
+- **120 SME questions, 48 components, 138 SME-clarification items**: the register has 120 SME-question rows (GAP-S) in 48 components (a component can carry several): 111 written during batch analysis and 9 generated from copybook dead-code observations, each matched one-to-one to its semantic file. The 138 rows owned by SME clarification are those 120 questions plus the 18 open code-vs-comment conflicts (GAP-C).
 - **74 conflicting definitions**: code-vs-comment-or-definition 18, dd-reuse-across-jobs 26, parser-reconciliation 24, rule-correction 6. Only the 18 code-vs-comment-or-definition rows are open questions.
 
 ### Coverage by category (pipeline validator)
@@ -139,14 +140,14 @@ Report pages in folders 02-04 are copies of pages in `01-detailed-documentation/
 
 Full list with source, impact, status, owner and next action: [gap-register.md](04-gap-report/gap-register.md). Summary:
 
-| Owner | Status | Items |
-|---|---|---|
-| None | Closed (parser output used) | 24 |
-| None | Informational | 26 |
-| None required | Open (low) | 55 |
-| SME clarification | Open | 138 |
-| SME review optional | Closed (corrected) | 6 |
-| Technical investigation | Open | 41 |
+| Owner | Status | Items | Made up of |
+|---|---|---|---|
+| None | Closed (parser output used) | 24 | 24 conflicts (GAP-C) |
+| None | Informational | 26 | 26 conflicts (GAP-C) |
+| None required | Open (low) | 55 | 55 Unverified statements (GAP-V) |
+| SME clarification | Open | 138 | 18 conflicts (GAP-C) + 120 SME questions (GAP-S) |
+| SME review optional | Closed (corrected) | 6 | 6 conflicts (GAP-C) |
+| Technical investigation | Open | 41 | 10 ambiguous dependencies (GAP-A) + 14 unresolved items (GAP-U) + 17 Unverified statements (GAP-V) |
 
 **Technical investigation (environment, missing source, run-time behaviour):**
 
@@ -179,7 +180,7 @@ Full list with source, impact, status, owner and next action: [gap-register.md](
 
 Plus 17 Unverified scheduler/README/comment statements to confirm with operations (GAP-V rows in the register).
 
-**SME clarification (business intent):** 120 questions across 48 components, and 18 open code-vs-comment conflicts. Questions per component:
+**SME clarification (business intent):** 138 items = 120 questions across 48 components + 18 open code-vs-comment conflicts. Questions per component:
 
 COACTUPC 8, CBTRN02C 5, COTRN02C 5, COTRTLIC 5, COTRTUPC 5, CBTRN03C 4, COACCT01 4, COBIL00C 4, COCRDUPC 4, COPAUA0C 4, CORPT00C 4, CBACT04C 3, CBEXPORT 3, CBPAUP0C 3, CBSTM03A 3, COCRDLIC 3, COCRDSLC 3, CODATE01 3, COTRN00C 3, COUSR02C 3, CBACT01C 2, CBIMPORT 2, CBTRN01C 2, COACTVWC 2, COBTUPDT 2, COMEN01C 2, COPAUS0C 2, COPAUS1C 2, COTRN01C 2, COUSR00C 2, COUSR01C 2, COUSR03C 2, PAUDBLOD 2, CCPAUERY 1, CIPAUDTY 1, CIPAUSMY 1, COADM01C 1, COBSWAIT 1, COMEN02Y 1, COPAUS2C 1, COSGN00C 1, CSMSG01Y 1, CSUSR01Y 1, CSUTLDTC 1, CVCRD01Y 1, DBUNLDGS 1, IMSFUNCS 1, UNUSED1Y 1.
 
@@ -217,7 +218,7 @@ python 05-rules-skills-validation-scripts/work-dir-scripts/verify_review_bundle.
 | V6 | No compiled, temporary or empty files | pass | 0 junk, 0 empty |
 | V7 | FTP connection lines from app/jcl/FTPJCL.JCL are absent from the bundle (snapshot copy redacted) | pass | 3 connection lines checked in every text file and inside the DOCX; 0 findings; 3 redaction markers in the snapshot copy |
 | V8 | Snapshot files match the analysed sources (inventory sha256 and the repository) | pass | 241 files: 14 identical, 226 identical after CRLF->LF normalisation (the working tree was checked out with CRLF after analysis; line numbers are unaffected), 0 mismatches, 0 differ from repository, 1 redacted (expected to differ) |
-| V9 | Reports agree with each other (gap counts, register, criteria, package check, rule totals) | pass | 7 cross-checks |
+| V9 | Reports agree with each other (gap counts, register, criteria, package check, rule totals) | pass | 10 cross-checks |
 | V10 | Identical files (informational; intended copies are explained in README.md) | pass | 13 groups of identical files |
 
 Details: [bundle-verification.md](02-coverage-validation-report/bundle-verification.md).

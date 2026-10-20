@@ -172,7 +172,16 @@ def main(argv):
     p_sr = [s for s in cov["summaries"] if s["category"] == "source-references"][0]["total"]
     A("- **Source references**: the pipeline counts %d distinct citations in the documentation folder; the bundle check counts %d distinct in the documentation plus the report copies (%s)." % (
         p_sr, sref["distinct"], "the counts agree" if p_sr == sref["distinct"] else "the report copies add citations"))
-    A("- **15 unresolved components vs 14 unresolved items**: CDV1 is unresolved only through COCRDSEC. **48 SME components vs 120 SME questions**: a component can carry several questions.")
+    A("- **15 unresolved components vs 14 unresolved items**: CDV1 is unresolved only through COCRDSEC.")
+    sq = gaps["sme_questions"]
+    n_dead = len([q for q in sq if (q.get("question") or "").startswith("Is this copybook still needed? ")])
+    n_sme_owner = len([r for r in reg if r["owner"] == "SME clarification"])
+    n_cf_open = len([r for r in reg if r["owner"] == "SME clarification" and r["id"].startswith("GAP-C")])
+    A("- **%d SME questions, %d components, %d SME-clarification items**: the register has %d SME-question rows (GAP-S) in %d components (a component can carry several): "
+      "%d written during batch analysis and %d generated from copybook dead-code observations, each matched one-to-one to its semantic file. "
+      "The %d rows owned by SME clarification are those %d questions plus the %d open code-vs-comment conflicts (GAP-C)." % (
+          len(sq), len(set(q["component"] for q in sq)), n_sme_owner, len(sq), len(set(q["component"] for q in sq)),
+          len(sq) - n_dead, n_dead, n_sme_owner, len(sq), n_cf_open))
     A("- **74 conflicting definitions**: %s. Only the %d code-vs-comment-or-definition rows are open questions." % (
         ", ".join("%s %d" % kv for kv in sorted(cls.items())), cls.get("code-vs-comment-or-definition", 0)))
     A("")
@@ -211,13 +220,19 @@ def main(argv):
     A("")
     A("Full list with source, impact, status, owner and next action: [gap-register.md](04-gap-report/gap-register.md). Summary:")
     A("")
-    agg = {}
+    labels = {"GAP-U": "unresolved items", "GAP-S": "SME questions", "GAP-C": "conflicts",
+              "GAP-V": "Unverified statements", "GAP-A": "ambiguous dependencies"}
+    agg, parts = {}, {}
     for r in reg:
-        agg[(r["owner"], r["status"])] = agg.get((r["owner"], r["status"]), 0) + 1
-    A("| Owner | Status | Items |")
-    A("|---|---|---|")
+        k = (r["owner"], r["status"])
+        agg[k] = agg.get(k, 0) + 1
+        pre = r["id"].rsplit("-", 1)[0]
+        parts.setdefault(k, {})
+        parts[k][pre] = parts[k].get(pre, 0) + 1
+    A("| Owner | Status | Items | Made up of |")
+    A("|---|---|---|---|")
     for (o, s), n in sorted(agg.items()):
-        A("| %s | %s | %d |" % (o, s, n))
+        A("| %s | %s | %d | %s |" % (o, s, n, " + ".join("%d %s (%s)" % (c, labels.get(p, p), p) for p, c in sorted(parts[(o, s)].items()))))
     A("")
     A("**Technical investigation (environment, missing source, run-time behaviour):**")
     A("")
@@ -230,8 +245,9 @@ def main(argv):
     A("")
     A("Plus %d Unverified scheduler/README/comment statements to confirm with operations (GAP-V rows in the register)." % nv)
     A("")
-    A("**SME clarification (business intent):** %d questions across %d components, and %d open code-vs-comment conflicts. Questions per component:" % (
-        len(gaps["sme_questions"]), len(set(q["component"] for q in gaps["sme_questions"])), cls.get("code-vs-comment-or-definition", 0)))
+    A("**SME clarification (business intent):** %d items = %d questions across %d components + %d open code-vs-comment conflicts. Questions per component:" % (
+        len([r for r in reg if r["owner"] == "SME clarification"]), len(gaps["sme_questions"]), len(set(q["component"] for q in gaps["sme_questions"])),
+        cls.get("code-vs-comment-or-definition", 0)))
     A("")
     per = {}
     for q in gaps["sme_questions"]:

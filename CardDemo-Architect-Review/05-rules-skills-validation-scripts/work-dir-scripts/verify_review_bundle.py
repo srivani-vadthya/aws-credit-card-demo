@@ -462,6 +462,41 @@ def main(argv):
     noline = [r["id"] for r in reg if not re.search(r":\d+", r.get("source") or "")]
     det.append("register rows without a line-level source: %d %s" % (len(noline), " ".join(noline)))
     ok = ok and not noline
+    sq = gaps["sme_questions"]
+    s_rows = [r for r in reg if r["id"].startswith("GAP-S-")]
+    same = set((r["component"], r["summary"]) for r in s_rows) == set((q["component"], q["question"]) for q in sq)
+    open_cf = len([c for c in gaps["conflicts"] if c.get("class") == "code-vs-comment-or-definition"])
+    sme_owner = [r for r in reg if r["owner"] == "SME clarification"]
+    det.append("SME: %d GAP-S rows, %d sme_questions (same entries: %s); SME-clarification rows %d = %d questions + %d open code-vs-comment conflicts" % (
+        len(s_rows), len(sq), "yes" if same else "NO", len(sme_owner), len(sq), open_cf))
+    ok = ok and same and len(s_rows) == len(sq) and len(sme_owner) == len(sq) + open_cf
+    page = text(os.path.join(B, "04-gap-report", "gap-register.md"))
+    agg = {}
+    for r in reg:
+        agg[(r["owner"], r["status"])] = agg.get((r["owner"], r["status"]), 0) + 1
+    on_page = dict(((m.group(1).strip(), m.group(2).strip()), int(m.group(3))) for m in re.finditer(r"^\| ([^|]+) \| ([^|]+) \| (\d+) \|", page, re.M))
+    det.append("gap-register.md owner/status summary agrees with the register rows: %s" % ("yes" if on_page == agg else "NO (%s)" % sorted(set(on_page.items()) ^ set(agg.items()))))
+    ok = ok and on_page == agg
+    if repo:
+        sem_dir = os.path.join(repo, "docs", "_work", "semantic")
+        src_q = set()
+        for sub in ("programs", "copybooks"):
+            d = os.path.join(sem_dir, sub)
+            for f in (os.listdir(d) if os.path.isdir(d) else []):
+                if not f.endswith(".json"):
+                    continue
+                sm = json.load(open(os.path.join(d, f), encoding="utf-8"))
+                name = os.path.splitext(f)[0]
+                for q in sm.get("sme_questions") or []:
+                    src_q.add((name, q.get("question")))
+                if sub == "copybooks":
+                    for o in sm.get("observations") or []:
+                        if isinstance(o, dict) and o.get("kind") == "dead-code":
+                            src_q.add((name, "Is this copybook still needed? " + (o.get("text") or "")))
+        reg_q = set((q["component"], q["question"]) for q in sq)
+        det.append("SME questions traced to docs/_work/semantic: %d source entries, %d matched, %d only in register, %d only in source" % (
+            len(src_q), len(reg_q & src_q), len(reg_q - src_q), len(src_q - reg_q)))
+        ok = ok and reg_q == src_q
     crit = cov["criteria"]
     failed = [c["criterion"] for c in crit if not c["pass"]]
     det.append("coverage_validate criteria %d, failed %d" % (len(crit), len(failed)))
