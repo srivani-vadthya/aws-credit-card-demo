@@ -1,0 +1,888 @@
+{
+ "all_pass": true, 
+ "criteria": [
+  {
+   "criterion": "programs fully documented", 
+   "measured": "44/44 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "paragraphs-structural fully documented", 
+   "measured": "881/881 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "exec-commands fully documented", 
+   "measured": "286/286 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "call-statements fully documented", 
+   "measured": "62/62 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "file-selects fully documented", 
+   "measured": "54/54 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "program-data-items fully documented", 
+   "measured": "2327/2327 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "copybooks fully documented", 
+   "measured": "44/44 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "copybook-fields fully documented", 
+   "measured": "559/559 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "copybook-88-levels fully documented", 
+   "measured": "70/70 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "copybook-paragraphs fully documented", 
+   "measured": "20/20 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "copy-edges fully documented", 
+   "measured": "366/366 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "jcl-jobs fully documented", 
+   "measured": "55/55 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "jcl-procs fully documented", 
+   "measured": "7/7 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "jcl-steps fully documented", 
+   "measured": "163/163 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "jcl-dds fully documented", 
+   "measured": "792/792 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "jcl-conditions fully documented", 
+   "measured": "30/30 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "cics-resources fully documented", 
+   "measured": "89/89 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "data-definitions fully documented", 
+   "measured": "22/22 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "datasets fully documented", 
+   "measured": "149/149 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "dependencies fully documented", 
+   "measured": "175/175 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "procedure-statements fully documented", 
+   "measured": "10152/10152 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "decision-points-all fully documented", 
+   "measured": "2230/2230 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "dataflow-edges fully documented", 
+   "measured": "243/243 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "every paragraph has a validated logic description", 
+   "measured": "881/881 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "every paragraph description names something from its code", 
+   "measured": "881/881 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "statements the parser could not classify are shown on the page", 
+   "measured": "0 unclassified, 0 not shown", 
+   "pass": true, 
+   "target": "0 not shown"
+  }, 
+  {
+   "criterion": "every rule (new and legacy) traceable to verified source and in the catalog", 
+   "measured": "392/392 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "scheduler edges documented or classified unresolved", 
+   "measured": "81 documented, 0 unresolved, 0 missing", 
+   "pass": true, 
+   "target": "0 missing"
+  }, 
+  {
+   "criterion": "every program has validated rules or a no-rule reason", 
+   "measured": "44/44", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "business-candidate decision points linked to a rule or reviewed reason", 
+   "measured": "1242/1242 (100.0%)", 
+   "pass": true, 
+   "target": "100%"
+  }, 
+  {
+   "criterion": "CICS transactions documented or classified unresolved", 
+   "measured": "24 documented, 1 unresolved, 0 missing", 
+   "pass": true, 
+   "target": "0 missing"
+  }, 
+  {
+   "criterion": "every inventoried artifact documented or excluded with reason", 
+   "measured": "276 documented, 55 excluded, 0 missing", 
+   "pass": true, 
+   "target": "0 missing"
+  }, 
+  {
+   "criterion": "every source reference resolves", 
+   "measured": "15808 of 15808 distinct references valid", 
+   "pass": true, 
+   "target": "0 invalid"
+  }
+ ], 
+ "details": {
+  "call-statements": [], 
+  "cics-resources": [], 
+  "cics-transactions": [
+   {
+    "detail": "PROGRAM(COCRDSEC) has no source in the repository", 
+    "item": "CDV1", 
+    "status": "unresolved"
+   }
+  ], 
+  "copy-edges": [], 
+  "copybook-88-levels": [], 
+  "copybook-fields": [], 
+  "copybook-paragraphs": [], 
+  "copybooks": [], 
+  "data-definitions": [], 
+  "dataflow-edges": [], 
+  "datasets": [], 
+  "decision-points": [], 
+  "decision-points-all": [], 
+  "dependencies": [], 
+  "exec-commands": [], 
+  "file-selects": [], 
+  "inventory-artifacts": [
+   {
+    "detail": "type repo-meta: name:^(LICENSE|NOTICE|\\.GITIGNORE|\\.GITATTRIBUTES|CODE_OF_CONDUCT\\.MD|CONTRIBUTING\\.MD)$", 
+    "item": ".gitignore", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type repo-meta: name:^(LICENSE|NOTICE|\\.GITIGNORE|\\.GITATTRIBUTES|CODE_OF_CONDUCT\\.MD|CONTRIBUTING\\.MD)$", 
+    "item": "CODE_OF_CONDUCT.md", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type repo-meta: name:^(LICENSE|NOTICE|\\.GITIGNORE|\\.GITATTRIBUTES|CODE_OF_CONDUCT\\.MD|CONTRIBUTING\\.MD)$", 
+    "item": "CONTRIBUTING.md", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type repo-meta: name:^(LICENSE|NOTICE|\\.GITIGNORE|\\.GITATTRIBUTES|CODE_OF_CONDUCT\\.MD|CONTRIBUTING\\.MD)$", 
+    "item": "LICENSE", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type repo-meta: name:^(LICENSE|NOTICE|\\.GITIGNORE|\\.GITATTRIBUTES|CODE_OF_CONDUCT\\.MD|CONTRIBUTING\\.MD)$", 
+    "item": "NOTICE", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: name:^\\.GITKEEP$", 
+    "item": "app/cpy-bms/.gitkeep", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: name:^\\.GITKEEP$", 
+    "item": "app/csd/.gitkeep", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: name:^\\.GITKEEP$", 
+    "item": "app/data/EBCDIC/.gitkeep", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type excluded: exclude:**/*.zip", 
+    "item": "samples/m2/mf/CardDemo_runtime.zip", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type excluded: exclude:**/*.zip", 
+    "item": "samples/m2/unikix/UniKix_CardDemo_runtime_v1.zip", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/ACCTFILE", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CARDFILE", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CBACT01C", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CBACT02C", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CBACT03C", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CBACT04C", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CBCUS01C", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CBTRN01C", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CBTRN02C", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CBTRN03C", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CUSTFILE", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CVACT01Y", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CVACT02Y", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CVACT03Y", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CVCUS01Y", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CVTRA01Y", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CVTRA02Y", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CVTRA03Y", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CVTRA04Y", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CVTRA05Y", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CVTRA06Y", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/CVTRA07Y", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/DALYREJS", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/DEFGDGB", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/DISCGRP", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/LISTCAT", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/POSTTRAN", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/RACFCMDS", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/READACCT", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/READCARD", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/READCUST", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/READXREF", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/REPRO", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/REPROC", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/REPROCT", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/REPRTEST", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/REPTFILE", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/TCATBAL", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/TCATBALF", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/TRANCAT", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/TRANCATG", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/TRANFILE", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/TRANREPT", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/TRANTYPE", 
+    "status": "excluded"
+   }, 
+   {
+    "detail": "type placeholder: empty-file", 
+    "item": "scripts/markers/XREFFILE", 
+    "status": "excluded"
+   }
+  ], 
+  "jcl-conditions": [], 
+  "jcl-dds": [], 
+  "jcl-jobs": [], 
+  "jcl-procs": [], 
+  "jcl-steps": [], 
+  "paragraph-logic-grounding": [], 
+  "paragraphs-semantic": [], 
+  "paragraphs-structural": [], 
+  "procedure-statements": [], 
+  "program-data-items": [], 
+  "program-rule-analysis": [], 
+  "programs": [], 
+  "rule-traceability": [], 
+  "scheduler-edges": [], 
+  "source-references": [], 
+  "unclassified-statements": []
+ }, 
+ "documents": 419, 
+ "generated": "2026-10-20T03:47:19", 
+ "schema": "coverage/1", 
+ "summaries": [
+  {
+   "category": "programs", 
+   "classified_other": 0, 
+   "description": "COBOL program page exists, cites the source, and semantic analysis validated", 
+   "documented": 44, 
+   "kind": "structural+semantic", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 44
+  }, 
+  {
+   "category": "paragraphs-structural", 
+   "classified_other": 0, 
+   "description": "Paragraph listed on its program page with the exact line range", 
+   "documented": 881, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 881
+  }, 
+  {
+   "category": "paragraphs-semantic", 
+   "classified_other": 0, 
+   "description": "Paragraph has a validated logic description", 
+   "documented": 881, 
+   "kind": "semantic", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 881
+  }, 
+  {
+   "category": "paragraph-logic-grounding", 
+   "classified_other": 0, 
+   "description": "Paragraph description names an identifier, literal or the paragraph itself from its code", 
+   "documented": 881, 
+   "kind": "semantic", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 881
+  }, 
+  {
+   "category": "procedure-statements", 
+   "classified_other": 0, 
+   "description": "Every parsed procedure statement (all kinds, including field-to-field MOVEs) cited on the program page", 
+   "documented": 10152, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 10152
+  }, 
+  {
+   "category": "unclassified-statements", 
+   "classified_other": 0, 
+   "description": "Statements the parser could not classify, shown on the program page", 
+   "documented": 0, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 0
+  }, 
+  {
+   "category": "decision-points-all", 
+   "classified_other": 0, 
+   "description": "Every IF/EVALUATE/WHEN, business-candidate or technical, cited on the program page", 
+   "documented": 2230, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 2230
+  }, 
+  {
+   "category": "exec-commands", 
+   "classified_other": 0, 
+   "description": "Each EXEC CICS/SQL/DLI block cited on the program page", 
+   "documented": 286, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 286
+  }, 
+  {
+   "category": "call-statements", 
+   "classified_other": 0, 
+   "description": "Each CALL cited on the program page", 
+   "documented": 62, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 62
+  }, 
+  {
+   "category": "file-selects", 
+   "classified_other": 0, 
+   "description": "Each SELECT/FD file documented on the program page", 
+   "documented": 54, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 54
+  }, 
+  {
+   "category": "program-data-items", 
+   "classified_other": 0, 
+   "description": "Each data item coded in the program appears on its page", 
+   "documented": 2327, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 2327
+  }, 
+  {
+   "category": "decision-points", 
+   "classified_other": 0, 
+   "description": "Business-candidate decision linked to a rule or a reviewed no-rule reason", 
+   "documented": 1242, 
+   "kind": "semantic", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 1242
+  }, 
+  {
+   "category": "program-rule-analysis", 
+   "classified_other": 0, 
+   "description": "Program has validated rules or a stated reason for having none", 
+   "documented": 44, 
+   "kind": "semantic", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 44
+  }, 
+  {
+   "category": "copybooks", 
+   "classified_other": 0, 
+   "description": "Copybook/DCLGEN page exists, cites source, semantic purpose validated", 
+   "documented": 44, 
+   "kind": "structural+semantic", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 44
+  }, 
+  {
+   "category": "copybook-fields", 
+   "classified_other": 0, 
+   "description": "Each copybook field (non-FILLER) on its layout page", 
+   "documented": 559, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 559
+  }, 
+  {
+   "category": "copybook-88-levels", 
+   "classified_other": 0, 
+   "description": "Each level-88 condition on its layout page", 
+   "documented": 70, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 70
+  }, 
+  {
+   "category": "copybook-paragraphs", 
+   "classified_other": 0, 
+   "description": "Procedure paragraphs inside copybooks listed on the layout page", 
+   "documented": 20, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 20
+  }, 
+  {
+   "category": "copy-edges", 
+   "classified_other": 0, 
+   "description": "Each COPY/INCLUDE statement cited on the user's page and in the usage matrix", 
+   "documented": 366, 
+   "kind": "dependency", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 366
+  }, 
+  {
+   "category": "jcl-jobs", 
+   "classified_other": 0, 
+   "description": "JCL job page exists and cites the source", 
+   "documented": 55, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 55
+  }, 
+  {
+   "category": "jcl-procs", 
+   "classified_other": 0, 
+   "description": "PROC / JCL template page exists", 
+   "documented": 7, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 7
+  }, 
+  {
+   "category": "jcl-steps", 
+   "classified_other": 0, 
+   "description": "Each EXEC step on the job/PROC page with its line reference", 
+   "documented": 163, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 163
+  }, 
+  {
+   "category": "jcl-dds", 
+   "classified_other": 0, 
+   "description": "Each DD statement on the job/PROC page with its line reference", 
+   "documented": 792, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 792
+  }, 
+  {
+   "category": "jcl-conditions", 
+   "classified_other": 0, 
+   "description": "Each COND / IF-THEN condition shown", 
+   "documented": 30, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 30
+  }, 
+  {
+   "category": "cics-transactions", 
+   "classified_other": 1, 
+   "description": "Transaction in the CSD page and the transaction catalog, program resolved", 
+   "documented": 24, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 96.0, 
+   "total": 25
+  }, 
+  {
+   "category": "cics-resources", 
+   "classified_other": 0, 
+   "description": "Every CSD DEFINE listed with its source line", 
+   "documented": 89, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 89
+  }, 
+  {
+   "category": "data-definitions", 
+   "classified_other": 0, 
+   "description": "DDL objects, DBD segments and PSB PCBs named in the package", 
+   "documented": 22, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 22
+  }, 
+  {
+   "category": "datasets", 
+   "classified_other": 0, 
+   "description": "Every dataset name coded in JCL appears in the package", 
+   "documented": 149, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 149
+  }, 
+  {
+   "category": "dependencies", 
+   "classified_other": 0, 
+   "description": "Call/transfer edges, job->program and transaction->program links documented", 
+   "documented": 175, 
+   "kind": "dependency", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 175
+  }, 
+  {
+   "category": "rule-traceability", 
+   "classified_other": 0, 
+   "description": "Rule cites resolvable lines, its paragraph exists there, its anchor is in the cited code, and it is in the catalog", 
+   "documented": 392, 
+   "kind": "traceability", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 392
+  }, 
+  {
+   "category": "scheduler-edges", 
+   "classified_other": 0, 
+   "description": "Every CA7 trigger, Control-M condition and script submit shown on a job page or the job-dependency page", 
+   "documented": 81, 
+   "kind": "dependency", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 81
+  }, 
+  {
+   "category": "dataflow-edges", 
+   "classified_other": 0, 
+   "description": "Every job/step/dataset edge shown on the job page with its DD line", 
+   "documented": 243, 
+   "kind": "dependency", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 243
+  }, 
+  {
+   "category": "inventory-artifacts", 
+   "classified_other": 55, 
+   "description": "Every inventoried artifact named in the package or excluded with a reason", 
+   "documented": 276, 
+   "kind": "structural", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 83.4, 
+   "total": 331
+  }, 
+  {
+   "category": "source-references", 
+   "classified_other": 0, 
+   "description": "Every `path:line` reference in the package resolves to an existing file and line range", 
+   "documented": 15808, 
+   "kind": "traceability", 
+   "missing": 0, 
+   "partial": 0, 
+   "percent_documented": 100.0, 
+   "total": 15808
+  }
+ ]
+}

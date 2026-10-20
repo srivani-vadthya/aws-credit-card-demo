@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "mainframe-doc/job-facts/1",
+  "title": "Facts extracted for one JCL job (batch-jcl-analysis)",
+  "type": "object",
+  "required": ["job_name", "source_path", "steps"],
+  "properties": {
+    "job_name": {"type": "string"},
+    "source_path": {"type": "string"},
+    "sha256": {"type": "string"},
+    "module": {"type": ["string", "null"]},
+    "job_card": {"type": "object", "properties": {"class": {"type": ["string", "null"]}, "msgclass": {"type": ["string", "null"]}, "region": {"type": ["string", "null"]}, "notify": {"type": ["string", "null"]}, "source": {"type": "string"}}},
+    "description": {"type": "object", "properties": {"text": {"type": "string"}, "source": {"type": "string"}, "confidence": {"enum": ["Confirmed", "Inferred", "Unverified"]}}},
+    "jcllib": {"type": "array", "items": {"type": "string"}},
+    "set_symbols": {"type": "object", "additionalProperties": {"type": "string"}},
+    "unresolved_symbols": {"type": "array", "items": {"type": "string"}},
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "line"],
+        "properties": {
+          "name": {"type": "string"},
+          "line": {"type": "integer"},
+          "program": {"type": ["string", "null"]},
+          "proc": {"type": ["string", "null"]},
+          "proc_steps": {"type": "array", "items": {"type": "string"}},
+          "parm": {"type": ["string", "null"]},
+          "cond": {"type": ["string", "null"]},
+          "if_condition": {"type": ["string", "null"]},
+          "kind": {"enum": ["application", "utility", "db2", "ims", "ftp", "build", "other"]},
+          "function": {"type": "string"},
+          "control_statements": {"type": "array", "items": {"type": "object", "properties": {"text": {"type": "string"}, "meaning": {"type": "string"}, "source": {"type": "string"}}}},
+          "dds": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["ddname", "line"],
+              "properties": {
+                "ddname": {"type": "string"},
+                "dsn": {"type": ["string", "null"]},
+                "gdg_relative": {"type": ["string", "null"]},
+                "disp": {"type": ["string", "null"]},
+                "recfm": {"type": ["string", "null"]},
+                "lrecl": {"type": ["string", "null"]},
+                "space": {"type": ["string", "null"]},
+                "sysout": {"type": ["string", "boolean", "null"]},
+                "dummy": {"type": "boolean"},
+                "instream": {"type": "boolean"},
+                "internal_reader": {"type": "boolean"},
+                "program_file": {"type": ["string", "null"], "description": "SELECT name in the program"},
+                "usage": {"type": "array", "items": {"enum": ["C", "R", "U", "D", "A"]}},
+                "layout": {"type": ["string", "null"]},
+                "line": {"type": "integer"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "schedule": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source": {"type": "string"},
+          "predecessors": {"type": "array", "items": {"type": "string"}},
+          "successors": {"type": "array", "items": {"type": "string"}},
+          "calendar": {"type": ["string", "null"]},
+          "time": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "submitted_by": {"type": "array", "items": {"type": "object", "properties": {"submitter": {"type": "string"}, "mechanism": {"type": "string"}, "source": {"type": "string"}}}},
+    "restart_notes": {"type": "string"},
+    "findings": {"type": "array", "items": {"type": "object", "properties": {"text": {"type": "string"}, "source": {"type": "string"}}}}
+  }
+}

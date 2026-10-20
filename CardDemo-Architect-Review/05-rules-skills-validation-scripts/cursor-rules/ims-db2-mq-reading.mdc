@@ -1,0 +1,40 @@
+---
+description: How to read IMS DBD/PSB, DB2 DDL/DCLGEN and MQ artifacts for data and integration reverse engineering
+globs: **/*.{dbd,DBD,psb,PSB,ddl,DDL,sql,SQL,dcl,DCL,mqsc,MQSC}
+alwaysApply: false
+---
+
+# Reading IMS, DB2 and MQ Artifacts
+
+## IMS DBD
+- `DBD NAME=,ACCESS=(HIDAM|HDAM|HISAM|INDEX|GSAM|...)`; `DATASET DD1=`;
+  `SEGM NAME=,PARENT=,BYTES=,POINTER=`; `FIELD NAME=(name,SEQ,U|M),START=,
+  BYTES=,TYPE=`; `LCHILD`/`XDFLD` for secondary indexes.
+- Build the hierarchy from PARENT; root has PARENT=0. Record key fields and
+  index relationships between DBDs.
+- Macro continuation is a non-blank in column 72.
+
+## IMS PSB
+- `PCB TYPE=DB,DBDNAME=,PROCOPT=,KEYLEN=` then `SENSEG NAME=,PARENT=,
+  PROCOPT=`; `PCB TYPE=GSAM`; `PSBGEN LANG=,PSBNAME=`.
+- PROCOPT letters (G,I,R,D,A,L,P,O,E) define allowed operations; record them
+  per segment. Map PSB to programs via JCL (`DFSRRC00 PARM=(DLI|BMP,pgm,psb)`)
+  or CICS `EXEC DLI SCHD PSB(...)`.
+
+## DB2
+- DDL: CREATE DATABASE/TABLESPACE/TABLE/INDEX/VIEW/ALIAS, constraints,
+  primary/foreign keys. Schema/database names are often placeholders -
+  keep them as parameters.
+- DCLGEN: `EXEC SQL DECLARE ... TABLE` plus the COBOL host structure; verify
+  column-to-host-variable type mapping against DDL and report mismatches.
+- Program SQL: capture statement type, tables, columns, host variables,
+  cursors (DECLARE/OPEN/FETCH/CLOSE, WITH HOLD, FOR UPDATE), and SQLCODE
+  handling. Plans/packages come from bind JCL or CSD DB2ENTRY.
+
+## MQ
+- Queue names can be literals, variables, CSD/TDQ trigger data, or come from
+  the trigger message (MQTM via EXEC CICS RETRIEVE). Do not assume a queue
+  name exists in code; trace it, otherwise record as `runtime-provided`.
+- Capture per call: MQCONN/MQOPEN options, MQGET (wait, syncpoint),
+  MQPUT/MQPUT1 (persistence, reply-to queue, correl/msg id), MQCLOSE,
+  and the message layout copybook or string format.

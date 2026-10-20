@@ -1,0 +1,67 @@
+# Job catalog
+
+55 JCL members.
+
+- [ACCTFILE](jobs/ACCTFILE.md)
+- [CARDFILE](jobs/CARDFILE.md)
+- [CBADMCDJ](jobs/CBADMCDJ.md)
+- [CBEXPORT](jobs/CBEXPORT.md)
+- [CBIMPORT](jobs/CBIMPORT.md)
+- [CBLDBMS](jobs/CBLDBMS.md)
+- [CBPAUP0J](jobs/CBPAUP0J.md)
+- [CICCMP](jobs/CICCMP.md)
+- [CIDBCMP](jobs/CIDBCMP.md)
+- [CLOSEFIL](jobs/CLOSEFIL.md)
+- [CNJBATMP](jobs/CNJBATMP.md)
+- [COMBTRAN](jobs/COMBTRAN.md)
+- [CREADB2](jobs/CREADB2.md)
+- [CREASTMT](jobs/CREASTMT.md)
+- [CUSTFILE](jobs/CUSTFILE.md)
+- [DALYREJS](jobs/DALYREJS.md)
+- [DBPAUTP0](jobs/DBPAUTP0.md)
+- [DEFCUST](jobs/DEFCUST.md)
+- [DEFGDGB](jobs/DEFGDGB.md)
+- [DEFGDGD](jobs/DEFGDGD.md)
+- [DISCGRP](jobs/DISCGRP.md)
+- [DUSRSECJ](jobs/DUSRSECJ.md)
+- [ESDSRRDS](jobs/ESDSRRDS.md)
+- [FTPJCLS](jobs/FTPJCLS.md)
+- [IMSMQCMP](jobs/IMSMQCMP.md)
+- [INTCALC](jobs/INTCALC.md)
+- [INTRDRJ1](jobs/INTRDRJ1.md)
+- [INTRDRJ2](jobs/INTRDRJ2.md)
+- [LISTFILS](jobs/LISTFILS.md)
+- [LOADPADB](jobs/LOADPADB.md)
+- [MNTTRDB2](jobs/MNTTRDB2.md)
+- [OPENFIL](jobs/OPENFIL.md)
+- [POSTTRAN](jobs/POSTTRAN.md)
+- [PRTCATBL](jobs/PRTCATBL.md)
+- [RACFCMDS](jobs/RACFCMDS.md)
+- [READACCT](jobs/READACCT.md)
+- [READCARD](jobs/READCARD.md)
+- [READCUST](jobs/READCUST.md)
+- [READXREF](jobs/READXREF.md)
+- [REPRTEST](jobs/REPRTEST.md)
+- [REPTFILE](jobs/REPTFILE.md)
+- [SORTTEST](jobs/SORTTEST.md)
+- [TCATBALF](jobs/TCATBALF.md)
+- [TRANBKP](jobs/TRANBKP.md)
+- [TRANCATG](jobs/TRANCATG.md)
+- [TRANEXTR](jobs/TRANEXTR.md)
+- [TRANFILE](jobs/TRANFILE.md)
+- [TRANIDX](jobs/TRANIDX.md)
+- [TRANREPT](jobs/TRANREPT.md)
+- [TRANTYPE](jobs/TRANTYPE.md)
+- [TXT2PDF1](jobs/TXT2PDF1.md)
+- [UNLDGSAM](jobs/UNLDGSAM.md)
+- [UNLDPADB](jobs/UNLDPADB.md)
+- [WAITSTEP](jobs/WAITSTEP.md)
+- [XREFFILE](jobs/XREFFILE.md)
+
+## Sources
+
+- `docs/_work/jobs/`
+
+## Confidence
+
+Confirmed facts are copied from the work files cited above. Header comments remain Unverified. Paragraph purposes remain Inferred where the program fact says so.

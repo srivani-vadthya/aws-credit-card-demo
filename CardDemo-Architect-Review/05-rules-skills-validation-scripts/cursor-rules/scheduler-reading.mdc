@@ -1,0 +1,38 @@
+---
+description: How to read job scheduler definitions (CA7, Control-M, TWS/OPC, Zeke) and driver scripts to rebuild batch flow
+globs: **/scheduler/**, **/*.{ca7,CA7,controlm,xml,tws,opc}, **/scripts/**
+alwaysApply: false
+---
+
+# Reading Scheduler Definitions
+
+The batch flow is reconstructed only from scheduler definitions, driver
+scripts, or documented run books - never from job names.
+
+## CA7 (LJOB / LIST=ALL reports)
+- Each `JOB=<name>` block: JCL member, system, schedule ID, last run.
+- `TRIGGERED JOBS` / `TRIGGERED BY` sections give successor/predecessor
+  edges; `REQUIREMENTS` give dataset/job prerequisites.
+- Ignore report headers/page breaks; join job blocks across pages.
+
+## Control-M (XML DEFTABLE)
+- `FOLDER` / `SMART_FOLDER` group jobs; `JOB` has JOBNAME, MEMNAME,
+  DESCRIPTION, DAYS/WEEKDAYS/month flags, TIMEFROM/TIMETO, CYCLIC, MAXRERUN.
+- `INCOND` = prerequisite condition, `OUTCOND SIGN="+"` = condition added on
+  success, `SIGN="-"` = condition removed. Edges are built by matching
+  OUTCOND(+) names to INCOND names, also across folders.
+- Calendars: DAYS="ALL", DAYS="SA", RULE_BASED_CALENDARS, etc.
+
+## Other schedulers
+- TWS/OPC: application, operations, predecessors (`ADDEP`/`PRE`).
+- If an unknown format is found, document the raw structure and record a gap.
+
+## Driver scripts
+- Shell/REXX/FTP scripts that submit JCL in sequence (`put`, `submit`,
+  `SUBMIT`) define an execution order; record it with line evidence and note
+  waits/sleeps.
+
+## Output
+- One edge list per scheduler source: predecessor, successor, condition,
+  calendar, source line. Conflicts between sources are reported, not merged
+  silently.

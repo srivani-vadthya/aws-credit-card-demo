@@ -1,0 +1,68 @@
+# Project profile for the mainframe documentation toolkit.
+# Every value must be backed by evidence in the repository. Use null when unknown
+# and record the gap in <work_dir>/gaps.md.
+
+application:
+  name: null                # as stated by the repo (README title, CSD group, scheduler APPLICATION)
+  description_source: null  # path to the document the description was taken from
+  version_source: null      # e.g. version banner in source, README badge
+
+paths:
+  repo_root: .
+  work_dir: docs/_work
+  output_dir: docs/application-documentation
+  template_overrides: null  # folder with repo-local template overrides, or null
+
+source_roots: []            # directories that contain analyzable source
+#  - path: app
+#    evidence: "README.md:NN"
+
+modules: []                 # functional/optional modules discovered in the repo
+#  - id: base
+#    name: null
+#    paths: []
+#    optional: false
+#    technologies: []       # filled from discovery, not assumed
+#    evidence: []
+
+module_globs: {}            # id -> glob, passed to classify_inventory.py as --module id=glob
+#  base: "src/**"            # longest matching glob wins
+
+observed_conventions: {}    # naming/qualifier patterns seen (observations only, never used to classify)
+
+classification:
+  # Content signatures always win over extensions. These overrides only help
+  # when content is ambiguous. Extensions are compared case-insensitively.
+  extension_hints: {}
+  #  cbl: cobol-program
+  #  cpy: cobol-copybook
+  path_hints: []
+  #  - glob: "**/cpy-bms/**"
+  #    type: bms-symbolic-map
+
+exclude: []                 # still inventoried as type=excluded, but not parsed
+#  - glob: "**/*.zip"
+#    reason: binary archive
+
+data_samples: []            # sample/test data locations and their encoding
+#  - glob: "**/data/ASCII/**"
+#    encoding: ascii
+#  - glob: "**/data/EBCDIC/**"
+#    encoding: ebcdic        # binary; never parse as text
+
+existing_docs: []           # secondary evidence; confirm against code
+#  - path: README.md
+#    kind: readme
+
+placeholders: []            # environment tokens to report as parameters
+#  - token: "&HLQ"
+#    meaning_source: null
+
+source_format:
+  cobol_fixed_format: null  # true/false/mixed - determined by discovery
+  sequence_area_present: null
+
+documentation:
+  audience: [business-analyst, developer, operations, modernization-architect]
+  diagram_format: mermaid
+  include_modernization_observations: true

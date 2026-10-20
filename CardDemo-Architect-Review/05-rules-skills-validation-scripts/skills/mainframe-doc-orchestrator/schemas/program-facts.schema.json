@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "mainframe-doc/program-facts/1",
+  "title": "Facts extracted for one program (cobol-program-analysis)",
+  "type": "object",
+  "required": ["program_id", "source_path", "language", "runtime_type", "evidence_summary"],
+  "properties": {
+    "program_id": {"type": "string"},
+    "source_path": {"type": "string"},
+    "sha256": {"type": "string"},
+    "module": {"type": ["string", "null"]},
+    "language": {"enum": ["COBOL", "Assembler", "PL/I", "REXX", "Other"]},
+    "source_format": {"enum": ["fixed", "fixed-with-sequence-area", "free"]},
+    "loc": {"type": "object", "properties": {"total": {"type": "integer"}, "code": {"type": "integer"}, "comment": {"type": "integer"}}},
+    "runtime_type": {
+      "type": "array",
+      "items": {"enum": ["batch-main", "cics-online", "cics-mq-triggered", "cics-called", "subprogram", "ims-bmp", "dli-batch", "db2", "mq", "asm-routine", "utility"]},
+      "description": "All that apply"
+    },
+    "runtime_type_evidence": {"type": "array", "items": {"$ref": "#/definitions/evidence"}},
+    "header": {"type": "object", "properties": {"description": {"type": "string"}, "author": {"type": "string"}, "version_banner": {"type": "string"}, "source": {"type": "string"}}},
+    "invoked_by": {"type": "array", "items": {"$ref": "#/definitions/edge"}},
+    "interfaces": {
+      "type": "object",
+      "properties": {
+        "linkage": {"type": "array", "items": {"$ref": "#/definitions/item"}},
+        "commarea": {"type": ["string", "null"], "description": "copybook or structure name"},
+        "pcbs": {"type": "array", "items": {"type": "string"}},
+        "return_code_usage": {"type": "array", "items": {"$ref": "#/definitions/evidence"}}
+      }
+    },
+    "copybooks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "source"],
+        "properties": {"name": {"type": "string"}, "replacing": {"type": ["string", "null"]}, "purpose": {"type": "string"}, "resolution": {"type": "string"}, "source": {"type": "string"}}
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["logical_name", "source"],
+        "properties": {
+          "logical_name": {"type": "string"},
+          "ddname_or_cics_file": {"type": ["string", "null"]},
+          "organization": {"type": ["string", "null"]},
+          "access_mode": {"type": ["string", "null"]},
+          "record_key": {"type": ["string", "null"]},
+          "alternate_keys": {"type": "array", "items": {"type": "string"}},
+          "file_status_field": {"type": ["string", "null"]},
+          "record_layout": {"type": ["string", "null"]},
+          "physical_names": {"type": "array", "items": {"type": "string"}},
+          "source": {"type": "string"}
+        }
+      }
+    },
+    "data_items": {"type": "array", "items": {"$ref": "#/definitions/item"}, "description": "Key working-storage items, flags, constants, tables"},
+    "paragraphs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "start_line", "end_line"],
+        "properties": {
+          "name": {"type": "string"},
+          "section": {"type": ["string", "null"]},
+          "start_line": {"type": "integer"},
+          "end_line": {"type": "integer"},
+          "purpose": {"type": "string"},
+          "confidence": {"$ref": "#/definitions/confidence"},
+          "performs": {"type": "array", "items": {"type": "string"}},
+          "go_to": {"type": "array", "items": {"type": "string"}},
+          "reachable": {"type": "boolean"}
+        }
+      }
+    },
+    "calls": {"type": "array", "items": {"$ref": "#/definitions/edge"}},
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "verb", "line"],
+        "properties": {
+          "kind": {"enum": ["CICS", "SQL", "DLI", "MQ", "CBLTDLI", "LE"]},
+          "verb": {"type": "string"},
+          "resource": {"type": ["string", "null"]},
+          "options": {"type": "object"},
+          "response_handling": {"type": ["string", "null"]},
+          "paragraph": {"type": ["string", "null"]},
+          "line": {"type": "integer"}
+        }
+      }
+    },
+    "crud": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["store", "ops", "source"],
+        "properties": {
+          "store": {"type": "string", "description": "physical name when resolved, else logical"},
+          "store_kind": {"type": "string"},
+          "ops": {"type": "array", "items": {"enum": ["C", "R", "U", "D", "B"]}},
+          "source": {"type": "string"}
+        }
+      }
+    },
+    "error_handling": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["condition", "action", "source"],
+        "properties": {"condition": {"type": "string"}, "action": {"type": "string"}, "message": {"type": ["string", "null"]}, "abend_code": {"type": ["string", "null"]}, "source": {"type": "string"}}
+      }
+    },
+    "messages": {"type": "array", "items": {"type": "object", "properties": {"text": {"type": "string"}, "source": {"type": "string"}}}},
+    "candidate_rules": {"type": "array", "items": {"type": "object", "properties": {"summary": {"type": "string"}, "source": {"type": "string"}}}},
+    "observations": {"type": "array", "items": {"type": "object", "properties": {"text": {"type": "string"}, "source": {"type": "string"}, "confidence": {"$ref": "#/definitions/confidence"}}}},
+    "evidence_summary": {"type": "string"}
+  },
+  "definitions": {
+    "confidence": {"enum": ["Confirmed", "Inferred", "Unverified"]},
+    "evidence": {"type": "object", "required": ["source"], "properties": {"text": {"type": "string"}, "source": {"type": "string"}}},
+    "item": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string"}, "level": {"type": "integer"}, "pic": {"type": ["string", "null"]},
+        "usage": {"type": ["string", "null"]}, "value": {"type": ["string", "null"]},
+        "conditions": {"type": "array", "items": {"type": "object", "properties": {"name": {"type": "string"}, "value": {"type": "string"}}}},
+        "purpose": {"type": "string"}, "source": {"type": "string"}
+      }
+    },
+    "edge": {
+      "type": "object",
+      "required": ["target", "mechanism", "source"],
+      "properties": {
+        "target": {"type": "string"},
+        "mechanism": {"enum": ["CALL-static", "CALL-dynamic", "XCTL", "LINK", "START", "RETURN-TRANSID", "JCL-EXEC", "CSD-TRANSACTION", "MQ-TRIGGER", "INTRDR", "OTHER"]},
+        "condition": {"type": ["string", "null"]},
+        "resolved_from": {"type": ["string", "null"], "description": "path:line of VALUE/MOVE that gave the target"},
+        "confidence": {"$ref": "#/definitions/confidence"},
+        "source": {"type": "string"}
+      }
+    }
+  }
+}

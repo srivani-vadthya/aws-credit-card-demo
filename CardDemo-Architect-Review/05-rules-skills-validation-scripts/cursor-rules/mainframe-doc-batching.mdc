@@ -1,0 +1,52 @@
+---
+description: Batched, checkpointed semantic analysis and coverage validation for mainframe documentation (structure extraction, batch manifest, validators, gap report)
+globs: docs/_work/**
+alwaysApply: false
+---
+
+# Batched Analysis and Coverage Validation
+
+Applies when analyzing programs or copybooks in depth, resuming an
+interrupted documentation run, or reporting coverage.
+
+## Work in batches, never from memory
+- Run `extract_structure.py` before semantic work. It lists every
+ paragraph, statement, decision point, data item, JCL step and DD; do not
+ rebuild those lists by reading.
+- Process one batch from `docs/_work/batches/manifest.json` at a time, or one
+ agent per batch. Follow the contract in the orchestrator skill's
+ `batch-analysis.md`.
+- Read each program completely before writing its semantic file. The
+ worksheet is an index, not a substitute for the source.
+- A batch writes only its own `semantic/programs|copybooks/*.json`. Never
+ edit `structure/`, `manifest.json`, other batches' files, or `rules/rules.json`.
+
+## Checkpoints
+- Run `batch_manager.py check docs/_work <PGM|CPY|BATCH>` after each program.
+ Status changes only through this command, never by hand.
+- Resume with `batch_manager.py status` / `next`. A source whose sha256
+ changed is stale and must be re-analyzed.
+- Record progress and the commands used in `docs/_work/progress.md`.
+
+## Evidence checks the validator enforces
+- Every structural paragraph has a logic description.
+- Every rule cites a range inside its named paragraph (or copybook) and an
+ anchor copied verbatim from those lines.
+- Every business-candidate decision point is covered by a rule, a reviewed
+ legacy rule, or a `no_rule_decisions` entry with a reason.
+- A program with no rules states `no_business_rules_reason`.
+- Every paragraph description names at least one identifier, literal or
+ paragraph name from its own code (no `ungrounded_paragraphs`).
+- Legacy rules in non-COBOL members are re-verified in
+ `semantic/reviews/<MEMBER>.json` and pass `batch_manager.py check-reviews`.
+
+## Reporting coverage
+- After any change, run in order: `render_detail.py`, `coverage_validate.py`,
+ `gap_report.py`, `check_package.py`, `build_docx.py`.
+- A coverage failure on a correct page means the validator is wrong: fix the
+ matcher, never the page or the semantics, and note it in `progress.md`.
+- Quote only numbers from the last `coverage_validate.py` / `gap_report.py`
+ run. State that structural and anchor-validated coverage is not proof of
+ semantic correctness; SME questions stay open until answered.
+- Items that cannot be resolved stay classified (`unresolved`, `requires SME
+ clarification`) with a reason; they are never dropped to raise a percentage.

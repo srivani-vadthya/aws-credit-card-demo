@@ -1,0 +1,38 @@
+---
+description: Core evidence and integrity rules for reverse-engineering and documenting mainframe applications
+alwaysApply: true
+---
+
+# Mainframe Documentation - Core Rules
+
+Applies whenever analyzing this repository or writing documentation for it.
+
+## Evidence
+- Every fact written to `docs/_work/**` or the documentation package cites its
+  source as `path:line` or `path:start-end` (repo-relative, forward slashes).
+- Tag derived statements: `Confirmed` (stated by code/definitions),
+  `Inferred` (reasoned from several facts - give the chain), `Unverified`
+  (only comments, READMEs, diagrams, or unresolved dynamic values).
+- READMEs, comments and diagrams are secondary evidence. When they conflict
+  with code, code wins; record the conflict in the gaps register.
+
+## No assumptions
+- Do not infer an artifact's role from its name alone. Naming patterns may be
+  reported as observations, backed by the inventory.
+- Do not invent values for placeholders or symbolics (`&HLQ`, `&SYSUID`,
+  `<<schema>>`, `&&SYSPARM`); document them as parameters.
+- Unresolvable items (dynamic program names, runtime queue names, missing
+  copybooks, external system programs) go to `docs/_work/gaps.md` with the
+  location and what would resolve them.
+- Missing members referenced by COPY/INCLUDE/EXEC PGM/PROC are recorded as
+  `external-or-missing`, never silently dropped.
+
+## Integrity
+- Never modify application source, definitions, data or scripts.
+- Write only under the profile's `work_dir` and `output_dir`.
+- Use the project profile (`docs-toolkit/project-profile.yaml`) for
+  repo-specific facts; keep skills and rules generic.
+
+## Completeness
+- Every inventoried artifact must be referenced by at least one output
+  document, or listed as excluded with a reason.

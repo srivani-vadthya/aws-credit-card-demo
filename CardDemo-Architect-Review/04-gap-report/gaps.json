@@ -1,0 +1,6165 @@
+{
+ "ambiguous_dependencies": [
+  {
+   "candidates": [
+    "COMEN01C"
+   ], 
+   "from": "COACTUPC", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COACTUPC.cbl:956", 
+   "variable": "CDEMO-TO-PROGRAM", 
+   "why": "target held in a variable; resolved from MOVEs and caller lists (Inferred)"
+  }, 
+  {
+   "candidates": [
+    "COMEN01C"
+   ], 
+   "from": "COACTVWC", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COACTVWC.cbl:349", 
+   "variable": "CDEMO-TO-PROGRAM", 
+   "why": "target held in a variable; resolved from MOVEs and caller lists (Inferred)"
+  }, 
+  {
+   "candidates": [
+    "COCRDLIC", 
+    "COMEN01C"
+   ], 
+   "from": "COCRDSLC", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COCRDSLC.cbl:331", 
+   "variable": "CDEMO-TO-PROGRAM", 
+   "why": "target held in a variable; resolved from MOVEs and caller lists (Inferred)"
+  }, 
+  {
+   "candidates": [
+    "COCRDLIC", 
+    "COMEN01C"
+   ], 
+   "from": "COCRDUPC", 
+   "mechanism": "XCTL", 
+   "source": "app/cbl/COCRDUPC.cbl:473", 
+   "variable": "CDEMO-TO-PROGRAM", 
+   "why": "target held in a variable; resolved from MOVEs and caller lists (Inferred)"
+  }, 
+  {
+   "candidates": [
+    "COADM01C"
+   ], 
+   "from": "COTRTLIC", 
+   "mechanism": "XCTL", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:620", 
+   "variable": "CDEMO-TO-PROGRAM", 
+   "why": "target held in a variable; resolved from MOVEs and caller lists (Inferred)"
+  }, 
+  {
+   "candidates": [
+    "COADM01C", 
+    "COTRTLIC"
+   ], 
+   "from": "COTRTUPC", 
+   "mechanism": "XCTL", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:457", 
+   "variable": "CDEMO-TO-PROGRAM", 
+   "why": "target held in a variable; resolved from MOVEs and caller lists (Inferred)"
+  }, 
+  {
+   "candidates": [], 
+   "from": "COTRTLIC", 
+   "mechanism": "CALL-dynamic", 
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:57", 
+   "variable": "DSNTIAC", 
+   "why": "target held in a variable; resolved from MOVEs and caller lists (Inferred)"
+  }, 
+  {
+   "candidates": [
+    "CLOSEFIL"
+   ], 
+   "from": "scheduler", 
+   "mechanism": "CA7 job", 
+   "source": "app/scheduler/CardDemo.ca7", 
+   "variable": "CLOSEFIL1", 
+   "why": "scheduler job name has no job card of that name; it names JCL member CLOSEFIL"
+  }, 
+  {
+   "candidates": [
+    "CLOSEFIL"
+   ], 
+   "from": "scheduler", 
+   "mechanism": "CA7 job", 
+   "source": "app/scheduler/CardDemo.ca7", 
+   "variable": "CLOSEFIL2", 
+   "why": "scheduler job name has no job card of that name; it names JCL member CLOSEFIL"
+  }, 
+  {
+   "candidates": [], 
+   "from": "CORPT00C", 
+   "mechanism": "TD queue JOBS -> internal reader", 
+   "source": "app/csd/CARDDEMO.CSD:499-503", 
+   "variable": "job stream built in program", 
+   "why": "submitted JCL is assembled at run time"
+  }
+ ], 
+ "claimed_pages": 404, 
+ "components": [
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBACT01C", 
+   "path": "app/cbl/CBACT01C.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBACT02C", 
+   "path": "app/cbl/CBACT02C.cbl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBACT03C", 
+   "path": "app/cbl/CBACT03C.cbl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBACT04C", 
+   "path": "app/cbl/CBACT04C.cbl", 
+   "reasons": [
+    "3 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBCUS01C", 
+   "path": "app/cbl/CBCUS01C.cbl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBEXPORT", 
+   "path": "app/cbl/CBEXPORT.cbl", 
+   "reasons": [
+    "3 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBIMPORT", 
+   "path": "app/cbl/CBIMPORT.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBPAUP0C", 
+   "path": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl", 
+   "reasons": [
+    "3 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBSTM03A", 
+   "path": "app/cbl/CBSTM03A.CBL", 
+   "reasons": [
+    "3 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBSTM03B", 
+   "path": "app/cbl/CBSTM03B.CBL", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBTRN01C", 
+   "path": "app/cbl/CBTRN01C.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBTRN02C", 
+   "path": "app/cbl/CBTRN02C.cbl", 
+   "reasons": [
+    "5 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CBTRN03C", 
+   "path": "app/cbl/CBTRN03C.cbl", 
+   "reasons": [
+    "4 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COACCT01", 
+   "path": "app/app-vsam-mq/cbl/COACCT01.cbl", 
+   "reasons": [
+    "4 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COACTUPC", 
+   "path": "app/cbl/COACTUPC.cbl", 
+   "reasons": [
+    "8 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COACTVWC", 
+   "path": "app/cbl/COACTVWC.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COADM01C", 
+   "path": "app/cbl/COADM01C.cbl", 
+   "reasons": [
+    "1 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COBIL00C", 
+   "path": "app/cbl/COBIL00C.cbl", 
+   "reasons": [
+    "4 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COBSWAIT", 
+   "path": "app/cbl/COBSWAIT.cbl", 
+   "reasons": [
+    "1 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COBTUPDT", 
+   "path": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COCRDLIC", 
+   "path": "app/cbl/COCRDLIC.cbl", 
+   "reasons": [
+    "3 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COCRDSLC", 
+   "path": "app/cbl/COCRDSLC.cbl", 
+   "reasons": [
+    "3 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COCRDUPC", 
+   "path": "app/cbl/COCRDUPC.cbl", 
+   "reasons": [
+    "4 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CODATE01", 
+   "path": "app/app-vsam-mq/cbl/CODATE01.cbl", 
+   "reasons": [
+    "3 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COMEN01C", 
+   "path": "app/cbl/COMEN01C.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COPAUA0C", 
+   "path": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl", 
+   "reasons": [
+    "4 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COPAUS0C", 
+   "path": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COPAUS1C", 
+   "path": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COPAUS2C", 
+   "path": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl", 
+   "reasons": [
+    "1 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CORPT00C", 
+   "path": "app/cbl/CORPT00C.cbl", 
+   "reasons": [
+    "4 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COSGN00C", 
+   "path": "app/cbl/COSGN00C.cbl", 
+   "reasons": [
+    "1 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COTRN00C", 
+   "path": "app/cbl/COTRN00C.cbl", 
+   "reasons": [
+    "3 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COTRN01C", 
+   "path": "app/cbl/COTRN01C.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COTRN02C", 
+   "path": "app/cbl/COTRN02C.cbl", 
+   "reasons": [
+    "5 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COTRTLIC", 
+   "path": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl", 
+   "reasons": [
+    "5 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COTRTUPC", 
+   "path": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl", 
+   "reasons": [
+    "5 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COUSR00C", 
+   "path": "app/cbl/COUSR00C.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COUSR01C", 
+   "path": "app/cbl/COUSR01C.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COUSR02C", 
+   "path": "app/cbl/COUSR02C.cbl", 
+   "reasons": [
+    "3 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "COUSR03C", 
+   "path": "app/cbl/COUSR03C.cbl", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "CSUTLDTC", 
+   "path": "app/cbl/CSUTLDTC.cbl", 
+   "reasons": [
+    "1 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "DBUNLDGS", 
+   "path": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL", 
+   "reasons": [
+    "1 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-program", 
+   "name": "PAUDBLOD", 
+   "path": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL", 
+   "reasons": [
+    "2 SME questions"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-program", 
+   "name": "PAUDBUNL", 
+   "path": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "db2-dclgen", 
+   "name": "AUTHFRDS", 
+   "path": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CCPAUERY", 
+   "path": "app/app-authorization-ims-db2-mq/cpy/CCPAUERY.cpy", 
+   "reasons": [
+    "1 dead-code observations need an SME decision"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CCPAURLY", 
+   "path": "app/app-authorization-ims-db2-mq/cpy/CCPAURLY.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CCPAURQY", 
+   "path": "app/app-authorization-ims-db2-mq/cpy/CCPAURQY.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CIPAUDTY", 
+   "path": "app/app-authorization-ims-db2-mq/cpy/CIPAUDTY.cpy", 
+   "reasons": [
+    "1 dead-code observations need an SME decision"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CIPAUSMY", 
+   "path": "app/app-authorization-ims-db2-mq/cpy/CIPAUSMY.cpy", 
+   "reasons": [
+    "1 dead-code observations need an SME decision"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "COADM02Y", 
+   "path": "app/cpy/COADM02Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "COCOM01Y", 
+   "path": "app/cpy/COCOM01Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CODATECN", 
+   "path": "app/cpy/CODATECN.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "COMEN02Y", 
+   "path": "app/cpy/COMEN02Y.cpy", 
+   "reasons": [
+    "1 dead-code observations need an SME decision"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "COSTM01", 
+   "path": "app/cpy/COSTM01.CPY", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "COTTL01Y", 
+   "path": "app/cpy/COTTL01Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CSDAT01Y", 
+   "path": "app/cpy/CSDAT01Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CSDB2RPY", 
+   "path": "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CSDB2RWY", 
+   "path": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CSLKPCDY", 
+   "path": "app/cpy/CSLKPCDY.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CSMSG01Y", 
+   "path": "app/cpy/CSMSG01Y.cpy", 
+   "reasons": [
+    "1 dead-code observations need an SME decision"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CSMSG02Y", 
+   "path": "app/cpy/CSMSG02Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CSSETATY", 
+   "path": "app/cpy/CSSETATY.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CSSTRPFY", 
+   "path": "app/cpy/CSSTRPFY.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CSUSR01Y", 
+   "path": "app/cpy/CSUSR01Y.cpy", 
+   "reasons": [
+    "1 dead-code observations need an SME decision"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CSUTLDPY", 
+   "path": "app/cpy/CSUTLDPY.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CSUTLDWY", 
+   "path": "app/cpy/CSUTLDWY.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CUSTREC", 
+   "path": "app/cpy/CUSTREC.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVACT01Y", 
+   "path": "app/cpy/CVACT01Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVACT02Y", 
+   "path": "app/cpy/CVACT02Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVACT03Y", 
+   "path": "app/cpy/CVACT03Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVCRD01Y", 
+   "path": "app/cpy/CVCRD01Y.cpy", 
+   "reasons": [
+    "1 dead-code observations need an SME decision"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVCUS01Y", 
+   "path": "app/cpy/CVCUS01Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVEXPORT", 
+   "path": "app/cpy/CVEXPORT.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVTRA01Y", 
+   "path": "app/cpy/CVTRA01Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVTRA02Y", 
+   "path": "app/cpy/CVTRA02Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVTRA03Y", 
+   "path": "app/cpy/CVTRA03Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVTRA04Y", 
+   "path": "app/cpy/CVTRA04Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVTRA05Y", 
+   "path": "app/cpy/CVTRA05Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVTRA06Y", 
+   "path": "app/cpy/CVTRA06Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "CVTRA07Y", 
+   "path": "app/cpy/CVTRA07Y.cpy", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "db2-dclgen", 
+   "name": "DCLTRCAT", 
+   "path": "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "db2-dclgen", 
+   "name": "DCLTRTYP", 
+   "path": "app/app-transaction-type-db2/dcl/DCLTRTYP.dcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "IMSFUNCS", 
+   "path": "app/app-authorization-ims-db2-mq/cpy/IMSFUNCS.cpy", 
+   "reasons": [
+    "1 dead-code observations need an SME decision"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "PADFLPCB", 
+   "path": "app/app-authorization-ims-db2-mq/cpy/PADFLPCB.CPY", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "PASFLPCB", 
+   "path": "app/app-authorization-ims-db2-mq/cpy/PASFLPCB.CPY", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "PAUTBPCB", 
+   "path": "app/app-authorization-ims-db2-mq/cpy/PAUTBPCB.CPY", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "requires SME clarification"
+   ], 
+   "kind": "cobol-copybook", 
+   "name": "UNUSED1Y", 
+   "path": "app/cpy/UNUSED1Y.cpy", 
+   "reasons": [
+    "not copied by any program or copybook", 
+    "1 dead-code observations need an SME decision"
+   ], 
+   "status": "requires SME clarification"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "ACCTFILE", 
+   "path": "app/jcl/ACCTFILE.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CNJBATMP", 
+   "path": "samples/jcl/BATCMP.jcl", 
+   "reasons": [
+    "symbolic parameters left unresolved: &HLQ, &MEMNAME", 
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-proc", 
+   "name": "BLDCIDB2", 
+   "path": "samples/proc/BLDCIDB2.prc", 
+   "reasons": [
+    "symbolic parameters left unresolved: &COBLIB, &COPYLIB, &CPYBKS, &DBRMLIB, &DCLLIB, &LIBPRFX, &LOADLIB, &MEMNAME, &SDFHCOB, &SDFHLOAD, &SDFHMAC, &SDSNEXIT, &SDSNLOAD, &SRCLIB, &SYSLBLK"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CBLDBMS", 
+   "path": "samples/jcl/BMSCMP.jcl", 
+   "reasons": [
+    "symbolic parameters left unresolved: &HLQ", 
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-proc", 
+   "name": "BUILDBAT", 
+   "path": "samples/proc/BUILDBAT.prc", 
+   "reasons": [
+    "symbolic parameters left unresolved: &COBLIB, &CPYBKS, &LISTING, &LOADLIB, &MEM, &SOURCE"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-proc", 
+   "name": "BUILDBMS", 
+   "path": "samples/proc/BUILDBMS.prc", 
+   "reasons": [
+    "symbolic parameters left unresolved: &CICSMAC, &CPYBKS, &LISTING, &LOADLIB, &MAPNAME, &SRCCODE"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-proc", 
+   "name": "BUILDONL", 
+   "path": "samples/proc/BUILDONL.prc", 
+   "reasons": [
+    "symbolic parameters left unresolved: &COBLIB, &CPYBKS, &DFHCOB, &DFHLOAD, &DFHSAMP, &LISTING, &LOADLIB, &MEM, &SOURCE"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CARDFILE", 
+   "path": "app/jcl/CARDFILE.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CBADMCDJ", 
+   "path": "app/jcl/CBADMCDJ.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CBEXPORT", 
+   "path": "app/jcl/CBEXPORT.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CBIMPORT", 
+   "path": "app/jcl/CBIMPORT.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CBPAUP0J", 
+   "path": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CICCMP", 
+   "path": "samples/jcl/CICCMP.jcl", 
+   "reasons": [
+    "symbolic parameters left unresolved: &HLQ, &MEMNAME", 
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CIDBCMP", 
+   "path": "samples/jcl/CICDBCMP.jcl", 
+   "reasons": [
+    "symbolic parameters left unresolved: &HLQ, &MEMNAME, &PLAN, &SSID", 
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CLOSEFIL", 
+   "path": "app/jcl/CLOSEFIL.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "COMBTRAN", 
+   "path": "app/jcl/COMBTRAN.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-template", 
+   "name": "COMPILE_BATCH.JCL", 
+   "path": "scripts/compile_batch.jcl.template", 
+   "reasons": [
+    "symbolic parameters left unresolved: &MEM"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CREADB2", 
+   "path": "app/app-transaction-type-db2/jcl/CREADB21.jcl", 
+   "reasons": [
+    "symbolic parameters left unresolved: &DB2S, &LBNM", 
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CREASTMT", 
+   "path": "app/jcl/CREASTMT.JCL", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "CUSTFILE", 
+   "path": "app/jcl/CUSTFILE.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "DALYREJS", 
+   "path": "app/jcl/DALYREJS.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "DBPAUTP0", 
+   "path": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "DEFCUST", 
+   "path": "app/jcl/DEFCUST.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "DEFGDGB", 
+   "path": "app/jcl/DEFGDGB.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "DEFGDGD", 
+   "path": "app/jcl/DEFGDGD.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "DISCGRP", 
+   "path": "app/jcl/DISCGRP.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "DUSRSECJ", 
+   "path": "app/jcl/DUSRSECJ.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "ESDSRRDS", 
+   "path": "app/jcl/ESDSRRDS.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "FTPJCLS", 
+   "path": "app/jcl/FTPJCL.JCL", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-job", 
+   "name": "IMSMQCMP", 
+   "path": "samples/jcl/IMSMQCMP.jcl", 
+   "reasons": [
+    "symbolic parameters left unresolved: &CICSHLQ, &HLQ, &IMSHLQ, &MQHLQ", 
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "INTCALC", 
+   "path": "app/jcl/INTCALC.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "INTRDRJ1", 
+   "path": "app/jcl/INTRDRJ1.JCL", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "INTRDRJ2", 
+   "path": "app/jcl/INTRDRJ2.JCL", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "LISTFILS", 
+   "path": "samples/jcl/LISTCAT.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "LOADPADB", 
+   "path": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "MNTTRDB2", 
+   "path": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "OPENFIL", 
+   "path": "app/jcl/OPENFIL.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "POSTTRAN", 
+   "path": "app/jcl/POSTTRAN.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "PRTCATBL", 
+   "path": "app/jcl/PRTCATBL.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "RACFCMDS", 
+   "path": "samples/jcl/RACFCMDS.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "READACCT", 
+   "path": "app/jcl/READACCT.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "READCARD", 
+   "path": "app/jcl/READCARD.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "READCUST", 
+   "path": "app/jcl/READCUST.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "READXREF", 
+   "path": "app/jcl/READXREF.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-proc", 
+   "name": "REPROC", 
+   "path": "app/proc/REPROC.prc", 
+   "reasons": [
+    "symbolic parameters left unresolved: &CNTLLIB"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "REPRTEST", 
+   "path": "samples/jcl/REPRTEST.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "REPTFILE", 
+   "path": "app/jcl/REPTFILE.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "SORTTEST", 
+   "path": "samples/jcl/SORTTEST.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "TCATBALF", 
+   "path": "app/jcl/TCATBALF.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "TRANBKP", 
+   "path": "app/jcl/TRANBKP.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "TRANCATG", 
+   "path": "app/jcl/TRANCATG.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "jcl-job", 
+   "name": "TRANEXTR", 
+   "path": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl", 
+   "reasons": [
+    "symbolic parameters left unresolved: &HLQ"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "TRANFILE", 
+   "path": "app/jcl/TRANFILE.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "TRANIDX", 
+   "path": "app/jcl/TRANIDX.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "TRANREPT", 
+   "path": "app/jcl/TRANREPT.jcl", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-proc", 
+   "name": "TRANREPT", 
+   "path": "app/proc/TRANREPT.prc", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "TRANTYPE", 
+   "path": "app/jcl/TRANTYPE.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "TXT2PDF1", 
+   "path": "app/jcl/TXT2PDF1.JCL", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "UNLDGSAM", 
+   "path": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "UNLDPADB", 
+   "path": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL", 
+   "reasons": [
+    "not named in CA7, Control-M or shell submit lists"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "WAITSTEP", 
+   "path": "app/jcl/WAITSTEP.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "jcl-job", 
+   "name": "XREFFILE", 
+   "path": "app/jcl/XREFFILE.jcl", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COPAU00", 
+   "path": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:1-5", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COPAU01", 
+   "path": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:6-10", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COPAUA0C", 
+   "path": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:11-17", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COPAUS0C", 
+   "path": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:18-24", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COPAUS1C", 
+   "path": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:25-31", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COPAUS2C", 
+   "path": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:32-38", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CPVD", 
+   "path": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:39-48", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CPVS", 
+   "path": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:49-58", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CP00", 
+   "path": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:59-68", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-db2entry", 
+   "name": "AWS01PLN", 
+   "path": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:69-74", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-db2tran", 
+   "name": "CPVDTRAN", 
+   "path": "app/app-authorization-ims-db2-mq/csd/CRDDEMO2.csd:75-79", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COTRTLI", 
+   "path": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:1-5", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COTRTUP", 
+   "path": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:6-10", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COTRTLIC", 
+   "path": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:11-17", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COTRTUPC", 
+   "path": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:18-24", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CTLI", 
+   "path": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:25-34", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CTTU", 
+   "path": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:35-44", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-db2entry", 
+   "name": "CARDDEMO", 
+   "path": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:45-50", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-db2tran", 
+   "name": "CTLITRAN", 
+   "path": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:51-55", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-db2tran", 
+   "name": "CTTUTRAN", 
+   "path": "app/app-transaction-type-db2/csd/CRDDEMOD.csd:56-60", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COACCT01", 
+   "path": "app/app-vsam-mq/csd/CRDDEMOM.csd:1-8", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "CODATE01", 
+   "path": "app/app-vsam-mq/csd/CRDDEMOM.csd:9-16", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CDRA", 
+   "path": "app/app-vsam-mq/csd/CRDDEMOM.csd:17-26", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CDRD", 
+   "path": "app/app-vsam-mq/csd/CRDDEMOM.csd:27-36", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-library", 
+   "name": "CARDDLIB", 
+   "path": "app/app-vsam-mq/csd/CRDDEMOM.csd:37-41", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-file", 
+   "name": "ACCTDAT", 
+   "path": "app/csd/CARDDEMO.CSD:1-12", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-file", 
+   "name": "CARDAIX", 
+   "path": "app/csd/CARDDEMO.CSD:13-24", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-file", 
+   "name": "CARDDAT", 
+   "path": "app/csd/CARDDEMO.CSD:25-36", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-file", 
+   "name": "CCXREF", 
+   "path": "app/csd/CARDDEMO.CSD:37-49", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-file", 
+   "name": "CUSTDAT", 
+   "path": "app/csd/CARDDEMO.CSD:50-62", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-file", 
+   "name": "CXACAIX", 
+   "path": "app/csd/CARDDEMO.CSD:63-75", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-file", 
+   "name": "TRANSACT", 
+   "path": "app/csd/CARDDEMO.CSD:76-87", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-file", 
+   "name": "USRSEC", 
+   "path": "app/csd/CARDDEMO.CSD:88-99", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COACTUP", 
+   "path": "app/csd/CARDDEMO.CSD:100-104", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COACTVW", 
+   "path": "app/csd/CARDDEMO.CSD:105-109", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COADM01", 
+   "path": "app/csd/CARDDEMO.CSD:110-113", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COBIL00", 
+   "path": "app/csd/CARDDEMO.CSD:114-117", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COCRDLI", 
+   "path": "app/csd/CARDDEMO.CSD:118-122", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COCRDSL", 
+   "path": "app/csd/CARDDEMO.CSD:123-127", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COCRDUP", 
+   "path": "app/csd/CARDDEMO.CSD:128-132", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COMEN01", 
+   "path": "app/csd/CARDDEMO.CSD:133-136", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "CORPT00", 
+   "path": "app/csd/CARDDEMO.CSD:137-140", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COSGN00", 
+   "path": "app/csd/CARDDEMO.CSD:141-144", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COTRN00", 
+   "path": "app/csd/CARDDEMO.CSD:145-148", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COTRN01", 
+   "path": "app/csd/CARDDEMO.CSD:149-152", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COTRN02", 
+   "path": "app/csd/CARDDEMO.CSD:153-156", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COUSR00", 
+   "path": "app/csd/CARDDEMO.CSD:157-160", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COUSR01", 
+   "path": "app/csd/CARDDEMO.CSD:161-164", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COUSR02", 
+   "path": "app/csd/CARDDEMO.CSD:165-168", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-mapset", 
+   "name": "COUSR03", 
+   "path": "app/csd/CARDDEMO.CSD:169-172", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COACTUPC", 
+   "path": "app/csd/CARDDEMO.CSD:173-180", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COACTVWC", 
+   "path": "app/csd/CARDDEMO.CSD:181-188", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COADM01C", 
+   "path": "app/csd/CARDDEMO.CSD:189-195", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COBIL00C", 
+   "path": "app/csd/CARDDEMO.CSD:196-202", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COCRDLIC", 
+   "path": "app/csd/CARDDEMO.CSD:203-210", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "cics-program", 
+   "name": "COCRDSEC", 
+   "path": "app/csd/CARDDEMO.CSD:211-218", 
+   "reasons": [
+    "CSD PROGRAM has no source member in the repository"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COCRDSLC", 
+   "path": "app/csd/CARDDEMO.CSD:219-226", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COCRDUPC", 
+   "path": "app/csd/CARDDEMO.CSD:227-234", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COMEN01C", 
+   "path": "app/csd/CARDDEMO.CSD:235-241", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "CORPT00C", 
+   "path": "app/csd/CARDDEMO.CSD:242-248", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COSGN00C", 
+   "path": "app/csd/CARDDEMO.CSD:249-256", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COTRN00C", 
+   "path": "app/csd/CARDDEMO.CSD:257-263", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COTRN01C", 
+   "path": "app/csd/CARDDEMO.CSD:264-270", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COTRN02C", 
+   "path": "app/csd/CARDDEMO.CSD:271-277", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COUSR00C", 
+   "path": "app/csd/CARDDEMO.CSD:278-284", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COUSR01C", 
+   "path": "app/csd/CARDDEMO.CSD:285-291", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COUSR02C", 
+   "path": "app/csd/CARDDEMO.CSD:292-298", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-program", 
+   "name": "COUSR03C", 
+   "path": "app/csd/CARDDEMO.CSD:299-305", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CAUP", 
+   "path": "app/csd/CARDDEMO.CSD:306-316", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CAVW", 
+   "path": "app/csd/CARDDEMO.CSD:317-326", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CA00", 
+   "path": "app/csd/CARDDEMO.CSD:327-336", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CB00", 
+   "path": "app/csd/CARDDEMO.CSD:337-346", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CCDL", 
+   "path": "app/csd/CARDDEMO.CSD:347-356", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CCLI", 
+   "path": "app/csd/CARDDEMO.CSD:357-366", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CCUP", 
+   "path": "app/csd/CARDDEMO.CSD:367-377", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CC00", 
+   "path": "app/csd/CARDDEMO.CSD:378-387", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "unresolved"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CDV1", 
+   "path": "app/csd/CARDDEMO.CSD:388-398", 
+   "reasons": [
+    "starts program COCRDSEC which has no source"
+   ], 
+   "status": "unresolved"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CM00", 
+   "path": "app/csd/CARDDEMO.CSD:399-408", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CR00", 
+   "path": "app/csd/CARDDEMO.CSD:409-418", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CT00", 
+   "path": "app/csd/CARDDEMO.CSD:419-428", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CT01", 
+   "path": "app/csd/CARDDEMO.CSD:429-438", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CT02", 
+   "path": "app/csd/CARDDEMO.CSD:439-448", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CU00", 
+   "path": "app/csd/CARDDEMO.CSD:449-458", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CU01", 
+   "path": "app/csd/CARDDEMO.CSD:459-468", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CU02", 
+   "path": "app/csd/CARDDEMO.CSD:469-478", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-transaction", 
+   "name": "CU03", 
+   "path": "app/csd/CARDDEMO.CSD:479-488", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-library", 
+   "name": "CARDDLIB", 
+   "path": "app/csd/CARDDEMO.CSD:489-493", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-library", 
+   "name": "COM2DOLL", 
+   "path": "app/csd/CARDDEMO.CSD:494-498", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "cics-tdqueue", 
+   "name": "JOBS", 
+   "path": "app/csd/CARDDEMO.CSD:499-505", 
+   "reasons": [], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "documentation", 
+   "name": "README", 
+   "path": "README.md", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "documentation", 
+   "name": "README", 
+   "path": "app/app-authorization-ims-db2-mq/README.md", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COPAU00", 
+   "path": "app/app-authorization-ims-db2-mq/bms/COPAU00.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COPAU01", 
+   "path": "app/app-authorization-ims-db2-mq/bms/COPAU01.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COPAU00", 
+   "path": "app/app-authorization-ims-db2-mq/cpy-bms/COPAU00.cpy", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COPAU01", 
+   "path": "app/app-authorization-ims-db2-mq/cpy-bms/COPAU01.cpy", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.IMSDATA.DBPAUTP0", 
+   "path": "app/app-authorization-ims-db2-mq/data/EBCDIC/AWS.M2.CARDDEMO.IMSDATA.DBPAUTP0.dat", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "db2-ddl", 
+   "name": "AUTHFRDS", 
+   "path": "app/app-authorization-ims-db2-mq/ddl/AUTHFRDS.ddl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "db2-ddl", 
+   "name": "XAUTHFRD", 
+   "path": "app/app-authorization-ims-db2-mq/ddl/XAUTHFRD.ddl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "ims-dbd", 
+   "name": "DBPAUTP0", 
+   "path": "app/app-authorization-ims-db2-mq/ims/DBPAUTP0.dbd", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "ims-dbd", 
+   "name": "DBPAUTX0", 
+   "path": "app/app-authorization-ims-db2-mq/ims/DBPAUTX0.dbd", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "ims-psb", 
+   "name": "DLIGSAMP", 
+   "path": "app/app-authorization-ims-db2-mq/ims/DLIGSAMP.PSB", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "ims-dbd", 
+   "name": "PADFLDBD", 
+   "path": "app/app-authorization-ims-db2-mq/ims/PADFLDBD.DBD", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "ims-dbd", 
+   "name": "PASFLDBD", 
+   "path": "app/app-authorization-ims-db2-mq/ims/PASFLDBD.DBD", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "ims-psb", 
+   "name": "PAUTBUNL", 
+   "path": "app/app-authorization-ims-db2-mq/ims/PAUTBUNL.PSB", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "ims-psb", 
+   "name": "PSBPAUTB", 
+   "path": "app/app-authorization-ims-db2-mq/ims/PSBPAUTB.psb", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "ims-psb", 
+   "name": "PSBPAUTL", 
+   "path": "app/app-authorization-ims-db2-mq/ims/PSBPAUTL.psb", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "documentation", 
+   "name": "README", 
+   "path": "app/app-transaction-type-db2/README.md", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code", 
+    "inventory analysis_status is pending (no fact uses it as evidence)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COTRTLI", 
+   "path": "app/app-transaction-type-db2/bms/COTRTLI.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COTRTUP", 
+   "path": "app/app-transaction-type-db2/bms/COTRTUP.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COTRTLI", 
+   "path": "app/app-transaction-type-db2/cpy-bms/COTRTLI.cpy", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COTRTUP", 
+   "path": "app/app-transaction-type-db2/cpy-bms/COTRTUP.cpy", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "db2-ddl", 
+   "name": "DB2CREAT", 
+   "path": "app/app-transaction-type-db2/ctl/DB2CREAT.ctl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "control-cards", 
+   "name": "DB2FREE", 
+   "path": "app/app-transaction-type-db2/ctl/DB2FREE.ctl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "control-cards", 
+   "name": "DB2LTCAT", 
+   "path": "app/app-transaction-type-db2/ctl/DB2LTCAT.ctl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "control-cards", 
+   "name": "DB2LTTYP", 
+   "path": "app/app-transaction-type-db2/ctl/DB2LTTYP.ctl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "control-cards", 
+   "name": "DB2TEP41", 
+   "path": "app/app-transaction-type-db2/ctl/DB2TEP41.ctl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "control-cards", 
+   "name": "DB2TIAD1", 
+   "path": "app/app-transaction-type-db2/ctl/DB2TIAD1.ctl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "control-cards", 
+   "name": "REPROCT", 
+   "path": "app/app-transaction-type-db2/ctl/REPROCT.ctl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "db2-ddl", 
+   "name": "TRNTYCAT", 
+   "path": "app/app-transaction-type-db2/ddl/TRNTYCAT.ddl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "db2-ddl", 
+   "name": "TRNTYPE", 
+   "path": "app/app-transaction-type-db2/ddl/TRNTYPE.ddl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "db2-ddl", 
+   "name": "XTRNTYCAT", 
+   "path": "app/app-transaction-type-db2/ddl/XTRNTYCAT.ddl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "db2-ddl", 
+   "name": "XTRNTYPE", 
+   "path": "app/app-transaction-type-db2/ddl/XTRNTYPE.ddl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "documentation", 
+   "name": "README", 
+   "path": "app/app-vsam-mq/README.md", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code", 
+    "inventory analysis_status is pending (no fact uses it as evidence)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "asm-program", 
+   "name": "COBDATFT", 
+   "path": "app/asm/COBDATFT.asm", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "asm-program", 
+   "name": "MVSWAIT", 
+   "path": "app/asm/MVSWAIT.asm", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COACTUP", 
+   "path": "app/bms/COACTUP.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COACTVW", 
+   "path": "app/bms/COACTVW.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COADM01", 
+   "path": "app/bms/COADM01.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COBIL00", 
+   "path": "app/bms/COBIL00.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COCRDLI", 
+   "path": "app/bms/COCRDLI.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COCRDSL", 
+   "path": "app/bms/COCRDSL.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COCRDUP", 
+   "path": "app/bms/COCRDUP.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COMEN01", 
+   "path": "app/bms/COMEN01.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "CORPT00", 
+   "path": "app/bms/CORPT00.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COSGN00", 
+   "path": "app/bms/COSGN00.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COTRN00", 
+   "path": "app/bms/COTRN00.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COTRN01", 
+   "path": "app/bms/COTRN01.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COTRN02", 
+   "path": "app/bms/COTRN02.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COUSR00", 
+   "path": "app/bms/COUSR00.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COUSR01", 
+   "path": "app/bms/COUSR01.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COUSR02", 
+   "path": "app/bms/COUSR02.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-mapset", 
+   "name": "COUSR03", 
+   "path": "app/bms/COUSR03.bms", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "catalog-listing", 
+   "name": "LISTCAT", 
+   "path": "app/catlg/LISTCAT.txt", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COACTUP", 
+   "path": "app/cpy-bms/COACTUP.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COACTVW", 
+   "path": "app/cpy-bms/COACTVW.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COADM01", 
+   "path": "app/cpy-bms/COADM01.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COBIL00", 
+   "path": "app/cpy-bms/COBIL00.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COCRDLI", 
+   "path": "app/cpy-bms/COCRDLI.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COCRDSL", 
+   "path": "app/cpy-bms/COCRDSL.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COCRDUP", 
+   "path": "app/cpy-bms/COCRDUP.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COMEN01", 
+   "path": "app/cpy-bms/COMEN01.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "CORPT00", 
+   "path": "app/cpy-bms/CORPT00.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COSGN00", 
+   "path": "app/cpy-bms/COSGN00.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COTRN00", 
+   "path": "app/cpy-bms/COTRN00.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COTRN01", 
+   "path": "app/cpy-bms/COTRN01.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COTRN02", 
+   "path": "app/cpy-bms/COTRN02.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COUSR00", 
+   "path": "app/cpy-bms/COUSR00.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COUSR01", 
+   "path": "app/cpy-bms/COUSR01.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COUSR02", 
+   "path": "app/cpy-bms/COUSR02.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "bms-symbolic-map", 
+   "name": "COUSR03", 
+   "path": "app/cpy-bms/COUSR03.CPY", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "control-cards", 
+   "name": "REPROCT", 
+   "path": "app/ctl/REPROCT.ctl", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-text", 
+   "name": "ACCTDATA", 
+   "path": "app/data/ASCII/acctdata.txt", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-text", 
+   "name": "CARDDATA", 
+   "path": "app/data/ASCII/carddata.txt", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-text", 
+   "name": "CARDXREF", 
+   "path": "app/data/ASCII/cardxref.txt", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-text", 
+   "name": "CUSTDATA", 
+   "path": "app/data/ASCII/custdata.txt", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-text", 
+   "name": "DAILYTRAN", 
+   "path": "app/data/ASCII/dailytran.txt", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-text", 
+   "name": "DISCGRP", 
+   "path": "app/data/ASCII/discgrp.txt", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-text", 
+   "name": "TCATBAL", 
+   "path": "app/data/ASCII/tcatbal.txt", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-text", 
+   "name": "TRANCATG", 
+   "path": "app/data/ASCII/trancatg.txt", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-text", 
+   "name": "TRANTYPE", 
+   "path": "app/data/ASCII/trantype.txt", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.ACCDATA", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.ACCDATA.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.ACCTDATA", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.ACCTDATA.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.CARDDATA", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.CARDDATA.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.CARDXREF", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.CARDXREF.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.CUSTDATA", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.CUSTDATA.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.DALYTRAN", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.DALYTRAN.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.DALYTRAN.PS", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.DALYTRAN.PS.INIT", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.DISCGRP", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.DISCGRP.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.EXPORT.DATA", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.EXPORT.DATA.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.TCATBALF", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.TCATBALF.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.TRANCATG", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.TRANCATG.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.TRANTYPE", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.TRANTYPE.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "data-binary", 
+   "name": "AWS.M2.CARDDEMO.USRSEC", 
+   "path": "app/data/EBCDIC/AWS.M2.CARDDEMO.USRSEC.PS", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "asm-macro", 
+   "name": "ASMWAIT", 
+   "path": "app/maclib/ASMWAIT.mac", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "asm-copybook", 
+   "name": "COCDATFT", 
+   "path": "app/maclib/COCDATFT.mac", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "scheduler-ca7", 
+   "name": "CARDDEMO", 
+   "path": "app/scheduler/CardDemo.ca7", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "scheduler-controlm", 
+   "name": "CARDDEMO", 
+   "path": "app/scheduler/CardDemo.controlm", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "ADMIN-MENU", 
+   "path": "diagrams/Admin-Menu.png", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "APPLICATION-FLOW-ADMIN", 
+   "path": "diagrams/Application-Flow-Admin.png", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "APPLICATION-FLOW-USER", 
+   "path": "diagrams/Application-Flow-User.png", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "CARDDEMO-DATAMODEL", 
+   "path": "diagrams/CARDDEMO-DataModel.drawio", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "MAIN-MENU", 
+   "path": "diagrams/Main-Menu.png", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "SIGNON-SCREEN", 
+   "path": "diagrams/Signon-Screen.png", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "AUTH_DETAILS", 
+   "path": "diagrams/auth_details.png", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "AUTH_FLOW", 
+   "path": "diagrams/auth_flow.png", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "AUTH_FRAUD", 
+   "path": "diagrams/auth_fraud.png", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "AUTH_SUMMARY", 
+   "path": "diagrams/auth_summary.png", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "DB2_MODEL", 
+   "path": "diagrams/db2_model.png", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "diagram", 
+   "name": "IMS_MODEL", 
+   "path": "diagrams/ims_model.png", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "documentation", 
+   "name": "README", 
+   "path": "docs-toolkit/README.md", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "documentation", 
+   "name": "PROJECT-PROFILE", 
+   "path": "docs-toolkit/project-profile.yaml", 
+   "reasons": [
+    "secondary evidence; listed in the component inventory, not analyzed as code"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "script-shell", 
+   "name": "GIT-ADDSRCVERSIONINFO", 
+   "path": "scripts/git-addSrcVersionInfo.sh", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "script-shell", 
+   "name": "LOCAL_COMPILE", 
+   "path": "scripts/local_compile.sh", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "script-awk", 
+   "name": "PAD", 
+   "path": "scripts/pad.awk", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "script-shell", 
+   "name": "REMOTE_COMPILE", 
+   "path": "scripts/remote_compile.sh", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "script-shell", 
+   "name": "REMOTE_REFRESH", 
+   "path": "scripts/remote_refresh.sh", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "script-shell", 
+   "name": "REMOTE_SUBMIT", 
+   "path": "scripts/remote_submit.sh", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "script-shell", 
+   "name": "RUN_FULL_BATCH", 
+   "path": "scripts/run_full_batch.sh", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "script-shell", 
+   "name": "RUN_INTEREST_CALC", 
+   "path": "scripts/run_interest_calc.sh", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "script-shell", 
+   "name": "RUN_POSTING", 
+   "path": "scripts/run_posting.sh", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }, 
+  {
+   "flags": [
+    "documented"
+   ], 
+   "kind": "script-shell", 
+   "name": "UPLD_MODULE", 
+   "path": "scripts/upld_module.sh", 
+   "reasons": [
+    "named in the package (inventory coverage check)"
+   ], 
+   "status": "documented"
+  }
+ ], 
+ "conflicts": [
+  {
+   "component": "CBIMPORT", 
+   "origin": "batch analysis", 
+   "source": "app/cbl/CBIMPORT.cbl:449-452", 
+   "text": "The header says the import validates data integrity using checksums, but 3000-VALIDATE-IMPORT only displays 'Import validation completed' and 'No validation errors detected' without performing any check."
+  }, 
+  {
+   "component": "CBIMPORT", 
+   "origin": "batch analysis", 
+   "source": "app/cbl/CBIMPORT.cbl:63-66", 
+   "text": "The header lists four target files (CUSTOMER, ACCOUNT, CARD-XREF, TRANSACTION), but the program also writes a fifth, CARD-OUTPUT (CARDOUT)."
+  }, 
+  {
+   "component": "CBTRN01C", 
+   "origin": "batch analysis", 
+   "source": "app/cbl/CBTRN01C.cbl:343-345", 
+   "text": "The header says the program posts the daily transaction records, but no record is written or updated: TRANSACT-FILE is opened INPUT and never accessed, and the program only verifies card and account existence and DISPLAYs results."
+  }, 
+  {
+   "component": "CBTRN03C", 
+   "origin": "batch analysis", 
+   "source": "app/jcl/TRANREPT.jcl:40-48", 
+   "text": "TRANREPT.jcl pre-filters the transaction backup with hard-coded SORT symbols PARM-START-DATE C'2022-01-01' and PARM-END-DATE C'2022-07-06', while CBTRN03C filters again using the dates read from the DATEPARM dataset. If the two ranges differ, the report header shows the DATEPARM range but only the intersection of both ranges can appear. Confirmed for the literals; impact Inferred."
+  }, 
+  {
+   "component": "COACTUPC", 
+   "origin": "batch analysis", 
+   "source": "app/cbl/COACTUPC.cbl:434-456", 
+   "text": "Comment says the customer update record is RECLN 300, but its fields add up to 500 bytes, matching CVCUS01Y (RECLN 500 comment at app/cpy/CVCUS01Y.cpy:2)."
+  }, 
+  {
+   "component": "COBSWAIT", 
+   "origin": "batch analysis", 
+   "source": "app/cbl/COBSWAIT.cbl:5", 
+   "text": "The header says 'PARM IN CENTISECONDS' but the value is read from SYSIN, not from the EXEC PARM; the unit (centiseconds) is stated only in the comment and depends on MVSWAIT."
+  }, 
+  {
+   "component": "COCRDLIC", 
+   "origin": "batch analysis", 
+   "source": "app/cbl/COCRDLIC.cbl:4-7", 
+   "text": "The header says admins see all cards and non-admin users only the cards of the account in the commarea, but the code never tests CDEMO-USER-TYPE or uses CDEMO-ACCT-ID as an implicit filter; any user can list every card in CARDDAT. It even forces CDEMO-USRTYP-USER on every transfer."
+  }, 
+  {
+   "component": "COPAUS1C", 
+   "origin": "batch analysis", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:56-66", 
+   "text": "The decline-reason table includes codes 4400 (EXCED DAILY LMT) and 5300 (LOST CARD) that the decision program COPAUA0C never assigns, and COPAUA0C's 4200/4300/5100/5200 paths are unreachable there."
+  }, 
+  {
+   "component": "COPAUS2C", 
+   "origin": "batch analysis", 
+   "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:2", 
+   "text": "DCLGEN header names table AWSTSSC.AUTHFRDS while the declared and used table is CARDDEMO.AUTHFRDS."
+  }, 
+  {
+   "component": "COTRTUPC", 
+   "origin": "batch analysis", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1471-1481", 
+   "text": "Comment says 'Read the Card file. Access via alternate index ACCTID' but the code is a DB2 SELECT on CARDDEMO.TRANSACTION_TYPE by TR_TYPE."
+  }, 
+  {
+   "component": "COUSR01C", 
+   "origin": "batch analysis", 
+   "source": "app/cbl/COUSR01C.cbl:142-147", 
+   "text": "The header says the program adds a 'Regular/Admin user', but USRTYPEI is only checked for non-blank; any character is stored as SEC-USR-TYPE (the COMMAREA 88-levels recognise only 'A' and 'U', app/cpy/COCOM01Y.cpy)."
+  }, 
+  {
+   "component": "AUTHFRDS", 
+   "origin": "batch analysis", 
+   "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:2-3", 
+   "text": "DCLGEN header comments name table AWSTSSC.AUTHFRDS while the DECLARE and the DDL use CARDDEMO.AUTHFRDS; the library name is a placeholder (XXXXXXX.DB2.DCLGEN)."
+  }, 
+  {
+   "component": "COMEN02Y", 
+   "origin": "batch analysis", 
+   "source": "app/cpy/COMEN02Y.cpy:2", 
+   "text": "Header comment says 'CardDemo - Admin Menu Options' although the copybook defines the main (user) menu."
+  }, 
+  {
+   "component": "CSMSG02Y", 
+   "origin": "batch analysis", 
+   "source": "app/cpy/CSMSG02Y.cpy:2", 
+   "text": "The header comment names the member CABENDD.CPY, not CSMSG02Y; lines 1-4 and 21-29 carry sequence numbers while the licence block does not."
+  }, 
+  {
+   "component": "CSUTLDPY", 
+   "origin": "batch analysis", 
+   "source": "app/cpy/CSUTLDPY.cpy:5", 
+   "text": "Header refers to working storage 'CSUTLDTR'; the actual companion copybook is CSUTLDWY."
+  }, 
+  {
+   "component": "CSUTLDWY", 
+   "origin": "batch analysis", 
+   "source": "app/cpy/CSUTLDPY.cpy:5", 
+   "text": "CSUTLDPY's header says the accompanying working storage is 'CSUTLDTR', but the working storage actually copied is CSUTLDWY."
+  }, 
+  {
+   "component": "CUSTREC", 
+   "origin": "batch analysis", 
+   "source": "app/cpy/CUSTREC.cpy:19", 
+   "text": "Near-duplicate of CVCUS01Y: same 500-byte layout, but the date-of-birth field is named CUST-DOB-YYYYMMDD here and CUST-DOB-YYYY-MM-DD in CVCUS01Y."
+  }, 
+  {
+   "component": "CVCUS01Y", 
+   "origin": "batch analysis", 
+   "source": "app/cpy/CVCUS01Y.cpy:19", 
+   "text": "CUSTREC defines the same layout under the same 01 name but calls the birth-date field CUST-DOB-YYYYMMDD; the two copybooks are near-duplicates."
+  }, 
+  {
+   "component": "ASMA90", 
+   "origin": "JCL", 
+   "source": "samples/proc/BUILDBMS.prc:52", 
+   "text": "DD SYSLIB is bound to different datasets across jobs: &CICSMAC (samples/proc/BUILDBMS.prc:52); &CICSMAC (samples/proc/BUILDBMS.prc:82); CEE.SCEEMAC (samples/proc/BUILDBMS.prc:54); CEE.SCEEMAC (samples/proc/BUILDBMS.prc:84); SYS1.MACLIB (samples/proc/BUILDBMS.prc:53); SYS1.MACLIB (samples/proc/BUILDBMS.prc:83)"
+  }, 
+  {
+   "component": "ASMA90", 
+   "origin": "JCL", 
+   "source": "samples/proc/BUILDBMS.prc:58-60", 
+   "text": "DD SYSPUNCH is bound to different datasets across jobs: &&MAP (samples/proc/BUILDBMS.prc:58-60); &CPYBKS(&MAPNAME) (samples/proc/BUILDBMS.prc:88-90)"
+  }, 
+  {
+   "component": "CBPAUP0C", 
+   "origin": "JCL", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:34", 
+   "text": "DD IMS is bound to different datasets across jobs: IMS.DBDLIB (app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:34); IMS.PSBLIB (app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:33)"
+  }, 
+  {
+   "component": "DBUNLDGS", 
+   "origin": "JCL", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:34", 
+   "text": "DD IMS is bound to different datasets across jobs: OEM.IMS.IMSP.DBDLIB (app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:34); OEM.IMS.IMSP.PSBLIB (app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:33)"
+  }, 
+  {
+   "component": "DFSURGU0", 
+   "origin": "JCL", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:22", 
+   "text": "DD IMS is bound to different datasets across jobs: OEM.IMS.IMSP.DBDLIB (app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:22); OEM.IMS.IMSP.PSBLIB (app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:21)"
+  }, 
+  {
+   "component": "DSNHPC", 
+   "origin": "JCL", 
+   "source": "samples/proc/BLDCIDB2.prc:56", 
+   "text": "DD SYSLIB is bound to different datasets across jobs: &COPYLIB (samples/proc/BLDCIDB2.prc:56); &CPYBKS (samples/proc/BLDCIDB2.prc:57); &DCLLIB (samples/proc/BLDCIDB2.prc:55)"
+  }, 
+  {
+   "component": "DSNTIAUL", 
+   "origin": "JCL", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:102-104", 
+   "text": "DD SYSREC00 is bound to different datasets across jobs: &HLQ..TRANCATG.PS (app/app-transaction-type-db2/jcl/TRANEXTR.jcl:102-104); &HLQ..TRANTYPE.PS (app/app-transaction-type-db2/jcl/TRANEXTR.jcl:72-74)"
+  }, 
+  {
+   "component": "HEWL", 
+   "origin": "JCL", 
+   "source": "samples/proc/BUILDONL.prc:96", 
+   "text": "DD SYSLIB is bound to different datasets across jobs: &DFHLOAD (samples/proc/BUILDONL.prc:96); &LIBPRFX..SCEELKED (samples/proc/BLDCIDB2.prc:116); &LIBPRFX..SCEELKEX (samples/proc/BLDCIDB2.prc:115); &LOADLIB (samples/proc/BLDCIDB2.prc:122); &LOADLIB (samples/proc/BUILDBAT.prc:80); &LOADLIB (samples/proc/BUILDONL.prc:101); &SDFHCOB (samples/proc/BLDCIDB2.prc:118); &SDFHLOAD (samples/proc/BLDCIDB2.prc:117); &SDSNLOAD (samples/proc/BLDCIDB2.prc:119); AWS.M2.CARDDEMO.LOADLIB (scripts/compile_batch.jcl.template:57); CEE.SCEELKED (samples/proc/BUILDBAT.prc:78); CEE.SCEELKED (samples/proc/BUILDONL.prc:99); CEE.SCEELKED (scripts/compile_batch.jcl.template:55); CEE.SCEELKEX (samples/proc/BUILDBAT.prc:79); CEE.SCEELKEX (samples/proc/BUILDONL.prc:100); CEE.SCEELKEX (scripts/compile_batch.jcl.template:56); CSF.SCSFMOD0 (samples/proc/BUILDBAT.prc:77); CSF.SCSFMOD0 (samples/proc/BUILDONL.prc:98); CSF.SCSFMOD0 (scripts/compile_batch.jcl.template:54); GDDM.SADMMOD (samples/proc/BLDCIDB2.prc:121); ISP.SISPLOAD (samples/proc/BLDCIDB2.prc:120); SYS1.LINKLIB (samples/proc/BUILDBAT.prc:76); SYS1.LINKLIB (samples/proc/BUILDONL.prc:97); SYS1.LINKLIB (scripts/compile_batch.jcl.template:53)"
+  }, 
+  {
+   "component": "HEWL", 
+   "origin": "JCL", 
+   "source": "samples/proc/BUILDONL.prc:103", 
+   "text": "DD SYSLIN is bound to different datasets across jobs: &&COPYLINK (samples/proc/BUILDONL.prc:103); &&LOADSET (samples/proc/BLDCIDB2.prc:125); &&LOADSET (samples/proc/BUILDBAT.prc:81); &&LOADSET (samples/proc/BUILDONL.prc:102); &&LOADSET (scripts/compile_batch.jcl.template:58); &&MAP (samples/proc/BUILDBMS.prc:72); &SDFHCOB(DFHEILIC) (samples/proc/BLDCIDB2.prc:124)"
+  }, 
+  {
+   "component": "HEWL", 
+   "origin": "JCL", 
+   "source": "samples/proc/BUILDBMS.prc:70", 
+   "text": "DD SYSLMOD is bound to different datasets across jobs: &LOADLIB(&MAPNAME) (samples/proc/BUILDBMS.prc:70); &LOADLIB(&MEM) (samples/proc/BUILDBAT.prc:82); &LOADLIB(&MEM) (samples/proc/BUILDONL.prc:104-107); &LOADLIB(&MEMNAME) (samples/proc/BLDCIDB2.prc:127-129); AWS.M2.CARDDEMO.LOADLIB(&MEM) (scripts/compile_batch.jcl.template:59-60)"
+  }, 
+  {
+   "component": "IDCAMS", 
+   "origin": "JCL", 
+   "source": "app/jcl/ESDSRRDS.jcl:115", 
+   "text": "DD IN is bound to different datasets across jobs: AWS.M2.CARDDEMO.ESDSRRDS.PS (app/jcl/ESDSRRDS.jcl:115); AWS.M2.CARDDEMO.ESDSRRDS.PS (app/jcl/ESDSRRDS.jcl:81); AWS.M2.CARDDEMO.USRSEC.PS (app/jcl/DUSRSECJ.jcl:82); AWS.M2.CARDEMO.FTP.TEST (app/jcl/INTRDRJ1.JCL:8); AWS.M2.CARDEMO.FTP.TEST.BKUP (app/jcl/INTRDRJ2.JCL:9)"
+  }, 
+  {
+   "component": "IDCAMS", 
+   "origin": "JCL", 
+   "source": "app/jcl/ESDSRRDS.jcl:82", 
+   "text": "DD OUT is bound to different datasets across jobs: AWS.M2.CARDDEMO.USRSEC.VSAM.ESDS (app/jcl/ESDSRRDS.jcl:82); AWS.M2.CARDDEMO.USRSEC.VSAM.KSDS (app/jcl/DUSRSECJ.jcl:83); AWS.M2.CARDDEMO.USRSEC.VSAM.RRDS (app/jcl/ESDSRRDS.jcl:116); AWS.M2.CARDEMO.FTP.TEST.BKUP (app/jcl/INTRDRJ1.JCL:9); AWS.M2.CARDEMO.FTP.TEST.BKUP.INTRDR (app/jcl/INTRDRJ2.JCL:10)"
+  }, 
+  {
+   "component": "IDCAMS", 
+   "origin": "JCL", 
+   "source": "app/jcl/TRANFILE.jcl:69-70", 
+   "text": "DD TRANSACT is bound to different datasets across jobs: AWS.M2.CARDDEMO.DALYTRAN.PS.INIT (app/jcl/TRANFILE.jcl:69-70); AWS.M2.CARDDEMO.TRANSACT.COMBINED (app/jcl/COMBTRAN.jcl:43-44)"
+  }, 
+  {
+   "component": "IEBGENER", 
+   "origin": "JCL", 
+   "source": "samples/proc/BUILDONL.prc:81", 
+   "text": "DD SYSUT1 is bound to different datasets across jobs: &DFHSAMP(DFHEILID) (samples/proc/BUILDONL.prc:81); &HLQ..TRANCATG.PS (app/app-transaction-type-db2/jcl/TRANEXTR.jcl:45); &HLQ..TRANTYPE.PS (app/app-transaction-type-db2/jcl/TRANEXTR.jcl:34); &LISTING(&MAPNAME) (samples/proc/BUILDBMS.prc:98); &LISTING(&MEM) (samples/proc/BUILDBAT.prc:66); &LISTING(&MEM) (samples/proc/BUILDONL.prc:72); &SRCCODE(&MAPNAME) (samples/proc/BUILDBMS.prc:42-43); AWS.M2.CARDDEMO.DISCGRP.PS (app/jcl/DEFGDGD.jcl:85); AWS.M2.CARDDEMO.JCL(INTRDRJ2) (app/jcl/INTRDRJ1.JCL:17); AWS.M2.CARDDEMO.LISTING(&MEM) (scripts/compile_batch.jcl.template:42-43); AWS.M2.CARDDEMO.TRANCATG.PS (app/jcl/DEFGDGD.jcl:62); AWS.M2.CARDDEMO.TRANTYPE.PS (app/jcl/DEFGDGD.jcl:39)"
+  }, 
+  {
+   "component": "IEBGENER", 
+   "origin": "JCL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:76-78", 
+   "text": "DD SYSUT2 is bound to different datasets across jobs: &&COPYIMS (samples/jcl/IMSMQCMP.jcl:76-78); &&COPYLINK (samples/jcl/IMSMQCMP.jcl:85-87); &&COPYLINK (samples/proc/BUILDONL.prc:82-84); &&COPYMQ (samples/jcl/IMSMQCMP.jcl:94-96); &&TEMPM (samples/proc/BUILDBMS.prc:38-40); &HLQ..TRANCATG.PS.BKUP (app/app-transaction-type-db2/jcl/TRANEXTR.jcl:46-49); &HLQ..TRANTYPE.BKUP (app/app-transaction-type-db2/jcl/TRANEXTR.jcl:35-38); AWS.M2.CARDDEMO.DISCGRP.BKUP (app/jcl/DEFGDGD.jcl:86-89); AWS.M2.CARDDEMO.ESDSRRDS.PS (app/jcl/ESDSRRDS.jcl:47-50); AWS.M2.CARDDEMO.TRANCATG.PS.BKUP (app/jcl/DEFGDGD.jcl:63-66); AWS.M2.CARDDEMO.TRANTYPE.BKUP (app/jcl/DEFGDGD.jcl:40-43); AWS.M2.CARDDEMO.USRSEC.PS (app/jcl/DUSRSECJ.jcl:46-49)"
+  }, 
+  {
+   "component": "IEFBR14", 
+   "origin": "JCL", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:54-57", 
+   "text": "DD DD01 is bound to different datasets across jobs: &HLQ..TRANTYPE.PS (app/app-transaction-type-db2/jcl/TRANEXTR.jcl:54-57); AWS.M2.CARDDEMO.ACCTDATA.PSCOMP (app/jcl/READACCT.jcl:23-24); AWS.M2.CARDDEMO.ESDSRRDS.PS (app/jcl/ESDSRRDS.jcl:26-27); AWS.M2.CARDDEMO.USRSEC.PS (app/jcl/DUSRSECJ.jcl:25-26)"
+  }, 
+  {
+   "component": "IEFBR14", 
+   "origin": "JCL", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:58-61", 
+   "text": "DD DD02 is bound to different datasets across jobs: &HLQ..TRANCATG.PS (app/app-transaction-type-db2/jcl/TRANEXTR.jcl:58-61); AWS.M2.CARDDEMO.ACCTDATA.ARRYPS (app/jcl/READACCT.jcl:25-26)"
+  }, 
+  {
+   "component": "IEFBR14", 
+   "origin": "JCL", 
+   "source": "samples/jcl/LISTCAT.jcl:22-26", 
+   "text": "DD DD1 is bound to different datasets across jobs: AWS.M2.CARDDEMO.LISTCAT (samples/jcl/LISTCAT.jcl:22-26); AWS.M2.CARDDEMO.PAUTDB.ROOT.FILEO (app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:33-34)"
+  }, 
+  {
+   "component": "IEWL", 
+   "origin": "JCL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:104", 
+   "text": "DD SYSLIB is bound to different datasets across jobs: &CICSHLQ..CICS.SDFHLOAD (samples/jcl/IMSMQCMP.jcl:104); &IMSHLQ..SDFSRESL (samples/jcl/IMSMQCMP.jcl:105); &MQHLQ..SCSQLOAD (samples/jcl/IMSMQCMP.jcl:101); CEE.SCEELKED (samples/jcl/IMSMQCMP.jcl:103); SYS1.LINKLIB (samples/jcl/IMSMQCMP.jcl:102)"
+  }, 
+  {
+   "component": "IEWL", 
+   "origin": "JCL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:110", 
+   "text": "DD SYSLIN is bound to different datasets across jobs: &&COPYIMS (samples/jcl/IMSMQCMP.jcl:110); &&COPYLINK (samples/jcl/IMSMQCMP.jcl:107); &&COPYMQ (samples/jcl/IMSMQCMP.jcl:108); &&LOADSET (samples/jcl/IMSMQCMP.jcl:109)"
+  }, 
+  {
+   "component": "IGYCRCTL", 
+   "origin": "JCL", 
+   "source": "samples/jcl/IMSMQCMP.jcl:63", 
+   "text": "DD SYSLIB is bound to different datasets across jobs: &CICSHLQ..CICS.SDFHCOB (samples/jcl/IMSMQCMP.jcl:63); &COPYLIB (samples/proc/BLDCIDB2.prc:84); &CPYBKS (samples/proc/BLDCIDB2.prc:85); &CPYBKS (samples/proc/BUILDBAT.prc:39); &CPYBKS (samples/proc/BUILDONL.prc:43); &DCLLIB (samples/proc/BLDCIDB2.prc:83); &DFHCOB (samples/proc/BUILDONL.prc:44); &HLQ..COBCOPY (samples/jcl/IMSMQCMP.jcl:65); &MQHLQ..SCSQCOBC (samples/jcl/IMSMQCMP.jcl:64); &SDFHCOB (samples/proc/BLDCIDB2.prc:86); &SDFHMAC (samples/proc/BLDCIDB2.prc:87); AWS.M2.CARDDEMO.CPY (scripts/compile_batch.jcl.template:14-15); CEE.SCEESAMP (samples/jcl/IMSMQCMP.jcl:62); CEE.SCEESAMP (samples/proc/BUILDBAT.prc:40); CEE.SCEESAMP (samples/proc/BUILDONL.prc:45)"
+  }, 
+  {
+   "component": "IKJEFT01", 
+   "origin": "JCL", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:46", 
+   "text": "DD SYSTSIN is bound to different datasets across jobs: &LBNM..CNTL(DB2FREE) (app/app-transaction-type-db2/jcl/CREADB21.jcl:46); &LBNM..CNTL(DB2TEP41) (app/app-transaction-type-db2/jcl/CREADB21.jcl:71); &LBNM..CNTL(DB2TEP41) (app/app-transaction-type-db2/jcl/CREADB21.jcl:83); &LBNM..CNTL(DB2TIAD1) (app/app-transaction-type-db2/jcl/CREADB21.jcl:58)"
+  }, 
+  {
+   "component": "PAUDBLOD", 
+   "origin": "JCL", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:34", 
+   "text": "DD IMS is bound to different datasets across jobs: OEM.IMS.IMSP.DBDLIB (app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:34); OEM.IMS.IMSP.PSBLIB (app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:33)"
+  }, 
+  {
+   "component": "PAUDBUNL", 
+   "origin": "JCL", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:46", 
+   "text": "DD IMS is bound to different datasets across jobs: OEM.IMS.IMSP.DBDLIB (app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:46); OEM.IMS.IMSP.PSBLIB (app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:45)"
+  }, 
+  {
+   "component": "SORT", 
+   "origin": "JCL", 
+   "source": "app/jcl/COMBTRAN.jcl:25-26", 
+   "text": "DD SORTIN is bound to different datasets across jobs: AWS.M2.CARDDEMO.SYSTRAN (app/jcl/COMBTRAN.jcl:25-26); AWS.M2.CARDDEMO.TCATBALF.BKUP (app/jcl/PRTCATBL.jcl:44-45); AWS.M2.CARDDEMO.TRANSACT.BKUP (app/jcl/COMBTRAN.jcl:23-24); AWS.M2.CARDDEMO.TRANSACT.BKUP (app/jcl/TRANREPT.jcl:38-39); AWS.M2.CARDDEMO.TRANSACT.BKUP (app/proc/TRANREPT.prc:36-37); AWS.M2.CARDDEMO.TRANSACT.BKUP (samples/jcl/SORTTEST.jcl:20-21); AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS (app/jcl/CREASTMT.JCL:45)"
+  }, 
+  {
+   "component": "SORT", 
+   "origin": "JCL", 
+   "source": "app/jcl/PRTCATBL.jcl:59-63", 
+   "text": "DD SORTOUT is bound to different datasets across jobs: AWS.M2.CARDDEMO.TCATBALF.REPT (app/jcl/PRTCATBL.jcl:59-63); AWS.M2.CARDDEMO.TRANSACT.COMBINED (app/jcl/COMBTRAN.jcl:33-37); AWS.M2.CARDDEMO.TRANSACT.DALY (app/jcl/TRANREPT.jcl:51-55); AWS.M2.CARDDEMO.TRANSACT.DALY (app/proc/TRANREPT.prc:49-53); AWS.M2.CARDDEMO.TRANSACT.DALY (samples/jcl/SORTTEST.jcl:31-35); AWS.M2.CARDDEMO.TRXFL.SEQ (app/jcl/CREASTMT.JCL:48-51)"
+  }, 
+  {
+   "component": "COBTUPDT", 
+   "origin": "rule review", 
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:110-129", 
+   "text": "legacy rule BR-TRANTYPE-COBTUPDT-001 corrected by the batch review: Dispatch on INPUT-REC-TYPE is correct (A=INSERT via 10031-INSERT-DB, U=UPDATE via 10032-UPDATE-DB, D=DELETE via 10033-DELETE-DB, '*'=display 'IGNORING COMMENTED LINE' only). Corrected: the OTHER branch builds 'ERROR: TYPE NOT VALID' and PERFORMs 9999-ABEND, but 9999-ABEND (COBTUPDT.cbl:230-233) only DISPLAYs WS-RETURN-MSG and moves 4 to RETURN-CODE; it does not stop the run or issue an abend, so the loop in 1001-READ-NEXT-RECORDS continues with the next record. Range widened to include the EVALUATE header (line 110) and END-EVALUATE (129)."
+  }, 
+  {
+   "component": "COACTVWC", 
+   "origin": "rule review", 
+   "source": "app/cbl/COACTVWC.cbl:653-680", 
+   "text": "legacy rule BR-BASE-003 corrected by the batch review: Cited line 118 is only the 88-level WS-RETURN-MSG-OFF definition. In COACTVWC the 'first message wins' guard is applied in 2210-EDIT-ACCOUNT (657, 670) and the NOTFND branches of the reads (743, 792, 845), but NOT universally: the cross-field edit at 640-642 sets 'No input received' unconditionally, overwriting 'Account number not provided', and the WHEN OTHER read-error branches (762-766, 812-816, 861-865) overwrite any prior message with the file-error text."
+  }, 
+  {
+   "component": "COACTUPC", 
+   "origin": "rule review", 
+   "source": "app/cbl/COACTUPC.cbl:2225-2423", 
+   "text": "legacy rule BR-BASE-COACTUPC-014 corrected by the batch review: Corrected: the area code, prefix and line-number checks are as stated (410 codes at CSLKPCDY.cpy:521-930), but the 'phone not entered' test at app/cbl/COACTUPC.cbl:2234-2239 checks WS-EDIT-US-PHONE-NUMA EQUAL SPACES where NUMC is expected. As coded, a number whose area code and prefix are blank (spaces) is accepted as not entered even when a line number is keyed, so 'when a number is entered' is not fully enforced."
+  }, 
+  {
+   "component": "COCRDSLC", 
+   "origin": "rule review", 
+   "source": "app/cbl/COCRDSLC.cbl:647-679", 
+   "text": "legacy rule BR-BASE-COCRDSLC-001 corrected by the batch review: COCRDSLC is the card detail (single card) screen, not the card list. A blank/zero account is not merely 'reported': it sets INPUT-ERROR, so the account number is mandatory and the card is not read. The non-numeric message is the hardcoded literal 'ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER' (669-671); the 88-level SEARCHED-ACCT-NOT-NUMERIC text at 145-146 is never used. '*'/SPACES normalisation at 615-620 confirmed."
+  }, 
+  {
+   "component": "COCRDSLC", 
+   "origin": "rule review", 
+   "source": "app/cbl/COCRDSLC.cbl:685-720", 
+   "text": "legacy rule BR-BASE-COCRDSLC-002 corrected by the batch review: Same correction as for the account: this is the card detail screen, and a blank/zero card number sets INPUT-ERROR (mandatory). Non-numeric message is the literal 'CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER' (710-712); the 88 SEARCHED-CARD-NOT-NUMERIC at 147-148 is unused. '*'/SPACES normalisation at 622-627 confirmed."
+  }, 
+  {
+   "component": "COTRTUPC", 
+   "origin": "rule review", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:820-973", 
+   "text": "legacy rule BR-BASE-COTRTUPC-001 corrected by the batch review: Range spans 1210-EDIT-TRANTYPE (820-842) and 1245-EDIT-NUM-REQD (907-973); the 1230-EDIT-ALPHANUM-REQD lines in between belong to BR-BASE-COTRTUPC-002. Required and non-zero are correct ('Tran Type code must be supplied.', 'Tran Type code must not be zero.'). Corrected on 'numeric': the test is FUNCTION TEST-NUMVAL on the 2-character value (934-935), which also accepts a sign, a decimal point or trailing spaces (message 'Tran Type code must be numeric.'). A passing value is converted with NUMVAL into unsigned PIC 9(02) WS-EDIT-NUMERIC-2, so a sign or fraction is dropped (Inferred: '-5' becomes '05', '.5' becomes '00' after passing the non-zero test). The code is then rewritten with leading zeros (spaces replaced by zeros). The edit only runs when not in create-new or confirm state (712-717)."
+  }, 
+  {
+   "component": "CBSTM03A", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBSTM03A.CBL", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "CBSTM03A", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBSTM03A.CBL", 
+   "text": "parser found paragraphs missing from the earlier facts: (PROCEDURE DIVISION entry)"
+  }, 
+  {
+   "component": "CSUTLDTC", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CSUTLDTC.cbl", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "CSUTLDTC", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CSUTLDTC.cbl", 
+   "text": "parser found paragraphs missing from the earlier facts: (PROCEDURE DIVISION entry)"
+  }, 
+  {
+   "component": "CBACT01C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBACT01C.cbl", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "CBACT01C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBACT01C.cbl", 
+   "text": "parser found paragraphs missing from the earlier facts: (PROCEDURE DIVISION entry)"
+  }, 
+  {
+   "component": "CBTRN02C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBTRN02C.cbl", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "CBTRN02C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBTRN02C.cbl", 
+   "text": "parser found paragraphs missing from the earlier facts: (PROCEDURE DIVISION entry)"
+  }, 
+  {
+   "component": "COBSWAIT", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/COBSWAIT.cbl", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "COBSWAIT", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/COBSWAIT.cbl", 
+   "text": "parser found paragraphs missing from the earlier facts: (PROCEDURE DIVISION entry)"
+  }, 
+  {
+   "component": "CBACT03C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBACT03C.cbl", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "CBACT03C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBACT03C.cbl", 
+   "text": "parser found paragraphs missing from the earlier facts: (PROCEDURE DIVISION entry)"
+  }, 
+  {
+   "component": "COTRTLIC", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl", 
+   "text": "parser found paragraphs missing from the earlier facts: 2000-SEND-MAP"
+  }, 
+  {
+   "component": "PAUDBLOD", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "DBUNLDGS", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "CBPAUP0C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "CBACT04C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBACT04C.cbl", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "CBACT04C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBACT04C.cbl", 
+   "text": "parser found paragraphs missing from the earlier facts: (PROCEDURE DIVISION entry)"
+  }, 
+  {
+   "component": "CBCUS01C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBCUS01C.cbl", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "CBCUS01C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBCUS01C.cbl", 
+   "text": "parser found paragraphs missing from the earlier facts: (PROCEDURE DIVISION entry)"
+  }, 
+  {
+   "component": "CBTRN03C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBTRN03C.cbl", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "CBTRN03C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBTRN03C.cbl", 
+   "text": "parser found paragraphs missing from the earlier facts: (PROCEDURE DIVISION entry)"
+  }, 
+  {
+   "component": "CBACT02C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBACT02C.cbl", 
+   "text": "earlier program facts list paragraphs not found by the parser: MAINLINE (the parser output is used)"
+  }, 
+  {
+   "component": "CBACT02C", 
+   "origin": "earlier facts vs parser", 
+   "source": "app/cbl/CBACT02C.cbl", 
+   "text": "parser found paragraphs missing from the earlier facts: (PROCEDURE DIVISION entry)"
+  }
+ ], 
+ "counts": {
+  "asm-copybook": {
+   "documented": 1
+  }, 
+  "asm-macro": {
+   "documented": 1
+  }, 
+  "asm-program": {
+   "documented": 2
+  }, 
+  "bms-mapset": {
+   "documented": 21
+  }, 
+  "bms-symbolic-map": {
+   "documented": 21
+  }, 
+  "catalog-listing": {
+   "documented": 1
+  }, 
+  "cics-db2entry": {
+   "documented": 2
+  }, 
+  "cics-db2tran": {
+   "documented": 3
+  }, 
+  "cics-file": {
+   "documented": 8
+  }, 
+  "cics-library": {
+   "documented": 3
+  }, 
+  "cics-mapset": {
+   "documented": 21
+  }, 
+  "cics-program": {
+   "documented": 25, 
+   "unresolved": 1
+  }, 
+  "cics-tdqueue": {
+   "documented": 1
+  }, 
+  "cics-transaction": {
+   "documented": 24, 
+   "unresolved": 1
+  }, 
+  "cobol-copybook": {
+   "documented": 32, 
+   "requires SME clarification": 9
+  }, 
+  "cobol-program": {
+   "documented": 5, 
+   "requires SME clarification": 39
+  }, 
+  "control-cards": {
+   "documented": 7
+  }, 
+  "data-binary": {
+   "documented": 14
+  }, 
+  "data-text": {
+   "documented": 9
+  }, 
+  "db2-dclgen": {
+   "documented": 3
+  }, 
+  "db2-ddl": {
+   "documented": 7
+  }, 
+  "diagram": {
+   "documented": 12
+  }, 
+  "documentation": {
+   "documented": 6
+  }, 
+  "ims-dbd": {
+   "documented": 4
+  }, 
+  "ims-psb": {
+   "documented": 4
+  }, 
+  "jcl-job": {
+   "documented": 48, 
+   "unresolved": 7
+  }, 
+  "jcl-proc": {
+   "documented": 1, 
+   "unresolved": 5
+  }, 
+  "jcl-template": {
+   "unresolved": 1
+  }, 
+  "scheduler-ca7": {
+   "documented": 1
+  }, 
+  "scheduler-controlm": {
+   "documented": 1
+  }, 
+  "script-awk": {
+   "documented": 1
+  }, 
+  "script-shell": {
+   "documented": 9
+  }
+ }, 
+ "excluded": [
+  {
+   "path": ".gitignore", 
+   "reason": "name:^(LICENSE|NOTICE|\\.GITIGNORE|\\.GITATTRIBUTES|CODE_OF_CONDUCT\\.MD|CONTRIBUTING\\.MD)$", 
+   "type": "repo-meta"
+  }, 
+  {
+   "path": "CODE_OF_CONDUCT.md", 
+   "reason": "name:^(LICENSE|NOTICE|\\.GITIGNORE|\\.GITATTRIBUTES|CODE_OF_CONDUCT\\.MD|CONTRIBUTING\\.MD)$", 
+   "type": "repo-meta"
+  }, 
+  {
+   "path": "CONTRIBUTING.md", 
+   "reason": "name:^(LICENSE|NOTICE|\\.GITIGNORE|\\.GITATTRIBUTES|CODE_OF_CONDUCT\\.MD|CONTRIBUTING\\.MD)$", 
+   "type": "repo-meta"
+  }, 
+  {
+   "path": "LICENSE", 
+   "reason": "name:^(LICENSE|NOTICE|\\.GITIGNORE|\\.GITATTRIBUTES|CODE_OF_CONDUCT\\.MD|CONTRIBUTING\\.MD)$", 
+   "type": "repo-meta"
+  }, 
+  {
+   "path": "NOTICE", 
+   "reason": "name:^(LICENSE|NOTICE|\\.GITIGNORE|\\.GITATTRIBUTES|CODE_OF_CONDUCT\\.MD|CONTRIBUTING\\.MD)$", 
+   "type": "repo-meta"
+  }, 
+  {
+   "path": "app/cpy-bms/.gitkeep", 
+   "reason": "name:^\\.GITKEEP$", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "app/csd/.gitkeep", 
+   "reason": "name:^\\.GITKEEP$", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "app/data/EBCDIC/.gitkeep", 
+   "reason": "name:^\\.GITKEEP$", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "samples/m2/mf/CardDemo_runtime.zip", 
+   "reason": "exclude:**/*.zip", 
+   "type": "excluded"
+  }, 
+  {
+   "path": "samples/m2/unikix/UniKix_CardDemo_runtime_v1.zip", 
+   "reason": "exclude:**/*.zip", 
+   "type": "excluded"
+  }, 
+  {
+   "path": "scripts/markers/ACCTFILE", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CARDFILE", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CBACT01C", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CBACT02C", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CBACT03C", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CBACT04C", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CBCUS01C", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CBTRN01C", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CBTRN02C", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CBTRN03C", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CUSTFILE", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CVACT01Y", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CVACT02Y", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CVACT03Y", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CVCUS01Y", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CVTRA01Y", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CVTRA02Y", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CVTRA03Y", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CVTRA04Y", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CVTRA05Y", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CVTRA06Y", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/CVTRA07Y", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/DALYREJS", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/DEFGDGB", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/DISCGRP", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/LISTCAT", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/POSTTRAN", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/RACFCMDS", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/READACCT", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/READCARD", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/READCUST", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/READXREF", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/REPRO", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/REPROC", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/REPROCT", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/REPRTEST", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/REPTFILE", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/TCATBAL", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/TCATBALF", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/TRANCAT", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/TRANCATG", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/TRANFILE", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/TRANREPT", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/TRANTYPE", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }, 
+  {
+   "path": "scripts/markers/XREFFILE", 
+   "reason": "empty-file", 
+   "type": "placeholder"
+  }
+ ], 
+ "generated": "2026-10-20T03:47:20", 
+ "markdown_pages": 419, 
+ "pages": {
+  "(top level)": {
+   "md": 14, 
+   "other": 1
+  }, 
+  "05-online": {
+   "md": 4, 
+   "other": 0
+  }, 
+  "05-online/screens": {
+   "md": 21, 
+   "other": 0
+  }, 
+  "06-batch": {
+   "md": 2, 
+   "other": 0
+  }, 
+  "06-batch/jobs": {
+   "md": 55, 
+   "other": 0
+  }, 
+  "06-batch/procs": {
+   "md": 7, 
+   "other": 0
+  }, 
+  "07-programs": {
+   "md": 47, 
+   "other": 0
+  }, 
+  "08-data": {
+   "md": 3, 
+   "other": 0
+  }, 
+  "08-data/datasets": {
+   "md": 204, 
+   "other": 0
+  }, 
+  "08-data/db2": {
+   "md": 3, 
+   "other": 0
+  }, 
+  "08-data/ims": {
+   "md": 4, 
+   "other": 0
+  }, 
+  "08-data/layouts": {
+   "md": 44, 
+   "other": 0
+  }, 
+  "08-data/mq": {
+   "md": 5, 
+   "other": 0
+  }, 
+  "17-dependencies": {
+   "md": 4, 
+   "other": 0
+  }, 
+  "18-coverage": {
+   "md": 2, 
+   "other": 0
+  }
+ }, 
+ "schema": "gaps/1", 
+ "sme_questions": [
+  {
+   "component": "CBACT01C", 
+   "question": "Is the 2525.00 substitution for a zero cycle debit (and the missing move for non-zero debits) intended test-data behaviour, or a defect? Which downstream consumer reads OUTFILE?", 
+   "source": "app/cbl/CBACT01C.cbl:236-238"
+  }, 
+  {
+   "component": "CBACT01C", 
+   "question": "Are the literal amounts in the ARRYFILE record (1005.00, 1525.00, -1025.00, -2500.00) meant for testing array/COMP-3 layouts only? Is ARRYFILE used by any production process?", 
+   "source": "app/cbl/CBACT01C.cbl:253-261"
+  }, 
+  {
+   "component": "CBACT04C", 
+   "question": "The end-of-file branch that would post interest to the last account is unreachable. Is the last account's balance update handled elsewhere, or is this a known defect?", 
+   "source": "app/cbl/CBACT04C.cbl:187-222"
+  }, 
+  {
+   "component": "CBACT04C", 
+   "question": "Should interest be charged on negative (credit) category balances, and should the monthly interest be rounded rather than truncated?", 
+   "source": "app/cbl/CBACT04C.cbl:464-465"
+  }, 
+  {
+   "component": "CBACT04C", 
+   "question": "Which fees should 1400-COMPUTE-FEES calculate, and is resetting the cycle credit/debit totals in this interest step the intended cycle-close point?", 
+   "source": "app/cbl/CBACT04C.cbl:350-354"
+  }, 
+  {
+   "component": "CBEXPORT", 
+   "question": "Is EXPFILE meant to be a VSAM KSDS keyed by sequence number or a plain sequential file? The SELECT says INDEXED but the key is not in the FD record.", 
+   "source": "app/cbl/CBEXPORT.cbl:65-69"
+  }, 
+  {
+   "component": "CBEXPORT", 
+   "question": "Should branch id and region code be parameters instead of the constants '0001' and 'NORTH'?", 
+   "source": "app/cbl/CBEXPORT.cbl:278-279"
+  }, 
+  {
+   "component": "CBEXPORT", 
+   "question": "Is exporting SSN and CVV in clear text acceptable for the migration file, or must they be masked/encrypted?", 
+   "source": "app/cbl/CBEXPORT.cbl:536-538"
+  }, 
+  {
+   "component": "CBIMPORT", 
+   "question": "What checksum or integrity validation is 3000-VALIDATE-IMPORT supposed to perform (the header promises checksums)?", 
+   "source": "app/cbl/CBIMPORT.cbl:449-452"
+  }, 
+  {
+   "component": "CBIMPORT", 
+   "question": "Should a write failure on the error file abend the run, as failures on the master target files do?", 
+   "source": "app/cbl/CBIMPORT.cbl:438-446"
+  }, 
+  {
+   "component": "CBPAUP0C", 
+   "question": "Was the summary delete intended to require both PA-APPROVED-AUTH-CNT <= 0 AND PA-DECLINED-AUTH-CNT <= 0?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:156"
+  }, 
+  {
+   "component": "CBPAUP0C", 
+   "question": "Should the reduced summary totals be written back (REPL) for summaries that are not deleted?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:286-292"
+  }, 
+  {
+   "component": "CBPAUP0C", 
+   "question": "How should expiry be computed across year boundaries (YYDDD arithmetic)?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/CBPAUP0C.cbl:280-282"
+  }, 
+  {
+   "component": "CBSTM03A", 
+   "question": "Should statements be produced per account (aggregating all cards) instead of per card cross-reference record?", 
+   "source": "app/cbl/CBSTM03A.CBL:317-329"
+  }, 
+  {
+   "component": "CBSTM03A", 
+   "question": "What are the real volume limits for the statement run? The table allows only 51 cards and 10 transactions per card with no overflow check.", 
+   "source": "app/cbl/CBSTM03A.CBL:225-233"
+  }, 
+  {
+   "component": "CBSTM03A", 
+   "question": "Why is CBSTM03B return code '04' accepted as success on open, first read and close? Which condition is expected to produce it?", 
+   "source": "app/cbl/CBSTM03A.CBL:736-742"
+  }, 
+  {
+   "component": "CBTRN01C", 
+   "question": "Is CBTRN01C a verification-only predecessor of the posting program CBTRN02C, or is posting to TRANSACT expected here (the header says 'Post the records')?", 
+   "source": "app/cbl/CBTRN01C.cbl:155-197"
+  }, 
+  {
+   "component": "CBTRN01C", 
+   "question": "Are CUSTFILE and CARDFILE supposed to be used for additional checks (card active/expired, customer status)? They are opened but never read.", 
+   "source": "app/cbl/CBTRN01C.cbl:271-323"
+  }, 
+  {
+   "component": "CBTRN02C", 
+   "question": "The credit-limit check uses ACCT-CURR-CYC-CREDIT - ACCT-CURR-CYC-DEBIT + DALYTRAN-AMT rather than ACCT-CURR-BAL, and negative amounts are accumulated into ACCT-CURR-CYC-DEBIT as negative values. What is the intended sign convention (are purchases positive and payments negative?) and is this exposure formula the intended business rule?", 
+   "source": "app/cbl/CBTRN02C.cbl:403-407"
+  }, 
+  {
+   "component": "CBTRN02C", 
+   "question": "When a transaction is both over-limit and after account expiration, only reason 103 is recorded. Should the reject carry the first failure (102), all failures, or is the current last-wins behaviour accepted?", 
+   "source": "app/cbl/CBTRN02C.cbl:407-420"
+  }, 
+  {
+   "component": "CBTRN02C", 
+   "question": "Reason 109 (account rewrite INVALID KEY) is set but never acted upon, so the transaction is still posted to TRANSACT-FILE. Should such transactions be rejected and the category balance update backed out?", 
+   "source": "app/cbl/CBTRN02C.cbl:554-559"
+  }, 
+  {
+   "component": "CBTRN02C", 
+   "question": "TRANSACT-FILE (the transaction master KSDS) is opened OUTPUT. Is the cluster defined with REUSE or emptied before POSTTRAN, and is replacing its content each day the intended behaviour, or should posted transactions be appended (I-O/EXTEND)?", 
+   "source": "app/cbl/CBTRN02C.cbl:254-258"
+  }, 
+  {
+   "component": "CBTRN02C", 
+   "question": "Should postings be blocked for inactive accounts (ACCT-ACTIVE-STATUS) or inactive cards? No such check exists and the code contains 'ADD MORE VALIDATIONS HERE'.", 
+   "source": "app/cbl/CBTRN02C.cbl:370-378"
+  }, 
+  {
+   "component": "CBTRN03C", 
+   "question": "Out-of-range transactions trigger NEXT SENTENCE, which exits the whole read loop. Was the intent to skip only that record (e.g. CONTINUE to the next read)? Is the program always run behind the SORT INCLUDE filter so this never happens?", 
+   "source": "app/cbl/CBTRN03C.cbl:173-178"
+  }, 
+  {
+   "component": "CBTRN03C", 
+   "question": "At end of file TRAN-AMT of the last record is added again to the page/account totals, and no final account total is printed. Are the published report totals known to be off by the last transaction amount, and should the last account total be printed?", 
+   "source": "app/cbl/CBTRN03C.cbl:197-203"
+  }, 
+  {
+   "component": "CBTRN03C", 
+   "question": "Should 'Account Total' break on account id (XREF-ACCT-ID) rather than card number, given that an account can have several cards?", 
+   "source": "app/cbl/CBTRN03C.cbl:181-187"
+  }, 
+  {
+   "component": "CBTRN03C", 
+   "question": "TRANREPT.jcl hard-codes the SORT filter dates 2022-01-01 to 2022-07-06 while the program reads its range from DATEPARM. Which is the authoritative report date range, and how are the two kept in sync?", 
+   "source": "app/jcl/TRANREPT.jcl:40-48"
+  }, 
+  {
+   "component": "COACCT01", 
+   "question": "Should replies honour the requester's MQMD-REPLYTOQ (captured in SAVE-REPLY2Q) instead of the fixed CARD.DEMO.REPLY.ACCT queue, and should the reply CorrelId be set to the request MsgId (the usual MQ request/reply convention) rather than copying both ids?", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:466-471"
+  }, 
+  {
+   "component": "COACCT01", 
+   "question": "When the ACCTDAT read fails with an unexpected response, the requester gets no reply and the request appears to be committed on CICS RETURN. Is this the intended policy, or should the unit of work be backed out (SYNCPOINT ROLLBACK) so the request is retried?", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:437-445"
+  }, 
+  {
+   "component": "COACCT01", 
+   "question": "What is the agreed request message layout (4-byte function 'INQA' + 11-digit zero-padded account id)? Is there a client specification, and should non-numeric account ids be rejected explicitly?", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:109-112"
+  }, 
+  {
+   "component": "COACCT01", 
+   "question": "Which CICS transaction and MQ process definition trigger COACCT01, and what is the input queue name supplied in MQTM-QNAME?", 
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:191-198"
+  }, 
+  {
+   "component": "COACTUPC", 
+   "question": "Should current balance, current cycle credit and current cycle debit be editable from an online screen at all, and are sign, range or cross-field limits (for example cash credit limit not above credit limit) required? None are coded.", 
+   "source": "app/cbl/COACTUPC.cbl:1483-1527"
+  }, 
+  {
+   "component": "COACTUPC", 
+   "question": "Is account update meant to be restricted to administrators? The program never checks CDEMO-USER-TYPE and forces it to 'U' on exit.", 
+   "source": "app/cbl/COACTUPC.cbl:947"
+  }, 
+  {
+   "component": "COACTUPC", 
+   "question": "Is ACCT-UPDATE-RECORD (no ACCT-ADDR-ZIP field) or CVACT01Y the authoritative ACCTDAT layout? The rewrite shifts the group id into the zip position.", 
+   "source": "app/cbl/COACTUPC.cbl:418-433"
+  }, 
+  {
+   "component": "COACTUPC", 
+   "question": "Should a customer-record lock failure show 'Changes committed to database'? The outcome EVALUATE has no branch for COULD-NOT-LOCK-CUST-FOR-UPDATE.", 
+   "source": "app/cbl/COACTUPC.cbl:2606-2614"
+  }, 
+  {
+   "component": "COACTUPC", 
+   "question": "Is a phone number with only the line number keyed intended to be accepted as 'not entered'? The blank test compares NUMA where NUMC appears intended.", 
+   "source": "app/cbl/COACTUPC.cbl:2234-2239"
+  }, 
+  {
+   "component": "COACTUPC", 
+   "question": "Government-issued id and account group id are stored without any edit. Are format rules required for them?", 
+   "source": "app/cbl/COACTUPC.cbl:1401-1406"
+  }, 
+  {
+   "component": "COACTUPC", 
+   "question": "After 'Record changed by some one else. Please review', should the program re-read the records so the user can review the new values, instead of keeping the stale fetched values?", 
+   "source": "app/cbl/COACTUPC.cbl:2611-2612"
+  }, 
+  {
+   "component": "COACTUPC", 
+   "question": "The country is protected and all address edits are US-specific (state list, state/zip prefix, North American area codes). Are non-US customers out of scope for this screen?", 
+   "source": "app/cbl/COACTUPC.cbl:3546-3547"
+  }, 
+  {
+   "component": "COACTVWC", 
+   "question": "When an account has several cards, CXACAIX returns one xref record; which card number is expected in CDEMO-CARD-NUM, and is it relevant for the account view?", 
+   "source": "app/cbl/COACTVWC.cbl:727-740"
+  }, 
+  {
+   "component": "COACTVWC", 
+   "question": "Should PF3 really reset CDEMO-USER-TYPE to 'U' and should first entry wipe the signed-on user id from the commarea?", 
+   "source": "app/cbl/COACTVWC.cbl:282-345"
+  }, 
+  {
+   "component": "COADM01C", 
+   "question": "Should the admin menu itself verify CDEMO-USER-TYPE = 'A' (defence in depth), or is sign-on routing considered sufficient?", 
+   "source": "app/cbl/COADM01C.cbl:85-94"
+  }, 
+  {
+   "component": "COBIL00C", 
+   "question": "Which caller sets CDEMO-CB00-TRN-SELECTED (no program in app/cbl moves a value to it)? Is pre-selection of the account a planned feature?", 
+   "source": "app/cbl/COBIL00C.cbl:116-121"
+  }, 
+  {
+   "component": "COBIL00C", 
+   "question": "Is full-balance-only payment the intended business rule, or should partial payment amounts be supported?", 
+   "source": "app/cbl/COBIL00C.cbl:224-234"
+  }, 
+  {
+   "component": "COBIL00C", 
+   "question": "Should a failure after the transaction write (xref, browse, rewrite) roll back the unit of work? Currently partial updates can be committed at task end.", 
+   "source": "app/cbl/COBIL00C.cbl:210-235"
+  }, 
+  {
+   "component": "COBIL00C", 
+   "question": "Does transaction type '02' / category 2 match the TRANTYPE/TRANCATG reference data for payments used by the batch posting and reporting programs?", 
+   "source": "app/cbl/COBIL00C.cbl:220-221"
+  }, 
+  {
+   "component": "COBSWAIT", 
+   "question": "Where does MVSWAIT come from (site or vendor load library) and what unit does it expect for MVSWAIT-TIME?", 
+   "source": "app/cbl/COBSWAIT.cbl:38"
+  }, 
+  {
+   "component": "COBTUPDT", 
+   "question": "Is it intended that a failing maintenance record (RC 4) does not stop the run or roll back previously applied records? Should the job abend/rollback instead?", 
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:230-233"
+  }, 
+  {
+   "component": "COBTUPDT", 
+   "question": "Should INPUT-REC-DESC be stored with trailing spaces in the VARCHAR TR_DESCRIPTION column, or should the DCL-TR-DESCRIPTION-LEN/TEXT host structure be used to trim it?", 
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:136-148"
+  }, 
+  {
+   "component": "COCRDLIC", 
+   "question": "Should non-admin users be restricted to the cards of their own account as the program header states? If yes, where should the user's account come from (commarea CDEMO-ACCT-ID is not set by sign-on)?", 
+   "source": "app/cbl/COCRDLIC.cbl:4-7"
+  }, 
+  {
+   "component": "COCRDLIC", 
+   "question": "Is a maximum of 9 pages acceptable (WS-CA-SCREEN-NUM PIC 9), or must the target system page through the whole card file?", 
+   "source": "app/cbl/COCRDLIC.cbl:237"
+  }, 
+  {
+   "component": "COCRDLIC", 
+   "question": "After returning from card detail/update, should the list restore the previous filters and page instead of restarting at page 1?", 
+   "source": "app/cbl/COCRDLIC.cbl:458-482"
+  }, 
+  {
+   "component": "COCRDSLC", 
+   "question": "Should the card detail lookup verify that the card belongs to the entered account (CARD-ACCT-ID = CC-ACCT-ID), or use the CARDAIX path in the unused 9150-GETCARD-BYACCT? Today only the card number is used.", 
+   "source": "app/cbl/COCRDSLC.cbl:736-750"
+  }, 
+  {
+   "component": "COCRDSLC", 
+   "question": "Must the account number be exactly 11 digits and the card exactly 16? The NOT NUMERIC test on the full PIC X field rejects shorter input padded with spaces/low-values, unless the BMS field definition right-justifies or zero-fills it.", 
+   "source": "app/cbl/COCRDSLC.cbl:665-678"
+  }, 
+  {
+   "component": "COCRDSLC", 
+   "question": "Is forcing CDEMO-USRTYP-USER on PF3 intended, given that admin users may reach this screen?", 
+   "source": "app/cbl/COCRDSLC.cbl:325"
+  }, 
+  {
+   "component": "COCRDUPC", 
+   "question": "Is the CVV supposed to be preserved on update? The rewrite takes it from CCUP-NEW-CVV-CD, which is never filled.", 
+   "source": "app/cbl/COCRDUPC.cbl:1464-1465"
+  }, 
+  {
+   "component": "COCRDUPC", 
+   "question": "Should the update verify that the card belongs to the entered account (and keep CARD-ACCT-ID unchanged), rather than writing the screen account number into the record?", 
+   "source": "app/cbl/COCRDUPC.cbl:1461-1463"
+  }, 
+  {
+   "component": "COCRDUPC", 
+   "question": "Should an expiry date in the past be rejected, and should the expiry day be editable/validated? Today only month 1-12 and year 1950-2099 are checked.", 
+   "source": "app/cbl/COCRDUPC.cbl:913-944"
+  }, 
+  {
+   "component": "COCRDUPC", 
+   "question": "Should lower-case 'y'/'n' be accepted for the active status (the change detection compares upper-cased data but the status edit is case-sensitive)?", 
+   "source": "app/cbl/COCRDUPC.cbl:861-872"
+  }, 
+  {
+   "component": "CODATE01", 
+   "question": "CODATE01 replies to any message without checking a function code. Should requests be validated (as COACCT01 does with 'INQA'), and what request layout do clients send?", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:315-323"
+  }, 
+  {
+   "component": "CODATE01", 
+   "question": "Should replies go to the requester's MQMD-REPLYTOQ instead of the fixed CARD.DEMO.REPLY.DATE, and should the reply CorrelId be the request MsgId?", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:370-375"
+  }, 
+  {
+   "component": "CODATE01", 
+   "question": "Which CICS transaction and MQ process definition trigger CODATE01, and what input queue name is supplied in MQTM-QNAME?", 
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:140-147"
+  }, 
+  {
+   "component": "COMEN01C", 
+   "question": "Is the admin-only flag in COMEN02Y intended to be used (e.g. 'Transaction Add (Admin Only)' was commented out)? If not, can the access check be dropped in the target design?", 
+   "source": "app/cpy/COMEN02Y.cpy:67-72"
+  }, 
+  {
+   "component": "COMEN01C", 
+   "question": "Why is only COPAUS0C pre-checked with INQUIRE PROGRAM? Is the pending-authorization module an optional install?", 
+   "source": "app/cbl/COMEN01C.cbl:147-151"
+  }, 
+  {
+   "component": "COPAUA0C", 
+   "question": "Should declined amount accumulate the current request amount (PA-RQ-TRANSACTION-AMT / WS-TRANSACTION-AMT) instead of PA-TRANSACTION-AMT?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:821"
+  }, 
+  {
+   "component": "COPAUA0C", 
+   "question": "Where are card-active, account-closed and fraud checks expected to be implemented (reason codes 4200/4300/5100/5200)?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:707-714"
+  }, 
+  {
+   "component": "COPAUA0C", 
+   "question": "Is resetting PA-CASH-BALANCE to 0 on each approval intended?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:818"
+  }, 
+  {
+   "component": "COPAUA0C", 
+   "question": "Should a missing customer record cause a decline (it currently only affects the reason code)?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUA0C.cbl:700-704"
+  }, 
+  {
+   "component": "COPAUS0C", 
+   "question": "Is the PF7 page-number behaviour (counter re-incremented on backward paging) intended, and what should happen beyond 20 pages?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:362-385"
+  }, 
+  {
+   "component": "COPAUS0C", 
+   "question": "Should not-found errors on xref/account/customer stop further processing (set WS-ERR-FLG) rather than continue?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:832-845"
+  }, 
+  {
+   "component": "COPAUS1C", 
+   "question": "Has PF5 fraud tagging been tested end to end? The REPL is not preceded by a Get Hold (GHU/GHNP) call.", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:431-491"
+  }, 
+  {
+   "component": "COPAUS1C", 
+   "question": "Should reason codes 4400 and 5300 be produced by the authorization decision program?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:62-65"
+  }, 
+  {
+   "component": "COPAUS2C", 
+   "question": "Should AUTH_TS be built from a single consistent source (original request date/time or system processing date/time)?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:103-111"
+  }, 
+  {
+   "component": "CORPT00C", 
+   "question": "Why is CEEDAYS message 2513 (unsupported date range) treated as a valid date for the custom report dates?", 
+   "source": "app/cbl/CORPT00C.cbl:399"
+  }, 
+  {
+   "component": "CORPT00C", 
+   "question": "Should the custom report reject an end date earlier than the start date?", 
+   "source": "app/cbl/CORPT00C.cbl:380-385"
+  }, 
+  {
+   "component": "CORPT00C", 
+   "question": "Confirm that TDQ 'JOBS' is defined as an extrapartition queue to the JES internal reader in the target CICS region, and how &SYSUID is resolved for jobs submitted from CICS.", 
+   "source": "app/cbl/CORPT00C.cbl:515-523"
+  }, 
+  {
+   "component": "CORPT00C", 
+   "question": "Should report submission be restricted by user type (admin vs regular user)?", 
+   "source": "app/cbl/CORPT00C.cbl:462-510"
+  }, 
+  {
+   "component": "COSGN00C", 
+   "question": "Are USRSEC passwords always stored in upper case (the input is upper-cased before comparison)? Is the absence of lockout/attempt limits acceptable for the target system?", 
+   "source": "app/cbl/COSGN00C.cbl:132-136"
+  }, 
+  {
+   "component": "COTRN00C", 
+   "question": "Should the transaction list be restricted to the signed-on user's accounts/cards (or to admin users), given that the browse reads every TRANSACT record?", 
+   "source": "app/cbl/COTRN00C.cbl:591-600"
+  }, 
+  {
+   "component": "COTRN00C", 
+   "question": "Is the start Tran ID meant to be an exact match or a 'start at or after' position? STARTBR is coded without GTEQ (commented out).", 
+   "source": "app/cbl/COTRN00C.cbl:593-600"
+  }, 
+  {
+   "component": "COTRN00C", 
+   "question": "Is the page number expected to remain accurate when a backward page reaches the beginning of the file with fewer than 10 records, and should the browse be ended when the start Tran ID is invalid?", 
+   "source": "app/cbl/COTRN00C.cbl:359-371"
+  }, 
+  {
+   "component": "COTRN01C", 
+   "question": "Is the READ ... UPDATE on TRANSACT intentional (e.g. planned edit function) or should it be a plain read for this view screen?", 
+   "source": "app/cbl/COTRN01C.cbl:269-278"
+  }, 
+  {
+   "component": "COTRN01C", 
+   "question": "Should viewing a transaction be limited to the signed-on user's accounts/cards, and should the Tran ID be validated as numeric as on the list screen?", 
+   "source": "app/cbl/COTRN01C.cbl:146-156"
+  }, 
+  {
+   "component": "COTRN02C", 
+   "question": "Which program is expected to populate CDEMO-CT02-TRN-SELECTED, and is a transaction id really meant to be used as a card number on first entry?", 
+   "source": "app/cbl/COTRN02C.cbl:124-129"
+  }, 
+  {
+   "component": "COTRN02C", 
+   "question": "Should online-added transactions validate type/category codes against reference data and check card/account status or credit limit, or is that deferred to batch posting?", 
+   "source": "app/cbl/COTRN02C.cbl:322-337"
+  }, 
+  {
+   "component": "COTRN02C", 
+   "question": "Is it intended that 'N' does not cancel the add but only re-prompts for confirmation?", 
+   "source": "app/cbl/COTRN02C.cbl:173-181"
+  }, 
+  {
+   "component": "COTRN02C", 
+   "question": "Should the processing date be user-entered, and should a time component be stored in TRAN-ORIG-TS/TRAN-PROC-TS?", 
+   "source": "app/cbl/COTRN02C.cbl:464-465"
+  }, 
+  {
+   "component": "COTRN02C", 
+   "question": "Is there a requirement to serialize transaction id generation (e.g. via ENQ or a control record) to avoid duplicate-key failures under concurrency?", 
+   "source": "app/cbl/COTRN02C.cbl:444-451"
+  }, 
+  {
+   "component": "COTRTLIC", 
+   "question": "Should PF10 be refused when the pending confirmation type (update) differs from the action now selected on the same row (delete)? As coded a 'U' prompt followed by changing the code to 'D' and pressing PF10 deletes without a delete prompt.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:810-815"
+  }, 
+  {
+   "component": "COTRTLIC", 
+   "question": "Is a case-only description change meant to be blocked? The program reports 'No change detected' but still performs the UPDATE on PF10.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1064-1076"
+  }, 
+  {
+   "component": "COTRTLIC", 
+   "question": "Should the stored TR_DESCRIPTION length be the trimmed length rather than always 50?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1847-1848"
+  }, 
+  {
+   "component": "COTRTLIC", 
+   "question": "Which users may run CTLI? The program sets CDEMO-USRTYP-ADMIN itself without checking the signed-on user type; is access control enforced elsewhere (menu COADM01C, CICS security)?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:515-525"
+  }, 
+  {
+   "component": "COTRTLIC", 
+   "question": "Should filter changes clear pending row selections (the reset at 991-994 never fires because the change flags are set later in 1200-EDIT-INPUTS)?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:991-994"
+  }, 
+  {
+   "component": "COTRTUPC", 
+   "question": "Should a failed UPDATE/INSERT really end in the 'Changes committed to database' state? The SQL error text overwrites the TABLE-UPDATE-FAILED flag before the state is evaluated.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1567-1589"
+  }, 
+  {
+   "component": "COTRTUPC", 
+   "question": "After a -532 delete failure the state stays '8' (start delete), which leads to the 'UNEXPECTED DATA SCENARIO' abend on the next ENTER. Should -532 also set TTUP-DELETE-FAILED?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1638-1649"
+  }, 
+  {
+   "component": "COTRTUPC", 
+   "question": "Is the save-as-upsert intended for updates of an existing record that another user deleted meanwhile, and was an optimistic concurrency check (DATA-WAS-CHANGED-BEFORE-UPDATE) planned?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1555-1560"
+  }, 
+  {
+   "component": "COTRTUPC", 
+   "question": "Should type codes with a sign or decimal point (accepted by TEST-NUMVAL) be rejected rather than normalised to two unsigned digits?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:934-935"
+  }, 
+  {
+   "component": "COTRTUPC", 
+   "question": "Should a SQL error on the key lookup be distinguished from 'not found' so that the user is not offered to add the record?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1495-1508"
+  }, 
+  {
+   "component": "COUSR00C", 
+   "question": "Should COUSR00C itself verify that the signed-on user is an administrator (CDEMO-USRTYP-ADMIN) before listing users and routing to update/delete?", 
+   "source": "app/cbl/COUSR00C.cbl:110-138"
+  }, 
+  {
+   "component": "COUSR00C", 
+   "question": "Is the start user ID intended as a 'start at or after' position (STARTBR default) or an exact match? GTEQ is commented out.", 
+   "source": "app/cbl/COUSR00C.cbl:588-594"
+  }, 
+  {
+   "component": "COUSR01C", 
+   "question": "Which user type values are valid (only 'A' admin and 'U' regular?) and should COUSR01C reject other values?", 
+   "source": "app/cbl/COUSR01C.cbl:142-147"
+  }, 
+  {
+   "component": "COUSR01C", 
+   "question": "Are there password rules (length, complexity, encryption) that the add function should enforce?", 
+   "source": "app/cbl/COUSR01C.cbl:136-141"
+  }, 
+  {
+   "component": "COUSR02C", 
+   "question": "Is PF3 intended to save pending changes before exiting (it performs UPDATE-USER-INFO), and should an error stop the exit?", 
+   "source": "app/cbl/COUSR02C.cbl:111-119"
+  }, 
+  {
+   "component": "COUSR02C", 
+   "question": "Which user type values are valid, and may an administrator change their own type or password through this screen?", 
+   "source": "app/cbl/COUSR02C.cbl:204-209"
+  }, 
+  {
+   "component": "COUSR02C", 
+   "question": "Should the update be refused if the record changed since it was displayed (optimistic locking)?", 
+   "source": "app/cbl/COUSR02C.cbl:215-237"
+  }, 
+  {
+   "component": "COUSR03C", 
+   "question": "Should PF5 delete only a user that was displayed and confirmed in the previous interaction, rather than any ID typed in the input field?", 
+   "source": "app/cbl/COUSR03C.cbl:176-192"
+  }, 
+  {
+   "component": "COUSR03C", 
+   "question": "Should deletion of the signed-on user's own ID or of the last administrator be prevented?", 
+   "source": "app/cbl/COUSR03C.cbl:305-311"
+  }, 
+  {
+   "component": "CSUTLDTC", 
+   "question": "Callers CORPT00C and COTRN02C accept message 2513 ('Unsupp. Range') as valid. Is this tolerance intentional, and what date range should actually be accepted?", 
+   "source": "app/cbl/CSUTLDTC.cbl:137-138"
+  }, 
+  {
+   "component": "DBUNLDGS", 
+   "question": "Can PAUTSUM0 roots with a non-numeric PA-ACCT-ID exist, and should they be reported rather than silently skipped?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:241"
+  }, 
+  {
+   "component": "PAUDBLOD", 
+   "question": "Should details whose parent summary is missing be reported (the GU failure check is unreachable)?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:305-314"
+  }, 
+  {
+   "component": "PAUDBLOD", 
+   "question": "Which entry point is used at runtime (main entry with IO-PCB-MASK, or DLITCBL with PAUTBPCB only)?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBLOD.CBL:164-171"
+  }, 
+  {
+   "component": "CCPAUERY", 
+   "question": "Is this copybook still needed? ERR-LOG, ERR-INFO, ERR-DB2 and ERR-FILE values are never set by COPAUA0C.", 
+   "source": "app/app-authorization-ims-db2-mq/cpy/CCPAUERY.cpy:26-36"
+  }, 
+  {
+   "component": "CIPAUDTY", 
+   "question": "Is this copybook still needed? 88-levels PA-MATCH-PENDING-EXPIRED ('E') and PA-MATCHED-WITH-TRAN ('M') are never set by any B01 program; CBPAUP0C deletes expired details instead of marking them 'E'.", 
+   "source": "app/app-authorization-ims-db2-mq/cpy/CIPAUDTY.cpy:47-49"
+  }, 
+  {
+   "component": "CIPAUSMY", 
+   "question": "Is this copybook still needed? PA-AUTH-STATUS, PA-ACCOUNT-STATUS and PA-CASH-BALANCE (other than being zeroed by COPAUA0C) carry no business logic in the B01 programs.", 
+   "source": "app/app-authorization-ims-db2-mq/cpy/CIPAUSMY.cpy:21-26"
+  }, 
+  {
+   "component": "COMEN02Y", 
+   "question": "Is this copybook still needed? Option 8 originally read 'Transaction Add (Admin Only)' (commented out) and is now flagged 'U'; no option uses user type 'A', so the admin-only check in COMEN01C never fires.", 
+   "source": "app/cpy/COMEN02Y.cpy:67-72"
+  }, 
+  {
+   "component": "CSMSG01Y", 
+   "question": "Is this copybook still needed? COACTUPC copies CSMSG01Y but references neither message; invalid keys are silently treated as Enter (app/cbl/COACTUPC.cbl:914-916).", 
+   "source": "app/cbl/COACTUPC.cbl:629"
+  }, 
+  {
+   "component": "CSUSR01Y", 
+   "question": "Is this copybook still needed? COACTUPC copies CSUSR01Y but references no SEC-USR field.", 
+   "source": "app/cbl/COACTUPC.cbl:635"
+  }, 
+  {
+   "component": "CVCRD01Y", 
+   "question": "Is this copybook still needed? Several former fields (CCARD-LAST-PROG, CCARD-RETURN-TO-PROG, CCARD-RETURN-FLAG, CCARD-FUNCTION) are commented out; the lines carry sequence numbers in columns 1-6 and 73-80.", 
+   "source": "app/cpy/CVCRD01Y.cpy:20-33"
+  }, 
+  {
+   "component": "IMSFUNCS", 
+   "question": "Is this copybook still needed? FUNC-GHU, FUNC-GHN, FUNC-GHNP, FUNC-REPL, FUNC-DLET and PARMCOUNT are not used by any program that copies IMSFUNCS.", 
+   "source": "app/app-authorization-ims-db2-mq/cpy/IMSFUNCS.cpy:19-27"
+  }, 
+  {
+   "component": "UNUSED1Y", 
+   "question": "Is this copybook still needed? No COPY or EXEC SQL INCLUDE of UNUSED1Y exists in any inventoried program or copybook (docs/_work/structure/copybook-usage.json). Its 8+20+20+8+1+23 = 80-byte shape matches the user-security layout in CSUSR01Y; whether it is a retired copy of that layout needs SME confirmation.", 
+   "source": "app/cpy/UNUSED1Y.cpy:1"
+  }
+ ], 
+ "unresolved": [
+  {
+   "component": "CNJBATMP", 
+   "item": "&HLQ, &MEMNAME", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "samples/jcl/BATCMP.jcl"
+  }, 
+  {
+   "component": "BLDCIDB2", 
+   "item": "&COBLIB, &COPYLIB, &CPYBKS, &DBRMLIB, &DCLLIB, &LIBPRFX, &LOADLIB, &MEMNAME, &SDFHCOB, &SDFHLOAD, &SDFHMAC, &SDSNEXIT, &SDSNLOAD, &SRCLIB, &SYSLBLK", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "samples/proc/BLDCIDB2.prc"
+  }, 
+  {
+   "component": "CBLDBMS", 
+   "item": "&HLQ", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "samples/jcl/BMSCMP.jcl"
+  }, 
+  {
+   "component": "BUILDBAT", 
+   "item": "&COBLIB, &CPYBKS, &LISTING, &LOADLIB, &MEM, &SOURCE", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "samples/proc/BUILDBAT.prc"
+  }, 
+  {
+   "component": "BUILDBMS", 
+   "item": "&CICSMAC, &CPYBKS, &LISTING, &LOADLIB, &MAPNAME, &SRCCODE", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "samples/proc/BUILDBMS.prc"
+  }, 
+  {
+   "component": "BUILDONL", 
+   "item": "&COBLIB, &CPYBKS, &DFHCOB, &DFHLOAD, &DFHSAMP, &LISTING, &LOADLIB, &MEM, &SOURCE", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "samples/proc/BUILDONL.prc"
+  }, 
+  {
+   "component": "CICCMP", 
+   "item": "&HLQ, &MEMNAME", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "samples/jcl/CICCMP.jcl"
+  }, 
+  {
+   "component": "CIDBCMP", 
+   "item": "&HLQ, &MEMNAME, &PLAN, &SSID", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "samples/jcl/CICDBCMP.jcl"
+  }, 
+  {
+   "component": "COMPILE_BATCH.JCL", 
+   "item": "&MEM", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "scripts/compile_batch.jcl.template"
+  }, 
+  {
+   "component": "CREADB2", 
+   "item": "&DB2S, &LBNM", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl"
+  }, 
+  {
+   "component": "IMSMQCMP", 
+   "item": "&CICSHLQ, &HLQ, &IMSHLQ, &MQHLQ", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "samples/jcl/IMSMQCMP.jcl"
+  }, 
+  {
+   "component": "REPROC", 
+   "item": "&CNTLLIB", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "app/proc/REPROC.prc"
+  }, 
+  {
+   "component": "TRANEXTR", 
+   "item": "&HLQ", 
+   "kind": "JCL symbolic parameter", 
+   "resolution": "value supplied at submission or by PROC defaults outside the repository", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl"
+  }, 
+  {
+   "component": "COCRDSEC", 
+   "item": "CICS program definition", 
+   "kind": "external-or-missing program", 
+   "resolution": "obtain the source or confirm the program is retired", 
+   "source": "app/csd/CARDDEMO.CSD:211-218"
+  }
+ ], 
+ "unverified": [
+  {
+   "component": "CLOSEFIL", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:33", 
+   "statement": "WEEKLY DisclosureGroupsRefresh CLOSEFIL"
+  }, 
+  {
+   "component": "CLOSEFIL", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:4", 
+   "statement": "DAILY CLOSEFIL"
+  }, 
+  {
+   "component": "CLOSEFIL", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:65", 
+   "statement": "MONTHLY CLOSEFIL"
+  }, 
+  {
+   "component": "COMBTRAN", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:75", 
+   "statement": "MONTHLY COMBTRAN"
+  }, 
+  {
+   "component": "DISCGRP", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:38", 
+   "statement": "WEEKLY DisclosureGroupsRefresh DISCGRP"
+  }, 
+  {
+   "component": "INTCALC", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:69", 
+   "statement": "MONTHLY INTCALC"
+  }, 
+  {
+   "component": "MNTTRDB2", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:27", 
+   "statement": "WEEKLY MNTTRDB2"
+  }, 
+  {
+   "component": "OPENFIL", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:20", 
+   "statement": "DAILY OPENFIL"
+  }, 
+  {
+   "component": "OPENFIL", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:50", 
+   "statement": "WEEKLY DisclosureGroupsRefresh OPENFIL"
+  }, 
+  {
+   "component": "OPENFIL", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:87", 
+   "statement": "MONTHLY OPENFIL"
+  }, 
+  {
+   "component": "TRANBKP", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:8", 
+   "statement": "DAILY TRANBKP"
+  }, 
+  {
+   "component": "TRANEXTR", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:58", 
+   "statement": "WEEKLY TransactionTypesDBRefresh TRANEXTR"
+  }, 
+  {
+   "component": "WAITSTEP", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:14", 
+   "statement": "DAILY WAITSTEP"
+  }, 
+  {
+   "component": "WAITSTEP", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:44", 
+   "statement": "WEEKLY DisclosureGroupsRefresh WAITSTEP"
+  }, 
+  {
+   "component": "WAITSTEP", 
+   "facts": "batch/schedule.json", 
+   "source": "app/scheduler/CardDemo.controlm:81", 
+   "statement": "MONTHLY WAITSTEP"
+  }, 
+  {
+   "component": "ACCTFILE", 
+   "facts": "jobs/ACCTFILE.json", 
+   "source": "app/jcl/ACCTFILE.jcl:20", 
+   "statement": "DELETE ACCOUNT VSAM FILE IF ONE ALREADY EXISTS"
+  }, 
+  {
+   "component": "CARDFILE", 
+   "facts": "jobs/CARDFILE.json", 
+   "source": "app/jcl/CARDFILE.jcl:20", 
+   "statement": "Close files in CICS region"
+  }, 
+  {
+   "component": "CBADMCDJ", 
+   "facts": "jobs/CBADMCDJ.json", 
+   "source": "app/jcl/CBADMCDJ.jcl:20", 
+   "statement": "Create Resources for Card Demo application               ******"
+  }, 
+  {
+   "component": "CBLDBMS", 
+   "facts": "jobs/CBLDBMS.json", 
+   "source": "samples/jcl/BMSCMP.jcl:4", 
+   "statement": "Change CICSMAP to your map name everywhere"
+  }, 
+  {
+   "component": "CBPAUP0J", 
+   "facts": "jobs/CBPAUP0J.json", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/CBPAUP0J.jcl:21", 
+   "statement": "EXECUTE IMS PROGRAM TO DELETE EXPIRED AUTHORIZATIONS"
+  }, 
+  {
+   "component": "CICCMP", 
+   "facts": "jobs/CICCMP.json", 
+   "source": "samples/jcl/CICCMP.jcl:4", 
+   "statement": "change CICSPGMN to your program name everywhere"
+  }, 
+  {
+   "component": "CIDBCMP", 
+   "facts": "jobs/CIDBCMP.json", 
+   "source": "samples/jcl/CICDBCMP.jcl:4", 
+   "statement": "change CICSDB2P to your program name everywhere"
+  }, 
+  {
+   "component": "CLOSEFIL", 
+   "facts": "jobs/CLOSEFIL.json", 
+   "source": "app/jcl/CLOSEFIL.jcl:20", 
+   "statement": "Close files in CICS region"
+  }, 
+  {
+   "component": "CNJBATMP", 
+   "facts": "jobs/CNJBATMP.json", 
+   "source": "samples/jcl/BATCMP.jcl:4", 
+   "statement": "change BATCHPGM to your program name everywhere"
+  }, 
+  {
+   "component": "COMBTRAN", 
+   "facts": "jobs/COMBTRAN.json", 
+   "source": "app/jcl/COMBTRAN.jcl:20", 
+   "statement": "Sort current transaction file and system generated transactions"
+  }, 
+  {
+   "component": "CREADB2", 
+   "facts": "jobs/CREADB2.json", 
+   "source": "app/app-transaction-type-db2/jcl/CREADB21.jcl:19", 
+   "statement": "Create CARDDEMO Database in DAZ1 subsystem (SSID=DAZ1)   ****** 00040021"
+  }, 
+  {
+   "component": "CREASTMT", 
+   "facts": "jobs/CREASTMT.json", 
+   "source": "app/jcl/CREASTMT.JCL:19", 
+   "statement": "This JCL will create statement for each CARD present in the XREF"
+  }, 
+  {
+   "component": "CUSTFILE", 
+   "facts": "jobs/CUSTFILE.json", 
+   "source": "app/jcl/CUSTFILE.jcl:20", 
+   "statement": "Close files in CICS region"
+  }, 
+  {
+   "component": "DALYREJS", 
+   "facts": "jobs/DALYREJS.json", 
+   "source": "app/jcl/DALYREJS.jcl:19", 
+   "statement": "DELETE TRANSACATION MASTER VSAM FILE IF ONE ALREADY EXISTS"
+  }, 
+  {
+   "component": "DBPAUTP0", 
+   "facts": "jobs/DBPAUTP0.json", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/DBPAUTP0.jcl:5", 
+   "statement": "DELETE OUTPUT DATASET"
+  }, 
+  {
+   "component": "DEFCUST", 
+   "facts": "jobs/DEFCUST.json", 
+   "source": "app/jcl/DEFCUST.jcl:20", 
+   "statement": "DELETE CUSTOMER VSAM FILE IF ONE ALREADY EXISTS"
+  }, 
+  {
+   "component": "DEFGDGB", 
+   "facts": "jobs/DEFGDGB.json", 
+   "source": "app/jcl/DEFGDGB.jcl:19", 
+   "statement": "DEFINE GDG BASES NEEDED BY CARDDEMO PROJECT"
+  }, 
+  {
+   "component": "DEFGDGD", 
+   "facts": "jobs/DEFGDGD.json", 
+   "source": "app/jcl/DEFGDGD.jcl:2", 
+   "statement": "RESTART=STEP30                                                     JOB05067"
+  }, 
+  {
+   "component": "DISCGRP", 
+   "facts": "jobs/DISCGRP.json", 
+   "source": "app/jcl/DISCGRP.jcl:20", 
+   "statement": "DELETE DISCLOSURE GROUP VSAM FILE IF ONE ALREADY EXISTS"
+  }, 
+  {
+   "component": "DUSRSECJ", 
+   "facts": "jobs/DUSRSECJ.json", 
+   "source": "app/jcl/DUSRSECJ.jcl:20", 
+   "statement": "PRE DELETE STEP"
+  }, 
+  {
+   "component": "ESDSRRDS", 
+   "facts": "jobs/ESDSRRDS.json", 
+   "source": "app/jcl/ESDSRRDS.jcl:21", 
+   "statement": "PRE DELETE STEP"
+  }, 
+  {
+   "component": "FTPJCLS", 
+   "facts": "jobs/FTPJCLS.json", 
+   "source": "app/jcl/FTPJCL.JCL:22", 
+   "statement": "FTP JOB TO RECEIVE A FILE"
+  }, 
+  {
+   "component": "IMSMQCMP", 
+   "facts": "jobs/IMSMQCMP.json", 
+   "source": "samples/jcl/IMSMQCMP.jcl:19", 
+   "statement": "Sample IMS MQ CICS COBOL Compile JCL                     ******"
+  }, 
+  {
+   "component": "INTCALC", 
+   "facts": "jobs/INTCALC.json", 
+   "source": "app/jcl/INTCALC.jcl:20", 
+   "statement": "Process transaction balance file and compute interest and fees."
+  }, 
+  {
+   "component": "INTRDRJ1", 
+   "facts": "jobs/INTRDRJ1.json", 
+   "source": "app/jcl/INTRDRJ1.JCL:4", 
+   "statement": "THIS INTRDR JOB WILL TRIGGER ANOTHER JCL"
+  }, 
+  {
+   "component": "INTRDRJ2", 
+   "facts": "jobs/INTRDRJ2.json", 
+   "source": "app/jcl/INTRDRJ2.JCL:4", 
+   "statement": "THIS JOB IS TO CREATE PHYSICAL VSAM FILE FOR IMS DEMODB    ****"
+  }, 
+  {
+   "component": "LISTFILS", 
+   "facts": "jobs/LISTFILS.json", 
+   "source": "samples/jcl/LISTCAT.jcl:19", 
+   "statement": "List catalog for all the files in CARDDEMO application"
+  }, 
+  {
+   "component": "LOADPADB", 
+   "facts": "jobs/LOADPADB.json", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/LOADPADB.JCL:20", 
+   "statement": "YLIBS JCLLIB ORDER=VIPINGP.CNTL.PROCLIB"
+  }, 
+  {
+   "component": "MNTTRDB2", 
+   "facts": "jobs/MNTTRDB2.json", 
+   "source": "app/app-transaction-type-db2/jcl/MNTTRDB2.jcl:5", 
+   "statement": "USE THIS JOB TO MAINTAIN DB2 TRANSACTION TABLE, INSERTING,      *//"
+  }, 
+  {
+   "component": "OPENFIL", 
+   "facts": "jobs/OPENFIL.json", 
+   "source": "app/jcl/OPENFIL.jcl:20", 
+   "statement": "Open files in CICS region"
+  }, 
+  {
+   "component": "POSTTRAN", 
+   "facts": "jobs/POSTTRAN.json", 
+   "source": "app/jcl/POSTTRAN.jcl:20", 
+   "statement": "Process and load daily transaction file and create transaction"
+  }, 
+  {
+   "component": "PRTCATBL", 
+   "facts": "jobs/PRTCATBL.json", 
+   "source": "app/jcl/PRTCATBL.jcl:27", 
+   "statement": "Unload the processed transaction category balance file"
+  }, 
+  {
+   "component": "RACFCMDS", 
+   "facts": "jobs/RACFCMDS.json", 
+   "source": "samples/jcl/RACFCMDS.jcl:22", 
+   "statement": "Adding a transaction to a profile (CARD)"
+  }, 
+  {
+   "component": "READACCT", 
+   "facts": "jobs/READACCT.json", 
+   "source": "app/jcl/READACCT.jcl:20", 
+   "statement": "PRE DELETE STEP"
+  }, 
+  {
+   "component": "READCARD", 
+   "facts": "jobs/READCARD.json", 
+   "source": "app/jcl/READCARD.jcl:20", 
+   "statement": "RUN THE PROGRAM THAT READS THE CARD MASTER VSAM FILE"
+  }, 
+  {
+   "component": "READXREF", 
+   "facts": "jobs/READXREF.json", 
+   "source": "app/jcl/READXREF.jcl:20", 
+   "statement": "RUN THE PROGRAM THAT READS THE XREF MASTER VSAM FILE"
+  }, 
+  {
+   "component": "REPRTEST", 
+   "facts": "jobs/REPRTEST.json", 
+   "source": "samples/jcl/REPRTEST.jcl:20", 
+   "statement": "CALL THE REPRO PROC"
+  }, 
+  {
+   "component": "REPTFILE", 
+   "facts": "jobs/REPTFILE.json", 
+   "source": "app/jcl/REPTFILE.jcl:20", 
+   "statement": "DELETE TRANSACATION MASTER VSAM FILE IF ONE ALREADY EXISTS"
+  }, 
+  {
+   "component": "SORTTEST", 
+   "facts": "jobs/SORTTEST.json", 
+   "source": "samples/jcl/SORTTEST.jcl:37", 
+   "statement": "Ver: CardDemo_v1.0-57-g40b7caa-110 Date: 2022-08-19 18:00:43 CDT"
+  }, 
+  {
+   "component": "TCATBALF", 
+   "facts": "jobs/TCATBALF.json", 
+   "source": "app/jcl/TCATBALF.jcl:20", 
+   "statement": "DELETE TRANSACTION CATEGORY BALANCE VSAM FILE IF ONE ALREADY EXISTS"
+  }, 
+  {
+   "component": "TRANBKP", 
+   "facts": "jobs/TRANBKP.json", 
+   "source": "app/jcl/TRANBKP.jcl:21", 
+   "statement": "Repro the processed transaction file"
+  }, 
+  {
+   "component": "TRANCATG", 
+   "facts": "jobs/TRANCATG.json", 
+   "source": "app/jcl/TRANCATG.jcl:20", 
+   "statement": "DELETE TRANSACTION CATEGORY TYPE VSAM FILE IF ONE ALREADY EXISTS"
+  }, 
+  {
+   "component": "TRANEXTR", 
+   "facts": "jobs/TRANEXTR.json", 
+   "source": "app/app-transaction-type-db2/jcl/TRANEXTR.jcl:19", 
+   "statement": "This JCL will extract reference data for  use in Transaction"
+  }, 
+  {
+   "component": "TRANFILE", 
+   "facts": "jobs/TRANFILE.json", 
+   "source": "app/jcl/TRANFILE.jcl:20", 
+   "statement": "Close files in CICS region"
+  }, 
+  {
+   "component": "TRANIDX", 
+   "facts": "jobs/TRANIDX.json", 
+   "source": "app/jcl/TRANIDX.jcl:20", 
+   "statement": "CREATE ALTERNATE INDEX ON PROCESSED TIMESTAMP"
+  }, 
+  {
+   "component": "TRANREPT", 
+   "facts": "jobs/TRANREPT.json", 
+   "source": "app/jcl/TRANREPT.jcl:21", 
+   "statement": "Unload the processed transaction file"
+  }, 
+  {
+   "component": "TRANTYPE", 
+   "facts": "jobs/TRANTYPE.json", 
+   "source": "app/jcl/TRANTYPE.jcl:20", 
+   "statement": "DELETE TRANSACATION TYPE VSAM FILE IF ONE ALREADY EXISTS"
+  }, 
+  {
+   "component": "UNLDGSAM", 
+   "facts": "jobs/UNLDGSAM.json", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDGSAM.JCL:23", 
+   "statement": "EXECUTE IMS PROGRAM"
+  }, 
+  {
+   "component": "UNLDPADB", 
+   "facts": "jobs/UNLDPADB.json", 
+   "source": "app/app-authorization-ims-db2-mq/jcl/UNLDPADB.JCL:23", 
+   "statement": "EXECUTE IMS PROGRAM"
+  }, 
+  {
+   "component": "WAITSTEP", 
+   "facts": "jobs/WAITSTEP.json", 
+   "source": "app/jcl/WAITSTEP.jcl:20", 
+   "statement": "WAIT FOR CENTISECONDS IN THE PARM EG: 00003600  = 36 SECONDS"
+  }, 
+  {
+   "component": "XREFFILE", 
+   "facts": "jobs/XREFFILE.json", 
+   "source": "app/jcl/XREFFILE.jcl:20", 
+   "statement": "DELETE CARD XREF VSAM FILE IF ONE ALREADY EXISTS"
+  }, 
+  {
+   "component": "BLDBAT", 
+   "facts": "ops/build.json", 
+   "source": "samples/proc/BUILDBAT.prc:24", 
+   "statement": "THIS PROC IS USED TO COMPILE BATCH PGMS"
+  }, 
+  {
+   "component": "BLDONL", 
+   "facts": "ops/build.json", 
+   "source": "samples/proc/BLDCIDB2.prc:25", 
+   "statement": "THIS PROC IS USED TO COMPILE CICS + DB2 PROGRAMS"
+  }, 
+  {
+   "component": "BLDONL", 
+   "facts": "ops/build.json", 
+   "source": "samples/proc/BUILDONL.prc:25", 
+   "statement": "THIS PROC IS USED TO COMPILE CICS PGMS"
+  }, 
+  {
+   "component": "BUILDBMS", 
+   "facts": "ops/build.json", 
+   "source": "samples/proc/BUILDBMS.prc:23", 
+   "statement": "THIS PROC IS USED TO COMPILE BMS MAPS"
+  }, 
+  {
+   "component": "deploy", 
+   "facts": "ops/deploy.json", 
+   "source": "README.md:147-166", 
+   "statement": "The README lists this order. Each named member exists. The README does not prove the jobs must run in this order."
+  }, 
+  {
+   "component": "MVSWAIT", 
+   "facts": "programs/MVSWAIT.json", 
+   "source": "app/asm/MVSWAIT.asm:25", 
+   "statement": "Comment asks whether the MVI that marks the save area can be removed. Unverified."
+  }
+ ]
+}
