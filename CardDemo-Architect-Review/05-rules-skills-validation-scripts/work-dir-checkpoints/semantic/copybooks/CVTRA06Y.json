@@ -1,0 +1,23 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "CVTRA06Y",
+ "evidence": ["app/cpy/CVTRA06Y.cpy:1-18", "app/cbl/CBTRN01C.cbl:170-183"],
+ "key_fields": [
+  {"name": "DALYTRAN-RECORD", "meaning": "350-byte daily (unposted) transaction record (comment RECLN 350; field sizes add up to 350).", "source": "app/cpy/CVTRA06Y.cpy:4"},
+  {"name": "DALYTRAN-ID", "meaning": "16-byte transaction id.", "source": "app/cpy/CVTRA06Y.cpy:5"},
+  {"name": "DALYTRAN-TYPE-CD", "meaning": "2-character transaction type code.", "source": "app/cpy/CVTRA06Y.cpy:6"},
+  {"name": "DALYTRAN-CAT-CD", "meaning": "4-digit transaction category code.", "source": "app/cpy/CVTRA06Y.cpy:7"},
+  {"name": "DALYTRAN-AMT", "meaning": "Signed amount S9(09)V99.", "source": "app/cpy/CVTRA06Y.cpy:10"},
+  {"name": "DALYTRAN-CARD-NUM", "meaning": "Card number; CBTRN01C verifies it against the card cross-reference.", "source": "app/cpy/CVTRA06Y.cpy:15"},
+  {"name": "DALYTRAN-ORIG-TS", "meaning": "26-byte origination timestamp.", "source": "app/cpy/CVTRA06Y.cpy:16"}
+ ],
+ "observations": [
+  {"kind": "anomaly", "text": "Field-for-field identical to CVTRA05Y apart from the DALYTRAN- prefix; the daily and posted transaction layouts are maintained as two separate copybooks.", "source": "app/cpy/CVTRA06Y.cpy:4-18"}
+ ],
+ "purpose": "CVTRA06Y defines DALYTRAN-RECORD, the 350-byte daily transaction input record with the same fields as the posted transaction (CVTRA05Y). It is read from the sequential DALYTRAN file by CBTRN01C (verification) and CBTRN02C (posting).",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/CVTRA06Y.cpy"],
+ "source_sha256": ["c5c69f1b86c5a10156d3c5881d7cf387e6b925aae32825360f85bf4056a554a1"],
+ "status": "complete"
+}

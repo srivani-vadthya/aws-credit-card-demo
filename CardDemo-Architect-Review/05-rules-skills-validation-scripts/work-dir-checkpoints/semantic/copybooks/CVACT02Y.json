@@ -1,0 +1,23 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "CVACT02Y",
+ "evidence": ["app/cpy/CVACT02Y.cpy:1-11", "app/cbl/CBACT02C.cbl:28-45"],
+ "key_fields": [
+  {"name": "CARD-RECORD", "meaning": "150-byte card master record (comment RECLN 150; field sizes add up to 150).", "source": "app/cpy/CVACT02Y.cpy:4"},
+  {"name": "CARD-NUM", "meaning": "16-character card number, key of the card file.", "source": "app/cpy/CVACT02Y.cpy:5"},
+  {"name": "CARD-ACCT-ID", "meaning": "11-digit account number the card belongs to.", "source": "app/cpy/CVACT02Y.cpy:6"},
+  {"name": "CARD-CVV-CD", "meaning": "3-digit card verification value stored in clear (sensitive).", "source": "app/cpy/CVACT02Y.cpy:7"},
+  {"name": "CARD-EMBOSSED-NAME", "meaning": "Name embossed on the card.", "source": "app/cpy/CVACT02Y.cpy:8"},
+  {"name": "CARD-EXPIRAION-DATE", "meaning": "10-byte card expiration date (misspelled name).", "source": "app/cpy/CVACT02Y.cpy:9"},
+  {"name": "CARD-ACTIVE-STATUS", "meaning": "1-byte card active status flag; no 88-level values defined.", "source": "app/cpy/CVACT02Y.cpy:10"}
+ ],
+ "observations": [
+  {"kind": "security", "text": "The card verification value is part of the stored card record in plain digits; CBACT02C prints it and CBEXPORT exports it.", "source": "app/cpy/CVACT02Y.cpy:7"}
+ ],
+ "purpose": "CVACT02Y defines CARD-RECORD, the 150-byte card master entity: card number (key), owning account id, CVV, embossed name, expiration date and active status. It is used by the card print utility CBACT02C, the migration programs CBEXPORT and CBIMPORT, CBTRN01C, and online card/account programs (COACTVWC, COCRDLIC, COCRDSLC, COCRDUPC, COPAUS0C, COTRTLIC).",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/CVACT02Y.cpy"],
+ "source_sha256": ["9f1c62ef31b9d541712f1ed28f79e011ea7338611f5e0f30f2e1cbf624181223"],
+ "status": "complete"
+}

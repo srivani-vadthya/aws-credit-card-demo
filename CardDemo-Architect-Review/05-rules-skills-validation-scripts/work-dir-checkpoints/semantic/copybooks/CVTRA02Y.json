@@ -1,0 +1,18 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "CVTRA02Y",
+ "evidence": ["app/cpy/CVTRA02Y.cpy:1-10", "app/cbl/CBACT04C.cbl:415-440", "app/cbl/CBACT04C.cbl:464-465"],
+ "key_fields": [
+  {"name": "DIS-GROUP-RECORD", "meaning": "50-byte disclosure group record (comment RECLN 50; field sizes add up to 50).", "source": "app/cpy/CVTRA02Y.cpy:4"},
+  {"name": "DIS-GROUP-KEY", "meaning": "Composite key: account group id + transaction type code + category code. CBACT04C falls back to group id 'DEFAULT' when the account's group is not found.", "source": "app/cpy/CVTRA02Y.cpy:5-8"},
+  {"name": "DIS-ACCT-GROUP-ID", "meaning": "10-byte account group id, matching ACCT-GROUP-ID in CVACT01Y.", "source": "app/cpy/CVTRA02Y.cpy:6"},
+  {"name": "DIS-INT-RATE", "meaning": "Signed interest rate S9(04)V99. CBACT04C divides balance x rate by 1200, which implies an annual percentage rate (Inferred from the formula).", "source": "app/cpy/CVTRA02Y.cpy:9"}
+ ],
+ "observations": [],
+ "purpose": "CVTRA02Y defines DIS-GROUP-RECORD, the 50-byte disclosure group (interest rate) table keyed by account group, transaction type and transaction category. Its only user in the repository is CBACT04C, which looks up DIS-INT-RATE for each transaction category balance and skips interest when the rate is zero.",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/CVTRA02Y.cpy"],
+ "source_sha256": ["7828fae489c59944b4310e223028a8d3a525ccf4ead113c062bcaff04b52bf9c"],
+ "status": "complete"
+}

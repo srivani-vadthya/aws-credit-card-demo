@@ -1,0 +1,418 @@
+{
+ "batch": "B02", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Walks the z/OS TIOT control block and DISPLAYs each DD name with 'valid UCB' or 'null UCB'; diagnostic output only, no effect on processing.", 
+   "source": "app/cbl/CBSTM03A.CBL:275-291"
+  }, 
+  {
+   "reason": "Technical state machine: WS-FL-DD selects which file to open next via ALTER/GO TO (TRNXFILE, XREFFILE, CUSTFILE, ACCTFILE, then READTRNX loading); OTHER ends the program.", 
+   "source": "app/cbl/CBSTM03A.CBL:298-314"
+  }, 
+  {
+   "reason": "Defensive status check after opening TRNXFILE: return codes '00' or '04' accepted, otherwise abend.", 
+   "source": "app/cbl/CBSTM03A.CBL:736-742"
+  }, 
+  {
+   "reason": "Defensive status check after reading the first TRNXFILE record: '00' or '04' accepted, otherwise abend.", 
+   "source": "app/cbl/CBSTM03A.CBL:748-754"
+  }, 
+  {
+   "reason": "Defensive status check after opening XREFFILE.", 
+   "source": "app/cbl/CBSTM03A.CBL:771-777"
+  }, 
+  {
+   "reason": "Defensive status check after opening CUSTFILE.", 
+   "source": "app/cbl/CBSTM03A.CBL:789-795"
+  }, 
+  {
+   "reason": "Defensive status check after opening ACCTFILE.", 
+   "source": "app/cbl/CBSTM03A.CBL:807-813"
+  }, 
+  {
+   "reason": "Read-loop control for TRNXFILE: '00' loops back to load the next record, '10' ends loading, anything else abends.", 
+   "source": "app/cbl/CBSTM03A.CBL:837-847"
+  }, 
+  {
+   "reason": "Defensive status check after closing TRNXFILE.", 
+   "source": "app/cbl/CBSTM03A.CBL:862-868"
+  }, 
+  {
+   "reason": "Defensive status check after closing XREFFILE.", 
+   "source": "app/cbl/CBSTM03A.CBL:879-885"
+  }, 
+  {
+   "reason": "Defensive status check after closing CUSTFILE.", 
+   "source": "app/cbl/CBSTM03A.CBL:895-901"
+  }, 
+  {
+   "reason": "Defensive status check after closing ACCTFILE.", 
+   "source": "app/cbl/CBSTM03A.CBL:911-917"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CBSTM03A.CBL:819-829", 
+   "text": "The in-memory transaction table holds at most 51 cards x 10 transactions (WS-CARD-TBL OCCURS 51, WS-TRAN-TBL OCCURS 10), but 8500-READTRNX-READ increments CR-CNT and TR-CNT with no bounds check; larger transaction files overwrite storage beyond the table."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CBSTM03A.CBL:298-314", 
+   "text": "Control flow uses ALTER and GO TO (8100-FILE-OPEN is altered to the next open paragraph) and a hand-built state machine driven by WS-FL-DD; the header states these constructs are deliberately included to exercise modernization tooling."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CBSTM03A.CBL:266-273", 
+   "text": "PSA-BLOCK is addressed through PSAPTR, which is never set (null pointer, i.e. absolute address 0 where the z/OS PSA resides); the program then chains PSA+536 to the TCB and TCB+12 to the TIOT. This is platform-specific control-block access with no portable equivalent."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/CBSTM03A.CBL:167-172", 
+   "text": "The HTML statement header hardcodes the bank name and address 'Bank of XYZ', '410 Terry Ave N', 'Seattle WA 99999'."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/CBSTM03A.CBL:39-40", 
+   "text": "STMT-FILE and HTML-FILE have no FILE STATUS clause; their OPEN, WRITE and CLOSE results are never checked."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CBSTM03A.CBL:921-923", 
+   "text": "9999-ABEND-PROGRAM calls CEE3ABD with no abend code or timing parameters."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CBSTM03A.CBL:317-329", 
+   "text": "Statements are produced per card cross-reference record, not per account; an account with several cards gets one statement per card, each showing the full account balance but only that card's transactions (Inferred from the XREFFILE-driven main loop and card-number matching)."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "266-294", 
+   "logic": "Addresses the PSA, TCB and TIOT control blocks, displays the job and step name and every DD name from the TIOT with its UCB status, then opens STMT-FILE and HTML-FILE for output and initializes the transaction table and counters. Falls through into 0000-START.", 
+   "name": "(PROCEDURE DIVISION entry)"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "296-314", 
+   "logic": "Dispatches on WS-FL-DD: for TRNXFILE, XREFFILE, CUSTFILE or ACCTFILE it ALTERs 8100-FILE-OPEN to the matching open paragraph and GOes TO it; 'READTRNX' goes to 8500-READTRNX-READ; any other value goes to 9999-GOBACK.", 
+   "name": "0000-START"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "316-339", 
+   "logic": "Loops until END-OF-FILE = 'Y': reads the next cross-reference record and, if found, reads the customer and account, writes the statement header, resets WS-TOTAL-AMT and writes the card's transactions and totals. Then closes TRNXFILE, XREFFILE, CUSTFILE, ACCTFILE (through CBSTM03B) and STMT-FILE/HTML-FILE.", 
+   "name": "1000-MAINLINE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "341-342", 
+   "logic": "GOBACK - ends the program.", 
+   "name": "9999-GOBACK"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "345-366", 
+   "logic": "Calls CBSTM03B to read the next XREFFILE record. RC '00' continues, '10' sets END-OF-FILE 'Y', any other displays 'ERROR READING XREFFILE' with the return code and abends. Moves the returned data to CARD-XREF-RECORD.", 
+   "name": "1000-XREFFILE-GET-NEXT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "368-390", 
+   "logic": "Calls CBSTM03B for a keyed read of CUSTFILE with XREF-CUST-ID (key length = length of XREF-CUST-ID). RC other than '00' displays 'ERROR READING CUSTFILE' and abends; otherwise moves the data to CUSTOMER-RECORD.", 
+   "name": "2000-CUSTFILE-GET"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "392-414", 
+   "logic": "Calls CBSTM03B for a keyed read of ACCTFILE with XREF-ACCT-ID. RC other than '00' displays 'ERROR READING ACCTFILE' and abends; otherwise moves the data to ACCOUNT-RECORD.", 
+   "name": "3000-ACCTFILE-GET"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "416-456", 
+   "logic": "Scans the card table until past CR-CNT or a table card number greater than XREF-CARD-NUM; for the matching card, writes every stored transaction via 6000-WRITE-TRANS and adds TRNX-AMT to WS-TOTAL-AMT. Then writes the 'Total EXP:' total line and end-of-statement line to STMT-FILE and the closing HTML rows and tags to HTML-FILE.", 
+   "name": "4000-TRNXFILE-GET"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "458-504", 
+   "logic": "Initializes STATEMENT-LINES, writes the start banner and HTML header, builds ST-NAME from first, middle and last names and ST-ADD3 from address line 3, state, country and ZIP, moves address lines 1-2, ACCT-ID, ACCT-CURR-BAL and CUST-FICO-CREDIT-SCORE, writes the HTML name/address/basic-details block and then the plain-text header lines 1-13.", 
+   "name": "5000-CREATE-STATEMENT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "506-552", 
+   "logic": "Writes the fixed HTML document header (DOCTYPE, head, table), the 'Statement for Account Number:' heading with ACCT-ID, and the bank name/address block.", 
+   "name": "5100-WRITE-HTML-HEADER"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "554-555", 
+   "logic": "End of the 5100 PERFORM THRU range (EXIT).", 
+   "name": "5100-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "558-669", 
+   "logic": "Writes FD-HTMLFILE-REC lines for the statement header: ST-NAME (via L23-NAME) in a 16px paragraph, then ST-ADD1, ST-ADD2 and ST-ADD3 through HTML-ADDR-LN; the 'Account ID', 'Current Balance' and 'FICO Score' lines built from ST-ACCT-ID, ST-CURR-BAL and ST-FICO-SCORE through HTML-BSIC-LN; and fixed table markup by SETting 88-levels of HTML-FIXED-LN (HTML-LTDE, HTML-LTRE, HTML-LTRS, HTML-L22-35, HTML-L30-42) including HTML-L43 'Transaction Summary' and the column headings HTML-L48 'Tran ID', HTML-L51 'Tran Details' and HTML-L54 'Amount'.", 
+   "name": "5200-WRITE-HTML-NMADBS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "671-672", 
+   "logic": "End of the 5200 PERFORM THRU range (EXIT).", 
+   "name": "5200-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "675-723", 
+   "logic": "Moves TRNX-ID, TRNX-DESC and TRNX-AMT to statement line 14 and writes it to STMT-FILE, then writes an HTML table row with the same three values.", 
+   "name": "6000-WRITE-TRANS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "726-728", 
+   "logic": "ALTERable GO TO target; initially GO TO 8100-TRNXFILE-OPEN, redirected by 0000-START to the next file-open paragraph.", 
+   "name": "8100-FILE-OPEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "730-762", 
+   "logic": "Opens TRNXFILE and reads its first record through CBSTM03B (abend unless RC '00' or '04'), saves the card number in WS-SAVE-CARD, sets CR-CNT 1 and TR-CNT 0, sets WS-FL-DD to 'READTRNX' and returns to 0000-START.", 
+   "name": "8100-TRNXFILE-OPEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "765-781", 
+   "logic": "Opens XREFFILE through CBSTM03B (abend unless RC '00' or '04'), sets WS-FL-DD to 'CUSTFILE' and returns to 0000-START.", 
+   "name": "8200-XREFFILE-OPEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "783-799", 
+   "logic": "Opens CUSTFILE through CBSTM03B (abend unless RC '00' or '04'), sets WS-FL-DD to 'ACCTFILE' and returns to 0000-START.", 
+   "name": "8300-CUSTFILE-OPEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "801-816", 
+   "logic": "Opens ACCTFILE through CBSTM03B (abend unless RC '00' or '04') and GOes TO 1000-MAINLINE.", 
+   "name": "8400-ACCTFILE-OPEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "818-847", 
+   "logic": "Stores the current transaction in WS-TRNX-TABLE: same card as WS-SAVE-CARD increments TR-CNT, a new card saves the previous count in WS-TRCT, increments CR-CNT and restarts TR-CNT at 1. Reads the next TRNXFILE record through CBSTM03B and loops on RC '00', goes to 8599-EXIT on '10', abends otherwise.", 
+   "name": "8500-READTRNX-READ"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "849-853", 
+   "logic": "Saves the last card's transaction count in WS-TRCT(CR-CNT), sets WS-FL-DD to 'XREFFILE' and returns to 0000-START.", 
+   "name": "8599-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "856-870", 
+   "logic": "Closes TRNXFILE through CBSTM03B; abends with 'ERROR CLOSING TRNXFILE' unless RC '00' or '04'.", 
+   "name": "9100-TRNXFILE-CLOSE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "873-887", 
+   "logic": "Closes XREFFILE through CBSTM03B; abends with 'ERROR CLOSING XREFFILE' unless RC '00' or '04'.", 
+   "name": "9200-XREFFILE-CLOSE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "889-903", 
+   "logic": "Closes CUSTFILE through CBSTM03B; abends with 'ERROR CLOSING CUSTFILE' unless RC '00' or '04'.", 
+   "name": "9300-CUSTFILE-CLOSE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "905-919", 
+   "logic": "Closes ACCTFILE through CBSTM03B; abends with 'ERROR CLOSING ACCTFILE' unless RC '00' or '04'.", 
+   "name": "9400-ACCTFILE-CLOSE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "921-923", 
+   "logic": "Displays 'ABENDING PROGRAM' and calls CEE3ABD without parameters.", 
+   "name": "9999-ABEND-PROGRAM"
+  }
+ ], 
+ "program": "CBSTM03A", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/cbl/CBSTM03A.CBL:225-233", 
+    "app/cbl/CBSTM03A.CBL:849-850"
+   ], 
+   "anchor": "IF WS-SAVE-CARD = TRNX-CARD-NUM", 
+   "category": "decision", 
+   "conditions": "TRNX-CARD-NUM equal to / different from WS-SAVE-CARD.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TRNX-CARD-NUM", 
+    "WS-SAVE-CARD", 
+    "CR-CNT", 
+    "TR-CNT", 
+    "WS-CARD-NUM", 
+    "WS-TRAN-NUM", 
+    "WS-TRAN-REST", 
+    "WS-TRCT"
+   ], 
+   "id": "BR-CBSTM03A-001", 
+   "messages": [], 
+   "outcome": "WS-CARD-NUM, WS-TRAN-NUM, WS-TRAN-REST and WS-TRCT populated; CR-CNT = number of cards.", 
+   "paragraph": "8500-READTRNX-READ", 
+   "source": "app/cbl/CBSTM03A.CBL:819-830", 
+   "statement": "Before any statement is produced, all transactions are loaded into a two-dimensional in-memory table grouped by card number: consecutive transactions with the same TRNX-CARD-NUM are stored under one card entry, and a change of card number starts a new card entry. The table holds up to 51 cards with up to 10 transactions each."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/CBSTM03B.CBL:31-35"
+   ], 
+   "anchor": "IF XREF-CARD-NUM = WS-CARD-NUM (CR-JMP)", 
+   "category": "decision", 
+   "conditions": "WS-CARD-NUM(CR-JMP) = XREF-CARD-NUM; search ends when CR-JMP > CR-CNT or WS-CARD-NUM(CR-JMP) > XREF-CARD-NUM.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "XREF-CARD-NUM", 
+    "WS-CARD-NUM", 
+    "WS-TRCT", 
+    "TRNX-ID", 
+    "TRNX-REST"
+   ], 
+   "id": "BR-CBSTM03A-002", 
+   "messages": [], 
+   "outcome": "Each matching transaction written as a detail line (text and HTML).", 
+   "paragraph": "4000-TRNXFILE-GET", 
+   "source": "app/cbl/CBSTM03A.CBL:417-431", 
+   "statement": "A statement lists only the transactions whose card number equals the cross-reference card number being processed. The table search stops at the first table card number greater than the cross-reference card, which assumes both files are in ascending card-number order (TRNXFILE is keyed by card number + transaction id in CBSTM03B)."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/CBSTM03A.CBL:325"
+   ], 
+   "anchor": "ADD TRNX-AMT TO WS-TOTAL-AMT", 
+   "category": "calculation", 
+   "conditions": "Each listed transaction.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TRNX-AMT", 
+    "WS-TOTAL-AMT", 
+    "WS-TRN-AMT", 
+    "ST-TOTAL-TRAMT"
+   ], 
+   "id": "BR-CBSTM03A-003", 
+   "messages": [
+    "Total EXP:"
+   ], 
+   "outcome": "ST-TOTAL-TRAMT printed on ST-LINE14A.", 
+   "paragraph": "4000-TRNXFILE-GET", 
+   "source": "app/cbl/CBSTM03A.CBL:429-436", 
+   "statement": "The statement total ('Total EXP:') is the sum of TRNX-AMT of all transactions listed for the card; it is reset to zero for each cross-reference record."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/CBSTM03A.CBL:403-410", 
+    "app/cbl/CBSTM03A.CBL:353-362"
+   ], 
+   "anchor": "DISPLAY 'ERROR READING CUSTFILE'", 
+   "category": "error-policy", 
+   "conditions": "WS-M03B-RC not '00' after customer or account keyed read; not '00'/'10' after cross-reference read.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-M03B-RC", 
+    "XREF-CUST-ID", 
+    "XREF-ACCT-ID"
+   ], 
+   "id": "BR-CBSTM03A-004", 
+   "messages": [
+    "ERROR READING CUSTFILE", 
+    "ERROR READING ACCTFILE", 
+    "ERROR READING XREFFILE", 
+    "RETURN CODE: "
+   ], 
+   "outcome": "'ERROR READING CUSTFILE' / 'ERROR READING ACCTFILE' / 'ERROR READING XREFFILE', return code display, abend via CEE3ABD.", 
+   "paragraph": "2000-CUSTFILE-GET", 
+   "source": "app/cbl/CBSTM03A.CBL:379-385", 
+   "statement": "Every card cross-reference must resolve to an existing customer (XREF-CUST-ID) and account (XREF-ACCT-ID); if either keyed read fails, or the cross-reference read fails other than end of file, the statement run abends instead of skipping the card."
+  }, 
+  {
+   "anchor": "STRING CUST-FIRST-NAME DELIMITED BY ' '", 
+   "category": "transformation", 
+   "conditions": "Every statement.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CUST-FIRST-NAME", 
+    "CUST-MIDDLE-NAME", 
+    "CUST-LAST-NAME", 
+    "CUST-ADDR-LINE-3", 
+    "CUST-ADDR-STATE-CD", 
+    "CUST-ADDR-COUNTRY-CD", 
+    "CUST-ADDR-ZIP", 
+    "ACCT-ID", 
+    "ACCT-CURR-BAL", 
+    "CUST-FICO-CREDIT-SCORE"
+   ], 
+   "id": "BR-CBSTM03A-005", 
+   "messages": [], 
+   "outcome": "ST-NAME, ST-ADD1..3, ST-ACCT-ID, ST-CURR-BAL, ST-FICO-SCORE in text and HTML output.", 
+   "paragraph": "5000-CREATE-STATEMENT", 
+   "source": "app/cbl/CBSTM03A.CBL:462-484", 
+   "statement": "The statement header shows the customer name as first, middle and last name each truncated at the first space and separated by single spaces, address lines 1 and 2, a third address line combining address line 3, state, country and ZIP, plus account id, current balance and FICO score."
+  }, 
+  {
+   "anchor": "PERFORM 5000-CREATE-STATEMENT", 
+   "category": "decision", 
+   "conditions": "Each XREFFILE record read with RC '00'.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "END-OF-FILE", 
+    "CARD-XREF-RECORD"
+   ], 
+   "id": "BR-CBSTM03A-006", 
+   "messages": [], 
+   "outcome": "Statement header, transaction lines and total written to STMTFILE and HTMLFILE.", 
+   "paragraph": "1000-MAINLINE", 
+   "source": "app/cbl/CBSTM03A.CBL:317-329", 
+   "statement": "One statement (text and HTML) is produced for every record in the card cross-reference file, in cross-reference order, until end of file."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Should statements be produced per account (aggregating all cards) instead of per card cross-reference record?", 
+   "source": "app/cbl/CBSTM03A.CBL:317-329"
+  }, 
+  {
+   "question": "What are the real volume limits for the statement run? The table allows only 51 cards and 10 transactions per card with no overflow check.", 
+   "source": "app/cbl/CBSTM03A.CBL:225-233"
+  }, 
+  {
+   "question": "Why is CBSTM03B return code '04' accepted as success on open, first read and close? Which condition is expected to produce it?", 
+   "source": "app/cbl/CBSTM03A.CBL:736-742"
+  }
+ ], 
+ "source_path": "app/cbl/CBSTM03A.CBL", 
+ "source_sha256": "23c8753b6b4e0c24d4560c83861fe8162626bab195faec0fe88cf80b8bf432b5", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/CBSTM03A.CBL:4-35", 
+   "app/cbl/CBSTM03A.CBL:266-342", 
+   "app/cbl/CBSTM03A.CBL:416-436", 
+   "app/cbl/CBSTM03A.CBL:818-853"
+  ], 
+  "text": "CBSTM03A is the batch account-statement program; it writes each statement in two formats, an 80-byte plain-text file (STMTFILE) and a 100-byte HTML file (HTMLFILE). All file access goes through subroutine CBSTM03B. It first displays the job's DD names from the z/OS TIOT, then uses an ALTER/GO TO state machine to open the transaction file, load every transaction into an in-memory table grouped by card number (max 51 cards x 10 transactions), and open the cross-reference, customer and account files. For each card cross-reference record it reads the customer and account by key, writes a statement header (name, address, account id, balance, FICO score), lists that card's transactions and prints their total. Read failures for cross-reference, customer or account abend the run. The header says the program deliberately uses control-block addressing, ALTER/GO TO, COMP/COMP-3, a 2-D array and a subroutine call to exercise modernization tooling."
+ }
+}

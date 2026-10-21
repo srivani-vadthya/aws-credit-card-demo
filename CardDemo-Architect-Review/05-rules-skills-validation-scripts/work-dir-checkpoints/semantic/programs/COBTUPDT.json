@@ -1,0 +1,199 @@
+{
+ "batch": "B08",
+ "existing_rules_reviewed": [
+  {
+   "anchor": "WHEN OTHER",
+   "id": "BR-TRANTYPE-COBTUPDT-001",
+   "note": "Dispatch on INPUT-REC-TYPE is correct (A=INSERT via 10031-INSERT-DB, U=UPDATE via 10032-UPDATE-DB, D=DELETE via 10033-DELETE-DB, '*'=display 'IGNORING COMMENTED LINE' only). Corrected: the OTHER branch builds 'ERROR: TYPE NOT VALID' and PERFORMs 9999-ABEND, but 9999-ABEND (COBTUPDT.cbl:230-233) only DISPLAYs WS-RETURN-MSG and moves 4 to RETURN-CODE; it does not stop the run or issue an abend, so the loop in 1001-READ-NEXT-RECORDS continues with the next record. Range widened to include the EVALUATE header (line 110) and END-EVALUATE (129).",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:110-129",
+   "verdict": "corrected"
+  }
+ ],
+ "no_business_rules_reason": null,
+ "no_rule_decisions": [
+  {
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:93-96",
+   "reason": "Technical read loop: processes records until the AT END flag LASTREC = 'Y'; no business selection."
+  },
+  {
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:104-106",
+   "reason": "Diagnostic DISPLAY of the record being processed when not at end of file; logging only."
+  }
+ ],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "9999-ABEND does not abend or stop: it displays the message and sets RETURN-CODE to 4, then control returns to the caller and processing continues with the next input record. A later successful record does not reset RETURN-CODE, so the job ends RC=4 if any record failed, but all other records are still applied.",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:230-233"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Paragraphs are not PERFORMed from a mainline: execution falls through from 0001-OPEN-FILES into 1001-READ-NEXT-RECORDS, which ends with STOP RUN. EXIT statements appear mid-paragraph (e.g. line 98 before STOP RUN at 99) and act as no-ops.",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:82-99"
+  },
+  {
+   "kind": "unchecked-io",
+   "text": "An OPEN failure (WS-INF-STATUS not '00') only displays 'OPEN FILE NOT OK'; the program then proceeds to READ the unopened file. READ status is not checked other than AT END.",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:83-88"
+  },
+  {
+   "kind": "anomaly",
+   "text": "No explicit COMMIT or ROLLBACK is issued; DB2 changes rely on implicit commit at normal program termination. Failed rows (RC=4) do not roll back earlier successful rows.",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:136-148"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The INSERT EVALUATE has no branch for positive SQLCODEs (warnings); the UPDATE/DELETE EVALUATEs have no branch for positive SQLCODEs other than +100. Such warnings fall through silently.",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:151-163"
+  },
+  {
+   "kind": "dead-code",
+   "text": "The FD record WS-INPUT-VARS (INPUT-TYPE, INPUT-TR-NUMBER, INPUT-TR-DESC) is never referenced; the READ uses INTO WS-INPUT-REC. The DCLTRTYP host structure is included but not used; host variables are INPUT-REC-NUMBER and INPUT-REC-DESC.",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:40-46"
+  },
+  {
+   "kind": "anomaly",
+   "text": "INPUT-REC-DESC (PIC X(50)) is bound directly to the VARCHAR(50) column TR_DESCRIPTION, so trailing spaces are stored as part of the description rather than via the DCL-TR-DESCRIPTION-LEN/TEXT host structure.",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:136-148"
+  }
+ ],
+ "paragraphs": [
+  {
+   "confidence": "Confirmed",
+   "lines": "82-89",
+   "logic": "Opens the sequential input file TR-RECORD (DD INPFILE) and displays 'OPEN FILE OK' when WS-INF-STATUS = '00', otherwise 'OPEN FILE NOT OK'. No stop on failure; control falls through to 1001-READ-NEXT-RECORDS.",
+   "name": "0001-OPEN-FILES"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "91-99",
+   "logic": "Primes the read with 1002-READ-RECORDS, then loops PERFORM 1003-TREAT-RECORD / 1002-READ-RECORDS until LASTREC = 'Y'. Then performs 2001-CLOSE-STOP and STOP RUN.",
+   "name": "1001-READ-NEXT-RECORDS"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "100-107",
+   "logic": "Reads the next TR-RECORD into WS-INPUT-REC (INPUT-REC-TYPE, INPUT-REC-NUMBER, INPUT-REC-DESC); at end sets LASTREC to 'Y'. When not at end, displays 'PROCESSING' and the record.",
+   "name": "1002-READ-RECORDS"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "109-130",
+   "logic": "Evaluates INPUT-REC-TYPE: 'A' performs 10031-INSERT-DB, 'U' performs 10032-UPDATE-DB, 'D' performs 10033-DELETE-DB, '*' displays 'IGNORING COMMENTED LINE'. Any other value builds 'ERROR: TYPE NOT VALID' into WS-RETURN-MSG and performs 9999-ABEND.",
+   "name": "1003-TREAT-RECORD"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "132-164",
+   "logic": "INSERTs a row into CARDDEMO.TRANSACTION_TYPE with TR_TYPE = INPUT-REC-NUMBER and TR_DESCRIPTION = INPUT-REC-DESC. SQLCODE 0 displays 'RECORD INSERTED SUCCESSFULLY'; SQLCODE < 0 builds 'Error accessing: TRANSACTION_TYPE table. SQLCODE:' plus the code and performs 9999-ABEND.",
+   "name": "10031-INSERT-DB"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "166-195",
+   "logic": "UPDATEs CARDDEMO.TRANSACTION_TYPE setting TR_DESCRIPTION = INPUT-REC-DESC where TR_TYPE = INPUT-REC-NUMBER. SQLCODE 0 displays 'RECORD UPDATED SUCCESSFULLY'; +100 sets 'No records found.' and performs 9999-ABEND; < 0 sets the table error message and performs 9999-ABEND.",
+   "name": "10032-UPDATE-DB"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "196-226",
+   "logic": "DELETEs from CARDDEMO.TRANSACTION_TYPE where TR_TYPE = INPUT-REC-NUMBER. SQLCODE 0 displays 'RECORD DELETED SUCCESSFULLY'; +100 sets 'No records found.' and performs 9999-ABEND; < 0 sets the table error message and performs 9999-ABEND.",
+   "name": "10033-DELETE-DB"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "230-233",
+   "logic": "Displays WS-RETURN-MSG and moves 4 to RETURN-CODE. Despite its name it does not terminate the program; control returns to the performing paragraph.",
+   "name": "9999-ABEND"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "234-236",
+   "logic": "Closes the input file TR-RECORD.",
+   "name": "2001-CLOSE-STOP"
+  }
+ ],
+ "program": "COBTUPDT",
+ "rules": [
+  {
+   "id": "BR-COBTUPDT-001",
+   "category": "error-policy",
+   "statement": "Any record-level failure (invalid record type, SQL error, or row not found) is reported by displaying the message and setting the job return code to 4, but processing continues with the next input record; successful records before and after are still applied.",
+   "paragraph": "9999-ABEND",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:230-233",
+   "anchor": "MOVE 4 TO RETURN-CODE",
+   "additional_sources": ["app/app-transaction-type-db2/cbl/COBTUPDT.cbl:93-96"],
+   "conditions": "9999-ABEND is performed from 1003-TREAT-RECORD, 10031-INSERT-DB, 10032-UPDATE-DB or 10033-DELETE-DB.",
+   "outcome": "WS-RETURN-MSG displayed; RETURN-CODE = 4; loop continues until end of file.",
+   "data": ["WS-RETURN-MSG", "RETURN-CODE"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COBTUPDT-002",
+   "category": "error-policy",
+   "statement": "Adding a transaction type succeeds only when the INSERT returns SQLCODE 0; any negative SQLCODE (for example a duplicate TR_TYPE) is reported as a TRANSACTION_TYPE table access error with the SQLCODE and sets RC 4.",
+   "paragraph": "10031-INSERT-DB",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:151-163",
+   "anchor": "WHEN SQLCODE < 0",
+   "additional_sources": ["app/app-transaction-type-db2/cbl/COBTUPDT.cbl:136-148"],
+   "conditions": "INPUT-REC-TYPE = 'A'; INSERT of TR_TYPE = INPUT-REC-NUMBER, TR_DESCRIPTION = INPUT-REC-DESC.",
+   "outcome": "SQLCODE 0: 'RECORD INSERTED SUCCESSFULLY'. SQLCODE < 0: message 'Error accessing: TRANSACTION_TYPE table. SQLCODE:' + code, 9999-ABEND.",
+   "data": ["INPUT-REC-NUMBER", "INPUT-REC-DESC", "SQLCODE", "WS-VAR-SQLCODE"],
+   "messages": ["RECORD INSERTED SUCCESSFULLY", "Error accessing:", " TRANSACTION_TYPE table. SQLCODE:"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COBTUPDT-003",
+   "category": "validation",
+   "statement": "An update record for a transaction type code that does not exist in TRANSACTION_TYPE (SQLCODE +100) is rejected with 'No records found.' and RC 4; negative SQLCODEs are reported as table access errors. Only TR_DESCRIPTION is changed; TR_TYPE is the key.",
+   "paragraph": "10032-UPDATE-DB",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:177-193",
+   "anchor": "WHEN SQLCODE = +100",
+   "additional_sources": ["app/app-transaction-type-db2/cbl/COBTUPDT.cbl:171-175"],
+   "conditions": "INPUT-REC-TYPE = 'U'; UPDATE ... SET TR_DESCRIPTION = :INPUT-REC-DESC WHERE TR_TYPE = :INPUT-REC-NUMBER.",
+   "outcome": "0: 'RECORD UPDATED SUCCESSFULLY'; +100: 'No records found.' + 9999-ABEND; <0: table error + 9999-ABEND.",
+   "data": ["INPUT-REC-NUMBER", "INPUT-REC-DESC", "SQLCODE"],
+   "messages": ["RECORD UPDATED SUCCESSFULLY", "No records found."],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COBTUPDT-004",
+   "category": "validation",
+   "statement": "A delete record for a transaction type code that does not exist (SQLCODE +100) is rejected with 'No records found.' and RC 4; negative SQLCODEs (for example a referential constraint from TRANSACTION_TYPE_CATEGORY) are reported as table access errors with RC 4.",
+   "paragraph": "10033-DELETE-DB",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:207-225",
+   "anchor": "DISPLAY 'RECORD DELETED SUCCESSFULLY'",
+   "additional_sources": ["app/app-transaction-type-db2/cbl/COBTUPDT.cbl:201-204"],
+   "conditions": "INPUT-REC-TYPE = 'D'; DELETE WHERE TR_TYPE = :INPUT-REC-NUMBER.",
+   "outcome": "0: 'RECORD DELETED SUCCESSFULLY'; +100: 'No records found.' + 9999-ABEND; <0: table error + 9999-ABEND.",
+   "data": ["INPUT-REC-NUMBER", "SQLCODE"],
+   "messages": ["RECORD DELETED SUCCESSFULLY", "No records found."],
+   "confidence": "Confirmed"
+  }
+ ],
+ "schema": "program-semantics/1",
+ "sme_questions": [
+  {
+   "question": "Is it intended that a failing maintenance record (RC 4) does not stop the run or roll back previously applied records? Should the job abend/rollback instead?",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:230-233"
+  },
+  {
+   "question": "Should INPUT-REC-DESC be stored with trailing spaces in the VARCHAR TR_DESCRIPTION column, or should the DCL-TR-DESCRIPTION-LEN/TEXT host structure be used to trim it?",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:136-148"
+  }
+ ],
+ "source_path": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl",
+ "source_sha256": "0213fd5718c6aadd3fba6bbfb1818456d75d10843181bff63aca9ff57d39e87c",
+ "status": "complete",
+ "summary": {
+  "confidence": "Confirmed",
+  "evidence": [
+   "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:30-34",
+   "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:82-130",
+   "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:132-226",
+   "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:230-233"
+  ],
+  "text": "COBTUPDT is a batch DB2 program that applies transaction type maintenance records from a sequential input file (DD INPFILE) to the CARDDEMO.TRANSACTION_TYPE table. Each 53-byte record carries an action code, a 2-character transaction type code and a 50-character description. Action 'A' inserts, 'U' updates the description, 'D' deletes, and '*' lines are skipped as comments. Any other action, a SQL error or a row-not-found on update/delete is displayed and sets RETURN-CODE 4, but processing continues with the next record. The input file is closed and the program ends with STOP RUN after end of file."
+ }
+}

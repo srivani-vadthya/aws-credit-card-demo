@@ -1,0 +1,26 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "COTTL01Y",
+ "evidence": [
+  "app/cpy/COTTL01Y.cpy:17-23",
+  "app/cbl/COACTUPC.cbl:2672-2673"
+ ],
+ "key_fields": [
+  {"name": "CCDA-TITLE01", "meaning": "First screen title line, '      AWS Mainframe Modernization       '.", "source": "app/cpy/COTTL01Y.cpy:18-19"},
+  {"name": "CCDA-TITLE02", "meaning": "Second screen title line, '              CardDemo                  '.", "source": "app/cpy/COTTL01Y.cpy:20-22"},
+  {"name": "CCDA-THANK-YOU", "meaning": "Closing text 'Thank you for using CCDA application... '; not referenced by COACTUPC.", "source": "app/cpy/COTTL01Y.cpy:23-24"}
+ ],
+ "observations": [
+  {"kind": "hardcoded-value", "source": "app/cpy/COTTL01Y.cpy:21", "text": "An older title value 'Credit Card Demo Application (CCDA)' is kept as a comment above the active CardDemo title."}
+ ],
+ "purpose": "Defines CCDA-SCREEN-TITLE, three 40-byte literal texts used as screen header titles across the CardDemo online programs. COACTUPC moves CCDA-TITLE01 and CCDA-TITLE02 into the TITLE01O and TITLE02O fields of its map in 3100-SCREEN-INIT.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/COTTL01Y.cpy"
+ ],
+ "source_sha256": [
+  "5032bfa9428354bb4a62e8c82ba1efa7dcf6b80f27544ad99a81c8a8df8ed41b"
+ ],
+ "status": "complete"
+}

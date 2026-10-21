@@ -1,0 +1,20 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "CVTRA01Y",
+ "evidence": ["app/cpy/CVTRA01Y.cpy:1-10", "app/cbl/CBACT04C.cbl:187-217"],
+ "key_fields": [
+  {"name": "TRAN-CAT-BAL-RECORD", "meaning": "50-byte transaction category balance record (comment RECLN 50; field sizes add up to 50).", "source": "app/cpy/CVTRA01Y.cpy:4"},
+  {"name": "TRAN-CAT-KEY", "meaning": "Composite key: account id + transaction type code + category code; CBACT04C processes the file in this order with a control break on account id.", "source": "app/cpy/CVTRA01Y.cpy:5-8"},
+  {"name": "TRANCAT-ACCT-ID", "meaning": "11-digit account id.", "source": "app/cpy/CVTRA01Y.cpy:6"},
+  {"name": "TRANCAT-TYPE-CD", "meaning": "2-character transaction type code.", "source": "app/cpy/CVTRA01Y.cpy:7"},
+  {"name": "TRANCAT-CD", "meaning": "4-digit transaction category code.", "source": "app/cpy/CVTRA01Y.cpy:8"},
+  {"name": "TRAN-CAT-BAL", "meaning": "Signed balance S9(09)V99 accumulated for the account/type/category; the base for monthly interest in CBACT04C.", "source": "app/cpy/CVTRA01Y.cpy:9"}
+ ],
+ "observations": [],
+ "purpose": "CVTRA01Y defines TRAN-CAT-BAL-RECORD, the 50-byte balance per account, transaction type and category. CBTRN02C maintains these balances when posting transactions, and CBACT04C reads them sequentially to compute monthly interest per category using the disclosure group rate.",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/CVTRA01Y.cpy"],
+ "source_sha256": ["50637f13692c89b17a2fc60d249dc54e9eb3569d933afca3cdcf65b491a9d5ba"],
+ "status": "complete"
+}

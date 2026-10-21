@@ -1,0 +1,196 @@
+{
+ "batch": "B01", 
+ "checked": "2026-10-20T04:35:12", 
+ "copybooks": {
+  "AUTHFRDS": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "AUTHFRDS", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CCPAUERY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CCPAUERY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CCPAURLY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CCPAURLY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CCPAURQY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CCPAURQY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CIPAUDTY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CIPAUDTY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CIPAUSMY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CIPAUSMY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "IMSFUNCS": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "IMSFUNCS", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "PADFLPCB": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "PADFLPCB", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "PASFLPCB": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "PASFLPCB", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "PAUTBPCB": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "PAUTBPCB", 
+   "issues": [], 
+   "status": "validated"
+  }
+ }, 
+ "programs": {
+  "CBPAUP0C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 14, 
+   "decision_covered": 14, 
+   "decision_in_rules": 8, 
+   "existing_reviewed": 2, 
+   "issues": [], 
+   "paragraphs_described": 17, 
+   "paragraphs_total": 17, 
+   "program": "CBPAUP0C", 
+   "rules": 6, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COPAUA0C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 28, 
+   "decision_covered": 28, 
+   "decision_in_rules": 25, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 43, 
+   "paragraphs_total": 43, 
+   "program": "COPAUA0C", 
+   "rules": 8, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COPAUS0C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 53, 
+   "decision_covered": 53, 
+   "decision_in_rules": 35, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 20, 
+   "paragraphs_total": 20, 
+   "program": "COPAUS0C", 
+   "rules": 9, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COPAUS1C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 23, 
+   "decision_covered": 23, 
+   "decision_in_rules": 20, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 15, 
+   "paragraphs_total": 15, 
+   "program": "COPAUS1C", 
+   "rules": 8, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COPAUS2C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 0, 
+   "decision_covered": 0, 
+   "decision_in_rules": 0, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 2, 
+   "paragraphs_total": 2, 
+   "program": "COPAUS2C", 
+   "rules": 3, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "DBUNLDGS": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 1, 
+   "decision_covered": 1, 
+   "decision_in_rules": 1, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 15, 
+   "paragraphs_total": 15, 
+   "program": "DBUNLDGS", 
+   "rules": 2, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "PAUDBLOD": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 1, 
+   "decision_covered": 1, 
+   "decision_in_rules": 1, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 17, 
+   "paragraphs_total": 17, 
+   "program": "PAUDBLOD", 
+   "rules": 3, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "PAUDBUNL": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 1, 
+   "decision_covered": 1, 
+   "decision_in_rules": 1, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 11, 
+   "paragraphs_total": 11, 
+   "program": "PAUDBUNL", 
+   "rules": 2, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }
+ }
+}

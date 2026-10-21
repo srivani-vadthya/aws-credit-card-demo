@@ -1,0 +1,34 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "COCOM01Y",
+ "evidence": [
+  "app/cpy/COCOM01Y.cpy:19-44",
+  "app/cbl/COACTUPC.cbl:880-892",
+  "app/cbl/COACTUPC.cbl:1007-1019"
+ ],
+ "key_fields": [
+  {"name": "CARDDEMO-COMMAREA", "meaning": "Shared CICS communication area passed on XCTL and RETURN between CardDemo online programs; COACTUPC places its own program area right after it.", "source": "app/cpy/COCOM01Y.cpy:19"},
+  {"name": "CDEMO-FROM-PROGRAM", "meaning": "Program that transferred control here; used to detect entry from the menu and as the PF3 return target.", "source": "app/cpy/COCOM01Y.cpy:22"},
+  {"name": "CDEMO-FROM-TRANID", "meaning": "Transaction of the calling program; PF3 returns to it, or to CM00 when blank.", "source": "app/cpy/COCOM01Y.cpy:21"},
+  {"name": "CDEMO-TO-PROGRAM", "meaning": "Target program for the next XCTL.", "source": "app/cpy/COCOM01Y.cpy:24"},
+  {"name": "CDEMO-USER-TYPE", "meaning": "Signed-on user type: 'A' admin (CDEMO-USRTYP-ADMIN) or 'U' user (CDEMO-USRTYP-USER).", "source": "app/cpy/COCOM01Y.cpy:26-28"},
+  {"name": "CDEMO-PGM-CONTEXT", "meaning": "0 = first entry into a program (CDEMO-PGM-ENTER), 1 = re-entry after a screen was sent (CDEMO-PGM-REENTER).", "source": "app/cpy/COCOM01Y.cpy:29-31"},
+  {"name": "CDEMO-CUST-ID", "meaning": "Current customer id; COACTUPC fills it from the card cross-reference and uses it as the CUSTDAT key.", "source": "app/cpy/COCOM01Y.cpy:33"},
+  {"name": "CDEMO-ACCT-ID", "meaning": "Current account id carried between screens.", "source": "app/cpy/COCOM01Y.cpy:38"},
+  {"name": "CDEMO-CARD-NUM", "meaning": "Current card number from the cross-reference.", "source": "app/cpy/COCOM01Y.cpy:41"},
+  {"name": "CDEMO-LAST-MAPSET", "meaning": "Mapset last sent; COACTUPC compares it with the card list mapset to choose the account-id colour.", "source": "app/cpy/COCOM01Y.cpy:44"}
+ ],
+ "observations": [
+  {"kind": "security", "source": "app/cbl/COACTUPC.cbl:947", "text": "COACTUPC sets CDEMO-USRTYP-USER on PF3 exit, overwriting the user type carried in this area."}
+ ],
+ "purpose": "Defines CARDDEMO-COMMAREA, the communication area shared by the CardDemo CICS programs: routing fields (from/to transaction and program), signed-on user id and type, program entry context, current customer, account and card, and the last map and mapset sent. COACTUPC restores it from DFHCOMMAREA, uses it to decide first entry and PF3 routing, updates the customer/account/card context after a fetch and returns it on every EXEC CICS RETURN.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/COCOM01Y.cpy"
+ ],
+ "source_sha256": [
+  "77097557ee4c365f62138328d3e280ce7aba5f81d418c6f16434f0fbb2aafa6c"
+ ],
+ "status": "complete"
+}

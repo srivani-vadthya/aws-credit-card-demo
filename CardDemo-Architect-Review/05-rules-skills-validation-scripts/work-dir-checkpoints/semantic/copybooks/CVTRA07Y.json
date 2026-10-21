@@ -1,0 +1,94 @@
+{
+ "batch": "B03",
+ "confidence": "Confirmed",
+ "copybook": "CVTRA07Y",
+ "evidence": [
+  "app/cpy/CVTRA07Y.cpy:1-66",
+  "app/cbl/CBTRN03C.cbl:113",
+  "app/cbl/CBTRN03C.cbl:293-341",
+  "app/cbl/CBTRN03C.cbl:361-374"
+ ],
+ "key_fields": [
+  {
+   "name": "REPORT-NAME-HEADER",
+   "meaning": "Report title line: short name 'DALYREPT', long name 'Daily Transaction Report' and 'Date Range: <start> to <end>'.",
+   "source": "app/cpy/CVTRA07Y.cpy:4-13"
+  },
+  {
+   "name": "REPT-START-DATE",
+   "meaning": "10-character report start date, filled by CBTRN03C from the DATEPARM start date.",
+   "source": "app/cpy/CVTRA07Y.cpy:11"
+  },
+  {
+   "name": "REPT-END-DATE",
+   "meaning": "10-character report end date, filled from the DATEPARM end date.",
+   "source": "app/cpy/CVTRA07Y.cpy:13"
+  },
+  {
+   "name": "TRANSACTION-DETAIL-REPORT",
+   "meaning": "114-byte detail line: transaction id, account id, type code-description, category code-description, source and edited amount.",
+   "source": "app/cpy/CVTRA07Y.cpy:15-31"
+  },
+  {
+   "name": "TRAN-REPORT-TYPE-DESC",
+   "meaning": "15-character transaction type description column (source description is 50 characters).",
+   "source": "app/cpy/CVTRA07Y.cpy:22"
+  },
+  {
+   "name": "TRAN-REPORT-CAT-DESC",
+   "meaning": "29-character category description column (source description is 50 characters).",
+   "source": "app/cpy/CVTRA07Y.cpy:26"
+  },
+  {
+   "name": "TRAN-REPORT-AMT",
+   "meaning": "Edited transaction amount -ZZZ,ZZZ,ZZZ.ZZ (leading minus sign for negatives, 9 integer digits).",
+   "source": "app/cpy/CVTRA07Y.cpy:30"
+  },
+  {
+   "name": "TRANSACTION-HEADER-1",
+   "meaning": "Column heading line: Transaction ID, Account ID, Transaction Type, Tran Category, Tran Source, Amount.",
+   "source": "app/cpy/CVTRA07Y.cpy:33-46"
+  },
+  {
+   "name": "TRANSACTION-HEADER-2",
+   "meaning": "133-character line of dashes used as separator after headings and totals.",
+   "source": "app/cpy/CVTRA07Y.cpy:48"
+  },
+  {
+   "name": "REPT-PAGE-TOTAL",
+   "meaning": "Edited page total +ZZZ,ZZZ,ZZZ.ZZ in the 'Page Total' line REPORT-PAGE-TOTALS.",
+   "source": "app/cpy/CVTRA07Y.cpy:50-54"
+  },
+  {
+   "name": "REPT-ACCOUNT-TOTAL",
+   "meaning": "Edited account total in the 'Account Total' line REPORT-ACCOUNT-TOTALS (CBTRN03C breaks it on card number).",
+   "source": "app/cpy/CVTRA07Y.cpy:56-60"
+  },
+  {
+   "name": "REPT-GRAND-TOTAL",
+   "meaning": "Edited grand total in the 'Grand Total' line REPORT-GRAND-TOTALS.",
+   "source": "app/cpy/CVTRA07Y.cpy:62-66"
+  }
+ ],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "All report lines are shorter than the 133-byte report record (title 115, detail and column header 114, total lines 112 bytes by PIC sizes); CBTRN03C moves them into FD-REPTFILE-REC PIC X(133), so they are space-padded. There is no carriage-control byte. Confirmed from PIC sizes and app/cbl/CBTRN03C.cbl:85.",
+   "source": "app/cpy/CVTRA07Y.cpy:4-66"
+  },
+  {
+   "kind": "hardcoded-value",
+   "text": "The report identifiers 'DALYREPT' and 'Daily Transaction Report' and all column headings are VALUE literals in the copybook.",
+   "source": "app/cpy/CVTRA07Y.cpy:5-8"
+  }
+ ],
+ "purpose": "CVTRA07Y defines the print-line layouts of the Daily Transaction Report (DALYREPT): the title line with the date range, the column heading and dashed separator lines, the transaction detail line, and the page, account and grand total lines with edited amounts. It contains no record read from a file; it is working storage moved into the 133-byte report record. In the application source it is copied only by CBTRN03C, which fills the date range, detail and total fields and writes the lines to the TRANREPT dataset.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CVTRA07Y.cpy"
+ ],
+ "source_sha256": [
+  "72ba597b1a40e1e6cf908e15da9e6a818a0ab899ef1d27d15edeb074963102fa"
+ ],
+ "status": "complete"
+}

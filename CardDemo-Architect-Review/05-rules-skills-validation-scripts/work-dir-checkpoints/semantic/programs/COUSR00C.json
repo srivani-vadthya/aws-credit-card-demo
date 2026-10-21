@@ -1,0 +1,473 @@
+{
+ "batch": "B07", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Row-index EVALUATE that maps user record fields to screen row WS-IDX (presentation); first/last key capture is covered by BR-COUSR00C-012.", 
+   "source": "app/cbl/COUSR00C.cbl:386-441"
+  }, 
+  {
+   "reason": "Row-index EVALUATE that blanks screen row fields (screen housekeeping).", 
+   "source": "app/cbl/COUSR00C.cbl:448-501"
+  }, 
+  {
+   "reason": "Defensive default of the XCTL target to COSGN00C when CDEMO-TO-PROGRAM is blank.", 
+   "source": "app/cbl/COUSR00C.cbl:508-510"
+  }, 
+  {
+   "reason": "Chooses SEND with or without ERASE (presentation only).", 
+   "source": "app/cbl/COUSR00C.cbl:528-544"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "security", 
+   "source": "app/cbl/COUSR00C.cbl:110-138", 
+   "text": "The program does not test CDEMO-USER-TYPE (CDEMO-USRTYP-ADMIN); restriction of user maintenance to administrators depends entirely on reaching CU00 through the admin menu (Inferred: PF3 returns to COADM01C). Anyone who can start CU00 with a COMMAREA can list, and route to update/delete of, any user."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COUSR00C.cbl:117-119", 
+   "text": "On first entry PROCESS-ENTER-KEY ends with PROCESS-PAGE-FORWARD, which already sends the map (line 329), and MAIN-PARA sends it again, so two SEND MAP commands are issued in one task."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COUSR00C.cbl:600-606", 
+   "text": "STARTBR NOTFND sets USER-SEC-EOF without the error flag, so the PF8 skip read and the ENDBR (no RESP) are still issued against a browse that was never started; an INVREQ on ENDBR would abend the task (Inferred from CICS semantics)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COUSR00C.cbl:588-594", 
+   "text": "STARTBR is coded without GTEQ/EQUAL (GTEQ commented out); positioning relies on the CICS STARTBR default (Inferred: GTEQ)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COUSR00C.cbl:354-372", 
+   "text": "If a backward page reaches the start of file before row 1 is filled, the top rows stay blank, CDEMO-CU00-USRID-FIRST is not refreshed and the page number is not adjusted (Inferred from control flow)."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/cbl/COUSR00C.cbl:52-64", 
+   "text": "WS-USER-DATA (USER-REC OCCURS 10 with USER-SEL, USER-ID, USER-NAME, USER-TYPE) and WS-REC-COUNT / WS-PAGE-NUM are declared but never referenced in the procedure division."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/COUSR00C.cbl:551-557", 
+   "text": "RECEIVE MAP response codes are captured but never tested; ENDBR has no RESP."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/COUSR00C.cbl:36-39", 
+   "text": "File 'USRSEC', transaction 'CU00' and programs COSGN00C, COADM01C, COUSR02C, COUSR03C are literals."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "98-144", 
+   "logic": "Resets the error, EOF, next-page and erase flags and the message. EIBCALEN = 0 XCTLs to COSGN00C. Otherwise loads CARDDEMO-COMMAREA; on first entry sets re-enter, clears the map, performs PROCESS-ENTER-KEY and sends the list. On re-entry receives the map and dispatches on EIBAID: Enter, PF3 (XCTL to COADM01C), PF7, PF8, other keys show CCDA-MSG-INVALID-KEY. Ends with CICS RETURN TRANSID CU00.", 
+   "name": "MAIN-PARA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "149-232", 
+   "logic": "Captures the first non-blank selection SEL0001I..SEL0010I with its USRIDnnI into CDEMO-CU00-USR-SEL-FLG / CDEMO-CU00-USR-SELECTED. 'U'/'u' XCTLs to COUSR02C, 'D'/'d' to COUSR03C, other values set 'Invalid selection. Valid values are U and D'. Then sets the browse key SEC-USR-ID from USRIDINI (LOW-VALUES when blank), resets CDEMO-CU00-PAGE-NUM to 0 and performs PROCESS-PAGE-FORWARD.", 
+   "name": "PROCESS-ENTER-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "237-255", 
+   "logic": "Sets SEC-USR-ID to CDEMO-CU00-USRID-FIRST (LOW-VALUES when blank) and NEXT-PAGE-YES. If CDEMO-CU00-PAGE-NUM > 1 performs PROCESS-PAGE-BACKWARD, else sends 'You are already at the top of the page...' without erase.", 
+   "name": "PROCESS-PF7-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "260-277", 
+   "logic": "Sets SEC-USR-ID to CDEMO-CU00-USRID-LAST (HIGH-VALUES when blank). If NEXT-PAGE-YES performs PROCESS-PAGE-FORWARD, else sends 'You are already at the bottom of the page...' without erase.", 
+   "name": "PROCESS-PF8-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "282-331", 
+   "logic": "Starts a browse at SEC-USR-ID; if no error, skips one record unless the key was Enter/PF7/PF3, clears the 10 rows and reads up to 10 users into rows 1-10. If records remain adds 1 to the page and reads one more to set NEXT-PAGE-YES/NO; otherwise NEXT-PAGE-NO and the page is incremented only if a row was filled. Ends the browse and sends the screen.", 
+   "name": "PROCESS-PAGE-FORWARD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "336-379", 
+   "logic": "Starts a browse at SEC-USR-ID; if no error, skips one record unless the key was Enter/PF8, clears the rows and reads up to 10 previous users into rows 10 down to 1. If records remain reads one more previous record and, when NEXT-PAGE-YES, subtracts 1 from the page if it succeeded and the page is > 1, else sets the page to 1. Ends the browse and sends the screen.", 
+   "name": "PROCESS-PAGE-BACKWARD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "384-441", 
+   "logic": "Moves SEC-USR-ID, SEC-USR-FNAME, SEC-USR-LNAME and SEC-USR-TYPE to row WS-IDX of COUSR0AI; row 1 also stores the ID in CDEMO-CU00-USRID-FIRST and row 10 in CDEMO-CU00-USRID-LAST. The password is not displayed.", 
+   "name": "POPULATE-USER-DATA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "446-501", 
+   "logic": "Moves SPACES to the user ID, first name, last name and type of row WS-IDX (1-10).", 
+   "name": "INITIALIZE-USER-DATA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "506-517", 
+   "logic": "Defaults CDEMO-TO-PROGRAM to COSGN00C when blank, sets FROM tranid/program to CU00/COUSR00C, resets CDEMO-PGM-CONTEXT and XCTLs to CDEMO-TO-PROGRAM.", 
+   "name": "RETURN-TO-PREV-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "522-544", 
+   "logic": "Fills the header, moves WS-MESSAGE to ERRMSGO and sends map COUSR0A with ERASE when SEND-ERASE-YES, otherwise without ERASE.", 
+   "name": "SEND-USRLST-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "549-557", 
+   "logic": "Receives map COUSR0A into COUSR0AI with RESP/RESP2; the response is not tested.", 
+   "name": "RECEIVE-USRLST-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "562-581", 
+   "logic": "Moves FUNCTION CURRENT-DATE to WS-CURDATE-DATA, CCDA-TITLE01/CCDA-TITLE02 to TITLE01O/TITLE02O, WS-TRANID to TRNNAMEO and WS-PGMNAME to PGMNAMEO of COUSR0AO; rebuilds the date as WS-CURDATE-MM-DD-YY (MM/DD/YY from WS-CURDATE-MONTH, WS-CURDATE-DAY, WS-CURDATE-YEAR(3:2)) into CURDATEO and the time as WS-CURTIME-HH-MM-SS into CURTIMEO.", 
+   "name": "POPULATE-HEADER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "586-614", 
+   "logic": "Issues CICS STARTBR on USRSEC with RIDFLD SEC-USR-ID (GTEQ commented out). NOTFND sets USER-SEC-EOF and sends 'You are at the top of the page...'; other errors set the error flag and send 'Unable to lookup User...'.", 
+   "name": "STARTBR-USER-SEC-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "619-648", 
+   "logic": "Issues CICS READNEXT into SEC-USER-DATA. ENDFILE sets USER-SEC-EOF and sends 'You have reached the bottom of the page...'; other errors set the error flag and send 'Unable to lookup User...'.", 
+   "name": "READNEXT-USER-SEC-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "653-682", 
+   "logic": "Issues CICS READPREV into SEC-USER-DATA. ENDFILE sets USER-SEC-EOF and sends 'You have reached the top of the page...'; other errors set the error flag and send 'Unable to lookup User...'.", 
+   "name": "READPREV-USER-SEC-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "687-691", 
+   "logic": "Issues CICS ENDBR on USRSEC without RESP.", 
+   "name": "ENDBR-USER-SEC-FILE"
+  }
+ ], 
+ "program": "COUSR00C", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/cbl/COUSR00C.cbl:508-516"
+   ], 
+   "anchor": "IF EIBCALEN = 0", 
+   "category": "routing", 
+   "conditions": "EIBCALEN = 0", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBCALEN", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COUSR00C-001", 
+   "messages": [], 
+   "outcome": "XCTL COSGN00C.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COUSR00C.cbl:110-112", 
+   "statement": "When started without a COMMAREA (EIBCALEN = 0) the user is sent to the sign-on program COSGN00C."
+  }, 
+  {
+   "anchor": "MOVE 'COADM01C' TO CDEMO-TO-PROGRAM", 
+   "category": "routing", 
+   "conditions": "CDEMO-PGM-REENTER and EIBAID", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBAID", 
+    "CDEMO-TO-PROGRAM", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR00C-002", 
+   "messages": [
+    "Invalid key pressed. Please see below..."
+   ], 
+   "outcome": "DFHENTER -> PROCESS-ENTER-KEY; DFHPF3 -> XCTL COADM01C; DFHPF7/DFHPF8 -> paging; other -> WS-ERR-FLG 'Y', CCDA-MSG-INVALID-KEY.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COUSR00C.cbl:122-137", 
+   "statement": "On re-entry the attention key decides the action: Enter processes selection/filter, PF3 returns to the admin menu COADM01C, PF7 pages backward, PF8 pages forward; other keys are rejected with the invalid-key message."
+  }, 
+  {
+   "anchor": "WHEN SEL0001I OF COUSR0AI NOT = SPACES AND LOW-VALUES", 
+   "category": "decision", 
+   "conditions": "SELnnnnI not SPACES/LOW-VALUES, first match in row order", 
+   "confidence": "Confirmed", 
+   "data": [
+    "SEL0001I", 
+    "SEL0010I", 
+    "USRID01I", 
+    "USRID10I", 
+    "CDEMO-CU00-USR-SEL-FLG", 
+    "CDEMO-CU00-USR-SELECTED"
+   ], 
+   "id": "BR-COUSR00C-003", 
+   "messages": [], 
+   "outcome": "CDEMO-CU00-USR-SEL-FLG / CDEMO-CU00-USR-SELECTED set, otherwise SPACES.", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COUSR00C.cbl:151-184", 
+   "statement": "Only one row selection is honoured per Enter: selection fields are tested from row 1 to row 10 and the first non-blank one is taken with the user ID of the same row; if none is filled the stored selection is cleared."
+  }, 
+  {
+   "anchor": "'Invalid selection. Valid values are U and D'", 
+   "category": "routing", 
+   "conditions": "CDEMO-CU00-USR-SEL-FLG and CDEMO-CU00-USR-SELECTED both not blank", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-CU00-USR-SEL-FLG", 
+    "CDEMO-CU00-USR-SELECTED", 
+    "CDEMO-TO-PROGRAM", 
+    "CDEMO-PGM-CONTEXT"
+   ], 
+   "id": "BR-COUSR00C-004", 
+   "messages": [
+    "Invalid selection. Valid values are U and D"
+   ], 
+   "outcome": "'U'/'u': XCTL COUSR02C; 'D'/'d': XCTL COUSR03C (FROM tranid CU00, FROM program COUSR00C, context 0). Other: message shown, error flag not set.", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COUSR00C.cbl:186-216", 
+   "statement": "Valid row actions are 'U' (update) and 'D' (delete), upper or lower case. 'U' transfers to COUSR02C and 'D' to COUSR03C with the selected user ID in the COMMAREA; any other code is rejected with a message and the list is refreshed."
+  }, 
+  {
+   "anchor": "IF USRIDINI OF COUSR0AI = SPACES OR LOW-VALUES", 
+   "category": "decision", 
+   "conditions": "USRIDINI blank or not", 
+   "confidence": "Confirmed", 
+   "data": [
+    "USRIDINI", 
+    "SEC-USR-ID", 
+    "CDEMO-CU00-PAGE-NUM"
+   ], 
+   "id": "BR-COUSR00C-005", 
+   "messages": [], 
+   "outcome": "SEC-USR-ID = LOW-VALUES or USRIDINI; CDEMO-CU00-PAGE-NUM = 0; PROCESS-PAGE-FORWARD.", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COUSR00C.cbl:218-228", 
+   "statement": "The optional start user ID positions the list: blank lists from the beginning of USRSEC, otherwise the browse starts at the entered user ID (no format validation). Each Enter resets the page number to 0 before reading the first page."
+  }, 
+  {
+   "anchor": "IF CDEMO-CU00-PAGE-NUM > 1", 
+   "category": "decision", 
+   "conditions": "CDEMO-CU00-PAGE-NUM > 1", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-CU00-USRID-FIRST", 
+    "CDEMO-CU00-PAGE-NUM", 
+    "SEC-USR-ID"
+   ], 
+   "id": "BR-COUSR00C-006", 
+   "messages": [
+    "You are already at the top of the page..."
+   ], 
+   "outcome": "PROCESS-PAGE-BACKWARD, else 'You are already at the top of the page...'.", 
+   "paragraph": "PROCESS-PF7-KEY", 
+   "source": "app/cbl/COUSR00C.cbl:239-255", 
+   "statement": "PF7 (previous page) is allowed only when the page number is greater than 1; the backward browse starts at the first user ID of the current page (LOW-VALUES if none). On page 1 the user is told they are already at the top."
+  }, 
+  {
+   "anchor": "IF NEXT-PAGE-YES", 
+   "category": "decision", 
+   "conditions": "NEXT-PAGE-YES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-CU00-USRID-LAST", 
+    "CDEMO-CU00-NEXT-PAGE-FLG", 
+    "SEC-USR-ID"
+   ], 
+   "id": "BR-COUSR00C-007", 
+   "messages": [
+    "You are already at the bottom of the page..."
+   ], 
+   "outcome": "PROCESS-PAGE-FORWARD, else 'You are already at the bottom of the page...'.", 
+   "paragraph": "PROCESS-PF8-KEY", 
+   "source": "app/cbl/COUSR00C.cbl:262-277", 
+   "statement": "PF8 (next page) is allowed only when the last forward read found an 11th user (next-page flag 'Y'); the browse starts at the last user ID of the current page (HIGH-VALUES if none). Otherwise the user is told they are already at the bottom."
+  }, 
+  {
+   "anchor": "PERFORM UNTIL WS-IDX >= 11 OR USER-SEC-EOF OR ERR-FLG-ON", 
+   "category": "decision", 
+   "conditions": "EIBAID not Enter/PF7/PF3 for the skip; WS-IDX < 11, not EOF, no error for the fill", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBAID", 
+    "WS-IDX", 
+    "SEC-USER-DATA"
+   ], 
+   "id": "BR-COUSR00C-008", 
+   "messages": [], 
+   "outcome": "Rows 1..n populated, remaining rows blank.", 
+   "paragraph": "PROCESS-PAGE-FORWARD", 
+   "source": "app/cbl/COUSR00C.cbl:288-306", 
+   "statement": "A page holds at most 10 users. On PF8 the record at the start key (last user of the previous page) is skipped; the rows are cleared and up to 10 users are read in ascending user ID order."
+  }, 
+  {
+   "anchor": "COMPUTE CDEMO-CU00-PAGE-NUM =", 
+   "category": "calculation", 
+   "conditions": "USER-SEC-NOT-EOF and no error; else WS-IDX > 1", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-CU00-PAGE-NUM", 
+    "CDEMO-CU00-NEXT-PAGE-FLG", 
+    "WS-IDX"
+   ], 
+   "id": "BR-COUSR00C-009", 
+   "messages": [], 
+   "outcome": "CDEMO-CU00-PAGE-NUM + 1; NEXT-PAGE-YES/NO.", 
+   "paragraph": "PROCESS-PAGE-FORWARD", 
+   "source": "app/cbl/COUSR00C.cbl:308-323", 
+   "statement": "After a forward fill, the page number is increased by 1 when the page is full and a look-ahead read decides whether a next page exists; when end of file was hit during the fill there is no next page and the page number is increased only if at least one row was shown."
+  }, 
+  {
+   "anchor": "IF EIBAID NOT = DFHENTER  AND DFHPF8", 
+   "category": "decision", 
+   "conditions": "EIBAID not Enter/PF8 for the skip; WS-IDX > 0, not EOF, no error for the fill", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBAID", 
+    "WS-IDX", 
+    "SEC-USR-ID"
+   ], 
+   "id": "BR-COUSR00C-010", 
+   "messages": [], 
+   "outcome": "Rows filled from 10 down to 1.", 
+   "paragraph": "PROCESS-PAGE-BACKWARD", 
+   "source": "app/cbl/COUSR00C.cbl:342-360", 
+   "statement": "On PF7 the record at the start key (first user of the current page) is skipped and up to 10 previous users are read in descending order into rows 10 down to 1, so the screen stays in ascending order."
+  }, 
+  {
+   "anchor": "SUBTRACT 1 FROM CDEMO-CU00-PAGE-NUM", 
+   "category": "calculation", 
+   "conditions": "USER-SEC-NOT-EOF and no error after the fill, NEXT-PAGE-YES, look-ahead result, CDEMO-CU00-PAGE-NUM > 1", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-CU00-PAGE-NUM", 
+    "CDEMO-CU00-NEXT-PAGE-FLG"
+   ], 
+   "id": "BR-COUSR00C-011", 
+   "messages": [], 
+   "outcome": "CDEMO-CU00-PAGE-NUM - 1 or = 1.", 
+   "paragraph": "PROCESS-PAGE-BACKWARD", 
+   "source": "app/cbl/COUSR00C.cbl:362-372", 
+   "statement": "After a full backward page, one more previous record is read: if it exists and the page number is above 1 the page number is decreased by 1, otherwise it is set to 1. If the fill hit the start of the file, the page number is left unchanged."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COUSR00C.cbl:433-435"
+   ], 
+   "anchor": "CDEMO-CU00-USRID-FIRST", 
+   "category": "data-integrity", 
+   "conditions": "WS-IDX = 1 or 10", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-CU00-USRID-FIRST", 
+    "CDEMO-CU00-USRID-LAST", 
+    "SEC-USR-ID"
+   ], 
+   "id": "BR-COUSR00C-012", 
+   "messages": [], 
+   "outcome": "CDEMO-CU00-USRID-FIRST / CDEMO-CU00-USRID-LAST updated.", 
+   "paragraph": "POPULATE-USER-DATA", 
+   "source": "app/cbl/COUSR00C.cbl:387-389", 
+   "statement": "The user ID on row 1 is remembered as the page's first key and the user ID on row 10 as its last key; these are the start positions for PF7 and PF8."
+  }, 
+  {
+   "anchor": "'Unable to lookup User...'", 
+   "category": "error-policy", 
+   "conditions": "WS-RESP-CD after STARTBR", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "USER-SEC-EOF", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR00C-013", 
+   "messages": [
+    "You are at the top of the page...", 
+    "Unable to lookup User..."
+   ], 
+   "outcome": "NOTFND: USER-SEC-EOF, 'You are at the top of the page...'. Other: DISPLAY RESP/REAS, WS-ERR-FLG 'Y'.", 
+   "paragraph": "STARTBR-USER-SEC-FILE", 
+   "source": "app/cbl/COUSR00C.cbl:596-614", 
+   "statement": "Starting the browse: no user at or after the start key is treated as end of list with a top-of-page message; any other failure sets the error flag with a lookup-failure message, stopping the page fill."
+  }, 
+  {
+   "anchor": "'You have reached the bottom of the page...'", 
+   "category": "error-policy", 
+   "conditions": "WS-RESP-CD after READNEXT", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "USER-SEC-EOF", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR00C-014", 
+   "messages": [
+    "You have reached the bottom of the page...", 
+    "Unable to lookup User..."
+   ], 
+   "outcome": "ENDFILE: USER-SEC-EOF and message. Other: WS-ERR-FLG 'Y', 'Unable to lookup User...'.", 
+   "paragraph": "READNEXT-USER-SEC-FILE", 
+   "source": "app/cbl/COUSR00C.cbl:631-648", 
+   "statement": "Reading forward: end of file stops the list with a bottom-of-page message; other failures set the error flag with a lookup-failure message."
+  }, 
+  {
+   "anchor": "'You have reached the top of the page...'", 
+   "category": "error-policy", 
+   "conditions": "WS-RESP-CD after READPREV", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "USER-SEC-EOF", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR00C-015", 
+   "messages": [
+    "You have reached the top of the page...", 
+    "Unable to lookup User..."
+   ], 
+   "outcome": "ENDFILE: USER-SEC-EOF and message. Other: WS-ERR-FLG 'Y', 'Unable to lookup User...'.", 
+   "paragraph": "READPREV-USER-SEC-FILE", 
+   "source": "app/cbl/COUSR00C.cbl:665-682", 
+   "statement": "Reading backward: start of file stops the list with a top-of-page message; other failures set the error flag with a lookup-failure message."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Should COUSR00C itself verify that the signed-on user is an administrator (CDEMO-USRTYP-ADMIN) before listing users and routing to update/delete?", 
+   "source": "app/cbl/COUSR00C.cbl:110-138"
+  }, 
+  {
+   "question": "Is the start user ID intended as a 'start at or after' position (STARTBR default) or an exact match? GTEQ is commented out.", 
+   "source": "app/cbl/COUSR00C.cbl:588-594"
+  }
+ ], 
+ "source_path": "app/cbl/COUSR00C.cbl", 
+ "source_sha256": "831433c6ec8306038c85cb86a8307f91dca48c26ef33a997f402187cbd9f4e04", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/COUSR00C.cbl:1-5", 
+   "app/cbl/COUSR00C.cbl:35-39", 
+   "app/cbl/COUSR00C.cbl:66-75", 
+   "app/cbl/COUSR00C.cbl:110-144", 
+   "app/cbl/COUSR00C.cbl:186-216", 
+   "app/cbl/COUSR00C.cbl:282-379", 
+   "app/cbl/COUSR00C.cbl:586-691"
+  ], 
+  "text": "COUSR00C is a pseudo-conversational CICS COBOL program (transaction CU00, map COUSR0A in mapset COUSR00) that lists records of the USRSEC VSAM user security file ten at a time, showing user ID, first name, last name and user type. Without a COMMAREA it transfers to sign-on (COSGN00C); on first entry it lists from the start of the file; on re-entry Enter applies an optional start user ID and/or a row selection, PF3 returns to the admin menu COADM01C, PF7/PF8 page backward/forward. Paging uses STARTBR/READNEXT/READPREV/ENDBR keyed on SEC-USR-ID with the first/last user ID, page number and next-page flag kept in the COMMAREA extension CDEMO-CU00-INFO. Selecting a row with 'U' transfers (XCTL) to the user update program COUSR02C and 'D' to the user delete program COUSR03C, passing the user ID in CDEMO-CU00-USR-SELECTED. The program only reads USRSEC."
+ }
+}

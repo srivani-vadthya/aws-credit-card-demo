@@ -1,0 +1,40 @@
+# Worksheet DBUNLDGS (app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL)
+
+Lines: 366. Paragraphs: 15. Decision points: 9 (business candidates: 1).
+
+Fill `docs/_work/semantic/programs/DBUNLDGS.json`. Read the whole source; this list only indexes it.
+
+## Paragraphs
+
+| Paragraph | Lines | Performs | Performed by |
+|---|---|---|---|
+| MAIN-PARA | 164-179 | 1000-INITIALIZE, 2000-FIND-NEXT-AUTH-SUMMARY, 4000-FILE-CLOSE |  |
+| 1000-INITIALIZE | 182-194 |  | MAIN-PARA |
+| 1000-EXIT | 212-213 |  | MAIN-PARA |
+| 2000-FIND-NEXT-AUTH-SUMMARY | 216-257 | 3000-FIND-NEXT-AUTH-DTL, 3100-INSERT-PARENT-SEG-GSAM, 9999-ABEND | MAIN-PARA |
+| 2000-EXIT | 258-259 |  | MAIN-PARA |
+| 3000-FIND-NEXT-AUTH-DTL | 263-295 | 3200-INSERT-CHILD-SEG-GSAM, 9999-ABEND | 2000-FIND-NEXT-AUTH-SUMMARY |
+| 3000-EXIT | 296-297 |  | 2000-FIND-NEXT-AUTH-SUMMARY |
+| 3100-INSERT-PARENT-SEG-GSAM | 300-315 | 9999-ABEND | 2000-FIND-NEXT-AUTH-SUMMARY |
+| 3100-EXIT | 316-317 |  | 2000-FIND-NEXT-AUTH-SUMMARY |
+| 3200-INSERT-CHILD-SEG-GSAM | 319-334 | 9999-ABEND | 3000-FIND-NEXT-AUTH-DTL |
+| 3200-EXIT | 335-336 |  | 3000-FIND-NEXT-AUTH-DTL |
+| 4000-FILE-CLOSE | 338-339 |  | MAIN-PARA |
+| 4000-EXIT | 354-355 |  | MAIN-PARA |
+| 9999-ABEND | 357-363 |  | 2000-FIND-NEXT-AUTH-SUMMARY, 3000-FIND-NEXT-AUTH-DTL, 3100-INSERT-PARENT-SEG-GSAM, 3200-INSERT-CHILD-SEG-GSAM |
+| 9999-EXIT | 365-366 |  |  |
+
+## Decision points that look like business logic
+
+Each line below must fall inside a rule `source` range or a `no_rule_decisions` range.
+
+| Line | Paragraph | Type | Condition |
+|---|---|---|---|
+| 241 | 2000-FIND-NEXT-AUTH-SUMMARY | IF | `PA-ACCT-ID IS NUMERIC` |
+
+## Calculations
+
+- 234 (2000-FIND-NEXT-AUTH-SUMMARY): `ADD 1 TO WS-NO-SUMRY-READ`
+- 235 (2000-FIND-NEXT-AUTH-SUMMARY): `ADD 1 TO WS-AUTH-SMRY-PROC-CNT`
+- 278 (3000-FIND-NEXT-AUTH-DTL): `ADD 1 TO WS-NO-SUMRY-READ`
+- 279 (3000-FIND-NEXT-AUTH-DTL): `ADD 1 TO WS-AUTH-SMRY-PROC-CNT`

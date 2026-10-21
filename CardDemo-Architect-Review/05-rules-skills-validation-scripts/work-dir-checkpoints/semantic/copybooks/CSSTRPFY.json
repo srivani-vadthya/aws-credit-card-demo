@@ -1,0 +1,26 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "CSSTRPFY",
+ "evidence": [
+  "app/cpy/CSSTRPFY.cpy:17-82",
+  "app/cbl/COACTUPC.cbl:898-899",
+  "app/cbl/COACTUPC.cbl:4199-4200"
+ ],
+ "key_fields": [
+  {"name": "YYYY-STORE-PFKEY", "meaning": "Maps EIBAID to the CCARD-AID condition names of CVCRD01Y: Enter, Clear, PA1, PA2, PF1-PF12, and PF13-PF24 folded onto PF1-PF12.", "source": "app/cpy/CSSTRPFY.cpy:17-79"},
+  {"name": "YYYY-STORE-PFKEY-EXIT", "meaning": "Exit paragraph closing the PERFORM ... THRU range.", "source": "app/cpy/CSSTRPFY.cpy:80-82"}
+ ],
+ "observations": [
+  {"kind": "anomaly", "source": "app/cpy/CSSTRPFY.cpy:21-78", "text": "The EVALUATE has no WHEN OTHER: any other AID (for example a light-pen or Clear-partition key) leaves CCARD-AID unchanged from the INITIALIZE done by the caller (Inferred)."}
+ ],
+ "purpose": "Procedure-division copybook holding paragraph YYYY-STORE-PFKEY and its exit. It translates the CICS attention identifier EIBAID into CCARD-AID values, treating PF13-PF24 as PF1-PF12. COACTUPC copies it at the end of its procedure division and performs it in 0000-MAIN before deciding which keys are valid; the same copybook is used by the other card/account online programs.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CSSTRPFY.cpy"
+ ],
+ "source_sha256": [
+  "751bc1a625114a8660ee2172b70cdea135c259652d2305a2bfda25ff4cf34853"
+ ],
+ "status": "complete"
+}

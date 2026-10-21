@@ -1,0 +1,76 @@
+{
+ "schema": "program-semantics/1",
+ "program": "DBUNLDGS",
+ "source_path": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL",
+ "source_sha256": "13c409d1b14b52c4d334c9297aaa7dafa209901569f809127f3831d780722e33",
+ "batch": "B01",
+ "status": "complete",
+ "summary": {
+  "text": "DBUNLDGS is a batch IMS DL/I utility (entry DLITCBL with PCB masks PAUTBPCB, PASFLPCB and PADFLPCB; run by UNLDGSAM.JCL as DLI with PSB DLIGSAMP) that unloads the pending authorization database to two GSAM datasets. It reads every PAUTSUM0 summary root with unqualified GN calls and, for each summary with a numeric account id, inserts the summary into the summary GSAM PCB (PASFLPCB) and then reads every PAUTDTL1 child with GNP and inserts each into the detail GSAM PCB (PADFLPCB). It stops at end of database ('GB'); any other unexpected status displays diagnostics and ends with RETURN-CODE 16. The sequential-file output variant (OPFILE1/OPFILE2) is commented out.",
+  "evidence": [
+   "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:153-179",
+   "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:216-257",
+   "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:263-336"
+  ],
+  "confidence": "Confirmed"
+ },
+ "paragraphs": [
+  {"name": "MAIN-PARA", "lines": "164-179", "confidence": "Confirmed", "logic": "Entered via ENTRY 'DLITCBL' with three PCBs; performs 1000-INITIALIZE, repeats 2000-FIND-NEXT-AUTH-SUMMARY until WS-END-OF-ROOT-SEG = 'Y', performs 4000-FILE-CLOSE and GOBACKs."},
+  {"name": "1000-INITIALIZE", "lines": "182-194", "confidence": "Confirmed", "logic": "Accepts the current date and YYDDD day and displays a start banner with today's date. The SYSIN parameter accept and file opens are commented out."},
+  {"name": "1000-EXIT", "lines": "212-213", "confidence": "Confirmed", "logic": "Exit point of 1000-INITIALIZE (EXIT only)."},
+  {"name": "2000-FIND-NEXT-AUTH-SUMMARY", "lines": "216-257", "confidence": "Confirmed", "logic": "Calls CBLTDLI GN with ROOT-UNQUAL-SSA (PAUTSUM0) on PAUTBPCB. On blank status counts the read and, when PA-ACCT-ID is numeric, inserts the summary into the GSAM PCB and loops 3000-FIND-NEXT-AUTH-DTL until WS-END-OF-CHILD-SEG = 'Y'. Status 'GB' sets end of root segments; any other status displays 'AUTH SUM  GN FAILED' with the key feedback and performs 9999-ABEND."},
+  {"name": "2000-EXIT", "lines": "258-259", "confidence": "Confirmed", "logic": "Exit point of 2000-FIND-NEXT-AUTH-SUMMARY (EXIT only)."},
+  {"name": "3000-FIND-NEXT-AUTH-DTL", "lines": "263-295", "confidence": "Confirmed", "logic": "Calls CBLTDLI GNP with CHILD-UNQUAL-SSA (PAUTDTL1). On blank status counts it and inserts the detail into the detail GSAM PCB; 'GE' sets WS-END-OF-CHILD-SEG = 'Y'; any other status displays 'GNP CALL FAILED' and performs 9999-ABEND. Clears PAUT-PCB-STATUS afterwards."},
+  {"name": "3000-EXIT", "lines": "296-297", "confidence": "Confirmed", "logic": "Exit point of 3000-FIND-NEXT-AUTH-DTL (EXIT only)."},
+  {"name": "3100-INSERT-PARENT-SEG-GSAM", "lines": "300-315", "confidence": "Confirmed", "logic": "Calls CBLTDLI ISRT on PASFLPCB with PENDING-AUTH-SUMMARY; a non-blank status displays 'GSAM PARENT FAIL' and performs 9999-ABEND."},
+  {"name": "3100-EXIT", "lines": "316-317", "confidence": "Confirmed", "logic": "Exit point of 3100-INSERT-PARENT-SEG-GSAM (EXIT only)."},
+  {"name": "3200-INSERT-CHILD-SEG-GSAM", "lines": "319-334", "confidence": "Confirmed", "logic": "Calls CBLTDLI ISRT on PADFLPCB with PENDING-AUTH-DETAILS; a non-blank status displays 'GSAM PARENT FAIL' (same text as the parent insert) and performs 9999-ABEND."},
+  {"name": "3200-EXIT", "lines": "335-336", "confidence": "Confirmed", "logic": "Exit point of 3200-INSERT-CHILD-SEG-GSAM (EXIT only)."},
+  {"name": "4000-FILE-CLOSE", "lines": "338-339", "confidence": "Confirmed", "logic": "Displays 'CLOSING THE FILE'; the actual CLOSE statements are commented out (GSAM datasets are closed by IMS)."},
+  {"name": "4000-EXIT", "lines": "354-355", "confidence": "Confirmed", "logic": "Exit point of 4000-FILE-CLOSE (EXIT only)."},
+  {"name": "9999-ABEND", "lines": "357-363", "confidence": "Confirmed", "logic": "Displays 'DBUNLDGS ABENDING ...', sets RETURN-CODE 16 and GOBACKs."},
+  {"name": "9999-EXIT", "lines": "365-366", "confidence": "Confirmed", "logic": "Exit point of 9999-ABEND (EXIT only, not reached)."}
+ ],
+ "rules": [
+  {
+   "id": "BR-DBUNLDGS-001",
+   "category": "decision",
+   "statement": "Only pending authorization summaries whose account id (PA-ACCT-ID) is numeric are unloaded; for those, the summary and all its child details are written to the GSAM datasets. Summaries with a non-numeric account id and their details are skipped silently.",
+   "paragraph": "2000-FIND-NEXT-AUTH-SUMMARY",
+   "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:241-247",
+   "anchor": "IF PA-ACCT-ID IS NUMERIC",
+   "conditions": "PA-ACCT-ID IS NUMERIC (packed decimal validity)",
+   "outcome": "ISRT to PASFLPCB, then details ISRT to PADFLPCB.",
+   "data": ["PA-ACCT-ID"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-DBUNLDGS-002",
+   "category": "error-policy",
+   "statement": "The unload stops with return code 16 on any IMS status other than blank or 'GB' on the summary read, other than blank or 'GE' on the detail read, or any non-blank status on a GSAM insert.",
+   "paragraph": "2000-FIND-NEXT-AUTH-SUMMARY",
+   "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:253-256",
+   "anchor": "IF PAUT-PCB-STATUS NOT EQUAL TO  SPACES AND 'GB'",
+   "additional_sources": ["app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:290-294", "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:311-315", "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:330-334", "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:360-363"],
+   "conditions": "Unexpected PCB status",
+   "outcome": "DISPLAY diagnostics, RETURN-CODE 16, GOBACK.",
+   "data": ["PAUT-PCB-STATUS", "PASFL-PCB-STATUS", "PADFL-PCB-STATUS"],
+   "messages": ["AUTH SUM  GN FAILED  :", "GNP CALL FAILED  :", "GSAM PARENT FAIL :", "DBUNLDGS ABENDING ..."],
+   "confidence": "Confirmed"
+  }
+ ],
+ "existing_rules_reviewed": [],
+ "no_rule_decisions": [],
+ "no_business_rules_reason": null,
+ "observations": [
+  {"kind": "anomaly", "text": "Detail reads increment WS-NO-SUMRY-READ and WS-AUTH-SMRY-PROC-CNT instead of WS-NO-DTL-READ; none of the counters are displayed.", "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:278-279"},
+  {"kind": "anomaly", "text": "The child GSAM insert failure displays 'GSAM PARENT FAIL', the same text as the parent insert, making failures ambiguous.", "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:331"},
+  {"kind": "dead-code", "text": "Sequential OPFILE1/OPFILE2 definitions, opens, writes and closes are commented out; OPFIL1-REC/OPFIL2-REC and ROOT-SEG-KEY are still populated in working storage but never written. PRM-INFO, checkpoint id and expiry fields are unused copies from CBPAUP0C.", "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:53-56"},
+  {"kind": "anomaly", "text": "WS-PGMNAME is 'IMSUNLOD' rather than the program id DBUNLDGS.", "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:58"},
+  {"kind": "anomaly", "text": "The IF on line 253 has no END-IF and is closed by the paragraph period; behaviour is correct but fragile.", "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:253-256"}
+ ],
+ "sme_questions": [
+  {"question": "Can PAUTSUM0 roots with a non-numeric PA-ACCT-ID exist, and should they be reported rather than silently skipped?", "source": "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:241"}
+ ]
+}

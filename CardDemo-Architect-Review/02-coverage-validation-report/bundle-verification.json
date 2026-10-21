@@ -69,7 +69,7 @@
    "check": "Every relative Markdown link and anchor in the bundle resolves inside the bundle (templates excluded)", 
    "detail": [], 
    "id": "V5", 
-   "measured": "464 files, 10343 relative links, 0 broken", 
+   "measured": "508 files, 10343 relative links, 0 broken", 
    "status": "pass"
   }, 
   {
@@ -112,6 +112,18 @@
    "status": "pass"
   }, 
   {
+   "check": "Batch checkpoints: every COBOL program and layout belongs to a batch whose checkpoint shows it validated, with its semantic file", 
+   "detail": [
+    "10 batches; 44 programs and 44 copybooks in checkpoints; statuses {\"validated\": 88}", 
+    "COBOL programs in the snapshot 44, all in a batch: yes; layout pages 44, all in a batch: yes", 
+    "rule reviews outside batches: COBDATFT 3 reviewed, validated", 
+    "checkpoint timestamps record the latest batch_manager.py check run, not the original analysis dates (history: work-dir-scripts/progress.md)"
+   ], 
+   "id": "V11", 
+   "measured": "10 batches; 44 programs and 44 copybooks in checkpoints; statuses {\"validated\": 88}; COBOL programs in the snapshot 44, all in a batch: yes; layout pages 44, all in a batch: yes", 
+   "status": "pass"
+  }, 
+  {
    "check": "Identical files (informational; intended copies are explained in README.md)", 
    "detail": [
     "01-detailed-documentation/application-documentation/18-coverage/coverage-report.md; 02-coverage-validation-report/coverage-report.md", 
@@ -134,12 +146,12 @@
   }
  ], 
  "failed": 0, 
- "generated": "2026-10-20T05:07:10", 
+ "generated": "2026-10-20T21:59:08", 
  "metrics": {
   "layout_pages": 44, 
   "links": {
    "broken": 0, 
-   "files": 464, 
+   "files": 508, 
    "links": 10343
   }, 
   "markdown_pages": 420, 

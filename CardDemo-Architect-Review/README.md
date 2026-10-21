@@ -1,6 +1,6 @@
 # CardDemo legacy documentation POC - architect review package
 
-Repository commit `350c9d0`; application source in the working tree is not tracked by this git repository (app/, samples/ and scripts/ are untracked), so the commit does not identify it; the analysed version is identified by the inventory sha256 values, which every snapshot file still matches (V8). Documentation, reports and scripts include the uncommitted changes of the final review pass (see CHANGELOG.md). Pipeline validation run 2026-10-20T05:06:22; bundle verification run 2026-10-20T05:07:10 (13 checks, 0 failed, 1 warning(s)).
+Repository commit `fd6ea63`; application source in the working tree is not tracked by this git repository (app/, samples/ and scripts/ are untracked), so the commit does not identify it; the analysed version is identified by the inventory sha256 values, which every snapshot file still matches (V8). Documentation, reports and scripts include the uncommitted changes of the final review pass (see CHANGELOG.md). Pipeline validation run 2026-10-20T05:06:22; bundle verification run 2026-10-20T21:59:08 (14 checks, 0 failed, 1 warning(s)).
 
 ## 1. What this POC documents
 
@@ -23,7 +23,7 @@ Also inventoried and documented: CICS CSD resources, IMS DBD/PSB, DB2 DDL, contr
 
 1. **Discovery** (`mainframe-inventory-discovery` skill, `classify_inventory.py`, `scan_references.py`): every file classified with sha256 into `inventory.json`; COPY/INCLUDE/EXEC PGM/PROC references resolved or recorded as external-or-missing.
 2. **Structure extraction** (`extract_structure.py`, deterministic parser): divisions, paragraphs, statements, data items, EXEC CICS/SQL/DLI, JCL steps and DDs, CSD resources, copybook fields.
-3. **Semantic analysis** (AI-assisted, Claude in Cursor, guided by the rules and skills in folder 05): purpose, paragraph logic, business rules, SME questions, per program/copybook batch. `batch_manager.py` accepts a semantic file only when every parsed paragraph has a logic description, every rule cites an existing line range and a verbatim code anchor found inside that range, a program without rules states why, and the source sha256 still matches; per-batch checkpoints make the run resumable.
+3. **Semantic analysis** (AI-assisted, Claude in Cursor, guided by the rules and skills in folder 05): purpose, paragraph logic, business rules, SME questions, per program/copybook batch. `batch_manager.py` accepts a semantic file only when every parsed paragraph has a logic description, every rule cites an existing line range and a verbatim code anchor found inside that range, a program without rules states why, and the source sha256 still matches. The batch plan, per-batch checkpoints, worksheets and the accepted semantic files are in `05-rules-skills-validation-scripts/work-dir-checkpoints/` (checked by V11); the checkpoint timestamps are those of the latest `batch_manager.py check` run, and the dated history of the batch passes is in `work-dir-scripts/progress.md`.
 4. **Rendering** (`render_detail.py`, deterministic): all detailed pages from structure + validated semantics; `build_docx.py` and `build_combined_markdown.ps1` produce the Word and single-file copies.
 5. **Validation**: `coverage_validate.py` (33 measured criteria), `gap_report.py` (component status and gap register), `check_package.py` (links, placeholders, Sources sections), then this bundle's independent `verify_review_bundle.py`.
 
@@ -37,7 +37,7 @@ Rules applied throughout (folder 05, `cursor-rules/mainframe-doc-core.mdc`): eve
 | `02-coverage-validation-report/` | Pipeline coverage report and JSON, package check, inventory, and the independent bundle verification | [bundle-verification.md](02-coverage-validation-report/bundle-verification.md), [coverage-report.md](02-coverage-validation-report/coverage-report.md) |
 | `03-business-rules-and-traceability/` | Rule-to-source traceability (program, paragraph, lines, CICS transactions, JCL steps; online and batch flows), rules catalog, dependency pages, rules JSON | [14-cross-reference-traceability.md](03-business-rules-and-traceability/14-cross-reference-traceability.md) |
 | `04-gap-report/` | Gap register (one row per item with evidence, source, impact, status, owner, next action), gap report, narrative gaps register, gaps JSON | [gap-register.md](04-gap-report/gap-register.md) |
-| `05-rules-skills-validation-scripts/` | Cursor rules, the ten skills with templates and scripts, project profile, bundle and verification scripts, progress log | [docs-toolkit/README.md](05-rules-skills-validation-scripts/docs-toolkit/README.md) |
+| `05-rules-skills-validation-scripts/` | Cursor rules, the ten skills with templates and scripts, project profile, bundle and verification scripts, progress log, batch checkpoints and semantic analysis files (`work-dir-checkpoints/`) | [docs-toolkit/README.md](05-rules-skills-validation-scripts/docs-toolkit/README.md) |
 | `06-source-snapshot/` | Read-only copy of the in-scope source so every citation can be opened offline; FTP connection lines redacted | [REDACTIONS.md](06-source-snapshot/REDACTIONS.md) |
 | `CHANGELOG.md` | Changes made in the final review pass | [CHANGELOG.md](CHANGELOG.md) |
 
@@ -64,7 +64,7 @@ Report pages in folders 02-04 are copies of pages in `01-detailed-documentation/
 | Rule implementation citations | 658; 415 name a paragraph, of which 414 are confirmed by an independent label scan (1 start outside the named paragraph, 0 labels not found) | V4c |
 | Pipeline acceptance criteria | 33 of 33 pass | `coverage_validate.py` |
 | Package check | 420 documents; 0 issues | `check_package.py` |
-| Bundle links | 10343 relative links in 464 files; 0 broken | V5 |
+| Bundle links | 10343 relative links in 508 files; 0 broken | V5 |
 
 ### Count discrepancies explained
 
@@ -127,6 +127,7 @@ Report pages in folders 02-04 are copies of pages in `01-detailed-documentation/
 - Every statement, paragraph, decision point, EXEC command, data item, JCL step/DD and copybook field found by the parser appears on a page (pipeline criteria).
 - Every rule has a valid citation, a traceability row and a catalog anchor; named paragraphs exist in the source (V4); at acceptance each rule's verbatim code anchor was found inside its cited range (`batch_manager.py`).
 - Links resolve, no placeholders or template text remain, no compiled or temporary files, no FTP connection data (V5-V7, package check).
+- Every COBOL program and copybook layout belongs to an analysis batch whose checkpoint records it as validated, with its semantic file present (V11).
 
 **Not proven:**
 
@@ -134,7 +135,13 @@ Report pages in folders 02-04 are copies of pages in `01-detailed-documentation/
 - Business-level correctness of the 392 rules: they are AI-assisted interpretations of code, validated for structure, citations and code anchors, not for intent. 4 are Inferred.
 - Runtime behaviour: nothing was compiled or executed; CICS, IMS, DB2, MQ, Control-M and CA7 were not available. Dynamic targets and scheduler calendars are Inferred or Unverified.
 - Values of JCL symbolics and environment-specific dataset names, which are not in the repository.
+- The original order and dates of the batch analysis runs: checkpoints are rewritten by each `batch_manager.py check`, and `progress.md` is the agent's own log, not an independent record.
 - Field-level documentation of the 21 BMS symbolic-map copybooks: they have no layout pages (the BMS mapsets that generate them have screen pages; the pairing is Inferred from matching member names in app/bms and app/cpy-bms).
+
+**Known issues left as is** (no count or conclusion depends on them; fixing them means regenerating pages):
+
+- Citation warning (V4c): BR-BASE-COACTUPC-007: app/cpy/CSUTLDPY.cpy:273-321 starts outside paragraph EDIT-DATE-LE. The cited code is inside the range; the range starts before the named paragraph. Next action: confirm and narrow the range.
+- Empty table rows: 171 pages contain 182 all-blank table rows where a table has no entries (dataset, screen and Assembler program pages); the renderer writes a blank row instead of "None". Among them, the MVSWAIT page has an empty "Business rules implemented" table (`07-programs/MVSWAIT.md` line 73) and no sentence saying why: MVSWAIT is a 12-line Assembler wait routine called by COBSWAIT, outside the 44 COBOL programs, and has no rules. Next action: have `render_detail.py` write "None" and a reason, then regenerate.
 
 ## 6. Gaps requiring technical investigation or SME clarification
 
@@ -214,11 +221,12 @@ python 05-rules-skills-validation-scripts/work-dir-scripts/verify_review_bundle.
 | V4b | Every rule appears on the traceability page and links to an existing catalog anchor | pass | 392 rules, 392 rows, 0 missing, 0 bad anchors |
 | V4c | Named paragraphs exist in the cited source and contain the first cited line (independent Area A label scan) | warn | 415 named: 414 confirmed, 1 start outside the named paragraph, 0 labels not found |
 | V4d | Implementations without a named paragraph, by location (informational) | pass | Assembler source 3, PROCEDURE DIVISION, no paragraph named 160, before PROCEDURE DIVISION (data definitions) 55, copybook without PROCEDURE DIVISION (data definitions) 22, non-COBOL source (.ddl) 2, non-COBOL source (.jcl) 1 |
-| V5 | Every relative Markdown link and anchor in the bundle resolves inside the bundle (templates excluded) | pass | 464 files, 10343 relative links, 0 broken |
+| V5 | Every relative Markdown link and anchor in the bundle resolves inside the bundle (templates excluded) | pass | 508 files, 10343 relative links, 0 broken |
 | V6 | No compiled, temporary or empty files | pass | 0 junk, 0 empty |
 | V7 | FTP connection lines from app/jcl/FTPJCL.JCL are absent from the bundle (snapshot copy redacted) | pass | 3 connection lines checked in every text file and inside the DOCX; 0 findings; 3 redaction markers in the snapshot copy |
 | V8 | Snapshot files match the analysed sources (inventory sha256 and the repository) | pass | 241 files: 14 identical, 226 identical after CRLF->LF normalisation (the working tree was checked out with CRLF after analysis; line numbers are unaffected), 0 mismatches, 0 differ from repository, 1 redacted (expected to differ) |
 | V9 | Reports agree with each other (gap counts, register, criteria, package check, rule totals) | pass | 10 cross-checks |
+| V11 | Batch checkpoints: every COBOL program and layout belongs to a batch whose checkpoint shows it validated, with its semantic file | pass | 10 batches; 44 programs and 44 copybooks in checkpoints; statuses {"validated": 88}; COBOL programs in the snapshot 44, all in a batch: yes; layout pages 44, all in a batch: yes |
 | V10 | Identical files (informational; intended copies are explained in README.md) | pass | 13 groups of identical files |
 
 Details: [bundle-verification.md](02-coverage-validation-report/bundle-verification.md).

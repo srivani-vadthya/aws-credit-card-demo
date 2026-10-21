@@ -1,0 +1,332 @@
+{
+ "batch": "B09",
+ "existing_rules_reviewed": [],
+ "no_business_rules_reason": null,
+ "no_rule_decisions": [
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:309-321",
+   "reason": "Technical MQOPEN check for the error queue CARD.DEMO.ERROR: on success the handle is saved and ERR-QUEUE-OPEN set; on failure the error is only DISPLAYed (no queue is available to report to) and 8000-TERMINATION is performed. Infrastructure error handling, no business outcome beyond ending the transaction."
+  },
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:525-535",
+   "reason": "Technical check of the MQPUT to the error queue inside 9000-ERROR: failure is DISPLAYed and the transaction terminates. Error-reporting housekeeping."
+  },
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:540-548",
+   "reason": "Termination closes only the queues whose open flag is set (REPLY-QUEUE-OPEN for the input queue, RESP-QUEUE-OPEN for the reply queue, ERR-QUEUE-OPEN for the error queue) and then issues EXEC CICS RETURN. Resource cleanup, not a business rule."
+  },
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:563-572",
+   "reason": "MQCLOSE completion-code check for the input queue; failure only records codes in MQ-ERR-DISPLAY and re-performs 8000-TERMINATION (no error message is sent). Technical cleanup."
+  },
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:585-594",
+   "reason": "MQCLOSE completion-code check for the reply queue; failure only records codes and re-performs 8000-TERMINATION. Technical cleanup."
+  },
+  {
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:608-618",
+   "reason": "MQCLOSE completion-code check for the error queue; failure performs 9000-ERROR and 8000-TERMINATION. Technical cleanup."
+  }
+ ],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "In the CICS RETRIEVE failure branch the RESP2 value is moved to itself (WS-CICS-RESP2-CD TO WS-CICS-RESP2-CD) instead of to the display field WS-CICS-RESP2-CD-D, so the error text always shows RESP2 as zeros. The literal is also misspelt 'CICS RETREIVE'.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:200-206"
+  },
+  {
+   "kind": "anomaly",
+   "text": "A successful MQOPEN of the INPUT queue sets REPLY-QUEUE-OPEN, while the reply (output) queue open sets RESP-QUEUE-OPEN. Termination is consistent with this (REPLY-QUEUE-OPEN closes the input queue) but the flag names are swapped relative to their meaning.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:240-245"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The reply-to queue from the request descriptor (MQMD-REPLYTOQ) is captured into MQ-QUEUE-REPLY and SAVE-REPLY2Q but never used; all replies go to the hardcoded queue CARD.DEMO.REPLY.ACCT opened at start-up.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:366-371"
+  },
+  {
+   "kind": "hardcoded-value",
+   "text": "Queue names are hardcoded: reply queue 'CARD.DEMO.REPLY.ACCT' and error queue 'CARD.DEMO.ERROR'. The input queue name comes from the CICS trigger message (MQTM-QNAME).",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:196-198"
+  },
+  {
+   "kind": "hardcoded-value",
+   "text": "The account file is addressed by the literal CICS file name 'ACCTDAT ' (LIT-ACCTFILENAME).",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:115-116"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Possible endless recursion: a failing MQCLOSE in 5000/5100 performs 8000-TERMINATION again, and the open flags are never reset after a close, so 8000-TERMINATION would retry the same close. 5200-CLOSE-ERROR-QUEUE failure performs 9000-ERROR then 8000-TERMINATION, which again closes the error queue. Inferred from the PERFORM chain; actual behaviour depends on CICS RETURN being reached first.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:563-572"
+  },
+  {
+   "kind": "anomaly",
+   "text": "5100-CLOSE-OUTPUT-QUEUE reports INPUT-QUEUE-NAME as the failing queue although it closes the reply queue (REPLY-QUEUE-NAME / OUTPUT-QUEUE-HANDLE). 5000 and 5100 also never perform 9000-ERROR, so close failures are not reported anywhere.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:589-594"
+  },
+  {
+   "kind": "anomaly",
+   "text": "MQOPEN calls pass QMGR-HANDLE-CONN while MQGET/MQPUT/MQCLOSE pass MQ-HCONN. Both are initialised to 0 (the CICS default connection), so they behave the same, but two different connection-handle fields are used.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:232-237"
+  },
+  {
+   "kind": "anomaly",
+   "text": "For an unexpected ACCTDAT READ response the CICS RESP/RESP2 values are moved into MQ-APPL-CONDITION-CODE PIC 9(02) and MQ-APPL-REASON-CODE PIC 9(05), which can truncate them, and the queue reported is INPUT-QUEUE-NAME rather than the file. No reply is sent to the requester in this case.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:437-445"
+  },
+  {
+   "kind": "anomaly",
+   "text": "MQ-BUFFER is not cleared before MQGET and MQ-DATA-LENGTH is not checked; the whole 1000-byte buffer is copied to REQUEST-MSG-COPY. A request shorter than 15 bytes would leave bytes from the previous buffer contents (e.g. the last reply) in WS-FUNC/WS-KEY. Inferred: MQGET only overwrites the returned data length.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:363-373"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The reply copies both the request MsgId and CorrelId into MQMD-MSGID/MQMD-CORRELID. A requester correlating on CorrelId = request MsgId would only match if it set CorrelId itself.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:466-471"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Monetary fields are placed in the text reply as zoned-decimal PIC S9(10)V99 with no decimal point or separate sign (WS-ACCT-CURR-BAL etc.), so negative values appear with an overpunched last digit in an MQFMT-STRING message.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:138-141"
+  },
+  {
+   "kind": "unchecked-io",
+   "text": "WS-KEY is PIC 9(11) and is compared with ZEROES without a NUMERIC test; non-numeric request text in positions 5-15 gives undefined comparison results.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:393-393"
+  },
+  {
+   "kind": "dead-code",
+   "text": "MQ-MSG-COUNT is incremented per message but has no VALUE clause and is never read. WS-DATE-TIME is initialised but not used. The 'PERFORM SEND-LONG-TEXT' line is commented out.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:375-375"
+  },
+  {
+   "kind": "anomaly",
+   "text": "MQGET and the MQPUTs run under syncpoint and the program never issues SYNCPOINT ROLLBACK. On error 8000-TERMINATION issues EXEC CICS RETURN, which commits the unit of work (Inferred), so the failing request is consumed from the input queue rather than backed out.",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:538-550"
+  }
+ ],
+ "paragraphs": [
+  {
+   "confidence": "Confirmed",
+   "lines": "178-220",
+   "logic": "Clears INPUT-QUEUE-NAME, QMGR-NAME, QUEUE-MESSAGE and MQ-ERR-DISPLAY, opens the error queue, then issues EXEC CICS RETRIEVE into the MQ trigger message MQTM. On NORMAL it takes the input queue name from MQTM-QNAME and sets REPLY-QUEUE-NAME to 'CARD.DEMO.REPLY.ACCT'; otherwise it builds a 'RESP:' error text, performs 9000-ERROR and 8000-TERMINATION. It then opens the input and reply queues, gets the first request and performs 4000-MAIN-PROCESS until NO-MORE-MSGS, finishing with 8000-TERMINATION.",
+   "name": "1000-CONTROL"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "222-253",
+   "logic": "MQOPENs the queue named in INPUT-QUEUE-NAME with MQOO-INPUT-SHARED + MQOO-SAVE-ALL-CONTEXT + MQOO-FAIL-IF-QUIESCING. On MQCC-OK saves MQ-HOBJ in INPUT-QUEUE-HANDLE and sets REPLY-QUEUE-OPEN; otherwise records the codes with 'INP MQOPEN ERR', performs 9000-ERROR and 8000-TERMINATION.",
+   "name": "2300-OPEN-INPUT-QUEUE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "255-287",
+   "logic": "MQOPENs REPLY-QUEUE-NAME for output with MQOO-OUTPUT + MQOO-PASS-ALL-CONTEXT + MQOO-FAIL-IF-QUIESCING. On MQCC-OK saves the handle in OUTPUT-QUEUE-HANDLE and sets RESP-QUEUE-OPEN; otherwise records 'OUT MQOPEN ERR', performs 9000-ERROR and 8000-TERMINATION.",
+   "name": "2400-OPEN-OUTPUT-QUEUE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "289-322",
+   "logic": "Sets ERROR-QUEUE-NAME to 'CARD.DEMO.ERROR' and MQOPENs it for output. On MQCC-OK saves ERROR-QUEUE-HANDLE and sets ERR-QUEUE-OPEN; otherwise records 'ERR MQOPEN ERR', DISPLAYs MQ-ERR-DISPLAY and performs 8000-TERMINATION.",
+   "name": "2100-OPEN-ERROR-QUEUE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "325-331",
+   "logic": "Issues EXEC CICS SYNCPOINT to commit the previous message's get and reply, then performs 3000-GET-REQUEST for the next message.",
+   "name": "4000-MAIN-PROCESS"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "334-388",
+   "logic": "Prepares an MQGET on INPUT-QUEUE-HANDLE with a 5000 ms wait, 1000-byte buffer, no MsgId/CorrelId match and options SYNCPOINT + FAIL-IF-QUIESCING + CONVERT + WAIT, after initialising REQUEST-MSG-COPY. On MQCC-OK saves MsgId, CorrelId and ReplyToQ, copies the buffer into REQUEST-MSG-COPY (WS-FUNC, WS-KEY), performs 4000-PROCESS-REQUEST-REPLY and adds 1 to MQ-MSG-COUNT. If the reason is MQRC-NO-MSG-AVAILABLE it sets NO-MORE-MSGS; any other failure records 'INP MQGET ERR:', performs 9000-ERROR and 8000-TERMINATION.",
+   "name": "3000-GET-REQUEST"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "390-460",
+   "logic": "Clears REPLY-MESSAGE. If WS-FUNC = 'INQA' and WS-KEY > 0 it reads the ACCTDAT file by the 11-digit account id into ACCOUNT-RECORD: NORMAL formats WS-ACCT-RESPONSE with labelled account fields and puts it as the reply; NOTFND replies 'INVALID REQUEST PARAMETERS ACCT ID : ' + WS-KEY; any other response sends 'ERROR WHILE READING ACCTFILE' to the error queue and terminates. Otherwise it replies 'INVALID REQUEST PARAMETERS ACCT ID : ' + WS-KEY + 'FUNCTION : ' + WS-FUNC.",
+   "name": "4000-PROCESS-REQUEST-REPLY"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "462-499",
+   "logic": "Moves REPLY-MESSAGE into MQ-BUFFER (length 1000), sets MQMD-MSGID/MQMD-CORRELID from the saved request ids, format MQFMT-STRING and CCSID MQCCSI-Q-MGR, and MQPUTs to OUTPUT-QUEUE-HANDLE under syncpoint with default context. On failure records 'MQPUT ERR', performs 9000-ERROR and 8000-TERMINATION.",
+   "name": "4100-PUT-REPLY"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "501-537",
+   "logic": "Copies MQ-ERR-DISPLAY (paragraph, message, condition and reason codes, queue name) into a 1000-byte string message and MQPUTs it to ERROR-QUEUE-HANDLE under syncpoint. If that put fails it records 'MQPUT ERR', DISPLAYs MQ-ERR-DISPLAY and performs 8000-TERMINATION.",
+   "name": "9000-ERROR"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "538-550",
+   "logic": "Closes the input queue if REPLY-QUEUE-OPEN, the reply queue if RESP-QUEUE-OPEN and the error queue if ERR-QUEUE-OPEN, then issues EXEC CICS RETURN and GOBACK.",
+   "name": "8000-TERMINATION"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "552-573",
+   "logic": "MQCLOSEs INPUT-QUEUE-HANDLE with MQCO-NONE; on failure records 'MQCLOSE ERR' with INPUT-QUEUE-NAME and performs 8000-TERMINATION.",
+   "name": "5000-CLOSE-INPUT-QUEUE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "574-595",
+   "logic": "MQCLOSEs OUTPUT-QUEUE-HANDLE with MQCO-NONE; on failure records 'MQCLOSE ERR' (with INPUT-QUEUE-NAME as queue name) and performs 8000-TERMINATION.",
+   "name": "5100-CLOSE-OUTPUT-QUEUE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "597-619",
+   "logic": "MQCLOSEs ERROR-QUEUE-HANDLE with MQCO-NONE; on failure records 'MQCLOSE ERR' with ERROR-QUEUE-NAME, performs 9000-ERROR and 8000-TERMINATION.",
+   "name": "5200-CLOSE-ERROR-QUEUE"
+  }
+ ],
+ "program": "COACCT01",
+ "rules": [
+  {
+   "id": "BR-COACCT01-001",
+   "category": "validation",
+   "statement": "An account inquiry request is accepted only when the 4-character function code WS-FUNC equals 'INQA' and the 11-digit account number WS-KEY is greater than zero. Otherwise no file read happens and the reply is 'INVALID REQUEST PARAMETERS ACCT ID : ' followed by WS-KEY and 'FUNCTION : ' followed by WS-FUNC.",
+   "paragraph": "4000-PROCESS-REQUEST-REPLY",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:393-394",
+   "anchor": "IF WS-FUNC = 'INQA' AND WS-KEY > ZEROES",
+   "additional_sources": ["app/app-vsam-mq/cbl/COACCT01.cbl:447-455"],
+   "conditions": "WS-FUNC not 'INQA' or WS-KEY = 0",
+   "outcome": "Rejection text reply put on the reply queue; request is consumed.",
+   "data": ["WS-FUNC", "WS-KEY", "REQUEST-MSG-COPY"],
+   "messages": ["INVALID REQUEST PARAMETERS ", "ACCT ID : ", "FUNCTION : "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACCT01-002",
+   "category": "transformation",
+   "statement": "When the account is found in ACCTDAT, the reply is the fixed-layout text record WS-ACCT-RESPONSE: labels 'ACCOUNT ID : ', 'ACCOUNT STATUS : ', 'BALANCE : ', 'CREDIT LIMIT : ', 'CASH LIMIT : ', 'OPEN DATE : ', 'EXPR DATE : ', 'REIS DATE : ', 'CREDIT BAL : ', 'DEBIT BAL : ', 'GROUP ID : ' each followed by the matching ACCOUNT-RECORD field. ACCT-ADDR-ZIP is not returned.",
+   "paragraph": "4000-PROCESS-REQUEST-REPLY",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:406-427",
+   "anchor": "MOVE WS-ACCT-RESPONSE TO REPLY-MESSAGE",
+   "additional_sources": ["app/app-vsam-mq/cbl/COACCT01.cbl:130-169", "app/cpy/CVACT01Y.cpy:4-17"],
+   "conditions": "CICS READ of ACCTDAT by WS-KEY returns NORMAL",
+   "outcome": "Formatted account reply put on CARD.DEMO.REPLY.ACCT",
+   "data": ["ACCT-ID", "ACCT-ACTIVE-STATUS", "ACCT-CURR-BAL", "ACCT-CREDIT-LIMIT", "ACCT-CASH-CREDIT-LIMIT", "ACCT-OPEN-DATE", "ACCT-EXPIRAION-DATE", "ACCT-REISSUE-DATE", "ACCT-CURR-CYC-CREDIT", "ACCT-CURR-CYC-DEBIT", "ACCT-GROUP-ID"],
+   "messages": ["ACCOUNT ID : ", "ACCOUNT STATUS : ", "BALANCE : ", "CREDIT LIMIT : "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACCT01-003",
+   "category": "error-policy",
+   "statement": "If the requested account number is not on ACCTDAT (NOTFND), the requester receives the reply 'INVALID REQUEST PARAMETERS ACCT ID : ' followed by WS-KEY; processing continues with the next message.",
+   "paragraph": "4000-PROCESS-REQUEST-REPLY",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:428-434",
+   "anchor": "WHEN DFHRESP(NOTFND)",
+   "conditions": "CICS READ response NOTFND",
+   "outcome": "Not-found text reply put on the reply queue",
+   "data": ["WS-KEY", "REPLY-MESSAGE"],
+   "messages": ["INVALID REQUEST PARAMETERS ", "ACCT ID : "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACCT01-004",
+   "category": "error-policy",
+   "statement": "Any other ACCTDAT READ response (not NORMAL or NOTFND) sends an error record 'ERROR WHILE READING ACCTFILE' with the RESP/RESP2 values to the error queue and ends the transaction; no reply is sent to the requester and remaining messages are left for a later trigger.",
+   "paragraph": "4000-PROCESS-REQUEST-REPLY",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:437-445",
+   "anchor": "MOVE 'ERROR WHILE READING ACCTFILE'",
+   "conditions": "WS-RESP-CD other than NORMAL or NOTFND",
+   "outcome": "Error message on CARD.DEMO.ERROR, 8000-TERMINATION (CICS RETURN)",
+   "data": ["WS-RESP-CD", "WS-REAS-CD", "MQ-ERR-DISPLAY"],
+   "messages": ["ERROR WHILE READING ACCTFILE"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACCT01-005",
+   "category": "routing",
+   "statement": "Replies are always put on the fixed queue CARD.DEMO.REPLY.ACCT (not the request's ReplyToQ) with the reply MsgId and CorrelId copied from the request message, as an MQFMT-STRING message in the queue manager CCSID.",
+   "paragraph": "4100-PUT-REPLY",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:466-477",
+   "anchor": "MOVE SAVE-CORELID                 TO MQMD-CORRELID",
+   "additional_sources": ["app/app-vsam-mq/cbl/COACCT01.cbl:196-198"],
+   "conditions": "Every reply (success, not-found, invalid request)",
+   "outcome": "MQPUT to OUTPUT-QUEUE-HANDLE",
+   "data": ["SAVE-MSGID", "SAVE-CORELID", "REPLY-QUEUE-NAME", "MQMD-FORMAT"],
+   "messages": ["CARD.DEMO.REPLY.ACCT"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACCT01-006",
+   "category": "decision",
+   "statement": "The transaction drains the triggered input queue: it keeps getting messages (waiting up to 5 seconds each time) and commits with CICS SYNCPOINT after each one, stopping normally when MQGET returns MQRC-NO-MSG-AVAILABLE. Any other MQGET failure is reported as 'INP MQGET ERR:' on the error queue and ends the transaction.",
+   "paragraph": "3000-GET-REQUEST",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:363-387",
+   "anchor": "IF MQ-REASON-CODE  =  MQRC-NO-MSG-AVAILABLE",
+   "additional_sources": ["app/app-vsam-mq/cbl/COACCT01.cbl:337-338", "app/app-vsam-mq/cbl/COACCT01.cbl:325-331", "app/app-vsam-mq/cbl/COACCT01.cbl:214-216"],
+   "conditions": "MQ-CONDITION-CODE not MQCC-OK",
+   "outcome": "NO-MORE-MSGS set (normal end) or error report and termination",
+   "data": ["MQ-CONDITION-CODE", "MQ-REASON-CODE", "MQGMO-WAITINTERVAL", "NO-MORE-MSGS"],
+   "messages": ["INP MQGET ERR:"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACCT01-007",
+   "category": "error-policy",
+   "statement": "If the input queue or reply queue cannot be opened, or a reply cannot be put, the program writes an error record (paragraph text, condition code, reason code, queue name and 'INP MQOPEN ERR' / 'OUT MQOPEN ERR' / 'MQPUT ERR') to CARD.DEMO.ERROR and ends the transaction.",
+   "paragraph": "2300-OPEN-INPUT-QUEUE",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:240-252",
+   "anchor": "MOVE 'INP MQOPEN ERR'  TO MQ-APPL-RETURN-MESSAGE",
+   "additional_sources": ["app/app-vsam-mq/cbl/COACCT01.cbl:274-286", "app/app-vsam-mq/cbl/COACCT01.cbl:488-498"],
+   "conditions": "MQOPEN or MQPUT completion code other than MQCC-OK",
+   "outcome": "9000-ERROR then 8000-TERMINATION",
+   "data": ["MQ-CONDITION-CODE", "MQ-REASON-CODE", "MQ-ERR-DISPLAY"],
+   "messages": ["INP MQOPEN ERR", "OUT MQOPEN ERR", "MQPUT ERR"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACCT01-008",
+   "category": "error-policy",
+   "statement": "If the CICS trigger data cannot be retrieved (RETRIEVE response not NORMAL), the program reports 'CICS RETREIVE' with the RESP code to the error queue and ends without processing any request.",
+   "paragraph": "1000-CONTROL",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:195-210",
+   "anchor": "IF WS-CICS-RESP1-CD =  DFHRESP(NORMAL)",
+   "conditions": "EXEC CICS RETRIEVE INTO(MQTM) response not NORMAL",
+   "outcome": "9000-ERROR then 8000-TERMINATION",
+   "data": ["WS-CICS-RESP1-CD", "WS-CICS-RESP2-CD", "MQTM-QNAME"],
+   "messages": ["CICS RETREIVE", "RESP: "],
+   "confidence": "Confirmed"
+  }
+ ],
+ "schema": "program-semantics/1",
+ "sme_questions": [
+  {
+   "question": "Should replies honour the requester's MQMD-REPLYTOQ (captured in SAVE-REPLY2Q) instead of the fixed CARD.DEMO.REPLY.ACCT queue, and should the reply CorrelId be set to the request MsgId (the usual MQ request/reply convention) rather than copying both ids?",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:466-471"
+  },
+  {
+   "question": "When the ACCTDAT read fails with an unexpected response, the requester gets no reply and the request appears to be committed on CICS RETURN. Is this the intended policy, or should the unit of work be backed out (SYNCPOINT ROLLBACK) so the request is retried?",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:437-445"
+  },
+  {
+   "question": "What is the agreed request message layout (4-byte function 'INQA' + 11-digit zero-padded account id)? Is there a client specification, and should non-numeric account ids be rejected explicitly?",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:109-112"
+  },
+  {
+   "question": "Which CICS transaction and MQ process definition trigger COACCT01, and what is the input queue name supplied in MQTM-QNAME?",
+   "source": "app/app-vsam-mq/cbl/COACCT01.cbl:191-198"
+  }
+ ],
+ "source_path": "app/app-vsam-mq/cbl/COACCT01.cbl",
+ "source_sha256": "92776ed2801da1148839a9ed98b6537de4b41e0c7f050c8dcaae0d4e4ea543b5",
+ "status": "complete",
+ "summary": {
+  "confidence": "Confirmed",
+  "evidence": [
+   "app/app-vsam-mq/cbl/COACCT01.cbl:178-220",
+   "app/app-vsam-mq/cbl/COACCT01.cbl:334-388",
+   "app/app-vsam-mq/cbl/COACCT01.cbl:390-460",
+   "app/app-vsam-mq/cbl/COACCT01.cbl:462-499"
+  ],
+  "text": "COACCT01 is a CICS program started by an IBM MQ trigger; it retrieves the trigger message (MQTM) to learn the input queue name. It opens the error queue CARD.DEMO.ERROR, the triggered input queue and the fixed reply queue CARD.DEMO.REPLY.ACCT. It then reads request messages one at a time (5-second wait, under syncpoint) until the queue is empty, committing after each message. Each request carries a 4-character function code and an 11-digit account number; for function 'INQA' with a non-zero account it reads the VSAM account file ACCTDAT (layout CVACT01Y) and replies with a labelled text record of account status, balances, limits, dates and group id. Invalid requests and unknown accounts get an 'INVALID REQUEST PARAMETERS' text reply; MQ or file errors are written to the error queue and end the transaction."
+ }
+}

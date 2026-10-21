@@ -1,0 +1,80 @@
+{
+ "schema": "program-semantics/1",
+ "program": "CSUTLDTC",
+ "source_path": "app/cbl/CSUTLDTC.cbl",
+ "source_sha256": "58c165dcfc3927232c02c152c673e3dee551587b85e7fe56ca67325c980eebb6",
+ "batch": "B06",
+ "status": "complete",
+ "summary": {
+  "text": "CSUTLDTC is a called date-validation subprogram (no CICS or file I/O) that wraps the Language Environment callable service CEEDAYS. It receives a 10-byte date string, a 10-byte format mask (callers pass 'YYYY-MM-DD') and an 80-byte result area, converts the date and mask into the variable-length strings CEEDAYS expects and calls CEEDAYS to obtain a Lilian day number. It then returns in the result area the CEEDAYS severity (4 digits), the message number (4 digits) and a 15-character text such as 'Date is valid', 'Datevalue error' or 'Invalid month', plus the tested date and mask, and sets RETURN-CODE to the severity. The Lilian date itself is not returned. It is called by CORPT00C and COTRN02C, and the copybook CSUTLDPY also contains a CALL 'CSUTLDTC'.",
+  "evidence": [
+   "app/cbl/CSUTLDTC.cbl:24-80",
+   "app/cbl/CSUTLDTC.cbl:83-102",
+   "app/cbl/CSUTLDTC.cbl:103-151",
+   "app/cbl/CORPT00C.cbl:392-394",
+   "app/cbl/COTRN02C.cbl:393-393"
+  ],
+  "confidence": "Confirmed"
+ },
+ "paragraphs": [
+  {"name": "(PROCEDURE DIVISION entry)", "lines": "90-102", "confidence": "Confirmed", "logic": "Entry point with USING LS-DATE, LS-DATE-FORMAT, LS-RESULT. Initializes WS-MESSAGE, clears WS-DATE, performs A000-MAIN, then moves the 80-byte WS-MESSAGE to LS-RESULT, moves WS-SEVERITY-N to RETURN-CODE and returns with EXIT PROGRAM."},
+  {"name": "A000-MAIN", "lines": "103-151", "confidence": "Confirmed", "logic": "Builds the CEEDAYS variable-length inputs (length 10 plus text) from LS-DATE and LS-DATE-FORMAT, calls CEEDAYS with OUTPUT-LILLIAN and FEEDBACK-CODE, stores the feedback severity and message number in WS-SEVERITY-N/WS-MSG-NO-N, and maps the feedback token to a 15-character WS-RESULT text ('Date is valid', 'Insufficient', 'Datevalue error', 'Invalid Era', 'Unsupp. Range', 'Invalid month', 'Bad Pic String', 'Nonnumeric data', 'YearInEra is 0', else 'Date is invalid')."},
+  {"name": "A000-MAIN-EXIT", "lines": "152-154", "confidence": "Confirmed", "logic": "Exit paragraph for A000-MAIN; contains only EXIT."}
+ ],
+ "rules": [
+  {
+   "id": "BR-CSUTLDTC-001",
+   "category": "validation",
+   "statement": "A date is valid when the Language Environment service CEEDAYS can convert the supplied date string using the supplied format mask into a Lilian day number; the validity is expressed by the CEEDAYS feedback severity and message number.",
+   "paragraph": "A000-MAIN",
+   "source": "app/cbl/CSUTLDTC.cbl:105-124",
+   "anchor": "CALL \"CEEDAYS\" USING WS-DATE-TO-TEST, WS-DATE-FORMAT, OUTPUT-LILLIAN, FEEDBACK-CODE",
+   "conditions": "Any call",
+   "outcome": "WS-SEVERITY-N and WS-MSG-NO-N set from FEEDBACK-CODE",
+   "data": ["LS-DATE", "LS-DATE-FORMAT", "WS-DATE-TO-TEST", "WS-DATE-FORMAT", "OUTPUT-LILLIAN", "FEEDBACK-CODE"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CSUTLDTC-002",
+   "category": "transformation",
+   "statement": "The CEEDAYS feedback token is translated into a short result text: all-zero token -> 'Date is valid'; message 2507 -> 'Insufficient'; 2508 -> 'Datevalue error'; 2509 -> 'Invalid Era'; 2513 -> 'Unsupp. Range'; 2517 -> 'Invalid month'; 2518 -> 'Bad Pic String'; 2520 -> 'Nonnumeric data'; 2521 -> 'YearInEra is 0'; any other token -> 'Date is invalid'.",
+   "paragraph": "A000-MAIN",
+   "source": "app/cbl/CSUTLDTC.cbl:128-149",
+   "anchor": "WHEN FC-UNSUPP-RANGE MOVE 'Unsupp. Range ' TO WS-RESULT",
+   "additional_sources": ["app/cbl/CSUTLDTC.cbl:61-70"],
+   "conditions": "FEEDBACK-TOKEN-VALUE matches an 88-level",
+   "outcome": "WS-RESULT text",
+   "data": ["FEEDBACK-TOKEN-VALUE", "WS-RESULT"],
+   "messages": ["Date is valid", "Insufficient", "Datevalue error", "Invalid Era", "Unsupp. Range", "Invalid month", "Bad Pic String", "Nonnumeric data", "YearInEra is 0", "Date is invalid"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CSUTLDTC-003",
+   "category": "error-policy",
+   "statement": "The validation outcome is returned to the caller as an 80-byte result (severity in bytes 1-4, 'Mesg Code:', message number in bytes 16-19, result text, tested date and mask) and the CEEDAYS severity is also placed in RETURN-CODE; the subprogram never abends on an invalid date, leaving the decision to the caller.",
+   "paragraph": "(PROCEDURE DIVISION entry)",
+   "source": "app/cbl/CSUTLDTC.cbl:90-100",
+   "anchor": "MOVE WS-SEVERITY-N TO RETURN-CODE",
+   "additional_sources": ["app/cbl/CSUTLDTC.cbl:42-57"],
+   "conditions": "Every call",
+   "outcome": "LS-RESULT filled; RETURN-CODE = severity",
+   "data": ["WS-MESSAGE", "LS-RESULT", "RETURN-CODE", "WS-SEVERITY-N"],
+   "messages": [],
+   "confidence": "Confirmed"
+  }
+ ],
+ "existing_rules_reviewed": [],
+ "no_rule_decisions": [],
+ "no_business_rules_reason": null,
+ "observations": [
+  {"kind": "anomaly", "text": "The 88-level named FC-INVALID-DATE has the all-zero feedback value, which means success, and its branch sets 'Date is valid'; the name is misleading.", "source": "app/cbl/CSUTLDTC.cbl:62"},
+  {"kind": "anomaly", "text": "After the call, the whole WS-DATE-TO-TEST group (2-byte binary length followed by the text) is moved to WS-DATE PIC X(10), overwriting the date moved at 107; the 'TstDate:' part of the result therefore starts with the binary length bytes and loses the last two date characters (Inferred from 25-31, 52 and 122).", "source": "app/cbl/CSUTLDTC.cbl:122"},
+  {"kind": "anomaly", "text": "The Lilian day number OUTPUT-LILLIAN produced by CEEDAYS is discarded; callers only receive validity information.", "source": "app/cbl/CSUTLDTC.cbl:41"},
+  {"kind": "anomaly", "text": "Message numbers in the 88-level feedback tokens are encoded in hex (X'09CB'=2507 ... X'09D9'=2521, severity 3, facility 'CEE'); only these nine conditions get specific texts.", "source": "app/cbl/CSUTLDTC.cbl:60-80"},
+  {"kind": "dead-code", "text": "DISPLAY WS-MESSAGE and GOBACK are commented out; the program ends with EXIT PROGRAM.", "source": "app/cbl/CSUTLDTC.cbl:96-101"}
+ ],
+ "sme_questions": [
+  {"question": "Callers CORPT00C and COTRN02C accept message 2513 ('Unsupp. Range') as valid. Is this tolerance intentional, and what date range should actually be accepted?", "source": "app/cbl/CSUTLDTC.cbl:137-138"}
+ ]
+}

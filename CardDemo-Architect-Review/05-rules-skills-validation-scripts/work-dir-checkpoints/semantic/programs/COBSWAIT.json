@@ -1,0 +1,52 @@
+{
+ "schema": "program-semantics/1",
+ "program": "COBSWAIT",
+ "source_path": "app/cbl/COBSWAIT.cbl",
+ "source_sha256": "38a8d28235e58509776f5c8c74c113d5848a7ac68fab753c55ab887221c3b43a",
+ "batch": "B05",
+ "status": "complete",
+ "summary": {
+  "text": "COBSWAIT is a small batch utility that pauses a job step. It ACCEPTs an 8-character value from SYSIN, moves it to the binary field MVSWAIT-TIME and CALLs the external routine MVSWAIT with it, then ends with STOP RUN. The header comment states the value is a wait time in centiseconds. It has no files, no conditions and no business logic; it is executed by job step WAIT in app/jcl/WAITSTEP.jcl.",
+  "evidence": [
+   "app/cbl/COBSWAIT.cbl:1-6",
+   "app/cbl/COBSWAIT.cbl:28-40",
+   "app/jcl/WAITSTEP.jcl:22"
+  ],
+  "confidence": "Confirmed"
+ },
+ "paragraphs": [
+  {
+   "name": "(PROCEDURE DIVISION entry)",
+   "lines": "36-40",
+   "logic": "ACCEPTs PARM-VALUE (PIC X(8)) from SYSIN, moves it to MVSWAIT-TIME (PIC 9(8) COMP), CALLs 'MVSWAIT' USING MVSWAIT-TIME and issues STOP RUN.",
+   "confidence": "Confirmed"
+  }
+ ],
+ "rules": [],
+ "existing_rules_reviewed": [],
+ "no_rule_decisions": [],
+ "no_business_rules_reason": "COBSWAIT is a technical batch utility: it reads a wait duration from SYSIN and calls the external routine MVSWAIT to suspend the step. It contains no decisions, validations, calculations or data processing with business meaning.",
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "The SYSIN value is moved from alphanumeric PIC X(8) to numeric PIC 9(8) COMP without a NUMERIC check; a non-numeric or short (space-padded) value gives an unpredictable wait time.",
+   "source": "app/cbl/COBSWAIT.cbl:36-37"
+  },
+  {
+   "kind": "conflict",
+   "text": "The header says 'PARM IN CENTISECONDS' but the value is read from SYSIN, not from the EXEC PARM; the unit (centiseconds) is stated only in the comment and depends on MVSWAIT.",
+   "source": "app/cbl/COBSWAIT.cbl:5"
+  },
+  {
+   "kind": "anomaly",
+   "text": "MVSWAIT is an external called routine with no source in the repository (external-or-missing).",
+   "source": "app/cbl/COBSWAIT.cbl:38"
+  }
+ ],
+ "sme_questions": [
+  {
+   "question": "Where does MVSWAIT come from (site or vendor load library) and what unit does it expect for MVSWAIT-TIME?",
+   "source": "app/cbl/COBSWAIT.cbl:38"
+  }
+ ]
+}

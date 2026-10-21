@@ -1,0 +1,232 @@
+{
+ "batch": "B07", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Defensive default of the XCTL target to COSGN00C when CDEMO-TO-PROGRAM is blank.", 
+   "source": "app/cbl/COUSR01C.cbl:167-169"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "security", 
+   "source": "app/cbl/COUSR01C.cbl:157", 
+   "text": "Passwords are moved from the screen to SEC-USR-PWD and written in clear text; no hashing or strength rule is applied."
+  }, 
+  {
+   "kind": "security", 
+   "source": "app/cbl/COUSR01C.cbl:78-104", 
+   "text": "The program does not check that the signed-on user is an administrator (CDEMO-USER-TYPE is not referenced); access control relies on navigation from COADM01C (Inferred from PF3 target)."
+  }, 
+  {
+   "kind": "conflict", 
+   "source": "app/cbl/COUSR01C.cbl:142-147", 
+   "text": "The header says the program adds a 'Regular/Admin user', but USRTYPEI is only checked for non-blank; any character is stored as SEC-USR-TYPE (the COMMAREA 88-levels recognise only 'A' and 'U', app/cpy/COCOM01Y.cpy)."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/cbl/COUSR01C.cbl:172-173", 
+   "text": "Commented-out moves of WS-USER-ID / SEC-USR-TYPE to the COMMAREA and a commented-out DISPLAY of RESP/REAS."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/COUSR01C.cbl:203-209", 
+   "text": "RECEIVE MAP response codes are captured but never tested."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/COUSR01C.cbl:36-39", 
+   "text": "File 'USRSEC', transaction 'CU01', programs COSGN00C and COADM01C are literals."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "71-110", 
+   "logic": "Resets the error flag and message. EIBCALEN = 0 XCTLs to COSGN00C. Otherwise loads CARDDEMO-COMMAREA; on first entry sets re-enter, clears the map and sends it with the cursor on first name. On re-entry receives the map and dispatches on EIBAID: Enter (PROCESS-ENTER-KEY), PF3 (XCTL to COADM01C), PF4 (clear), other keys show CCDA-MSG-INVALID-KEY. Ends with CICS RETURN TRANSID CU01.", 
+   "name": "MAIN-PARA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "115-160", 
+   "logic": "Checks in order that FNAMEI, LNAMEI, USERIDI, PASSWDI and USRTYPEI are not blank; the first blank field sets the error flag, its 'can NOT be empty' message and cursor, and sends the screen. If all are present, moves them to SEC-USR-ID, SEC-USR-FNAME, SEC-USR-LNAME, SEC-USR-PWD, SEC-USR-TYPE and performs WRITE-USER-SEC-FILE.", 
+   "name": "PROCESS-ENTER-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "165-178", 
+   "logic": "Defaults CDEMO-TO-PROGRAM to COSGN00C when blank, sets FROM tranid/program to CU01/COUSR01C, resets CDEMO-PGM-CONTEXT and XCTLs to CDEMO-TO-PROGRAM (moves of user ID/type into the COMMAREA are commented out).", 
+   "name": "RETURN-TO-PREV-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "184-196", 
+   "logic": "Fills the header, moves WS-MESSAGE to ERRMSGO and sends map COUSR1A with ERASE and CURSOR.", 
+   "name": "SEND-USRADD-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "201-209", 
+   "logic": "Receives map COUSR1A into COUSR1AI with RESP/RESP2; the response is not tested.", 
+   "name": "RECEIVE-USRADD-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "214-233", 
+   "logic": "Moves FUNCTION CURRENT-DATE to WS-CURDATE-DATA, CCDA-TITLE01/CCDA-TITLE02 to TITLE01O/TITLE02O, WS-TRANID to TRNNAMEO and WS-PGMNAME to PGMNAMEO of COUSR1AO; rebuilds the date as WS-CURDATE-MM-DD-YY (MM/DD/YY from WS-CURDATE-MONTH, WS-CURDATE-DAY, WS-CURDATE-YEAR(3:2)) into CURDATEO and the time as WS-CURTIME-HH-MM-SS into CURTIMEO.", 
+   "name": "POPULATE-HEADER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "238-274", 
+   "logic": "Issues CICS WRITE of SEC-USER-DATA to USRSEC keyed by SEC-USR-ID. NORMAL clears the input fields and shows 'User <id> has been added ...' in green; DUPKEY/DUPREC sets the error flag with 'User ID already exist...'; other responses set the error flag with 'Unable to Add User...'.", 
+   "name": "WRITE-USER-SEC-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "279-282", 
+   "logic": "Performs INITIALIZE-ALL-FIELDS and sends the screen.", 
+   "name": "CLEAR-CURRENT-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "287-295", 
+   "logic": "Positions the cursor on first name and moves SPACES to user ID, first name, last name, password, user type and WS-MESSAGE.", 
+   "name": "INITIALIZE-ALL-FIELDS"
+  }
+ ], 
+ "program": "COUSR01C", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/cbl/COUSR01C.cbl:167-177"
+   ], 
+   "anchor": "IF EIBCALEN = 0", 
+   "category": "routing", 
+   "conditions": "EIBCALEN = 0", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBCALEN", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COUSR01C-001", 
+   "messages": [], 
+   "outcome": "XCTL COSGN00C.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COUSR01C.cbl:78-80", 
+   "statement": "When started without a COMMAREA (EIBCALEN = 0) the user is sent to the sign-on program COSGN00C."
+  }, 
+  {
+   "anchor": "MOVE 'COADM01C' TO CDEMO-TO-PROGRAM", 
+   "category": "routing", 
+   "conditions": "CDEMO-PGM-REENTER and EIBAID", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBAID", 
+    "CDEMO-TO-PROGRAM", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR01C-002", 
+   "messages": [
+    "Invalid key pressed. Please see below..."
+   ], 
+   "outcome": "DFHENTER -> PROCESS-ENTER-KEY; DFHPF3 -> XCTL COADM01C; DFHPF4 -> CLEAR-CURRENT-SCREEN; other -> WS-ERR-FLG 'Y', CCDA-MSG-INVALID-KEY.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COUSR01C.cbl:90-103", 
+   "statement": "On re-entry the attention key decides the action: Enter validates and adds the user, PF3 returns to the admin menu COADM01C, PF4 clears the screen, any other key shows the invalid-key message."
+  }, 
+  {
+   "anchor": "WHEN FNAMEI OF COUSR1AI = SPACES OR LOW-VALUES", 
+   "category": "validation", 
+   "conditions": "FNAMEI, LNAMEI, USERIDI, PASSWDI, USRTYPEI = SPACES or LOW-VALUES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "FNAMEI", 
+    "LNAMEI", 
+    "USERIDI", 
+    "PASSWDI", 
+    "USRTYPEI", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR01C-003", 
+   "messages": [
+    "First Name can NOT be empty...", 
+    "Last Name can NOT be empty...", 
+    "User ID can NOT be empty...", 
+    "Password can NOT be empty...", 
+    "User Type can NOT be empty..."
+   ], 
+   "outcome": "WS-ERR-FLG 'Y', message for the first blank field, cursor on that field, screen sent; no write.", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COUSR01C.cbl:117-151", 
+   "statement": "To add a user, first name, last name, user ID, password and user type are all mandatory. They are checked in that order and only the first missing field is reported; no format or value checks are applied (e.g. user type is not restricted to 'A' or 'U')."
+  }, 
+  {
+   "anchor": "MOVE PASSWDI  OF COUSR1AI TO SEC-USR-PWD", 
+   "category": "transformation", 
+   "conditions": "All mandatory fields present", 
+   "confidence": "Confirmed", 
+   "data": [
+    "SEC-USR-ID", 
+    "SEC-USR-FNAME", 
+    "SEC-USR-LNAME", 
+    "SEC-USR-PWD", 
+    "SEC-USR-TYPE"
+   ], 
+   "id": "BR-COUSR01C-004", 
+   "messages": [], 
+   "outcome": "SEC-USER-DATA populated and WRITE-USER-SEC-FILE performed.", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COUSR01C.cbl:153-160", 
+   "statement": "A new user security record is built directly from the screen: user ID, first name, last name, password (stored as entered, in clear text) and user type."
+  }, 
+  {
+   "anchor": "'User ID already exist...'", 
+   "category": "data-integrity", 
+   "conditions": "WS-RESP-CD after WRITE USRSEC", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "SEC-USR-ID", 
+    "WS-ERR-FLG", 
+    "ERRMSGC"
+   ], 
+   "id": "BR-COUSR01C-005", 
+   "messages": [
+    "User ID already exist...", 
+    "Unable to Add User...", 
+    " has been added ..."
+   ], 
+   "outcome": "NORMAL: fields cleared, green 'User <id> has been added ...'. DUPKEY/DUPREC: WS-ERR-FLG 'Y', 'User ID already exist...'. Other: WS-ERR-FLG 'Y', 'Unable to Add User...'.", 
+   "paragraph": "WRITE-USER-SEC-FILE", 
+   "source": "app/cbl/COUSR01C.cbl:250-274", 
+   "statement": "User IDs must be unique: the add is rejected when a record with the same user ID already exists in USRSEC. On success the screen is cleared and a confirmation naming the user is shown; any other write failure is reported as unable to add."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Which user type values are valid (only 'A' admin and 'U' regular?) and should COUSR01C reject other values?", 
+   "source": "app/cbl/COUSR01C.cbl:142-147"
+  }, 
+  {
+   "question": "Are there password rules (length, complexity, encryption) that the add function should enforce?", 
+   "source": "app/cbl/COUSR01C.cbl:136-141"
+  }
+ ], 
+ "source_path": "app/cbl/COUSR01C.cbl", 
+ "source_sha256": "aa131b1e3382dc6d101b42f1c97d4fb0c2fdd706819ed9f9a0187c82b30f3019", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/COUSR01C.cbl:1-5", 
+   "app/cbl/COUSR01C.cbl:35-39", 
+   "app/cbl/COUSR01C.cbl:78-110", 
+   "app/cbl/COUSR01C.cbl:115-160", 
+   "app/cbl/COUSR01C.cbl:238-274"
+  ], 
+  "text": "COUSR01C is a pseudo-conversational CICS COBOL program (transaction CU01, map COUSR1A in mapset COUSR01) that adds a new user record to the USRSEC VSAM user security file. Without a COMMAREA it transfers to sign-on (COSGN00C); on first entry it shows an empty add screen. On Enter it requires first name, last name, user ID, password and user type (checked in that order, first missing field reported), builds SEC-USER-DATA from the screen and issues CICS WRITE keyed on SEC-USR-ID. Success clears the screen and shows 'User <id> has been added ...' in green; a duplicate key shows 'User ID already exist...'. PF3 returns to the admin menu COADM01C and PF4 clears the screen."
+ }
+}

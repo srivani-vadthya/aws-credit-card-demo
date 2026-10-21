@@ -1,0 +1,434 @@
+{
+ "batch": "B05", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COBIL00C.cbl:210-235", 
+   "text": "Inside the CONF-PAY-YES block the error flag is not re-tested between steps: if READ-CXACAIX-FILE, STARTBR or READPREV fails, the error screen is sent but the program still builds and writes the transaction (with a stale/unset XREF-CARD-NUM) and updates the account, sending the screen again."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COBIL00C.cbl:233-235", 
+   "text": "The transaction is written before the account is rewritten and there is no SYNCPOINT ROLLBACK on failure: if the REWRITE fails the payment transaction remains but the balance is unchanged. The success message is also sent before the rewrite."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COBIL00C.cbl:212-218", 
+   "text": "Transaction-id generation by 'read last + 1' is not serialised; two concurrent payments can compute the same id, the second getting 'Tran ID already exist...'. It also assumes all TRAN-IDs (PIC X(16)) are numeric."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COBIL00C.cbl:170-171", 
+   "text": "ACTIDINI is moved to numeric ACCT-ID PIC 9(11) and XREF-ACCT-ID without a NUMERIC check."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COBIL00C.cbl:116-122", 
+   "text": "On first entry with a pre-selected id, PROCESS-ENTER-KEY sends the screen and MAIN-PARA sends it again; the balance display at 192-193 runs even after the N/n branch already cleared and sent the screen."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/COBIL00C.cbl:501-505", 
+   "text": "ENDBR response is not checked and RECEIVE MAP RESP/RESP2 are not tested; I/O errors are DISPLAYed to the CICS log only."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/COBIL00C.cbl:220-229", 
+   "text": "Payment transaction constants are hard-coded: type '02', category 2, source 'POS TERM', merchant id 999999999, merchant name 'BILL PAYMENT', city/zip 'N/A'."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COBIL00C.cbl:63-72", 
+   "text": "CDEMO-CB00-INFO (first/last tran id, page number, next-page flag, selection) is appended to the shared commarea but only CDEMO-CB00-TRN-SELECTED is used, and no program in app/cbl sets it; WS-USR-MODIFIED and paging fields are unused."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "99-149", 
+   "logic": "Resets error and modified flags and the message. With EIBCALEN = 0 it sets CDEMO-TO-PROGRAM='COSGN00C' and transfers there. Otherwise it copies DFHCOMMAREA into CARDDEMO-COMMAREA (which includes CDEMO-CB00-INFO); on first entry it sets the re-enter flag, clears the map, pre-fills ACTIDINI from CDEMO-CB00-TRN-SELECTED when present and processes it, then sends the screen. On re-entry it receives the map: ENTER performs PROCESS-ENTER-KEY, PF3 returns to CDEMO-FROM-PROGRAM (default COMEN01C), PF4 clears the screen, other keys show CCDA-MSG-INVALID-KEY. Ends with CICS RETURN TRANSID('CB00').", 
+   "name": "MAIN-PARA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "154-244", 
+   "logic": "Requires a non-blank ACTIDINI ('Acct ID can NOT be empty...'). Moves it to ACCT-ID and XREF-ACCT-ID, then evaluates CONFIRMI: Y/y sets CONF-PAY-YES and reads the account; N/n clears the screen; blank reads the account; anything else gives 'Invalid value. Valid values are (Y/N)...'. Shows the balance in CURBALI; rejects a balance <= 0 with 'You have nothing to pay...'. If confirmed it reads CXACAIX, finds the highest TRAN-ID via STARTBR/READPREV/ENDBR, adds 1, builds and writes the payment TRAN-RECORD for the full ACCT-CURR-BAL, subtracts TRAN-AMT from ACCT-CURR-BAL and rewrites the account; if not confirmed it prompts 'Confirm to make a bill payment...'. Finally sends the screen.", 
+   "name": "PROCESS-ENTER-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "249-267", 
+   "logic": "Gets ABSTIME via EXEC CICS ASKTIME, formats date YYYY-MM-DD and time HH:MM:SS with FORMATTIME, and assembles WS-TIMESTAMP 'YYYY-MM-DD HH:MM:SS.000000' with zero microseconds.", 
+   "name": "GET-CURRENT-TIMESTAMP"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "273-284", 
+   "logic": "Defaults CDEMO-TO-PROGRAM to 'COSGN00C' when blank, stamps CDEMO-FROM-TRANID='CB00', CDEMO-FROM-PROGRAM='COBIL00C' and context 0, then XCTLs to CDEMO-TO-PROGRAM with the commarea.", 
+   "name": "RETURN-TO-PREV-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "289-301", 
+   "logic": "Performs POPULATE-HEADER-INFO, moves WS-MESSAGE to ERRMSGO and sends map COBIL0A (mapset COBIL00) with ERASE and CURSOR.", 
+   "name": "SEND-BILLPAY-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "306-314", 
+   "logic": "Receives map COBIL0A into COBIL0AI with RESP/RESP2, which are not tested.", 
+   "name": "RECEIVE-BILLPAY-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "319-338", 
+   "logic": "Moves FUNCTION CURRENT-DATE to WS-CURDATE-DATA, CCDA-TITLE01/CCDA-TITLE02 to TITLE01O/TITLE02O, WS-TRANID to TRNNAMEO and WS-PGMNAME to PGMNAMEO of COBIL0AO; rebuilds the date as WS-CURDATE-MM-DD-YY (MM/DD/YY from WS-CURDATE-MONTH, WS-CURDATE-DAY, WS-CURDATE-YEAR(3:2)) into CURDATEO and the time as WS-CURTIME-HH-MM-SS into CURTIMEO.", 
+   "name": "POPULATE-HEADER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "343-372", 
+   "logic": "Reads ACCTDAT with UPDATE keyed by ACCT-ID into ACCOUNT-RECORD. NOTFND sets the error flag and shows 'Account ID NOT found...'; other errors DISPLAY RESP/REAS and show 'Unable to lookup Account...'.", 
+   "name": "READ-ACCTDAT-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "377-403", 
+   "logic": "Rewrites ACCOUNT-RECORD to ACCTDAT. NOTFND shows 'Account ID NOT found...'; other errors DISPLAY RESP/REAS and show 'Unable to Update Account...'.", 
+   "name": "UPDATE-ACCTDAT-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "408-436", 
+   "logic": "Reads CXACAIX (card xref by account alternate index) keyed by XREF-ACCT-ID into CARD-XREF-RECORD. NOTFND shows 'Account ID NOT found...'; other errors show 'Unable to lookup XREF AIX file...'.", 
+   "name": "READ-CXACAIX-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "441-467", 
+   "logic": "Starts a browse of TRANSACT at TRAN-ID (set to HIGH-VALUES by the caller). NOTFND shows 'Transaction ID NOT found...'; other errors show 'Unable to lookup Transaction...'.", 
+   "name": "STARTBR-TRANSACT-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "472-496", 
+   "logic": "Reads the previous (last) TRANSACT record into TRAN-RECORD. ENDFILE (empty file) sets TRAN-ID to zeros; other errors show 'Unable to lookup Transaction...'.", 
+   "name": "READPREV-TRANSACT-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "501-505", 
+   "logic": "Ends the TRANSACT browse (EXEC CICS ENDBR) without response checking.", 
+   "name": "ENDBR-TRANSACT-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "510-547", 
+   "logic": "Writes TRAN-RECORD to TRANSACT keyed by TRAN-ID. NORMAL clears the input fields and shows green 'Payment successful.  Your Transaction ID is <id>.'; DUPKEY/DUPREC shows 'Tran ID already exist...'; other errors show 'Unable to Add Bill pay Transaction...'.", 
+   "name": "WRITE-TRANSACT-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "552-555", 
+   "logic": "Performs INITIALIZE-ALL-FIELDS and sends the bill-payment screen.", 
+   "name": "CLEAR-CURRENT-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "560-566", 
+   "logic": "Puts the cursor on ACTIDIN and blanks ACTIDINI, CURBALI, CONFIRMI and WS-MESSAGE.", 
+   "name": "INITIALIZE-ALL-FIELDS"
+  }
+ ], 
+ "program": "COBIL00C", 
+ "rules": [
+  {
+   "anchor": "MOVE CDEMO-CB00-TRN-SELECTED TO", 
+   "category": "decision", 
+   "conditions": "First entry (not CDEMO-PGM-REENTER) and CDEMO-CB00-TRN-SELECTED not blank", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-CB00-TRN-SELECTED", 
+    "ACTIDINI"
+   ], 
+   "id": "BR-COBIL00C-001", 
+   "messages": [], 
+   "outcome": "ACTIDINI pre-filled and PROCESS-ENTER-KEY performed", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COBIL00C.cbl:116-121", 
+   "statement": "On first entry, if the commarea carries a pre-selected value in CDEMO-CB00-TRN-SELECTED (not spaces and not low-values), it is used as the account id and processed immediately as if ENTER had been pressed (account read and balance shown with confirmation prompt)."
+  }, 
+  {
+   "additional_sources": [
+    "app/cpy/CSMSG01Y.cpy:20-21"
+   ], 
+   "anchor": "MOVE 'COMEN01C' TO CDEMO-TO-PROGRAM", 
+   "category": "routing", 
+   "conditions": "Re-entry with EIBAID = DFHPF3 / DFHPF4 / other", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBAID", 
+    "CDEMO-FROM-PROGRAM", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COBIL00C-002", 
+   "messages": [
+    "Invalid key pressed. Please see below..."
+   ], 
+   "outcome": "XCTL to previous program / screen cleared / invalid-key message", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COBIL00C.cbl:128-141", 
+   "statement": "On the bill-payment screen PF3 returns to the program recorded in CDEMO-FROM-PROGRAM, or to the main menu COMEN01C when it is blank; PF4 clears the account, balance and confirmation fields; any other key except ENTER redisplays the screen with 'Invalid key pressed. Please see below...'."
+  }, 
+  {
+   "anchor": "MOVE 'Acct ID can NOT be empty...' TO", 
+   "category": "validation", 
+   "conditions": "ACTIDINI = SPACES or LOW-VALUES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACTIDINI"
+   ], 
+   "id": "BR-COBIL00C-003", 
+   "messages": [
+    "Acct ID can NOT be empty..."
+   ], 
+   "outcome": "Error flag set, message displayed", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COBIL00C.cbl:158-167", 
+   "statement": "The account id is mandatory for a bill payment: when ACTIDINI is spaces or low-values the screen is redisplayed with 'Acct ID can NOT be empty...' and nothing is read. No numeric or length check is made on the account id before it is moved to the numeric key ACCT-ID."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COBIL00C.cbl:236-239"
+   ], 
+   "anchor": "MOVE 'Invalid value. Valid values are (Y/N)...'", 
+   "category": "decision", 
+   "conditions": "CONFIRMI value", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CONFIRMI", 
+    "WS-CONF-PAY-FLG"
+   ], 
+   "id": "BR-COBIL00C-004", 
+   "messages": [
+    "Invalid value. Valid values are (Y/N)...", 
+    "Confirm to make a bill payment..."
+   ], 
+   "outcome": "Pay / cancel / show balance and prompt / reject", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COBIL00C.cbl:173-191", 
+   "statement": "The confirmation field drives the payment: 'Y' or 'y' authorises the payment (account read for update and payment processed); 'N' or 'n' cancels and clears the screen; blank or low-values only looks up the account and shows its balance with the prompt 'Confirm to make a bill payment...'; any other value is rejected with 'Invalid value. Valid values are (Y/N)...'."
+  }, 
+  {
+   "anchor": "IF ACCT-CURR-BAL <= ZEROS AND", 
+   "category": "validation", 
+   "conditions": "ACCT-CURR-BAL <= 0 and account id present and no earlier error", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACCT-CURR-BAL"
+   ], 
+   "id": "BR-COBIL00C-005", 
+   "messages": [
+    "You have nothing to pay..."
+   ], 
+   "outcome": "Error flag set, message displayed", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COBIL00C.cbl:197-205", 
+   "statement": "A bill payment is refused when the account's current balance is zero or negative: the screen shows 'You have nothing to pay...' and no transaction is written."
+  }, 
+  {
+   "anchor": "IF CONF-PAY-YES", 
+   "category": "decision", 
+   "conditions": "NOT ERR-FLG-ON and CONF-PAY-YES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-CONF-PAY-FLG", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COBIL00C-006", 
+   "messages": [
+    "Confirm to make a bill payment..."
+   ], 
+   "outcome": "Payment transaction written and account updated, or confirmation prompt", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COBIL00C.cbl:208-243", 
+   "statement": "The payment is executed only when the user confirmed with Y (CONF-PAY-YES) and no earlier error occurred; otherwise the balance is displayed with the prompt 'Confirm to make a bill payment...'."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COBIL00C.cbl:483-488"
+   ], 
+   "anchor": "ADD 1 TO WS-TRAN-ID-NUM", 
+   "category": "calculation", 
+   "conditions": "Payment confirmed", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TRAN-ID", 
+    "WS-TRAN-ID-NUM"
+   ], 
+   "id": "BR-COBIL00C-007", 
+   "messages": [], 
+   "outcome": "TRAN-ID = last TRAN-ID + 1", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COBIL00C.cbl:212-219", 
+   "statement": "The new transaction id is the highest existing TRAN-ID in TRANSACT plus 1: the program starts a browse at HIGH-VALUES, reads the previous (last) record, ends the browse and adds 1 to its id as a 16-digit number. If the file is empty (ENDFILE) the id starts from 0, giving 1."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COBIL00C.cbl:249-267"
+   ], 
+   "anchor": "MOVE 'BILL PAYMENT - ONLINE' TO TRAN-DESC", 
+   "category": "transformation", 
+   "conditions": "Payment confirmed", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TRAN-TYPE-CD", 
+    "TRAN-CAT-CD", 
+    "TRAN-SOURCE", 
+    "TRAN-DESC", 
+    "TRAN-AMT", 
+    "TRAN-CARD-NUM", 
+    "TRAN-MERCHANT-ID", 
+    "TRAN-ORIG-TS", 
+    "TRAN-PROC-TS"
+   ], 
+   "id": "BR-COBIL00C-008", 
+   "messages": [], 
+   "outcome": "TRAN-RECORD written to TRANSACT", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COBIL00C.cbl:218-233", 
+   "statement": "The bill-payment transaction record is built with type code '02', category code 2, source 'POS TERM', description 'BILL PAYMENT - ONLINE', amount equal to the full current account balance, the card number from the account's cross-reference record, merchant id 999999999, merchant name 'BILL PAYMENT', merchant city and zip 'N/A', and origination and processing timestamps both set to the current CICS time (YYYY-MM-DD HH:MM:SS.000000)."
+  }, 
+  {
+   "anchor": "COMPUTE ACCT-CURR-BAL = ACCT-CURR-BAL - TRAN-AMT", 
+   "category": "calculation", 
+   "conditions": "Payment confirmed", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACCT-CURR-BAL", 
+    "TRAN-AMT"
+   ], 
+   "id": "BR-COBIL00C-009", 
+   "messages": [], 
+   "outcome": "ACCT-CURR-BAL becomes 0 and ACCTDAT is rewritten", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COBIL00C.cbl:224-235", 
+   "statement": "A bill payment always pays the entire outstanding balance: TRAN-AMT is set to ACCT-CURR-BAL and the new balance is ACCT-CURR-BAL - TRAN-AMT (i.e. zero), which is rewritten to the account master. Partial payments are not supported."
+  }, 
+  {
+   "anchor": "MOVE 'Tran ID already exist...' TO", 
+   "category": "error-policy", 
+   "conditions": "TRANSACT WRITE RESP NORMAL / DUPKEY / DUPREC / other", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "TRAN-ID"
+   ], 
+   "id": "BR-COBIL00C-010", 
+   "messages": [
+    "Payment successful. ", 
+    " Your Transaction ID is ", 
+    "Tran ID already exist...", 
+    "Unable to Add Bill pay Transaction..."
+   ], 
+   "outcome": "Success or error message", 
+   "paragraph": "WRITE-TRANSACT-FILE", 
+   "source": "app/cbl/COBIL00C.cbl:522-547", 
+   "statement": "After writing the payment transaction the user sees 'Payment successful.  Your Transaction ID is <id>.' in green and the input fields are cleared; a duplicate transaction key gives 'Tran ID already exist...' and any other write failure 'Unable to Add Bill pay Transaction...'."
+  }, 
+  {
+   "anchor": "MOVE 'Unable to lookup Account...' TO", 
+   "category": "error-policy", 
+   "conditions": "ACCTDAT READ UPDATE RESP NOTFND / other", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD"
+   ], 
+   "id": "BR-COBIL00C-011", 
+   "messages": [
+    "Account ID NOT found...", 
+    "Unable to lookup Account..."
+   ], 
+   "outcome": "Error flag set, message displayed", 
+   "paragraph": "READ-ACCTDAT-FILE", 
+   "source": "app/cbl/COBIL00C.cbl:356-372", 
+   "statement": "An account id not found in the account master is rejected with 'Account ID NOT found...'; any other read failure shows 'Unable to lookup Account...'. Both stop the payment."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COBIL00C.cbl:386-403"
+   ], 
+   "anchor": "MOVE 'Unable to lookup XREF AIX file...' TO", 
+   "category": "error-policy", 
+   "conditions": "CXACAIX READ or ACCTDAT REWRITE not NORMAL", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD"
+   ], 
+   "id": "BR-COBIL00C-012", 
+   "messages": [
+    "Unable to lookup XREF AIX file...", 
+    "Unable to Update Account..."
+   ], 
+   "outcome": "Error message displayed", 
+   "paragraph": "READ-CXACAIX-FILE", 
+   "source": "app/cbl/COBIL00C.cbl:420-436", 
+   "statement": "A missing card cross-reference for the account shows 'Account ID NOT found...' and other xref read errors 'Unable to lookup XREF AIX file...'; an account rewrite failure shows 'Account ID NOT found...' (NOTFND) or 'Unable to Update Account...'. These set the error flag but do not stop or undo the remaining payment steps (see observations)."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COBIL00C.cbl:106-109"
+   ], 
+   "anchor": "IF CDEMO-TO-PROGRAM = LOW-VALUES OR SPACES", 
+   "category": "routing", 
+   "conditions": "CDEMO-TO-PROGRAM blank", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-TO-PROGRAM", 
+    "CDEMO-FROM-TRANID", 
+    "CDEMO-FROM-PROGRAM"
+   ], 
+   "id": "BR-COBIL00C-013", 
+   "messages": [], 
+   "outcome": "XCTL to COSGN00C with commarea", 
+   "paragraph": "RETURN-TO-PREV-SCREEN", 
+   "source": "app/cbl/COBIL00C.cbl:275-283", 
+   "statement": "When returning to a previous screen and no target program is set, the bill-payment program goes to the sign-on program COSGN00C; the commarea is stamped with from-transaction CB00, from-program COBIL00C and context 0. A start without commarea (EIBCALEN = 0) is sent to COSGN00C."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Which caller sets CDEMO-CB00-TRN-SELECTED (no program in app/cbl moves a value to it)? Is pre-selection of the account a planned feature?", 
+   "source": "app/cbl/COBIL00C.cbl:116-121"
+  }, 
+  {
+   "question": "Is full-balance-only payment the intended business rule, or should partial payment amounts be supported?", 
+   "source": "app/cbl/COBIL00C.cbl:224-234"
+  }, 
+  {
+   "question": "Should a failure after the transaction write (xref, browse, rewrite) roll back the unit of work? Currently partial updates can be committed at task end.", 
+   "source": "app/cbl/COBIL00C.cbl:210-235"
+  }, 
+  {
+   "question": "Does transaction type '02' / category 2 match the TRANTYPE/TRANCATG reference data for payments used by the batch posting and reporting programs?", 
+   "source": "app/cbl/COBIL00C.cbl:220-221"
+  }
+ ], 
+ "source_path": "app/cbl/COBIL00C.cbl", 
+ "source_sha256": "b5c46039eb8fd2f7ed7d3ca379172e56fa87385a369023bef706b04986fe1cfb", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/COBIL00C.cbl:36-72", 
+   "app/cbl/COBIL00C.cbl:99-149", 
+   "app/cbl/COBIL00C.cbl:154-244", 
+   "app/cbl/COBIL00C.cbl:343-547"
+  ], 
+  "text": "COBIL00C is the CICS pseudo-conversational online Bill Payment program (transaction CB00, map COBIL0A of mapset COBIL00). The user enters an account id; the program reads the account master ACCTDAT for update and shows the current balance, asking for confirmation. When the user confirms with Y, it reads the card cross-reference CXACAIX by account to get the card number, determines the next transaction id by browsing TRANSACT backwards from HIGH-VALUES and adding 1, writes a bill-payment transaction (type '02', category 2) for the full current balance, subtracts that amount from ACCT-CURR-BAL and rewrites the account. Success is reported with the new transaction id; NOTFND and other I/O errors are reported on the screen. PF3 returns to the calling program (default COMEN01C), PF4 clears the screen, and each turn ends with CICS RETURN TRANSID(CB00) and the commarea extended with CDEMO-CB00-INFO."
+ }
+}

@@ -1,0 +1,176 @@
+{
+ "schema": "program-semantics/1",
+ "program": "COSGN00C",
+ "source_path": "app/cbl/COSGN00C.cbl",
+ "source_sha256": "4f901ae6b113eebae60ae1d94b30f8cb9906d031a4419770bf56980bdf97e377",
+ "batch": "B05",
+ "status": "complete",
+ "summary": {
+  "text": "COSGN00C is the CICS pseudo-conversational sign-on program of CardDemo (transaction CC00). On first entry (EIBCALEN = 0) it sends a blank sign-on map COSGN0A (mapset COSGN00); on ENTER it receives the user id and password, requires both to be non-blank, upper-cases them and reads the user-security VSAM file USRSEC keyed by user id. When the stored password SEC-USR-PWD equals the entered password, it fills the CARDDEMO-COMMAREA (from-tranid, from-program, user id, user type, context 0) and XCTLs to the admin menu COADM01C for user type 'A' or to the main menu COMEN01C otherwise. Wrong password, user-not-found (RESP 13) and other read failures redisplay the sign-on screen with a message. PF3 sends a plain-text thank-you message and ends the transaction; any other key redisplays the screen with an invalid-key message. Each normal turn ends with CICS RETURN TRANSID(CC00) passing the commarea.",
+  "evidence": [
+   "app/cbl/COSGN00C.cbl:35-46",
+   "app/cbl/COSGN00C.cbl:73-102",
+   "app/cbl/COSGN00C.cbl:108-140",
+   "app/cbl/COSGN00C.cbl:209-257"
+  ],
+  "confidence": "Confirmed"
+ },
+ "paragraphs": [
+  {
+   "name": "MAIN-PARA",
+   "lines": "73-102",
+   "logic": "Clears the error flag and message. If EIBCALEN = 0 it clears COSGN0AO, puts the cursor on USERID and sends the sign-on screen; otherwise it evaluates EIBAID: ENTER performs PROCESS-ENTER-KEY, PF3 moves CCDA-MSG-THANK-YOU to WS-MESSAGE and performs SEND-PLAIN-TEXT, any other key sets the error flag and redisplays the screen with CCDA-MSG-INVALID-KEY. Ends with EXEC CICS RETURN TRANSID(WS-TRANID='CC00') COMMAREA(CARDDEMO-COMMAREA).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "PROCESS-ENTER-KEY",
+   "lines": "108-140",
+   "logic": "Receives map COSGN0A. If USERIDI is spaces/low-values it sets the error flag and redisplays with 'Please enter User ID ...'; else if PASSWDI is spaces/low-values it redisplays with 'Please enter Password ...'. It then upper-cases USERIDI into WS-USER-ID and CDEMO-USER-ID and PASSWDI into WS-USER-PWD, and performs READ-USER-SEC-FILE only when the error flag is off.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "SEND-SIGNON-SCREEN",
+   "lines": "145-157",
+   "logic": "Performs POPULATE-HEADER-INFO, moves WS-MESSAGE to ERRMSGO and sends map COSGN0A of mapset COSGN00 with ERASE and CURSOR.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "SEND-PLAIN-TEXT",
+   "lines": "162-172",
+   "logic": "Sends WS-MESSAGE as plain text (SEND TEXT ERASE FREEKB) and issues EXEC CICS RETURN without a TRANSID, ending the pseudo-conversation.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "POPULATE-HEADER-INFO",
+   "lines": "177-204",
+   "logic": "Fills the screen header: titles CCDA-TITLE01/02, transaction id, program name, current date formatted MM/DD/YY and time HH:MM:SS from FUNCTION CURRENT-DATE, and the CICS APPLID and SYSID via EXEC CICS ASSIGN.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "READ-USER-SEC-FILE",
+   "lines": "209-257",
+   "logic": "Reads USRSEC into SEC-USER-DATA keyed by WS-USER-ID. On RESP 0 it compares SEC-USR-PWD with WS-USER-PWD: on match it populates the commarea (CDEMO-FROM-TRANID, CDEMO-FROM-PROGRAM, CDEMO-USER-ID, CDEMO-USER-TYPE from SEC-USR-TYPE, CDEMO-PGM-CONTEXT 0) and XCTLs to COADM01C when CDEMO-USRTYP-ADMIN else COMEN01C; on mismatch it redisplays with 'Wrong Password. Try again ...'. RESP 13 redisplays with 'User not found. Try again ...'; any other response with 'Unable to verify the User ...'.",
+   "confidence": "Confirmed"
+  }
+ ],
+ "rules": [
+  {
+   "id": "BR-COSGN00C-001",
+   "category": "routing",
+   "statement": "On the sign-on screen PF3 ends the CardDemo session: the program sends the plain-text message 'Thank you for using CardDemo application...' and returns to CICS without a next transaction; any key other than ENTER or PF3 is rejected and the sign-on screen is redisplayed with 'Invalid key pressed. Please see below...'.",
+   "paragraph": "MAIN-PARA",
+   "source": "app/cbl/COSGN00C.cbl:85-95",
+   "anchor": "MOVE CCDA-MSG-THANK-YOU TO WS-MESSAGE",
+   "additional_sources": [
+    "app/cbl/COSGN00C.cbl:162-172",
+    "app/cpy/CSMSG01Y.cpy:18-21"
+   ],
+   "conditions": "EIBCALEN not zero and EIBAID = DFHPF3, or EIBAID is neither DFHENTER nor DFHPF3",
+   "outcome": "PF3: SEND TEXT + RETURN (session ends). Other key: error flag set, screen redisplayed with invalid-key message.",
+   "data": ["EIBAID", "WS-MESSAGE", "WS-ERR-FLG"],
+   "messages": ["Thank you for using CardDemo application...", "Invalid key pressed. Please see below..."],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COSGN00C-002",
+   "category": "data-integrity",
+   "statement": "On successful sign-on the commarea passed to the menu carries the signed-on user id, the user type copied from SEC-USR-TYPE of the security record, from-transaction CC00, from-program COSGN00C and program context 0 (first entry), so the target menu starts in first-entry mode with the role from the security file.",
+   "paragraph": "READ-USER-SEC-FILE",
+   "source": "app/cbl/COSGN00C.cbl:224-228",
+   "anchor": "MOVE SEC-USR-TYPE TO CDEMO-USER-TYPE",
+   "conditions": "USRSEC read RESP 0 and SEC-USR-PWD = WS-USER-PWD",
+   "outcome": "CDEMO-FROM-TRANID, CDEMO-FROM-PROGRAM, CDEMO-USER-ID, CDEMO-USER-TYPE set; CDEMO-PGM-CONTEXT = 0",
+   "data": ["CDEMO-FROM-TRANID", "CDEMO-FROM-PROGRAM", "CDEMO-USER-ID", "CDEMO-USER-TYPE", "SEC-USR-TYPE", "CDEMO-PGM-CONTEXT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  }
+ ],
+ "existing_rules_reviewed": [
+  {
+   "id": "BR-BASE-COSGN00C-001",
+   "verdict": "confirmed",
+   "source": "app/cbl/COSGN00C.cbl:118-122",
+   "anchor": "WHEN USERIDI OF COSGN0AI = SPACES OR LOW-VALUES",
+   "note": "Blank user id sets WS-ERR-FLG='Y' and redisplays with 'Please enter User ID ...'; READ-USER-SEC-FILE is then skipped by IF NOT ERR-FLG-ON at 138-140."
+  },
+  {
+   "id": "BR-BASE-COSGN00C-002",
+   "verdict": "confirmed",
+   "source": "app/cbl/COSGN00C.cbl:123-127",
+   "anchor": "WHEN PASSWDI OF COSGN0AI = SPACES OR LOW-VALUES",
+   "note": "Second WHEN of EVALUATE TRUE, so only evaluated when user id is present; message 'Please enter Password ...'."
+  },
+  {
+   "id": "BR-BASE-COSGN00C-003",
+   "verdict": "confirmed",
+   "source": "app/cbl/COSGN00C.cbl:132-136",
+   "anchor": "MOVE FUNCTION UPPER-CASE(PASSWDI OF COSGN0AI) TO",
+   "note": "User id is upper-cased into WS-USER-ID and CDEMO-USER-ID, password into WS-USER-PWD; the conversion happens even when the error flag is on, but the read is skipped then."
+  },
+  {
+   "id": "BR-BASE-COSGN00C-004",
+   "verdict": "confirmed",
+   "source": "app/cbl/COSGN00C.cbl:241-246",
+   "anchor": "MOVE 'Wrong Password. Try again ...' TO",
+   "note": "ELSE branch of IF SEC-USR-PWD = WS-USER-PWD (line 223). Note WS-ERR-FLG is not set in this branch (no functional effect, screen already sent)."
+  },
+  {
+   "id": "BR-BASE-COSGN00C-005",
+   "verdict": "confirmed",
+   "source": "app/cbl/COSGN00C.cbl:223-239",
+   "anchor": "IF CDEMO-USRTYP-ADMIN",
+   "note": "CDEMO-USRTYP-ADMIN is the 88-level VALUE 'A' on CDEMO-USER-TYPE (app/cpy/COCOM01Y.cpy:26-27); any other value, including values other than 'U', goes to COMEN01C."
+  },
+  {
+   "id": "BR-BASE-COSGN00C-006",
+   "verdict": "confirmed",
+   "source": "app/cbl/COSGN00C.cbl:221-256",
+   "anchor": "WHEN 13",
+   "note": "WHEN 13 (NOTFND) at 247-251 gives 'User not found. Try again ...'; WHEN OTHER at 252-256 gives 'Unable to verify the User ...'. Both set the error flag and put the cursor on USERID."
+  }
+ ],
+ "no_rule_decisions": [
+  {
+   "source": "app/cbl/COSGN00C.cbl:117-117",
+   "reason": "EVALUATE TRUE header of the mandatory-field checks; the business branches are covered by BR-BASE-COSGN00C-001/002."
+  },
+  {
+   "source": "app/cbl/COSGN00C.cbl:128-129",
+   "reason": "WHEN OTHER CONTINUE: both fields present, no action; processing continues to the upper-case conversion and file read."
+  }
+ ],
+ "no_business_rules_reason": null,
+ "observations": [
+  {
+   "kind": "security",
+   "text": "Passwords are stored in USRSEC as 8-byte clear text (SEC-USR-PWD PIC X(08)) and compared directly with the upper-cased input; no hashing, lockout or attempt counter exists.",
+   "source": "app/cbl/COSGN00C.cbl:223"
+  },
+  {
+   "kind": "security",
+   "text": "Distinct messages for 'User not found' and 'Wrong Password' allow user-id enumeration.",
+   "source": "app/cbl/COSGN00C.cbl:242-249"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Passwords are upper-cased before comparison, so password matching is effectively case-insensitive only if stored passwords are upper case; a stored mixed/lower-case password could never match.",
+   "source": "app/cbl/COSGN00C.cbl:135-136"
+  },
+  {
+   "kind": "unchecked-io",
+   "text": "RESP/RESP2 of EXEC CICS RECEIVE MAP are captured but never tested (e.g. MAPFAIL).",
+   "source": "app/cbl/COSGN00C.cbl:110-115"
+  },
+  {
+   "kind": "hardcoded-value",
+   "text": "Target programs COADM01C and COMEN01C, file name USRSEC and transaction CC00 are hard-coded literals.",
+   "source": "app/cbl/COSGN00C.cbl:36-39"
+  }
+ ],
+ "sme_questions": [
+  {
+   "question": "Are USRSEC passwords always stored in upper case (the input is upper-cased before comparison)? Is the absence of lockout/attempt limits acceptable for the target system?",
+   "source": "app/cbl/COSGN00C.cbl:132-136"
+  }
+ ]
+}

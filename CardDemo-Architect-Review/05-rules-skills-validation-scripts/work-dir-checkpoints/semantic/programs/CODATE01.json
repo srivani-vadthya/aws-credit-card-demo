@@ -1,0 +1,267 @@
+{
+ "batch": "B09",
+ "existing_rules_reviewed": [],
+ "no_business_rules_reason": null,
+ "no_rule_decisions": [
+  {
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:258-270",
+   "reason": "Technical MQOPEN check for the error queue CARD.DEMO.ERROR: on success the handle is saved and ERR-QUEUE-OPEN set; on failure the error is only DISPLAYed and 8000-TERMINATION is performed. Infrastructure error handling."
+  },
+  {
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:429-439",
+   "reason": "Technical check of the MQPUT to the error queue inside 9000-ERROR: failure is DISPLAYed and the transaction terminates. Error-reporting housekeeping."
+  },
+  {
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:444-452",
+   "reason": "Termination closes only the queues whose open flag is set (REPLY-QUEUE-OPEN for the input queue, RESP-QUEUE-OPEN for the reply queue, ERR-QUEUE-OPEN for the error queue) and then issues EXEC CICS RETURN. Resource cleanup."
+  },
+  {
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:467-476",
+   "reason": "MQCLOSE completion-code check for the input queue; failure only records codes and re-performs 8000-TERMINATION. Technical cleanup."
+  },
+  {
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:489-498",
+   "reason": "MQCLOSE completion-code check for the reply queue; failure only records codes and re-performs 8000-TERMINATION. Technical cleanup."
+  },
+  {
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:512-522",
+   "reason": "MQCLOSE completion-code check for the error queue; failure performs 9000-ERROR and 8000-TERMINATION. Technical cleanup."
+  }
+ ],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "In the CICS RETRIEVE failure branch the RESP2 value is moved to itself (WS-CICS-RESP2-CD TO WS-CICS-RESP2-CD) instead of to WS-CICS-RESP2-CD-D, so the error text always shows RESP2 as zeros.",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:149-155"
+  },
+  {
+   "kind": "anomaly",
+   "text": "A successful MQOPEN of the INPUT queue sets REPLY-QUEUE-OPEN and the reply queue open sets RESP-QUEUE-OPEN; termination is consistent with this but the flag names are swapped relative to their meaning.",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:189-194"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The request content is never examined: REQUEST-MSG-COPY (WS-FUNC, WS-KEY) is populated but not tested, so any message on the input queue gets a date/time reply. MQMD-REPLYTOQ is saved in SAVE-REPLY2Q but unused; replies always go to CARD.DEMO.REPLY.DATE.",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:315-323"
+  },
+  {
+   "kind": "dead-code",
+   "text": "WS-VARIABLES (LIT-ACCTFILENAME 'ACCTDAT ', WS-RESP-CD, WS-REAS-CD) is declared but never referenced; the program performs no file I/O. Inferred to be copied from COACCT01, which has the same declarations. MQ-MSG-COUNT is incremented but has no VALUE clause and is never read.",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:114-120"
+  },
+  {
+   "kind": "hardcoded-value",
+   "text": "Queue names are hardcoded: reply queue 'CARD.DEMO.REPLY.DATE' and error queue 'CARD.DEMO.ERROR'. The input queue name comes from the CICS trigger message (MQTM-QNAME).",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:145-147"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Possible endless recursion: a failing MQCLOSE in 5000/5100 performs 8000-TERMINATION again while the open flags are never reset, and 5200 failure performs 9000-ERROR and 8000-TERMINATION which retries the same close. Inferred from the PERFORM chain.",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:467-476"
+  },
+  {
+   "kind": "anomaly",
+   "text": "5100-CLOSE-OUTPUT-QUEUE reports INPUT-QUEUE-NAME as the failing queue although it closes the reply queue. 5000 and 5100 never perform 9000-ERROR, so close failures are not reported.",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:493-498"
+  },
+  {
+   "kind": "anomaly",
+   "text": "MQOPEN calls pass QMGR-HANDLE-CONN while MQGET/MQPUT/MQCLOSE pass MQ-HCONN; both are initialised to 0 (CICS default connection).",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:181-186"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The reply copies both the request MsgId and CorrelId into MQMD-MSGID/MQMD-CORRELID rather than setting CorrelId to the request MsgId.",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:370-375"
+  },
+  {
+   "kind": "anomaly",
+   "text": "MQGET and the MQPUTs run under syncpoint and no SYNCPOINT ROLLBACK is issued; on error 8000-TERMINATION issues EXEC CICS RETURN, which commits the unit of work (Inferred), so a failing request is consumed rather than backed out.",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:442-454"
+  },
+  {
+   "kind": "unchecked-io",
+   "text": "EXEC CICS ASKTIME and FORMATTIME have no RESP option, so any failure is handled by CICS default condition handling rather than the program.",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:343-353"
+  }
+ ],
+ "paragraphs": [
+  {
+   "confidence": "Confirmed",
+   "lines": "127-169",
+   "logic": "Clears INPUT-QUEUE-NAME, QMGR-NAME, QUEUE-MESSAGE and MQ-ERR-DISPLAY, opens the error queue, then issues EXEC CICS RETRIEVE into MQTM. On NORMAL takes the input queue from MQTM-QNAME and sets REPLY-QUEUE-NAME to 'CARD.DEMO.REPLY.DATE'; otherwise builds a 'CICS RETRIEVE' / 'RESP:' error, performs 9000-ERROR and 8000-TERMINATION. It then opens the input and reply queues, gets the first request, performs 4000-MAIN-PROCESS until NO-MORE-MSGS and finishes with 8000-TERMINATION.",
+   "name": "1000-CONTROL"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "171-202",
+   "logic": "MQOPENs INPUT-QUEUE-NAME with MQOO-INPUT-SHARED + MQOO-SAVE-ALL-CONTEXT + MQOO-FAIL-IF-QUIESCING. On MQCC-OK saves INPUT-QUEUE-HANDLE and sets REPLY-QUEUE-OPEN; otherwise records 'INP MQOPEN ERR', performs 9000-ERROR and 8000-TERMINATION.",
+   "name": "2300-OPEN-INPUT-QUEUE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "204-236",
+   "logic": "MQOPENs REPLY-QUEUE-NAME with MQOO-OUTPUT + MQOO-PASS-ALL-CONTEXT + MQOO-FAIL-IF-QUIESCING. On MQCC-OK saves OUTPUT-QUEUE-HANDLE and sets RESP-QUEUE-OPEN; otherwise records 'OUT MQOPEN ERR', performs 9000-ERROR and 8000-TERMINATION.",
+   "name": "2400-OPEN-OUTPUT-QUEUE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "238-271",
+   "logic": "Sets ERROR-QUEUE-NAME to 'CARD.DEMO.ERROR' and MQOPENs it for output. On MQCC-OK saves ERROR-QUEUE-HANDLE and sets ERR-QUEUE-OPEN; otherwise records 'ERR MQOPEN ERR', DISPLAYs MQ-ERR-DISPLAY and performs 8000-TERMINATION.",
+   "name": "2100-OPEN-ERROR-QUEUE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "274-280",
+   "logic": "Issues EXEC CICS SYNCPOINT to commit the previous message, then performs 3000-GET-REQUEST.",
+   "name": "4000-MAIN-PROCESS"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "283-337",
+   "logic": "MQGETs from INPUT-QUEUE-HANDLE with a 5000 ms wait, 1000-byte buffer and options SYNCPOINT + FAIL-IF-QUIESCING + CONVERT + WAIT. On MQCC-OK saves MsgId, CorrelId and ReplyToQ, copies the buffer to REQUEST-MSG-COPY, performs 4000-PROCESS-REQUEST-REPLY and adds 1 to MQ-MSG-COUNT. MQRC-NO-MSG-AVAILABLE sets NO-MORE-MSGS; any other failure records 'INP MQGET ERR:', performs 9000-ERROR and 8000-TERMINATION.",
+   "name": "3000-GET-REQUEST"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "339-364",
+   "logic": "Clears REPLY-MESSAGE, gets the current time with EXEC CICS ASKTIME and formats it with FORMATTIME as MMDDYYYY with '-' separators and TIME with the default time separator. Builds 'SYSTEM DATE : ' + WS-MMDDYYYY + 'SYSTEM TIME : ' + WS-TIME and performs 4100-PUT-REPLY.",
+   "name": "4000-PROCESS-REQUEST-REPLY"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "366-403",
+   "logic": "Moves REPLY-MESSAGE to MQ-BUFFER (length 1000), sets MQMD-MSGID/MQMD-CORRELID from the saved request ids, format MQFMT-STRING and CCSID MQCCSI-Q-MGR, and MQPUTs to OUTPUT-QUEUE-HANDLE under syncpoint. On failure records 'MQPUT ERR', performs 9000-ERROR and 8000-TERMINATION.",
+   "name": "4100-PUT-REPLY"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "405-441",
+   "logic": "Copies MQ-ERR-DISPLAY into a 1000-byte string message and MQPUTs it to ERROR-QUEUE-HANDLE under syncpoint. If that put fails it records 'MQPUT ERR', DISPLAYs MQ-ERR-DISPLAY and performs 8000-TERMINATION.",
+   "name": "9000-ERROR"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "442-454",
+   "logic": "Closes the input queue if REPLY-QUEUE-OPEN, the reply queue if RESP-QUEUE-OPEN and the error queue if ERR-QUEUE-OPEN, then issues EXEC CICS RETURN and GOBACK.",
+   "name": "8000-TERMINATION"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "456-477",
+   "logic": "MQCLOSEs INPUT-QUEUE-HANDLE with MQCO-NONE; on failure records 'MQCLOSE ERR' and performs 8000-TERMINATION.",
+   "name": "5000-CLOSE-INPUT-QUEUE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "478-499",
+   "logic": "MQCLOSEs OUTPUT-QUEUE-HANDLE with MQCO-NONE; on failure records 'MQCLOSE ERR' (naming INPUT-QUEUE-NAME) and performs 8000-TERMINATION.",
+   "name": "5100-CLOSE-OUTPUT-QUEUE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "501-523",
+   "logic": "MQCLOSEs ERROR-QUEUE-HANDLE with MQCO-NONE; on failure records 'MQCLOSE ERR', performs 9000-ERROR and 8000-TERMINATION.",
+   "name": "5200-CLOSE-ERROR-QUEUE"
+  }
+ ],
+ "program": "CODATE01",
+ "rules": [
+  {
+   "id": "BR-CODATE01-001",
+   "category": "transformation",
+   "statement": "Every request message, whatever its content, is answered with the current CICS system date and time as text: 'SYSTEM DATE : ' followed by the date in MM-DD-YYYY form and 'SYSTEM TIME : ' followed by the time formatted by FORMATTIME with a time separator.",
+   "paragraph": "4000-PROCESS-REQUEST-REPLY",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:343-361",
+   "anchor": "STRING  'SYSTEM DATE : ' WS-MMDDYYYY",
+   "conditions": "A request message was received successfully",
+   "outcome": "Date/time text reply put on CARD.DEMO.REPLY.DATE",
+   "data": ["WS-ABS-TIME", "WS-MMDDYYYY", "WS-TIME", "REPLY-MESSAGE"],
+   "messages": ["SYSTEM DATE : ", "SYSTEM TIME : "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CODATE01-002",
+   "category": "routing",
+   "statement": "Replies are always put on the fixed queue CARD.DEMO.REPLY.DATE (not the request's ReplyToQ) with MsgId and CorrelId copied from the request, as an MQFMT-STRING message in the queue manager CCSID.",
+   "paragraph": "4100-PUT-REPLY",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:370-381",
+   "anchor": "MOVE SAVE-CORELID                 TO MQMD-CORRELID",
+   "additional_sources": ["app/app-vsam-mq/cbl/CODATE01.cbl:145-147"],
+   "conditions": "Every reply",
+   "outcome": "MQPUT to OUTPUT-QUEUE-HANDLE",
+   "data": ["SAVE-MSGID", "SAVE-CORELID", "REPLY-QUEUE-NAME", "MQMD-FORMAT"],
+   "messages": ["CARD.DEMO.REPLY.DATE"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CODATE01-003",
+   "category": "decision",
+   "statement": "The transaction drains the triggered input queue: it keeps getting messages (waiting up to 5 seconds each) and commits with CICS SYNCPOINT after each one, stopping normally when MQGET returns MQRC-NO-MSG-AVAILABLE. Any other MQGET failure is reported as 'INP MQGET ERR:' on the error queue and ends the transaction.",
+   "paragraph": "3000-GET-REQUEST",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:312-336",
+   "anchor": "IF MQ-REASON-CODE  =  MQRC-NO-MSG-AVAILABLE",
+   "additional_sources": ["app/app-vsam-mq/cbl/CODATE01.cbl:286-287", "app/app-vsam-mq/cbl/CODATE01.cbl:274-280", "app/app-vsam-mq/cbl/CODATE01.cbl:163-165"],
+   "conditions": "MQ-CONDITION-CODE not MQCC-OK",
+   "outcome": "NO-MORE-MSGS set (normal end) or error report and termination",
+   "data": ["MQ-CONDITION-CODE", "MQ-REASON-CODE", "MQGMO-WAITINTERVAL", "NO-MORE-MSGS"],
+   "messages": ["INP MQGET ERR:"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CODATE01-004",
+   "category": "error-policy",
+   "statement": "If the input queue or reply queue cannot be opened, or a reply cannot be put, the program writes an error record (condition code, reason code, queue name and 'INP MQOPEN ERR' / 'OUT MQOPEN ERR' / 'MQPUT ERR') to CARD.DEMO.ERROR and ends the transaction.",
+   "paragraph": "2300-OPEN-INPUT-QUEUE",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:189-201",
+   "anchor": "MOVE 'INP MQOPEN ERR'  TO MQ-APPL-RETURN-MESSAGE",
+   "additional_sources": ["app/app-vsam-mq/cbl/CODATE01.cbl:223-235", "app/app-vsam-mq/cbl/CODATE01.cbl:392-402"],
+   "conditions": "MQOPEN or MQPUT completion code other than MQCC-OK",
+   "outcome": "9000-ERROR then 8000-TERMINATION",
+   "data": ["MQ-CONDITION-CODE", "MQ-REASON-CODE", "MQ-ERR-DISPLAY"],
+   "messages": ["INP MQOPEN ERR", "OUT MQOPEN ERR", "MQPUT ERR"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CODATE01-005",
+   "category": "error-policy",
+   "statement": "If the CICS trigger data cannot be retrieved (RETRIEVE response not NORMAL), the program reports 'CICS RETRIEVE' with the RESP code to the error queue and ends without processing any request.",
+   "paragraph": "1000-CONTROL",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:145-159",
+   "anchor": "IF WS-CICS-RESP1-CD =  DFHRESP(NORMAL)",
+   "conditions": "EXEC CICS RETRIEVE INTO(MQTM) response not NORMAL",
+   "outcome": "9000-ERROR then 8000-TERMINATION",
+   "data": ["WS-CICS-RESP1-CD", "WS-CICS-RESP2-CD", "MQTM-QNAME"],
+   "messages": ["CICS RETRIEVE", "RESP: "],
+   "confidence": "Confirmed"
+  }
+ ],
+ "schema": "program-semantics/1",
+ "sme_questions": [
+  {
+   "question": "CODATE01 replies to any message without checking a function code. Should requests be validated (as COACCT01 does with 'INQA'), and what request layout do clients send?",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:315-323"
+  },
+  {
+   "question": "Should replies go to the requester's MQMD-REPLYTOQ instead of the fixed CARD.DEMO.REPLY.DATE, and should the reply CorrelId be the request MsgId?",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:370-375"
+  },
+  {
+   "question": "Which CICS transaction and MQ process definition trigger CODATE01, and what input queue name is supplied in MQTM-QNAME?",
+   "source": "app/app-vsam-mq/cbl/CODATE01.cbl:140-147"
+  }
+ ],
+ "source_path": "app/app-vsam-mq/cbl/CODATE01.cbl",
+ "source_sha256": "97fcba3faa272c98778eb7ef50ef87faec7290168e24a9b1714996453d660ddb",
+ "status": "complete",
+ "summary": {
+  "confidence": "Confirmed",
+  "evidence": [
+   "app/app-vsam-mq/cbl/CODATE01.cbl:127-169",
+   "app/app-vsam-mq/cbl/CODATE01.cbl:283-337",
+   "app/app-vsam-mq/cbl/CODATE01.cbl:339-364",
+   "app/app-vsam-mq/cbl/CODATE01.cbl:366-403"
+  ],
+  "text": "CODATE01 is a CICS program started by an IBM MQ trigger; it retrieves the trigger message (MQTM) to learn the input queue name. It opens the error queue CARD.DEMO.ERROR, the triggered input queue and the fixed reply queue CARD.DEMO.REPLY.DATE. It reads request messages one at a time (5-second wait, under syncpoint) until the queue is empty, committing after each message. For every request, regardless of content, it obtains the current time via CICS ASKTIME/FORMATTIME and replies with 'SYSTEM DATE : MM-DD-YYYY' and 'SYSTEM TIME : ' text. It performs no file or database access; MQ and CICS errors are written to the error queue and end the transaction."
+ }
+}

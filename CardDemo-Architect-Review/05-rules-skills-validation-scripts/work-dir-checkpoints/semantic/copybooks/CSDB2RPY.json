@@ -1,0 +1,63 @@
+{
+ "batch": "B08",
+ "confidence": "Confirmed",
+ "copybook": "CSDB2RPY",
+ "evidence": [
+  "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:21-48",
+  "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:57-88",
+  "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:2055"
+ ],
+ "key_fields": [
+  {
+   "name": "9998-PRIMING-QUERY",
+   "meaning": "Connectivity check: SELECT 1 INTO WS-DUMMY-DB2-INT FROM SYSIBM.SYSDUMMY1; any SQLCODE other than 0 sets WS-DB2-ERROR, sets action 'Db2 access failure. ' and formats the message.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:21-46"
+  },
+  {
+   "name": "9998-PRIMING-QUERY-EXIT",
+   "meaning": "Exit paragraph for the PERFORM THRU range of the priming query.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:47-49"
+  },
+  {
+   "name": "9999-FORMAT-DB2-MESSAGE",
+   "meaning": "Calls DSNTIAC (via LIT-DSNTIAC) with DFHEIBLK, DFHCOMMAREA, SQLCA, WS-DSNTIAC-FORMATTED and WS-DSNTIAC-LRECL; on a non-zero DSNTIAC return code substitutes the WS-DSNTIAC-ERROR text; builds WS-LONG-MSG = trimmed WS-DB2-CURRENT-ACTION + ' SQLCODE:' + WS-DISP-SQLCODE + formatted text and moves it to WS-RETURN-MSG.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:57-86"
+  },
+  {
+   "name": "9999-FORMAT-DB2-MESSAGE-EXIT",
+   "meaning": "Exit paragraph for the PERFORM THRU range of the message formatter.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:87-89"
+  }
+ ],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "Line 63 has a malformed sequence area (' 06400') and several lines (58, 60, 64-66) lack sequence numbers; harmless in columns 1-6 but indicates hand edits.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:58-66"
+  },
+  {
+   "kind": "anomaly",
+   "text": "MOVE 'DSNTIAC CD: ' (12 characters) into WS-DSNTIAC-ERR-MSG (PIC X(10)) truncates to 'DSNTIAC CD'.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:70"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The procedures depend on data items not defined in CSDB2RWY: LIT-DSNTIAC, WS-LONG-MSG and WS-RETURN-MSG must be defined by the including program, and DFHEIBLK/DFHCOMMAREA make the copybook CICS-only.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:59-63"
+  },
+  {
+   "kind": "anomaly",
+   "text": "9998-PRIMING-QUERY treats any non-zero SQLCODE, including positive warnings, as a DB2 error.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:35-46"
+  }
+ ],
+ "purpose": "Common DB2 procedure-division paragraphs for CardDemo CICS/DB2 programs, used with the working storage in CSDB2RWY. 9998-PRIMING-QUERY checks DB2 connectivity with a dummy SELECT from SYSIBM.SYSDUMMY1, and 9999-FORMAT-DB2-MESSAGE turns the current SQLCA into a readable message (via IBM DSNTIAC) stored in WS-RETURN-MSG. It is included at the end of COTRTLIC's procedure division (EXEC SQL INCLUDE CSDB2RPY).",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy"
+ ],
+ "source_sha256": [
+  "6f7d0bd7de7d860eae16d783bb962e83acfb84d4fdc22ae71131fa2a740510d5"
+ ],
+ "status": "complete"
+}

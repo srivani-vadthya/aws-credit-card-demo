@@ -1,0 +1,18 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "CVACT03Y",
+ "evidence": ["app/cpy/CVACT03Y.cpy:1-8", "app/cbl/CBACT04C.cbl:34-39", "app/cbl/CBTRN01C.cbl:227-239"],
+ "key_fields": [
+  {"name": "CARD-XREF-RECORD", "meaning": "50-byte card cross-reference record (comment RECLN 50; field sizes add up to 50).", "source": "app/cpy/CVACT03Y.cpy:4"},
+  {"name": "XREF-CARD-NUM", "meaning": "16-character card number, primary key of the cross-reference file.", "source": "app/cpy/CVACT03Y.cpy:5"},
+  {"name": "XREF-CUST-ID", "meaning": "9-digit customer id owning the card; used by CBSTM03A to read the customer.", "source": "app/cpy/CVACT03Y.cpy:6"},
+  {"name": "XREF-ACCT-ID", "meaning": "11-digit account id the card is linked to; CBACT04C reads the file by this field as an alternate key.", "source": "app/cpy/CVACT03Y.cpy:7"}
+ ],
+ "observations": [],
+ "purpose": "CVACT03Y defines CARD-XREF-RECORD, the 50-byte card cross-reference that links a card number to its customer id and account id. Batch programs use it to resolve a card to its account (CBTRN01C, CBTRN02C), an account to a card (CBACT04C via alternate key), to drive statements (CBSTM03A), to print (CBACT03C) and to migrate (CBEXPORT/CBIMPORT); online programs such as COACTUPC, COACTVWC, COBIL00C, COCRDSLC, COCRDUPC and COTRN02C also copy it.",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/CVACT03Y.cpy"],
+ "source_sha256": ["ffc6079e09b28739e154bf6c1e1c36d408209faa91f6cf7008078dc596a1c370"],
+ "status": "complete"
+}

@@ -1,0 +1,59 @@
+{
+ "batch": "B08",
+ "confidence": "Confirmed",
+ "copybook": "DCLTRCAT",
+ "evidence": [
+  "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl:17-27",
+  "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl:28-32",
+  "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl:36-51",
+  "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:288"
+ ],
+ "key_fields": [
+  {
+   "name": "DCLTRANSACTION-TYPE-CATEGORY",
+   "meaning": "DCLGEN host structure for one row of CARDDEMO.TRANSACTION_TYPE_CATEGORY.",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl:36"
+  },
+  {
+   "name": "DCL-TRC-TYPE-CODE",
+   "meaning": "Host variable for TRC_TYPE_CODE CHAR(2) NOT NULL - the transaction type code the category belongs to.",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl:39"
+  },
+  {
+   "name": "DCL-TRC-TYPE-CATEGORY",
+   "meaning": "Host variable for TRC_TYPE_CATEGORY CHAR(4) NOT NULL - the category code within the type.",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl:42-43"
+  },
+  {
+   "name": "DCL-TRC-CAT-DATA",
+   "meaning": "VARCHAR host group for TRC_CAT_DATA VARCHAR(50) NOT NULL - category description.",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl:45"
+  },
+  {
+   "name": "DCL-TRC-CAT-DATA-LEN",
+   "meaning": "Binary length prefix (S9(4) COMP) of the VARCHAR category data.",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl:47-48"
+  },
+  {
+   "name": "DCL-TRC-CAT-DATA-TEXT",
+   "meaning": "Category description text, up to 50 characters.",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl:50-51"
+  }
+ ],
+ "observations": [
+  {
+   "kind": "hardcoded-value",
+   "text": "Table qualified with the literal schema CARDDEMO; DCLGEN library comment names a personal dataset (SNJARAO.AWS.DCL).",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl:18-19"
+  }
+ ],
+ "purpose": "DB2 DCLGEN output for table CARDDEMO.TRANSACTION_TYPE_CATEGORY: an EXEC SQL DECLARE TABLE with columns TRC_TYPE_CODE CHAR(2), TRC_TYPE_CATEGORY CHAR(4) and TRC_CAT_DATA VARCHAR(50), all NOT NULL, and the COBOL host structure DCLTRANSACTION-TYPE-CATEGORY. In this module it is included only by COTRTUPC (EXEC SQL INCLUDE DCLTRCAT); it describes the child category rows keyed by transaction type code.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/app-transaction-type-db2/dcl/DCLTRCAT.dcl"
+ ],
+ "source_sha256": [
+  "54bc32fd11e1d01b1c3be36ea5c6d75aa6af9231ae9e933017fefcb3e7fda7b1"
+ ],
+ "status": "complete"
+}

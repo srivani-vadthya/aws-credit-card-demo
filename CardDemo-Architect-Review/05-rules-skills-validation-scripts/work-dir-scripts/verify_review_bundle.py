@@ -511,6 +511,44 @@ def main(argv):
     det.append("coverage_validate source references %d distinct (documentation folder only); this check %d distinct (documentation + report copies)" % (sr["total"], len(distinct)))
     R.add("V9", "Reports agree with each other (gap counts, register, criteria, package check, rule totals)", ok, "%d cross-checks" % len(det), det)
 
+    # ---------------------------------------------------------------- V11 batch checkpoints
+    cpd = os.path.join(B, "05-rules-skills-validation-scripts", "work-dir-checkpoints")
+    det, bad = [], []
+    man_p = os.path.join(cpd, "batches", "manifest.json")
+    if os.path.exists(man_p):
+        man = json.load(open(man_p, encoding="utf-8"))["batches"]
+        st, progs_b, cpys_b = {}, set(), set()
+        for b in man:
+            cp = os.path.join(cpd, "batches", b["id"], "checkpoint.json")
+            if not os.path.exists(cp):
+                bad.append("%s: checkpoint missing" % b["id"])
+                continue
+            c = json.load(open(cp, encoding="utf-8"))
+            for kind, acc in (("programs", progs_b), ("copybooks", cpys_b)):
+                for name, v in c.get(kind, {}).items():
+                    acc.add(name)
+                    st[v["status"]] = st.get(v["status"], 0) + 1
+                    if v["status"] != "validated":
+                        bad.append("%s %s: %s" % (b["id"], name, v["status"]))
+                    if not os.path.exists(os.path.join(cpd, "semantic", kind, name + ".json")):
+                        bad.append("%s %s: semantic file missing" % (b["id"], name))
+        cbl_names = set(os.path.splitext(os.path.basename(p))[0].upper() for p in src if p.lower().endswith(".cbl"))
+        lay_names = set(os.path.splitext(f)[0] for f in os.listdir(os.path.join(docs, "08-data", "layouts")) if f.endswith(".md") and f != "index.md")
+        bad += ["program not in any batch: " + n for n in sorted(cbl_names - progs_b)]
+        bad += ["layout not in any batch: " + n for n in sorted(lay_names - cpys_b)]
+        det.append("%d batches; %d programs and %d copybooks in checkpoints; statuses %s" % (len(man), len(progs_b), len(cpys_b), json.dumps(st, sort_keys=True)))
+        det.append("COBOL programs in the snapshot %d, all in a batch: %s; layout pages %d, all in a batch: %s" % (
+            len(cbl_names), "yes" if not cbl_names - progs_b else "no", len(lay_names), "yes" if not lay_names - cpys_b else "no"))
+        rv = os.path.join(cpd, "batches", "reviews-checkpoint.json")
+        if os.path.exists(rv):
+            rc = json.load(open(rv, encoding="utf-8"))
+            det.append("rule reviews outside batches: %s" % ", ".join("%s %d reviewed, %s" % (k, v.get("reviewed", 0), v["status"]) for k, v in sorted(rc.get("members", {}).items())))
+        det.append("checkpoint timestamps record the latest batch_manager.py check run, not the original analysis dates (history: work-dir-scripts/progress.md)")
+    else:
+        bad.append("work-dir-checkpoints/batches/manifest.json missing")
+    R.add("V11", "Batch checkpoints: every COBOL program and layout belongs to a batch whose checkpoint shows it validated, with its semantic file", not bad,
+          "; ".join(det[:2]) if det else "no checkpoints", det + bad)
+
     # ---------------------------------------------------------------- V10 duplicates
     by_hash = {}
     for p in walk(B):

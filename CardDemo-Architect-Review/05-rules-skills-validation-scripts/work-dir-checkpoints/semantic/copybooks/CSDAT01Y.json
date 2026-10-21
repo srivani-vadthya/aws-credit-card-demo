@@ -1,0 +1,25 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "CSDAT01Y",
+ "evidence": [
+  "app/cpy/CSDAT01Y.cpy:17-55",
+  "app/cbl/COACTUPC.cbl:2671-2690"
+ ],
+ "key_fields": [
+  {"name": "WS-CURDATE-DATA", "meaning": "Receives FUNCTION CURRENT-DATE: date CCYYMMDD followed by time HHMMSShh.", "source": "app/cpy/CSDAT01Y.cpy:18-29"},
+  {"name": "WS-CURDATE-MM-DD-YY", "meaning": "Display date MM/DD/YY moved to the screen header.", "source": "app/cpy/CSDAT01Y.cpy:30-35"},
+  {"name": "WS-CURTIME-HH-MM-SS", "meaning": "Display time HH:MM:SS moved to the screen header.", "source": "app/cpy/CSDAT01Y.cpy:36-41"},
+  {"name": "WS-TIMESTAMP", "meaning": "YYYY-MM-DD HH:MM:SS.ffffff timestamp layout; not referenced by COACTUPC.", "source": "app/cpy/CSDAT01Y.cpy:42-55"}
+ ],
+ "observations": [],
+ "purpose": "Defines WS-DATE-TIME, working storage for the current date and time: a raw area that receives FUNCTION CURRENT-DATE, numeric redefinitions, and edited MM/DD/YY, HH:MM:SS and timestamp layouts. COACTUPC uses it only in 3100-SCREEN-INIT to put the current date and time in the screen header.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CSDAT01Y.cpy"
+ ],
+ "source_sha256": [
+  "61dd7b01d974c13cd47f71774c613dd67996418a22fae730d09b246c0b710ad7"
+ ],
+ "status": "complete"
+}

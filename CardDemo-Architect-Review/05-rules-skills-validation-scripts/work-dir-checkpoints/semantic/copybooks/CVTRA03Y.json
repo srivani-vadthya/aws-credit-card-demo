@@ -1,0 +1,44 @@
+{
+ "batch": "B03",
+ "confidence": "Confirmed",
+ "copybook": "CVTRA03Y",
+ "evidence": [
+  "app/cpy/CVTRA03Y.cpy:1-7",
+  "app/cbl/CBTRN03C.cbl:103",
+  "app/cbl/CBTRN03C.cbl:494-502",
+  "app/cbl/CBTRN03C.cbl:366"
+ ],
+ "key_fields": [
+  {
+   "name": "TRAN-TYPE-RECORD",
+   "meaning": "60-byte transaction type reference record (2 + 50 + 8 bytes); CBTRN03C reads the TRANTYPE KSDS into it.",
+   "source": "app/cpy/CVTRA03Y.cpy:4"
+  },
+  {
+   "name": "TRAN-TYPE",
+   "meaning": "2-character transaction type code; the record key (CBTRN03C keys TRANTYPE-FILE by FD-TRAN-TYPE in the same position).",
+   "source": "app/cpy/CVTRA03Y.cpy:5"
+  },
+  {
+   "name": "TRAN-TYPE-DESC",
+   "meaning": "50-character description of the transaction type; printed (truncated to 15 characters) in the transaction report detail line.",
+   "source": "app/cpy/CVTRA03Y.cpy:6"
+  }
+ ],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "Only CBTRN03C copies this member in the application source; the 50-character TRAN-TYPE-DESC is moved into the 15-character TRAN-REPORT-TYPE-DESC, so descriptions are truncated on the report.",
+   "source": "app/cbl/CBTRN03C.cbl:366"
+  }
+ ],
+ "purpose": "CVTRA03Y defines TRAN-TYPE-RECORD, the 60-byte transaction type reference record (header comment states RECLN = 60, which matches the PIC sizes 2 + 50 + 8). It maps a 2-character transaction type code to a 50-character description. In the application source it is copied only by the batch report program CBTRN03C, which reads the TRANTYPE KSDS by type code to print the type description and abends if the type is not found.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CVTRA03Y.cpy"
+ ],
+ "source_sha256": [
+  "fb15dbc4a6924cbddce0704932f9e61c067ac10004cd00839dff0ed7c7bb0667"
+ ],
+ "status": "complete"
+}

@@ -1,0 +1,36 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "CSUTLDWY",
+ "evidence": [
+  "app/cpy/CSUTLDWY.cpy:4-85",
+  "app/cbl/COACTUPC.cbl:166"
+ ],
+ "key_fields": [
+  {"name": "WS-EDIT-DATE-CCYYMMDD", "meaning": "Date under edit, split into century, year, month and day with numeric redefinitions; loaded by the caller before PERFORM EDIT-DATE-CCYYMMDD.", "source": "app/cpy/CSUTLDWY.cpy:4-34"},
+  {"name": "THIS-CENTURY", "meaning": "Century 20 is accepted.", "source": "app/cpy/CSUTLDWY.cpy:9"},
+  {"name": "LAST-CENTURY", "meaning": "Century 19 is accepted.", "source": "app/cpy/CSUTLDWY.cpy:10"},
+  {"name": "WS-VALID-MONTH", "meaning": "Month 1 through 12.", "source": "app/cpy/CSUTLDWY.cpy:19-20"},
+  {"name": "WS-31-DAY-MONTH", "meaning": "Months with 31 days: 1, 3, 5, 7, 8, 10, 12.", "source": "app/cpy/CSUTLDWY.cpy:21-23"},
+  {"name": "WS-FEBRUARY", "meaning": "Month 2.", "source": "app/cpy/CSUTLDWY.cpy:24"},
+  {"name": "WS-VALID-DAY", "meaning": "Day 1 through 31.", "source": "app/cpy/CSUTLDWY.cpy:28-29"},
+  {"name": "WS-VALID-FEB-DAY", "meaning": "Day 1 through 28; defined but not tested by CSUTLDPY.", "source": "app/cpy/CSUTLDWY.cpy:33-34"},
+  {"name": "WS-EDIT-DATE-FLGS", "meaning": "Year, month and day result flags (LOW-VALUES valid, '0' not ok, 'B' blank); group 88 WS-EDIT-DATE-IS-VALID / WS-EDIT-DATE-IS-INVALID. COACTUPC copies it into the per-date flag groups.", "source": "app/cpy/CSUTLDWY.cpy:43-57"},
+  {"name": "WS-DATE-FORMAT", "meaning": "Format mask 'YYYYMMDD' passed to CSUTLDTC.", "source": "app/cpy/CSUTLDWY.cpy:58-59"},
+  {"name": "WS-DATE-VALIDATION-RESULT", "meaning": "Result block returned by CALL 'CSUTLDTC': severity, message number, result text, tested date and mask.", "source": "app/cpy/CSUTLDWY.cpy:60-85"},
+  {"name": "WS-CURRENT-DATE", "meaning": "Current date and its INTEGER-OF-DATE value used by the date-of-birth check.", "source": "app/cpy/CSUTLDWY.cpy:38-42"}
+ ],
+ "observations": [
+  {"kind": "hardcoded-value", "source": "app/cpy/CSUTLDWY.cpy:9-10", "text": "Only centuries 19 and 20 are valid; years from 2100 onward are rejected."},
+  {"kind": "conflict", "source": "app/cpy/CSUTLDPY.cpy:5", "text": "CSUTLDPY's header says the accompanying working storage is 'CSUTLDTR', but the working storage actually copied is CSUTLDWY."}
+ ],
+ "purpose": "Working-storage copybook (level-10 items, copied inside a caller's 05 group) that supports the CSUTLDPY date edit paragraphs: the CCYYMMDD date under edit with century/month/day 88-levels, per-part result flags, binary dates for the not-in-future check, and the parameter block for CALL 'CSUTLDTC'. COACTUPC copies it inside WS-MISC-STORAGE; COTRTUPC also copies it.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CSUTLDWY.cpy"
+ ],
+ "source_sha256": [
+  "ecba6f07ea9db7c6f58f7fc1c5227179e8b80299f79a04743c6adb9f08190a1a"
+ ],
+ "status": "complete"
+}

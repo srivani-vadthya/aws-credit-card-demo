@@ -1,0 +1,921 @@
+{
+ "batch": "B08", 
+ "existing_rules_reviewed": [
+  {
+   "anchor": "IF WS-RETURN-MSG-OFF", 
+   "id": "BR-BASE-003", 
+   "note": "Reviewed for COTRTUPC only (the other cited programs belong to other batches). In 1230-EDIT-ALPHANUM-REQD, and likewise in 1245-EDIT-NUM-REQD (921-928, 940-947, 958-965), 1205-COMPARE-OLD-NEW (799-803) and 9100-GET-TRANSACTION-TYPE (1492-1494, 1498-1508), the message is built only when WS-RETURN-MSG is still spaces, so the first failing edit's message is shown. Exceptions in this program: 9600-WRITE-PROCESSING and 9700-INSERT-RECORD build SQL error text unconditionally (1568-1577, 1608-1617).", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:861-870", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "SET TTUP-CHANGES-OK-NOT-CONFIRMED TO TRUE", 
+   "id": "BR-BASE-004", 
+   "note": "Confirmed for COTRTUPC: after the description edit, if INPUT-ERROR is not set TTUP-CHANGE-ACTION becomes 'N' (validated, awaiting PF5). This point is reached only when a change versus the fetched values was detected (746-751).", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:772-776", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "COMPUTE WS-EDIT-NUMERIC-2", 
+   "id": "BR-BASE-COTRTUPC-001", 
+   "note": "Range spans 1210-EDIT-TRANTYPE (820-842) and 1245-EDIT-NUM-REQD (907-973); the 1230-EDIT-ALPHANUM-REQD lines in between belong to BR-BASE-COTRTUPC-002. Required and non-zero are correct ('Tran Type code must be supplied.', 'Tran Type code must not be zero.'). Corrected on 'numeric': the test is FUNCTION TEST-NUMVAL on the 2-character value (934-935), which also accepts a sign, a decimal point or trailing spaces (message 'Tran Type code must be numeric.'). A passing value is converted with NUMVAL into unsigned PIC 9(02) WS-EDIT-NUMERIC-2, so a sign or fraction is dropped (Inferred: '-5' becomes '05', '.5' becomes '00' after passing the non-zero test). The code is then rewritten with leading zeros (spaces replaced by zeros). The edit only runs when not in create-new or confirm state (712-717).", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:820-973", 
+   "verdict": "corrected"
+  }, 
+  {
+   "anchor": "' can have numbers or alphabets only.'", 
+   "id": "BR-BASE-COTRTUPC-002", 
+   "note": "Invoked from 1200-EDIT-MAP-INPUTS at 755-764. Description (TTUP-NEW-TTYP-TYPE-DESC, length 50) must be non-blank ('Transaction Desc must be supplied.') and contain only A-Z, a-z, 0-9 and spaces ('Transaction Desc can have numbers or alphabets only.'). The edit runs only when a change has been detected (746-751).", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:849-902", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "SET NO-CHANGES-DETECTED   TO TRUE", 
+   "id": "BR-BASE-COTRTUPC-003", 
+   "note": "Range spans the skip decision in 1200-EDIT-MAP-INPUTS (743-751) through 1205-COMPARE-OLD-NEW (783-811). Confirmed: type code compared upper-cased, description compared trimmed and upper-cased with equal trimmed length; if equal 'No change detected with respect to values fetched.' (only when no prior message) and the non-key edits are skipped (WS-NON-KEY-FLAGS cleared). Edits are also skipped when the state is already 'N' (validated) or 'C' (done). A case-only description change is therefore treated as no change.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:743-811", 
+   "verdict": "confirmed"
+  }
+ ], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Default flow (ENTER and other valid keys): receive and edit inputs, decide next state, send map. The decisions are documented in the paragraphs it performs.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:548-555"
+  }, 
+  {
+   "reason": "State TTUP-CHANGES-NOT-OK retained (edit errors shown again); no transition.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1035-1036"
+  }, 
+  {
+   "reason": "State TTUP-INVALID-SEARCH-KEYS retained; no transition.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1046-1047"
+  }, 
+  {
+   "reason": "State TTUP-CHANGES-OK-NOT-CONFIRMED retained until PF5 or PF12; no transition.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1060-1061"
+  }, 
+  {
+   "reason": "Chooses which values (blank, original fetched, or newly entered) are displayed per state; presentation only.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1142-1170"
+  }, 
+  {
+   "reason": "Maps the screen state to an information prompt text; message housekeeping (anomaly on TTUP-SHOW-DETAILS recorded in observations).", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1213-1247"
+  }, 
+  {
+   "reason": "Field protection, cursor position and colour per state; presentation only.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1276-1350"
+  }, 
+  {
+   "reason": "Dark/bright attribute for the information message; presentation.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1387-1391"
+  }, 
+  {
+   "reason": "Highlights the PF key legends valid in the current state (mirror of 0001-CHECK-PFKEYS); presentation.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1400-1422"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1567-1589", 
+   "text": "Inferred: a failed save is reported as success. 9600-WRITE-PROCESSING (SQLCODE < 0) and 9700-INSERT-RECORD (insert failure) SET TABLE-UPDATE-FAILED and then STRING an SQL error text INTO WS-RETURN-MSG, overwriting the 88-level value 'Update of record failed'. The following EVALUATE (1580-1589) therefore no longer sees TABLE-UPDATE-FAILED and falls to WHEN OTHER, setting TTUP-CHANGES-OKAYED-AND-DONE, so the info line shows 'Changes committed to database' alongside the SQL error."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1638-1649", 
+   "text": "Inferred: on DELETE SQLCODE -532 (child category rows exist) the state is left at TTUP-START-DELETE ('8') because only RECORD-DELETE-FAILED is set, not TTUP-DELETE-FAILED. That state is not handled by 2000-DECIDE-ACTION, so the next ENTER reaches WHEN OTHER and the task abends with 'UNEXPECTED DATA SCENARIO'. The -532 message also concatenates SQLERRM twice."
+  }, 
+  {
+   "kind": "data-integrity", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1555-1560", 
+   "text": "Save is an upsert: UPDATE returning +100 triggers INSERT. Inferred: if the row was deleted by another user after it was displayed for change, saving silently re-creates it. DATA-WAS-CHANGED-BEFORE-UPDATE ('Record changed by some one else. Please review') is tested but never set, so no optimistic concurrency check is performed."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1538-1542", 
+   "text": "DCL-TR-DESCRIPTION-LEN is set to FUNCTION LENGTH of the 50-byte field TTUP-NEW-TTYP-TYPE-DESC, i.e. always 50, so descriptions are stored padded with trailing spaces."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1495-1508", 
+   "text": "A SQL error on the key lookup (SQLCODE < 0) sets FLG-TRANFILTER-NOT-OK like 'not found'; 2000-DECIDE-ACTION then sets TTUP-DETAILS-NOT-FOUND and offers 'Press F05 to add. F12 to cancel'."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1221-1225", 
+   "text": "In 3250-SETUP-INFOMSG, WHEN TTUP-SHOW-DETAILS has no statements and shares the body of the next WHEN, so a fetched record is shown with 'Enter transaction type to be maintained' instead of FOUND-TRANTYPE-DATA ('Selected transaction type shown above'), which is never used."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1681-1682", 
+   "text": "ABEND-ROUTINE overwrites ABEND-CODE with '9999', so the '0001' code set for 'UNEXPECTED DATA SCENARIO' in 2000-DECIDE-ACTION is lost."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:588-593", 
+   "text": "PF5 is accepted as valid in any delete state (TTUP-DELETE-IN-PROGRESS) although no PF5 branch exists for those states; it falls through to the default input-processing path."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1016-1018", 
+   "text": "WHEN TTUP-CONFIRM-DELETE AND CCARD-AID-PFK12 is unreachable because the earlier WHEN CCARD-AID-PFK12 (988) catches PF12 first. WS-INVALID-KEY (tested at 1026) is never set (its SET is commented out at 612)."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:107-136", 
+   "text": "Unused items: DCLTRCAT host structure (included at 288, no DCL-TRC reference), TTYP-UPDATE-RECORD, TTUP-REVIEW-NEW-RECORD, CODING-TO-BE-DONE, WS-NAME-MUST-BE-ALPHA, WS-EDIT-DATE-X and WS-EDIT-CURRENCY fields, COPY CSUTLDWY. WS-EDIT-DATE-X is also declared twice (108 and 115-116, the second REDEFINES itself)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1176-1179", 
+   "text": "3201-SHOW-INITIAL-VALUES moves LOW-VALUES to TRTYPCDO twice; the description output field is not cleared there."
+  }, 
+  {
+   "kind": "conflict", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1471-1481", 
+   "text": "Comment says 'Read the Card file. Access via alternate index ACCTID' but the code is a DB2 SELECT on CARDDEMO.TRANSACTION_TYPE by TR_TYPE."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:641-648", 
+   "text": "RESP/RESP2 of RECEIVE MAP and RESP of SEND MAP are captured but never tested."
+  }, 
+  {
+   "kind": "security", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:448-449", 
+   "text": "No check of the signed-on user's type; on PF3 the program sets CDEMO-USRTYP-ADMIN before XCTL."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "345-557", 
+   "logic": "Sets HANDLE ABEND to ABEND-ROUTINE, initialises work areas and restores or initialises CARDDEMO-COMMAREA and WS-THIS-PROGCOMMAREA (fresh start on first entry or when coming from COADM01C/COTRTLIC without re-enter). Maps the AID key, validates it for the current state, resets terminal states to a fresh search, then EVALUATEs: PF3 exit, fresh entry (send empty search screen), PF4 confirm delete / request delete, PF5 create-new or save, PF12 cancel, invalid key, or default input processing; ends at COMMON-RETURN.", 
+   "name": "0000-MAIN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "559-572", 
+   "logic": "Moves WS-RETURN-MSG to CCARD-ERROR-MSG, packs CARDDEMO-COMMAREA and WS-THIS-PROGCOMMAREA into WS-COMMAREA and issues EXEC CICS RETURN TRANSID('CTTU').", 
+   "name": "COMMON-RETURN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "573-575", 
+   "logic": "Exit paragraph for 0000-MAIN.", 
+   "name": "0000-MAIN-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "577-618", 
+   "logic": "Sets PFK-VALID for PF3 always, ENTER unless delete confirmation is pending, PF4 in show-details or confirm-delete, PF5 in validated, not-found or any delete state, PF12 in validated, show-details, not-found, confirm-delete or create-new. Otherwise PFK-INVALID and 'Invalid key pressed' if no message is set.", 
+   "name": "0001-CHECK-PFKEYS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "621-623", 
+   "logic": "Exit paragraph for 0001-CHECK-PFKEYS.", 
+   "name": "0001-CHECK-PFKEYS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "625-636", 
+   "logic": "Performs 1100-RECEIVE-MAP, 1150-STORE-MAP-IN-NEW and 1200-EDIT-MAP-INPUTS, then sets CCARD-ERROR-MSG and next program/mapset/map to this program.", 
+   "name": "1000-PROCESS-INPUTS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "638-640", 
+   "logic": "Exit paragraph for 1000-PROCESS-INPUTS.", 
+   "name": "1000-PROCESS-INPUTS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "641-648", 
+   "logic": "EXEC CICS RECEIVE MAP CTRTUPA MAPSET COTRTUP INTO CTRTUPAI with RESP/RESP2 (not tested).", 
+   "name": "1100-RECEIVE-MAP"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "649-650", 
+   "logic": "Exit paragraph for 1100-RECEIVE-MAP.", 
+   "name": "1100-RECEIVE-MAP-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "652-685", 
+   "logic": "Unless the key was previously not found and is resent unchanged without PF5, initialises TTUP-NEW-DETAILS and stores the screen type code (TRTYPCDI) and description (TRTYDSCI), trimmed; '*' or spaces become LOW-VALUES.", 
+   "name": "1150-STORE-MAP-IN-NEW"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "686-688", 
+   "logic": "Exit paragraph for 1150-STORE-MAP-IN-NEW.", 
+   "name": "1150-STORE-MAP-IN-NEW-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "689-777", 
+   "logic": "If the not-found key is resent, marks the key valid and (unless PF5) sets details-not-fetched. Otherwise, outside create/validated states, edits the type code: blank gives 'No input received' and not-fetched, invalid gives TTUP-INVALID-SEARCH-KEYS. Then compares new versus old values; if changed, sets TTUP-CHANGES-NOT-OK, edits the description and, with no errors, sets TTUP-CHANGES-OK-NOT-CONFIRMED.", 
+   "name": "1200-EDIT-MAP-INPUTS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "779-781", 
+   "logic": "Exit paragraph for 1200-EDIT-MAP-INPUTS.", 
+   "name": "1200-EDIT-MAP-INPUTS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "783-812", 
+   "logic": "Sets NO-CHANGES-FOUND; if type code (upper-cased) and description (trimmed, upper-cased, same length) match the fetched values, sets 'No change detected with respect to values fetched.' when no message exists; otherwise sets CHANGE-HAS-OCCURRED (only when no message exists).", 
+   "name": "1205-COMPARE-OLD-NEW"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "814-816", 
+   "logic": "Exit paragraph for 1205-COMPARE-OLD-NEW.", 
+   "name": "1205-COMPARE-OLD-NEW-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "820-843", 
+   "logic": "Edits TTUP-NEW-TTYP-TYPE as 'Tran Type code' (length 2) via 1245-EDIT-NUM-REQD and stores the result in WS-EDIT-TTYP-FLAG; if valid, normalises the code through NUMVAL into PIC 9(02) and writes it back with leading zeros.", 
+   "name": "1210-EDIT-TRANTYPE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "845-847", 
+   "logic": "Exit paragraph for 1210-EDIT-TRANTYPE.", 
+   "name": "1210-EDIT-TRANTYPE-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "849-902", 
+   "logic": "Generic required alphanumeric edit: blank sets INPUT-ERROR, FLG-ALPHNANUM-BLANK and '<name> must be supplied.'; any character other than letters, digits or space sets INPUT-ERROR, FLG-ALPHNANUM-NOT-OK and '<name> can have numbers or alphabets only.'; otherwise FLG-ALPHNANUM-ISVALID.", 
+   "name": "1230-EDIT-ALPHANUM-REQD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "903-905", 
+   "logic": "Exit paragraph for 1230-EDIT-ALPHANUM-REQD.", 
+   "name": "1230-EDIT-ALPHANUM-REQD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "907-973", 
+   "logic": "Generic required numeric edit: blank gives '<name> must be supplied.'; TEST-NUMVAL failure gives '<name> must be numeric.'; NUMVAL = 0 gives '<name> must not be zero.'; each sets INPUT-ERROR. Otherwise FLG-ALPHNANUM-ISVALID.", 
+   "name": "1245-EDIT-NUM-REQD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "974-976", 
+   "logic": "Exit paragraph for 1245-EDIT-NUM-REQD.", 
+   "name": "1245-EDIT-NUM-REQD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "978-1082", 
+   "logic": "State machine on TTUP-CHANGE-ACTION: when details are not fetched or PF12, reads the type code from DB2 if the key is valid (show details or not found) or cancels a pending delete/update; show-details with good changes becomes validated; backed-out becomes changes-not-ok; PF5 on not-found becomes create-new; after a completed save returns to show-details and clears account context if there is no caller. Any other state abends with 'UNEXPECTED DATA SCENARIO'.", 
+   "name": "2000-DECIDE-ACTION"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1083-1085", 
+   "logic": "Exit paragraph for 2000-DECIDE-ACTION.", 
+   "name": "2000-DECIDE-ACTION-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1089-1104", 
+   "logic": "Performs 3100-SCREEN-INIT, 3200-SETUP-SCREEN-VARS, 3250-SETUP-INFOMSG, 3300-SETUP-SCREEN-ATTRS, 3390-SETUP-INFOMSG-ATTRS, 3391-SETUP-PFKEY-ATTRS and 3400-SEND-SCREEN, each THRU its -EXIT paragraph.", 
+   "name": "3000-SEND-MAP"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1106-1108", 
+   "logic": "Exit paragraph for 3000-SEND-MAP.", 
+   "name": "3000-SEND-MAP-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1110-1134", 
+   "logic": "Clears CTRTUPAO and fills titles, transaction CTTU, program name, current date (MM/DD/YY) and time.", 
+   "name": "3100-SCREEN-INIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1136-1138", 
+   "logic": "Exit paragraph for 3100-SCREEN-INIT.", 
+   "name": "3100-SCREEN-INIT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1140-1171", 
+   "logic": "Does nothing when CDEMO-PGM-ENTER. Otherwise TTUP-DETAILS-NOT-FETCHED performs 3201-SHOW-INITIAL-VALUES; TTUP-SHOW-DETAILS, TTUP-CONFIRM-DELETE, TTUP-DELETE-FAILED, TTUP-DELETE-DONE, TTUP-CHANGES-BACKED-OUT and WHEN OTHER INITIALIZE TTUP-NEW-DETAILS and perform 3202-SHOW-ORIGINAL-VALUES; TTUP-CHANGES-MADE, TTUP-CHANGES-NOT-OK, TTUP-DETAILS-NOT-FOUND, TTUP-INVALID-SEARCH-KEYS, TTUP-CREATE-NEW-RECORD and TTUP-CHANGES-OKAYED-AND-DONE perform 3203-SHOW-UPDATED-VALUES.", 
+   "name": "3200-SETUP-SCREEN-VARS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1172-1174", 
+   "logic": "Exit paragraph for 3200-SETUP-SCREEN-VARS.", 
+   "name": "3200-SETUP-SCREEN-VARS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1176-1179", 
+   "logic": "Moves LOW-VALUES to TRTYPCDO (listed twice).", 
+   "name": "3201-SHOW-INITIAL-VALUES"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1181-1183", 
+   "logic": "Exit paragraph for 3201-SHOW-INITIAL-VALUES.", 
+   "name": "3201-SHOW-INITIAL-VALUES-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1185-1192", 
+   "logic": "Clears WS-NON-KEY-FLAGS and shows TTUP-OLD-TTYP-TYPE and TTUP-OLD-TTYP-TYPE-DESC.", 
+   "name": "3202-SHOW-ORIGINAL-VALUES"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1194-1196", 
+   "logic": "Exit paragraph for 3202-SHOW-ORIGINAL-VALUES.", 
+   "name": "3202-SHOW-ORIGINAL-VALUES-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1197-1201", 
+   "logic": "Shows TTUP-NEW-TTYP-TYPE and TTUP-NEW-TTYP-TYPE-DESC.", 
+   "name": "3203-SHOW-UPDATED-VALUES"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1203-1205", 
+   "logic": "Exit paragraph for 3203-SHOW-UPDATED-VALUES.", 
+   "name": "3203-SHOW-UPDATED-VALUES-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1210-1265", 
+   "logic": "Selects the info prompt from the state (search prompt, 'Press F05 to add. F12 to cancel', 'Update transaction type details shown.', 'Delete this record ? Press F4 to confirm', 'Delete successful.', 'Enter new transaction type details.', 'Changes validated.Press F5 to save', 'Changes committed to database', 'Changes unsuccessful'), centres it into INFOMSGO and moves WS-RETURN-MSG to ERRMSGO.", 
+   "name": "3250-SETUP-INFOMSG"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1266-1268", 
+   "logic": "Exit paragraph for 3250-SETUP-INFOMSG.", 
+   "name": "3250-SETUP-INFOMSG-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1269-1363", 
+   "logic": "Protects all fields, then unprotects the type code in search states or the description in show/change/create states; keeps all protected in validated, done and delete states. Positions the cursor, colours an invalid key or failed delete red, shows '*' in red for a blank key, and applies CSSETATY attributes to the description.", 
+   "name": "3300-SETUP-SCREEN-ATTRS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1364-1366", 
+   "logic": "Exit paragraph for 3300-SETUP-SCREEN-ATTRS.", 
+   "name": "3300-SETUP-SCREEN-ATTRS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1368-1372", 
+   "logic": "Sets type code, description and info message attributes to protected (DFHBMPRF).", 
+   "name": "3310-PROTECT-ALL-ATTRS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1373-1375", 
+   "logic": "Exit paragraph for 3310-PROTECT-ALL-ATTRS.", 
+   "name": "3310-PROTECT-ALL-ATTRS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1377-1381", 
+   "logic": "Makes the description editable (DFHBMFSE) and keeps the info message protected.", 
+   "name": "3320-UNPROTECT-FEW-ATTRS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1382-1384", 
+   "logic": "Exit paragraph for 3320-UNPROTECT-FEW-ATTRS.", 
+   "name": "3320-UNPROTECT-FEW-ATTRS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1386-1392", 
+   "logic": "Sets INFOMSGA of CTRTUPAI to DFHBMDAR (dark) when WS-NO-INFO-MESSAGE, otherwise to DFHBMASB (bright).", 
+   "name": "3390-SETUP-INFOMSG-ATTRS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1393-1395", 
+   "logic": "Exit paragraph for 3390-SETUP-INFOMSG-ATTRS.", 
+   "name": "3390-SETUP-INFOMSG-ATTRS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1397-1423", 
+   "logic": "Sets FKEYSA dark (DFHBMDAR) when TTUP-CONFIRM-DELETE, else bright (DFHBMASB). Brightens FKEY04A for TTUP-SHOW-DETAILS or TTUP-CONFIRM-DELETE; FKEY05A for TTUP-CHANGES-OK-NOT-CONFIRMED or TTUP-DETAILS-NOT-FOUND; FKEY12A for TTUP-CHANGES-OK-NOT-CONFIRMED, TTUP-SHOW-DETAILS, TTUP-DETAILS-NOT-FOUND, TTUP-CONFIRM-DELETE or TTUP-CREATE-NEW-RECORD.", 
+   "name": "3391-SETUP-PFKEY-ATTRS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1424-1426", 
+   "logic": "Exit paragraph for 3391-SETUP-PFKEY-ATTRS.", 
+   "name": "3391-SETUP-PFKEY-ATTRS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1428-1441", 
+   "logic": "EXEC CICS SEND MAP CTRTUPA MAPSET COTRTUP FROM CTRTUPAO with CURSOR, ERASE, FREEKB.", 
+   "name": "3400-SEND-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1442-1444", 
+   "logic": "Exit paragraph for 3400-SEND-SCREEN.", 
+   "name": "3400-SEND-SCREEN-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1447-1463", 
+   "logic": "Clears old details and info message, performs 9100-GET-TRANSACTION-TYPE and, if the key was found (filter not NOT-OK), stores the fetched row via 9500-STORE-FETCHED-DATA.", 
+   "name": "9000-READ-TRANTYPE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1466-1468", 
+   "logic": "Exit paragraph for 9000-READ-TRANTYPE.", 
+   "name": "9000-READ-TRANTYPE-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1469-1511", 
+   "logic": "SELECT TR_TYPE, TR_DESCRIPTION FROM CARDDEMO.TRANSACTION_TYPE WHERE TR_TYPE = TTUP-NEW-TTYP-TYPE. 0 sets FOUND-TRANTYPE-IN-TABLE; +100 sets INPUT-ERROR, FLG-TRANFILTER-NOT-OK, 'No record found for this key in database'; < 0 sets the same flags with 'Error accessing: TRANSACTION_TYPE table. SQLCODE:' plus SQLERRM.", 
+   "name": "9100-GET-TRANSACTION-TYPE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1512-1514", 
+   "logic": "Exit paragraph for 9100-GET-TRANSACTION-TYPE.", 
+   "name": "9100-GET-TRANSACTION-TYPE-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1517-1527", 
+   "logic": "Stores DCL-TR-TYPE and the VARCHAR text (1:DCL-TR-DESCRIPTION-LEN) as TTUP-OLD-TTYP-TYPE / TTUP-OLD-TTYP-TYPE-DESC.", 
+   "name": "9500-STORE-FETCHED-DATA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1528-1530", 
+   "logic": "Exit paragraph for 9500-STORE-FETCHED-DATA.", 
+   "name": "9500-STORE-FETCHED-DATA-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1531-1592", 
+   "logic": "UPDATE CARDDEMO.TRANSACTION_TYPE SET TR_DESCRIPTION = trimmed new description WHERE TR_TYPE = new code. 0: SYNCPOINT; +100: 9700-INSERT-RECORD; -911: INPUT-ERROR and 'Could not lock record for update'; < 0: SQL error text. Then sets the state to lock-error, failed, show-details or (otherwise) TTUP-CHANGES-OKAYED-AND-DONE.", 
+   "name": "9600-WRITE-PROCESSING"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1593-1595", 
+   "logic": "Exit paragraph for 9600-WRITE-PROCESSING.", 
+   "name": "9600-WRITE-PROCESSING-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1596-1620", 
+   "logic": "INSERT INTO CARDDEMO.TRANSACTION_TYPE (TR_TYPE, TR_DESCRIPTION) from DCL host variables; 0: SYNCPOINT; otherwise TABLE-UPDATE-FAILED then 'Error inserting record into: TRANSACTION_TYPE Table. SQLCODE:' plus SQLERRM.", 
+   "name": "9700-INSERT-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1621-1623", 
+   "logic": "Exit paragraph for 9700-INSERT-RECORD.", 
+   "name": "9700-INSERT-RECORD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1624-1663", 
+   "logic": "DELETE FROM CARDDEMO.TRANSACTION_TYPE WHERE TR_TYPE = TTUP-OLD-TTYP-TYPE. 0: TTUP-DELETE-DONE and SYNCPOINT; -532: 'Please delete associated child records first:' with SQLCODE/SQLERRM; other: TTUP-DELETE-FAILED and 'Delete failed with message:' text.", 
+   "name": "9800-DELETE-PROCESSING"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1664-1672", 
+   "logic": "Exit paragraph for 9800-DELETE-PROCESSING; followed by COPY CSSTRPFY (YYYY-STORE-PFKEY).", 
+   "name": "9800-DELETE-PROCESSING-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1675-1698", 
+   "logic": "Defaults ABEND-MSG to 'UNEXPECTED ABEND OCCURRED.', sets culprit COTRTUPC and code '9999', sends ABEND-DATA to the terminal, cancels HANDLE ABEND and issues EXEC CICS ABEND ABCODE('9999').", 
+   "name": "ABEND-ROUTINE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1699-1701", 
+   "logic": "Exit paragraph for ABEND-ROUTINE.", 
+   "name": "ABEND-ROUTINE-EXIT"
+  }
+ ], 
+ "program": "COTRTUPC", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:465-478"
+   ], 
+   "anchor": "WHEN TTUP-CHANGES-OKAYED-AND-DONE", 
+   "category": "decision", 
+   "conditions": "PF12 with TTUP-SHOW-DETAILS/CREATE-NEW-RECORD/DETAILS-NOT-FOUND, or state C, L, F, 7, 6, or B with empty old details", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TTUP-CHANGE-ACTION", 
+    "TTUP-OLD-DETAILS"
+   ], 
+   "id": "BR-COTRTUPC-001", 
+   "messages": [
+    "Enter transaction type to be maintained"
+   ], 
+   "outcome": "CDEMO-PGM-ENTER and TTUP-DETAILS-NOT-FETCHED; empty search screen sent.", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:405-419", 
+   "statement": "After a completed or failed save, a completed or failed delete, a cancelled new-record entry (backed out with no fetched record), or PF12 while viewing details, creating a record or on a not-found key, the screen restarts as a fresh search (enter transaction type)."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "MOVE LIT-ADMINTRANID   TO CDEMO-TO-TRANID", 
+   "category": "routing", 
+   "conditions": "CCARD-AID-PFK03", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-FROM-TRANID", 
+    "CDEMO-FROM-PROGRAM", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COTRTUPC-002", 
+   "messages": [], 
+   "outcome": "EXEC CICS XCTL PROGRAM(CDEMO-TO-PROGRAM) COMMAREA(CARDDEMO-COMMAREA).", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:423-460", 
+   "statement": "PF3 returns to the calling transaction/program from the commarea, or to the admin menu CA00 / COADM01C when none is recorded, after a CICS SYNCPOINT."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:539-542"
+   ], 
+   "anchor": "SET WS-INVALID-KEY-PRESSED  TO TRUE", 
+   "category": "validation", 
+   "conditions": "AID key versus TTUP-CHANGE-ACTION", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCARD-AID", 
+    "TTUP-CHANGE-ACTION", 
+    "WS-PFK-FLAG"
+   ], 
+   "id": "BR-COTRTUPC-003", 
+   "messages": [
+    "Invalid key pressed"
+   ], 
+   "outcome": "PFK-VALID, or PFK-INVALID with 'Invalid key pressed' and screen resent.", 
+   "paragraph": "0001-CHECK-PFKEYS", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:582-608", 
+   "statement": "Function keys are only accepted in the screen states where they make sense: PF3 always; ENTER except while a delete confirmation is pending; PF4 when a record is shown or delete confirmation is pending; PF5 when changes are validated, the key was not found, or a delete is in progress; PF12 when validated, showing details, not found, confirming delete or creating new. Any other key redisplays the screen with 'Invalid key pressed'."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "SET TTUP-START-DELETE                TO TRUE", 
+   "category": "decision", 
+   "conditions": "CCARD-AID-PFK04 AND TTUP-SHOW-DETAILS, then CCARD-AID-PFK04 AND TTUP-CONFIRM-DELETE", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TTUP-CHANGE-ACTION"
+   ], 
+   "id": "BR-COTRTUPC-004", 
+   "messages": [
+    "Delete this record ? Press F4 to confirm"
+   ], 
+   "outcome": "TTUP-CONFIRM-DELETE; then TTUP-START-DELETE and 9800-DELETE-PROCESSING.", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:482-498", 
+   "statement": "Deleting a transaction type is two-step: PF4 on a displayed record asks 'Delete this record ? Press F4 to confirm'; a second PF4 in that state performs the DELETE."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1053-1055"
+   ], 
+   "anchor": "SET TTUP-CREATE-NEW-RECORD TO TRUE", 
+   "category": "decision", 
+   "conditions": "CCARD-AID-PFK05 AND TTUP-DETAILS-NOT-FOUND; later CCARD-AID-PFK05 AND TTUP-CHANGES-OK-NOT-CONFIRMED", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TTUP-CHANGE-ACTION", 
+    "TTUP-NEW-TTYP-TYPE", 
+    "TTUP-NEW-TTYP-TYPE-DESC"
+   ], 
+   "id": "BR-COTRTUPC-005", 
+   "messages": [
+    "Press F05 to add. F12 to cancel", 
+    "Enter new transaction type details."
+   ], 
+   "outcome": "TTUP-CREATE-NEW-RECORD; then 9600-WRITE-PROCESSING.", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:503-520", 
+   "statement": "When the entered transaction type code does not exist, the user may press PF5 to create it: the screen switches to new-record entry ('Enter new transaction type details.'); after the description passes validation, PF5 saves it."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:524-533", 
+    "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1041-1042"
+   ], 
+   "anchor": "SET WS-UPDATE-WAS-CANCELLED     TO TRUE", 
+   "category": "decision", 
+   "conditions": "CCARD-AID-PFK12 AND (TTUP-CONFIRM-DELETE OR TTUP-CHANGES-OK-NOT-CONFIRMED)", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TTUP-CHANGE-ACTION"
+   ], 
+   "id": "BR-COTRTUPC-006", 
+   "messages": [
+    "Delete was cancelled", 
+    "Update was cancelled"
+   ], 
+   "outcome": "TTUP-DETAILS-NOT-FETCHED or TTUP-CHANGES-BACKED-OUT (then TTUP-CHANGES-NOT-OK).", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:999-1008", 
+   "statement": "PF12 cancels a pending action: cancelling a delete confirmation gives 'Delete was cancelled' and returns to the search prompt; cancelling validated changes gives 'Update was cancelled', restores the fetched values (backed out) and the next interaction returns to edit mode."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "IF  TRTYPCDI OF CTRTUPAI = '*'", 
+   "category": "transformation", 
+   "conditions": "TRTYPCDI / TRTYDSCI = '*' or SPACES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TRTYPCDI", 
+    "TRTYDSCI", 
+    "TTUP-NEW-TTYP-TYPE", 
+    "TTUP-NEW-TTYP-TYPE-DESC"
+   ], 
+   "id": "BR-COTRTUPC-007", 
+   "messages": [], 
+   "outcome": "TTUP-NEW-TTYP-TYPE / TTUP-NEW-TTYP-TYPE-DESC = LOW-VALUES, else FUNCTION TRIM(input).", 
+   "paragraph": "1150-STORE-MAP-IN-NEW", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:654-684", 
+   "statement": "Screen input of '*' or all spaces in the type code or description is treated as not supplied (LOW-VALUES); other input is trimmed. When a not-found key is resent unchanged without PF5, the previously entered values are kept."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "SET TTUP-DETAILS-NOT-FETCHED    TO TRUE", 
+   "category": "decision", 
+   "conditions": "TTUP-DETAILS-NOT-FOUND AND TRIM(TRTYPCDI) = TTUP-NEW-TTYP-TYPE", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TTUP-CHANGE-ACTION", 
+    "TTUP-NEW-TTYP-TYPE"
+   ], 
+   "id": "BR-COTRTUPC-008", 
+   "messages": [], 
+   "outcome": "FLG-TRANFILTER-ISVALID; TTUP-DETAILS-NOT-FETCHED unless PF5.", 
+   "paragraph": "1200-EDIT-MAP-INPUTS", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:698-710", 
+   "statement": "If the key was not found and the user resends the same key: with PF5 the key is accepted for creation; otherwise the record is looked up again. Edits are skipped in both cases."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "SET NO-SEARCH-CRITERIA-RECEIVED TO TRUE", 
+   "category": "validation", 
+   "conditions": "FLG-TRANFILTER-BLANK or FLG-TRANFILTER-NOT-OK after 1210-EDIT-TRANTYPE", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-EDIT-TTYP-FLAG", 
+    "TTUP-CHANGE-ACTION"
+   ], 
+   "id": "BR-COTRTUPC-009", 
+   "messages": [
+    "No input received"
+   ], 
+   "outcome": "TTUP-DETAILS-NOT-FETCHED (and TTUP-INVALID-SEARCH-KEYS when invalid).", 
+   "paragraph": "1200-EDIT-MAP-INPUTS", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:712-737", 
+   "statement": "A transaction type code must be entered to search: blank input gives 'No input received' and stays on the search prompt; a code failing the numeric edit marks the search key invalid. The key edit is skipped in create-new and validated states."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1456-1458"
+   ], 
+   "anchor": "SET TTUP-DETAILS-NOT-FOUND       TO TRUE", 
+   "category": "decision", 
+   "conditions": "TTUP-DETAILS-NOT-FETCHED (or PF12) AND FLG-TRANFILTER-ISVALID", 
+   "confidence": "Confirmed", 
+   "data": [
+    "FOUND-TRANTYPE-IN-TABLE", 
+    "TTUP-CHANGE-ACTION"
+   ], 
+   "id": "BR-COTRTUPC-010", 
+   "messages": [], 
+   "outcome": "9000-READ-TRANTYPE; TTUP-SHOW-DETAILS or TTUP-DETAILS-NOT-FOUND.", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:979-997", 
+   "statement": "A valid search key is looked up in TRANSACTION_TYPE: if found the record is displayed for change or delete, otherwise the user is offered to add it."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "OR NO-CHANGES-DETECTED", 
+   "category": "decision", 
+   "conditions": "TTUP-SHOW-DETAILS AND NOT (INPUT-ERROR OR NO-CHANGES-DETECTED OR WS-INVALID-KEY)", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TTUP-CHANGE-ACTION", 
+    "WS-INPUT-FLAG", 
+    "WS-RETURN-MSG"
+   ], 
+   "id": "BR-COTRTUPC-011", 
+   "messages": [
+    "Changes validated.Press F5 to save"
+   ], 
+   "outcome": "TTUP-CHANGES-OK-NOT-CONFIRMED.", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1023-1030", 
+   "statement": "When a displayed record has been changed and passes all edits, the program asks for confirmation ('Changes validated.Press F5 to save') instead of saving immediately; edit errors or no detected change keep the record in edit mode."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "MOVE ZEROES       TO CDEMO-ACCT-ID", 
+   "category": "decision", 
+   "conditions": "TTUP-CHANGES-OKAYED-AND-DONE; CDEMO-FROM-TRANID LOW-VALUES or SPACES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-ACCT-ID", 
+    "CDEMO-CARD-NUM", 
+    "CDEMO-ACCT-STATUS"
+   ], 
+   "id": "BR-COTRTUPC-012", 
+   "messages": [], 
+   "outcome": "TTUP-SHOW-DETAILS; CDEMO-ACCT-ID, CDEMO-CARD-NUM = 0; CDEMO-ACCT-STATUS = LOW-VALUES.", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1065-1072", 
+   "statement": "After a successful save the record is shown again; if the program was not entered from another transaction, the account context in the commarea (account id, card number, account status) is cleared."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1677-1697"
+   ], 
+   "anchor": "'UNEXPECTED DATA SCENARIO'", 
+   "category": "error-policy", 
+   "conditions": "WHEN OTHER in 2000-DECIDE-ACTION (or any CICS abend via HANDLE ABEND)", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ABEND-CULPRIT", 
+    "ABEND-CODE", 
+    "ABEND-MSG"
+   ], 
+   "id": "BR-COTRTUPC-013", 
+   "messages": [
+    "UNEXPECTED DATA SCENARIO", 
+    "UNEXPECTED ABEND OCCURRED."
+   ], 
+   "outcome": "ABEND-ROUTINE: EXEC CICS SEND ABEND-DATA, HANDLE ABEND CANCEL, EXEC CICS ABEND ABCODE('9999').", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1073-1080", 
+   "statement": "Any screen state not handled by the decision logic is treated as a program error: the task sends the abend data ('UNEXPECTED DATA SCENARIO') to the terminal and abends with code 9999."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "SET WS-RECORD-NOT-FOUND       TO TRUE", 
+   "category": "validation", 
+   "conditions": "SELECT ... WHERE TR_TYPE = :DCL-TR-TYPE returns +100 or < 0", 
+   "confidence": "Confirmed", 
+   "data": [
+    "DCL-TR-TYPE", 
+    "SQLCODE", 
+    "WS-RETURN-MSG"
+   ], 
+   "id": "BR-COTRTUPC-014", 
+   "messages": [
+    "No record found for this key in database", 
+    "Error accessing:", 
+    " TRANSACTION_TYPE table. SQLCODE:"
+   ], 
+   "outcome": "INPUT-ERROR, FLG-TRANFILTER-NOT-OK, message.", 
+   "paragraph": "9100-GET-TRANSACTION-TYPE", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1486-1509", 
+   "statement": "A transaction type code that does not exist in TRANSACTION_TYPE is reported as 'No record found for this key in database'; a SQL error on the lookup is reported with the SQLCODE and SQLERRM. Both mark the key as not OK."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1538-1548", 
+    "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1604-1619"
+   ], 
+   "anchor": "PERFORM 9700-INSERT-RECORD", 
+   "category": "decision", 
+   "conditions": "PF5 with TTUP-CHANGES-OK-NOT-CONFIRMED", 
+   "confidence": "Confirmed", 
+   "data": [
+    "DCL-TR-TYPE", 
+    "DCL-TR-DESCRIPTION", 
+    "SQLCODE"
+   ], 
+   "id": "BR-COTRTUPC-015", 
+   "messages": [
+    "Could not lock record for update", 
+    "Error updating:", 
+    "Error inserting record into:"
+   ], 
+   "outcome": "SYNCPOINT on success; INPUT-ERROR on -911; error message otherwise.", 
+   "paragraph": "9600-WRITE-PROCESSING", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1555-1578", 
+   "statement": "Saving is an upsert: the description is UPDATEd by TR_TYPE; if no row exists (+100) the row is INSERTed. A successful update or insert is committed with CICS SYNCPOINT. Deadlock/timeout (-911) gives 'Could not lock record for update'; other negative SQLCODEs give 'Error updating: TRANSACTION_TYPE Table. SQLCODE:...' and insert failures 'Error inserting record into: TRANSACTION_TYPE Table. SQLCODE:...'."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "SET TTUP-CHANGES-OKAYED-AND-DONE     TO TRUE", 
+   "category": "decision", 
+   "conditions": "COULD-NOT-LOCK-REC-FOR-UPDATE / TABLE-UPDATE-FAILED / DATA-WAS-CHANGED-BEFORE-UPDATE / OTHER", 
+   "confidence": "Inferred", 
+   "data": [
+    "WS-RETURN-MSG", 
+    "TTUP-CHANGE-ACTION"
+   ], 
+   "id": "BR-COTRTUPC-016", 
+   "messages": [
+    "Changes unsuccessful", 
+    "Changes committed to database"
+   ], 
+   "outcome": "TTUP-CHANGES-OKAYED-LOCK-ERROR, -BUT-FAILED, TTUP-SHOW-DETAILS or TTUP-CHANGES-OKAYED-AND-DONE.", 
+   "paragraph": "9600-WRITE-PROCESSING", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1580-1589", 
+   "statement": "The outcome of a save sets the next screen state: lock failure shows 'Changes unsuccessful' (lock error), a flagged update failure shows 'Changes unsuccessful' (failed), a concurrent-change condition returns to show details, and anything else is treated as committed ('Changes committed to database'). Inferred: because the failure flag is overwritten by the SQL error text, SQL failures also reach the committed state (see observation)."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/ddl/TRNTYCAT.ddl:1-7"
+   ], 
+   "anchor": "WHEN SQLCODE = -532", 
+   "category": "data-integrity", 
+   "conditions": "DELETE FROM CARDDEMO.TRANSACTION_TYPE WHERE TR_TYPE = TTUP-OLD-TTYP-TYPE", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TTUP-OLD-TTYP-TYPE", 
+    "DCL-TR-TYPE", 
+    "SQLCODE"
+   ], 
+   "id": "BR-COTRTUPC-017", 
+   "messages": [
+    "Please delete associated child records first:", 
+    "Delete failed with message:", 
+    "Delete successful."
+   ], 
+   "outcome": "0: TTUP-DELETE-DONE + SYNCPOINT; -532: RECORD-DELETE-FAILED + message; other: TTUP-DELETE-FAILED + message.", 
+   "paragraph": "9800-DELETE-PROCESSING", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1634-1662", 
+   "statement": "A confirmed delete removes the transaction type by its fetched code and commits (CICS SYNCPOINT, 'Delete successful.'). If category rows still reference it (SQLCODE -532, foreign key ON DELETE RESTRICT) the message 'Please delete associated child records first:' with SQLCODE and SQLERRM is shown; any other failure sets delete-failed with 'Delete failed with message:'."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Should a failed UPDATE/INSERT really end in the 'Changes committed to database' state? The SQL error text overwrites the TABLE-UPDATE-FAILED flag before the state is evaluated.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1567-1589"
+  }, 
+  {
+   "question": "After a -532 delete failure the state stays '8' (start delete), which leads to the 'UNEXPECTED DATA SCENARIO' abend on the next ENTER. Should -532 also set TTUP-DELETE-FAILED?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1638-1649"
+  }, 
+  {
+   "question": "Is the save-as-upsert intended for updates of an existing record that another user deleted meanwhile, and was an optimistic concurrency check (DATA-WAS-CHANGED-BEFORE-UPDATE) planned?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1555-1560"
+  }, 
+  {
+   "question": "Should type codes with a sign or decimal point (accepted by TEST-NUMVAL) be rejected rather than normalised to two unsigned digits?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:934-935"
+  }, 
+  {
+   "question": "Should a SQL error on the key lookup be distinguished from 'not found' so that the user is not offered to add the record?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1495-1508"
+  }
+ ], 
+ "source_path": "app/app-transaction-type-db2/cbl/COTRTUPC.cbl", 
+ "source_sha256": "c16e40c391c0ad2d3e797a0e01144ef5b78d3b0db0a1771411a95a9d08b01f67", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:200-224", 
+   "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:294-335", 
+   "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:345-557", 
+   "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:978-1082", 
+   "app/app-transaction-type-db2/cbl/COTRTUPC.cbl:1469-1663"
+  ], 
+  "text": "COTRTUPC is a pseudo-conversational CICS/DB2 program (transaction CTTU, map CTRTUPA in mapset COTRTUP) for maintaining a single row of CARDDEMO.TRANSACTION_TYPE. The user enters a 2-digit transaction type code; the program SELECTs it and either shows the description for change (PF4 to delete) or, if not found, offers PF5 to add a new type. Changed descriptions are validated (required, letters/digits/spaces only, must differ from the fetched value) and saved on PF5 confirmation as an UPDATE, or an INSERT when no row exists; deletes require a second PF4 and report the foreign-key restriction (-532) from TRANSACTION_TYPE_CATEGORY. Every successful change is committed with CICS SYNCPOINT, PF12 cancels a pending action and PF3 returns to the caller or the admin menu COADM01C. Screen state is held in TTUP-CHANGE-ACTION within the commarea appended to CARDDEMO-COMMAREA, and unexpected states end in an ABEND with code 9999."
+ }
+}

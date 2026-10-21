@@ -1,0 +1,25 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "CVCUS01Y",
+ "evidence": ["app/cpy/CVCUS01Y.cpy:1-23", "app/cbl/CBCUS01C.cbl:28-45"],
+ "key_fields": [
+  {"name": "CUSTOMER-RECORD", "meaning": "500-byte customer master record (comment RECLN 500; field sizes add up to 500).", "source": "app/cpy/CVCUS01Y.cpy:4"},
+  {"name": "CUST-ID", "meaning": "9-digit customer id, key of the customer file.", "source": "app/cpy/CVCUS01Y.cpy:5"},
+  {"name": "CUST-LAST-NAME", "meaning": "Customer last name (with CUST-FIRST-NAME and CUST-MIDDLE-NAME, 25 bytes each).", "source": "app/cpy/CVCUS01Y.cpy:6-8"},
+  {"name": "CUST-ADDR-ZIP", "meaning": "ZIP code; together with three address lines, state and country codes forms the postal address.", "source": "app/cpy/CVCUS01Y.cpy:9-14"},
+  {"name": "CUST-SSN", "meaning": "9-digit social security number (sensitive).", "source": "app/cpy/CVCUS01Y.cpy:17"},
+  {"name": "CUST-GOVT-ISSUED-ID", "meaning": "Government-issued id (sensitive).", "source": "app/cpy/CVCUS01Y.cpy:18"},
+  {"name": "CUST-DOB-YYYY-MM-DD", "meaning": "Date of birth in YYYY-MM-DD text form.", "source": "app/cpy/CVCUS01Y.cpy:19"},
+  {"name": "CUST-PRI-CARD-HOLDER-IND", "meaning": "Primary card holder indicator (1 byte, no 88-levels).", "source": "app/cpy/CVCUS01Y.cpy:21"},
+  {"name": "CUST-FICO-CREDIT-SCORE", "meaning": "3-digit FICO credit score.", "source": "app/cpy/CVCUS01Y.cpy:22"}
+ ],
+ "observations": [
+  {"kind": "conflict", "text": "CUSTREC defines the same layout under the same 01 name but calls the birth-date field CUST-DOB-YYYYMMDD; the two copybooks are near-duplicates.", "source": "app/cpy/CVCUS01Y.cpy:19"}
+ ],
+ "purpose": "CVCUS01Y defines CUSTOMER-RECORD, the standard 500-byte customer master entity: id, names, address, phones, SSN, government id, date of birth, EFT account id, primary card holder indicator and FICO score. It is used by the print utility CBCUS01C, migration programs CBEXPORT and CBIMPORT, CBTRN01C and online programs (COACTUPC, COACTVWC, COCRDSLC, COCRDUPC, COPAUA0C, COPAUS0C).",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/CVCUS01Y.cpy"],
+ "source_sha256": ["944fd9a8eb10a683d0db97b9a87f2151982f649970287eb74358826056af25f8"],
+ "status": "complete"
+}

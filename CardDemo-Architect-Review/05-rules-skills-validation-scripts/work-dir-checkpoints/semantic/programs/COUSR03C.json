@@ -1,0 +1,279 @@
+{
+ "batch": "B07", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Defensive default of the XCTL target to COSGN00C when CDEMO-TO-PROGRAM is blank.", 
+   "source": "app/cbl/COUSR03C.cbl:199-201"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COUSR03C.cbl:189-191", 
+   "text": "DELETE-USER-INFO performs DELETE-USER-SEC-FILE without testing the error flag after READ-USER-SEC-FILE; when the user is not found the not-found screen is sent and then a DELETE without a prior READ UPDATE is issued (Inferred: CICS INVREQ, giving a second screen 'Unable to Update User...')."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COUSR03C.cbl:329-335", 
+   "text": "The generic delete failure message reads 'Unable to Update User...' instead of a delete wording (copied from COUSR02C)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COUSR03C.cbl:281-285", 
+   "text": "A successful READ sends the screen ('Press PF5 key to delete this user ...'), so PF5 sends the map twice in one task and first entry can send it three times (read, line 168, line 105)."
+  }, 
+  {
+   "kind": "security", 
+   "source": "app/cbl/COUSR03C.cbl:174-192", 
+   "text": "No check that the signed-on user is an administrator, that the user is not deleting their own ID (CDEMO-USER-ID not referenced), or that at least one administrator remains."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/cbl/COUSR03C.cbl:45-47", 
+   "text": "WS-USR-MODIFIED and its 88-levels are set but never tested in this program."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/COUSR03C.cbl:232-238", 
+   "text": "RECEIVE MAP response codes are captured but never tested."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/COUSR03C.cbl:36-39", 
+   "text": "File 'USRSEC', transaction 'CU03', programs COSGN00C and COADM01C are literals."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "82-137", 
+   "logic": "Resets the error and modified flags and the message. EIBCALEN = 0 XCTLs to COSGN00C. Otherwise loads CARDDEMO-COMMAREA; on first entry sets re-enter, clears the map and, if CDEMO-CU03-USR-SELECTED is not blank, moves it to USRIDINI and performs PROCESS-ENTER-KEY, then sends the screen. On re-entry receives the map and dispatches: Enter, PF3 (XCTL to CDEMO-FROM-PROGRAM or COADM01C), PF4 (clear), PF5 (DELETE-USER-INFO), PF12 (XCTL to COADM01C), other keys show CCDA-MSG-INVALID-KEY. Ends with CICS RETURN TRANSID CU03.", 
+   "name": "MAIN-PARA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "142-169", 
+   "logic": "Rejects a blank USRIDINI with 'User ID can NOT be empty...'. Otherwise blanks name and type fields, moves USRIDINI to SEC-USR-ID and performs READ-USER-SEC-FILE; if found moves SEC-USR-FNAME, SEC-USR-LNAME and SEC-USR-TYPE to the screen and sends it (the password is not shown).", 
+   "name": "PROCESS-ENTER-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "174-192", 
+   "logic": "Rejects a blank USRIDINI with 'User ID can NOT be empty...'. Otherwise moves USRIDINI to SEC-USR-ID, performs READ-USER-SEC-FILE and then DELETE-USER-SEC-FILE without testing the read result.", 
+   "name": "DELETE-USER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "197-208", 
+   "logic": "Defaults CDEMO-TO-PROGRAM to COSGN00C when blank, sets FROM tranid/program to CU03/COUSR03C, resets CDEMO-PGM-CONTEXT and XCTLs to CDEMO-TO-PROGRAM.", 
+   "name": "RETURN-TO-PREV-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "213-225", 
+   "logic": "Fills the header, moves WS-MESSAGE to ERRMSGO and sends map COUSR3A with ERASE and CURSOR.", 
+   "name": "SEND-USRDEL-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "230-238", 
+   "logic": "Receives map COUSR3A into COUSR3AI with RESP/RESP2; the response is not tested.", 
+   "name": "RECEIVE-USRDEL-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "243-262", 
+   "logic": "Moves FUNCTION CURRENT-DATE to WS-CURDATE-DATA, CCDA-TITLE01/CCDA-TITLE02 to TITLE01O/TITLE02O, WS-TRANID to TRNNAMEO and WS-PGMNAME to PGMNAMEO of COUSR3AO; rebuilds the date as WS-CURDATE-MM-DD-YY (MM/DD/YY from WS-CURDATE-MONTH, WS-CURDATE-DAY, WS-CURDATE-YEAR(3:2)) into CURDATEO and the time as WS-CURTIME-HH-MM-SS into CURTIMEO.", 
+   "name": "POPULATE-HEADER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "267-300", 
+   "logic": "Issues CICS READ UPDATE on USRSEC by SEC-USR-ID. NORMAL sends the screen with 'Press PF5 key to delete this user ...' (neutral colour); NOTFND sets the error flag with 'User ID NOT found...'; other responses display RESP/REAS and set the error flag with 'Unable to lookup User...'.", 
+   "name": "READ-USER-SEC-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "305-336", 
+   "logic": "Issues CICS DELETE on USRSEC (record held by the preceding READ UPDATE). NORMAL clears the fields and shows 'User <id> has been deleted ...' in green; NOTFND sets the error flag with 'User ID NOT found...'; other responses set the error flag with 'Unable to Update User...'.", 
+   "name": "DELETE-USER-SEC-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "341-344", 
+   "logic": "Performs INITIALIZE-ALL-FIELDS and sends the screen.", 
+   "name": "CLEAR-CURRENT-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "349-356", 
+   "logic": "Positions the cursor on the user ID and moves SPACES to user ID, first name, last name, user type and WS-MESSAGE.", 
+   "name": "INITIALIZE-ALL-FIELDS"
+  }
+ ], 
+ "program": "COUSR03C", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/cbl/COUSR03C.cbl:199-207"
+   ], 
+   "anchor": "IF EIBCALEN = 0", 
+   "category": "routing", 
+   "conditions": "EIBCALEN = 0", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBCALEN", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COUSR03C-001", 
+   "messages": [], 
+   "outcome": "XCTL COSGN00C.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COUSR03C.cbl:90-92", 
+   "statement": "When started without a COMMAREA (EIBCALEN = 0) the user is sent to the sign-on program COSGN00C."
+  }, 
+  {
+   "anchor": "IF CDEMO-CU03-USR-SELECTED NOT =", 
+   "category": "decision", 
+   "conditions": "NOT CDEMO-PGM-REENTER and CDEMO-CU03-USR-SELECTED not SPACES/LOW-VALUES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-PGM-CONTEXT", 
+    "CDEMO-CU03-USR-SELECTED", 
+    "USRIDINI"
+   ], 
+   "id": "BR-COUSR03C-002", 
+   "messages": [], 
+   "outcome": "USRIDINI = CDEMO-CU03-USR-SELECTED; PROCESS-ENTER-KEY; screen sent.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COUSR03C.cbl:95-105", 
+   "statement": "On first entry, when a user was selected for deletion on the user list (CDEMO-CU03-USR-SELECTED not blank), that user is fetched and displayed immediately with the delete prompt."
+  }, 
+  {
+   "anchor": "PERFORM DELETE-USER-INFO", 
+   "category": "routing", 
+   "conditions": "EIBAID value; for PF3 whether CDEMO-FROM-PROGRAM is blank", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBAID", 
+    "CDEMO-FROM-PROGRAM", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COUSR03C-003", 
+   "messages": [
+    "Invalid key pressed. Please see below..."
+   ], 
+   "outcome": "DFHENTER -> PROCESS-ENTER-KEY; DFHPF3 -> XCTL CDEMO-FROM-PROGRAM or COADM01C; DFHPF4 -> clear; DFHPF5 -> DELETE-USER-INFO; DFHPF12 -> XCTL COADM01C; other -> WS-ERR-FLG 'Y', CCDA-MSG-INVALID-KEY.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COUSR03C.cbl:108-130", 
+   "statement": "Key actions on re-entry: Enter fetches the user; PF5 deletes the user whose ID is on the screen; PF3 returns to the calling program (CDEMO-FROM-PROGRAM, or COADM01C when unknown); PF4 clears the screen; PF12 returns to the admin menu COADM01C; other keys show the invalid-key message."
+  }, 
+  {
+   "anchor": "WHEN USRIDINI OF COUSR3AI = SPACES OR LOW-VALUES", 
+   "category": "validation", 
+   "conditions": "USRIDINI = SPACES or LOW-VALUES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "USRIDINI", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR03C-004", 
+   "messages": [
+    "User ID can NOT be empty..."
+   ], 
+   "outcome": "WS-ERR-FLG 'Y', 'User ID can NOT be empty...', no read.", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COUSR03C.cbl:144-154", 
+   "statement": "A user ID is required to look up a user for deletion."
+  }, 
+  {
+   "anchor": "PERFORM DELETE-USER-SEC-FILE", 
+   "category": "validation", 
+   "conditions": "USRIDINI not blank", 
+   "confidence": "Confirmed", 
+   "data": [
+    "USRIDINI", 
+    "SEC-USR-ID", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR03C-005", 
+   "messages": [
+    "User ID can NOT be empty..."
+   ], 
+   "outcome": "READ UPDATE then DELETE of SEC-USR-ID; blank ID gives 'User ID can NOT be empty...'.", 
+   "paragraph": "DELETE-USER-INFO", 
+   "source": "app/cbl/COUSR03C.cbl:176-192", 
+   "statement": "PF5 deletes the user whose ID is currently in the input field; the only condition is that the ID is not blank. The user does not have to have been displayed first (no confirmation state is kept)."
+  }, 
+  {
+   "anchor": "'Press PF5 key to delete this user ...'", 
+   "category": "error-policy", 
+   "conditions": "WS-RESP-CD after READ UPDATE USRSEC", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "SEC-USR-ID", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR03C-006", 
+   "messages": [
+    "Press PF5 key to delete this user ...", 
+    "User ID NOT found...", 
+    "Unable to lookup User..."
+   ], 
+   "outcome": "NORMAL: prompt (DFHNEUTR) and screen sent. NOTFND: WS-ERR-FLG 'Y', 'User ID NOT found...'. Other: DISPLAY RESP/REAS, WS-ERR-FLG 'Y', 'Unable to lookup User...'.", 
+   "paragraph": "READ-USER-SEC-FILE", 
+   "source": "app/cbl/COUSR03C.cbl:280-300", 
+   "statement": "Fetching the user by exact user ID: if found the user is prompted to press PF5 to delete; if not found the user is told so; other failures report a lookup error. Not-found and lookup errors set the error flag."
+  }, 
+  {
+   "anchor": "' has been deleted ...' DELIMITED BY SIZE", 
+   "category": "error-policy", 
+   "conditions": "WS-RESP-CD after DELETE USRSEC", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "SEC-USR-ID", 
+    "WS-ERR-FLG", 
+    "ERRMSGC"
+   ], 
+   "id": "BR-COUSR03C-007", 
+   "messages": [
+    " has been deleted ...", 
+    "User ID NOT found...", 
+    "Unable to Update User..."
+   ], 
+   "outcome": "NORMAL: fields cleared, green 'User <id> has been deleted ...'. NOTFND: 'User ID NOT found...'. Other: DISPLAY RESP/REAS, 'Unable to Update User...'.", 
+   "paragraph": "DELETE-USER-SEC-FILE", 
+   "source": "app/cbl/COUSR03C.cbl:313-336", 
+   "statement": "Deleting the user: success clears the screen and shows a green confirmation naming the user; not-found and other failures set the error flag with their messages (the generic failure text says 'Update')."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Should PF5 delete only a user that was displayed and confirmed in the previous interaction, rather than any ID typed in the input field?", 
+   "source": "app/cbl/COUSR03C.cbl:176-192"
+  }, 
+  {
+   "question": "Should deletion of the signed-on user's own ID or of the last administrator be prevented?", 
+   "source": "app/cbl/COUSR03C.cbl:305-311"
+  }
+ ], 
+ "source_path": "app/cbl/COUSR03C.cbl", 
+ "source_sha256": "bcd68f08c145b3b9b9c809a7082834e9519d78b6f363a0d1c5ff9d9576dcf888", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/COUSR03C.cbl:1-5", 
+   "app/cbl/COUSR03C.cbl:35-39", 
+   "app/cbl/COUSR03C.cbl:90-136", 
+   "app/cbl/COUSR03C.cbl:142-192", 
+   "app/cbl/COUSR03C.cbl:267-336"
+  ], 
+  "text": "COUSR03C is a pseudo-conversational CICS COBOL program (transaction CU03, map COUSR3A in mapset COUSR03) that deletes a user from the USRSEC VSAM user security file. Without a COMMAREA it transfers to sign-on (COSGN00C). On first entry it fetches the user selected on the user list (CDEMO-CU03-USR-SELECTED); on Enter it reads the typed user ID (READ UPDATE) and shows first name, last name and user type with the prompt 'Press PF5 key to delete this user ...'. PF5 requires a user ID, re-reads the record with UPDATE and issues CICS DELETE; success clears the screen and shows 'User <id> has been deleted ...'. PF3 returns to the calling program (or COADM01C), PF4 clears the screen and PF12 returns to the admin menu COADM01C."
+ }
+}

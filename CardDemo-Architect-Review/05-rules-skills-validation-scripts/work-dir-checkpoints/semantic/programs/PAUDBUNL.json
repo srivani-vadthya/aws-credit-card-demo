@@ -1,0 +1,70 @@
+{
+ "schema": "program-semantics/1",
+ "program": "PAUDBUNL",
+ "source_path": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL",
+ "source_sha256": "cf174417cd833193fec178a782fa8d7cabb95da9a8c2ca709af598c45f485625",
+ "batch": "B01",
+ "status": "complete",
+ "summary": {
+  "text": "PAUDBUNL is a batch IMS DL/I unload utility (entry DLITCBL with PCB mask PAUTBPCB; run by UNLDPADB.JCL as DLI with PSB PAUTBUNL) that copies the pending authorization database to two sequential files. It reads every PAUTSUM0 summary root with unqualified GN calls; for each summary with a numeric account id it writes the 100-byte summary to OUTFIL1 and then reads each PAUTDTL1 child with GNP and writes a record of the packed account id (ROOT-SEG-KEY) plus the 200-byte detail to OUTFIL2. It ends at end of database ('GB'); unexpected IMS statuses or open failures end with RETURN-CODE 16.",
+  "evidence": [
+   "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:25-48",
+   "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:153-170",
+   "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:207-284"
+  ],
+  "confidence": "Confirmed"
+ },
+ "paragraphs": [
+  {"name": "MAIN-PARA", "lines": "157-170", "confidence": "Confirmed", "logic": "Entered via ENTRY 'DLITCBL' using PAUTBPCB; performs 1000-INITIALIZE, repeats 2000-FIND-NEXT-AUTH-SUMMARY until WS-END-OF-ROOT-SEG = 'Y', closes the files and GOBACKs."},
+  {"name": "1000-INITIALIZE", "lines": "173-200", "confidence": "Confirmed", "logic": "Accepts and displays the current date, then opens OPFILE1 and OPFILE2 for output; a status other than spaces/'00' displays the error and performs 9999-ABEND."},
+  {"name": "1000-EXIT", "lines": "203-204", "confidence": "Confirmed", "logic": "Exit point of 1000-INITIALIZE (EXIT only)."},
+  {"name": "2000-FIND-NEXT-AUTH-SUMMARY", "lines": "207-247", "confidence": "Confirmed", "logic": "Calls CBLTDLI GN with ROOT-UNQUAL-SSA on PAUTBPCB. On blank status counts the read, moves the summary to OPFIL1-REC and PA-ACCT-ID to ROOT-SEG-KEY and, if PA-ACCT-ID is numeric, writes OPFIL1-REC and loops 3000-FIND-NEXT-AUTH-DTL until end of children. 'GB' ends the root loop; any other status displays 'AUTH SUM  GN FAILED' and performs 9999-ABEND."},
+  {"name": "2000-EXIT", "lines": "248-249", "confidence": "Confirmed", "logic": "Exit point of 2000-FIND-NEXT-AUTH-SUMMARY (EXIT only)."},
+  {"name": "3000-FIND-NEXT-AUTH-DTL", "lines": "253-284", "confidence": "Confirmed", "logic": "Calls CBLTDLI GNP with CHILD-UNQUAL-SSA. On blank status moves the detail to CHILD-SEG-REC and writes OPFIL2-REC (account key + detail); 'GE' sets WS-END-OF-CHILD-SEG = 'Y'; other statuses display 'GNP CALL FAILED' and perform 9999-ABEND. Clears PAUT-PCB-STATUS."},
+  {"name": "3000-EXIT", "lines": "285-286", "confidence": "Confirmed", "logic": "Exit point of 3000-FIND-NEXT-AUTH-DTL (EXIT only)."},
+  {"name": "4000-FILE-CLOSE", "lines": "289-304", "confidence": "Confirmed", "logic": "Closes OPFILE1 and OPFILE2, displaying an error message for a non-'00' status (no abend)."},
+  {"name": "4000-EXIT", "lines": "305-306", "confidence": "Confirmed", "logic": "Exit point of 4000-FILE-CLOSE (EXIT only)."},
+  {"name": "9999-ABEND", "lines": "308-314", "confidence": "Confirmed", "logic": "Displays 'IMSUNLOD ABENDING ...', sets RETURN-CODE 16 and GOBACKs."},
+  {"name": "9999-EXIT", "lines": "316-317", "confidence": "Confirmed", "logic": "Exit point of 9999-ABEND (EXIT only, not reached)."}
+ ],
+ "rules": [
+  {
+   "id": "BR-PAUDBUNL-001",
+   "category": "decision",
+   "statement": "Only pending authorization summaries with a numeric account id are unloaded; for each such summary the summary record is written to OUTFIL1 and each child detail is written to OUTFIL2 prefixed with the packed account id so it can be re-parented on reload.",
+   "paragraph": "2000-FIND-NEXT-AUTH-SUMMARY",
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:227-237",
+   "anchor": "IF PA-ACCT-ID IS NUMERIC",
+   "additional_sources": ["app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:266-272"],
+   "conditions": "PA-ACCT-ID IS NUMERIC",
+   "outcome": "WRITE OPFIL1-REC; WRITE OPFIL2-REC per detail with ROOT-SEG-KEY = PA-ACCT-ID.",
+   "data": ["PA-ACCT-ID", "ROOT-SEG-KEY", "OPFIL1-REC", "OPFIL2-REC", "CHILD-SEG-REC"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-PAUDBUNL-002",
+   "category": "error-policy",
+   "statement": "The unload stops with return code 16 when an output file cannot be opened or when IMS returns an unexpected status (not blank/'GB' on summary, not blank/'GE' on detail).",
+   "paragraph": "2000-FIND-NEXT-AUTH-SUMMARY",
+   "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:243-246",
+   "anchor": "IF PAUT-PCB-STATUS NOT EQUAL TO  SPACES AND 'GB'",
+   "additional_sources": ["app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:186-200", "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:279-283", "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:311-314"],
+   "conditions": "Open status not spaces/'00'; unexpected PCB status",
+   "outcome": "DISPLAY, RETURN-CODE 16, GOBACK.",
+   "data": ["WS-OUTFL1-STATUS", "WS-OUTFL2-STATUS", "PAUT-PCB-STATUS"],
+   "messages": ["AUTH SUM  GN FAILED  :", "GNP CALL FAILED  :", "IMSUNLOD ABENDING ..."],
+   "confidence": "Confirmed"
+  }
+ ],
+ "existing_rules_reviewed": [],
+ "no_rule_decisions": [],
+ "no_business_rules_reason": null,
+ "observations": [
+  {"kind": "unchecked-io", "text": "WRITE OPFIL1-REC and WRITE OPFIL2-REC are not followed by a file-status check.", "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:233"},
+  {"kind": "anomaly", "text": "Detail reads increment WS-NO-SUMRY-READ and WS-AUTH-SMRY-PROC-CNT instead of a detail counter; no counts are displayed.", "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:268-269"},
+  {"kind": "anomaly", "text": "Program displays 'IMSUNLOD' as its name (WS-PGMNAME and abend text) instead of PAUDBUNL.", "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:311"},
+  {"kind": "dead-code", "text": "PRM-INFO, checkpoint id, expiry/day-diff fields and IMS-RETURN-CODE 88-levels are unused copies from CBPAUP0C.", "source": "app/app-authorization-ims-db2-mq/cbl/PAUDBUNL.CBL:119-129"}
+ ],
+ "sme_questions": []
+}

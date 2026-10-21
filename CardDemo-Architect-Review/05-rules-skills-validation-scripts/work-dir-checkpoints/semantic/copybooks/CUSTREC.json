@@ -1,0 +1,24 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "CUSTREC",
+ "evidence": ["app/cpy/CUSTREC.cpy:1-23", "app/cbl/CBSTM03A.CBL:55", "app/cbl/CBSTM03A.CBL:462-484"],
+ "key_fields": [
+  {"name": "CUSTOMER-RECORD", "meaning": "500-byte customer master record (header comment RECLN 500; field sizes add up to 500).", "source": "app/cpy/CUSTREC.cpy:4"},
+  {"name": "CUST-ID", "meaning": "9-digit customer identifier, key of the customer file.", "source": "app/cpy/CUSTREC.cpy:5"},
+  {"name": "CUST-FIRST-NAME", "meaning": "Customer first name; with middle and last name forms the statement name line in CBSTM03A.", "source": "app/cpy/CUSTREC.cpy:6"},
+  {"name": "CUST-ADDR-LINE-1", "meaning": "First of three 50-byte address lines, followed by state, country and ZIP codes.", "source": "app/cpy/CUSTREC.cpy:9-14"},
+  {"name": "CUST-SSN", "meaning": "9-digit social security number (sensitive).", "source": "app/cpy/CUSTREC.cpy:17"},
+  {"name": "CUST-DOB-YYYYMMDD", "meaning": "Date of birth, 10 bytes (name differs from CVCUS01Y's CUST-DOB-YYYY-MM-DD).", "source": "app/cpy/CUSTREC.cpy:19"},
+  {"name": "CUST-FICO-CREDIT-SCORE", "meaning": "3-digit FICO credit score, printed on statements.", "source": "app/cpy/CUSTREC.cpy:22"}
+ ],
+ "observations": [
+  {"kind": "anomaly", "text": "Lines 6-22 begin with tab characters instead of spaces, so the source is not aligned to standard fixed-format columns; compilers or tools that do not expand tabs may misread it.", "source": "app/cpy/CUSTREC.cpy:6-22"},
+  {"kind": "conflict", "text": "Near-duplicate of CVCUS01Y: same 500-byte layout, but the date-of-birth field is named CUST-DOB-YYYYMMDD here and CUST-DOB-YYYY-MM-DD in CVCUS01Y.", "source": "app/cpy/CUSTREC.cpy:19"}
+ ],
+ "purpose": "CUSTREC defines CUSTOMER-RECORD, the 500-byte customer entity: id, names, three address lines, state/country/ZIP, two phone numbers, SSN, government id, date of birth, EFT account id, primary card holder indicator and FICO score. It is a variant of CVCUS01Y used only by the statement program CBSTM03A, which receives the customer record from CBSTM03B and prints name, address and FICO score on statements.",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/CUSTREC.cpy"],
+ "source_sha256": ["f87a0a041fbd8f38dc9c23a9519b917af9c7008527e9cb924f91c2fb4e0a2ecc"],
+ "status": "complete"
+}

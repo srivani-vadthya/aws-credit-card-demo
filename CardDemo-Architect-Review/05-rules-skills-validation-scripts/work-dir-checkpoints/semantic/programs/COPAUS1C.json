@@ -1,0 +1,326 @@
+{
+ "batch": "B01", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Technical PSB release via SYNCPOINT.", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:218-221"
+  }, 
+  {
+   "reason": "Technical PSB release via SYNCPOINT.", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:276-279"
+  }, 
+  {
+   "reason": "SEND with or without ERASE; presentation only.", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:380-395"
+  }, 
+  {
+   "reason": "Technical IMS PSB re-schedule when already scheduled ('TC').", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:580-589"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:525-528", 
+   "text": "The PAUTDTL1 segment is read with GU/GNP (no hold) and later replaced with DLI REPL; IMS requires a Get Hold call before REPL, and the PSB was released by SYNCPOINT in between, so the replace is expected to fail and roll back the fraud update (Inferred from IMS DL/I REPL semantics; not verified at runtime)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:234-243", 
+   "text": "MARK-AUTH-FRAUD does not check WS-ERR-FLG or AUTHS-EOF after READ-AUTH-RECORD; if the read failed it still toggles and links COPAUS2C with whatever is in PENDING-AUTH-DETAILS."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:260-262", 
+   "text": "When the LINK to COPAUS2C fails (EIBRESP not NORMAL) the rollback happens with no user message."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:523", 
+   "text": "DISPLAY 'RPT DT: ' in an online CICS program writes to the CICS job log; debugging leftover."
+  }, 
+  {
+   "kind": "conflict", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:56-66", 
+   "text": "The decline-reason table includes codes 4400 (EXCED DAILY LMT) and 5300 (LOST CARD) that the decision program COPAUA0C never assigns, and COPAUA0C's 4200/4300/5100/5200 paths are unreachable there."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:110-120", 
+   "text": "PF7 is not handled (no previous-authorization navigation); CDEMO-CPVD-PAUKEY-PREV-PG/LAST/PAGE-NUM fields are unused here."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "157-206", 
+   "logic": "Resets error and erase flags. With no commarea it returns to COPAUS0C. Otherwise it loads the commarea, blanks CDEMO-CPVD-FRAUD-DATA and on first entry shows the selected authorization; on re-entry it receives the map and dispatches ENTER (redisplay), PF3 (back to COPAUS0C), PF5 (toggle fraud), PF8 (next authorization) or shows the invalid-key message. Ends with CICS RETURN TRANSID 'CPVD'.", 
+   "name": "MAIN-PARA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "208-228", 
+   "logic": "Clears the map; when CDEMO-ACCT-ID is numeric and a selected auth key is present it reads the summary and detail segments and releases the PSB with SYNCPOINT, otherwise sets the error flag. Then populates the detail fields.", 
+   "name": "PROCESS-ENTER-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "230-266", 
+   "logic": "Re-reads the selected authorization and toggles PA-AUTH-FRAUD: confirmed ('F') becomes removed ('R') with action WS-REMOVE-FRAUD, anything else becomes confirmed with WS-REPORT-FRAUD. Links to COPAUS2C with account id, customer id and the detail record; on NORMAL response and WS-FRD-UPDT-SUCCESS updates the IMS detail, otherwise shows COPAUS2C's message (if any) and rolls back. Redisplays the details.", 
+   "name": "MARK-AUTH-FRAUD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "268-289", 
+   "logic": "Reads the current authorization, then the next PAUTDTL1 under the same summary with GNP, and releases the PSB. At end shows 'Already at the last Authorization...' without erase; otherwise saves the new key in CDEMO-CPVD-PAU-SELECTED and populates the details.", 
+   "name": "PROCESS-PF8-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "291-358", 
+   "logic": "When no error: formats card number, original date MM/DD/YY and time HH:MM:SS, approved amount, response 'A' (green) when code '00' else 'D' (red), and looks up PA-AUTH-RESP-REASON in the decline-reason table with SEARCH ALL (shows '9999-ERROR' if absent). Also moves processing code, POS mode, source, MCC, expiry MM/YY, type, transaction id, match status, fraud flag with report date (or '-') and merchant name/id/city/state/zip.", 
+   "name": "POPULATE-AUTH-DETAILS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "360-370", 
+   "logic": "Sets from-tranid/from-program to CPVD/COPAUS1C, zeroes the context, sets CDEMO-PGM-ENTER and XCTLs to CDEMO-TO-PROGRAM with the commarea.", 
+   "name": "RETURN-TO-PREV-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "373-396", 
+   "logic": "Populates the header, moves WS-MESSAGE to ERRMSGO, places the cursor on the card number and sends map COPAU1A with or without ERASE depending on SEND-ERASE-YES.", 
+   "name": "SEND-AUTHVIEW-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "398-406", 
+   "logic": "Receives map COPAU1A of mapset COPAU01 into COPAU1AI with NOHANDLE.", 
+   "name": "RECEIVE-AUTHVIEW-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "409-429", 
+   "logic": "Moves FUNCTION CURRENT-DATE to WS-CURDATE-DATA, CCDA-TITLE01/CCDA-TITLE02 to TITLE01O/TITLE02O, WS-CICS-TRANID to TRNNAMEO and WS-PGM-AUTH-DTL to PGMNAMEO of COPAU1AO; rebuilds the date as WS-CURDATE-MM-DD-YY (MM/DD/YY from WS-CURDATE-MONTH, WS-CURDATE-DAY, WS-CURDATE-YEAR(3:2)) into CURDATEO and the time as WS-CURTIME-HH-MM-SS into CURTIMEO.", 
+   "name": "POPULATE-HEADER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "431-491", 
+   "logic": "Schedules the PSB, issues DLI GU for PAUTSUM0 WHERE ACCNTID = WS-ACCT-ID and, when found, GNP for PAUTDTL1 WHERE PAUT9CTS = WS-AUTH-KEY. 'GE'/'GB' set AUTHS-EOF; other statuses set the error flag with a system-error message and send the screen.", 
+   "name": "READ-AUTH-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "493-518", 
+   "logic": "Issues DLI GNP for the next PAUTDTL1; OK sets AUTHS-NOT-EOF, 'GE'/'GB' sets AUTHS-EOF, other statuses set the error flag with ' System error while reading next Auth: Code:' and send the screen.", 
+   "name": "READ-NEXT-AUTH-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "520-552", 
+   "logic": "Moves the detail returned from COPAUS2C (with fraud report date) into PENDING-AUTH-DETAILS, displays the report date and issues DLI REPL of PAUTDTL1. On success commits with SYNCPOINT and shows 'AUTH FRAUD REMOVED...' or 'AUTH MARKED FRAUD...'; otherwise rolls back, sets the error flag and shows ' System error while FRAUD Tagging, ROLLBACK||' with the IMS status.", 
+   "name": "UPDATE-AUTH-DETAILS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "557-560", 
+   "logic": "Issues EXEC CICS SYNCPOINT to commit and release the PSB.", 
+   "name": "TAKE-SYNCPOINT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "565-569", 
+   "logic": "Issues EXEC CICS SYNCPOINT ROLLBACK, backing out IMS and DB2 changes of the unit of work.", 
+   "name": "ROLL-BACK"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "574-603", 
+   "logic": "Schedules PSB 'PSBPAUTB' (NODHABEND), terminating and rescheduling on 'TC'. OK sets IMS-PSB-SCHD; otherwise sets the error flag with ' System error while scheduling PSB: Code:' and sends the screen.", 
+   "name": "SCHEDULE-PSB"
+  }
+ ], 
+ "program": "COPAUS1C", 
+ "rules": [
+  {
+   "anchor": "IF CDEMO-ACCT-ID IS NUMERIC AND", 
+   "category": "validation", 
+   "conditions": "CDEMO-ACCT-ID numeric and CDEMO-CPVD-PAU-SELECTED not spaces/low-values", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-ACCT-ID", 
+    "CDEMO-CPVD-PAU-SELECTED"
+   ], 
+   "id": "BR-COPAUS1C-001", 
+   "messages": [], 
+   "outcome": "Read and display, or ERR-FLG-ON (no display).", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:211-224", 
+   "statement": "An authorization detail is displayed only when the commarea carries a numeric account id and a non-blank selected authorization key; otherwise the error flag is set and the detail fields are left empty."
+  }, 
+  {
+   "anchor": "SET PA-FRAUD-REMOVED          TO TRUE", 
+   "category": "decision", 
+   "conditions": "PA-FRAUD-CONFIRMED", 
+   "confidence": "Confirmed", 
+   "data": [
+    "PA-AUTH-FRAUD", 
+    "WS-FRD-ACTION"
+   ], 
+   "id": "BR-COPAUS1C-002", 
+   "messages": [], 
+   "outcome": "PA-AUTH-FRAUD and WS-FRD-ACTION set before LINK to COPAUS2C.", 
+   "paragraph": "MARK-AUTH-FRAUD", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:236-242", 
+   "statement": "PF5 toggles the fraud status of the displayed authorization: if it is currently confirmed fraud ('F') it becomes fraud removed ('R') and the action sent to COPAUS2C is remove; otherwise it becomes confirmed fraud ('F') and the action is report."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:531-551"
+   ], 
+   "anchor": "IF WS-FRD-UPDT-SUCCESS", 
+   "category": "data-integrity", 
+   "conditions": "EIBRESP NORMAL and WS-FRD-UPDATE-STATUS = 'S'; then DLI REPL status OK", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-FRD-UPDATE-STATUS", 
+    "WS-FRD-ACT-MSG", 
+    "IMS-RETURN-CODE"
+   ], 
+   "id": "BR-COPAUS1C-003", 
+   "messages": [
+    "AUTH FRAUD REMOVED...", 
+    "AUTH MARKED FRAUD...", 
+    " System error while FRAUD Tagging, ROLLBACK||"
+   ], 
+   "outcome": "SYNCPOINT with 'AUTH FRAUD REMOVED...' / 'AUTH MARKED FRAUD...', or SYNCPOINT ROLLBACK with error message.", 
+   "paragraph": "MARK-AUTH-FRAUD", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:253-262", 
+   "statement": "The IMS detail is updated with the new fraud status only when COPAUS2C has recorded the fraud action in DB2 successfully; if the LINK fails or COPAUS2C reports failure, the unit of work is rolled back and COPAUS2C's message is shown. A failed IMS replace also rolls back both updates."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:56-73"
+   ], 
+   "anchor": "SEARCH ALL WS-DECLINE-REASON-TAB", 
+   "category": "transformation", 
+   "conditions": "PA-AUTH-RESP-CODE, PA-AUTH-RESP-REASON", 
+   "confidence": "Confirmed", 
+   "data": [
+    "PA-AUTH-RESP-CODE", 
+    "PA-AUTH-RESP-REASON", 
+    "DECL-CODE", 
+    "DECL-DESC"
+   ], 
+   "id": "BR-COPAUS1C-004", 
+   "messages": [], 
+   "outcome": "AUTHRSPO/AUTHRSPC and AUTHRSNO populated.", 
+   "paragraph": "POPULATE-AUTH-DETAILS", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:311-328", 
+   "statement": "The response is displayed as 'A' in green when the response code is '00' and 'D' in red otherwise; the reason code is decoded through a sorted table (0000 APPROVED, 3100 INVALID CARD, 4100 INSUFFICNT FUND, 4200 CARD NOT ACTIVE, 4300 ACCOUNT CLOSED, 4400 EXCED DAILY LMT, 5100 CARD FRAUD, 5200 MERCHANT FRAUD, 5300 LOST CARD, 9000 UNKNOWN) and shown as '9999-ERROR' when not in the table."
+  }, 
+  {
+   "anchor": "IF PA-FRAUD-CONFIRMED OR PA-FRAUD-REMOVED", 
+   "category": "transformation", 
+   "conditions": "PA-AUTH-FRAUD in ('F','R')", 
+   "confidence": "Confirmed", 
+   "data": [
+    "PA-AUTH-FRAUD", 
+    "PA-FRAUD-RPT-DATE"
+   ], 
+   "id": "BR-COPAUS1C-005", 
+   "messages": [], 
+   "outcome": "AUTHFRDO = flag '-' report date, or '-'.", 
+   "paragraph": "POPULATE-AUTH-DETAILS", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:344-350", 
+   "statement": "The fraud field shows the fraud flag and the fraud report date only when the authorization is confirmed fraud or fraud removed; otherwise it shows '-'."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:501-517"
+   ], 
+   "anchor": "'Already at the last Authorization...'", 
+   "category": "decision", 
+   "conditions": "AUTHS-EOF after GNP", 
+   "confidence": "Confirmed", 
+   "data": [
+    "PA-AUTHORIZATION-KEY", 
+    "CDEMO-CPVD-PAU-SELECTED"
+   ], 
+   "id": "BR-COPAUS1C-006", 
+   "messages": [
+    "Already at the last Authorization..."
+   ], 
+   "outcome": "Next detail displayed and CDEMO-CPVD-PAU-SELECTED updated, or message.", 
+   "paragraph": "PROCESS-PF8-KEY", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:281-287", 
+   "statement": "PF8 shows the next pending authorization of the same account in IMS key order; when there is none the current one stays and the message 'Already at the last Authorization...' is shown."
+  }, 
+  {
+   "anchor": "' System error while reading Auth Summary: Code:'", 
+   "category": "error-policy", 
+   "conditions": "DIBSTAT not OK/'GE'/'GB'", 
+   "confidence": "Confirmed", 
+   "data": [
+    "IMS-RETURN-CODE", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COPAUS1C-007", 
+   "messages": [
+    " System error while reading Auth Summary: Code:", 
+    " System error while reading Auth Details: Code:"
+   ], 
+   "outcome": "WS-ERR-FLG = 'Y', message, screen sent.", 
+   "paragraph": "READ-AUTH-RECORD", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:446-488", 
+   "statement": "Unexpected IMS statuses on reading the summary or the selected detail set the error flag and display a system-error message with the IMS code; a missing summary or detail ('GE'/'GB') is treated as end of data."
+  }, 
+  {
+   "anchor": "MOVE WS-PGM-AUTH-SMRY     TO CDEMO-TO-PROGRAM", 
+   "category": "routing", 
+   "conditions": "EIBCALEN = 0 or EIBAID = DFHPF3", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBCALEN", 
+    "EIBAID", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COPAUS1C-008", 
+   "messages": [], 
+   "outcome": "XCTL to COPAUS0C with CDEMO-PGM-ENTER.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:164-185", 
+   "statement": "PF3, or entry without a commarea, returns to the authorization summary program COPAUS0C."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Has PF5 fraud tagging been tested end to end? The REPL is not preceded by a Get Hold (GHU/GHNP) call.", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:431-491"
+  }, 
+  {
+   "question": "Should reason codes 4400 and 5300 be produced by the authorization decision program?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:62-65"
+  }
+ ], 
+ "source_path": "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl", 
+ "source_sha256": "27a969cbee69426fa1056053e676041430e99399912f0e27ee1f1a454093c21e", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:32-36", 
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:157-206", 
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:230-266", 
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:291-358", 
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:431-491", 
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS1C.cbl:520-552"
+  ], 
+  "text": "COPAUS1C is a pseudo-conversational CICS program (transaction 'CPVD', map COPAU1A of mapset COPAU01) that displays one pending authorization detail selected on the summary screen COPAUS0C. It reads the IMS pending authorization summary (PAUTSUM0) for CDEMO-ACCT-ID and the detail segment (PAUTDTL1) whose key equals CDEMO-CPVD-PAU-SELECTED, and shows card number, date/time, amount, approve/decline status with a decoded decline reason, merchant and fraud information. PF8 moves to the next authorization of the same account; PF3 returns to COPAUS0C. PF5 toggles the fraud flag: it links to COPAUS2C, which records the fraud report in DB2 table AUTHFRDS, and on success replaces the IMS detail segment and commits, otherwise rolls back."
+ }
+}

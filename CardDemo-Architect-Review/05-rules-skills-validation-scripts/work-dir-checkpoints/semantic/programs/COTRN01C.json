@@ -1,0 +1,249 @@
+{
+ "batch": "B07", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Defensive default of the XCTL target to COSGN00C when CDEMO-TO-PROGRAM is blank (technical fallback).", 
+   "source": "app/cbl/COTRN01C.cbl:199-201"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COTRN01C.cbl:269-278", 
+   "text": "The read for a view-only screen is coded with UPDATE, which takes an exclusive record lock; no REWRITE or UNLOCK follows, so the lock is held until the task ends at CICS RETURN."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COTRN01C.cbl:103-109", 
+   "text": "On first entry with a selected Tran ID, PROCESS-ENTER-KEY already sends the map (line 191 or the error sends at 152/287/294) and MAIN-PARA sends it again at line 109, so two SEND MAP commands are issued in one task."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COTRN01C.cbl:52-61", 
+   "text": "CDEMO-CT01-INFO is declared inline and must match the CDEMO-CT00-INFO layout declared inline in COTRN00C for the selected Tran ID to be passed correctly; no shared copybook enforces this."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/cbl/COTRN01C.cbl:45-47", 
+   "text": "WS-USR-MODIFIED and its 88-levels are set but never tested."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/COTRN01C.cbl:232-238", 
+   "text": "RECEIVE MAP response codes are captured but never tested."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/COTRN01C.cbl:36-39", 
+   "text": "File 'TRANSACT', transaction 'CT01' and program names COSGN00C, COMEN01C, COTRN00C are literals."
+  }, 
+  {
+   "kind": "security", 
+   "source": "app/cbl/COTRN01C.cbl:172-173", 
+   "text": "Any Tran ID can be viewed; there is no check that the transaction belongs to the signed-on user's account or card."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "86-139", 
+   "logic": "Resets flags and message. EIBCALEN = 0 XCTLs to COSGN00C. Otherwise loads CARDDEMO-COMMAREA; on first entry sets re-enter, clears the map and, when CDEMO-CT01-TRN-SELECTED is not blank, moves it to TRNIDINI and performs PROCESS-ENTER-KEY, then sends the screen. On re-entry it receives the map and dispatches on EIBAID: Enter, PF3 (XCTL to CDEMO-FROM-PROGRAM or COMEN01C), PF4 (clear), PF5 (XCTL to COTRN00C), other keys show CCDA-MSG-INVALID-KEY. Ends with CICS RETURN TRANSID CT01.", 
+   "name": "MAIN-PARA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "144-192", 
+   "logic": "Rejects a blank TRNIDINI with 'Tran ID can NOT be empty...'. Otherwise blanks the detail fields, moves TRNIDINI to TRAN-ID and performs READ-TRANSACT-FILE. If no error, moves the TRAN-RECORD fields (amount edited via WS-TRAN-AMT) to the map detail fields and sends the screen.", 
+   "name": "PROCESS-ENTER-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "197-208", 
+   "logic": "Defaults CDEMO-TO-PROGRAM to COSGN00C when blank, sets CDEMO-FROM-TRANID/CDEMO-FROM-PROGRAM to CT01/COTRN01C, resets CDEMO-PGM-CONTEXT to 0 and XCTLs to CDEMO-TO-PROGRAM with the COMMAREA.", 
+   "name": "RETURN-TO-PREV-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "213-225", 
+   "logic": "Fills the header, moves WS-MESSAGE to ERRMSGO and sends map COTRN1A with ERASE and CURSOR.", 
+   "name": "SEND-TRNVIEW-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "230-238", 
+   "logic": "Receives map COTRN1A into COTRN1AI with RESP/RESP2; the response is not tested.", 
+   "name": "RECEIVE-TRNVIEW-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "243-262", 
+   "logic": "Moves FUNCTION CURRENT-DATE to WS-CURDATE-DATA, CCDA-TITLE01/CCDA-TITLE02 to TITLE01O/TITLE02O, WS-TRANID to TRNNAMEO and WS-PGMNAME to PGMNAMEO of COTRN1AO; rebuilds the date as WS-CURDATE-MM-DD-YY (MM/DD/YY from WS-CURDATE-MONTH, WS-CURDATE-DAY, WS-CURDATE-YEAR(3:2)) into CURDATEO and the time as WS-CURTIME-HH-MM-SS into CURTIMEO.", 
+   "name": "POPULATE-HEADER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "267-296", 
+   "logic": "Issues CICS READ UPDATE on TRANSACT by TRAN-ID into TRAN-RECORD. NORMAL continues; NOTFND sets the error flag and sends 'Transaction ID NOT found...'; any other response displays RESP/REAS, sets the error flag and sends 'Unable to lookup Transaction...'.", 
+   "name": "READ-TRANSACT-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "301-304", 
+   "logic": "Performs INITIALIZE-ALL-FIELDS and sends the screen.", 
+   "name": "CLEAR-CURRENT-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "309-326", 
+   "logic": "Positions the cursor on TRNIDIN and moves SPACES to the input Tran ID, all detail fields and WS-MESSAGE.", 
+   "name": "INITIALIZE-ALL-FIELDS"
+  }
+ ], 
+ "program": "COTRN01C", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/cbl/COTRN01C.cbl:199-207"
+   ], 
+   "anchor": "IF EIBCALEN = 0", 
+   "category": "routing", 
+   "conditions": "EIBCALEN = 0", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBCALEN", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COTRN01C-001", 
+   "messages": [], 
+   "outcome": "XCTL COSGN00C.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COTRN01C.cbl:94-96", 
+   "statement": "When started without a COMMAREA (EIBCALEN = 0) the user is sent to the sign-on program COSGN00C."
+  }, 
+  {
+   "anchor": "IF CDEMO-CT01-TRN-SELECTED NOT =", 
+   "category": "decision", 
+   "conditions": "NOT CDEMO-PGM-REENTER and CDEMO-CT01-TRN-SELECTED not SPACES/LOW-VALUES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-PGM-CONTEXT", 
+    "CDEMO-CT01-TRN-SELECTED", 
+    "TRNIDINI"
+   ], 
+   "id": "BR-COTRN01C-002", 
+   "messages": [], 
+   "outcome": "TRNIDINI = CDEMO-CT01-TRN-SELECTED; PROCESS-ENTER-KEY; screen sent.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COTRN01C.cbl:99-109", 
+   "statement": "On first entry, when a Tran ID was selected on the transaction list (CDEMO-CT01-TRN-SELECTED not blank), that transaction is looked up and displayed immediately without the user typing it; otherwise an empty view screen is shown."
+  }, 
+  {
+   "anchor": "IF CDEMO-FROM-PROGRAM = SPACES OR LOW-VALUES", 
+   "category": "routing", 
+   "conditions": "EIBAID value; for PF3 whether CDEMO-FROM-PROGRAM is blank", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBAID", 
+    "CDEMO-FROM-PROGRAM", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COTRN01C-003", 
+   "messages": [
+    "Invalid key pressed. Please see below..."
+   ], 
+   "outcome": "DFHENTER -> PROCESS-ENTER-KEY; DFHPF3 -> XCTL CDEMO-FROM-PROGRAM or COMEN01C; DFHPF4 -> CLEAR-CURRENT-SCREEN; DFHPF5 -> XCTL COTRN00C; other -> WS-ERR-FLG 'Y', CCDA-MSG-INVALID-KEY.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COTRN01C.cbl:112-132", 
+   "statement": "On re-entry the attention key decides the action: Enter looks up the typed Tran ID; PF3 returns to the program that called this one (CDEMO-FROM-PROGRAM) or to the main menu COMEN01C when unknown; PF4 clears the screen; PF5 goes to the transaction list COTRN00C; any other key shows the invalid-key message."
+  }, 
+  {
+   "anchor": "'Tran ID can NOT be empty...'", 
+   "category": "validation", 
+   "conditions": "TRNIDINI = SPACES or LOW-VALUES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TRNIDINI", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COTRN01C-004", 
+   "messages": [
+    "Tran ID can NOT be empty..."
+   ], 
+   "outcome": "WS-ERR-FLG 'Y', message shown, no file read.", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COTRN01C.cbl:146-156", 
+   "statement": "A Tran ID is mandatory to view a transaction; no format (numeric) check is applied."
+  }, 
+  {
+   "anchor": "'Transaction ID NOT found...'", 
+   "category": "error-policy", 
+   "conditions": "WS-RESP-CD after READ TRANSACT", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "WS-REAS-CD", 
+    "TRAN-ID", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COTRN01C-005", 
+   "messages": [
+    "Transaction ID NOT found...", 
+    "Unable to lookup Transaction..."
+   ], 
+   "outcome": "NOTFND: WS-ERR-FLG 'Y', 'Transaction ID NOT found...'. Other: DISPLAY RESP/REAS, WS-ERR-FLG 'Y', 'Unable to lookup Transaction...'.", 
+   "paragraph": "READ-TRANSACT-FILE", 
+   "source": "app/cbl/COTRN01C.cbl:280-295", 
+   "statement": "The transaction is read by exact Tran ID; if it does not exist the user is told it was not found, and any other read failure shows a lookup-failure message; in both cases the details are not displayed."
+  }, 
+  {
+   "anchor": "MOVE WS-TRAN-AMT      TO TRNAMTI    OF COTRN1AI", 
+   "category": "transformation", 
+   "conditions": "No error after the read", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TRAN-AMT", 
+    "WS-TRAN-AMT", 
+    "TRAN-CARD-NUM", 
+    "TRAN-TYPE-CD", 
+    "TRAN-CAT-CD", 
+    "TRAN-ORIG-TS", 
+    "TRAN-PROC-TS", 
+    "TRAN-MERCHANT-ID"
+   ], 
+   "id": "BR-COTRN01C-006", 
+   "messages": [], 
+   "outcome": "TRAN-RECORD fields moved to the COTRN1A detail fields and the screen sent.", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COTRN01C.cbl:176-191", 
+   "statement": "A found transaction is displayed with its amount edited with sign and two decimals (+99999999.99); timestamps and other fields are shown as stored."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Is the READ ... UPDATE on TRANSACT intentional (e.g. planned edit function) or should it be a plain read for this view screen?", 
+   "source": "app/cbl/COTRN01C.cbl:269-278"
+  }, 
+  {
+   "question": "Should viewing a transaction be limited to the signed-on user's accounts/cards, and should the Tran ID be validated as numeric as on the list screen?", 
+   "source": "app/cbl/COTRN01C.cbl:146-156"
+  }
+ ], 
+ "source_path": "app/cbl/COTRN01C.cbl", 
+ "source_sha256": "fc24ff879ac6ae12bc6817554cb756f14c5e86e0ca2dd0037af49599887f03c0", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/COTRN01C.cbl:1-5", 
+   "app/cbl/COTRN01C.cbl:35-39", 
+   "app/cbl/COTRN01C.cbl:52-61", 
+   "app/cbl/COTRN01C.cbl:94-138", 
+   "app/cbl/COTRN01C.cbl:144-192", 
+   "app/cbl/COTRN01C.cbl:267-296"
+  ], 
+  "text": "COTRN01C is a pseudo-conversational CICS COBOL program (transaction CT01, map COTRN1A in mapset COTRN01) that displays the details of one record of the TRANSACT VSAM file. Without a COMMAREA it transfers to sign-on (COSGN00C). On first entry, if the transaction list COTRN00C passed a selected Tran ID in CDEMO-CT01-TRN-SELECTED, it looks it up immediately; otherwise it shows an empty screen. On re-entry, Enter reads the Tran ID typed on the screen with CICS READ (coded with UPDATE) and shows card number, type, category, source, amount, description, original and processed timestamps and merchant details; PF3 returns to the calling program (or COMEN01C), PF4 clears the screen and PF5 goes to the transaction list COTRN00C. The program never modifies TRANSACT."
+ }
+}

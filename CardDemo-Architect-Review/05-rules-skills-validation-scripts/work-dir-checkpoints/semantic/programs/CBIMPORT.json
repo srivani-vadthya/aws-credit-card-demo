@@ -1,0 +1,260 @@
+{
+ "batch": "B02", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [], 
+ "observations": [
+  {
+   "kind": "conflict", 
+   "source": "app/cbl/CBIMPORT.cbl:449-452", 
+   "text": "The header says the import validates data integrity using checksums, but 3000-VALIDATE-IMPORT only displays 'Import validation completed' and 'No validation errors detected' without performing any check."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CBIMPORT.cbl:37-41", 
+   "text": "EXPORT-INPUT is declared INDEXED with RECORD KEY EXPORT-SEQUENCE-NUM, which is defined in WORKING-STORAGE (COPY CVEXPORT) rather than in the FD record EXPORT-INPUT-RECORD; the same defect exists in CBEXPORT."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/CBIMPORT.cbl:438-446", 
+   "text": "A failed write to the error file only displays a message; processing continues and WS-ERROR-RECORDS-WRITTEN is still incremented."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CBIMPORT.cbl:429-431", 
+   "text": "ERR-SEQUENCE is PIC 9(07) while EXPORT-SEQUENCE-NUM is PIC 9(9), so sequence numbers above 9,999,999 are truncated in error records; ERR-TIMESTAMP receives the raw 21-character FUNCTION CURRENT-DATE rather than a formatted timestamp."
+  }, 
+  {
+   "kind": "conflict", 
+   "source": "app/cbl/CBIMPORT.cbl:63-66", 
+   "text": "The header lists four target files (CUSTOMER, ACCOUNT, CARD-XREF, TRANSACTION), but the program also writes a fifth, CARD-OUTPUT (CARDOUT)."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/CBIMPORT.cbl:457-463", 
+   "text": "4000-FINALIZE closes all files without checking their status."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "165-171", 
+   "logic": "Performs 1000-INITIALIZE, 2000-PROCESS-EXPORT-FILE, 3000-VALIDATE-IMPORT (a stub) and 4000-FINALIZE, and ends with GOBACK.", 
+   "name": "0000-MAIN-PROCESSING"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "174-193", 
+   "logic": "Displays a start message, formats WS-IMPORT-DATE (YYYY-MM-DD) and WS-IMPORT-TIME (HH:MM:SS) from FUNCTION CURRENT-DATE, opens all files and displays the import date and time.", 
+   "name": "1000-INITIALIZE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "196-245", 
+   "logic": "Opens EXPORT-INPUT for INPUT and CUSTOMER-OUTPUT, ACCOUNT-OUTPUT, XREF-OUTPUT, TRANSACTION-OUTPUT, CARD-OUTPUT and ERROR-OUTPUT for OUTPUT. After each OPEN, when its status condition (for example WS-EXPORT-OK, WS-CUSTOMER-OK, WS-ERROR-OK) is false it displays 'ERROR: Cannot open <file>, Status: ' with the status field and performs 9999-ABEND-PROGRAM.", 
+   "name": "1100-OPEN-FILES"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "248-256", 
+   "logic": "Reads export records until WS-EXPORT-EOF, counting each in WS-TOTAL-RECORDS-READ and dispatching it by record type.", 
+   "name": "2000-PROCESS-EXPORT-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "259-267", 
+   "logic": "Reads the next EXPORT-INPUT record into EXPORT-RECORD; a status other than '00' or '10' displays 'ERROR: Reading EXPORT-INPUT, Status: ' and abends.", 
+   "name": "2100-READ-EXPORT-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "270-285", 
+   "logic": "EVALUATEs EXPORT-REC-TYPE: 'C' customer, 'A' account, 'X' cross-reference, 'T' transaction, 'D' card; any other value goes to 2700-PROCESS-UNKNOWN-RECORD.", 
+   "name": "2200-PROCESS-RECORD-BY-TYPE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "288-320", 
+   "logic": "Initializes CUSTOMER-RECORD, moves every EXP-CUST-* field (array elements to address lines 1-3 and phones 1-2) into it, writes it to CUSTOUT (abend on status not '00') and increments the customer counter.", 
+   "name": "2300-PROCESS-CUSTOMER-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "323-349", 
+   "logic": "Initializes ACCOUNT-RECORD, moves every EXP-ACCT-* field into it (unpacking COMP/COMP-3 to display), writes it to ACCTOUT (abend on status not '00') and increments the account counter.", 
+   "name": "2400-PROCESS-ACCOUNT-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "352-369", 
+   "logic": "Initializes CARD-XREF-RECORD, moves card number, customer id and account id, writes it to XREFOUT (abend on status not '00') and increments the xref counter.", 
+   "name": "2500-PROCESS-XREF-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "372-399", 
+   "logic": "Initializes TRAN-RECORD, moves every EXP-TRAN-* field into it, writes it to TRNXOUT (abend on status not '00') and increments the transaction counter.", 
+   "name": "2600-PROCESS-TRAN-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "402-422", 
+   "logic": "Initializes CARD-RECORD, moves card number, account id, CVV, embossed name, expiration date and active status, writes it to CARDOUT (abend on status not '00') and increments the card counter.", 
+   "name": "2650-PROCESS-CARD-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "425-434", 
+   "logic": "Increments WS-UNKNOWN-RECORD-TYPE-COUNT, fills WS-ERROR-RECORD with current date/time, the record type, the export sequence number and 'Unknown record type encountered', and writes it via 2750-WRITE-ERROR.", 
+   "name": "2700-PROCESS-UNKNOWN-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "437-446", 
+   "logic": "Writes WS-ERROR-RECORD to ERROUT; on a bad status only displays 'ERROR: Writing error record, Status: '. Always increments WS-ERROR-RECORDS-WRITTEN.", 
+   "name": "2750-WRITE-ERROR"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "449-452", 
+   "logic": "Placeholder: displays 'CBIMPORT: Import validation completed' and 'CBIMPORT: No validation errors detected' without any checks.", 
+   "name": "3000-VALIDATE-IMPORT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "455-478", 
+   "logic": "Closes EXPORT-INPUT and the six output files (statuses not checked), displays 'CBIMPORT: Import completed' and the counters WS-TOTAL-RECORDS-READ, WS-CUSTOMER-RECORDS-IMPORTED, WS-ACCOUNT-RECORDS-IMPORTED, WS-XREF-RECORDS-IMPORTED, WS-TRAN-RECORDS-IMPORTED, WS-CARD-RECORDS-IMPORTED, WS-ERROR-RECORDS-WRITTEN and WS-UNKNOWN-RECORD-TYPE-COUNT.", 
+   "name": "4000-FINALIZE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "481-484", 
+   "logic": "Displays 'CBIMPORT: ABENDING PROGRAM' and calls CEE3ABD without parameters.", 
+   "name": "9999-ABEND-PROGRAM"
+  }
+ ], 
+ "program": "CBIMPORT", 
+ "rules": [
+  {
+   "anchor": "EVALUATE EXPORT-REC-TYPE", 
+   "category": "routing", 
+   "conditions": "Value of EXPORT-REC-TYPE.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EXPORT-REC-TYPE"
+   ], 
+   "id": "BR-CBIMPORT-001", 
+   "messages": [], 
+   "outcome": "Record written to CUSTOUT, ACCTOUT, XREFOUT, TRNXOUT or CARDOUT, or handled by 2700-PROCESS-UNKNOWN-RECORD.", 
+   "paragraph": "2200-PROCESS-RECORD-BY-TYPE", 
+   "source": "app/cbl/CBIMPORT.cbl:272-284", 
+   "statement": "Each export record is routed to its normalized target file by EXPORT-REC-TYPE: 'C' to the customer file, 'A' to the account file, 'X' to the card cross-reference file, 'T' to the transaction file, 'D' to the card file; any other type is treated as an unknown record."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/CBIMPORT.cbl:439-446"
+   ], 
+   "anchor": "MOVE 'Unknown record type encountered' TO ERR-MESSAGE", 
+   "category": "error-policy", 
+   "conditions": "EXPORT-REC-TYPE not in ('C','A','X','T','D').", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EXPORT-REC-TYPE", 
+    "EXPORT-SEQUENCE-NUM", 
+    "ERR-MESSAGE", 
+    "WS-UNKNOWN-RECORD-TYPE-COUNT"
+   ], 
+   "id": "BR-CBIMPORT-002", 
+   "messages": [
+    "Unknown record type encountered"
+   ], 
+   "outcome": "Error record written to ERROUT; WS-UNKNOWN-RECORD-TYPE-COUNT and WS-ERROR-RECORDS-WRITTEN incremented.", 
+   "paragraph": "2700-PROCESS-UNKNOWN-RECORD", 
+   "source": "app/cbl/CBIMPORT.cbl:427-433", 
+   "statement": "A record with an unknown type is not imported and does not stop the run: it is counted, logged to the error file with timestamp, type, sequence number and 'Unknown record type encountered', and processing continues."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/CBIMPORT.cbl:263-267", 
+    "app/cbl/CBIMPORT.cbl:314-318", 
+    "app/cbl/CBIMPORT.cbl:343-347", 
+    "app/cbl/CBIMPORT.cbl:363-367", 
+    "app/cbl/CBIMPORT.cbl:393-397", 
+    "app/cbl/CBIMPORT.cbl:416-420"
+   ], 
+   "anchor": "DISPLAY 'ERROR: Cannot open EXPORT-INPUT, Status: '", 
+   "category": "error-policy", 
+   "conditions": "Open status not '00'; read status not '00'/'10'; write status not '00'.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-EXPORT-STATUS", 
+    "WS-CUSTOMER-STATUS", 
+    "WS-ACCOUNT-STATUS", 
+    "WS-XREF-STATUS", 
+    "WS-TRANSACTION-STATUS", 
+    "WS-CARD-STATUS", 
+    "WS-ERROR-STATUS"
+   ], 
+   "id": "BR-CBIMPORT-003", 
+   "messages": [
+    "ERROR: Cannot open EXPORT-INPUT, Status: ", 
+    "ERROR: Writing customer record, Status: ", 
+    "CBIMPORT: ABENDING PROGRAM"
+   ], 
+   "outcome": "Abend; target files may be partially written.", 
+   "paragraph": "1100-OPEN-FILES", 
+   "source": "app/cbl/CBIMPORT.cbl:198-245", 
+   "statement": "Failure to open any file, a read error on the export file (status not '00'/'10'), or a failed write to any target master file aborts the import via CEE3ABD."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/CBIMPORT.cbl:290-312", 
+    "app/cbl/CBIMPORT.cbl:354-361", 
+    "app/cbl/CBIMPORT.cbl:374-391", 
+    "app/cbl/CBIMPORT.cbl:404-414"
+   ], 
+   "anchor": "MOVE EXP-ACCT-CURR-BAL TO ACCT-CURR-BAL", 
+   "category": "transformation", 
+   "conditions": "Record of a known type.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EXPORT-CUSTOMER-DATA", 
+    "EXPORT-ACCOUNT-DATA", 
+    "EXPORT-CARD-XREF-DATA", 
+    "EXPORT-TRANSACTION-DATA", 
+    "EXPORT-CARD-DATA"
+   ], 
+   "id": "BR-CBIMPORT-004", 
+   "messages": [], 
+   "outcome": "One record written to the matching target file.", 
+   "paragraph": "2400-PROCESS-ACCOUNT-RECORD", 
+   "source": "app/cbl/CBIMPORT.cbl:325-341", 
+   "statement": "Imported records are rebuilt field by field into the standard CardDemo master layouts (customer 500, account 300, cross-reference 50, transaction 350, card 150 bytes), converting the export's packed (COMP/COMP-3) numeric fields back to the display formats of CVCUS01Y, CVACT01Y, CVACT03Y, CVTRA05Y and CVACT02Y. No field is validated or altered."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "What checksum or integrity validation is 3000-VALIDATE-IMPORT supposed to perform (the header promises checksums)?", 
+   "source": "app/cbl/CBIMPORT.cbl:449-452"
+  }, 
+  {
+   "question": "Should a write failure on the error file abend the run, as failures on the master target files do?", 
+   "source": "app/cbl/CBIMPORT.cbl:438-446"
+  }
+ ], 
+ "source_path": "app/cbl/CBIMPORT.cbl", 
+ "source_sha256": "0eccb28695cb3a8ea6f6ea7da26d1b48a4529787f6130b2c98bead33bc661967", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/CBIMPORT.cbl:4-32", 
+   "app/cbl/CBIMPORT.cbl:36-109", 
+   "app/cbl/CBIMPORT.cbl:165-171", 
+   "app/cbl/CBIMPORT.cbl:270-285", 
+   "app/cbl/CBIMPORT.cbl:425-446"
+  ], 
+  "text": "CBIMPORT is the batch counterpart of CBEXPORT for branch migration. It reads the 500-byte multi-record export file EXPFILE (layout CVEXPORT) and splits it by record type into sequential customer (CUSTOUT), account (ACCTOUT), card cross-reference (XREFOUT), transaction (TRNXOUT) and card (CARDOUT) files in the standard CardDemo layouts, unpacking COMP/COMP-3 fields. Records with an unknown type are logged to the 132-byte error file ERROUT and skipped. The validation step is a stub that always reports no errors. It ends by displaying read, import, error and unknown-type counts; open, read and master-file write errors abend the run via CEE3ABD."
+ }
+}

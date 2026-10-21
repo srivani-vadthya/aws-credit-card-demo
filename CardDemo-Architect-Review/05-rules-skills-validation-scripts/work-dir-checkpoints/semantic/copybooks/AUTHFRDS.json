@@ -1,0 +1,28 @@
+{
+ "schema": "copybook-semantics/1",
+ "copybook": "AUTHFRDS",
+ "batch": "B01",
+ "status": "complete",
+ "confidence": "Confirmed",
+ "source_paths": ["app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl"],
+ "source_sha256": ["737c2bb757ef256976ac7658e071d1833fc2ea24d7010dbeff137e6c98fb66a6"],
+ "purpose": "DCLGEN for DB2 table CARDDEMO.AUTHFRDS (authorization fraud records): the EXEC SQL DECLARE TABLE with 26 columns and the COBOL host structure DCLAUTHFRDS. It is included by COPAUS2C, which inserts a copy of a pending authorization detail with its fraud flag when a user reports or removes fraud in COPAUS1C, or updates the flag and report date when the row already exists. The primary key per the DDL is (CARD_NUM, AUTH_TS).",
+ "evidence": [
+  "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:24-86",
+  "app/app-authorization-ims-db2-mq/ddl/AUTHFRDS.ddl:1-28",
+  "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:68-70"
+ ],
+ "key_fields": [
+  {"name": "CARD-NUM", "meaning": "Host variable for CARD_NUM CHAR(16), first primary-key column.", "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:56"},
+  {"name": "AUTH-TS", "meaning": "Host variable X(26) for AUTH_TS TIMESTAMP, second primary-key column; COPAUS2C fills it via TIMESTAMP_FORMAT.", "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:57"},
+  {"name": "AUTH-FRAUD", "meaning": "Fraud flag CHAR(1): 'F' reported, 'R' removed.", "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:83"},
+  {"name": "FRAUD-RPT-DATE", "meaning": "Fraud report DATE; COPAUS2C uses CURRENT DATE rather than this host variable.", "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:84"},
+  {"name": "MERCHANT-NAME", "meaning": "VARCHAR(22) group with 49-level length and text.", "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:73-77"},
+  {"name": "ACCT-ID", "meaning": "Account id DECIMAL(11,0).", "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:85"},
+  {"name": "CUST-ID", "meaning": "Customer id DECIMAL(9,0).", "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:86"}
+ ],
+ "observations": [
+  {"kind": "conflict", "text": "DCLGEN header comments name table AWSTSSC.AUTHFRDS while the DECLARE and the DDL use CARDDEMO.AUTHFRDS; the library name is a placeholder (XXXXXXX.DB2.DCLGEN).", "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:2-3"},
+  {"kind": "anomaly", "text": "PROCESSING_CODE is CHAR(6) in DB2 while the IMS detail field PA-PROCESSING-CODE is PIC 9(06); POS_ENTRY_MODE is SMALLINT vs 9(02) in IMS. Conversions happen via MOVE in COPAUS2C.", "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:34-39"}
+ ]
+}

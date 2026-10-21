@@ -1,0 +1,34 @@
+{
+ "member": "COBDATFT",
+ "language": "Assembler",
+ "source_path": "app/asm/COBDATFT.asm",
+ "source_sha256": "f0f69d4e8a3cd5b378ded9bd9dd4175d5d4c971762b6be82ee4f29ee0ab8dfce",
+ "summary": "Date-format conversion routine called with one parameter mapped by DSECT COCDATFT (app/maclib/COCDATFT.mac:17-23), the Assembler view of CODATECN-REC (app/cpy/CODATECN.cpy:17-52). Type 1 input YYYYMMDD becomes YYYY-MM-DD; type 2 input YYYY-MM-DD becomes YYYYMMDD; anything else sets COERMSG to 'INVALID INPUT'. R15 is always cleared before return (app/asm/COBDATFT.asm:61), so callers can only detect failure through COERMSG.",
+ "existing_rules_reviewed": [
+  {
+   "id": "BR-BASE-COBDATFT-001",
+   "verdict": "confirmed",
+   "source": "app/asm/COBDATFT.asm:35-45",
+   "anchor": "VALIDIN1",
+   "note": "VALIDIN1 rejects when COINPDT+4 (the fifth input character) equals '-' or COOUTYPE is '2' (lines 36-39), otherwise copies the year and inserts hyphens at COOUTDT+4 and COOUTDT+7 (lines 40-44). The rejection branches to GOTOERR (line 55), which leaves COOUTDT unchanged."
+  },
+  {
+   "id": "BR-BASE-COBDATFT-002",
+   "verdict": "confirmed",
+   "source": "app/asm/COBDATFT.asm:46-54",
+   "anchor": "VALIDIN2",
+   "note": "VALIDIN2 rejects only when COOUTYPE is '1' (lines 49-50); the hyphen check is commented out (lines 47-48). Otherwise it copies input positions 0-3, 5-6 and 8-9 to the output (lines 51-53). The only caller, CBACT01C, passes type '2' with output type '2' (app/cbl/CBACT01C.cbl:225-231), which takes this path."
+  },
+  {
+   "id": "BR-BASE-COBDATFT-003",
+   "verdict": "confirmed",
+   "source": "app/asm/COBDATFT.asm:30-56",
+   "anchor": "GOTOERR",
+   "note": "A COINTYPE other than '1' or '2' falls through the CLI tests at lines 30-33 to B GOTOERR (line 34); GOTOERR moves 'INVALID INPUT' to COERMSG (lines 55-56). The cited range 34-56 in the legacy rule omits the type tests at lines 30-33; the review cites 30-56."
+  }
+ ],
+ "observations": [
+  "R15 is set to zero by SR R15,R15 at app/asm/COBDATFT.asm:61 on every path, including the error path, so the return code never signals failure. Confirmed.",
+  "COERMSG is not cleared on the success paths (lines 40-45 and 51-54); a caller reusing CODATECN-REC would see a stale message unless it clears the field. Confirmed from code; caller behaviour in CBACT01C is not checked here."
+ ]
+}

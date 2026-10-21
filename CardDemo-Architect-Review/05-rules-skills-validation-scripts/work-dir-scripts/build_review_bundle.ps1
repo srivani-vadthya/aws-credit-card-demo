@@ -55,6 +55,9 @@ foreach ($f in @('build_combined_markdown.ps1', 'build_review_bundle.ps1', 'prep
                  'write_review_readme.py', 'check_instream_secrets.py', 'progress.md')) {
     Copy-Item "$work/$f" "$d5/work-dir-scripts"
 }
+New-Item -ItemType Directory -Force "$d5/work-dir-checkpoints" | Out-Null
+Copy-Item "$work/batches" "$d5/work-dir-checkpoints/batches" -Recurse
+Copy-Item "$work/semantic" "$d5/work-dir-checkpoints/semantic" -Recurse
 Copy-Item "$work/review-changelog.md" "$Bundle/CHANGELOG.md"
 
 & python "$work/prepare_review_bundle.py" $Bundle --redact 'app/jcl/FTPJCL.JCL'

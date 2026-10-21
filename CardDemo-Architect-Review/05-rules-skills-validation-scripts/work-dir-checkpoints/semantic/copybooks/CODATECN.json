@@ -1,0 +1,23 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "CODATECN",
+ "evidence": ["app/cpy/CODATECN.cpy:17-52", "app/cbl/CBACT01C.cbl:223-233"],
+ "key_fields": [
+  {"name": "CODATECN-REC", "meaning": "Parameter block passed to the date-conversion routine COBDATFT (CALL 'COBDATFT' USING CODATECN-REC in CBACT01C).", "source": "app/cpy/CODATECN.cpy:17"},
+  {"name": "CODATECN-TYPE", "meaning": "Input date format code: '1' = YYYYMMDD (88 YYYYMMDD-IN), '2' = YYYY-MM-DD (88 YYYY-MM-DD-IN).", "source": "app/cpy/CODATECN.cpy:19-21"},
+  {"name": "CODATECN-INP-DATE", "meaning": "20-byte input date, redefined as YYYYMMDD (CODATECN-1INP) or YYYY-sep-MM-sep-xx (CODATECN-2INP).", "source": "app/cpy/CODATECN.cpy:22-34"},
+  {"name": "CODATECN-OUTTYPE", "meaning": "Requested output format: '1' = YYYY-MM-DD (88 YYYY-MM-DD-OP), '2' = YYYYMMDD (88 YYYYMMDD-OP). Note the codes are reversed relative to CODATECN-TYPE.", "source": "app/cpy/CODATECN.cpy:36-38"},
+  {"name": "CODATECN-0UT-DATE", "meaning": "20-byte converted date returned by the routine (name uses digit zero '0UT'), redefined as YYYY-MM-DD (CODATECN-1OUT) or YYYYMMDD (CODATECN-2OUT).", "source": "app/cpy/CODATECN.cpy:39-51"},
+  {"name": "CODATECN-ERROR-MSG", "meaning": "38-byte error message area returned by the conversion routine.", "source": "app/cpy/CODATECN.cpy:52"}
+ ],
+ "observations": [
+  {"kind": "anomaly", "text": "Data names are duplicated inside the record: CODATECN-1MM appears in both CODATECN-1INP and CODATECN-2INP, and CODATECN-1O-YYYY appears in both CODATECN-2INP and CODATECN-1OUT; references need qualification. The day field of the dashed input layout is named CODATECN-2YY.", "source": "app/cpy/CODATECN.cpy:24-41"},
+  {"kind": "anomaly", "text": "The output date field is spelled CODATECN-0UT-DATE (zero instead of letter O), and the input/output type codes are inverted ('1' means YYYYMMDD for input but YYYY-MM-DD for output).", "source": "app/cpy/CODATECN.cpy:36-39"}
+ ],
+ "purpose": "CODATECN defines the parameter record for the date-format conversion routine COBDATFT (assembler, app/asm/COBDATFT.asm). The caller sets an input format code and a 20-byte input date, an output format code, and receives the converted date and an error message. In this repository it is copied only by CBACT01C, which converts the account reissue date with input type '2' and output type '2'.",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/CODATECN.cpy"],
+ "source_sha256": ["8efc6b6d79bd46d65fcdc4e6a8e3778511fca76054f3fbae8e3075b0a2aa8fb1"],
+ "status": "complete"
+}

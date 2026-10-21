@@ -1,0 +1,27 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "CVACT01Y",
+ "evidence": ["app/cpy/CVACT01Y.cpy:1-17", "app/cbl/CBACT04C.cbl:350-356", "app/cbl/CBACT01C.cbl:52-55"],
+ "key_fields": [
+  {"name": "ACCOUNT-RECORD", "meaning": "300-byte account master record (comment RECLN 300; field sizes add up to 300).", "source": "app/cpy/CVACT01Y.cpy:4"},
+  {"name": "ACCT-ID", "meaning": "11-digit account number, key of the account file (FD-ACCT-ID in programs).", "source": "app/cpy/CVACT01Y.cpy:5"},
+  {"name": "ACCT-ACTIVE-STATUS", "meaning": "1-byte account active status flag; no 88-level values are defined here.", "source": "app/cpy/CVACT01Y.cpy:6"},
+  {"name": "ACCT-CURR-BAL", "meaning": "Signed current balance S9(10)V99; CBACT04C adds monthly interest to it.", "source": "app/cpy/CVACT01Y.cpy:7"},
+  {"name": "ACCT-CREDIT-LIMIT", "meaning": "Signed credit limit S9(10)V99.", "source": "app/cpy/CVACT01Y.cpy:8"},
+  {"name": "ACCT-CASH-CREDIT-LIMIT", "meaning": "Signed cash credit limit S9(10)V99.", "source": "app/cpy/CVACT01Y.cpy:9"},
+  {"name": "ACCT-REISSUE-DATE", "meaning": "10-byte reissue date; CBACT01C treats it as YYYY-MM-DD when converting with COBDATFT.", "source": "app/cpy/CVACT01Y.cpy:12"},
+  {"name": "ACCT-CURR-CYC-CREDIT", "meaning": "Current-cycle credit total; reset to 0 by CBACT04C at interest posting.", "source": "app/cpy/CVACT01Y.cpy:13"},
+  {"name": "ACCT-CURR-CYC-DEBIT", "meaning": "Current-cycle debit total; reset to 0 by CBACT04C at interest posting.", "source": "app/cpy/CVACT01Y.cpy:14"},
+  {"name": "ACCT-GROUP-ID", "meaning": "Account (disclosure) group id used by CBACT04C as the first part of the DISCGRP key to find the interest rate.", "source": "app/cpy/CVACT01Y.cpy:16"}
+ ],
+ "observations": [
+  {"kind": "anomaly", "text": "The expiration date field is misspelled ACCT-EXPIRAION-DATE; the misspelling propagates to programs and to CVEXPORT (EXP-ACCT-EXPIRAION-DATE).", "source": "app/cpy/CVACT01Y.cpy:11"},
+  {"kind": "anomaly", "text": "Dates (open, expiration, reissue) are stored as 10-byte character fields with no format definition; their YYYY-MM-DD format is only implied by callers.", "source": "app/cpy/CVACT01Y.cpy:10-12"}
+ ],
+ "purpose": "CVACT01Y defines ACCOUNT-RECORD, the 300-byte account master entity of CardDemo: account id, active status, current balance, credit and cash limits, open/expiration/reissue dates, current-cycle credit and debit totals, ZIP and account group id. It is one of the most widely used layouts: batch programs CBACT01C, CBACT04C, CBEXPORT, CBIMPORT, CBSTM03A, CBTRN01C, CBTRN02C and many online programs (COACTUPC, COACTVWC, COBIL00C, COCRDSLC, COCRDUPC, COTRN02C, authorization and VSAM-MQ programs) copy it.",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/CVACT01Y.cpy"],
+ "source_sha256": ["81a08bad15af5664326a6f0af3650f570821c4857ffdec3a6a39f91f07dca728"],
+ "status": "complete"
+}

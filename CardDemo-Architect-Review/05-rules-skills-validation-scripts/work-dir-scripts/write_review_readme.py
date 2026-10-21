@@ -5,8 +5,10 @@ Run after verify_review_bundle.py. Every number is read from coverage.json, gaps
 check_package.json, rules.json and bundle-verification.json in the bundle.
 Python 3.1+ standard library only.
 """
+import io
 import json
 import os
+import re
 import sys
 
 
@@ -88,7 +90,9 @@ def main(argv):
     A("2. **Structure extraction** (`extract_structure.py`, deterministic parser): divisions, paragraphs, statements, data items, EXEC CICS/SQL/DLI, JCL steps and DDs, CSD resources, copybook fields.")
     A("3. **Semantic analysis** (AI-assisted, Claude in Cursor, guided by the rules and skills in folder 05): purpose, paragraph logic, business rules, SME questions, per program/copybook batch. "
       "`batch_manager.py` accepts a semantic file only when every parsed paragraph has a logic description, every rule cites an existing line range and a verbatim "
-      "code anchor found inside that range, a program without rules states why, and the source sha256 still matches; per-batch checkpoints make the run resumable.")
+      "code anchor found inside that range, a program without rules states why, and the source sha256 still matches. "
+      "The batch plan, per-batch checkpoints, worksheets and the accepted semantic files are in `05-rules-skills-validation-scripts/work-dir-checkpoints/` (checked by V11); "
+      "the checkpoint timestamps are those of the latest `batch_manager.py check` run, and the dated history of the batch passes is in `work-dir-scripts/progress.md`.")
     A("4. **Rendering** (`render_detail.py`, deterministic): all detailed pages from structure + validated semantics; `build_docx.py` and `build_combined_markdown.ps1` produce the Word and single-file copies.")
     A("5. **Validation**: `coverage_validate.py` (33 measured criteria), `gap_report.py` (component status and gap register), `check_package.py` (links, placeholders, Sources sections), "
       "then this bundle's independent `verify_review_bundle.py`.")
@@ -109,7 +113,7 @@ def main(argv):
       "[14-cross-reference-traceability.md](03-business-rules-and-traceability/14-cross-reference-traceability.md) |")
     A("| `04-gap-report/` | Gap register (one row per item with evidence, source, impact, status, owner, next action), gap report, narrative gaps register, gaps JSON | "
       "[gap-register.md](04-gap-report/gap-register.md) |")
-    A("| `05-rules-skills-validation-scripts/` | Cursor rules, the ten skills with templates and scripts, project profile, bundle and verification scripts, progress log | "
+    A("| `05-rules-skills-validation-scripts/` | Cursor rules, the ten skills with templates and scripts, project profile, bundle and verification scripts, progress log, batch checkpoints and semantic analysis files (`work-dir-checkpoints/`) | "
       "[docs-toolkit/README.md](05-rules-skills-validation-scripts/docs-toolkit/README.md) |")
     A("| `06-source-snapshot/` | Read-only copy of the in-scope source so every citation can be opened offline; FTP connection lines redacted | "
       "[REDACTIONS.md](06-source-snapshot/REDACTIONS.md) |")
@@ -204,6 +208,7 @@ def main(argv):
     A("- Every rule has a valid citation, a traceability row and a catalog anchor; named paragraphs exist in the source (V4); "
       "at acceptance each rule's verbatim code anchor was found inside its cited range (`batch_manager.py`).")
     A("- Links resolve, no placeholders or template text remain, no compiled or temporary files, no FTP connection data (V5-V7, package check).")
+    A("- Every COBOL program and copybook layout belongs to an analysis batch whose checkpoint records it as validated, with its semantic file present (V11).")
     A("")
     A("**Not proven:**")
     A("")
@@ -214,7 +219,30 @@ def main(argv):
     A("- Business-level correctness of the %d rules: they are AI-assisted interpretations of code, validated for structure, citations and code anchors, not for intent. %d are Inferred." % (len(rules), conf.get("Inferred", 0)))
     A("- Runtime behaviour: nothing was compiled or executed; CICS, IMS, DB2, MQ, Control-M and CA7 were not available. Dynamic targets and scheduler calendars are Inferred or Unverified.")
     A("- Values of JCL symbolics and environment-specific dataset names, which are not in the repository.")
+    A("- The original order and dates of the batch analysis runs: checkpoints are rewritten by each `batch_manager.py check`, and `progress.md` is the agent's own log, not an independent record.")
     A("- Field-level documentation of the 21 BMS symbolic-map copybooks: they have no layout pages (the BMS mapsets that generate them have screen pages; the pairing is Inferred from matching member names in app/bms and app/cpy-bms).")
+    A("")
+    A("**Known issues left as is** (no count or conclusion depends on them; fixing them means regenerating pages):")
+    A("")
+    for d in vc["V4c"]["detail"]:
+        if "outside paragraph" in d:
+            A("- Citation warning (V4c): %s. The cited code is inside the range; the range starts before the named paragraph. Next action: confirm and narrow the range." % d.strip("- "))
+    docs_dir = os.path.join(B, "01-detailed-documentation", "application-documentation")
+    blank = re.compile(r"^(\|\s+)+\|\s*$")
+    n_pages, n_rows = 0, 0
+    for root, ds, fs in os.walk(docs_dir):
+        for f in fs:
+            if f.endswith(".md"):
+                k = len([l for l in io.open(os.path.join(root, f), encoding="utf-8").read().splitlines() if blank.match(l)])
+                if k:
+                    n_pages, n_rows = n_pages + 1, n_rows + k
+    mv = io.open(os.path.join(docs_dir, "07-programs", "MVSWAIT.md"), encoding="utf-8").read().splitlines()
+    mv_rules = [i + 1 for i, l in enumerate(mv) if blank.match(l) and any(x.startswith("## Business rules") for x in mv[:i]) and
+                not any(x.startswith("## ") and not x.startswith("## Business rules") for x in mv[[j for j, y in enumerate(mv) if y.startswith("## Business rules")][0] + 1:i])]
+    A("- Empty table rows: %d pages contain %d all-blank table rows where a table has no entries (dataset, screen and Assembler program pages); "
+      "the renderer writes a blank row instead of \"None\". Among them, the MVSWAIT page has an empty \"Business rules implemented\" table (`07-programs/MVSWAIT.md` line %s) "
+      "and no sentence saying why: MVSWAIT is a 12-line Assembler wait routine called by COBSWAIT, outside the 44 COBOL programs, and has no rules. "
+      "Next action: have `render_detail.py` write \"None\" and a reason, then regenerate." % (n_pages, n_rows, ", ".join(str(x) for x in mv_rules) or "?"))
     A("")
     A("## 6. Gaps requiring technical investigation or SME clarification")
     A("")

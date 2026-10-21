@@ -1,0 +1,459 @@
+{
+ "batch": "B03",
+ "existing_rules_reviewed": [],
+ "no_business_rules_reason": null,
+ "no_rule_decisions": [],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "The out-of-range branch of the date filter uses NEXT SENTENCE inside an inline PERFORM. NEXT SENTENCE transfers control past the next separator period, which is the one after END-PERFORM (line 206), so the first transaction outside the date range ends the read loop entirely and no page/grand totals are written. Inferred from COBOL NEXT SENTENCE semantics; in TRANREPT.jcl the input is pre-filtered by SORT INCLUDE (app/jcl/TRANREPT.jcl:46-48), which normally hides this behaviour.",
+   "source": "app/cbl/CBTRN03C.cbl:173-178"
+  },
+  {
+   "kind": "anomaly",
+   "text": "At end of file the program adds TRAN-AMT to WS-PAGE-TOTAL and WS-ACCOUNT-TOTAL again. Because READ ... INTO does not move data when the read fails with status '10', TRAN-RECORD still holds the last transaction, which was already added in 1100-WRITE-TRANSACTION-REPORT (line 286-287); the last transaction amount is therefore counted twice in the final page total and in the grand total. Inferred: chain is lines 249 (READ INTO), 286-287 (first add) and 200-201 (second add).",
+   "source": "app/cbl/CBTRN03C.cbl:197-203"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The end-of-file branch writes page totals and grand totals but never performs 1120-WRITE-ACCOUNT-TOTALS, so the account total for the last card number in the file is never printed. Confirmed.",
+   "source": "app/cbl/CBTRN03C.cbl:197-203"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The page-break test FUNCTION MOD(WS-LINE-COUNTER, WS-PAGE-SIZE) = 0 only fires when the counter lands exactly on a multiple of 20. Account-total and page-total blocks add 2 lines at a time (lines 299-302, 311-314) and headers add 4, so the counter can step over a multiple of 20 and a page break is skipped. Inferred from the increment pattern.",
+   "source": "app/cbl/CBTRN03C.cbl:282-284"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The 'Account Total' control break is driven by a change of TRAN-CARD-NUM, not of account id; an account with several cards gets one 'Account Total' line per card. Confirmed (condition compares WS-CURR-CARD-NUM to TRAN-CARD-NUM).",
+   "source": "app/cbl/CBTRN03C.cbl:181-187"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The detail line truncates the 50-character transaction type description to 15 characters (TRAN-REPORT-TYPE-DESC) and the 50-character category description to 29 characters (TRAN-REPORT-CAT-DESC). Confirmed from CVTRA07Y.cpy:22 and :26 versus CVTRA03Y.cpy:6 and CVTRA04Y.cpy:8.",
+   "source": "app/cbl/CBTRN03C.cbl:365-368"
+  },
+  {
+   "kind": "conflict",
+   "text": "TRANREPT.jcl pre-filters the transaction backup with hard-coded SORT symbols PARM-START-DATE C'2022-01-01' and PARM-END-DATE C'2022-07-06', while CBTRN03C filters again using the dates read from the DATEPARM dataset. If the two ranges differ, the report header shows the DATEPARM range but only the intersection of both ranges can appear. Confirmed for the literals; impact Inferred.",
+   "source": "app/jcl/TRANREPT.jcl:40-48"
+  },
+  {
+   "kind": "hardcoded-value",
+   "text": "The page size is hard-coded as WS-PAGE-SIZE VALUE 20 (lines, including header and total lines).",
+   "source": "app/cbl/CBTRN03C.cbl:131-132"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Every transaction record read is DISPLAYed to SYSOUT, as are TRAN-AMT and WS-PAGE-TOTAL at end of file; this looks like leftover debugging output and can produce large spool volumes. Inferred.",
+   "source": "app/cbl/CBTRN03C.cbl:180"
+  },
+  {
+   "kind": "anomaly",
+   "text": "If the transaction file is empty, no headers are written (headers are only written from 1100-WRITE-TRANSACTION-REPORT) but the end-of-file branch still writes a page-total and grand-total line, adding TRAN-AMT from a TRAN-RECORD that was never populated (no VALUE clause in CVTRA05Y). Inferred.",
+   "source": "app/cbl/CBTRN03C.cbl:197-203"
+  },
+  {
+   "kind": "unchecked-io",
+   "text": "The lookups of XREF-FILE, TRANTYPE-FILE and TRANCATG-FILE only handle INVALID KEY; other non-zero statuses are not tested and the report would use stale record contents. Confirmed.",
+   "source": "app/cbl/CBTRN03C.cbl:484-512"
+  }
+ ],
+ "paragraphs": [
+  {
+   "confidence": "Confirmed",
+   "lines": "160-217",
+   "logic": "Opens TRANFILE, TRANREPT, CARDXREF, TRANTYPE, TRANCATG and DATEPARM, reads the date range, then loops until END-OF-FILE = 'Y'. For each transaction whose TRAN-PROC-TS(1:10) lies between WS-START-DATE and WS-END-DATE it displays the record, on a card-number change writes the previous account total (except the first time) and looks up the card xref, looks up the transaction type and category descriptions and writes the report detail. At end of file it adds TRAN-AMT to the page/account totals and writes the page total and grand total, then closes all files.",
+   "name": "(PROCEDURE DIVISION entry)"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "220-243",
+   "logic": "Reads one record from DATE-PARMS-FILE into WS-DATEPARM-RECORD (start date in positions 1-10, end date in 12-21). Status '00' displays 'Reporting from <start> to <end>', '10' (empty file) sets END-OF-FILE to 'Y', any other status displays 'ERROR READING DATEPARM FILE' and abends.",
+   "name": "0550-DATEPARM-READ"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "248-272",
+   "logic": "Reads the next TRANSACT-FILE record into TRAN-RECORD; '00' continues, '10' sets END-OF-FILE to 'Y', any other status displays 'ERROR READING TRANSACTION FILE' and abends.",
+   "name": "1000-TRANFILE-GET-NEXT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "274-290",
+   "logic": "On the first call sets WS-FIRST-TIME to 'N', moves the date range into REPT-START-DATE/REPT-END-DATE and writes the headers. When WS-LINE-COUNTER is a multiple of WS-PAGE-SIZE (20) it writes page totals and new headers. Then adds TRAN-AMT to WS-PAGE-TOTAL and WS-ACCOUNT-TOTAL and writes the detail line.",
+   "name": "1100-WRITE-TRANSACTION-REPORT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "293-304",
+   "logic": "Writes the 'Page Total' line with WS-PAGE-TOTAL, adds WS-PAGE-TOTAL to WS-GRAND-TOTAL, resets WS-PAGE-TOTAL to 0 and writes a dashed separator line; adds 2 to WS-LINE-COUNTER.",
+   "name": "1110-WRITE-PAGE-TOTALS"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "306-316",
+   "logic": "Writes the 'Account Total' line with WS-ACCOUNT-TOTAL, resets WS-ACCOUNT-TOTAL to 0 and writes a dashed separator line; adds 2 to WS-LINE-COUNTER.",
+   "name": "1120-WRITE-ACCOUNT-TOTALS"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "318-322",
+   "logic": "Writes the 'Grand Total' line with WS-GRAND-TOTAL.",
+   "name": "1110-WRITE-GRAND-TOTALS"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "324-341",
+   "logic": "Writes the report name header (DALYREPT / 'Daily Transaction Report' / date range), a blank line, the column header line and a dashed line, adding 1 to WS-LINE-COUNTER for each.",
+   "name": "1120-WRITE-HEADERS"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "343-359",
+   "logic": "Writes FD-REPTFILE-REC to the report file; a status other than '00' displays 'ERROR WRITING REPTFILE' and abends.",
+   "name": "1111-WRITE-REPORT-REC"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "361-374",
+   "logic": "Initializes TRANSACTION-DETAIL-REPORT and fills it with TRAN-ID, XREF-ACCT-ID, transaction type code and description, category code and description, TRAN-SOURCE and TRAN-AMT, writes it and adds 1 to WS-LINE-COUNTER.",
+   "name": "1120-WRITE-DETAIL"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "376-392",
+   "logic": "Opens TRANSACT-FILE (DD TRANFILE) for INPUT; a status other than '00' displays 'ERROR OPENING TRANFILE' and abends.",
+   "name": "0000-TRANFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "394-410",
+   "logic": "Opens REPORT-FILE (DD TRANREPT) for OUTPUT; a status other than '00' displays 'ERROR OPENING REPTFILE' and abends.",
+   "name": "0100-REPTFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "412-428",
+   "logic": "Opens XREF-FILE (DD CARDXREF) for INPUT; a status other than '00' displays 'ERROR OPENING CROSS REF FILE' and abends.",
+   "name": "0200-CARDXREF-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "430-446",
+   "logic": "Opens TRANTYPE-FILE for INPUT; a status other than '00' displays 'ERROR OPENING TRANSACTION TYPE FILE' and abends.",
+   "name": "0300-TRANTYPE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "448-464",
+   "logic": "Opens TRANCATG-FILE for INPUT; a status other than '00' displays 'ERROR OPENING TRANSACTION CATG FILE' and abends.",
+   "name": "0400-TRANCATG-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "466-482",
+   "logic": "Opens DATE-PARMS-FILE for INPUT; a status other than '00' displays 'ERROR OPENING DATE PARM FILE' and abends.",
+   "name": "0500-DATEPARM-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "484-492",
+   "logic": "Reads XREF-FILE by card number into CARD-XREF-RECORD; on INVALID KEY displays 'INVALID CARD NUMBER : ' with the key, shows status 23 and abends.",
+   "name": "1500-A-LOOKUP-XREF"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "494-502",
+   "logic": "Reads TRANTYPE-FILE by transaction type code into TRAN-TYPE-RECORD; on INVALID KEY displays 'INVALID TRANSACTION TYPE : ' with the key, shows status 23 and abends.",
+   "name": "1500-B-LOOKUP-TRANTYPE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "504-512",
+   "logic": "Reads TRANCATG-FILE by type code + category code into TRAN-CAT-RECORD; on INVALID KEY displays 'INVALID TRAN CATG KEY : ' with the key, shows status 23 and abends.",
+   "name": "1500-C-LOOKUP-TRANCATG"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "514-530",
+   "logic": "Closes TRANSACT-FILE using ADD/SUBTRACT arithmetic to set APPL-RESULT; a status other than '00' displays 'ERROR CLOSING POSTED TRANSACTION FILE' and abends.",
+   "name": "9000-TRANFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "532-548",
+   "logic": "Closes REPORT-FILE using the same ADD/SUBTRACT idiom; a status other than '00' displays 'ERROR CLOSING REPORT FILE' and abends.",
+   "name": "9100-REPTFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "551-567",
+   "logic": "Closes XREF-FILE; a status other than '00' displays 'ERROR CLOSING CROSS REF FILE' and abends.",
+   "name": "9200-CARDXREF-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "569-585",
+   "logic": "Closes TRANTYPE-FILE; a status other than '00' displays 'ERROR CLOSING TRANSACTION TYPE FILE' and abends.",
+   "name": "9300-TRANTYPE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "587-603",
+   "logic": "Closes TRANCATG-FILE; a status other than '00' displays 'ERROR CLOSING TRANSACTION CATG FILE' and abends.",
+   "name": "9400-TRANCATG-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "605-621",
+   "logic": "Closes DATE-PARMS-FILE; a status other than '00' displays 'ERROR CLOSING DATE PARM FILE' and abends.",
+   "name": "9500-DATEPARM-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "626-630",
+   "logic": "Displays 'ABENDING PROGRAM' and calls CEE3ABD with ABCODE 999 and TIMING 0 to abend the step.",
+   "name": "9999-ABEND-PROGRAM"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "633-646",
+   "logic": "Formats IO-STATUS into IO-STATUS-04 and displays 'FILE STATUS IS: NNNN'; non-numeric or '9x' statuses have the second byte converted from binary.",
+   "name": "9910-DISPLAY-IO-STATUS"
+  }
+ ],
+ "program": "CBTRN03C",
+ "rules": [
+  {
+   "id": "BR-CBTRN03C-001",
+   "category": "decision",
+   "statement": "Only transactions whose processing date (first 10 characters of TRAN-PROC-TS) is between the DATEPARM start date and end date, both inclusive, are reported. The comparison is a character comparison. An out-of-range record executes NEXT SENTENCE, which (Inferred) leaves the read loop rather than skipping just that record.",
+   "paragraph": "(PROCEDURE DIVISION entry)",
+   "source": "app/cbl/CBTRN03C.cbl:173-178",
+   "anchor": "IF TRAN-PROC-TS (1:10) >= WS-START-DATE AND TRAN-PROC-TS (1:10) <= WS-END-DATE",
+   "additional_sources": ["app/cbl/CBTRN03C.cbl:122-125"],
+   "conditions": "WS-START-DATE <= TRAN-PROC-TS(1:10) <= WS-END-DATE.",
+   "outcome": "In range: record is processed. Out of range: NEXT SENTENCE.",
+   "data": ["TRAN-PROC-TS", "WS-START-DATE", "WS-END-DATE"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-002",
+   "category": "decision",
+   "statement": "When the card number changes from the previous transaction, the accumulated 'Account Total' of the previous card is printed (not before the first detail line) and the card cross-reference is read to obtain the account id for the new card. Correct grouping relies on the input being sorted by card number (done by the SORT step in TRANREPT.jcl).",
+   "paragraph": "(PROCEDURE DIVISION entry)",
+   "source": "app/cbl/CBTRN03C.cbl:181-187",
+   "anchor": "IF WS-CURR-CARD-NUM NOT= TRAN-CARD-NUM",
+   "additional_sources": ["app/jcl/TRANREPT.jcl:46"],
+   "conditions": "WS-CURR-CARD-NUM differs from TRAN-CARD-NUM; account totals only when WS-FIRST-TIME = 'N'.",
+   "outcome": "1120-WRITE-ACCOUNT-TOTALS, WS-CURR-CARD-NUM updated, 1500-A-LOOKUP-XREF performed.",
+   "data": ["WS-CURR-CARD-NUM", "TRAN-CARD-NUM", "WS-FIRST-TIME", "XREF-ACCT-ID"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-003",
+   "category": "error-policy",
+   "statement": "A reported transaction whose card number is not in the card cross-reference file stops the report run with an abend.",
+   "paragraph": "1500-A-LOOKUP-XREF",
+   "source": "app/cbl/CBTRN03C.cbl:485-491",
+   "anchor": "DISPLAY 'INVALID CARD NUMBER : ' FD-XREF-CARD-NUM",
+   "additional_sources": [],
+   "conditions": "XREF-FILE READ returns INVALID KEY.",
+   "outcome": "Display 'INVALID CARD NUMBER : ', file status 0023, abend 999.",
+   "data": ["FD-XREF-CARD-NUM"],
+   "messages": ["INVALID CARD NUMBER : "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-004",
+   "category": "error-policy",
+   "statement": "A reported transaction whose type code is not in the transaction type file stops the report run with an abend.",
+   "paragraph": "1500-B-LOOKUP-TRANTYPE",
+   "source": "app/cbl/CBTRN03C.cbl:495-501",
+   "anchor": "DISPLAY 'INVALID TRANSACTION TYPE : ' FD-TRAN-TYPE",
+   "additional_sources": [],
+   "conditions": "TRANTYPE-FILE READ returns INVALID KEY.",
+   "outcome": "Display 'INVALID TRANSACTION TYPE : ', file status 0023, abend 999.",
+   "data": ["FD-TRAN-TYPE", "TRAN-TYPE-CD"],
+   "messages": ["INVALID TRANSACTION TYPE : "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-005",
+   "category": "error-policy",
+   "statement": "A reported transaction whose type + category combination is not in the transaction category file stops the report run with an abend.",
+   "paragraph": "1500-C-LOOKUP-TRANCATG",
+   "source": "app/cbl/CBTRN03C.cbl:505-511",
+   "anchor": "DISPLAY 'INVALID TRAN CATG KEY : ' FD-TRAN-CAT-KEY",
+   "additional_sources": [],
+   "conditions": "TRANCATG-FILE READ returns INVALID KEY.",
+   "outcome": "Display 'INVALID TRAN CATG KEY : ', file status 0023, abend 999.",
+   "data": ["FD-TRAN-CAT-KEY", "TRAN-TYPE-CD", "TRAN-CAT-CD"],
+   "messages": ["INVALID TRAN CATG KEY : "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-006",
+   "category": "transformation",
+   "statement": "Before the first detail line the report header is written once with the DATEPARM start and end dates as the report date range.",
+   "paragraph": "1100-WRITE-TRANSACTION-REPORT",
+   "source": "app/cbl/CBTRN03C.cbl:275-280",
+   "anchor": "MOVE WS-START-DATE TO REPT-START-DATE",
+   "additional_sources": [],
+   "conditions": "WS-FIRST-TIME = 'Y'.",
+   "outcome": "WS-FIRST-TIME set to 'N'; headers written.",
+   "data": ["WS-FIRST-TIME", "REPT-START-DATE", "REPT-END-DATE"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-007",
+   "category": "decision",
+   "statement": "A page break (page total line followed by new headers) occurs before a detail line whenever the running line count is an exact multiple of the page size of 20 lines.",
+   "paragraph": "1100-WRITE-TRANSACTION-REPORT",
+   "source": "app/cbl/CBTRN03C.cbl:282-284",
+   "anchor": "IF FUNCTION MOD(WS-LINE-COUNTER, WS-PAGE-SIZE) = 0",
+   "additional_sources": ["app/cbl/CBTRN03C.cbl:129-132"],
+   "conditions": "MOD(WS-LINE-COUNTER, 20) = 0.",
+   "outcome": "1110-WRITE-PAGE-TOTALS and 1120-WRITE-HEADERS.",
+   "data": ["WS-LINE-COUNTER", "WS-PAGE-SIZE"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-008",
+   "category": "calculation",
+   "statement": "Each reported transaction amount is added to both the current page total and the current account (card) total.",
+   "paragraph": "1100-WRITE-TRANSACTION-REPORT",
+   "source": "app/cbl/CBTRN03C.cbl:286-288",
+   "anchor": "ADD TRAN-AMT TO WS-PAGE-TOTAL WS-ACCOUNT-TOTAL",
+   "additional_sources": [],
+   "conditions": "Transaction is reported.",
+   "outcome": "WS-PAGE-TOTAL and WS-ACCOUNT-TOTAL increased by TRAN-AMT.",
+   "data": ["TRAN-AMT", "WS-PAGE-TOTAL", "WS-ACCOUNT-TOTAL"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-009",
+   "category": "calculation",
+   "statement": "The grand total is the sum of the page totals: when a page total is printed it is added to WS-GRAND-TOTAL and the page total is reset to zero.",
+   "paragraph": "1110-WRITE-PAGE-TOTALS",
+   "source": "app/cbl/CBTRN03C.cbl:294-298",
+   "anchor": "ADD WS-PAGE-TOTAL TO WS-GRAND-TOTAL",
+   "additional_sources": [],
+   "conditions": "Page total line written.",
+   "outcome": "WS-GRAND-TOTAL += WS-PAGE-TOTAL; WS-PAGE-TOTAL = 0.",
+   "data": ["WS-PAGE-TOTAL", "WS-GRAND-TOTAL", "REPT-PAGE-TOTAL"],
+   "messages": ["Page Total"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-010",
+   "category": "calculation",
+   "statement": "When an account (card) total is printed, WS-ACCOUNT-TOTAL is reset to zero for the next card.",
+   "paragraph": "1120-WRITE-ACCOUNT-TOTALS",
+   "source": "app/cbl/CBTRN03C.cbl:307-310",
+   "anchor": "MOVE 0 TO WS-ACCOUNT-TOTAL",
+   "additional_sources": [],
+   "conditions": "Card number change.",
+   "outcome": "'Account Total' line written; WS-ACCOUNT-TOTAL = 0.",
+   "data": ["WS-ACCOUNT-TOTAL", "REPT-ACCOUNT-TOTAL"],
+   "messages": ["Account Total"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-011",
+   "category": "decision",
+   "statement": "At end of the transaction file the program adds TRAN-AMT (still holding the last record read) to the page and account totals, then prints the final page total and the grand total; no final account total is printed.",
+   "paragraph": "(PROCEDURE DIVISION entry)",
+   "source": "app/cbl/CBTRN03C.cbl:197-203",
+   "anchor": "PERFORM 1110-WRITE-GRAND-TOTALS",
+   "additional_sources": [],
+   "conditions": "END-OF-FILE = 'Y' after the read.",
+   "outcome": "1110-WRITE-PAGE-TOTALS and 1110-WRITE-GRAND-TOTALS.",
+   "data": ["TRAN-AMT", "WS-PAGE-TOTAL", "WS-ACCOUNT-TOTAL", "WS-GRAND-TOTAL"],
+   "messages": ["Grand Total"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-012",
+   "category": "error-policy",
+   "statement": "The report date range comes from the first DATEPARM record; if DATEPARM is empty the run ends without reading transactions or writing a report line, and any other read error abends.",
+   "paragraph": "0550-DATEPARM-READ",
+   "source": "app/cbl/CBTRN03C.cbl:231-242",
+   "anchor": "DISPLAY 'Reporting from ' WS-START-DATE",
+   "additional_sources": [],
+   "conditions": "DATEPARM-STATUS '00' / '10' / other.",
+   "outcome": "'00': display range; '10': END-OF-FILE = 'Y'; other: 'ERROR READING DATEPARM FILE' and abend.",
+   "data": ["DATEPARM-STATUS", "WS-START-DATE", "WS-END-DATE", "END-OF-FILE"],
+   "messages": ["Reporting from ", "ERROR READING DATEPARM FILE"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-013",
+   "category": "transformation",
+   "statement": "Each detail line shows transaction id, account id (from the card xref), type code and description, category code and description, source and amount; descriptions are truncated to the report column widths (15 and 29 characters).",
+   "paragraph": "1120-WRITE-DETAIL",
+   "source": "app/cbl/CBTRN03C.cbl:362-371",
+   "anchor": "MOVE XREF-ACCT-ID TO TRAN-REPORT-ACCOUNT-ID",
+   "additional_sources": ["app/cpy/CVTRA07Y.cpy:15-31"],
+   "conditions": "Transaction is reported.",
+   "outcome": "TRANSACTION-DETAIL-REPORT written to TRANREPT.",
+   "data": ["TRAN-ID", "XREF-ACCT-ID", "TRAN-TYPE-DESC", "TRAN-CAT-TYPE-DESC", "TRAN-SOURCE", "TRAN-AMT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN03C-014",
+   "category": "error-policy",
+   "statement": "Any fatal file error tested by the program terminates the step with user abend code 999 via CEE3ABD.",
+   "paragraph": "9999-ABEND-PROGRAM",
+   "source": "app/cbl/CBTRN03C.cbl:626-630",
+   "anchor": "CALL 'CEE3ABD' USING ABCODE, TIMING",
+   "additional_sources": [],
+   "conditions": "Open/read/write/close status not as expected, or a lookup INVALID KEY.",
+   "outcome": "Abend U999 after 'ABENDING PROGRAM'.",
+   "data": ["ABCODE", "TIMING"],
+   "messages": ["ABENDING PROGRAM"],
+   "confidence": "Confirmed"
+  }
+ ],
+ "schema": "program-semantics/1",
+ "sme_questions": [
+  {
+   "question": "Out-of-range transactions trigger NEXT SENTENCE, which exits the whole read loop. Was the intent to skip only that record (e.g. CONTINUE to the next read)? Is the program always run behind the SORT INCLUDE filter so this never happens?",
+   "source": "app/cbl/CBTRN03C.cbl:173-178"
+  },
+  {
+   "question": "At end of file TRAN-AMT of the last record is added again to the page/account totals, and no final account total is printed. Are the published report totals known to be off by the last transaction amount, and should the last account total be printed?",
+   "source": "app/cbl/CBTRN03C.cbl:197-203"
+  },
+  {
+   "question": "Should 'Account Total' break on account id (XREF-ACCT-ID) rather than card number, given that an account can have several cards?",
+   "source": "app/cbl/CBTRN03C.cbl:181-187"
+  },
+  {
+   "question": "TRANREPT.jcl hard-codes the SORT filter dates 2022-01-01 to 2022-07-06 while the program reads its range from DATEPARM. Which is the authoritative report date range, and how are the two kept in sync?",
+   "source": "app/jcl/TRANREPT.jcl:40-48"
+  }
+ ],
+ "source_path": "app/cbl/CBTRN03C.cbl",
+ "source_sha256": "8691e625502b7efcfd7ba4ae61797132e7b68f3fd5fedcdcc7dd6488f6871eef",
+ "status": "complete",
+ "summary": {
+  "confidence": "Confirmed",
+  "evidence": [
+   "app/cbl/CBTRN03C.cbl:1-5",
+   "app/cbl/CBTRN03C.cbl:160-217",
+   "app/cbl/CBTRN03C.cbl:220-243",
+   "app/cbl/CBTRN03C.cbl:274-374",
+   "app/jcl/TRANREPT.jcl:36-80"
+  ],
+  "text": "CBTRN03C is a batch COBOL program (job TRANREPT, step STEP10R) that prints the 'Daily Transaction Report' (DALYREPT). It reads a start/end date from the DATEPARM file and then reads the posted transaction file TRANFILE sequentially (in TRANREPT.jcl a backup of the transaction master, filtered by date and sorted by card number). For each transaction in the date range it looks up the account id in the card cross-reference (CARDXREF) and the type and category descriptions (TRANTYPE, TRANCATG), and writes a 133-byte detail line to TRANREPT. It prints headers, page totals every 20 lines, an 'Account Total' on every card-number change and a final page total and grand total. Missing reference data or any file error abends the step with code 999."
+ }
+}

@@ -1,0 +1,200 @@
+{
+ "batch": "B02",
+ "existing_rules_reviewed": [],
+ "no_business_rules_reason": null,
+ "no_rule_decisions": [],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "OUT-ACCT-CURR-CYC-DEBIT is only assigned when ACCT-CURR-CYC-DEBIT is zero (constant 2525.00); for a non-zero debit the account value is never moved, so the output field keeps whatever value the previous record (or initial storage) left in the FD record area.",
+   "source": "app/cbl/CBACT01C.cbl:234-238"
+  },
+  {
+   "kind": "hardcoded-value",
+   "text": "The array output record is populated with literal amounts 1005.00, 1525.00, -1025.00 and -2500.00 instead of account data; occurrences 4 and 5 stay at INITIALIZE values. This looks like test-data generation for the ARRYFILE layout.",
+   "source": "app/cbl/CBACT01C.cbl:253-261"
+  },
+  {
+   "kind": "anomaly",
+   "text": "9000-ACCTFILE-CLOSE closes only ACCTFILE-FILE; OUT-FILE, ARRY-FILE and VBRC-FILE opened for OUTPUT are never explicitly closed before GOBACK (relies on runtime implicit close).",
+   "source": "app/cbl/CBACT01C.cbl:388-404"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Each account record is displayed twice: field by field in 1100-DISPLAY-ACCT-RECORD and again as the whole ACCOUNT-RECORD in the main loop.",
+   "source": "app/cbl/CBACT01C.cbl:147-153"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Write-status checks accept file status '10' (end of file) as success for output WRITE statements, a status that does not normally apply to WRITE; the error message for all three output files says 'ACCOUNT FILE WRITE STATUS IS:'.",
+   "source": "app/cbl/CBACT01C.cbl:245-250"
+  }
+ ],
+ "paragraphs": [
+  {
+   "confidence": "Confirmed",
+   "lines": "141-160",
+   "logic": "Displays a start banner, opens ACCTFILE for input and OUTFILE, ARRYFILE and VBRCFILE for output, then loops calling 1000-ACCTFILE-GET-NEXT until END-OF-FILE = 'Y', displaying ACCOUNT-RECORD after each successful read. Finally closes the account file, displays an end banner and GOBACKs.",
+   "name": "(PROCEDURE DIVISION entry)"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "165-198",
+   "logic": "Reads the next ACCTFILE record sequentially into ACCOUNT-RECORD. On status '00' it initializes the array record, displays the account, builds and writes the OUTFILE record, the ARRYFILE record and two variable-length VBRCFILE records. Status '10' sets APPL-RESULT 16 and END-OF-FILE 'Y'; any other status displays 'ERROR READING ACCOUNT FILE', shows the file status and abends.",
+   "name": "1000-ACCTFILE-GET-NEXT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "200-213",
+   "logic": "Displays every ACCOUNT-RECORD field (ACCT-ID through ACCT-GROUP-ID) with a label, followed by a separator line.",
+   "name": "1100-DISPLAY-ACCT-RECORD"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "215-240",
+   "logic": "Moves account id, status, balances, limits, open and expiration dates to OUT-ACCT-REC. Passes ACCT-REISSUE-DATE to assembler routine COBDATFT with CODATECN-TYPE '2' and CODATECN-OUTTYPE '2' and stores CODATECN-0UT-DATE as OUT-ACCT-REISSUE-DATE. Copies cycle credit, substitutes 2525.00 for the cycle debit when ACCT-CURR-CYC-DEBIT is zero, and copies the group id.",
+   "name": "1300-POPUL-ACCT-RECORD"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "242-251",
+   "logic": "Writes OUT-ACCT-REC to OUTFILE; if OUTFILE-STATUS is neither '00' nor '10' it displays the status and abends.",
+   "name": "1350-WRITE-ACCT-RECORD"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "253-261",
+   "logic": "Fills ARR-ARRAY-REC with ACCT-ID, ACCT-CURR-BAL in occurrences 1 and 2, and hardcoded amounts (debits 1005.00 and 1525.00, balance -1025.00 and debit -2500.00 in occurrence 3).",
+   "name": "1400-POPUL-ARRAY-RECORD"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "263-274",
+   "logic": "Writes ARR-ARRAY-REC to ARRYFILE; abends if ARRYFILE-STATUS is neither '00' nor '10'.",
+   "name": "1450-WRITE-ARRY-RECORD"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "276-285",
+   "logic": "Builds VBRC-REC1 (account id and active status) and VBRC-REC2 (account id, current balance, credit limit and the 4-character reissue year from WS-ACCT-REISSUE-YYYY), and displays both.",
+   "name": "1500-POPUL-VBRC-RECORD"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "287-300",
+   "logic": "Sets WS-RECD-LEN to 12, moves VBRC-REC1 into VBR-REC and writes a 12-byte variable record; abends if VBRCFILE-STATUS is neither '00' nor '10'.",
+   "name": "1550-WRITE-VB1-RECORD"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "302-315",
+   "logic": "Sets WS-RECD-LEN to 39, moves VBRC-REC2 into VBR-REC and writes a 39-byte variable record; abends if VBRCFILE-STATUS is neither '00' nor '10'.",
+   "name": "1575-WRITE-VB2-RECORD"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "317-333",
+   "logic": "Opens ACCTFILE-FILE for input; a status other than '00' displays 'ERROR OPENING ACCTFILE', shows the status and abends.",
+   "name": "0000-ACCTFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "334-350",
+   "logic": "Opens OUT-FILE for output; a status other than '00' displays 'ERROR OPENING OUTFILE' with the status and abends.",
+   "name": "2000-OUTFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "352-368",
+   "logic": "Opens ARRY-FILE for output; a status other than '00' displays 'ERROR OPENING ARRAYFILE' with the status and abends.",
+   "name": "3000-ARRFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "370-386",
+   "logic": "Opens VBRC-FILE for output; a status other than '00' displays 'ERROR OPENING VBRC FILE' with the status and abends.",
+   "name": "4000-VBRFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "388-404",
+   "logic": "Closes ACCTFILE-FILE; a status other than '00' displays 'ERROR CLOSING ACCOUNT FILE', shows the status and abends. The three output files are not closed here.",
+   "name": "9000-ACCTFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "406-410",
+   "logic": "Displays 'ABENDING PROGRAM' and calls CEE3ABD with abend code 999 and timing 0.",
+   "name": "9999-ABEND-PROGRAM"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "413-426",
+   "logic": "Formats IO-STATUS as a 4-digit display value: for non-numeric or '9x' statuses the second byte is converted to its binary value; otherwise the 2-digit status is right-aligned in '0000'. Displays 'FILE STATUS IS: NNNN' with the result.",
+   "name": "9910-DISPLAY-IO-STATUS"
+  }
+ ],
+ "program": "CBACT01C",
+ "rules": [
+  {
+   "id": "BR-CBACT01C-001",
+   "category": "transformation",
+   "statement": "When the account's current-cycle debit (ACCT-CURR-CYC-DEBIT) is zero, the extract record carries a fixed cycle debit of 2525.00 in OUT-ACCT-CURR-CYC-DEBIT instead of zero.",
+   "paragraph": "1300-POPUL-ACCT-RECORD",
+   "source": "app/cbl/CBACT01C.cbl:236-238",
+   "anchor": "IF ACCT-CURR-CYC-DEBIT EQUAL TO ZERO MOVE 2525.00 TO OUT-ACCT-CURR-CYC-DEBIT",
+   "conditions": "ACCT-CURR-CYC-DEBIT = 0",
+   "outcome": "OUT-ACCT-CURR-CYC-DEBIT = 2525.00 in the OUTFILE record; non-zero debits are not moved at all (see observation).",
+   "data": ["ACCT-CURR-CYC-DEBIT", "OUT-ACCT-CURR-CYC-DEBIT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBACT01C-002",
+   "category": "transformation",
+   "statement": "The account reissue date is reformatted for the extract by calling COBDATFT with input type '2' (YYYY-MM-DD-IN) and output type '2' (YYYYMMDD-OP); the converted CODATECN-0UT-DATE becomes OUT-ACCT-REISSUE-DATE.",
+   "paragraph": "1300-POPUL-ACCT-RECORD",
+   "source": "app/cbl/CBACT01C.cbl:223-233",
+   "anchor": "CALL 'COBDATFT' USING CODATECN-REC.",
+   "additional_sources": ["app/cpy/CODATECN.cpy:19-21", "app/cpy/CODATECN.cpy:36-38"],
+   "conditions": "Every successfully read account record.",
+   "outcome": "OUT-ACCT-REISSUE-DATE holds the reformatted date (expected YYYYMMDD per the 88-level meanings).",
+   "data": ["ACCT-REISSUE-DATE", "CODATECN-TYPE", "CODATECN-OUTTYPE", "CODATECN-0UT-DATE", "OUT-ACCT-REISSUE-DATE"],
+   "messages": [],
+   "confidence": "Inferred"
+  },
+  {
+   "id": "BR-CBACT01C-003",
+   "category": "error-policy",
+   "statement": "Any account-file read status other than '00' (record) or '10' (end of file) stops the job: the program displays 'ERROR READING ACCOUNT FILE', the file status, and abends with code 999 via CEE3ABD.",
+   "paragraph": "1000-ACCTFILE-GET-NEXT",
+   "source": "app/cbl/CBACT01C.cbl:180-197",
+   "anchor": "DISPLAY 'ERROR READING ACCOUNT FILE'",
+   "additional_sources": ["app/cbl/CBACT01C.cbl:406-410"],
+   "conditions": "ACCTFILE-STATUS not '00' and not '10'",
+   "outcome": "Abend code 999; no further records processed.",
+   "data": ["ACCTFILE-STATUS", "APPL-RESULT", "ABCODE"],
+   "messages": ["ERROR READING ACCOUNT FILE", "ABENDING PROGRAM"],
+   "confidence": "Confirmed"
+  }
+ ],
+ "schema": "program-semantics/1",
+ "sme_questions": [
+  {
+   "question": "Is the 2525.00 substitution for a zero cycle debit (and the missing move for non-zero debits) intended test-data behaviour, or a defect? Which downstream consumer reads OUTFILE?",
+   "source": "app/cbl/CBACT01C.cbl:236-238"
+  },
+  {
+   "question": "Are the literal amounts in the ARRYFILE record (1005.00, 1525.00, -1025.00, -2500.00) meant for testing array/COMP-3 layouts only? Is ARRYFILE used by any production process?",
+   "source": "app/cbl/CBACT01C.cbl:253-261"
+  }
+ ],
+ "source_path": "app/cbl/CBACT01C.cbl",
+ "source_sha256": "f8eb6e3a561ff96a1889a8f777a8998850a11dddae221da2c5018067d7b95551",
+ "status": "complete",
+ "summary": {
+  "confidence": "Confirmed",
+  "evidence": ["app/cbl/CBACT01C.cbl:1-5", "app/cbl/CBACT01C.cbl:28-85", "app/cbl/CBACT01C.cbl:141-160", "app/cbl/CBACT01C.cbl:165-198"],
+  "text": "CBACT01C is a batch COBOL program that reads the account master KSDS (ACCTFILE) sequentially and writes three derived extract files. For each account it displays the record, writes a fixed-layout copy to OUTFILE (with the reissue date reformatted by assembler routine COBDATFT and a 2525.00 default for zero cycle debit), writes an ARRYFILE record with an OCCURS 5 balance array partly filled with literal amounts, and writes two variable-length records (12 and 39 bytes) to VBRCFILE. Any open, read, write or close error displays the file status and abends with code 999. The output contents (hardcoded amounts, multiple record formats) suggest the program exercises file formats rather than implementing a production business process (Inferred from the literals in 1400-POPUL-ARRAY-RECORD and the default in 1300-POPUL-ACCT-RECORD)."
+ }
+}

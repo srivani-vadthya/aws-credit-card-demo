@@ -1,0 +1,435 @@
+{
+ "schema": "program-semantics/1",
+ "program": "COACTVWC",
+ "source_path": "app/cbl/COACTVWC.cbl",
+ "source_sha256": "4f1e55176f69edfb55b7af7a161aceb8c3bc3bd1b2924a704a76256e0e751b54",
+ "batch": "B05",
+ "status": "complete",
+ "summary": {
+  "text": "COACTVWC is the CICS pseudo-conversational Account View program (transaction CAVW, map CACTVWA of mapset COACTVW). On first entry it displays an empty search screen; on re-entry it receives an 11-digit account number, validates it, then reads the card cross-reference through the account alternate index CXACAIX (to obtain customer id and card number), the account master ACCTDAT and the customer master CUSTDAT, and displays account balances, limits, dates and the customer's personal data (SSN formatted NNN-NN-NNNN). Read failures and NOTFND conditions are shown as error messages on the same screen. PF3 transfers (XCTL) back to the calling program or to the main menu COMEN01C; any other key is treated as ENTER. Each turn ends with CICS RETURN TRANSID(CAVW) with a 2000-byte commarea holding CARDDEMO-COMMAREA plus program context. An abend handler sends abend data and abends with code 9999.",
+  "evidence": [
+   "app/cbl/COACTVWC.cbl:142-202",
+   "app/cbl/COACTVWC.cbl:262-407",
+   "app/cbl/COACTVWC.cbl:460-535",
+   "app/cbl/COACTVWC.cbl:622-718",
+   "app/cbl/COACTVWC.cbl:723-869",
+   "app/cbl/COACTVWC.cbl:916-937"
+  ],
+  "confidence": "Confirmed"
+ },
+ "paragraphs": [
+  {
+   "name": "0000-MAIN",
+   "lines": "262-393",
+   "logic": "Sets HANDLE ABEND to ABEND-ROUTINE, initialises work areas and clears WS-RETURN-MSG. When EIBCALEN = 0 or the caller is COMEN01C without the re-enter flag it initialises CARDDEMO-COMMAREA and the program context, otherwise copies both from DFHCOMMAREA. Maps the AID via YYYY-STORE-PFKEY and forces any key other than ENTER/PF3 to ENTER. EVALUATE: PF3 XCTLs to CDEMO-FROM-PROGRAM (default COMEN01C); CDEMO-PGM-ENTER sends the empty map; CDEMO-PGM-REENTER processes inputs and, if valid, performs 9000-READ-ACCT before resending the map; OTHER sends plain text 'UNEXPECTED DATA SCENARIO'. A remaining INPUT-ERROR resends the map.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "COMMON-RETURN",
+   "lines": "394-407",
+   "logic": "Moves WS-RETURN-MSG to CCARD-ERROR-MSG, packs CARDDEMO-COMMAREA followed by WS-THIS-PROGCOMMAREA into WS-COMMAREA and issues CICS RETURN TRANSID(LIT-THISTRANID='CAVW') COMMAREA(WS-COMMAREA) LENGTH 2000.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "0000-MAIN-EXIT",
+   "lines": "408-413",
+   "logic": "Exit paragraph (EXIT); the name is defined twice in the source (408-410 and 411-413), both containing only EXIT.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1000-SEND-MAP",
+   "lines": "416-425",
+   "logic": "Performs 1100-SCREEN-INIT, 1200-SETUP-SCREEN-VARS, 1300-SETUP-SCREEN-ATTRS and 1400-SEND-SCREEN in sequence to build and send the account view screen.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1000-SEND-MAP-EXIT",
+   "lines": "427-429",
+   "logic": "Exit paragraph for 1000-SEND-MAP (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1100-SCREEN-INIT",
+   "lines": "431-455",
+   "logic": "Clears CACTVWAO and fills titles CCDA-TITLE01/02, transaction CAVW, program name, current date MM/DD/YY and time HH:MM:SS from FUNCTION CURRENT-DATE (called twice).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1100-SCREEN-INIT-EXIT",
+   "lines": "457-459",
+   "logic": "Exit paragraph for 1100-SCREEN-INIT (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1200-SETUP-SCREEN-VARS",
+   "lines": "460-535",
+   "logic": "With EIBCALEN = 0 sets the prompt info message. Otherwise shows the entered account id (low-values when blank); when the account or customer was found, moves ACCT-ACTIVE-STATUS, current balance, credit and cash limits, cycle credit/debit, open/expiry/reissue dates and group id to the screen; when the customer was found, moves customer id, SSN formatted as NNN-NN-NNNN, FICO score, DOB, names, address, phones, government id, EFT account and primary-holder flag. If no info message is set it sets 'Enter or update id of account to display'; then moves the return and info messages to the map.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1200-SETUP-SCREEN-VARS-EXIT",
+   "lines": "537-539",
+   "logic": "Exit paragraph for 1200-SETUP-SCREEN-VARS (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1300-SETUP-SCREEN-ATTRS",
+   "lines": "541-572",
+   "logic": "Unprotects the account field (DFHBMFSE), always places the cursor on ACCTSID (all EVALUATE branches move -1), colours it red when the filter is invalid, shows a red '*' when the filter was blank on re-entry, and darkens the info message when empty (neutral colour otherwise).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1300-SETUP-SCREEN-ATTRS-EXIT",
+   "lines": "574-576",
+   "logic": "Exit paragraph for 1300-SETUP-SCREEN-ATTRS (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1400-SEND-SCREEN",
+   "lines": "577-591",
+   "logic": "Sets CCARD-NEXT-MAPSET/MAP to COACTVW/CACTVWA, sets CDEMO-PGM-REENTER and sends the map with CURSOR ERASE FREEKB, capturing RESP (not tested).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1400-SEND-SCREEN-EXIT",
+   "lines": "592-594",
+   "logic": "Exit paragraph for 1400-SEND-SCREEN (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2000-PROCESS-INPUTS",
+   "lines": "596-605",
+   "logic": "Performs 2100-RECEIVE-MAP and 2200-EDIT-MAP-INPUTS, then copies WS-RETURN-MSG to CCARD-ERROR-MSG and records this program, mapset and map as the next screen.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2000-PROCESS-INPUTS-EXIT",
+   "lines": "607-609",
+   "logic": "Exit paragraph for 2000-PROCESS-INPUTS (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2100-RECEIVE-MAP",
+   "lines": "610-617",
+   "logic": "Receives map CACTVWA of mapset COACTVW into CACTVWAI with RESP/RESP2 (not tested).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2100-RECEIVE-MAP-EXIT",
+   "lines": "619-621",
+   "logic": "Exit paragraph for 2100-RECEIVE-MAP (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2200-EDIT-MAP-INPUTS",
+   "lines": "622-643",
+   "logic": "Sets INPUT-OK and filter valid, maps an ACCTSIDI of '*' or spaces to low-values in CC-ACCT-ID (otherwise copies it), performs 2210-EDIT-ACCOUNT, and when the filter is blank sets the return message to 'No input received'.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2200-EDIT-MAP-INPUTS-EXIT",
+   "lines": "645-647",
+   "logic": "Exit paragraph for 2200-EDIT-MAP-INPUTS (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2210-EDIT-ACCOUNT",
+   "lines": "649-681",
+   "logic": "A low-values/spaces CC-ACCT-ID sets INPUT-ERROR and FLG-ACCTFILTER-BLANK, sets 'Account number not provided' if no message yet and zeroes CDEMO-ACCT-ID. A non-numeric or all-zero value sets INPUT-ERROR, flags the filter not OK, sets 'Account Filter must  be a non-zero 11 digit number' if no message yet and zeroes CDEMO-ACCT-ID. Otherwise CC-ACCT-ID is moved to CDEMO-ACCT-ID and the filter flagged valid.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2210-EDIT-ACCOUNT-EXIT",
+   "lines": "683-685",
+   "logic": "Exit paragraph for 2210-EDIT-ACCOUNT, target of its GO TO statements (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9000-READ-ACCT",
+   "lines": "687-718",
+   "logic": "Clears the info message, uses CDEMO-ACCT-ID as key and performs 9200-GETCARDXREF-BYACCT; stops if the filter became not OK. Then performs 9300-GETACCTDATA-BYACCT and, using CDEMO-CUST-ID from the xref, 9400-GETCUSTDATA-BYCUST; the intermediate stop tests use 88-levels on WS-RETURN-MSG that are never set by the read paragraphs.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9000-READ-ACCT-EXIT",
+   "lines": "720-722",
+   "logic": "Exit paragraph for 9000-READ-ACCT, target of its GO TO statements (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9200-GETCARDXREF-BYACCT",
+   "lines": "723-770",
+   "logic": "Reads CXACAIX (card xref by account alternate index) keyed by the 11-character account id into CARD-XREF-RECORD. NORMAL moves XREF-CUST-ID and XREF-CARD-NUM into the commarea; NOTFND sets input error and builds 'Account:<id> not found in Cross ref file.  Resp:... Reas:...'; other responses set input error and the generic 'File Error: READ on CXACAIX returned RESP ...' message.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9200-GETCARDXREF-BYACCT-EXIT",
+   "lines": "771-773",
+   "logic": "Exit paragraph for 9200-GETCARDXREF-BYACCT (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9300-GETACCTDATA-BYACCT",
+   "lines": "774-820",
+   "logic": "Reads ACCTDAT keyed by account id into ACCOUNT-RECORD. NORMAL sets FOUND-ACCT-IN-MASTER; NOTFND sets input error and 'Account:<id> not found in Acct Master file.Resp:...' (if no message yet); other responses set the generic file error message.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9300-GETACCTDATA-BYACCT-EXIT",
+   "lines": "821-823",
+   "logic": "Exit paragraph for 9300-GETACCTDATA-BYACCT (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9400-GETCUSTDATA-BYCUST",
+   "lines": "825-869",
+   "logic": "Reads CUSTDAT keyed by the 9-character customer id into CUSTOMER-RECORD. NORMAL sets FOUND-CUST-IN-MASTER; NOTFND sets input error and 'CustId:<id> not found in customer master.Resp: ...' (if no message yet); other responses set the generic file error message.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9400-GETCUSTDATA-BYCUST-EXIT",
+   "lines": "870-872",
+   "logic": "Exit paragraph for 9400-GETCUSTDATA-BYCUST (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "SEND-PLAIN-TEXT",
+   "lines": "877-887",
+   "logic": "Sends WS-RETURN-MSG as plain text (ERASE FREEKB) and issues CICS RETURN without transid, ending the conversation; commented as not for production.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "SEND-PLAIN-TEXT-EXIT",
+   "lines": "888-890",
+   "logic": "Exit paragraph for SEND-PLAIN-TEXT (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "SEND-LONG-TEXT",
+   "lines": "896-906",
+   "logic": "Debug helper: sends WS-LONG-MSG as plain text and returns; not performed anywhere (its callers are commented out).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "SEND-LONG-TEXT-EXIT",
+   "lines": "907-914",
+   "logic": "EXIT for SEND-LONG-TEXT followed by COPY 'CSSTRPFY', which supplies YYYY-STORE-PFKEY: it maps EIBAID to CCARD-AID values (ENTER, CLEAR, PA1, PA2, PF1-PF12, with PF13-PF24 folded onto PF1-PF12).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "ABEND-ROUTINE",
+   "lines": "916-937",
+   "logic": "Defaults ABEND-MSG to 'UNEXPECTED ABEND OCCURRED.' when empty, sets ABEND-CULPRIT to COACTVWC, sends ABEND-DATA to the terminal (NOHANDLE), cancels the abend handler and abends with code '9999'.",
+   "confidence": "Confirmed"
+  }
+ ],
+ "rules": [
+  {
+   "id": "BR-COACTVWC-001",
+   "category": "routing",
+   "statement": "PF3 on the account view returns to the program and transaction that invoked it (CDEMO-FROM-PROGRAM / CDEMO-FROM-TRANID); when these are blank or low-values the main menu COMEN01C / CM00 is used. Before the XCTL the commarea is stamped with from-transaction CAVW and from-program COACTVWC, user type is forced to 'U' (CDEMO-USRTYP-USER), program context to first-entry and last map/mapset to CACTVWA/COACTVW.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COACTVWC.cbl:324-352",
+   "anchor": "MOVE LIT-MENUPGM TO CDEMO-TO-PROGRAM",
+   "conditions": "CCARD-AID-PFK03 (PF3 or PF15)",
+   "outcome": "XCTL to CDEMO-TO-PROGRAM with CARDDEMO-COMMAREA",
+   "data": ["CDEMO-FROM-TRANID", "CDEMO-FROM-PROGRAM", "CDEMO-TO-TRANID", "CDEMO-TO-PROGRAM", "CDEMO-USER-TYPE", "CDEMO-PGM-CONTEXT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACTVWC-002",
+   "category": "decision",
+   "statement": "Only ENTER and PF3 are meaningful on the account view; any other attention key (including PF keys, CLEAR, PA1/PA2) is silently treated as ENTER. PF13-PF24 are folded onto PF1-PF12, so PF15 also exits.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COACTVWC.cbl:306-314",
+   "anchor": "SET CCARD-AID-ENTER TO TRUE",
+   "additional_sources": ["app/cpy/CSSTRPFY.cpy:58-59"],
+   "conditions": "AID not ENTER and not PF3",
+   "outcome": "Processed as ENTER",
+   "data": ["CCARD-AID", "WS-PFK-FLAG"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACTVWC-003",
+   "category": "decision",
+   "statement": "On first entry (CDEMO-PGM-ENTER) the account view only displays the empty search screen; on re-entry it edits the input and, only when the input is valid, reads the account data before redisplaying. When the program is entered from COMEN01C without the re-enter flag (or with no commarea) the shared commarea is re-initialised.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COACTVWC.cbl:353-374",
+   "anchor": "PERFORM 9000-READ-ACCT",
+   "additional_sources": ["app/cbl/COACTVWC.cbl:282-292"],
+   "conditions": "CDEMO-PGM-ENTER / CDEMO-PGM-REENTER and INPUT-ERROR",
+   "outcome": "Screen sent; account lookup only after successful edit",
+   "data": ["CDEMO-PGM-CONTEXT", "WS-INPUT-FLAG"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACTVWC-004",
+   "category": "error-policy",
+   "statement": "If the program context is neither first-entry nor re-entry (and PF3 not pressed), the account view ends the conversation by sending the plain-text message 'UNEXPECTED DATA SCENARIO' and returning to CICS without a next transaction (abend code '0001' is prepared but no abend is issued).",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COACTVWC.cbl:375-382",
+   "anchor": "MOVE 'UNEXPECTED DATA SCENARIO'",
+   "conditions": "EVALUATE TRUE reaches WHEN OTHER",
+   "outcome": "SEND TEXT + RETURN (session ends)",
+   "data": ["ABEND-CODE", "WS-RETURN-MSG"],
+   "messages": ["UNEXPECTED DATA SCENARIO"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACTVWC-005",
+   "category": "decision",
+   "statement": "An account is looked up in three steps: the card cross-reference via the account alternate index CXACAIX gives the customer id and a card number; then the account master ACCTDAT is read by account id; then the customer master CUSTDAT is read by the customer id obtained from the cross-reference. If the account is not in the cross-reference, the account and customer masters are not read.",
+   "paragraph": "9000-READ-ACCT",
+   "source": "app/cbl/COACTVWC.cbl:691-715",
+   "anchor": "MOVE CDEMO-CUST-ID TO WS-CARD-RID-CUST-ID",
+   "additional_sources": ["app/cbl/COACTVWC.cbl:737-740"],
+   "conditions": "Valid account id entered",
+   "outcome": "ACCOUNT-RECORD and CUSTOMER-RECORD loaded; CDEMO-CUST-ID / CDEMO-CARD-NUM set from xref",
+   "data": ["CDEMO-ACCT-ID", "XREF-CUST-ID", "XREF-CARD-NUM", "CDEMO-CUST-ID"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACTVWC-006",
+   "category": "error-policy",
+   "statement": "An account id not present in the card cross-reference file is rejected with 'Account:<id> not found in Cross ref file.  Resp:<resp> Reas:<resp2>'; any other xref read failure is reported as 'File Error: READ on CXACAIX returned RESP ...'. Both set INPUT-ERROR and mark the account filter invalid (red).",
+   "paragraph": "9200-GETCARDXREF-BYACCT",
+   "source": "app/cbl/COACTVWC.cbl:741-768",
+   "anchor": "' Cross ref file.  Resp:'",
+   "conditions": "CXACAIX READ RESP NOTFND or other non-NORMAL",
+   "outcome": "Error message displayed, no account data",
+   "data": ["WS-RESP-CD", "WS-REAS-CD", "WS-RETURN-MSG"],
+   "messages": ["Account:", " not found in", " Cross ref file.  Resp:", "File Error: "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACTVWC-007",
+   "category": "error-policy",
+   "statement": "When the account master has no record for the account the screen shows 'Account:<id> not found in Acct Master file.Resp:...'; when the customer master has no record for the cross-referenced customer it shows 'CustId:<id> not found in customer master.Resp: ...'. Other read failures show the generic 'File Error: READ on <file> returned RESP ...' text. All set INPUT-ERROR.",
+   "paragraph": "9300-GETACCTDATA-BYACCT",
+   "source": "app/cbl/COACTVWC.cbl:785-819",
+   "anchor": "' Acct Master file.Resp:'",
+   "additional_sources": ["app/cbl/COACTVWC.cbl:836-868"],
+   "conditions": "ACCTDAT or CUSTDAT READ RESP NOTFND / other",
+   "outcome": "Error message displayed",
+   "data": ["WS-RESP-CD", "WS-REAS-CD", "WS-RETURN-MSG"],
+   "messages": [" Acct Master file.Resp:", " in customer master.Resp: "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COACTVWC-008",
+   "category": "transformation",
+   "statement": "Account financial and date fields are displayed when the account or customer record was found; customer fields are displayed only when the customer record was found, with the 9-digit SSN reformatted as NNN-NN-NNNN (full SSN, not masked).",
+   "paragraph": "1200-SETUP-SCREEN-VARS",
+   "source": "app/cbl/COACTVWC.cbl:471-504",
+   "anchor": "CUST-SSN(1:3)",
+   "conditions": "FOUND-ACCT-IN-MASTER or FOUND-CUST-IN-MASTER; FOUND-CUST-IN-MASTER",
+   "outcome": "Screen fields ACSTTUSO..AADDGRPO, ACSTNUMO, ACSTSSNO etc. populated",
+   "data": ["ACCT-CURR-BAL", "ACCT-CREDIT-LIMIT", "ACCT-CASH-CREDIT-LIMIT", "CUST-SSN", "CUST-FICO-CREDIT-SCORE"],
+   "messages": [],
+   "confidence": "Confirmed"
+  }
+ ],
+ "existing_rules_reviewed": [
+  {
+   "id": "BR-BASE-003",
+   "verdict": "corrected",
+   "source": "app/cbl/COACTVWC.cbl:653-680",
+   "anchor": "IF WS-RETURN-MSG-OFF",
+   "note": "Cited line 118 is only the 88-level WS-RETURN-MSG-OFF definition. In COACTVWC the 'first message wins' guard is applied in 2210-EDIT-ACCOUNT (657, 670) and the NOTFND branches of the reads (743, 792, 845), but NOT universally: the cross-field edit at 640-642 sets 'No input received' unconditionally, overwriting 'Account number not provided', and the WHEN OTHER read-error branches (762-766, 812-816, 861-865) overwrite any prior message with the file-error text."
+  },
+  {
+   "id": "BR-BASE-COACTVWC-001",
+   "verdict": "confirmed",
+   "source": "app/cbl/COACTVWC.cbl:627-680",
+   "anchor": "IF ACCTSIDI OF CACTVWAI = '*'",
+   "note": "Confirmed: '*' or spaces -> low-values (628-633); blank -> FLG-ACCTFILTER-BLANK with 'Account number not provided' (653-661) then overwritten by 'No input received' (640-642); non-numeric or zero -> 'Account Filter must  be a non-zero 11 digit number' (666-676). Because CC-ACCT-ID is PIC X(11), an id with fewer than 11 digits (trailing spaces) fails the NUMERIC test. The 88-levels at 121-128 (SEARCHED-ACCT-ZEROES etc.) are not the literal actually used."
+  }
+ ],
+ "no_rule_decisions": [
+  {
+   "source": "app/cbl/COACTVWC.cbl:323-323",
+   "reason": "EVALUATE TRUE header; branches covered by BR-COACTVWC-001/003/004."
+  },
+  {
+   "source": "app/cbl/COACTVWC.cbl:465-469",
+   "reason": "Echo of the entered account id or low-values on the screen (presentation)."
+  },
+  {
+   "source": "app/cbl/COACTVWC.cbl:528-530",
+   "reason": "Default info message 'Enter or update id of account to display' when no info message is set (message housekeeping)."
+  },
+  {
+   "source": "app/cbl/COACTVWC.cbl:546-571",
+   "reason": "Cursor placement, field colours and '*' marker on the account field (screen attributes only)."
+  },
+  {
+   "source": "app/cbl/COACTVWC.cbl:697-699",
+   "reason": "Technical short-circuit after the xref read failed; the business effect is part of BR-COACTVWC-005/006."
+  },
+  {
+   "source": "app/cbl/COACTVWC.cbl:704-715",
+   "reason": "Stop tests on 88-levels DID-NOT-FIND-ACCT-IN-ACCTDAT / DID-NOT-FIND-CUST-IN-CUSTDAT that are never set (their SETs are commented out at 791 and 842), so they never fire; recorded as an anomaly."
+  },
+  {
+   "source": "app/cbl/COACTVWC.cbl:918-920",
+   "reason": "Abend-handler default message (technical)."
+  }
+ ],
+ "no_business_rules_reason": null,
+ "observations": [
+  {
+   "kind": "dead-code",
+   "text": "IF DID-NOT-FIND-ACCT-IN-ACCTDAT / DID-NOT-FIND-CUST-IN-CUSTDAT test 88-level values of WS-RETURN-MSG that the read paragraphs never set (SET statements commented out); after an ACCTDAT NOTFND the customer read still runs.",
+   "source": "app/cbl/COACTVWC.cbl:704-715"
+  },
+  {
+   "kind": "security",
+   "text": "The full customer SSN, government-issued id and EFT account id are displayed unmasked.",
+   "source": "app/cbl/COACTVWC.cbl:494-520"
+  },
+  {
+   "kind": "anomaly",
+   "text": "PF3 forces CDEMO-USRTYP-USER in the commarea regardless of the signed-on user type, so an admin's role in the commarea would be lost on exit.",
+   "source": "app/cbl/COACTVWC.cbl:344"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Entering from COMEN01C on first entry INITIALIZEs the whole CARDDEMO-COMMAREA, wiping CDEMO-USER-ID, user type and from-program set by sign-on/menu.",
+   "source": "app/cbl/COACTVWC.cbl:282-285"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Paragraph name 0000-MAIN-EXIT is defined twice.",
+   "source": "app/cbl/COACTVWC.cbl:408-413"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Literals for CARDDAT, CARDAIX and the transfer targets COCRDLIC, COCRDUPC and COCRDSLC are declared but never used; the program only reads CXACAIX, ACCTDAT and CUSTDAT.",
+   "source": "app/cbl/COACTVWC.cbl:151-192"
+  },
+  {
+   "kind": "unchecked-io",
+   "text": "RESP of SEND MAP and RESP/RESP2 of RECEIVE MAP are not tested.",
+   "source": "app/cbl/COACTVWC.cbl:582-617"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The xref NOTFND message and the generic file-error message are built into WS-RETURN-MSG PIC X(75); the generic WS-FILE-ERROR-MESSAGE is 80 bytes, so the trailing filler is truncated (no data loss).",
+   "source": "app/cbl/COACTVWC.cbl:86-117"
+  }
+ ],
+ "sme_questions": [
+  {
+   "question": "When an account has several cards, CXACAIX returns one xref record; which card number is expected in CDEMO-CARD-NUM, and is it relevant for the account view?",
+   "source": "app/cbl/COACTVWC.cbl:727-740"
+  },
+  {
+   "question": "Should PF3 really reset CDEMO-USER-TYPE to 'U' and should first entry wipe the signed-on user id from the commarea?",
+   "source": "app/cbl/COACTVWC.cbl:282-345"
+  }
+ ]
+}

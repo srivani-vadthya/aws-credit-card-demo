@@ -1,0 +1,69 @@
+{
+ "schema": "copybook-semantics/1",
+ "copybook": "COADM02Y",
+ "batch": "B05",
+ "source_paths": [
+  "app/cpy/COADM02Y.cpy"
+ ],
+ "source_sha256": [
+  "86d4b5b5c89449126b2a37bb46458fe451a2523490d3c7f7f9c35d36199fe6b3"
+ ],
+ "status": "complete",
+ "confidence": "Confirmed",
+ "purpose": "COADM02Y defines CARDDEMO-ADMIN-MENU-OPTIONS, the static option table of the administrator menu. It holds an option count (6, raised from 4 for the Db2 release) and a literal table of 45-byte entries (option number, 35-character display name, 8-character target program), redefined as the array CDEMO-ADMIN-OPT OCCURS 9. COADM01C uses it to build the menu lines, validate the entered option number and resolve the XCTL target program.",
+ "evidence": [
+  "app/cpy/COADM02Y.cpy:19-59",
+  "app/cbl/COADM01C.cbl:51",
+  "app/cbl/COADM01C.cbl:131-149",
+  "app/cbl/COADM01C.cbl:231-239"
+ ],
+ "key_fields": [
+  {
+   "name": "CDEMO-ADMIN-OPT-COUNT",
+   "meaning": "Number of active admin options (VALUE 6); upper bound for option validation and menu building in COADM01C. The previous value 4 is commented out.",
+   "source": "app/cpy/COADM02Y.cpy:21-22"
+  },
+  {
+   "name": "CDEMO-ADMIN-OPTIONS-DATA",
+   "meaning": "Literal table: 1 User List (Security) COUSR00C, 2 User Add (Security) COUSR01C, 3 User Update (Security) COUSR02C, 4 User Delete (Security) COUSR03C, 5 Transaction Type List/Update (Db2) COTRTLIC, 6 Transaction Type Maintenance (Db2) COTRTUPC.",
+   "source": "app/cpy/COADM02Y.cpy:24-53"
+  },
+  {
+   "name": "CDEMO-ADMIN-OPT",
+   "meaning": "Array view (OCCURS 9) over the literal table, subscripted by the option number.",
+   "source": "app/cpy/COADM02Y.cpy:55-56"
+  },
+  {
+   "name": "CDEMO-ADMIN-OPT-NUM",
+   "meaning": "Option number shown on the admin menu line.",
+   "source": "app/cpy/COADM02Y.cpy:57"
+  },
+  {
+   "name": "CDEMO-ADMIN-OPT-NAME",
+   "meaning": "Option description shown on the admin menu.",
+   "source": "app/cpy/COADM02Y.cpy:58"
+  },
+  {
+   "name": "CDEMO-ADMIN-OPT-PGMNAME",
+   "meaning": "CICS program XCTLed to for the option; a 'DUMMY' prefix suppresses the transfer.",
+   "source": "app/cpy/COADM02Y.cpy:59"
+  }
+ ],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "The redefining array CDEMO-ADMIN-OPT OCCURS 9 (405 bytes) is larger than the 6-entry literal table it redefines (270 bytes); entries 7-9 have no defined content.",
+   "source": "app/cpy/COADM02Y.cpy:55-56"
+  },
+  {
+   "kind": "hardcoded-value",
+   "text": "Options 5 and 6 point at Db2-based programs COTRTLIC and COTRTUPC added for the Db2 release; their availability depends on that optional module being installed (COADM01C handles PGMIDERR).",
+   "source": "app/cpy/COADM02Y.cpy:45-54"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Unlike COMEN02Y there is no user-type column; access control for admin options relies entirely on the sign-on routing.",
+   "source": "app/cpy/COADM02Y.cpy:56-59"
+  }
+ ]
+}

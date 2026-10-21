@@ -1,0 +1,430 @@
+{
+ "batch": "B06", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Technical: choose SEND MAP with or without ERASE; SEND-ERASE-YES is always set at entry.", 
+   "source": "app/cbl/CORPT00C.cbl:562-578"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CORPT00C.cbl:556-580", 
+   "text": "SEND-TRNRPT-SCREEN always ends with GO TO RETURN-TO-CICS, so every PERFORM of it terminates the task; the later 'IF NOT ERR-FLG-ON' tests only matter on paths where no screen was sent. Error handling depends on this implicit exit."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CORPT00C.cbl:304-378", 
+   "text": "The IS NOT NUMERIC checks run after each date part has been converted with NUMVAL-C and moved back from a PIC 99/9999 field, so they can no longer detect non-numeric input; invalid characters are left to NUMVAL-C, whose result for invalid input is not defined (Inferred)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CORPT00C.cbl:396-406", 
+   "text": "CEEDAYS message number 2513 (X'09D1', FC-UNSUPP-RANGE in CSUTLDTC) is accepted as a valid date, so dates outside the CEEDAYS supported range pass validation."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CORPT00C.cbl:380-436", 
+   "text": "There is no check that the custom start date is on or before the end date."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CORPT00C.cbl:126-127", 
+   "text": "JOB-LINES OCCURS 1000 TIMES redefines JOB-DATA-1, which holds only 17 80-byte lines; the loop relies on the '/*EOF' terminator to avoid reading beyond the deck."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/CORPT00C.cbl:81-125", 
+   "text": "JCL is hardcoded: job TRNRPT00 CLASS=A MSGCLASS=0, NOTIFY=&SYSUID (symbolic left for JES, not resolved here), JCLLIB AWS.M2.CARDDEMO.PROC, PROC TRANREPT, step overrides STEP05R.SYMNAMES and STEP10R.DATEPARM."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/CORPT00C.cbl:99-102", 
+   "text": "SYMNAMES offsets TRAN-CARD-NUM,263,16 and TRAN-PROC-DT,305,10 are hardcoded; they match TRAN-CARD-NUM (bytes 263-278) and the date part of TRAN-PROC-TS (from byte 305) in CVTRA05Y, so a record layout change would silently break the report."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/CORPT00C.cbl:517-518", 
+   "text": "TDQ name 'JOBS' is hardcoded; that it is an extrapartition queue routed to the JES internal reader is stated only in the header comment (Unverified, depends on the CICS DCT/TDQUEUE definition)."
+  }, 
+  {
+   "kind": "security", 
+   "source": "app/cbl/CORPT00C.cbl:462-510", 
+   "text": "No user-type or authorization check is made before submitting the batch job; any user who can run CR00 can submit the report job."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/cbl/CORPT00C.cbl:40-78", 
+   "text": "WS-TRANSACT-FILE, TRANSACT-EOF, WS-REC-COUNT, WS-TRAN-AMT, WS-TRAN-DATE and the CVTRA05Y record are declared but not used; SEND without ERASE branch is unreachable."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CORPT00C.cbl:210", 
+   "text": "DISPLAY statements are used in a CICS program (output goes to the CICS job log)."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/CORPT00C.cbl:598-604", 
+   "text": "RECEIVE MAP RESP/RESP2 are captured but never tested."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "163-202", 
+   "logic": "Resets the error, EOF and erase flags and clears the message. With EIBCALEN 0 it XCTLs to COSGN00C; otherwise it loads CARDDEMO-COMMAREA and on first entry sets CDEMO-PGM-REENTER and sends an empty screen. On re-entry it receives the map and evaluates EIBAID: ENTER -> PROCESS-ENTER-KEY, PF3 -> XCTL to COMEN01C, other keys -> 'Invalid key pressed. Please see below...'. It ends with CICS RETURN TRANSID(CR00).", 
+   "name": "MAIN-PARA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "208-456", 
+   "logic": "Determines the report period from the first non-blank selection field: Monthly (first to last day of the current month), Yearly (01-01 to 12-31 of the current year) or Custom (screen dates, which must be present, numeric, month <= 12, day <= 31 and valid per CSUTLDTC). Dates are moved into PARM-START/END-DATE-1/2 of the JCL deck and SUBMIT-JOB-TO-INTRDR is performed; no selection gives 'Select a report type to print report...'. If no error, the fields are cleared and '<name> report submitted for printing ...' is shown in green.", 
+   "name": "PROCESS-ENTER-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "462-510", 
+   "logic": "Requires the CONFIRM field: blank asks 'Please confirm to print the <name> report...'; 'N'/'n' clears the fields and redisplays; any value other than 'Y'/'y' gives '\"<value>\" is not a valid value to confirm...'. When confirmed it loops over JOB-LINES (max 1000), moving each to JCL-RECORD and writing it to the TDQ until a line equal to '/*EOF', spaces or low-values has been written.", 
+   "name": "SUBMIT-JOB-TO-INTRDR"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "515-535", 
+   "logic": "Writes the 80-byte JCL-RECORD to transient data queue 'JOBS'. A non-NORMAL response DISPLAYs RESP/RESP2, sets the error flag and sends 'Unable to Write TDQ (JOBS)...'.", 
+   "name": "WIRTE-JOBSUB-TDQ"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "540-551", 
+   "logic": "Defaults CDEMO-TO-PROGRAM to COSGN00C when blank, records CR00/CORPT00C as the from-transaction/program, zeroes CDEMO-PGM-CONTEXT and XCTLs to CDEMO-TO-PROGRAM with the commarea.", 
+   "name": "RETURN-TO-PREV-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "556-580", 
+   "logic": "Fills the header, moves WS-MESSAGE to ERRMSGO and sends map CORPT0A (with ERASE when SEND-ERASE-YES, which is always set), then GO TO RETURN-TO-CICS so the task ends immediately after any screen send.", 
+   "name": "SEND-TRNRPT-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "585-591", 
+   "logic": "Issues CICS RETURN TRANSID(CR00) with CARDDEMO-COMMAREA to wait for the next user input.", 
+   "name": "RETURN-TO-CICS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "596-604", 
+   "logic": "Receives map CORPT0A of mapset CORPT00 into CORPT0AI; RESP/RESP2 are captured but not tested.", 
+   "name": "RECEIVE-TRNRPT-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "609-628", 
+   "logic": "Moves FUNCTION CURRENT-DATE to WS-CURDATE-DATA, CCDA-TITLE01/CCDA-TITLE02 to TITLE01O/TITLE02O, WS-TRANID to TRNNAMEO and WS-PGMNAME to PGMNAMEO of CORPT0AO; rebuilds the date as WS-CURDATE-MM-DD-YY (MM/DD/YY from WS-CURDATE-MONTH, WS-CURDATE-DAY, WS-CURDATE-YEAR(3:2)) into CURDATEO and the time as WS-CURTIME-HH-MM-SS into CURTIMEO.", 
+   "name": "POPULATE-HEADER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "633-646", 
+   "logic": "Puts the cursor on the Monthly field and initializes all selection, date and confirm input fields and WS-MESSAGE.", 
+   "name": "INITIALIZE-ALL-FIELDS"
+  }
+ ], 
+ "program": "CORPT00C", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/cpy/CSMSG01Y.cpy:20-21"
+   ], 
+   "anchor": "MOVE 'COMEN01C' TO CDEMO-TO-PROGRAM", 
+   "category": "routing", 
+   "conditions": "EIBCALEN, CDEMO-PGM-REENTER, EIBAID", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBCALEN", 
+    "CDEMO-PGM-CONTEXT", 
+    "EIBAID", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-CORPT00C-001", 
+   "messages": [
+    "Invalid key pressed. Please see below..."
+   ], 
+   "outcome": "XCTL to COSGN00C/COMEN01C, screen sent, or invalid-key message", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/CORPT00C.cbl:172-196", 
+   "statement": "Without a commarea the program returns to the sign-on program COSGN00C. On first entry it shows the report selection screen; afterwards ENTER processes the request, PF3 returns to the main menu COMEN01C and any other key shows 'Invalid key pressed. Please see below...'."
+  }, 
+  {
+   "anchor": "COMPUTE WS-CURDATE-N = FUNCTION DATE-OF-INTEGER( FUNCTION INTEGER-OF-DATE(WS-CURDATE-N) - 1)", 
+   "category": "calculation", 
+   "conditions": "Monthly selection field not spaces/low-values (checked first)", 
+   "confidence": "Confirmed", 
+   "data": [
+    "MONTHLYI", 
+    "WS-CURDATE-DATA", 
+    "WS-START-DATE", 
+    "WS-END-DATE", 
+    "PARM-START-DATE-1", 
+    "PARM-END-DATE-1"
+   ], 
+   "id": "BR-CORPT00C-002", 
+   "messages": [], 
+   "outcome": "PARM-START-DATE-1/2 and PARM-END-DATE-1/2 set; SUBMIT-JOB-TO-INTRDR", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/CORPT00C.cbl:212-237", 
+   "statement": "Monthly report: the reporting period runs from the first day of the current month (YYYY-MM-01) to the last day of the current month, computed as the day before the first day of the next month (with year roll-over after December)."
+  }, 
+  {
+   "anchor": "MOVE '12' TO WS-END-DATE-MM", 
+   "category": "calculation", 
+   "conditions": "Yearly selection field not spaces/low-values and Monthly blank", 
+   "confidence": "Confirmed", 
+   "data": [
+    "YEARLYI", 
+    "WS-START-DATE", 
+    "WS-END-DATE"
+   ], 
+   "id": "BR-CORPT00C-003", 
+   "messages": [], 
+   "outcome": "Dates YYYY-01-01 / YYYY-12-31 set; SUBMIT-JOB-TO-INTRDR", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/CORPT00C.cbl:239-254", 
+   "statement": "Yearly report: the reporting period is January 1 to December 31 of the current year. It applies only when Monthly is not selected."
+  }, 
+  {
+   "anchor": "MOVE 'Start Date - Month can NOT be empty...'", 
+   "category": "validation", 
+   "conditions": "Custom selected (Monthly and Yearly blank) and a date part is spaces/low-values", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CUSTOMI", 
+    "SDTMMI", 
+    "SDTDDI", 
+    "SDTYYYYI", 
+    "EDTMMI", 
+    "EDTDDI", 
+    "EDTYYYYI"
+   ], 
+   "id": "BR-CORPT00C-004", 
+   "messages": [
+    "Start Date - Month can NOT be empty...", 
+    "Start Date - Day can NOT be empty...", 
+    "Start Date - Year can NOT be empty...", 
+    "End Date - Month can NOT be empty...", 
+    "End Date - Day can NOT be empty...", 
+    "End Date - Year can NOT be empty..."
+   ], 
+   "outcome": "Error message, cursor on field, screen sent, task ends", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/CORPT00C.cbl:256-303", 
+   "statement": "Custom report: start month, start day, start year, end month, end day and end year are all required, checked in that order; the first empty one is reported ('Start Date - Month can NOT be empty...' etc.) and processing stops."
+  }, 
+  {
+   "anchor": "IF SDTMMI OF CORPT0AI IS NOT NUMERIC OR SDTMMI OF CORPT0AI > '12'", 
+   "category": "validation", 
+   "conditions": "Converted date part not numeric or out of range", 
+   "confidence": "Confirmed", 
+   "data": [
+    "SDTMMI", 
+    "SDTDDI", 
+    "SDTYYYYI", 
+    "EDTMMI", 
+    "EDTDDI", 
+    "EDTYYYYI", 
+    "WS-NUM-99", 
+    "WS-NUM-9999"
+   ], 
+   "id": "BR-CORPT00C-005", 
+   "messages": [
+    "Start Date - Not a valid Month...", 
+    "Start Date - Not a valid Day...", 
+    "Start Date - Not a valid Year...", 
+    "End Date - Not a valid Month...", 
+    "End Date - Not a valid Day...", 
+    "End Date - Not a valid Year..."
+   ], 
+   "outcome": "Error message, screen sent, task ends", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/CORPT00C.cbl:304-378", 
+   "statement": "Custom report dates: each part is converted with NUMVAL-C; month must be numeric and not greater than 12, day numeric and not greater than 31, and year numeric, for both start and end date; the first failure is reported ('Start Date - Not a valid Month...' etc.)."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/CSUTLDTC.cbl:62-70"
+   ], 
+   "anchor": "IF CSUTLDTC-RESULT-MSG-NUM NOT = '2513'", 
+   "category": "validation", 
+   "conditions": "CSUTLDTC-RESULT-SEV-CD not '0000' and CSUTLDTC-RESULT-MSG-NUM not '2513'", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-START-DATE", 
+    "WS-END-DATE", 
+    "CSUTLDTC-RESULT-SEV-CD", 
+    "CSUTLDTC-RESULT-MSG-NUM"
+   ], 
+   "id": "BR-CORPT00C-006", 
+   "messages": [
+    "Start Date - Not a valid date...", 
+    "End Date - Not a valid date..."
+   ], 
+   "outcome": "Error message, screen sent, task ends", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/CORPT00C.cbl:386-426", 
+   "statement": "Custom start and end dates (YYYY-MM-DD) must be valid calendar dates according to CSUTLDTC/CEEDAYS. A non-zero severity is rejected ('Start Date - Not a valid date...' / 'End Date - Not a valid date...') except when the CEEDAYS message number is 2513, which is accepted."
+  }, 
+  {
+   "anchor": "' report submitted for printing ...'", 
+   "category": "decision", 
+   "conditions": "ERR-FLG-OFF", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-ERR-FLG", 
+    "WS-REPORT-NAME", 
+    "WS-MESSAGE"
+   ], 
+   "id": "BR-CORPT00C-007", 
+   "messages": [
+    "report submitted for printing ..."
+   ], 
+   "outcome": "SUBMIT-JOB-TO-INTRDR; success message with DFHGREEN", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/CORPT00C.cbl:429-455", 
+   "statement": "A custom report is submitted only when no validation error was raised; on success of any report the selection fields are cleared and '<Monthly|Yearly|Custom> report submitted for printing ...' is shown in green."
+  }, 
+  {
+   "anchor": "MOVE 'Select a report type to print report...' TO WS-MESSAGE", 
+   "category": "validation", 
+   "conditions": "All three selection fields blank", 
+   "confidence": "Confirmed", 
+   "data": [
+    "MONTHLYI", 
+    "YEARLYI", 
+    "CUSTOMI"
+   ], 
+   "id": "BR-CORPT00C-008", 
+   "messages": [
+    "Select a report type to print report..."
+   ], 
+   "outcome": "Error message, cursor on Monthly, screen sent", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/CORPT00C.cbl:437-442", 
+   "statement": "If none of Monthly, Yearly or Custom is selected, the request is rejected with 'Select a report type to print report...'. The selection fields are evaluated in priority order Monthly, Yearly, Custom."
+  }, 
+  {
+   "anchor": "WHEN CONFIRMI OF CORPT0AI = 'Y' OR 'y'", 
+   "category": "validation", 
+   "conditions": "CONFIRMI value", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CONFIRMI", 
+    "WS-REPORT-NAME"
+   ], 
+   "id": "BR-CORPT00C-009", 
+   "messages": [
+    "Please confirm to print the ", 
+    "\" is not a valid value to confirm..."
+   ], 
+   "outcome": "Prompt, cancel, error, or continue to job submission", 
+   "paragraph": "SUBMIT-JOB-TO-INTRDR", 
+   "source": "app/cbl/CORPT00C.cbl:464-493", 
+   "statement": "The report job is submitted only after explicit confirmation: a blank CONFIRM field asks 'Please confirm to print the <name> report...'; 'N' or 'n' cancels and clears the screen; any value other than 'Y'/'y'/'N'/'n' is rejected with '\"<value>\" is not a valid value to confirm...'."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/CORPT00C.cbl:81-127", 
+    "app/cbl/CORPT00C.cbl:515-523"
+   ], 
+   "anchor": "IF JCL-RECORD = '/*EOF' OR JCL-RECORD = SPACES OR LOW-VALUES", 
+   "category": "transformation", 
+   "conditions": "Confirmed with Y/y and no error", 
+   "confidence": "Confirmed", 
+   "data": [
+    "JOB-DATA", 
+    "JOB-LINES", 
+    "JCL-RECORD", 
+    "PARM-START-DATE-1", 
+    "PARM-END-DATE-1", 
+    "PARM-START-DATE-2", 
+    "PARM-END-DATE-2"
+   ], 
+   "id": "BR-CORPT00C-010", 
+   "messages": [], 
+   "outcome": "EXEC CICS WRITEQ TD QUEUE('JOBS') for each JCL line", 
+   "paragraph": "SUBMIT-JOB-TO-INTRDR", 
+   "source": "app/cbl/CORPT00C.cbl:496-508", 
+   "statement": "Job submission: the in-storage JCL deck (job TRNRPT00, JCLLIB AWS.M2.CARDDEMO.PROC, EXEC PROC=TRANREPT, SYMNAMES TRAN-CARD-NUM,263,16,ZD and TRAN-PROC-DT,305,10,CH, PARM-START-DATE/PARM-END-DATE symbols and a DATEPARM card with start and end date) is written one 80-byte line at a time to TDQ 'JOBS', up to and including the first line that is '/*EOF', spaces or low-values (maximum 1000 lines) or until an error occurs."
+  }, 
+  {
+   "anchor": "MOVE 'Unable to Write TDQ (JOBS)...' TO WS-MESSAGE", 
+   "category": "error-policy", 
+   "conditions": "WRITEQ TD response not NORMAL", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "WS-REAS-CD"
+   ], 
+   "id": "BR-CORPT00C-011", 
+   "messages": [
+    "Unable to Write TDQ (JOBS)..."
+   ], 
+   "outcome": "Error message; task ends via SEND-TRNRPT-SCREEN", 
+   "paragraph": "WIRTE-JOBSUB-TDQ", 
+   "source": "app/cbl/CORPT00C.cbl:524-535", 
+   "statement": "If any write to TDQ 'JOBS' fails, the RESP/RESP2 codes are DISPLAYed, the error flag is set and 'Unable to Write TDQ (JOBS)...' is shown; lines already written are not removed."
+  }, 
+  {
+   "anchor": "IF CDEMO-TO-PROGRAM = LOW-VALUES OR SPACES", 
+   "category": "routing", 
+   "conditions": "CDEMO-TO-PROGRAM blank", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-TO-PROGRAM", 
+    "CDEMO-FROM-PROGRAM", 
+    "CDEMO-PGM-CONTEXT"
+   ], 
+   "id": "BR-CORPT00C-012", 
+   "messages": [], 
+   "outcome": "XCTL to COSGN00C", 
+   "paragraph": "RETURN-TO-PREV-SCREEN", 
+   "source": "app/cbl/CORPT00C.cbl:542-551", 
+   "statement": "When returning to a previous screen and no target program is set, the sign-on program COSGN00C is used."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Why is CEEDAYS message 2513 (unsupported date range) treated as a valid date for the custom report dates?", 
+   "source": "app/cbl/CORPT00C.cbl:399"
+  }, 
+  {
+   "question": "Should the custom report reject an end date earlier than the start date?", 
+   "source": "app/cbl/CORPT00C.cbl:380-385"
+  }, 
+  {
+   "question": "Confirm that TDQ 'JOBS' is defined as an extrapartition queue to the JES internal reader in the target CICS region, and how &SYSUID is resolved for jobs submitted from CICS.", 
+   "source": "app/cbl/CORPT00C.cbl:515-523"
+  }, 
+  {
+   "question": "Should report submission be restricted by user type (admin vs regular user)?", 
+   "source": "app/cbl/CORPT00C.cbl:462-510"
+  }
+ ], 
+ "source_path": "app/cbl/CORPT00C.cbl", 
+ "source_sha256": "0b06bd5d4f38f17871de8985c439dfce7ed30d28e02b6ffeb8459e0cd8db4fc2", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/CORPT00C.cbl:1-6", 
+   "app/cbl/CORPT00C.cbl:81-125", 
+   "app/cbl/CORPT00C.cbl:163-202", 
+   "app/cbl/CORPT00C.cbl:208-456", 
+   "app/cbl/CORPT00C.cbl:462-535", 
+   "app/cbl/CORPT00C.cbl:556-591"
+  ], 
+  "text": "CORPT00C is a pseudo-conversational CICS program (transaction CR00, mapset CORPT00, map CORPT0A) that lets the user request a transaction report to be printed by a batch job. The user selects Monthly (current calendar month), Yearly (current calendar year) or Custom (start and end date typed on the screen); custom dates are checked for presence, numeric month/day/year ranges and calendar validity via the CSUTLDTC subprogram (LE CEEDAYS). After the user confirms with Y, the program fills the start/end dates into an in-storage JCL deck (job TRNRPT00 running procedure TRANREPT from library AWS.M2.CARDDEMO.PROC) and writes it line by line to the transient data queue JOBS. It reports 'Monthly/Yearly/Custom report submitted for printing ...' on success or 'Unable to Write TDQ (JOBS)...' on failure. PF3 returns to the main menu COMEN01C; entry without a commarea returns to the sign-on program COSGN00C. Every screen send ends the task (GO TO RETURN-TO-CICS), so the first validation error stops processing."
+ }
+}

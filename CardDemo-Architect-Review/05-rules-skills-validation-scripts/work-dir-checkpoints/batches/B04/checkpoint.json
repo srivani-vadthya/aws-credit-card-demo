@@ -1,0 +1,96 @@
+{
+ "batch": "B04", 
+ "checked": "2026-10-20T04:35:12", 
+ "copybooks": {
+  "COCOM01Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "COCOM01Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "COTTL01Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "COTTL01Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CSDAT01Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CSDAT01Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CSLKPCDY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CSLKPCDY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CSMSG01Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CSMSG01Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CSMSG02Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CSMSG02Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CSSETATY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CSSETATY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CSSTRPFY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CSSTRPFY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CSUSR01Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CSUSR01Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CSUTLDPY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CSUTLDPY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CSUTLDWY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CSUTLDWY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVCRD01Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVCRD01Y", 
+   "issues": [], 
+   "status": "validated"
+  }
+ }, 
+ "programs": {
+  "COACTUPC": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 232, 
+   "decision_covered": 232, 
+   "decision_in_rules": 110, 
+   "existing_reviewed": 17, 
+   "issues": [], 
+   "paragraphs_described": 85, 
+   "paragraphs_total": 85, 
+   "program": "COACTUPC", 
+   "rules": 20, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }
+ }
+}

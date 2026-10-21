@@ -1,0 +1,28 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "CVEXPORT",
+ "evidence": ["app/cpy/CVEXPORT.cpy:1-19", "app/cpy/CVEXPORT.cpy:24-100", "app/cbl/CBEXPORT.cbl:273-279", "app/cbl/CBIMPORT.cbl:272-284"],
+ "key_fields": [
+  {"name": "EXPORT-RECORD", "meaning": "500-byte multi-record export layout: 40-byte common header plus 460-byte data area (sizes verified: 1+26+4+4+5+460).", "source": "app/cpy/CVEXPORT.cpy:9-19"},
+  {"name": "EXPORT-REC-TYPE", "meaning": "Record type code set by CBEXPORT and routed by CBIMPORT: 'C' customer, 'A' account, 'X' card xref, 'T' transaction, 'D' card (values are in the programs, not in 88-levels here).", "source": "app/cpy/CVEXPORT.cpy:10"},
+  {"name": "EXPORT-TIMESTAMP", "meaning": "26-byte export run timestamp, redefined as date, separator and time.", "source": "app/cpy/CVEXPORT.cpy:11-15"},
+  {"name": "EXPORT-SEQUENCE-NUM", "meaning": "Binary (COMP) sequence number across all record types; declared as the record key of EXPFILE in CBEXPORT/CBIMPORT.", "source": "app/cpy/CVEXPORT.cpy:16"},
+  {"name": "EXPORT-BRANCH-ID", "meaning": "4-byte branch id (CBEXPORT always sets '0001').", "source": "app/cpy/CVEXPORT.cpy:17"},
+  {"name": "EXPORT-REGION-CODE", "meaning": "5-byte region code (CBEXPORT always sets 'NORTH').", "source": "app/cpy/CVEXPORT.cpy:18"},
+  {"name": "EXPORT-CUSTOMER-DATA", "meaning": "Customer view of the data area (from CVCUS01Y) with address lines and phones as OCCURS arrays, CUST-ID as COMP and FICO score as COMP-3.", "source": "app/cpy/CVEXPORT.cpy:24-42"},
+  {"name": "EXPORT-ACCOUNT-DATA", "meaning": "Account view (from CVACT01Y); balance and cash limit COMP-3, cycle debit COMP, others display.", "source": "app/cpy/CVEXPORT.cpy:47-60"},
+  {"name": "EXPORT-TRANSACTION-DATA", "meaning": "Transaction view (from CVTRA05Y); amount COMP-3, merchant id COMP.", "source": "app/cpy/CVEXPORT.cpy:65-79"},
+  {"name": "EXPORT-CARD-XREF-DATA", "meaning": "Card cross-reference view (from CVACT03Y); account id COMP.", "source": "app/cpy/CVEXPORT.cpy:84-88"},
+  {"name": "EXPORT-CARD-DATA", "meaning": "Card view (from CVACT02Y); account id and CVV as COMP.", "source": "app/cpy/CVEXPORT.cpy:93-100"}
+ ],
+ "observations": [
+  {"kind": "anomaly", "text": "Numeric storage is mixed inconsistently within one view: in EXPORT-ACCOUNT-DATA the balance and cash limit are COMP-3, the credit limit and cycle credit stay display, and the cycle debit is binary COMP. Any non-COBOL consumer must handle three numeric encodings.", "source": "app/cpy/CVEXPORT.cpy:50-57"},
+  {"kind": "security", "text": "The customer and card views carry SSN, government id and CVV without masking.", "source": "app/cpy/CVEXPORT.cpy:36-37"}
+ ],
+ "purpose": "CVEXPORT defines EXPORT-RECORD, the 500-byte multi-record layout of the branch-migration export file. A common header (record type, timestamp, sequence number, branch and region) is followed by a 460-byte data area redefined for customer, account, transaction, card cross-reference and card records, with many numeric fields packed into COMP or COMP-3. It is written by CBEXPORT and read by CBIMPORT, which splits it back into the standard master layouts.",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/CVEXPORT.cpy"],
+ "source_sha256": ["49d07843c9bd6f1a8f8eeb65f1085dabbced582f825773a7772970d1146409f4"],
+ "status": "complete"
+}

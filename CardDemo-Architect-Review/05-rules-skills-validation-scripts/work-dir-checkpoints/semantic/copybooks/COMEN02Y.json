@@ -1,0 +1,74 @@
+{
+ "schema": "copybook-semantics/1",
+ "copybook": "COMEN02Y",
+ "batch": "B05",
+ "source_paths": [
+  "app/cpy/COMEN02Y.cpy"
+ ],
+ "source_sha256": [
+  "433f5b373c2a42c3c83d62eef1dfb5b101265a9db62e42857ba58acf8c50011d"
+ ],
+ "status": "complete",
+ "confidence": "Confirmed",
+ "purpose": "COMEN02Y defines CARDDEMO-MAIN-MENU-OPTIONS, the static option table of the regular-user main menu. It holds an option count (11) and a literal table of 46-byte entries (option number, 35-character display name, 8-character target program, 1-character allowed user type), redefined as the array CDEMO-MENU-OPT OCCURS 12. COMEN01C uses it to build the menu lines, to validate the entered option number against the count, to block admin-only entries for regular users and to resolve the XCTL target program.",
+ "evidence": [
+  "app/cpy/COMEN02Y.cpy:19-98",
+  "app/cbl/COMEN01C.cbl:51",
+  "app/cbl/COMEN01C.cbl:127-187",
+  "app/cbl/COMEN01C.cbl:264-272"
+ ],
+ "key_fields": [
+  {
+   "name": "CDEMO-MENU-OPT-COUNT",
+   "meaning": "Number of active main-menu options (VALUE 11); upper bound for option validation and menu-building loop in COMEN01C.",
+   "source": "app/cpy/COMEN02Y.cpy:21"
+  },
+  {
+   "name": "CDEMO-MENU-OPTIONS-DATA",
+   "meaning": "Literal table: 1 Account View COACTVWC, 2 Account Update COACTUPC, 3 Credit Card List COCRDLIC, 4 Credit Card View COCRDSLC, 5 Credit Card Update COCRDUPC, 6 Transaction List COTRN00C, 7 Transaction View COTRN01C, 8 Transaction Add COTRN02C, 9 Transaction Reports CORPT00C, 10 Bill Payment COBIL00C, 11 Pending Authorization View COPAUS0C; all with user type 'U'.",
+   "source": "app/cpy/COMEN02Y.cpy:23-90"
+  },
+  {
+   "name": "CDEMO-MENU-OPT",
+   "meaning": "Array view (OCCURS 12) over the literal table, subscripted by the option number.",
+   "source": "app/cpy/COMEN02Y.cpy:93-94"
+  },
+  {
+   "name": "CDEMO-MENU-OPT-NUM",
+   "meaning": "Option number shown on the menu line.",
+   "source": "app/cpy/COMEN02Y.cpy:95"
+  },
+  {
+   "name": "CDEMO-MENU-OPT-NAME",
+   "meaning": "Option description shown on the menu and used in 'not installed'/'coming soon' messages.",
+   "source": "app/cpy/COMEN02Y.cpy:96"
+  },
+  {
+   "name": "CDEMO-MENU-OPT-PGMNAME",
+   "meaning": "CICS program XCTLed to when the option is chosen; 'DUMMY' prefix means placeholder, COPAUS0C is checked with INQUIRE PROGRAM first.",
+   "source": "app/cpy/COMEN02Y.cpy:97"
+  },
+  {
+   "name": "CDEMO-MENU-OPT-USRTYPE",
+   "meaning": "User type allowed for the option; 'A' marks admin-only (blocked for CDEMO-USRTYP-USER in COMEN01C), 'U' available to regular users.",
+   "source": "app/cpy/COMEN02Y.cpy:98"
+  }
+ ],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "The redefining array CDEMO-MENU-OPT OCCURS 12 (552 bytes) is larger than the 11-entry literal table it redefines (506 bytes); entry 12 has no defined content and a REDEFINES larger than the redefined item below level 01 is non-standard.",
+   "source": "app/cpy/COMEN02Y.cpy:93-94"
+  },
+  {
+   "kind": "conflict",
+   "text": "Header comment says 'CardDemo - Admin Menu Options' although the copybook defines the main (user) menu.",
+   "source": "app/cpy/COMEN02Y.cpy:2"
+  },
+  {
+   "kind": "dead-code",
+   "text": "Option 8 originally read 'Transaction Add (Admin Only)' (commented out) and is now flagged 'U'; no option uses user type 'A', so the admin-only check in COMEN01C never fires.",
+   "source": "app/cpy/COMEN02Y.cpy:67-72"
+  }
+ ]
+}

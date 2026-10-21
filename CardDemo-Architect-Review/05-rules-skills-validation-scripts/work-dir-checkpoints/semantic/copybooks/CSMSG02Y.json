@@ -1,0 +1,29 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "CSMSG02Y",
+ "evidence": [
+  "app/cpy/CSMSG02Y.cpy:21-29",
+  "app/cbl/COACTUPC.cbl:2633-2640",
+  "app/cbl/COACTUPC.cbl:4203-4224"
+ ],
+ "key_fields": [
+  {"name": "ABEND-DATA", "meaning": "134-byte block sent to the terminal by ABEND-ROUTINE before the task abends.", "source": "app/cpy/CSMSG02Y.cpy:21"},
+  {"name": "ABEND-CODE", "meaning": "4-character program abend code; COACTUPC sets '0001' for an unexpected state.", "source": "app/cpy/CSMSG02Y.cpy:22-23"},
+  {"name": "ABEND-CULPRIT", "meaning": "Name of the program raising the abend (COACTUPC).", "source": "app/cpy/CSMSG02Y.cpy:24-25"},
+  {"name": "ABEND-REASON", "meaning": "50-byte reason text; set to spaces by COACTUPC.", "source": "app/cpy/CSMSG02Y.cpy:26-27"},
+  {"name": "ABEND-MSG", "meaning": "72-byte abend message, for example 'UNEXPECTED DATA SCENARIO'; defaulted to 'UNEXPECTED ABEND OCCURRED.' when empty.", "source": "app/cpy/CSMSG02Y.cpy:28-29"}
+ ],
+ "observations": [
+  {"kind": "conflict", "source": "app/cpy/CSMSG02Y.cpy:2", "text": "The header comment names the member CABENDD.CPY, not CSMSG02Y; lines 1-4 and 21-29 carry sequence numbers while the licence block does not."}
+ ],
+ "purpose": "Defines ABEND-DATA, the work area for the common abend routine: abend code, culprit program, reason and message. COACTUPC fills it for an unexpected change-action state and in ABEND-ROUTINE sends it to the terminal before EXEC CICS ABEND ABCODE('9999'). It is also copied by other CardDemo online programs.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CSMSG02Y.cpy"
+ ],
+ "source_sha256": [
+  "0238a3a75e723272e0c287b46a52d365de8549dada1a73d15df75660ad7bd2ea"
+ ],
+ "status": "complete"
+}

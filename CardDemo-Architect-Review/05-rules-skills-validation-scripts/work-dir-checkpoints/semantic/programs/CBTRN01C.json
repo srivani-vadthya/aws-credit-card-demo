@@ -1,0 +1,211 @@
+{
+ "batch": "B02",
+ "existing_rules_reviewed": [],
+ "no_business_rules_reason": null,
+ "no_rule_decisions": [
+  {
+   "source": "app/cbl/CBTRN01C.cbl:164-169",
+   "reason": "Read-loop control on END-OF-DAILY-TRANS-FILE and display of the record just read; technical iteration, not a business decision."
+  }
+ ],
+ "observations": [
+  {
+   "kind": "conflict",
+   "text": "The header says the program posts the daily transaction records, but no record is written or updated: TRANSACT-FILE is opened INPUT and never accessed, and the program only verifies card and account existence and DISPLAYs results.",
+   "source": "app/cbl/CBTRN01C.cbl:343-345"
+  },
+  {
+   "kind": "anomaly",
+   "text": "After the end-of-file read, the cross-reference and account lookups (outside the inner END-OF-DAILY-TRANS-FILE = 'N' test) still run once more with the stale last DALYTRAN-RECORD, so the last transaction is verified twice.",
+   "source": "app/cbl/CBTRN01C.cbl:165-184"
+  },
+  {
+   "kind": "dead-code",
+   "text": "CUSTOMER-FILE and CARD-FILE are opened and closed but never read.",
+   "source": "app/cbl/CBTRN01C.cbl:271-323"
+  },
+  {
+   "kind": "anomaly",
+   "text": "9000-DALYTRAN-CLOSE reports 'ERROR CLOSING CUSTOMER FILE' and displays CUSTFILE-STATUS instead of DALYTRAN-STATUS when closing the daily transaction file fails.",
+   "source": "app/cbl/CBTRN01C.cbl:369-375"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Keyed reads of XREF-FILE and ACCOUNT-FILE only distinguish INVALID KEY; other I/O errors on these reads are not detected (the file status is not checked).",
+   "source": "app/cbl/CBTRN01C.cbl:228-250"
+  }
+ ],
+ "paragraphs": [
+  {
+   "confidence": "Confirmed",
+   "lines": "155-197",
+   "logic": "Opens DALYTRAN, CUSTFILE, XREFFILE, CARDFILE, ACCTFILE and TRANFILE (all input). For each daily transaction it displays the record, looks up DALYTRAN-CARD-NUM in the cross-reference; if found it reads the account XREF-ACCT-ID and displays 'ACCOUNT ... NOT FOUND' when missing, otherwise displays 'CARD NUMBER ... COULD NOT BE VERIFIED. SKIPPING TRANSACTION ID-'. Closes all files and GOBACKs.",
+   "name": "MAIN-PARA"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "202-225",
+   "logic": "Reads the next DALYTRAN-FILE record into DALYTRAN-RECORD. Status '10' sets END-OF-DAILY-TRANS-FILE 'Y'; a status other than '00'/'10' displays 'ERROR READING DAILY TRANSACTION FILE', the status, and abends.",
+   "name": "1000-DALYTRAN-GET-NEXT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "227-239",
+   "logic": "Reads XREF-FILE by card number; on INVALID KEY displays 'INVALID CARD NUMBER FOR XREF' and sets WS-XREF-READ-STATUS 4, otherwise displays the card number, account id and customer id found.",
+   "name": "2000-LOOKUP-XREF"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "241-250",
+   "logic": "Reads ACCOUNT-FILE by ACCT-ID; on INVALID KEY displays 'INVALID ACCOUNT NUMBER FOUND' and sets WS-ACCT-READ-STATUS 4, otherwise displays 'SUCCESSFUL READ OF ACCOUNT FILE'.",
+   "name": "3000-READ-ACCOUNT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "252-268",
+   "logic": "Opens DALYTRAN-FILE for input; a status other than '00' displays 'ERROR OPENING DAILY TRANSACTION FILE', the status, and abends.",
+   "name": "0000-DALYTRAN-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "271-287",
+   "logic": "Opens CUSTOMER-FILE for input; a status other than '00' displays 'ERROR OPENING CUSTOMER FILE', the status, and abends.",
+   "name": "0100-CUSTFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "289-305",
+   "logic": "Opens XREF-FILE for input; a status other than '00' displays 'ERROR OPENING CROSS REF FILE', the status, and abends.",
+   "name": "0200-XREFFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "307-323",
+   "logic": "Opens CARD-FILE for input; a status other than '00' displays 'ERROR OPENING CARD FILE', the status, and abends.",
+   "name": "0300-CARDFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "325-341",
+   "logic": "Opens ACCOUNT-FILE for input; a status other than '00' displays 'ERROR OPENING ACCOUNT FILE', the status, and abends.",
+   "name": "0400-ACCTFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "343-359",
+   "logic": "Opens TRANSACT-FILE for input; a status other than '00' displays 'ERROR OPENING TRANSACTION FILE', the status, and abends.",
+   "name": "0500-TRANFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "361-377",
+   "logic": "Closes DALYTRAN-FILE; a status other than '00' displays 'ERROR CLOSING CUSTOMER FILE' with CUSTFILE-STATUS (wrong file) and abends.",
+   "name": "9000-DALYTRAN-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "379-395",
+   "logic": "Closes CUSTOMER-FILE; a status other than '00' displays 'ERROR CLOSING CUSTOMER FILE' and abends.",
+   "name": "9100-CUSTFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "397-413",
+   "logic": "Closes XREF-FILE; a status other than '00' displays 'ERROR CLOSING CROSS REF FILE' and abends.",
+   "name": "9200-XREFFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "415-431",
+   "logic": "Closes CARD-FILE; a status other than '00' displays 'ERROR CLOSING CARD FILE' and abends.",
+   "name": "9300-CARDFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "433-449",
+   "logic": "Closes ACCOUNT-FILE; a status other than '00' displays 'ERROR CLOSING ACCOUNT FILE' and abends.",
+   "name": "9400-ACCTFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "451-467",
+   "logic": "Closes TRANSACT-FILE; a status other than '00' displays 'ERROR CLOSING TRANSACTION FILE' and abends.",
+   "name": "9500-TRANFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "469-473",
+   "logic": "Displays 'ABENDING PROGRAM' and calls CEE3ABD with ABCODE 999 and TIMING 0.",
+   "name": "Z-ABEND-PROGRAM"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "476-489",
+   "logic": "Formats IO-STATUS into the 4-digit IO-STATUS-04 (binary conversion of the second byte for non-numeric or '9x' statuses, otherwise zero-padded) and displays 'FILE STATUS IS: NNNN' with it.",
+   "name": "Z-DISPLAY-IO-STATUS"
+  }
+ ],
+ "program": "CBTRN01C",
+ "rules": [
+  {
+   "id": "BR-CBTRN01C-001",
+   "category": "validation",
+   "statement": "A daily transaction is accepted for further checking only if its card number exists in the card cross-reference file; otherwise the transaction is reported as unverifiable and skipped.",
+   "paragraph": "MAIN-PARA",
+   "source": "app/cbl/CBTRN01C.cbl:170-183",
+   "anchor": "' COULD NOT BE VERIFIED. SKIPPING TRANSACTION ID-'",
+   "additional_sources": ["app/cbl/CBTRN01C.cbl:228-239"],
+   "conditions": "DALYTRAN-CARD-NUM not found in XREFFILE (INVALID KEY, WS-XREF-READ-STATUS = 4).",
+   "outcome": "DISPLAY 'CARD NUMBER <n> COULD NOT BE VERIFIED. SKIPPING TRANSACTION ID-<id>'; no account lookup.",
+   "data": ["DALYTRAN-CARD-NUM", "DALYTRAN-ID", "XREF-CARD-NUM", "WS-XREF-READ-STATUS"],
+   "messages": ["INVALID CARD NUMBER FOR XREF", "CARD NUMBER ", " COULD NOT BE VERIFIED. SKIPPING TRANSACTION ID-"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN01C-002",
+   "category": "validation",
+   "statement": "For a transaction whose card is in the cross-reference, the linked account (XREF-ACCT-ID) must exist in the account master; if not, the program reports 'ACCOUNT <id> NOT FOUND'. No further action (posting or rejection file) follows either way.",
+   "paragraph": "MAIN-PARA",
+   "source": "app/cbl/CBTRN01C.cbl:173-179",
+   "anchor": "DISPLAY 'ACCOUNT ' ACCT-ID ' NOT FOUND'",
+   "additional_sources": ["app/cbl/CBTRN01C.cbl:242-250"],
+   "conditions": "WS-XREF-READ-STATUS = 0 and account read INVALID KEY (WS-ACCT-READ-STATUS = 4).",
+   "outcome": "DISPLAY 'INVALID ACCOUNT NUMBER FOUND' and 'ACCOUNT <id> NOT FOUND'.",
+   "data": ["XREF-ACCT-ID", "ACCT-ID", "WS-ACCT-READ-STATUS"],
+   "messages": ["INVALID ACCOUNT NUMBER FOUND", "ACCOUNT ", " NOT FOUND"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN01C-003",
+   "category": "error-policy",
+   "statement": "A read error on the daily transaction file (status other than '00' or '10') aborts the run with abend code 999, while card or account lookup failures only skip/report the transaction.",
+   "paragraph": "1000-DALYTRAN-GET-NEXT",
+   "source": "app/cbl/CBTRN01C.cbl:213-224",
+   "anchor": "DISPLAY 'ERROR READING DAILY TRANSACTION FILE'",
+   "conditions": "DALYTRAN-STATUS not '00' and not '10'.",
+   "outcome": "File status displayed; CEE3ABD abend code 999.",
+   "data": ["DALYTRAN-STATUS", "APPL-RESULT"],
+   "messages": ["ERROR READING DAILY TRANSACTION FILE", "ABENDING PROGRAM"],
+   "confidence": "Confirmed"
+  }
+ ],
+ "schema": "program-semantics/1",
+ "sme_questions": [
+  {
+   "question": "Is CBTRN01C a verification-only predecessor of the posting program CBTRN02C, or is posting to TRANSACT expected here (the header says 'Post the records')?",
+   "source": "app/cbl/CBTRN01C.cbl:155-197"
+  },
+  {
+   "question": "Are CUSTFILE and CARDFILE supposed to be used for additional checks (card active/expired, customer status)? They are opened but never read.",
+   "source": "app/cbl/CBTRN01C.cbl:271-323"
+  }
+ ],
+ "source_path": "app/cbl/CBTRN01C.cbl",
+ "source_sha256": "55c2aebd59528aa42b28878ba5ca4d17a00b3548fc25e4ce1529710d366fd576",
+ "status": "complete",
+ "summary": {
+  "confidence": "Confirmed",
+  "evidence": ["app/cbl/CBTRN01C.cbl:1-5", "app/cbl/CBTRN01C.cbl:28-62", "app/cbl/CBTRN01C.cbl:155-197", "app/cbl/CBTRN01C.cbl:227-250"],
+  "text": "CBTRN01C is a batch COBOL program that reads the sequential daily transaction file DALYTRAN and verifies each transaction against the master files. For each record it looks up the card number in the card cross-reference KSDS (XREFFILE) and, if found, reads the linked account in ACCTFILE, DISPLAYing the results; unknown cards are reported and skipped, missing accounts are reported. Although its header says it posts transactions, it writes nothing: the customer, card and transaction files are opened for input only and never used. Open, close and daily-file read errors abend with code 999."
+ }
+}

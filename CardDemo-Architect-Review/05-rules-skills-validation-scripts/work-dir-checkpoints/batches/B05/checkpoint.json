@@ -1,0 +1,132 @@
+{
+ "batch": "B05", 
+ "checked": "2026-10-20T04:35:12", 
+ "copybooks": {
+  "COADM02Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "COADM02Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "COMEN02Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "COMEN02Y", 
+   "issues": [], 
+   "status": "validated"
+  }
+ }, 
+ "programs": {
+  "COACTVWC": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 21, 
+   "decision_covered": 21, 
+   "decision_in_rules": 11, 
+   "existing_reviewed": 2, 
+   "issues": [], 
+   "paragraphs_described": 34, 
+   "paragraphs_total": 34, 
+   "program": "COACTVWC", 
+   "rules": 8, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COADM01C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 16, 
+   "decision_covered": 16, 
+   "decision_in_rules": 3, 
+   "existing_reviewed": 3, 
+   "issues": [], 
+   "paragraphs_described": 8, 
+   "paragraphs_total": 8, 
+   "program": "COADM01C", 
+   "rules": 3, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COBIL00C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 15, 
+   "decision_covered": 15, 
+   "decision_in_rules": 15, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 16, 
+   "paragraphs_total": 16, 
+   "program": "COBIL00C", 
+   "rules": 13, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COBSWAIT": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 0, 
+   "decision_covered": 0, 
+   "decision_in_rules": 0, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 1, 
+   "paragraphs_total": 1, 
+   "program": "COBSWAIT", 
+   "rules": 0, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COCRDLIC": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 69, 
+   "decision_covered": 69, 
+   "decision_in_rules": 35, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 39, 
+   "paragraphs_total": 39, 
+   "program": "COCRDLIC", 
+   "rules": 21, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COMEN01C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 22, 
+   "decision_covered": 22, 
+   "decision_in_rules": 7, 
+   "existing_reviewed": 4, 
+   "issues": [], 
+   "paragraphs_described": 7, 
+   "paragraphs_total": 7, 
+   "program": "COMEN01C", 
+   "rules": 5, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COSGN00C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 6, 
+   "decision_covered": 6, 
+   "decision_in_rules": 4, 
+   "existing_reviewed": 6, 
+   "issues": [], 
+   "paragraphs_described": 6, 
+   "paragraphs_total": 6, 
+   "program": "COSGN00C", 
+   "rules": 2, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }
+ }
+}

@@ -1,0 +1,79 @@
+{
+ "schema": "program-semantics/1",
+ "program": "COPAUS2C",
+ "source_path": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl",
+ "source_sha256": "57232060f8bdaecc679b74e93fcf91d93cffd400326c001bd187ab5fad14789e",
+ "batch": "B01",
+ "status": "complete",
+ "summary": {
+  "text": "COPAUS2C is a CICS DB2 subprogram LINKed from COPAUS1C with a commarea holding account id, customer id, a pending authorization detail record (CIPAUDTY layout) and a fraud action/status area. It stamps today's date (MM/DD/YY) into the detail's fraud report date, builds an authorization timestamp from the original authorization date and the complemented authorization time, and maps the detail into the AUTHFRDS DCLGEN host variables. It inserts a row into CARDDEMO.AUTHFRDS; on duplicate key (SQLCODE -803) it updates AUTH_FRAUD and FRAUD_RPT_DATE of the existing row instead. The outcome (S/F) and a message are returned in the commarea and control returns with CICS RETURN; commit or rollback is left to the caller.",
+  "evidence": [
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:65-86",
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:89-139",
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:141-220",
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:221-244"
+  ],
+  "confidence": "Confirmed"
+ },
+ "paragraphs": [
+  {"name": "MAIN-PARA", "lines": "89-220", "confidence": "Confirmed", "logic": "Gets the current date as MM/DD/YY into PA-FRAUD-RPT-DATE, builds WS-AUTH-TS 'YY-MM-DD HH.MI.SSsss000' from PA-AUTH-ORIG-DATE and 999999999 - PA-AUTH-TIME-9C, and moves the detail fields, WS-FRD-ACTION (as AUTH-FRAUD), account and customer id to the DCLAUTHFRDS host variables. INSERTs into CARDDEMO.AUTHFRDS with FRAUD_RPT_DATE = CURRENT DATE; SQLCODE 0 returns success 'ADD SUCCESS', -803 performs FRAUD-UPDATE, any other code returns failure with ' SYSTEM ERROR DB2: CODE:...'. Ends with CICS RETURN."},
+  {"name": "FRAUD-UPDATE", "lines": "221-244", "confidence": "Confirmed", "logic": "UPDATEs CARDDEMO.AUTHFRDS setting AUTH_FRAUD = :AUTH-FRAUD and FRAUD_RPT_DATE = CURRENT DATE for the row with the same CARD_NUM and AUTH_TS. SQLCODE 0 returns success 'UPDT SUCCESS'; otherwise failure with ' UPDT ERROR DB2: CODE:...'."}
+ ],
+ "rules": [
+  {
+   "id": "BR-COPAUS2C-001",
+   "category": "data-integrity",
+   "statement": "A fraud report/removal is recorded in DB2 table AUTHFRDS as an insert of the full authorization; if a row already exists for the same card number and authorization timestamp (SQLCODE -803), only its fraud flag and fraud report date are updated.",
+   "paragraph": "MAIN-PARA",
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:199-216",
+   "anchor": "IF SQLCODE = -803",
+   "additional_sources": ["app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:141-198", "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:222-229"],
+   "conditions": "INSERT SQLCODE 0 / -803 / other",
+   "outcome": "Row inserted or AUTH_FRAUD/FRAUD_RPT_DATE updated; WS-FRD-UPDATE-STATUS 'S' or 'F'.",
+   "data": ["CARD-NUM", "AUTH-TS", "AUTH-FRAUD", "WS-FRD-ACTION", "SQLCODE"],
+   "messages": ["ADD SUCCESS", "UPDT SUCCESS"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COPAUS2C-002",
+   "category": "transformation",
+   "statement": "The DB2 authorization timestamp is built from the original authorization date (YYMMDD from the request) and the time recovered from the complemented key (999999999 - PA-AUTH-TIME-9C = HHMMSSmmm), formatted 'YY-MM-DD HH.MI.SSmmm000' and converted with TIMESTAMP_FORMAT.",
+   "paragraph": "MAIN-PARA",
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:103-114",
+   "anchor": "COMPUTE WS-AUTH-TIME = 999999999 - PA-AUTH-TIME-9C",
+   "additional_sources": ["app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:171-172"],
+   "conditions": "Always",
+   "outcome": "AUTH-TS host variable set; part of the AUTHFRDS primary key with CARD_NUM.",
+   "data": ["PA-AUTH-ORIG-DATE", "PA-AUTH-TIME-9C", "WS-AUTH-TS", "AUTH-TS"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COPAUS2C-003",
+   "category": "error-policy",
+   "statement": "Any DB2 error other than duplicate key on insert, or any error on the update, is returned to the caller as failure ('F') with the SQLCODE and SQLSTATE in the message; the caller decides to roll back.",
+   "paragraph": "FRAUD-UPDATE",
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:230-243",
+   "anchor": "' UPDT ERROR DB2: CODE:'",
+   "additional_sources": ["app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:205-214"],
+   "conditions": "SQLCODE not 0 (and not -803 on insert)",
+   "outcome": "WS-FRD-UPDT-FAILED, WS-FRD-ACT-MSG set.",
+   "data": ["SQLCODE", "SQLSTATE", "WS-FRD-UPDATE-STATUS", "WS-FRD-ACT-MSG"],
+   "messages": [" SYSTEM ERROR DB2: CODE:", " UPDT ERROR DB2: CODE:"],
+   "confidence": "Confirmed"
+  }
+ ],
+ "existing_rules_reviewed": [],
+ "no_rule_decisions": [],
+ "no_business_rules_reason": null,
+ "observations": [
+  {"kind": "anomaly", "text": "AUTH_TS combines the request's original date (PA-AUTH-ORIG-DATE) with the system processing time from PA-AUTH-TIME-9C (set by COPAUA0C from CICS time), so the timestamp mixes two different clocks/dates (Inferred from COPAUA0C 871-877).", "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:103-111"},
+  {"kind": "anomaly", "text": "PA-FRAUD-RPT-DATE is set to MM/DD/YY in the commarea record, while DB2 FRAUD_RPT_DATE uses CURRENT DATE; the two dates are stored in different formats in IMS and DB2.", "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:95-101"},
+  {"kind": "unchecked-io", "text": "ASKTIME/FORMATTIME use NOHANDLE without checking the response.", "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:91-100"},
+  {"kind": "conflict", "text": "DCLGEN header names table AWSTSSC.AUTHFRDS while the declared and used table is CARDDEMO.AUTHFRDS.", "source": "app/app-authorization-ims-db2-mq/dcl/AUTHFRDS.dcl:2"},
+  {"kind": "dead-code", "text": "WS-LENGTH, WS-ERR-FLG and WS-PGMNAME are not used.", "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:33-54"}
+ ],
+ "sme_questions": [
+  {"question": "Should AUTH_TS be built from a single consistent source (original request date/time or system processing date/time)?", "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS2C.cbl:103-111"}
+ ]
+}

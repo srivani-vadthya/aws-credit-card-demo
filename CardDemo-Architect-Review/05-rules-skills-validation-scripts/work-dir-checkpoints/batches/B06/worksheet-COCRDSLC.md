@@ -1,0 +1,85 @@
+# Worksheet COCRDSLC (app/cbl/COCRDSLC.cbl)
+
+Lines: 887. Paragraphs: 34. Decision points: 53 (business candidates: 24).
+
+Fill `docs/_work/semantic/programs/COCRDSLC.json`. Read the whole source; this list only indexes it.
+
+## Paragraphs
+
+| Paragraph | Lines | Performs | Performed by |
+|---|---|---|---|
+| 0000-MAIN | 248-392 | 1000-SEND-MAP, 2000-PROCESS-INPUTS, 9000-READ-DATA, SEND-PLAIN-TEXT, YYYY-STORE-PFKEY |  |
+| COMMON-RETURN | 394-407 |  | 0000-MAIN |
+| 0000-MAIN-EXIT | 408-410 |  |  |
+| 1000-SEND-MAP | 412-421 | 1100-SCREEN-INIT, 1200-SETUP-SCREEN-VARS, 1300-SETUP-SCREEN-ATTRS, 1400-SEND-SCREEN | 0000-MAIN |
+| 1000-SEND-MAP-EXIT | 423-425 |  | 0000-MAIN |
+| 1100-SCREEN-INIT | 427-451 |  | 1000-SEND-MAP |
+| 1100-SCREEN-INIT-EXIT | 453-455 |  | 1000-SEND-MAP |
+| 1200-SETUP-SCREEN-VARS | 457-497 |  | 1000-SEND-MAP |
+| 1200-SETUP-SCREEN-VARS-EXIT | 499-501 |  | 1000-SEND-MAP |
+| 1300-SETUP-SCREEN-ATTRS | 502-558 |  | 1000-SEND-MAP |
+| 1300-SETUP-SCREEN-ATTRS-EXIT | 559-560 |  | 1000-SEND-MAP |
+| 1400-SEND-SCREEN | 563-577 |  | 1000-SEND-MAP |
+| 1400-SEND-SCREEN-EXIT | 578-580 |  | 1000-SEND-MAP |
+| 2000-PROCESS-INPUTS | 582-591 | 2100-RECEIVE-MAP, 2200-EDIT-MAP-INPUTS | 0000-MAIN |
+| 2000-PROCESS-INPUTS-EXIT | 593-595 |  | 0000-MAIN |
+| 2100-RECEIVE-MAP | 596-603 |  | 2000-PROCESS-INPUTS |
+| 2100-RECEIVE-MAP-EXIT | 605-607 |  | 2000-PROCESS-INPUTS |
+| 2200-EDIT-MAP-INPUTS | 608-641 | 2210-EDIT-ACCOUNT, 2220-EDIT-CARD | 2000-PROCESS-INPUTS |
+| 2200-EDIT-MAP-INPUTS-EXIT | 643-645 |  | 2000-PROCESS-INPUTS |
+| 2210-EDIT-ACCOUNT | 647-679 |  | 2200-EDIT-MAP-INPUTS |
+| 2210-EDIT-ACCOUNT-EXIT | 681-683 |  | 2200-EDIT-MAP-INPUTS, 2210-EDIT-ACCOUNT |
+| 2220-EDIT-CARD | 685-720 |  | 2200-EDIT-MAP-INPUTS |
+| 2220-EDIT-CARD-EXIT | 722-724 |  | 2200-EDIT-MAP-INPUTS, 2220-EDIT-CARD |
+| 9000-READ-DATA | 726-730 | 9100-GETCARD-BYACCTCARD | 0000-MAIN |
+| 9000-READ-DATA-EXIT | 732-734 |  | 0000-MAIN |
+| 9100-GETCARD-BYACCTCARD | 736-773 |  | 9000-READ-DATA |
+| 9100-GETCARD-BYACCTCARD-EXIT | 775-777 |  | 9000-READ-DATA |
+| 9150-GETCARD-BYACCT | 779-809 |  |  |
+| 9150-GETCARD-BYACCT-EXIT | 810-812 |  |  |
+| SEND-LONG-TEXT | 820-830 |  |  |
+| SEND-LONG-TEXT-EXIT | 831-833 |  |  |
+| SEND-PLAIN-TEXT | 838-848 |  | 0000-MAIN |
+| SEND-PLAIN-TEXT-EXIT | 849-856 |  | 0000-MAIN |
+| ABEND-ROUTINE | 857-878 |  |  |
+
+## Decision points that look like business logic
+
+Each line below must fall inside a rule `source` range or a `no_rule_decisions` range.
+
+| Line | Paragraph | Type | Condition |
+|---|---|---|---|
+| 304 | 0000-MAIN | EVALUATE | `TRUE` |
+| 309 | 0000-MAIN | IF | `CDEMO-FROM-TRANID EQUAL LOW-VALUES OR CDEMO-FROM-TRANID EQUAL SPACES` |
+| 373 | 0000-MAIN | WHEN | `OTHER` |
+| 462 | 1200-SETUP-SCREEN-VARS | IF | `CDEMO-ACCT-ID = 0` |
+| 468 | 1200-SETUP-SCREEN-VARS | IF | `CDEMO-CARD-NUM = 0` |
+| 474 | 1200-SETUP-SCREEN-VARS | IF | `FOUND-CARDS-FOR-ACCOUNT` |
+| 490 | 1200-SETUP-SCREEN-VARS | IF | `WS-NO-INFO-MESSAGE` |
+| 515 | 1300-SETUP-SCREEN-ATTRS | EVALUATE | `TRUE` |
+| 516 | 1300-SETUP-SCREEN-ATTRS | WHEN | `FLG-ACCTFILTER-NOT-OK` |
+| 517 | 1300-SETUP-SCREEN-ATTRS | WHEN | `FLG-ACCTFILTER-BLANK` |
+| 519 | 1300-SETUP-SCREEN-ATTRS | WHEN | `FLG-CARDFILTER-NOT-OK` |
+| 520 | 1300-SETUP-SCREEN-ATTRS | WHEN | `FLG-CARDFILTER-BLANK` |
+| 522 | 1300-SETUP-SCREEN-ATTRS | WHEN | `OTHER` |
+| 533 | 1300-SETUP-SCREEN-ATTRS | IF | `FLG-ACCTFILTER-NOT-OK` |
+| 537 | 1300-SETUP-SCREEN-ATTRS | IF | `FLG-CARDFILTER-NOT-OK` |
+| 553 | 1300-SETUP-SCREEN-ATTRS | IF | `WS-NO-INFO-MESSAGE` |
+| 615 | 2200-EDIT-MAP-INPUTS | IF | `ACCTSIDI OF CCRDSLAI = '*' OR ACCTSIDI OF CCRDSLAI = SPACES` |
+| 622 | 2200-EDIT-MAP-INPUTS | IF | `CARDSIDI OF CCRDSLAI = '*' OR CARDSIDI OF CCRDSLAI = SPACES` |
+| 637 | 2200-EDIT-MAP-INPUTS | IF | `FLG-ACCTFILTER-BLANK AND FLG-CARDFILTER-BLANK` |
+| 651 | 2210-EDIT-ACCOUNT | IF | `CC-ACCT-ID EQUAL LOW-VALUES OR CC-ACCT-ID EQUAL SPACES OR CC-ACCT-ID-N EQUAL ZEROS` |
+| 665 | 2210-EDIT-ACCOUNT | IF | `CC-ACCT-ID IS NOT NUMERIC` |
+| 691 | 2220-EDIT-CARD | IF | `CC-CARD-NUM EQUAL LOW-VALUES OR CC-CARD-NUM EQUAL SPACES OR CC-CARD-NUM-N EQUAL ZEROS` |
+| 706 | 2220-EDIT-CARD | IF | `CC-CARD-NUM IS NOT NUMERIC` |
+| 859 | ABEND-ROUTINE | IF | `ABEND-MSG EQUAL LOW-VALUES` |
+
+## Calculations
+
+
+## Existing rules to review (record a verdict and anchor for each)
+
+- BR-BASE-003: Each field edit writes its message only when no message is set yet, so the screen shows the first failing edit. (app/cbl/COCRDUPC.cbl:173-174, app/cbl/COCRDUPC.cbl:730-732, app/cbl/COACTUPC.cbl:480, app/cbl/COACTUPC.cbl:1805-1812, app/cbl/COCRDSLC.cbl:135, app/cbl/COACTVWC.cbl:118, app/app-transaction-type-db2/cbl/COTRTUPC.cbl:863-868)
+- BR-BASE-COCRDSLC-001: A card-list account filter of low-values, spaces or zero is reported as not provided. A supplied account number that is not numeric is rejected. An asterisk or spaces on the screen field is treated as not supplied. (app/cbl/COCRDSLC.cbl:608-620, app/cbl/COCRDSLC.cbl:647-679, app/cbl/COCRDSLC.cbl:138-139)
+- BR-BASE-COCRDSLC-002: A card-list card filter of low-values, spaces or zero is reported as not provided. A supplied card number that is not numeric is rejected. An asterisk or spaces on the screen field is treated as not supplied. (app/cbl/COCRDSLC.cbl:622-634, app/cbl/COCRDSLC.cbl:685-719, app/cbl/COCRDSLC.cbl:140-141)
+- BR-BASE-COCRDSLC-003: When both the account filter and the card filter are blank, the card list screen reports that no input was received. (app/cbl/COCRDSLC.cbl:636-640, app/cbl/COCRDSLC.cbl:142-143)

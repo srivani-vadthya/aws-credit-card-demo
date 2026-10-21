@@ -1,0 +1,34 @@
+# Worksheet COTRN01C (app/cbl/COTRN01C.cbl)
+
+Lines: 330. Paragraphs: 9. Decision points: 20 (business candidates: 5).
+
+Fill `docs/_work/semantic/programs/COTRN01C.json`. Read the whole source; this list only indexes it.
+
+## Paragraphs
+
+| Paragraph | Lines | Performs | Performed by |
+|---|---|---|---|
+| MAIN-PARA | 86-139 | CLEAR-CURRENT-SCREEN, PROCESS-ENTER-KEY, RECEIVE-TRNVIEW-SCREEN, RETURN-TO-PREV-SCREEN, SEND-TRNVIEW-SCREEN |  |
+| PROCESS-ENTER-KEY | 144-192 | READ-TRANSACT-FILE, SEND-TRNVIEW-SCREEN | MAIN-PARA |
+| RETURN-TO-PREV-SCREEN | 197-208 |  | MAIN-PARA |
+| SEND-TRNVIEW-SCREEN | 213-225 | POPULATE-HEADER-INFO | CLEAR-CURRENT-SCREEN, MAIN-PARA, PROCESS-ENTER-KEY, READ-TRANSACT-FILE |
+| RECEIVE-TRNVIEW-SCREEN | 230-238 |  | MAIN-PARA |
+| POPULATE-HEADER-INFO | 243-262 |  | SEND-TRNVIEW-SCREEN |
+| READ-TRANSACT-FILE | 267-296 | SEND-TRNVIEW-SCREEN | PROCESS-ENTER-KEY |
+| CLEAR-CURRENT-SCREEN | 301-304 | INITIALIZE-ALL-FIELDS, SEND-TRNVIEW-SCREEN | MAIN-PARA |
+| INITIALIZE-ALL-FIELDS | 309-326 |  | CLEAR-CURRENT-SCREEN |
+
+## Decision points that look like business logic
+
+Each line below must fall inside a rule `source` range or a `no_rule_decisions` range.
+
+| Line | Paragraph | Type | Condition |
+|---|---|---|---|
+| 103 | MAIN-PARA | IF | `CDEMO-CT01-TRN-SELECTED NOT = SPACES AND LOW-VALUES` |
+| 146 | PROCESS-ENTER-KEY | EVALUATE | `TRUE` |
+| 147 | PROCESS-ENTER-KEY | WHEN | `TRNIDINI OF COTRN1AI = SPACES OR LOW-VALUES` |
+| 153 | PROCESS-ENTER-KEY | WHEN | `OTHER` |
+| 199 | RETURN-TO-PREV-SCREEN | IF | `CDEMO-TO-PROGRAM = LOW-VALUES OR SPACES` |
+
+## Calculations
+

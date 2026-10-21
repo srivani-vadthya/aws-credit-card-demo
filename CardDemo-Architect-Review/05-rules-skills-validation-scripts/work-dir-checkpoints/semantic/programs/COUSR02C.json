@@ -1,0 +1,337 @@
+{
+ "batch": "B07", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Defensive default of the XCTL target to COSGN00C when CDEMO-TO-PROGRAM is blank.", 
+   "source": "app/cbl/COUSR02C.cbl:252-254"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COUSR02C.cbl:215-237", 
+   "text": "UPDATE-USER-INFO does not test the error flag after READ-USER-SEC-FILE: when the user is not found (or the read fails) the field comparison still runs against SEC-USER-DATA and a REWRITE can be issued without a successful READ UPDATE, which CICS would reject (Inferred: INVREQ, giving 'Unable to Update User...')."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COUSR02C.cbl:111-119", 
+   "text": "PF3 performs UPDATE-USER-INFO (save) and then always XCTLs away, so validation or save errors are sent to the terminal and immediately replaced by the next program; leaving with PF3 also silently saves edits."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COUSR02C.cbl:333-338", 
+   "text": "READ-USER-SEC-FILE sends the screen on success, so a PF5 save sends the map twice in one task (read prompt, then update result), and the first-entry path sends it up to three times (read, PROCESS-ENTER-KEY line 171, MAIN-PARA line 105)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COUSR02C.cbl:215-234", 
+   "text": "There is no optimistic-concurrency check: the update compares the screen with a fresh read at save time, not with the values originally displayed, so a concurrent change by another administrator is silently overwritten (Inferred from control flow). The Enter-path READ UPDATE lock is released when the task returns."
+  }, 
+  {
+   "kind": "security", 
+   "source": "app/cbl/COUSR02C.cbl:169", 
+   "text": "The stored password SEC-USR-PWD is moved to the screen field PASSWDI for display/editing; whether it is visible depends on the BMS attributes of map COUSR2A (not verified here). Passwords are stored in clear text."
+  }, 
+  {
+   "kind": "security", 
+   "source": "app/cbl/COUSR02C.cbl:231-234", 
+   "text": "No check that the signed-on user is an administrator (CDEMO-USER-TYPE not referenced), and an administrator can change any user's type, including their own."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/COUSR02C.cbl:285-291", 
+   "text": "RECEIVE MAP response codes are captured but never tested."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/COUSR02C.cbl:36-39", 
+   "text": "File 'USRSEC', transaction 'CU02', programs COSGN00C and COADM01C are literals."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "82-138", 
+   "logic": "Resets the error and modified flags and the message. EIBCALEN = 0 XCTLs to COSGN00C. Otherwise loads CARDDEMO-COMMAREA; on first entry sets re-enter, clears the map and, if CDEMO-CU02-USR-SELECTED is not blank, moves it to USRIDINI and performs PROCESS-ENTER-KEY, then sends the screen. On re-entry receives the map and dispatches: Enter (PROCESS-ENTER-KEY), PF3 (UPDATE-USER-INFO then XCTL to CDEMO-FROM-PROGRAM or COADM01C), PF4 (clear), PF5 (UPDATE-USER-INFO), PF12 (XCTL to COADM01C), other keys show CCDA-MSG-INVALID-KEY. Ends with CICS RETURN TRANSID CU02.", 
+   "name": "MAIN-PARA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "143-172", 
+   "logic": "Rejects a blank USRIDINI with 'User ID can NOT be empty...'. Otherwise blanks the name, password and type fields, moves USRIDINI to SEC-USR-ID and performs READ-USER-SEC-FILE; if found, moves SEC-USR-FNAME, SEC-USR-LNAME, SEC-USR-PWD and SEC-USR-TYPE to the screen and sends it.", 
+   "name": "PROCESS-ENTER-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "177-245", 
+   "logic": "Checks in order that user ID, first name, last name, password and user type are not blank (first blank one reported). Then reads the user by USRIDINI, copies each screen field that differs from the stored value into SEC-USER-DATA and sets USR-MODIFIED-YES. If anything changed performs UPDATE-USER-SEC-FILE, otherwise shows 'Please modify to update ...' in red.", 
+   "name": "UPDATE-USER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "250-261", 
+   "logic": "Defaults CDEMO-TO-PROGRAM to COSGN00C when blank, sets FROM tranid/program to CU02/COUSR02C, resets CDEMO-PGM-CONTEXT and XCTLs to CDEMO-TO-PROGRAM.", 
+   "name": "RETURN-TO-PREV-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "266-278", 
+   "logic": "Fills the header, moves WS-MESSAGE to ERRMSGO and sends map COUSR2A with ERASE and CURSOR.", 
+   "name": "SEND-USRUPD-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "283-291", 
+   "logic": "Receives map COUSR2A into COUSR2AI with RESP/RESP2; the response is not tested.", 
+   "name": "RECEIVE-USRUPD-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "296-315", 
+   "logic": "Moves FUNCTION CURRENT-DATE to WS-CURDATE-DATA, CCDA-TITLE01/CCDA-TITLE02 to TITLE01O/TITLE02O, WS-TRANID to TRNNAMEO and WS-PGMNAME to PGMNAMEO of COUSR2AO; rebuilds the date as WS-CURDATE-MM-DD-YY (MM/DD/YY from WS-CURDATE-MONTH, WS-CURDATE-DAY, WS-CURDATE-YEAR(3:2)) into CURDATEO and the time as WS-CURTIME-HH-MM-SS into CURTIMEO.", 
+   "name": "POPULATE-HEADER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "320-353", 
+   "logic": "Issues CICS READ UPDATE on USRSEC by SEC-USR-ID into SEC-USER-DATA. NORMAL sends the screen with 'Press PF5 key to save your updates ...' (neutral colour); NOTFND sets the error flag with 'User ID NOT found...'; other responses display RESP/REAS and set the error flag with 'Unable to lookup User...'.", 
+   "name": "READ-USER-SEC-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "358-390", 
+   "logic": "Issues CICS REWRITE of SEC-USER-DATA. NORMAL shows 'User <id> has been updated ...' in green; NOTFND sets the error flag with 'User ID NOT found...'; other responses set the error flag with 'Unable to Update User...'.", 
+   "name": "UPDATE-USER-SEC-FILE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "395-398", 
+   "logic": "Performs INITIALIZE-ALL-FIELDS and sends the screen.", 
+   "name": "CLEAR-CURRENT-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "403-411", 
+   "logic": "Positions the cursor on the user ID and moves SPACES to user ID, first name, last name, password, user type and WS-MESSAGE.", 
+   "name": "INITIALIZE-ALL-FIELDS"
+  }
+ ], 
+ "program": "COUSR02C", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/cbl/COUSR02C.cbl:252-260"
+   ], 
+   "anchor": "IF EIBCALEN = 0", 
+   "category": "routing", 
+   "conditions": "EIBCALEN = 0", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBCALEN", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COUSR02C-001", 
+   "messages": [], 
+   "outcome": "XCTL COSGN00C.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COUSR02C.cbl:90-92", 
+   "statement": "When started without a COMMAREA (EIBCALEN = 0) the user is sent to the sign-on program COSGN00C."
+  }, 
+  {
+   "anchor": "IF CDEMO-CU02-USR-SELECTED NOT =", 
+   "category": "decision", 
+   "conditions": "NOT CDEMO-PGM-REENTER and CDEMO-CU02-USR-SELECTED not SPACES/LOW-VALUES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-PGM-CONTEXT", 
+    "CDEMO-CU02-USR-SELECTED", 
+    "USRIDINI"
+   ], 
+   "id": "BR-COUSR02C-002", 
+   "messages": [], 
+   "outcome": "USRIDINI = CDEMO-CU02-USR-SELECTED; PROCESS-ENTER-KEY; screen sent.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COUSR02C.cbl:95-105", 
+   "statement": "On first entry, when a user was selected on the user list (CDEMO-CU02-USR-SELECTED not blank), that user is fetched and displayed for editing immediately."
+  }, 
+  {
+   "anchor": "WHEN DFHPF12", 
+   "category": "routing", 
+   "conditions": "EIBAID value; for PF3 whether CDEMO-FROM-PROGRAM is blank", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBAID", 
+    "CDEMO-FROM-PROGRAM", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COUSR02C-003", 
+   "messages": [
+    "Invalid key pressed. Please see below..."
+   ], 
+   "outcome": "DFHENTER -> PROCESS-ENTER-KEY; DFHPF3 -> UPDATE-USER-INFO then XCTL; DFHPF4 -> CLEAR-CURRENT-SCREEN; DFHPF5 -> UPDATE-USER-INFO; DFHPF12 -> XCTL COADM01C; other -> WS-ERR-FLG 'Y', CCDA-MSG-INVALID-KEY.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COUSR02C.cbl:108-131", 
+   "statement": "Key actions on re-entry: Enter fetches the user; PF5 saves changes; PF3 also attempts to save changes and then returns to the calling program (CDEMO-FROM-PROGRAM, or COADM01C when unknown) regardless of the save outcome; PF4 clears the screen; PF12 returns to the admin menu COADM01C without saving; other keys show the invalid-key message."
+  }, 
+  {
+   "anchor": "WHEN USRIDINI OF COUSR2AI = SPACES OR LOW-VALUES", 
+   "category": "validation", 
+   "conditions": "USRIDINI = SPACES or LOW-VALUES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "USRIDINI", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR02C-004", 
+   "messages": [
+    "User ID can NOT be empty..."
+   ], 
+   "outcome": "WS-ERR-FLG 'Y', 'User ID can NOT be empty...', no read.", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COUSR02C.cbl:145-155", 
+   "statement": "A user ID is required to fetch a user for update."
+  }, 
+  {
+   "anchor": "WHEN PASSWDI OF COUSR2AI = SPACES OR LOW-VALUES", 
+   "category": "validation", 
+   "conditions": "USRIDINI, FNAMEI, LNAMEI, PASSWDI, USRTYPEI blank", 
+   "confidence": "Confirmed", 
+   "data": [
+    "USRIDINI", 
+    "FNAMEI", 
+    "LNAMEI", 
+    "PASSWDI", 
+    "USRTYPEI", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR02C-005", 
+   "messages": [
+    "User ID can NOT be empty...", 
+    "First Name can NOT be empty...", 
+    "Last Name can NOT be empty...", 
+    "Password can NOT be empty...", 
+    "User Type can NOT be empty..."
+   ], 
+   "outcome": "WS-ERR-FLG 'Y', message for the first blank field, screen sent; no update.", 
+   "paragraph": "UPDATE-USER-INFO", 
+   "source": "app/cbl/COUSR02C.cbl:179-213", 
+   "statement": "To save an update, user ID, first name, last name, password and user type must all be non-blank; they are checked in that order and only the first missing field is reported. No value or format checks are applied (user type is not restricted to 'A'/'U')."
+  }, 
+  {
+   "anchor": "IF FNAMEI  OF COUSR2AI NOT = SEC-USR-FNAME", 
+   "category": "decision", 
+   "conditions": "No validation error; screen value NOT = stored value per field", 
+   "confidence": "Confirmed", 
+   "data": [
+    "FNAMEI", 
+    "LNAMEI", 
+    "PASSWDI", 
+    "USRTYPEI", 
+    "SEC-USR-FNAME", 
+    "SEC-USR-LNAME", 
+    "SEC-USR-PWD", 
+    "SEC-USR-TYPE", 
+    "WS-USR-MODIFIED"
+   ], 
+   "id": "BR-COUSR02C-006", 
+   "messages": [], 
+   "outcome": "SEC-USR-FNAME / SEC-USR-LNAME / SEC-USR-PWD / SEC-USR-TYPE updated, USR-MODIFIED-YES.", 
+   "paragraph": "UPDATE-USER-INFO", 
+   "source": "app/cbl/COUSR02C.cbl:215-234", 
+   "statement": "Only fields that differ from the stored record are changed: first name, last name, password and user type on the screen are each compared with the record just read, the new value is copied when different, and the record is marked as modified. The user ID itself is the key and cannot be changed."
+  }, 
+  {
+   "anchor": "'Please modify to update ...'", 
+   "category": "decision", 
+   "conditions": "USR-MODIFIED-YES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-USR-MODIFIED", 
+    "ERRMSGC"
+   ], 
+   "id": "BR-COUSR02C-007", 
+   "messages": [
+    "Please modify to update ..."
+   ], 
+   "outcome": "UPDATE-USER-SEC-FILE; else message 'Please modify to update ...' in red (DFHRED).", 
+   "paragraph": "UPDATE-USER-INFO", 
+   "source": "app/cbl/COUSR02C.cbl:236-243", 
+   "statement": "The user record is rewritten only when at least one field was changed; otherwise the user is asked to modify something and nothing is written."
+  }, 
+  {
+   "anchor": "'User ID NOT found...'", 
+   "category": "error-policy", 
+   "conditions": "WS-RESP-CD after READ UPDATE USRSEC", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "SEC-USR-ID", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COUSR02C-008", 
+   "messages": [
+    "Press PF5 key to save your updates ...", 
+    "User ID NOT found...", 
+    "Unable to lookup User..."
+   ], 
+   "outcome": "NORMAL: 'Press PF5 key to save your updates ...' (DFHNEUTR) and screen sent. NOTFND: WS-ERR-FLG 'Y', 'User ID NOT found...'. Other: DISPLAY RESP/REAS, WS-ERR-FLG 'Y', 'Unable to lookup User...'.", 
+   "paragraph": "READ-USER-SEC-FILE", 
+   "source": "app/cbl/COUSR02C.cbl:333-353", 
+   "statement": "Fetching the user by exact user ID: if found the user is prompted to press PF5 to save; if not found the user is told so; other failures report a lookup error. Not-found and lookup errors set the error flag."
+  }, 
+  {
+   "anchor": "' has been updated ...' DELIMITED BY SIZE", 
+   "category": "error-policy", 
+   "conditions": "WS-RESP-CD after REWRITE USRSEC", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "SEC-USR-ID", 
+    "WS-ERR-FLG", 
+    "ERRMSGC"
+   ], 
+   "id": "BR-COUSR02C-009", 
+   "messages": [
+    " has been updated ...", 
+    "User ID NOT found...", 
+    "Unable to Update User..."
+   ], 
+   "outcome": "NORMAL: green 'User <id> has been updated ...'. NOTFND: 'User ID NOT found...'. Other: 'Unable to Update User...'.", 
+   "paragraph": "UPDATE-USER-SEC-FILE", 
+   "source": "app/cbl/COUSR02C.cbl:368-390", 
+   "statement": "Saving the user: a successful rewrite shows a green confirmation naming the user; not-found and other failures set the error flag with their messages."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Is PF3 intended to save pending changes before exiting (it performs UPDATE-USER-INFO), and should an error stop the exit?", 
+   "source": "app/cbl/COUSR02C.cbl:111-119"
+  }, 
+  {
+   "question": "Which user type values are valid, and may an administrator change their own type or password through this screen?", 
+   "source": "app/cbl/COUSR02C.cbl:204-209"
+  }, 
+  {
+   "question": "Should the update be refused if the record changed since it was displayed (optimistic locking)?", 
+   "source": "app/cbl/COUSR02C.cbl:215-237"
+  }
+ ], 
+ "source_path": "app/cbl/COUSR02C.cbl", 
+ "source_sha256": "85d36699cbd3079320e689576ea8406d07ad78901f4f3a68a129b869359b46ca", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/COUSR02C.cbl:1-5", 
+   "app/cbl/COUSR02C.cbl:35-39", 
+   "app/cbl/COUSR02C.cbl:90-137", 
+   "app/cbl/COUSR02C.cbl:143-172", 
+   "app/cbl/COUSR02C.cbl:177-245", 
+   "app/cbl/COUSR02C.cbl:320-390"
+  ], 
+  "text": "COUSR02C is a pseudo-conversational CICS COBOL program (transaction CU02, map COUSR2A in mapset COUSR02) that updates an existing user in the USRSEC VSAM user security file. Without a COMMAREA it transfers to sign-on (COSGN00C). On first entry it automatically fetches the user selected on the user list (CDEMO-CU02-USR-SELECTED); on Enter it reads the user ID typed on the screen (READ UPDATE) and shows first name, last name, password and user type. PF5 (and also PF3 before leaving) validates that all fields are filled, re-reads the record, compares each field with the stored value and issues CICS REWRITE only when at least one field changed, otherwise shows 'Please modify to update ...'. PF3 then returns to the calling program (or COADM01C), PF4 clears the screen and PF12 returns to the admin menu COADM01C."
+ }
+}

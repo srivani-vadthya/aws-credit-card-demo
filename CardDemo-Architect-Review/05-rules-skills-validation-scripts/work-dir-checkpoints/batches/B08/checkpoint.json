@@ -1,0 +1,80 @@
+{
+ "batch": "B08", 
+ "checked": "2026-10-20T04:35:12", 
+ "copybooks": {
+  "CSDB2RPY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CSDB2RPY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CSDB2RWY": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CSDB2RWY", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "DCLTRCAT": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "DCLTRCAT", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "DCLTRTYP": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "DCLTRTYP", 
+   "issues": [], 
+   "status": "validated"
+  }
+ }, 
+ "programs": {
+  "COBTUPDT": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 11, 
+   "decision_covered": 11, 
+   "decision_in_rules": 10, 
+   "existing_reviewed": 1, 
+   "issues": [], 
+   "paragraphs_described": 9, 
+   "paragraphs_total": 9, 
+   "program": "COBTUPDT", 
+   "rules": 4, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COTRTLIC": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 108, 
+   "decision_covered": 108, 
+   "decision_in_rules": 70, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 57, 
+   "paragraphs_total": 57, 
+   "program": "COTRTLIC", 
+   "rules": 23, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "COTRTUPC": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 121, 
+   "decision_covered": 121, 
+   "decision_in_rules": 50, 
+   "existing_reviewed": 5, 
+   "issues": [], 
+   "paragraphs_described": 63, 
+   "paragraphs_total": 63, 
+   "program": "COTRTUPC", 
+   "rules": 17, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }
+ }
+}

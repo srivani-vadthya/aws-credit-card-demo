@@ -1,0 +1,37 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "CSUTLDPY",
+ "evidence": [
+  "app/cpy/CSUTLDPY.cpy:18-372",
+  "app/cbl/COACTUPC.cbl:1478-1543",
+  "app/cbl/COACTUPC.cbl:4232"
+ ],
+ "key_fields": [
+  {"name": "EDIT-DATE-CCYYMMDD", "meaning": "Entry point: marks the date invalid and falls through the year, month, day, combination and LE paragraphs; callers PERFORM it THRU EDIT-DATE-CCYYMMDD-EXIT.", "source": "app/cpy/CSUTLDPY.cpy:18-20"},
+  {"name": "EDIT-YEAR-CCYY", "meaning": "Year required, numeric, century 19 or 20.", "source": "app/cpy/CSUTLDPY.cpy:25-87"},
+  {"name": "EDIT-MONTH", "meaning": "Month required and 1-12.", "source": "app/cpy/CSUTLDPY.cpy:91-144"},
+  {"name": "EDIT-DAY", "meaning": "Day required, numeric and 1-31.", "source": "app/cpy/CSUTLDPY.cpy:150-204"},
+  {"name": "EDIT-DAY-MONTH-YEAR", "meaning": "Rejects day 31 in short months, day 30 in February and day 29 in February outside leap years (YY=00 divisible by 400, else by 4); skips LE validation unless all three parts are valid.", "source": "app/cpy/CSUTLDPY.cpy:209-279"},
+  {"name": "EDIT-DATE-LE", "meaning": "Calls CSUTLDTC with format YYYYMMDD; non-zero severity is an input error.", "source": "app/cpy/CSUTLDPY.cpy:284-321"},
+  {"name": "EDIT-DATE-LE-EXIT", "meaning": "Exit label that also contains SET WS-EDIT-DATE-IS-VALID TO TRUE.", "source": "app/cpy/CSUTLDPY.cpy:323-328"},
+  {"name": "EDIT-DATE-CCYYMMDD-EXIT", "meaning": "End of the full date edit range.", "source": "app/cpy/CSUTLDPY.cpy:329-331"},
+  {"name": "EDIT-DATE-OF-BIRTH", "meaning": "Separately performed check that the date is strictly before today (INTEGER-OF-DATE comparison).", "source": "app/cpy/CSUTLDPY.cpy:341-369"}
+ ],
+ "observations": [
+  {"kind": "anomaly", "source": "app/cpy/CSUTLDPY.cpy:315-328", "text": "On CSUTLDTC failure, GO TO EDIT-DATE-LE-EXIT falls into SET WS-EDIT-DATE-IS-VALID TO TRUE, resetting the part flags to valid although INPUT-ERROR remains set."},
+  {"kind": "anomaly", "source": "app/cpy/CSUTLDPY.cpy:41-42", "text": "Each part edit's GO TO targets only its own exit paragraph (comment: 'Intentional violation of structured programming norms'), so a failing year still runs the month and day edits; only the first message is kept because of the WS-RETURN-MSG-OFF guard."},
+  {"kind": "anomaly", "source": "app/cpy/CSUTLDPY.cpy:111-126", "text": "EDIT-MONTH tests WS-VALID-MONTH on the numeric redefinition before checking TEST-NUMVAL, so non-numeric month text is evaluated against a numeric 88-level first (Inferred)."},
+  {"kind": "conflict", "source": "app/cpy/CSUTLDPY.cpy:5", "text": "Header refers to working storage 'CSUTLDTR'; the actual companion copybook is CSUTLDWY."},
+  {"kind": "hardcoded-value", "source": "app/cpy/CSUTLDPY.cpy:291", "text": "Date format mask 'YYYYMMDD' is fixed for the CSUTLDTC call."}
+ ],
+ "purpose": "Procedure-division copybook with reusable date edit paragraphs operating on the CSUTLDWY work fields and the caller's INPUT-ERROR, WS-RETURN-MSG and WS-EDIT-VARIABLE-NAME. PERFORM EDIT-DATE-CCYYMMDD THRU EDIT-DATE-CCYYMMDD-EXIT validates year (century 19/20), month, day, day/month combinations including leap years, and finally calls CSUTLDTC (LE date service); EDIT-DATE-OF-BIRTH rejects dates not before today. Only COACTUPC copies it, for open, expiry, reissue dates and date of birth.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CSUTLDPY.cpy"
+ ],
+ "source_sha256": [
+  "80f83e3d55ff84c0d9088e68399f30ebad4db763280d47bdec220eadc45ba2af"
+ ],
+ "status": "complete"
+}

@@ -1,0 +1,68 @@
+{
+ "batch": "B02",
+ "existing_rules_reviewed": [],
+ "no_business_rules_reason": "CBACT02C is a pure file-print utility: it opens the card KSDS (CARDFILE) for sequential input, DISPLAYs every CARD-RECORD to SYSOUT, and closes the file. It makes no data-driven decisions; its only conditional logic is file-status handling (end of file, abend code 999 on any I/O error).",
+ "no_rule_decisions": [],
+ "observations": [
+  {
+   "kind": "security",
+   "text": "The whole CARD-RECORD, including CARD-NUM and CARD-CVV-CD, is written to SYSOUT unmasked.",
+   "source": "app/cbl/CBACT02C.cbl:74-81"
+  },
+  {
+   "kind": "dead-code",
+   "text": "A second DISPLAY CARD-RECORD inside 1000-CARDFILE-GET-NEXT is commented out (unlike the sibling programs CBACT03C and CBCUS01C, which display each record twice).",
+   "source": "app/cbl/CBACT02C.cbl:94-96"
+  }
+ ],
+ "paragraphs": [
+  {
+   "confidence": "Confirmed",
+   "lines": "71-87",
+   "logic": "Displays a start banner, opens CARDFILE, loops calling 1000-CARDFILE-GET-NEXT until END-OF-FILE = 'Y' and displays CARD-RECORD after each successful read, then closes the file, displays an end banner and GOBACKs.",
+   "name": "(PROCEDURE DIVISION entry)"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "92-116",
+   "logic": "Reads the next CARDFILE record into CARD-RECORD. Status '00' sets APPL-RESULT 0; '10' sets 16 and END-OF-FILE 'Y'; any other status displays 'ERROR READING CARDFILE', the file status, and abends.",
+   "name": "1000-CARDFILE-GET-NEXT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "118-134",
+   "logic": "Opens CARDFILE-FILE for input; a status other than '00' displays 'ERROR OPENING CARDFILE', the status, and abends.",
+   "name": "0000-CARDFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "136-152",
+   "logic": "Closes CARDFILE-FILE; a status other than '00' displays 'ERROR CLOSING CARDFILE', the status, and abends.",
+   "name": "9000-CARDFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "154-158",
+   "logic": "Displays 'ABENDING PROGRAM' and calls CEE3ABD with ABCODE 999 and TIMING 0.",
+   "name": "9999-ABEND-PROGRAM"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "161-174",
+   "logic": "Formats IO-STATUS into the 4-digit IO-STATUS-04 (binary conversion of the second byte for non-numeric or '9x' statuses, otherwise zero-padded) and displays 'FILE STATUS IS: NNNN' with it.",
+   "name": "9910-DISPLAY-IO-STATUS"
+  }
+ ],
+ "program": "CBACT02C",
+ "rules": [],
+ "schema": "program-semantics/1",
+ "sme_questions": [],
+ "source_path": "app/cbl/CBACT02C.cbl",
+ "source_sha256": "d290cbbbec1e25859847d9dfe6b28040cd6b09c3b71747e39de7b4713d838e76",
+ "status": "complete",
+ "summary": {
+  "confidence": "Confirmed",
+  "evidence": ["app/cbl/CBACT02C.cbl:1-5", "app/cbl/CBACT02C.cbl:28-45", "app/cbl/CBACT02C.cbl:70-116"],
+  "text": "CBACT02C is a batch COBOL utility that prints the card master file. It opens the indexed card file CARDFILE (150-byte records keyed by card number, layout CVACT02Y) for sequential input, reads every record into CARD-RECORD and DISPLAYs it to SYSOUT until end of file. It writes no files. Any open, read or close error displays the file status as NNNN and abends with code 999 via CEE3ABD."
+ }
+}

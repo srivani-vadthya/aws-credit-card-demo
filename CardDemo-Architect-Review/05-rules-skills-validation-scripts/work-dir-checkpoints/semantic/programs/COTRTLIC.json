@@ -1,0 +1,1012 @@
+{
+ "batch": "B08", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Default branch: re-reads the current page from WS-CA-FIRST-TR-CODE and redisplays; no business decision beyond the paging rules.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:870-878"
+  }, 
+  {
+   "reason": "Technical loop copying the 7 screen rows into working storage; the description transformation inside is covered by BR-COTRTLIC-008.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:940-953"
+  }, 
+  {
+   "reason": "Technical loop over the 7 selection fields; the per-row decisions are covered by BR-COTRTLIC-009.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1017-1020"
+  }, 
+  {
+   "reason": "Screen attribute setup (protect/unprotect select fields, colours, cursor position) for list rows; presentation only.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1333-1373"
+  }, 
+  {
+   "reason": "Copies commarea rows to the output map, blanks the select flag after a completed action and shows the edited description ('*' when blank); presentation. The confirmation-arming part is covered by BR-COTRTLIC-020.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1386-1430"
+  }, 
+  {
+   "reason": "Redisplay and protection/colour of the filter fields and cursor placement; presentation only.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1440-1497"
+  }, 
+  {
+   "reason": "Centres the information message and moves it to INFOMSGO; message housekeeping.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1560-1579"
+  }, 
+  {
+   "reason": "Technical SQLCODE check on OPEN C-TR-TYPE-FORWARD; sets WS-DB2-ERROR and formats a DB2 message.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1949-1966"
+  }, 
+  {
+   "reason": "Technical SQLCODE check on CLOSE C-TR-TYPE-FORWARD; sets WS-DB2-ERROR and formats a DB2 message.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1977-1995"
+  }, 
+  {
+   "reason": "Technical SQLCODE check on OPEN C-TR-TYPE-BACKWARD; sets WS-DB2-ERROR and formats a DB2 message.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:2004-2023"
+  }, 
+  {
+   "reason": "Technical SQLCODE check on CLOSE C-TR-TYPE-BACKWARD; sets WS-DB2-ERROR and formats a DB2 message.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:2033-2051"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "security", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:515-525", 
+   "text": "On first entry (EIBCALEN = 0) and on PF3 exit the program sets CDEMO-USRTYP-ADMIN itself; there is no check that the signed-on user is an administrator before list/update/delete is allowed."
+  }, 
+  {
+   "kind": "data-integrity", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:810-815", 
+   "text": "Inferred: confirmation can be bypassed. PF10 is accepted when CA-DELETE-REQUESTED or CA-UPDATE-REQUESTED is set (580-581) and the selected row number is unchanged (666-678, 1042-1047). If the user was asked to confirm an update ('U') and changes the same row's select code to 'D' before pressing PF10, the EVALUATE branch at 810-815 deletes the row immediately without the 'Delete HIGHLIGHTED row ? Press F10 to confirm' prompt."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:991-994", 
+   "text": "Inferred: the filter-changed check in 1210-EDIT-ARRAY is ineffective. 1200-EDIT-INPUTS performs 1210-EDIT-ARRAY before 1230-EDIT-DESC and 1220-EDIT-TYPECD (965-972), which are the only places that set FLG-TYPEFILTER-CHANGED-YES/NO and FLG-DESCFILTER-CHANGED-YES/NO; INITIALIZE WS-MISC-STORAGE at task start (500-502) leaves the flags as spaces, so the condition at 991 is never true."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1843-1848", 
+   "text": "DCL-TR-DESCRIPTION-LEN is computed as FUNCTION LENGTH of the 50-byte field WS-ROW-TR-DESC-IN, i.e. always 50, not the trimmed length; updated descriptions are therefore stored as 50-character VARCHAR values padded with trailing spaces."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1064-1076", 
+   "text": "The no-change check compares descriptions case-insensitively, so a case-only change is reported as 'No change detected with respect to database values.'; however it does not set INPUT-ERROR, so pressing PF10 still performs the UPDATE."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1706-1717", 
+   "text": "In 8000-READ-FORWARD a failed FETCH (WHEN OTHER) is labelled 'C-TR-TYPE-FORWARD close' in the DB2 message, and a failed look-ahead FETCH (1681-1691) does not set WS-DB2-ERROR, unlike the main fetch."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1746-1749", 
+   "text": "8100-READ-BACKWARDS performs 9500-OPEN-BACKWARD-CURSOR but does not test WS-DB2-ERROR before fetching, unlike 8000-READ-FORWARD (1612-1614)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1777-1789", 
+   "text": "8100-READ-BACKWARDS treats every non-zero SQLCODE, including +100 (fewer than 7 earlier rows, e.g. after deletes by other users), as a DB2 error ('Error on fetch Cursor C-TR-TYPE-BACKWARD'), leaving the top rows of the page empty."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:403-404", 
+   "text": "Inferred: WS-CA-SCREEN-NUM is PIC 9(1); ADD +1 on page 9 truncates to 0 (no ON SIZE ERROR), after which 8000-READ-FORWARD resets it to 1 and the screen reports the first page."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:411-418", 
+   "text": "CA-DELETE-SUCCEEDED and CA-UPDATE-SUCCEEDED share the value LOW-VALUES with CA-DELETE-NOT-REQUESTED / CA-UPDATE-NOT-REQUESTED, so 'succeeded' and 'not requested' are indistinguishable; INITIALIZE of the commarea sets the flags to spaces, matching none of the 88-levels."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:630-652", 
+   "text": "PF2 (add) sets CDEMO-USRTYP-USER (not admin) and the message WS-EXIT-MESSAGE ('PF03 pressed. Exiting') before XCTL to COTRTUPC."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:721-740", 
+   "text": "Inferred: WHEN CCARD-AID-PFK03 in the main EVALUATE is unreachable in normal flow because PF3 already XCTLs away at 591-625. The WHEN at 721-722 duplicates the condition at 726-727 and has no statements of its own."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:279-301", 
+   "text": "Working-storage items never referenced in the procedure division: WS-TYPE-CD-DELETE-FILTER (an SQL IN-list builder), TRAN-TYPE-CD-X/N, LIT-TRANTYPE-TABLE, FLG-ROW-DESCR-CHANGED-*, WS-ROW-SELECT-ERROR."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:931-935", 
+   "text": "RESP of EXEC CICS RECEIVE MAP and SEND MAP is captured in WS-RESP-CD but never tested."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1926-1934", 
+   "text": "Delete failures other than -532 (including +100 row not found) only format a message; INPUT-ERROR is not set and CA-DELETE-REQUESTED is not explicitly re-armed in that branch."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:60", 
+   "text": "Page size WS-MAX-SCREEN-LINES = 7 and schema CARDDEMO in all SQL statements are hard-coded."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "498-897", 
+   "logic": "Initialises work areas, restores CARDDEMO-COMMAREA and WS-THIS-PROGCOMMAREA from DFHCOMMAREA (or initialises them on first entry), maps the AID key and, when re-entered from itself, receives and edits the screen. Handles PF3 (XCTL back to caller or COADM01C) and PF2 (XCTL to COTRTUPC), demotes invalid keys and unconfirmed PF10 to ENTER, checks DB2 connectivity, then EVALUATEs input error, PF7/PF8 paging, ENTER/PF10 for delete or update, or default refresh, and finally goes to COMMON-RETURN.", 
+   "name": "0000-MAIN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "899-915", 
+   "logic": "Stamps CDEMO-FROM-TRANID/PROGRAM and last map/mapset, packs CARDDEMO-COMMAREA plus WS-THIS-PROGCOMMAREA into the 2000-byte WS-COMMAREA and issues EXEC CICS RETURN TRANSID('CTLI') (pseudo-conversational).", 
+   "name": "COMMON-RETURN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "916-918", 
+   "logic": "Exit paragraph for 0000-MAIN.", 
+   "name": "0000-MAIN-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "919-925", 
+   "logic": "Performs 1100-RECEIVE-SCREEN then 1200-EDIT-INPUTS.", 
+   "name": "1000-RECEIVE-MAP"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "926-928", 
+   "logic": "Exit paragraph for 1000-RECEIVE-MAP.", 
+   "name": "1000-RECEIVE-MAP-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "930-954", 
+   "logic": "RECEIVE MAP CTRTLIA/COTRTLI into CTRTLIAI; moves filter fields TRTYPEI/TRDESCI to WS-IN-TYPE-CD/WS-IN-TYPE-DESC. For each of 7 rows copies the select code, type code and (trimmed) description, leaving the description LOW-VALUES when the screen shows '*' or spaces.", 
+   "name": "1100-RECEIVE-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "956-958", 
+   "logic": "Exit paragraph for 1100-RECEIVE-SCREEN.", 
+   "name": "1100-RECEIVE-SCREEN-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "960-976", 
+   "logic": "Sets INPUT-OK and unprotected rows, then performs 1210-EDIT-ARRAY, 1230-EDIT-DESC, 1220-EDIT-TYPECD and 1290-CROSS-EDITS in that order.", 
+   "name": "1200-EDIT-INPUTS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "978-980", 
+   "logic": "Exit paragraph for 1200-EDIT-INPUTS.", 
+   "name": "1200-EDIT-INPUTS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "982-1053", 
+   "logic": "Counts blank, 'D' and 'U' select codes with INSPECT, computes WS-ACTIONS-REQUESTED (7 minus blanks) and WS-VALID-ACTIONS-SELECTED (D+U). Scans rows 7..1: valid codes record I-SELECTED and flag errors when more than one action; 'U' rows get 1211-EDIT-ARRAY-DESC; other non-blank codes set INPUT-ERROR with 'Action code selected is invalid'. Records whether the selected row changed versus WS-CA-ROW-SELECTED and sets 'Please select only 1 action' when more than one action.", 
+   "name": "1210-EDIT-ARRAY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1055-1057", 
+   "logic": "Exit paragraph for 1210-EDIT-ARRAY.", 
+   "name": "1210-EDIT-ARRAY-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1060-1090", 
+   "logic": "For an update row, compares the entered description with the one shown from the database (trimmed, upper-cased, same length); if equal sets 'No change detected with respect to database values.' and exits. Otherwise marks CHANGES-HAVE-OCCURRED and validates the description via 1240-EDIT-ALPHANUM-REQD (name 'Transaction Desc', length 50), storing the result in WS-ARRAY-DESCRIPTION-FLGS.", 
+   "name": "1211-EDIT-ARRAY-DESC"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1092-1094", 
+   "logic": "Exit paragraph for 1211-EDIT-ARRAY-DESC.", 
+   "name": "1211-EDIT-ARRAY-DESC-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1096-1123", 
+   "logic": "Type code filter edit: blank, spaces or zeros means no filter (WS-TYPE-CD-FILTER = zeros). A non-numeric value sets INPUT-ERROR, FLG-TYPEFILTER-NOT-OK, protects the rows and sets 'TYPE CODE FILTER,IF SUPPLIED MUST BE A 2 DIGIT NUMBER'. A numeric value becomes WS-TYPE-CD-FILTER with FLG-TYPEFILTER-ISVALID.", 
+   "name": "1220-EDIT-TYPECD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1125-1140", 
+   "logic": "If the type filter equals the saved WS-CA-TYPE-CD (or both are empty) sets FLG-TYPEFILTER-CHANGED-NO; otherwise resets WS-CA-PAGING-VARIABLES, saves the new filter and sets FLG-TYPEFILTER-CHANGED-YES.", 
+   "name": "1220-EDIT-TYPECD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1142-1164", 
+   "logic": "Description filter edit: blank means no filter; otherwise FLG-DESCFILTER-ISVALID and WS-TYPE-DESC-FILTER is built as '%' + trimmed text + '%' for a LIKE search.", 
+   "name": "1230-EDIT-DESC"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1165-1178", 
+   "logic": "If the description filter equals the saved WS-CA-TYPE-DESC (or both are empty) sets FLG-DESCFILTER-CHANGED-NO; otherwise resets WS-CA-PAGING-VARIABLES, saves it and sets FLG-DESCFILTER-CHANGED-YES.", 
+   "name": "1230-EDIT-DESC-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1181-1234", 
+   "logic": "Generic required alphanumeric edit of WS-EDIT-ALPHANUM-ONLY(1:WS-EDIT-ALPHANUM-LENGTH): empty input sets INPUT-ERROR, FLG-ALPHNANUM-BLANK and '<name> must be supplied.'; after converting letters and digits to spaces, any remaining character sets INPUT-ERROR, FLG-ALPHNANUM-NOT-OK and '<name> can have numbers or alphabets only.'; otherwise FLG-ALPHNANUM-ISVALID. Messages only set when no earlier message exists.", 
+   "name": "1240-EDIT-ALPHANUM-REQD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1235-1237", 
+   "logic": "Exit paragraph for 1240-EDIT-ALPHANUM-REQD.", 
+   "name": "1240-EDIT-ALPHANUM-REQD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1239-1268", 
+   "logic": "When at least one filter is valid, counts matching rows via 9100-CHECK-FILTERS; zero matches sets INPUT-ERROR, marks the supplied filters NOT-OK, protects the select fields and sets 'No Records found for these filter conditions'.", 
+   "name": "1290-CROSS-EDITS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1269-1271", 
+   "logic": "Exit paragraph for 1290-CROSS-EDITS.", 
+   "name": "1290-CROSS-EDITS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1274-1288", 
+   "logic": "Performs 2100-SCREEN-INIT, 2200-SETUP-ARRAY-ATTRIBS, 2300-SCREEN-ARRAY-INIT, 2400-SETUP-SCREEN-ATTRS, 2500-SETUP-MESSAGE and 2600-SEND-SCREEN, each THRU its -EXIT paragraph. The period that ends the paragraph name is on the following line.", 
+   "name": "2000-SEND-MAP"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1290-1292", 
+   "logic": "Exit paragraph for 2000-SEND-MAP.", 
+   "name": "2000-SEND-MAP-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1293-1323", 
+   "logic": "Clears CTRTLIAO and fills titles, transaction id CTLI, program name, current date (MM/DD/YY) and time, page number WS-CA-SCREEN-NUM, and an empty information message.", 
+   "name": "2100-SCREEN-INIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1325-1327", 
+   "logic": "Exit paragraph for 2100-SCREEN-INIT.", 
+   "name": "2100-SCREEN-INIT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1329-1374", 
+   "logic": "Loops I from WS-MAX-SCREEN-LINES down to 1. Each row's description TRTYPDA is protected (DFHBMPRF). When WS-CA-EACH-ROW-OUT(I) is LOW-VALUES or FLG-PROTECT-SELECT-ROWS-YES the select field TRTSELA is protected (DFHBMPRO). Otherwise a WS-ROW-TRTSELECT-ERROR(I) of '1' turns TRTSELC red with the cursor; a single valid DELETE-REQUESTED-ON(I) or UPDATE-REQUESTED-ON(I) with FLG-BAD-ACTIONS-SELECTED-NO highlights the row (DFHNEUTR); for a pending update that is not FLG-UPDATE-COMPLETED the description becomes enterable with the cursor and red when not FLG-ROW-DESCRIPTION-ISVALID; TRTSELA is then made enterable (DFHBMFSE).", 
+   "name": "2200-SETUP-ARRAY-ATTRIBS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1377-1379", 
+   "logic": "Exit paragraph for 2200-SETUP-ARRAY-ATTRIBS.", 
+   "name": "2200-SETUP-ARRAY-ATTRIBS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1383-1431", 
+   "logic": "For each non-empty row moves type code and description to the map. For a single valid 'D' or 'U' it arms CA-DELETE-REQUESTED / CA-UPDATE-REQUESTED, or blanks the select code after a completed delete/update; for an edited update shows the new description ('*' if blank). Moves the select code to TRTSELO.", 
+   "name": "2300-SCREEN-ARRAY-INIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1433-1435", 
+   "logic": "Exit paragraph for 2300-SCREEN-ARRAY-INIT.", 
+   "name": "2300-SCREEN-ARRAY-INIT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1438-1498", 
+   "logic": "Skips the filter redisplay when EIBCALEN = 0 or on first entry from LIT-ADMINPGM. Otherwise moves WS-IN-TYPE-CD to TRTYPEO and WS-IN-TYPE-DESC to TRDESCO: protected and blue (DFHBMASF, DFHBLUE) when WS-ACTIONS-REQUESTED > 0, enterable when the filter flags are valid or not ok, and LOW-VALUES for a zero type code. FLG-TYPEFILTER-NOT-OK and FLG-DESCFILTER-NOT-OK colour the filter DFHRED with the cursor. When INPUT-OK the cursor goes to TRTYPEL unless WS-ACTIONS-REQUESTED > 0 and the key is neither CCARD-AID-PFK07 nor CCARD-AID-PFK08.", 
+   "name": "2400-SETUP-SCREEN-ATTRS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1499-1501", 
+   "logic": "Exit paragraph for 2400-SETUP-SCREEN-ATTRS.", 
+   "name": "2400-SETUP-SCREEN-ATTRS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1504-1581", 
+   "logic": "Chooses the information/error message: delete or update success, confirmation prompts for a single delete/update on ENTER, 'No previous pages to display' on PF7 at page 1, 'No more pages to display' on repeated PF8 at the end (tracking CA-LAST-PAGE-SHOWN), otherwise 'Type U to update, D to delete any record'. Moves WS-RETURN-MSG to ERRMSGO and the centred info message to INFOMSGO.", 
+   "name": "2500-SETUP-MESSAGE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1582-1584", 
+   "logic": "Exit paragraph for 2500-SETUP-MESSAGE.", 
+   "name": "2500-SETUP-MESSAGE-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1587-1596", 
+   "logic": "EXEC CICS SEND MAP CTRTLIA MAPSET COTRTLI FROM CTRTLIAO with CURSOR, ERASE and FREEKB.", 
+   "name": "2600-SEND-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1597-1599", 
+   "logic": "Exit paragraph for 2600-SEND-SCREEN.", 
+   "name": "2600-SEND-SCREEN-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1603-1723", 
+   "logic": "Clears the page rows, opens C-TR-TYPE-FORWARD (TR_TYPE >= WS-START-KEY with optional filters, ORDER BY TR_TYPE) and fetches up to 7 rows into WS-CA-ROW-TR-CODE-OUT/DESC-OUT, recording the first code and setting page 1 if the page number is 0. After the 7th row a look-ahead fetch sets CA-NEXT-PAGE-EXISTS and WS-CA-LAST-TR-CODE, or CA-NEXT-PAGE-NOT-EXISTS. +100 ends the page ('No records found for this search condition.' when page 1 is empty); other SQLCODEs set WS-DB2-ERROR with a formatted message. Closes the cursor.", 
+   "name": "8000-READ-FORWARD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1724-1726", 
+   "logic": "Exit paragraph for 8000-READ-FORWARD.", 
+   "name": "8000-READ-FORWARD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1727-1792", 
+   "logic": "Clears the page rows, sets the last key to the current first key, opens C-TR-TYPE-BACKWARD (TR_TYPE < WS-START-KEY, ORDER BY TR_TYPE DESC) and fills rows 7 down to 1, recording the new first code. Any non-zero SQLCODE sets WS-DB2-ERROR with 'Error on fetch Cursor C-TR-TYPE-BACKWARD'.", 
+   "name": "8100-READ-BACKWARDS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1794-1799", 
+   "logic": "Exit paragraph that also closes the backward cursor via 9550-CLOSE-BACK-CURSOR.", 
+   "name": "8100-READ-BACKWARDS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1801-1833", 
+   "logic": "SELECT COUNT(1) INTO WS-RECORDS-COUNT FROM CARDDEMO.TRANSACTION_TYPE applying the type filter (TR_TYPE =) and description filter (LIKE) when their flags are '1'. Non-zero SQLCODE sets INPUT-ERROR and formats 'Error reading TRANSACTION_TYPE table '.", 
+   "name": "9100-CHECK-FILTERS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1834-1836", 
+   "logic": "Exit paragraph for 9100-CHECK-FILTERS.", 
+   "name": "9100-CHECK-FILTERS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1837-1890", 
+   "logic": "UPDATE CARDDEMO.TRANSACTION_TYPE SET TR_DESCRIPTION = trimmed new description WHERE TR_TYPE = selected row code. SQLCODE 0: CICS SYNCPOINT, CA-UPDATE-SUCCEEDED and 'HIGHLIGHTED row was updated'. +100: re-arm update, 'Record not found. Deleted by others ? '. -911: re-arm, INPUT-ERROR, 'Deadlock. Someone else updating ?'. Other negative: re-arm, 'Update failed with'.", 
+   "name": "9200-UPDATE-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1892-1894", 
+   "logic": "Exit paragraph for 9200-UPDATE-RECORD.", 
+   "name": "9200-UPDATE-RECORD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1896-1936", 
+   "logic": "DELETE FROM CARDDEMO.TRANSACTION_TYPE WHERE TR_TYPE = selected row code. SQLCODE 0: CICS SYNCPOINT, CA-DELETE-SUCCEEDED, 'HIGHLIGHTED row deleted.Hit Enter to continue'. -532: re-arm delete, 'Please delete associated child records first:'. Other: 'Delete failed with message:'.", 
+   "name": "9300-DELETE-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1938-1940", 
+   "logic": "Exit paragraph for 9300-DELETE-RECORD.", 
+   "name": "9300-DELETE-RECORD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1942-1964", 
+   "logic": "OPEN C-TR-TYPE-FORWARD; non-zero SQLCODE sets WS-DB2-ERROR and formats 'C-TR-TYPE-FORWARD Open'.", 
+   "name": "9400-OPEN-FORWARD-CURSOR"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1965-1967", 
+   "logic": "Exit paragraph for 9400-OPEN-FORWARD-CURSOR.", 
+   "name": "9400-OPEN-FORWARD-CURSOR-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1970-1992", 
+   "logic": "CLOSE C-TR-TYPE-FORWARD; non-zero SQLCODE sets WS-DB2-ERROR and formats 'C-TR-TYPE-FORWARD close'.", 
+   "name": "9450-CLOSE-FORWARD-CURSOR"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1993-1995", 
+   "logic": "Exit paragraph for 9450-CLOSE-FORWARD-CURSOR.", 
+   "name": "9450-CLOSE-FORWARD-CURSOR-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1997-2020", 
+   "logic": "OPEN C-TR-TYPE-BACKWARD; non-zero SQLCODE sets WS-DB2-ERROR and formats 'C-TR-TYPE-BACKWARD Open'.", 
+   "name": "9500-OPEN-BACKWARD-CURSOR"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2021-2023", 
+   "logic": "Exit paragraph for 9500-OPEN-BACKWARD-CURSOR.", 
+   "name": "9500-OPEN-BACKWARD-CURSOR-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2026-2048", 
+   "logic": "CLOSE C-TR-TYPE-BACKWARD; non-zero SQLCODE sets WS-DB2-ERROR and formats 'C-TR-TYPE-BACKWARD close'.", 
+   "name": "9550-CLOSE-BACK-CURSOR"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2049-2061", 
+   "logic": "Exit paragraph for 9550-CLOSE-BACK-CURSOR; followed by EXEC SQL INCLUDE CSDB2RPY (9998-PRIMING-QUERY, 9999-FORMAT-DB2-MESSAGE) and COPY CSSTRPFY (YYYY-STORE-PFKEY).", 
+   "name": "9550-CLOSE-BACK-CURSOR-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2066-2076", 
+   "logic": "Debug exit: SEND TEXT of WS-RETURN-MSG and plain EXEC CICS RETURN. Not performed anywhere in the program.", 
+   "name": "SEND-PLAIN-TEXT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2077-2079", 
+   "logic": "Exit paragraph for SEND-PLAIN-TEXT.", 
+   "name": "SEND-PLAIN-TEXT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2085-2095", 
+   "logic": "SEND TEXT of WS-LONG-MSG (800 bytes) and plain EXEC CICS RETURN, ending the conversation; used when the DB2 priming query fails.", 
+   "name": "SEND-LONG-TEXT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2096-2098", 
+   "logic": "Exit paragraph for SEND-LONG-TEXT.", 
+   "name": "SEND-LONG-TEXT-EXIT"
+  }
+ ], 
+ "program": "COTRTLIC", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:47-49"
+   ], 
+   "anchor": "MOVE LIT-ADMINTRANID   TO CDEMO-TO-TRANID", 
+   "category": "routing", 
+   "conditions": "CCARD-AID-PFK03", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-FROM-TRANID", 
+    "CDEMO-FROM-PROGRAM", 
+    "CDEMO-TO-TRANID", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COTRTLIC-001", 
+   "messages": [], 
+   "outcome": "EXEC CICS XCTL PROGRAM(CDEMO-TO-PROGRAM) with CARDDEMO-COMMAREA.", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:591-625", 
+   "statement": "PF3 returns to the calling transaction/program recorded in the commarea; if none is recorded (low-values, spaces or this program itself) it returns to the admin menu CA00 / COADM01C. A CICS SYNCPOINT is taken before the XCTL."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:574-587", 
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1042-1047"
+   ], 
+   "anchor": "AND FLG-ROW-SELECTION-CHANGED-NO", 
+   "category": "decision", 
+   "conditions": "CCARD-AID-PFK10 AND (CA-DELETE-REQUESTED OR CA-UPDATE-REQUESTED) AND FLG-TYPEFILTER-CHANGED-NO AND FLG-DESCFILTER-CHANGED-NO AND FLG-ROW-SELECTION-CHANGED-NO", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-CA-DELETE-FLAG", 
+    "WS-CA-UPDATE-FLAG", 
+    "WS-CA-ROW-SELECTED", 
+    "I-SELECTED"
+   ], 
+   "id": "BR-COTRTLIC-002", 
+   "messages": [], 
+   "outcome": "Otherwise SET CCARD-AID-ENTER TO TRUE.", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:666-678", 
+   "statement": "PF10 (confirm) is honoured only when a delete or update confirmation is pending and neither filter nor the selected row number has changed since the confirmation prompt; otherwise PF10 is processed as ENTER (re-validate and re-prompt). PF10 without a pending request is an invalid key and is also treated as ENTER."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cpy/CSDB2RPY.cpy:21-46"
+   ], 
+   "anchor": "PERFORM SEND-LONG-TEXT", 
+   "category": "error-policy", 
+   "conditions": "WS-DB2-ERROR after 9998-PRIMING-QUERY", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-DB2-PROCESSING-FLAG", 
+    "WS-LONG-MSG"
+   ], 
+   "id": "BR-COTRTLIC-003", 
+   "messages": [
+    "Db2 access failure. "
+   ], 
+   "outcome": "SEND TEXT WS-LONG-MSG and EXEC CICS RETURN (no TRANSID).", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:684-691", 
+   "statement": "Before any list processing the program verifies DB2 connectivity with a priming query; if it fails, the formatted DB2 error is sent as plain text and the conversation ends."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "WHEN INPUT-ERROR", 
+   "category": "error-policy", 
+   "conditions": "INPUT-ERROR", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RETURN-MSG", 
+    "WS-EDIT-TYPE-FLAG", 
+    "WS-EDIT-DESC-FLAG"
+   ], 
+   "id": "BR-COTRTLIC-004", 
+   "messages": [], 
+   "outcome": "WS-RETURN-MSG to CCARD-ERROR-MSG; optional 8000-READ-FORWARD; 2000-SEND-MAP; COMMON-RETURN.", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:698-720", 
+   "statement": "When any input edit fails, the screen is redisplayed with the error message; the current page is re-read from its first key only if neither filter is in error, so rows are not shown for an invalid or non-matching filter."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:657-661"
+   ], 
+   "anchor": "AND CA-NEXT-PAGE-EXISTS", 
+   "category": "decision", 
+   "conditions": "CCARD-AID-PFK07 / CCARD-AID-PFK08 with CA-FIRST-PAGE / CA-NEXT-PAGE-EXISTS", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-CA-SCREEN-NUM", 
+    "WS-CA-FIRST-TR-CODE", 
+    "WS-CA-LAST-TR-CODE", 
+    "WS-CA-NEXT-PAGE-IND"
+   ], 
+   "id": "BR-COTRTLIC-005", 
+   "messages": [], 
+   "outcome": "8000-READ-FORWARD or 8100-READ-BACKWARDS, INITIALIZE WS-EDIT-SELECT-FLAGS, 2000-SEND-MAP.", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:721-790", 
+   "statement": "Paging: PF8 moves to the next page only when CA-NEXT-PAGE-EXISTS, starting at WS-CA-LAST-TR-CODE (the first row of the next page) and incrementing the page number; PF7 on page 1 re-reads the first page ('No previous pages to display'); PF7 on later pages decrements the page number and reads backwards from WS-CA-FIRST-TR-CODE. Row selections are cleared when paging."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1514-1522"
+   ], 
+   "anchor": "PERFORM 9300-DELETE-RECORD", 
+   "category": "decision", 
+   "conditions": "CCARD-AID-ENTER or CCARD-AID-PFK10, WS-DELETES-REQUESTED > 0, CDEMO-FROM-PROGRAM = 'COTRTLIC'", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-DELETES-REQUESTED", 
+    "WS-CA-DELETE-FLAG", 
+    "WS-DELETE-STATUS"
+   ], 
+   "id": "BR-COTRTLIC-006", 
+   "messages": [
+    "Delete HIGHLIGHTED row ? Press F10 to confirm"
+   ], 
+   "outcome": "ENTER: prompt 'Delete HIGHLIGHTED row ? Press F10 to confirm'. PF10: 9300-DELETE-RECORD; on success FLG-DELETED-YES, send map, then INITIALIZE commarea and set first page.", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:794-834", 
+   "statement": "Deleting a transaction type is a two-step action: ENTER with a 'D' selection redisplays the page and asks for confirmation; PF10 with the 'D' selection performs the DELETE. After a successful delete the screen shows the result and the list state is reset so the next interaction starts from the first page."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1523-1531"
+   ], 
+   "anchor": "PERFORM 9200-UPDATE-RECORD", 
+   "category": "decision", 
+   "conditions": "CCARD-AID-ENTER or CCARD-AID-PFK10, WS-UPDATES-REQUESTED > 0, CDEMO-FROM-PROGRAM = 'COTRTLIC'", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-UPDATES-REQUESTED", 
+    "WS-CA-UPDATE-FLAG", 
+    "WS-UPDATE-STATUS"
+   ], 
+   "id": "BR-COTRTLIC-007", 
+   "messages": [
+    "Update HIGHLIGHTED row. Press F10 to save"
+   ], 
+   "outcome": "ENTER: prompt 'Update HIGHLIGHTED row. Press F10 to save'. PF10: 9200-UPDATE-RECORD; on success FLG-UPDATE-COMPLETED; 8000-READ-FORWARD; 2000-SEND-MAP.", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:838-868", 
+   "statement": "Updating a transaction type description is a two-step action: ENTER with a 'U' selection validates the new description and asks for confirmation; PF10 performs the UPDATE and then re-reads and redisplays the current page."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "IF   TRTYPDI(I) = LIT-ASTERISK", 
+   "category": "transformation", 
+   "conditions": "TRTYPDI(I) = '*' or SPACES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "TRTYPDI", 
+    "WS-ROW-TR-DESC-IN"
+   ], 
+   "id": "BR-COTRTLIC-008", 
+   "messages": [], 
+   "outcome": "WS-ROW-TR-DESC-IN(I) = LOW-VALUES, else FUNCTION TRIM(TRTYPDI(I)).", 
+   "paragraph": "1100-RECEIVE-SCREEN", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:944-951", 
+   "statement": "A row description entered as '*' or all spaces is treated as not supplied (LOW-VALUES); any other entry is trimmed of leading and trailing spaces before validation and update."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:180-188"
+   ], 
+   "anchor": "SET WS-MESG-INVALID-ACTION-CODE      TO TRUE", 
+   "category": "validation", 
+   "conditions": "WS-EDIT-SELECT(I) not in ('D','U',' ',LOW-VALUES)", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-EDIT-SELECT", 
+    "WS-ROW-TRTSELECT-ERROR"
+   ], 
+   "id": "BR-COTRTLIC-009", 
+   "messages": [
+    "Action code selected is invalid"
+   ], 
+   "outcome": "INPUT-ERROR, WS-ROW-TRTSELECT-ERROR(I) = '1', FLG-BAD-ACTIONS-SELECTED-YES.", 
+   "paragraph": "1210-EDIT-ARRAY", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1021-1039", 
+   "statement": "The only valid row action codes are 'D' (delete) and 'U' (update); blank means no action. Any other code marks the row in error and rejects the input with 'Action code selected is invalid'. A 'U' row triggers the description edit."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:997-1012", 
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1022-1027"
+   ], 
+   "anchor": "SET WS-MESG-MORE-THAN-1-ACTION           TO TRUE", 
+   "category": "validation", 
+   "conditions": "WS-ACTIONS-REQUESTED = 7 - count(blank selects) in 2 THRU 7 (WS-MORETHAN1ACTION)", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-ACTIONS-REQUESTED", 
+    "WS-NO-ACTIONS-SELECTED", 
+    "WS-DELETES-REQUESTED", 
+    "WS-UPDATES-REQUESTED"
+   ], 
+   "id": "BR-COTRTLIC-010", 
+   "messages": [
+    "Please select only 1 action"
+   ], 
+   "outcome": "INPUT-ERROR with message 'Please select only 1 action'.", 
+   "paragraph": "1210-EDIT-ARRAY", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1049-1052", 
+   "statement": "Only one row action may be requested per screen: if more than one select field is non-blank, the input is rejected with 'Please select only 1 action' and the selected rows are flagged in error."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:965-972"
+   ], 
+   "anchor": "INITIALIZE                 WS-EDIT-SELECT-FLAGS", 
+   "category": "decision", 
+   "conditions": "FLG-TYPEFILTER-CHANGED-YES OR FLG-DESCFILTER-CHANGED-YES", 
+   "confidence": "Inferred", 
+   "data": [
+    "WS-TYPEFILTER-CHANGED", 
+    "WS-DESCFILTER-CHANGED", 
+    "WS-EDIT-SELECT-FLAGS"
+   ], 
+   "id": "BR-COTRTLIC-011", 
+   "messages": [], 
+   "outcome": "WS-EDIT-SELECT-FLAGS initialised; exit 1210-EDIT-ARRAY.", 
+   "paragraph": "1210-EDIT-ARRAY", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:991-994", 
+   "statement": "Intended rule: if either filter was changed, all row selections are discarded and no row action is processed. As coded the change flags are evaluated before the filter edits set them, so this reset does not take effect (see observation)."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "SET WS-MESG-NO-CHANGES-DETECTED   TO TRUE", 
+   "category": "validation", 
+   "conditions": "UPPER(TRIM(WS-ROW-TR-DESC-IN(I))) = UPPER(TRIM(WS-CA-ROW-TR-DESC-OUT(I))) and equal trimmed lengths", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-ROW-TR-DESC-IN", 
+    "WS-CA-ROW-TR-DESC-OUT", 
+    "WS-DATACHANGED-FLAG"
+   ], 
+   "id": "BR-COTRTLIC-012", 
+   "messages": [
+    "No change detected with respect to database values."
+   ], 
+   "outcome": "WS-RETURN-MSG = 'No change detected with respect to database values.'; INPUT-ERROR is not set.", 
+   "paragraph": "1211-EDIT-ARRAY-DESC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1064-1076", 
+   "statement": "An update whose new description equals the current database description, ignoring case and leading/trailing spaces, is reported as 'No change detected with respect to database values.' and the description is not re-validated."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1083-1089", 
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:65-72"
+   ], 
+   "anchor": "' can have numbers or alphabets only.'", 
+   "category": "validation", 
+   "conditions": "Description empty, or contains a character outside LIT-UPPER, LIT-LOWER, LIT-NUMBERS and space", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-EDIT-ALPHANUM-ONLY", 
+    "WS-EDIT-VARIABLE-NAME", 
+    "WS-ARRAY-DESCRIPTION-FLGS"
+   ], 
+   "id": "BR-COTRTLIC-013", 
+   "messages": [
+    " must be supplied.", 
+    " can have numbers or alphabets only."
+   ], 
+   "outcome": "INPUT-ERROR; FLG-ALPHNANUM-BLANK or FLG-ALPHNANUM-NOT-OK; message only if no earlier message.", 
+   "paragraph": "1240-EDIT-ALPHANUM-REQD", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1186-1231", 
+   "statement": "A changed transaction type description is mandatory and may contain only letters (A-Z, a-z), digits and spaces; otherwise the input is rejected with 'Transaction Desc must be supplied.' or 'Transaction Desc can have numbers or alphabets only.' and the description is highlighted."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "IF WS-IN-TYPE-CD  IS NOT NUMERIC", 
+   "category": "validation", 
+   "conditions": "WS-IN-TYPE-CD not LOW-VALUES/SPACES/ZEROS and NOT NUMERIC", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-IN-TYPE-CD", 
+    "WS-TYPE-CD-FILTER", 
+    "WS-EDIT-TYPE-FLAG"
+   ], 
+   "id": "BR-COTRTLIC-014", 
+   "messages": [
+    "TYPE CODE FILTER,IF SUPPLIED MUST BE A 2 DIGIT NUMBER"
+   ], 
+   "outcome": "INPUT-ERROR, FLG-TYPEFILTER-NOT-OK, FLG-PROTECT-SELECT-ROWS-YES; else WS-TYPE-CD-FILTER = WS-IN-TYPE-CD with FLG-TYPEFILTER-ISVALID.", 
+   "paragraph": "1220-EDIT-TYPECD", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1101-1122", 
+   "statement": "The transaction type code filter is optional (blank, spaces or '00' mean no filter); if supplied it must be numeric (2 digits), otherwise the input is rejected with 'TYPE CODE FILTER,IF SUPPLIED MUST BE A 2 DIGIT NUMBER' and row selection is disabled."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1166-1175"
+   ], 
+   "anchor": "INITIALIZE WS-CA-PAGING-VARIABLES", 
+   "category": "decision", 
+   "conditions": "WS-IN-TYPE-CD <> WS-CA-TYPE-CD (unless both empty); WS-IN-TYPE-DESC <> WS-CA-TYPE-DESC (unless both empty)", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-CA-TYPE-CD", 
+    "WS-CA-TYPE-DESC", 
+    "WS-CA-PAGING-VARIABLES"
+   ], 
+   "id": "BR-COTRTLIC-015", 
+   "messages": [], 
+   "outcome": "INITIALIZE WS-CA-PAGING-VARIABLES; FLG-TYPEFILTER-CHANGED-YES / FLG-DESCFILTER-CHANGED-YES.", 
+   "paragraph": "1220-EDIT-TYPECD-EXIT", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1127-1137", 
+   "statement": "Changing either search filter (type code or description) restarts paging: the saved paging state (first/last keys, page number, next-page indicator) is cleared and the new filter value is remembered in the commarea."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:338-352"
+   ], 
+   "anchor": "STRING '%'", 
+   "category": "transformation", 
+   "conditions": "WS-IN-TYPE-DESC not LOW-VALUES/SPACES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-IN-TYPE-DESC", 
+    "WS-TYPE-DESC-FILTER", 
+    "WS-EDIT-DESC-FLAG"
+   ], 
+   "id": "BR-COTRTLIC-016", 
+   "messages": [], 
+   "outcome": "FLG-DESCFILTER-ISVALID; WS-TYPE-DESC-FILTER = '%' || TRIM(input) || '%'.", 
+   "paragraph": "1230-EDIT-DESC", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1147-1163", 
+   "statement": "A non-blank description filter is applied as a 'contains' search: TR_DESCRIPTION LIKE '%<trimmed filter>%'. Inferred: the match is case-sensitive because the column is compared as stored without case folding."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1803-1833"
+   ], 
+   "anchor": "'No Records found for these filter conditions'", 
+   "category": "validation", 
+   "conditions": "FLG-TYPEFILTER-ISVALID OR FLG-DESCFILTER-ISVALID; WS-RECORDS-COUNT = 0", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RECORDS-COUNT", 
+    "WS-TYPE-CD-FILTER", 
+    "WS-TYPE-DESC-FILTER"
+   ], 
+   "id": "BR-COTRTLIC-017", 
+   "messages": [
+    "No Records found for these filter conditions", 
+    "Error reading TRANSACTION_TYPE table "
+   ], 
+   "outcome": "INPUT-ERROR, filter flags NOT-OK, FLG-PROTECT-SELECT-ROWS-YES.", 
+   "paragraph": "1290-CROSS-EDITS", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1241-1267", 
+   "statement": "When a type or description filter is supplied, the program counts matching TRANSACTION_TYPE rows first; if none match, the input is rejected with 'No Records found for these filter conditions', the supplied filters are flagged in error and row selection is disabled. A SQL error on the count is also treated as an input error with a formatted DB2 message."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:338-352", 
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:60"
+   ], 
+   "anchor": "IF WS-ROW-NUMBER = WS-MAX-SCREEN-LINES", 
+   "category": "decision", 
+   "conditions": "C-TR-TYPE-FORWARD: TR_TYPE >= WS-START-KEY, optional TR_TYPE = filter, optional TR_DESCRIPTION LIKE filter, ORDER BY TR_TYPE", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-START-KEY", 
+    "WS-ROW-NUMBER", 
+    "WS-CA-FIRST-TR-CODE", 
+    "WS-CA-LAST-TR-CODE", 
+    "WS-CA-NEXT-PAGE-IND", 
+    "WS-CA-SCREEN-NUM"
+   ], 
+   "id": "BR-COTRTLIC-018", 
+   "messages": [
+    "No records found for this search condition.", 
+    "No more pages for these search conditions"
+   ], 
+   "outcome": "WS-CA-ROW-*-OUT(1..7), WS-CA-FIRST-TR-CODE, WS-CA-LAST-TR-CODE, CA-NEXT-PAGE-EXISTS/NOT-EXISTS.", 
+   "paragraph": "8000-READ-FORWARD", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1609-1719", 
+   "statement": "The list shows at most 7 transaction types per page in ascending TR_TYPE order starting at the page start key and honouring the active filters. An eighth row is fetched only to decide whether a next page exists and to set the next page's start key. If page 1 has no rows the message 'No records found for this search condition.' is shown; pressing PF8 at the end shows 'No more pages for these search conditions'. Other SQL errors stop the read with a formatted DB2 message."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:354-368"
+   ], 
+   "anchor": "FETCH C-TR-TYPE-BACKWARD", 
+   "category": "decision", 
+   "conditions": "C-TR-TYPE-BACKWARD: TR_TYPE < WS-START-KEY with the same filters, ORDER BY TR_TYPE DESC", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-START-KEY", 
+    "WS-ROW-NUMBER", 
+    "WS-CA-FIRST-TR-CODE"
+   ], 
+   "id": "BR-COTRTLIC-019", 
+   "messages": [
+    "Error on fetch Cursor C-TR-TYPE-BACKWARD"
+   ], 
+   "outcome": "Rows filled from 7 to 1; WS-CA-FIRST-TR-CODE updated; on error WS-DB2-ERROR with 'Error on fetch Cursor C-TR-TYPE-BACKWARD'.", 
+   "paragraph": "8100-READ-BACKWARDS", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1735-1791", 
+   "statement": "Page back reads the 7 transaction types immediately before the current page's first code (TR_TYPE < start key, descending) and places them in rows 7 down to 1, so the page is shown in ascending order; the new first code becomes the start key. Any fetch that does not return a row is treated as a DB2 error."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "SET CA-DELETE-REQUESTED      TO TRUE", 
+   "category": "decision", 
+   "conditions": "DELETE-REQUESTED-ON(I) / UPDATE-REQUESTED-ON(I) AND WS-ONLY-1-VALID-ACTION AND FLG-BAD-ACTIONS-SELECTED-NO", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-CA-DELETE-FLAG", 
+    "WS-CA-UPDATE-FLAG", 
+    "WS-EDIT-SELECT"
+   ], 
+   "id": "BR-COTRTLIC-020", 
+   "messages": [], 
+   "outcome": "CA-DELETE-REQUESTED / CA-UPDATE-REQUESTED set, or SELECT-BLANK(I) when FLG-DELETED-YES / FLG-UPDATE-COMPLETED.", 
+   "paragraph": "2300-SCREEN-ARRAY-INIT", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1391-1411", 
+   "statement": "A confirmation is armed (CA-DELETE-REQUESTED or CA-UPDATE-REQUESTED stored in the commarea) only when exactly one valid action is selected and no row has an invalid action; after a completed delete or update the row's select code is cleared."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:237-248"
+   ], 
+   "anchor": "MOVE 'No previous pages to display'", 
+   "category": "decision", 
+   "conditions": "FLG-DELETED-YES, FLG-UPDATE-COMPLETED, filter flags, AID key, CA-FIRST-PAGE, CA-NEXT-PAGE-NOT-EXISTS, CA-LAST-PAGE-SHOWN", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-INFO-MSG", 
+    "WS-RETURN-MSG", 
+    "WS-CA-LAST-PAGE-DISPLAYED"
+   ], 
+   "id": "BR-COTRTLIC-021", 
+   "messages": [
+    "HIGHLIGHTED row deleted.Hit Enter to continue", 
+    "HIGHLIGHTED row was updated", 
+    "No previous pages to display", 
+    "No more pages to display", 
+    "Type U to update, D to delete any record"
+   ], 
+   "outcome": "WS-INFO-MSG / WS-RETURN-MSG set; CA-LAST-PAGE-SHOWN set on first PF8 at the end.", 
+   "paragraph": "2500-SETUP-MESSAGE", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1506-1555", 
+   "statement": "Screen messages follow a fixed priority: delete success, update success, filter errors (no info message), confirmation prompts for a single delete/update on ENTER (only if filters unchanged), 'No previous pages to display' on PF7 at page 1, 'No more pages to display' on PF8 once the last page has already been shown, otherwise the hint 'Type U to update, D to delete any record'."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "WHEN SQLCODE = -911", 
+   "category": "error-policy", 
+   "conditions": "UPDATE CARDDEMO.TRANSACTION_TYPE SET TR_DESCRIPTION = :DCL-TR-DESCRIPTION WHERE TR_TYPE = :DCL-TR-TYPE", 
+   "confidence": "Confirmed", 
+   "data": [
+    "DCL-TR-TYPE", 
+    "DCL-TR-DESCRIPTION-TEXT", 
+    "DCL-TR-DESCRIPTION-LEN", 
+    "SQLCODE"
+   ], 
+   "id": "BR-COTRTLIC-022", 
+   "messages": [
+    "Record not found. Deleted by others ? ", 
+    "Deadlock. Someone else updating ?", 
+    "Update failed with"
+   ], 
+   "outcome": "0: SYNCPOINT, CA-UPDATE-SUCCEEDED, 'HIGHLIGHTED row was updated'; else CA-UPDATE-REQUESTED and formatted DB2 message.", 
+   "paragraph": "9200-UPDATE-RECORD", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1841-1889", 
+   "statement": "A confirmed description update is committed (CICS SYNCPOINT) only on SQLCODE 0. Row not found (+100, 'Record not found. Deleted by others ? '), deadlock/timeout (-911, 'Deadlock. Someone else updating ?', also an input error) and other negative SQLCODEs ('Update failed with') keep the update request pending so the user can retry."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-transaction-type-db2/ddl/TRNTYCAT.ddl:1-7"
+   ], 
+   "anchor": "WHEN SQLCODE = -532", 
+   "category": "data-integrity", 
+   "conditions": "DELETE FROM CARDDEMO.TRANSACTION_TYPE WHERE TR_TYPE = :DCL-TR-TYPE", 
+   "confidence": "Confirmed", 
+   "data": [
+    "DCL-TR-TYPE", 
+    "SQLCODE"
+   ], 
+   "id": "BR-COTRTLIC-023", 
+   "messages": [
+    "Please delete associated child records first:", 
+    "Delete failed with message:"
+   ], 
+   "outcome": "0: SYNCPOINT, CA-DELETE-SUCCEEDED, 'HIGHLIGHTED row deleted.Hit Enter to continue'; -532: CA-DELETE-REQUESTED + message; other: message.", 
+   "paragraph": "9300-DELETE-RECORD", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1902-1936", 
+   "statement": "A transaction type that still has category rows cannot be deleted: SQLCODE -532 (delete restricted by the TRANSACTION_TYPE_CATEGORY foreign key ON DELETE RESTRICT) produces 'Please delete associated child records first:' and keeps the delete pending. A successful delete is committed with CICS SYNCPOINT; any other SQLCODE produces 'Delete failed with message:'."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Should PF10 be refused when the pending confirmation type (update) differs from the action now selected on the same row (delete)? As coded a 'U' prompt followed by changing the code to 'D' and pressing PF10 deletes without a delete prompt.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:810-815"
+  }, 
+  {
+   "question": "Is a case-only description change meant to be blocked? The program reports 'No change detected' but still performs the UPDATE on PF10.", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1064-1076"
+  }, 
+  {
+   "question": "Should the stored TR_DESCRIPTION length be the trimmed length rather than always 50?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1847-1848"
+  }, 
+  {
+   "question": "Which users may run CTLI? The program sets CDEMO-USRTYP-ADMIN itself without checking the signed-on user type; is access control enforced elsewhere (menu COADM01C, CICS security)?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:515-525"
+  }, 
+  {
+   "question": "Should filter changes clear pending row selections (the reset at 991-994 never fires because the change flags are set later in 1200-EDIT-INPUTS)?", 
+   "source": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:991-994"
+  }
+ ], 
+ "source_path": "app/app-transaction-type-db2/cbl/COTRTLIC.cbl", 
+ "source_sha256": "916a5fe2279ad626147990d8f86fac1e4b296f827889485b020cc310b5323601", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:42-60", 
+   "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:338-368", 
+   "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:498-897", 
+   "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:899-915", 
+   "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1603-1799", 
+   "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:1837-1936"
+  ], 
+  "text": "COTRTLIC is a pseudo-conversational CICS/DB2 program (transaction CTLI, map CTRTLIA in mapset COTRTLI) that lists rows of CARDDEMO.TRANSACTION_TYPE, 7 per page, with optional filters on the 2-digit type code and on a description substring. Paging uses two DB2 cursors: a forward cursor (TR_TYPE >= start key, ascending, with an 8th-row look-ahead to detect a next page) for ENTER/PF8 and a backward cursor (TR_TYPE < first key, descending) for PF7. The user can mark one row with 'U' to edit its description or 'D' to delete it; ENTER validates and asks for confirmation and PF10 performs the UPDATE or DELETE, committing with CICS SYNCPOINT and handling not-found, deadlock (-911) and child-row restriction (-532) SQLCODEs. PF2 transfers to COTRTUPC (add/maintain screen) and PF3 returns to the caller or the admin menu COADM01C. A DB2 priming query checks connectivity first; state (filters, paging keys, displayed rows, pending action) is kept in the commarea appended to CARDDEMO-COMMAREA."
+ }
+}

@@ -1,0 +1,326 @@
+{
+ "batches": [
+  {
+   "copybooks_owned": [
+    "AUTHFRDS", 
+    "CCPAUERY", 
+    "CCPAURLY", 
+    "CCPAURQY", 
+    "CIPAUDTY", 
+    "CIPAUSMY", 
+    "IMSFUNCS", 
+    "PADFLPCB", 
+    "PASFLPCB", 
+    "PAUTBPCB"
+   ], 
+   "copybooks_used": [
+    "AUTHFRDS", 
+    "CCPAUERY", 
+    "CCPAURLY", 
+    "CCPAURQY", 
+    "CIPAUDTY", 
+    "CIPAUSMY", 
+    "COCOM01Y", 
+    "COTTL01Y", 
+    "CSDAT01Y", 
+    "CSMSG01Y", 
+    "CSMSG02Y", 
+    "CVACT01Y", 
+    "CVACT02Y", 
+    "CVACT03Y", 
+    "CVCUS01Y", 
+    "IMSFUNCS", 
+    "PADFLPCB", 
+    "PASFLPCB", 
+    "PAUTBPCB"
+   ], 
+   "id": "B01", 
+   "lines": 4344, 
+   "module": "auth", 
+   "programs": [
+    "CBPAUP0C", 
+    "COPAUA0C", 
+    "COPAUS0C", 
+    "COPAUS1C", 
+    "COPAUS2C", 
+    "DBUNLDGS", 
+    "PAUDBLOD", 
+    "PAUDBUNL"
+   ], 
+   "status": "validated", 
+   "updated": "2026-10-20T04:35:12"
+  }, 
+  {
+   "copybooks_owned": [
+    "CODATECN", 
+    "COSTM01", 
+    "CUSTREC", 
+    "CVACT01Y", 
+    "CVACT02Y", 
+    "CVACT03Y", 
+    "CVCUS01Y", 
+    "CVEXPORT", 
+    "CVTRA01Y", 
+    "CVTRA02Y", 
+    "CVTRA05Y", 
+    "CVTRA06Y"
+   ], 
+   "copybooks_used": [
+    "CODATECN", 
+    "COSTM01", 
+    "CUSTREC", 
+    "CVACT01Y", 
+    "CVACT02Y", 
+    "CVACT03Y", 
+    "CVCUS01Y", 
+    "CVEXPORT", 
+    "CVTRA01Y", 
+    "CVTRA02Y", 
+    "CVTRA05Y", 
+    "CVTRA06Y"
+   ], 
+   "id": "B02", 
+   "lines": 4333, 
+   "module": "base", 
+   "programs": [
+    "CBACT01C", 
+    "CBACT02C", 
+    "CBACT03C", 
+    "CBACT04C", 
+    "CBCUS01C", 
+    "CBEXPORT", 
+    "CBIMPORT", 
+    "CBSTM03A", 
+    "CBSTM03B", 
+    "CBTRN01C"
+   ], 
+   "status": "validated", 
+   "updated": "2026-10-20T04:35:12"
+  }, 
+  {
+   "copybooks_owned": [
+    "CVTRA03Y", 
+    "CVTRA04Y", 
+    "CVTRA07Y"
+   ], 
+   "copybooks_used": [
+    "CVACT01Y", 
+    "CVACT03Y", 
+    "CVTRA01Y", 
+    "CVTRA03Y", 
+    "CVTRA04Y", 
+    "CVTRA05Y", 
+    "CVTRA06Y", 
+    "CVTRA07Y"
+   ], 
+   "id": "B03", 
+   "lines": 1380, 
+   "module": "base", 
+   "programs": [
+    "CBTRN02C", 
+    "CBTRN03C"
+   ], 
+   "status": "validated", 
+   "updated": "2026-10-20T04:35:12"
+  }, 
+  {
+   "copybooks_owned": [
+    "COCOM01Y", 
+    "COTTL01Y", 
+    "CSDAT01Y", 
+    "CSLKPCDY", 
+    "CSMSG01Y", 
+    "CSMSG02Y", 
+    "CSSETATY", 
+    "CSSTRPFY", 
+    "CSUSR01Y", 
+    "CSUTLDPY", 
+    "CSUTLDWY", 
+    "CVCRD01Y"
+   ], 
+   "copybooks_used": [
+    "COCOM01Y", 
+    "COTTL01Y", 
+    "CSDAT01Y", 
+    "CSLKPCDY", 
+    "CSMSG01Y", 
+    "CSMSG02Y", 
+    "CSSETATY", 
+    "CSSTRPFY", 
+    "CSUSR01Y", 
+    "CSUTLDPY", 
+    "CSUTLDWY", 
+    "CVACT01Y", 
+    "CVACT03Y", 
+    "CVCRD01Y", 
+    "CVCUS01Y"
+   ], 
+   "id": "B04", 
+   "lines": 4236, 
+   "module": "base", 
+   "programs": [
+    "COACTUPC"
+   ], 
+   "status": "validated", 
+   "updated": "2026-10-20T04:35:12"
+  }, 
+  {
+   "copybooks_owned": [
+    "COADM02Y", 
+    "COMEN02Y"
+   ], 
+   "copybooks_used": [
+    "COADM02Y", 
+    "COCOM01Y", 
+    "COMEN02Y", 
+    "COTTL01Y", 
+    "CSDAT01Y", 
+    "CSMSG01Y", 
+    "CSMSG02Y", 
+    "CSSTRPFY", 
+    "CSUSR01Y", 
+    "CVACT01Y", 
+    "CVACT02Y", 
+    "CVACT03Y", 
+    "CVCRD01Y", 
+    "CVCUS01Y", 
+    "CVTRA05Y"
+   ], 
+   "id": "B05", 
+   "lines": 3869, 
+   "module": "base", 
+   "programs": [
+    "COACTVWC", 
+    "COADM01C", 
+    "COSGN00C", 
+    "COMEN01C", 
+    "COBIL00C", 
+    "COBSWAIT", 
+    "COCRDLIC"
+   ], 
+   "status": "validated", 
+   "updated": "2026-10-20T04:35:12"
+  }, 
+  {
+   "copybooks_owned": [], 
+   "copybooks_used": [
+    "COCOM01Y", 
+    "COTTL01Y", 
+    "CSDAT01Y", 
+    "CSMSG01Y", 
+    "CSMSG02Y", 
+    "CSSTRPFY", 
+    "CSUSR01Y", 
+    "CVACT01Y", 
+    "CVACT02Y", 
+    "CVACT03Y", 
+    "CVCRD01Y", 
+    "CVCUS01Y", 
+    "CVTRA05Y"
+   ], 
+   "id": "B06", 
+   "lines": 4036, 
+   "module": "base", 
+   "programs": [
+    "COCRDSLC", 
+    "COCRDUPC", 
+    "CORPT00C", 
+    "CSUTLDTC", 
+    "COTRN02C"
+   ], 
+   "status": "validated", 
+   "updated": "2026-10-20T04:35:12"
+  }, 
+  {
+   "copybooks_owned": [], 
+   "copybooks_used": [
+    "COCOM01Y", 
+    "COTTL01Y", 
+    "CSDAT01Y", 
+    "CSMSG01Y", 
+    "CSUSR01Y", 
+    "CVTRA05Y"
+   ], 
+   "id": "B07", 
+   "lines": 2796, 
+   "module": "base", 
+   "programs": [
+    "COTRN00C", 
+    "COTRN01C", 
+    "COUSR00C", 
+    "COUSR01C", 
+    "COUSR02C", 
+    "COUSR03C"
+   ], 
+   "status": "validated", 
+   "updated": "2026-10-20T04:35:12"
+  }, 
+  {
+   "copybooks_owned": [
+    "CSDB2RPY", 
+    "CSDB2RWY", 
+    "DCLTRCAT", 
+    "DCLTRTYP"
+   ], 
+   "copybooks_used": [
+    "COCOM01Y", 
+    "COTTL01Y", 
+    "CSDAT01Y", 
+    "CSDB2RPY", 
+    "CSDB2RWY", 
+    "CSMSG01Y", 
+    "CSMSG02Y", 
+    "CSSETATY", 
+    "CSSTRPFY", 
+    "CSUSR01Y", 
+    "CSUTLDWY", 
+    "CVACT02Y", 
+    "CVCRD01Y", 
+    "DCLTRCAT", 
+    "DCLTRTYP"
+   ], 
+   "id": "B08", 
+   "lines": 4037, 
+   "module": "trantype", 
+   "programs": [
+    "COBTUPDT", 
+    "COTRTLIC", 
+    "COTRTUPC"
+   ], 
+   "status": "validated", 
+   "updated": "2026-10-20T04:35:12"
+  }, 
+  {
+   "copybooks_owned": [], 
+   "copybooks_used": [
+    "CVACT01Y"
+   ], 
+   "id": "B09", 
+   "lines": 1144, 
+   "module": "vsammq", 
+   "programs": [
+    "COACCT01", 
+    "CODATE01"
+   ], 
+   "status": "validated", 
+   "updated": "2026-10-20T04:35:12"
+  }, 
+  {
+   "copybooks_owned": [
+    "UNUSED1Y"
+   ], 
+   "copybooks_used": [
+    "UNUSED1Y"
+   ], 
+   "id": "B10", 
+   "lines": 0, 
+   "module": "copybooks-only", 
+   "programs": [], 
+   "status": "validated", 
+   "updated": "2026-10-20T04:35:12"
+  }
+ ], 
+ "budget_lines": 4500, 
+ "created": "2026-10-15T23:25:06", 
+ "schema": "batch-manifest/1"
+}

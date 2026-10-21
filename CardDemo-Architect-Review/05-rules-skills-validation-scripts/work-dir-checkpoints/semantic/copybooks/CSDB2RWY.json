@@ -1,0 +1,83 @@
+{
+ "batch": "B08",
+ "confidence": "Confirmed",
+ "copybook": "CSDB2RWY",
+ "evidence": [
+  "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:18-28",
+  "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:30-45",
+  "app/app-transaction-type-db2/cbl/COTRTLIC.cbl:304"
+ ],
+ "key_fields": [
+  {
+   "name": "WS-DB2-COMMON-VARS",
+   "meaning": "Group of common DB2 working variables.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:21"
+  },
+  {
+   "name": "WS-DISP-SQLCODE",
+   "meaning": "Edited (----9) display form of SQLCODE used when building error messages.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:22"
+  },
+  {
+   "name": "WS-DUMMY-DB2-INT",
+   "meaning": "Receiving host variable for the connectivity priming query SELECT 1 FROM SYSIBM.SYSDUMMY1.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:23-24"
+  },
+  {
+   "name": "WS-DB2-PROCESSING-FLAG",
+   "meaning": "DB2 outcome flag.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:25"
+  },
+  {
+   "name": "WS-DB2-OK",
+   "meaning": "88-level: DB2 call succeeded (value '0').",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:26"
+  },
+  {
+   "name": "WS-DB2-ERROR",
+   "meaning": "88-level: DB2 call failed (value '1').",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:27"
+  },
+  {
+   "name": "WS-DB2-CURRENT-ACTION",
+   "meaning": "72-byte description of the DB2 action in progress, used as message prefix.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:28-29"
+  },
+  {
+   "name": "WS-DSNTIAC-FORMATTED",
+   "meaning": "DSNTIAC output area: length (+720) followed by 10 lines of 72 bytes of formatted SQL error text (WS-DSNTIAC-FMTD-TEXT-LINE).",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:33-38"
+  },
+  {
+   "name": "WS-DSNTIAC-LRECL",
+   "meaning": "Line length (72) passed to DSNTIAC.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:40"
+  },
+  {
+   "name": "WS-DSNTIAC-ERROR",
+   "meaning": "Fallback text 'DSNTIAC CD' plus 2-digit DSNTIAC return code (WS-DSNTIAC-ERR-CD redefining WS-DSNTIAC-ERR-CD-X), used when DSNTIAC itself fails.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:41-45"
+  }
+ ],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "The copybook starts at level 05 with no 01 parent; the including program must place it under its own 01 group.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:21"
+  },
+  {
+   "kind": "anomaly",
+   "text": "WS-DSNTIAC-ERR-CD is PIC 9(02); RETURN-CODE values above 99 would be truncated when assigned in CSDB2RPY.",
+   "source": "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy:44-45"
+  }
+ ],
+ "purpose": "Common DB2 working storage for CardDemo CICS/DB2 programs. It defines the SQLCODE display field, a dummy integer for the connectivity priming query, the WS-DB2-OK / WS-DB2-ERROR processing flag, the current-action message prefix, and the buffers used to call IBM's DSNTIAC message formatter. It is the data counterpart of CSDB2RPY and is included by COTRTLIC (EXEC SQL INCLUDE CSDB2RWY).",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/app-transaction-type-db2/cpy/CSDB2RWY.cpy"
+ ],
+ "source_sha256": [
+  "ba1e08f4f6ab85058742c1a2392e7f110bc59e0080a2d074904211f2d74e0024"
+ ],
+ "status": "complete"
+}

@@ -1,0 +1,58 @@
+{
+ "batch": "B08",
+ "confidence": "Confirmed",
+ "copybook": "DCLTRTYP",
+ "evidence": [
+  "app/app-transaction-type-db2/dcl/DCLTRTYP.dcl:17-27",
+  "app/app-transaction-type-db2/dcl/DCLTRTYP.dcl:28-31",
+  "app/app-transaction-type-db2/dcl/DCLTRTYP.dcl:35-46"
+ ],
+ "key_fields": [
+  {
+   "name": "DCLTRANSACTION-TYPE",
+   "meaning": "DCLGEN host structure for one row of CARDDEMO.TRANSACTION_TYPE.",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRTYP.dcl:35"
+  },
+  {
+   "name": "DCL-TR-TYPE",
+   "meaning": "Host variable for column TR_TYPE CHAR(2) NOT NULL - the 2-character transaction type code (table key per usage in WHERE clauses).",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRTYP.dcl:38"
+  },
+  {
+   "name": "DCL-TR-DESCRIPTION",
+   "meaning": "VARCHAR host group for column TR_DESCRIPTION VARCHAR(50) NOT NULL.",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRTYP.dcl:40"
+  },
+  {
+   "name": "DCL-TR-DESCRIPTION-LEN",
+   "meaning": "Binary length prefix (S9(4) COMP) of the VARCHAR description.",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRTYP.dcl:42-43"
+  },
+  {
+   "name": "DCL-TR-DESCRIPTION-TEXT",
+   "meaning": "Description text, up to 50 characters.",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRTYP.dcl:45-46"
+  }
+ ],
+ "observations": [
+  {
+   "kind": "hardcoded-value",
+   "text": "The table is qualified with the literal schema CARDDEMO and the DCLGEN library comment names a personal dataset (SNJARAO.AWS.DCL); the schema is not parameterised.",
+   "source": "app/app-transaction-type-db2/dcl/DCLTRTYP.dcl:18-19"
+  },
+  {
+   "kind": "anomaly",
+   "text": "COBTUPDT includes this copybook but binds its own X(50) working-storage fields instead of DCL-TR-DESCRIPTION-LEN/TEXT, so the length prefix is not used there.",
+   "source": "app/app-transaction-type-db2/cbl/COBTUPDT.cbl:54"
+  }
+ ],
+ "purpose": "DB2 DCLGEN output for table CARDDEMO.TRANSACTION_TYPE: an EXEC SQL DECLARE TABLE statement with columns TR_TYPE CHAR(2) and TR_DESCRIPTION VARCHAR(50), both NOT NULL, plus the COBOL host structure DCLTRANSACTION-TYPE. It is included (EXEC SQL INCLUDE DCLTRTYP) by the transaction type maintenance programs COBTUPDT, COTRTLIC and COTRTUPC as the host-variable layout for the reference table of transaction type codes and their descriptions.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/app-transaction-type-db2/dcl/DCLTRTYP.dcl"
+ ],
+ "source_sha256": [
+  "4c61f60bdf03ba3cdca9a45eeaae21b645640df270751c884f350db3a8ad2677"
+ ],
+ "status": "complete"
+}

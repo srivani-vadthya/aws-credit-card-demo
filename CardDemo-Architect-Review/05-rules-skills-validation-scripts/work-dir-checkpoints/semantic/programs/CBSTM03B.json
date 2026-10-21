@@ -1,0 +1,142 @@
+{
+ "batch": "B02",
+ "existing_rules_reviewed": [],
+ "no_business_rules_reason": "CBSTM03B is a file-access subroutine for CBSTM03A. Based on the DD name and operation code passed in LK-M03B-AREA it opens, reads (sequentially or by key) or closes one of four indexed files and returns the file status in LK-M03B-RC. It makes no business decisions; its conditional logic is only the dispatch on file name and operation code.",
+ "no_rule_decisions": [
+  {
+   "source": "app/cbl/CBSTM03B.CBL:118-128",
+   "reason": "Technical dispatch on the DD name requested by the caller (TRNXFILE, XREFFILE, CUSTFILE, ACCTFILE); unknown names simply GOBACK."
+  },
+  {
+   "source": "app/cbl/CBSTM03B.CBL:135-148",
+   "reason": "Dispatch on operation code (open, sequential read, close) for TRNXFILE; pure I/O."
+  },
+  {
+   "source": "app/cbl/CBSTM03B.CBL:159-172",
+   "reason": "Dispatch on operation code (open, sequential read, close) for XREFFILE; pure I/O."
+  },
+  {
+   "source": "app/cbl/CBSTM03B.CBL:183-197",
+   "reason": "Dispatch on operation code (open, keyed read, close) for CUSTFILE; pure I/O."
+  },
+  {
+   "source": "app/cbl/CBSTM03B.CBL:208-222",
+   "reason": "Dispatch on operation code (open, keyed read, close) for ACCTFILE; pure I/O."
+  }
+ ],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "For an unknown DD name the routine GOBACKs without setting LK-M03B-RC, so the caller sees whatever it pre-loaded (CBSTM03A moves ZERO, i.e. '00' = success).",
+   "source": "app/cbl/CBSTM03B.CBL:127-131"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Operation codes declared but not implemented (M03B-WRITE 'W', M03B-REWRITE 'Z', and keyed/sequential reads on the 'wrong' file) fall through to the exit paragraph and return the previous file status, which can look like success.",
+   "source": "app/cbl/CBSTM03B.CBL:103-108"
+  },
+  {
+   "kind": "anomaly",
+   "text": "TRNXFILE is keyed by FD-TRNXS-ID = card number (16) + transaction id (16), so a sequential read returns transactions ordered by card number; CBSTM03A relies on this order when grouping transactions by card.",
+   "source": "app/cbl/CBSTM03B.CBL:31-35"
+  }
+ ],
+ "paragraphs": [
+  {
+   "confidence": "Confirmed",
+   "lines": "116-128",
+   "logic": "EVALUATEs LK-M03B-DD and performs the matching file routine (1000 TRNXFILE, 2000 XREFFILE, 3000 CUSTFILE, 4000 ACCTFILE) THRU its x999 exit; any other DD name goes to 9999-GOBACK.",
+   "name": "0000-START"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "130-131",
+   "logic": "Returns to the caller (GOBACK).",
+   "name": "9999-GOBACK"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "133-149",
+   "logic": "For TRNX-FILE: on M03B-OPEN opens it for input, on M03B-READ reads the next record into LK-M03B-FLDT, on M03B-CLOSE closes it; each branch jumps to 1900-EXIT.",
+   "name": "1000-TRNXFILE-PROC"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "151-152",
+   "logic": "Moves TRNXFILE-STATUS to LK-M03B-RC.",
+   "name": "1900-EXIT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "154-155",
+   "logic": "End of the TRNXFILE PERFORM THRU range (EXIT).",
+   "name": "1999-EXIT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "157-173",
+   "logic": "For XREF-FILE: on M03B-OPEN opens it for input, on M03B-READ reads the next record into LK-M03B-FLDT, on M03B-CLOSE closes it; each branch jumps to 2900-EXIT.",
+   "name": "2000-XREFFILE-PROC"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "175-176",
+   "logic": "Moves XREFFILE-STATUS to LK-M03B-RC.",
+   "name": "2900-EXIT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "178-179",
+   "logic": "End of the XREFFILE PERFORM THRU range (EXIT).",
+   "name": "2999-EXIT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "181-198",
+   "logic": "For CUST-FILE: on M03B-OPEN opens it for input; on M03B-READ-K moves LK-M03B-KEY(1:LK-M03B-KEY-LN) to FD-CUST-ID and reads randomly into LK-M03B-FLDT; on M03B-CLOSE closes it; each branch jumps to 3900-EXIT.",
+   "name": "3000-CUSTFILE-PROC"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "200-201",
+   "logic": "Moves CUSTFILE-STATUS to LK-M03B-RC.",
+   "name": "3900-EXIT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "203-204",
+   "logic": "End of the CUSTFILE PERFORM THRU range (EXIT).",
+   "name": "3999-EXIT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "206-223",
+   "logic": "For ACCT-FILE: on M03B-OPEN opens it for input; on M03B-READ-K moves LK-M03B-KEY(1:LK-M03B-KEY-LN) to FD-ACCT-ID and reads randomly into LK-M03B-FLDT; on M03B-CLOSE closes it; each branch jumps to 4900-EXIT.",
+   "name": "4000-ACCTFILE-PROC"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "225-226",
+   "logic": "Moves ACCTFILE-STATUS to LK-M03B-RC.",
+   "name": "4900-EXIT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "228-229",
+   "logic": "End of the ACCTFILE PERFORM THRU range (EXIT).",
+   "name": "4999-EXIT"
+  }
+ ],
+ "program": "CBSTM03B",
+ "rules": [],
+ "schema": "program-semantics/1",
+ "sme_questions": [],
+ "source_path": "app/cbl/CBSTM03B.CBL",
+ "source_sha256": "ac004f7f40dcb3f2a14dfb83a743f83fed9383675bc93452f3424c40cb6475a7",
+ "status": "complete",
+ "summary": {
+  "confidence": "Confirmed",
+  "evidence": ["app/cbl/CBSTM03B.CBL:4-8", "app/cbl/CBSTM03B.CBL:30-53", "app/cbl/CBSTM03B.CBL:99-128"],
+  "text": "CBSTM03B is a batch COBOL subroutine called by the statement program CBSTM03A to perform all file I/O. The caller passes a DD name (TRNXFILE, XREFFILE, CUSTFILE or ACCTFILE), an operation code (O open, R sequential read, K keyed read, C close), an optional key and key length. The routine opens the file for input, reads the next record (transaction and cross-reference files, sequential) or reads by key (customer and account files, random), or closes it, returning the record in the 1000-byte LK-M03B-FLDT area and the two-byte file status in LK-M03B-RC. It writes no files and performs no business logic."
+ }
+}

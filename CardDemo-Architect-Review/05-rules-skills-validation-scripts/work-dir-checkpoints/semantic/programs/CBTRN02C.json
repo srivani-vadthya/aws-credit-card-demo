@@ -1,0 +1,506 @@
+{
+ "batch": "B03",
+ "existing_rules_reviewed": [],
+ "no_business_rules_reason": null,
+ "no_rule_decisions": [],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "The over-limit check (reason 102) and the expiration check (reason 103) are two independent IF statements executed one after the other; when both fail, the second MOVE overwrites the first, so the reject trailer only reports 103 'TRANSACTION RECEIVED AFTER ACCT EXPIRATION' and the over-limit condition is lost. Confirmed from code order.",
+   "source": "app/cbl/CBTRN02C.cbl:407-420"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Credit-limit exposure is computed as ACCT-CURR-CYC-CREDIT - ACCT-CURR-CYC-DEBIT + DALYTRAN-AMT, not from ACCT-CURR-BAL. Because 2800-UPDATE-ACCOUNT-REC adds negative amounts into ACCT-CURR-CYC-DEBIT (line 551), the cycle-debit field accumulates negative values and subtracting it increases WS-TEMP-BAL. Inferred: chain is line 551 (negative amounts added to debit) + line 403-405 (debit subtracted); whether this is intended depends on the sign convention of the loaded account data.",
+   "source": "app/cbl/CBTRN02C.cbl:403-405"
+  },
+  {
+   "kind": "anomaly",
+   "text": "If the account REWRITE fails with INVALID KEY, reason 109 'ACCOUNT RECORD NOT FOUND' is moved to WS-VALIDATION-FAIL-REASON, but the program never tests it afterwards: no reject record is written, the reject count is not incremented, the transaction is still written to TRANSACT-FILE by 2900 and the category balance was already updated by 2700. Confirmed: 2000-POST-TRANSACTION performs 2800 then 2900 unconditionally (lines 440-442).",
+   "source": "app/cbl/CBTRN02C.cbl:554-559"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Posting updates are not atomic: TCATBAL is written/rewritten first, then the account is rewritten, then the transaction is written. A failure writing TRANSACT-FILE (e.g. duplicate TRAN-ID) abends the program after the balances were already updated, with no backout logic in the program. Inferred from the perform order and the abend path in 2900.",
+   "source": "app/cbl/CBTRN02C.cbl:440-442"
+  },
+  {
+   "kind": "anomaly",
+   "text": "TRANSACT-FILE (an indexed file, DD TRANFILE = AWS.M2.CARDDEMO.TRANSACT.VSAM.KSDS with DISP=SHR in POSTTRAN.jcl:28-29) is opened OUTPUT, not I-O or EXTEND. Opening a populated KSDS for OUTPUT normally requires an empty or REUSE cluster; the effect on previously posted transactions cannot be settled from the code. Inferred.",
+   "source": "app/cbl/CBTRN02C.cbl:254-258"
+  },
+  {
+   "kind": "anomaly",
+   "text": "On an error closing the daily rejects file, the paragraph displays XREFFILE-STATUS instead of DALYREJS-STATUS, so the diagnostic file status shown is wrong. Confirmed.",
+   "source": "app/cbl/CBTRN02C.cbl:647-651"
+  },
+  {
+   "kind": "unchecked-io",
+   "text": "The READs of XREF-FILE and ACCOUNT-FILE and the REWRITE of ACCOUNT-FILE are only guarded by INVALID KEY; other non-zero file statuses (e.g. hardware or logic errors) are not tested, so processing continues with whatever is in CARD-XREF-RECORD/ACCOUNT-RECORD. Confirmed: no status test after these statements.",
+   "source": "app/cbl/CBTRN02C.cbl:382-391"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Validation does not check ACCT-ACTIVE-STATUS (defined in CVACT01Y) or any card status; only xref existence, account existence, credit limit and expiration date are validated. The program itself marks the spot with the comment 'ADD MORE VALIDATIONS HERE' (secondary evidence). Confirmed absence in code.",
+   "source": "app/cbl/CBTRN02C.cbl:370-378"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The expiration check compares ACCT-EXPIRAION-DATE PIC X(10) with the first 10 characters of DALYTRAN-ORIG-TS as character strings; it is only correct if both are in the same YYYY-MM-DD layout. The field name itself is misspelled (EXPIRAION) in CVACT01Y. Inferred.",
+   "source": "app/cbl/CBTRN02C.cbl:414"
+  },
+  {
+   "kind": "hardcoded-value",
+   "text": "Reject reason codes 100, 101, 102, 103 and 109 and their descriptions are hard-coded literals; abend code 999 is hard-coded for every fatal I/O error.",
+   "source": "app/cbl/CBTRN02C.cbl:707-711"
+  },
+  {
+   "kind": "anomaly",
+   "text": "DALYTRAN-PROC-TS from the input record is ignored; TRAN-PROC-TS is always set to the current system timestamp at posting time. DB2-MIL receives COB-MIL (hundredths of a second from FUNCTION CURRENT-DATE) and the last 4 positions are forced to '0000'. Confirmed.",
+   "source": "app/cbl/CBTRN02C.cbl:692-703"
+  }
+ ],
+ "paragraphs": [
+  {
+   "confidence": "Confirmed",
+   "lines": "194-234",
+   "logic": "Opens the six files (DALYTRAN, TRANFILE, XREFFILE, DALYREJS, ACCTFILE, TCATBALF), then reads DALYTRAN until END-OF-FILE = 'Y'. For each record it adds 1 to WS-TRANSACTION-COUNT, clears the validation trailer, performs 1500-VALIDATE-TRAN, and either posts the transaction (WS-VALIDATION-FAIL-REASON = 0) or adds 1 to WS-REJECT-COUNT and writes a reject record. After closing all files it displays the processed/rejected counts and sets RETURN-CODE 4 when WS-REJECT-COUNT > 0.",
+   "name": "(PROCEDURE DIVISION entry)"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "236-252",
+   "logic": "Opens DALYTRAN-FILE for INPUT; any status other than '00' displays 'ERROR OPENING DALYTRAN', shows the file status and abends.",
+   "name": "0000-DALYTRAN-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "254-270",
+   "logic": "Opens TRANSACT-FILE (DD TRANFILE) for OUTPUT; a status other than '00' displays 'ERROR OPENING TRANSACTION FILE' and abends.",
+   "name": "0100-TRANFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "273-289",
+   "logic": "Opens XREF-FILE (card cross-reference KSDS) for INPUT; a status other than '00' displays 'ERROR OPENING CROSS REF FILE' and abends.",
+   "name": "0200-XREFFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "291-307",
+   "logic": "Opens DALYREJS-FILE for OUTPUT; a status other than '00' displays 'ERROR OPENING DALY REJECTS FILE' and abends.",
+   "name": "0300-DALYREJS-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "309-325",
+   "logic": "Opens ACCOUNT-FILE for I-O (read and rewrite); a status other than '00' displays 'ERROR OPENING ACCOUNT MASTER FILE' and abends.",
+   "name": "0400-ACCTFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "327-343",
+   "logic": "Opens TCATBAL-FILE (transaction category balance KSDS) for I-O; a status other than '00' displays 'ERROR OPENING TRANSACTION BALANCE FILE' and abends.",
+   "name": "0500-TCATBALF-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "345-369",
+   "logic": "Reads the next DALYTRAN record into DALYTRAN-RECORD. Status '00' continues, '10' sets END-OF-FILE to 'Y', any other status displays 'ERROR READING DALYTRAN FILE' and abends.",
+   "name": "1000-DALYTRAN-GET-NEXT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "370-378",
+   "logic": "Performs the card cross-reference lookup and, only if WS-VALIDATION-FAIL-REASON is still 0, the account lookup with credit-limit and expiration checks.",
+   "name": "1500-VALIDATE-TRAN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "380-392",
+   "logic": "Reads XREF-FILE by DALYTRAN-CARD-NUM into CARD-XREF-RECORD; on INVALID KEY sets reason 100 'INVALID CARD NUMBER FOUND'.",
+   "name": "1500-A-LOOKUP-XREF"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "393-422",
+   "logic": "Reads ACCOUNT-FILE by XREF-ACCT-ID into ACCOUNT-RECORD; on INVALID KEY sets reason 101 'ACCOUNT RECORD NOT FOUND'. If found, computes WS-TEMP-BAL = ACCT-CURR-CYC-CREDIT - ACCT-CURR-CYC-DEBIT + DALYTRAN-AMT and sets reason 102 'OVERLIMIT TRANSACTION' when ACCT-CREDIT-LIMIT < WS-TEMP-BAL, then sets reason 103 'TRANSACTION RECEIVED AFTER ACCT EXPIRATION' when ACCT-EXPIRAION-DATE < DALYTRAN-ORIG-TS(1:10).",
+   "name": "1500-B-LOOKUP-ACCT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "424-444",
+   "logic": "Builds TRAN-RECORD from the DALYTRAN fields (id, type, category, source, description, amount, merchant data, card number, origin timestamp) and sets TRAN-PROC-TS to the current timestamp in DB2 format. Then updates the category balance, updates the account record and writes the transaction master record.",
+   "name": "2000-POST-TRANSACTION"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "446-465",
+   "logic": "Writes a 430-byte reject record to DALYREJS: the 350-byte DALYTRAN-RECORD followed by the 80-byte trailer (4-digit WS-VALIDATION-FAIL-REASON and 76-byte description). A write status other than '00' displays 'ERROR WRITING TO REJECTS FILE' and abends.",
+   "name": "2500-WRITE-REJECT-REC"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "467-501",
+   "logic": "Builds the TCATBAL key from XREF-ACCT-ID, DALYTRAN-TYPE-CD and DALYTRAN-CAT-CD and reads TCATBAL-FILE; INVALID KEY sets WS-CREATE-TRANCAT-REC to 'Y'. Status '00' or '23' is accepted, anything else abends with 'ERROR READING TRANSACTION BALANCE FILE'. Then creates a new balance record when the flag is 'Y', otherwise updates the existing one.",
+   "name": "2700-UPDATE-TCATBAL"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "503-524",
+   "logic": "Initializes TRAN-CAT-BAL-RECORD, sets the key (account, type, category), adds DALYTRAN-AMT to the zeroed TRAN-CAT-BAL and WRITEs the new record; a status other than '00' displays 'ERROR WRITING TRANSACTION BALANCE FILE' and abends.",
+   "name": "2700-A-CREATE-TCATBAL-REC"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "526-542",
+   "logic": "Adds DALYTRAN-AMT to TRAN-CAT-BAL of the record just read and REWRITEs it; a status other than '00' displays 'ERROR REWRITING TRANSACTION BALANCE FILE' and abends.",
+   "name": "2700-B-UPDATE-TCATBAL-REC"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "545-560",
+   "logic": "Adds DALYTRAN-AMT to ACCT-CURR-BAL; adds it to ACCT-CURR-CYC-CREDIT when the amount is >= 0, otherwise to ACCT-CURR-CYC-DEBIT; then REWRITEs the account. On INVALID KEY it sets reason 109 'ACCOUNT RECORD NOT FOUND', which is not acted on afterwards.",
+   "name": "2800-UPDATE-ACCOUNT-REC"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "562-579",
+   "logic": "Writes TRAN-RECORD to TRANSACT-FILE; a status other than '00' displays 'ERROR WRITING TO TRANSACTION FILE' and abends.",
+   "name": "2900-WRITE-TRANSACTION-FILE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "582-598",
+   "logic": "Closes DALYTRAN-FILE; a status other than '00' displays 'ERROR CLOSING DALYTRAN FILE' and abends.",
+   "name": "9000-DALYTRAN-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "600-616",
+   "logic": "Closes TRANSACT-FILE; a status other than '00' displays 'ERROR CLOSING TRANSACTION FILE' and abends.",
+   "name": "9100-TRANFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "619-635",
+   "logic": "Closes XREF-FILE; a status other than '00' displays 'ERROR CLOSING CROSS REF FILE' and abends.",
+   "name": "9200-XREFFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "637-653",
+   "logic": "Closes DALYREJS-FILE; a status other than '00' displays 'ERROR CLOSING DAILY REJECTS FILE' and abends, but moves XREFFILE-STATUS (not DALYREJS-STATUS) into IO-STATUS for the diagnostic.",
+   "name": "9300-DALYREJS-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "655-671",
+   "logic": "Closes ACCOUNT-FILE; a status other than '00' displays 'ERROR CLOSING ACCOUNT FILE' and abends.",
+   "name": "9400-ACCTFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "674-690",
+   "logic": "Closes TCATBAL-FILE; a status other than '00' displays 'ERROR CLOSING TRANSACTION BALANCE FILE' and abends.",
+   "name": "9500-TCATBALF-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "692-705",
+   "logic": "Moves FUNCTION CURRENT-DATE into COBOL-TS and reformats it into the 26-byte DB2-FORMAT-TS 'YYYY-MM-DD-HH.MM.SS.hh0000', inserting '-' and '.' separators and forcing the last four characters to '0000'.",
+   "name": "Z-GET-DB2-FORMAT-TIMESTAMP"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "707-711",
+   "logic": "Displays 'ABENDING PROGRAM' and calls the Language Environment service CEE3ABD with ABCODE 999 and TIMING 0 to abend the step.",
+   "name": "9999-ABEND-PROGRAM"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "714-727",
+   "logic": "Formats IO-STATUS into the 4-character IO-STATUS-04 and displays 'FILE STATUS IS: NNNN'; when the status is non-numeric or starts with '9', the second byte is converted from binary to a 3-digit number.",
+   "name": "9910-DISPLAY-IO-STATUS"
+  }
+ ],
+ "program": "CBTRN02C",
+ "rules": [
+  {
+   "id": "BR-CBTRN02C-001",
+   "category": "validation",
+   "statement": "Each daily transaction's card number (DALYTRAN-CARD-NUM) must exist in the card cross-reference file; otherwise the transaction is rejected with reason 100 'INVALID CARD NUMBER FOUND'.",
+   "paragraph": "1500-A-LOOKUP-XREF",
+   "source": "app/cbl/CBTRN02C.cbl:382-391",
+   "anchor": "MOVE 100 TO WS-VALIDATION-FAIL-REASON",
+   "additional_sources": [],
+   "conditions": "No XREF-FILE record keyed by DALYTRAN-CARD-NUM (INVALID KEY).",
+   "outcome": "WS-VALIDATION-FAIL-REASON = 100, description 'INVALID CARD NUMBER FOUND'; the transaction is later written to DALYREJS.",
+   "data": ["DALYTRAN-CARD-NUM", "FD-XREF-CARD-NUM", "WS-VALIDATION-FAIL-REASON", "WS-VALIDATION-FAIL-REASON-DESC"],
+   "messages": ["INVALID CARD NUMBER FOUND"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-002",
+   "category": "decision",
+   "statement": "Account-level validation (account existence, credit limit, expiration) is only performed when the card cross-reference lookup succeeded.",
+   "paragraph": "1500-VALIDATE-TRAN",
+   "source": "app/cbl/CBTRN02C.cbl:372-376",
+   "anchor": "IF WS-VALIDATION-FAIL-REASON = 0 PERFORM 1500-B-LOOKUP-ACCT",
+   "additional_sources": [],
+   "conditions": "WS-VALIDATION-FAIL-REASON = 0 after the xref lookup.",
+   "outcome": "1500-B-LOOKUP-ACCT is performed; otherwise the reason 100 stands.",
+   "data": ["WS-VALIDATION-FAIL-REASON"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-003",
+   "category": "validation",
+   "statement": "The account referenced by the card cross-reference (XREF-ACCT-ID) must exist in the account master; otherwise the transaction is rejected with reason 101 'ACCOUNT RECORD NOT FOUND'.",
+   "paragraph": "1500-B-LOOKUP-ACCT",
+   "source": "app/cbl/CBTRN02C.cbl:394-399",
+   "anchor": "MOVE 101 TO WS-VALIDATION-FAIL-REASON",
+   "additional_sources": [],
+   "conditions": "No ACCOUNT-FILE record keyed by XREF-ACCT-ID (INVALID KEY).",
+   "outcome": "WS-VALIDATION-FAIL-REASON = 101, description 'ACCOUNT RECORD NOT FOUND'.",
+   "data": ["XREF-ACCT-ID", "FD-ACCT-ID", "WS-VALIDATION-FAIL-REASON"],
+   "messages": ["ACCOUNT RECORD NOT FOUND"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-004",
+   "category": "calculation",
+   "statement": "The projected cycle balance used for the credit-limit check is WS-TEMP-BAL = ACCT-CURR-CYC-CREDIT - ACCT-CURR-CYC-DEBIT + DALYTRAN-AMT (the account's current balance ACCT-CURR-BAL is not used).",
+   "paragraph": "1500-B-LOOKUP-ACCT",
+   "source": "app/cbl/CBTRN02C.cbl:403-405",
+   "anchor": "COMPUTE WS-TEMP-BAL = ACCT-CURR-CYC-CREDIT - ACCT-CURR-CYC-DEBIT + DALYTRAN-AMT",
+   "additional_sources": [],
+   "conditions": "Account record found.",
+   "outcome": "WS-TEMP-BAL holds the projected balance compared against the credit limit.",
+   "data": ["WS-TEMP-BAL", "ACCT-CURR-CYC-CREDIT", "ACCT-CURR-CYC-DEBIT", "DALYTRAN-AMT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-005",
+   "category": "validation",
+   "statement": "A transaction is rejected as over-limit (reason 102 'OVERLIMIT TRANSACTION') when the account credit limit is less than the projected cycle balance WS-TEMP-BAL; a projected balance equal to the limit is allowed.",
+   "paragraph": "1500-B-LOOKUP-ACCT",
+   "source": "app/cbl/CBTRN02C.cbl:407-413",
+   "anchor": "IF ACCT-CREDIT-LIMIT >= WS-TEMP-BAL",
+   "additional_sources": [],
+   "conditions": "ACCT-CREDIT-LIMIT < WS-TEMP-BAL.",
+   "outcome": "WS-VALIDATION-FAIL-REASON = 102, description 'OVERLIMIT TRANSACTION' (may be overwritten by reason 103).",
+   "data": ["ACCT-CREDIT-LIMIT", "WS-TEMP-BAL", "WS-VALIDATION-FAIL-REASON"],
+   "messages": ["OVERLIMIT TRANSACTION"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-006",
+   "category": "validation",
+   "statement": "A transaction whose origination date (first 10 characters of DALYTRAN-ORIG-TS) is later than the account expiration date ACCT-EXPIRAION-DATE is rejected with reason 103 'TRANSACTION RECEIVED AFTER ACCT EXPIRATION'; a transaction on the expiration date itself is accepted. This check runs even if the over-limit check already failed and then overrides reason 102.",
+   "paragraph": "1500-B-LOOKUP-ACCT",
+   "source": "app/cbl/CBTRN02C.cbl:414-420",
+   "anchor": "IF ACCT-EXPIRAION-DATE >= DALYTRAN-ORIG-TS (1:10)",
+   "additional_sources": [],
+   "conditions": "ACCT-EXPIRAION-DATE < DALYTRAN-ORIG-TS(1:10), compared as character strings.",
+   "outcome": "WS-VALIDATION-FAIL-REASON = 103, description 'TRANSACTION RECEIVED AFTER ACCT EXPIRATION'.",
+   "data": ["ACCT-EXPIRAION-DATE", "DALYTRAN-ORIG-TS", "WS-VALIDATION-FAIL-REASON"],
+   "messages": ["TRANSACTION RECEIVED AFTER ACCT EXPIRATION"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-007",
+   "category": "decision",
+   "statement": "A daily transaction that passes all validations (reason code 0) is posted; any non-zero reason code causes the transaction to be counted as rejected and written to the daily rejects file instead of being posted.",
+   "paragraph": "(PROCEDURE DIVISION entry)",
+   "source": "app/cbl/CBTRN02C.cbl:211-216",
+   "anchor": "IF WS-VALIDATION-FAIL-REASON = 0 PERFORM 2000-POST-TRANSACTION",
+   "additional_sources": [],
+   "conditions": "WS-VALIDATION-FAIL-REASON = 0 after 1500-VALIDATE-TRAN.",
+   "outcome": "Posted via 2000-POST-TRANSACTION; otherwise WS-REJECT-COUNT + 1 and 2500-WRITE-REJECT-REC.",
+   "data": ["WS-VALIDATION-FAIL-REASON", "WS-REJECT-COUNT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-008",
+   "category": "error-policy",
+   "statement": "A rejected transaction is written to DALYREJS as the full 350-byte input record followed by an 80-byte validation trailer containing the 4-digit reason code and its 76-character description.",
+   "paragraph": "2500-WRITE-REJECT-REC",
+   "source": "app/cbl/CBTRN02C.cbl:447-451",
+   "anchor": "MOVE WS-VALIDATION-TRAILER TO VALIDATION-TRAILER",
+   "additional_sources": ["app/cbl/CBTRN02C.cbl:176-182"],
+   "conditions": "Transaction failed validation.",
+   "outcome": "One REJECT-RECORD written to DALYREJS (LRECL 430).",
+   "data": ["REJECT-TRAN-DATA", "VALIDATION-TRAILER", "WS-VALIDATION-FAIL-REASON", "WS-VALIDATION-FAIL-REASON-DESC"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-009",
+   "category": "error-policy",
+   "statement": "When at least one transaction was rejected, the job step ends with return code 4 (warning) instead of 0.",
+   "paragraph": "(PROCEDURE DIVISION entry)",
+   "source": "app/cbl/CBTRN02C.cbl:229-231",
+   "anchor": "IF WS-REJECT-COUNT > 0 MOVE 4 TO RETURN-CODE",
+   "additional_sources": [],
+   "conditions": "WS-REJECT-COUNT > 0 at end of run.",
+   "outcome": "RETURN-CODE = 4.",
+   "data": ["WS-REJECT-COUNT", "RETURN-CODE"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-010",
+   "category": "transformation",
+   "statement": "A posted transaction record copies all business fields from the daily transaction record and stamps TRAN-PROC-TS with the current system timestamp in DB2 format (the input DALYTRAN-PROC-TS is not used).",
+   "paragraph": "2000-POST-TRANSACTION",
+   "source": "app/cbl/CBTRN02C.cbl:425-438",
+   "anchor": "MOVE DB2-FORMAT-TS TO TRAN-PROC-TS",
+   "additional_sources": ["app/cbl/CBTRN02C.cbl:692-703"],
+   "conditions": "Transaction passed validation.",
+   "outcome": "TRAN-RECORD populated and later written to TRANSACT-FILE.",
+   "data": ["TRAN-RECORD", "TRAN-PROC-TS", "DALYTRAN-ORIG-TS", "DB2-FORMAT-TS"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-011",
+   "category": "decision",
+   "statement": "Category balances are kept per account + transaction type + transaction category. If no balance record exists for that key, a new one is created; otherwise the existing record is updated.",
+   "paragraph": "2700-UPDATE-TCATBAL",
+   "source": "app/cbl/CBTRN02C.cbl:495-499",
+   "anchor": "IF WS-CREATE-TRANCAT-REC = 'Y'",
+   "additional_sources": ["app/cbl/CBTRN02C.cbl:469-478"],
+   "conditions": "TCATBAL READ by key (XREF-ACCT-ID, DALYTRAN-TYPE-CD, DALYTRAN-CAT-CD) returned INVALID KEY.",
+   "outcome": "2700-A-CREATE-TCATBAL-REC when not found, else 2700-B-UPDATE-TCATBAL-REC.",
+   "data": ["FD-TRANCAT-ACCT-ID", "FD-TRANCAT-TYPE-CD", "FD-TRANCAT-CD", "WS-CREATE-TRANCAT-REC"],
+   "messages": ["TCATBAL record not found for key : "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-012",
+   "category": "calculation",
+   "statement": "A newly created category balance record starts at zero and is set to the transaction amount.",
+   "paragraph": "2700-A-CREATE-TCATBAL-REC",
+   "source": "app/cbl/CBTRN02C.cbl:504-510",
+   "anchor": "ADD DALYTRAN-AMT TO TRAN-CAT-BAL",
+   "additional_sources": [],
+   "conditions": "No existing balance record for the key.",
+   "outcome": "New TCATBAL record written with TRAN-CAT-BAL = DALYTRAN-AMT.",
+   "data": ["TRAN-CAT-BAL", "TRANCAT-ACCT-ID", "TRANCAT-TYPE-CD", "TRANCAT-CD", "DALYTRAN-AMT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-013",
+   "category": "calculation",
+   "statement": "For an existing category balance record, the transaction amount (signed) is added to TRAN-CAT-BAL and the record is rewritten.",
+   "paragraph": "2700-B-UPDATE-TCATBAL-REC",
+   "source": "app/cbl/CBTRN02C.cbl:527-528",
+   "anchor": "ADD DALYTRAN-AMT TO TRAN-CAT-BAL",
+   "additional_sources": [],
+   "conditions": "Balance record exists for the key.",
+   "outcome": "TRAN-CAT-BAL = TRAN-CAT-BAL + DALYTRAN-AMT; REWRITE.",
+   "data": ["TRAN-CAT-BAL", "DALYTRAN-AMT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-014",
+   "category": "calculation",
+   "statement": "Posting adds the signed transaction amount to the account current balance ACCT-CURR-BAL; non-negative amounts are also accumulated in ACCT-CURR-CYC-CREDIT and negative amounts in ACCT-CURR-CYC-DEBIT (as negative values).",
+   "paragraph": "2800-UPDATE-ACCOUNT-REC",
+   "source": "app/cbl/CBTRN02C.cbl:547-552",
+   "anchor": "IF DALYTRAN-AMT >= 0 ADD DALYTRAN-AMT TO ACCT-CURR-CYC-CREDIT",
+   "additional_sources": [],
+   "conditions": "Transaction is being posted; split on DALYTRAN-AMT >= 0.",
+   "outcome": "ACCT-CURR-BAL and either ACCT-CURR-CYC-CREDIT or ACCT-CURR-CYC-DEBIT updated; account record rewritten.",
+   "data": ["ACCT-CURR-BAL", "ACCT-CURR-CYC-CREDIT", "ACCT-CURR-CYC-DEBIT", "DALYTRAN-AMT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-015",
+   "category": "error-policy",
+   "statement": "If the account rewrite fails with INVALID KEY, reason 109 'ACCOUNT RECORD NOT FOUND' is set but has no effect: the transaction is still written to the transaction master and is not rejected.",
+   "paragraph": "2800-UPDATE-ACCOUNT-REC",
+   "source": "app/cbl/CBTRN02C.cbl:554-559",
+   "anchor": "MOVE 109 TO WS-VALIDATION-FAIL-REASON",
+   "additional_sources": ["app/cbl/CBTRN02C.cbl:440-442"],
+   "conditions": "REWRITE FD-ACCTFILE-REC raises INVALID KEY.",
+   "outcome": "WS-VALIDATION-FAIL-REASON = 109 set; processing continues with 2900-WRITE-TRANSACTION-FILE.",
+   "data": ["WS-VALIDATION-FAIL-REASON", "FD-ACCTFILE-REC"],
+   "messages": ["ACCOUNT RECORD NOT FOUND"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-016",
+   "category": "error-policy",
+   "statement": "When reading the category balance file, status '00' (found) and '23' (not found) are both normal; any other status stops the run with 'ERROR READING TRANSACTION BALANCE FILE' and an abend.",
+   "paragraph": "2700-UPDATE-TCATBAL",
+   "source": "app/cbl/CBTRN02C.cbl:481-493",
+   "anchor": "IF TCATBALF-STATUS = '00' OR '23'",
+   "additional_sources": [],
+   "conditions": "TCATBALF-STATUS not '00' and not '23'.",
+   "outcome": "Abend via 9999-ABEND-PROGRAM.",
+   "data": ["TCATBALF-STATUS"],
+   "messages": ["ERROR READING TRANSACTION BALANCE FILE"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBTRN02C-017",
+   "category": "error-policy",
+   "statement": "Any fatal file error (open, read, write, rewrite or close failure that the program tests) terminates the job step with user abend code 999 through the Language Environment service CEE3ABD.",
+   "paragraph": "9999-ABEND-PROGRAM",
+   "source": "app/cbl/CBTRN02C.cbl:707-711",
+   "anchor": "CALL 'CEE3ABD' USING ABCODE, TIMING",
+   "additional_sources": [],
+   "conditions": "A paragraph detects a non-'00' file status (or non-'00'/'10' on read).",
+   "outcome": "Abend U999 after displaying 'ABENDING PROGRAM'.",
+   "data": ["ABCODE", "TIMING"],
+   "messages": ["ABENDING PROGRAM"],
+   "confidence": "Confirmed"
+  }
+ ],
+ "schema": "program-semantics/1",
+ "sme_questions": [
+  {
+   "question": "The credit-limit check uses ACCT-CURR-CYC-CREDIT - ACCT-CURR-CYC-DEBIT + DALYTRAN-AMT rather than ACCT-CURR-BAL, and negative amounts are accumulated into ACCT-CURR-CYC-DEBIT as negative values. What is the intended sign convention (are purchases positive and payments negative?) and is this exposure formula the intended business rule?",
+   "source": "app/cbl/CBTRN02C.cbl:403-407"
+  },
+  {
+   "question": "When a transaction is both over-limit and after account expiration, only reason 103 is recorded. Should the reject carry the first failure (102), all failures, or is the current last-wins behaviour accepted?",
+   "source": "app/cbl/CBTRN02C.cbl:407-420"
+  },
+  {
+   "question": "Reason 109 (account rewrite INVALID KEY) is set but never acted upon, so the transaction is still posted to TRANSACT-FILE. Should such transactions be rejected and the category balance update backed out?",
+   "source": "app/cbl/CBTRN02C.cbl:554-559"
+  },
+  {
+   "question": "TRANSACT-FILE (the transaction master KSDS) is opened OUTPUT. Is the cluster defined with REUSE or emptied before POSTTRAN, and is replacing its content each day the intended behaviour, or should posted transactions be appended (I-O/EXTEND)?",
+   "source": "app/cbl/CBTRN02C.cbl:254-258"
+  },
+  {
+   "question": "Should postings be blocked for inactive accounts (ACCT-ACTIVE-STATUS) or inactive cards? No such check exists and the code contains 'ADD MORE VALIDATIONS HERE'.",
+   "source": "app/cbl/CBTRN02C.cbl:370-378"
+  }
+ ],
+ "source_path": "app/cbl/CBTRN02C.cbl",
+ "source_sha256": "708f3cadc555acab63f11e2f3238f5372ac7180e6b01197bf960d96bf0d2e83f",
+ "status": "complete",
+ "summary": {
+  "confidence": "Confirmed",
+  "evidence": [
+   "app/cbl/CBTRN02C.cbl:1-5",
+   "app/cbl/CBTRN02C.cbl:194-234",
+   "app/cbl/CBTRN02C.cbl:370-422",
+   "app/cbl/CBTRN02C.cbl:424-444",
+   "app/cbl/CBTRN02C.cbl:467-560",
+   "app/jcl/POSTTRAN.jcl:23-42"
+  ],
+  "text": "CBTRN02C is a batch COBOL program (run by job POSTTRAN, step STEP15) that posts the daily transaction file. It reads the sequential DALYTRAN file and validates each record against the card cross-reference KSDS (XREFFILE) and the account master KSDS (ACCTFILE): unknown card (reason 100), unknown account (101), over credit limit (102) or received after account expiration (103). Valid transactions are posted: the transaction category balance (TCATBALF, keyed by account/type/category) is created or incremented, the account current balance and cycle credit/debit totals are updated and rewritten, and the transaction is written to the transaction master (TRANFILE) with a current processing timestamp. Invalid transactions are written to the DALYREJS file with an 80-byte reason trailer. At the end it displays processed/rejected counts and sets return code 4 if any record was rejected; fatal file errors abend with code 999."
+ }
+}

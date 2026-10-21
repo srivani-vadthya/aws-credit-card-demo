@@ -1,0 +1,205 @@
+{
+ "batch": "B05", 
+ "existing_rules_reviewed": [
+  {
+   "anchor": "IF CDEMO-TO-PROGRAM = LOW-VALUES OR SPACES", 
+   "id": "BR-BASE-001", 
+   "note": "Confirmed for COADM01C; XCTL at 168-170 passes no commarea. COMEN01C half reviewed in COMEN01C.json.", 
+   "source": "app/cbl/COADM01C.cbl:165-167", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "MOVE 'COSGN00C' TO CDEMO-TO-PROGRAM", 
+   "id": "BR-BASE-002", 
+   "note": "PF3 sets CDEMO-TO-PROGRAM='COSGN00C' and performs RETURN-TO-SIGNON-SCREEN.", 
+   "source": "app/cbl/COADM01C.cbl:100-102", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF CDEMO-ADMIN-OPT-PGMNAME(WS-OPTION)(1:5) NOT = 'DUMMY'", 
+   "id": "BR-BASE-COADM01C-001", 
+   "note": "Confirmed; range extended to END-IF at 149. Before XCTL it sets CDEMO-FROM-TRANID/PROGRAM and context 0. A DUMMY program falls through to the green 'This option is not installed ...' message (150-157), not a 'coming soon' message as in COMEN01C. No COADM02Y entry currently starts with DUMMY.", 
+   "source": "app/cbl/COADM01C.cbl:141-149", 
+   "verdict": "confirmed"
+  }
+ ], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "BUILD-MENU-OPTIONS loop and EVALUATE WS-IDX only place option text on screen lines OPTN001O-OPTN010O (presentation).", 
+   "source": "app/cbl/COADM01C.cbl:231-264"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "security", 
+   "source": "app/cbl/COADM01C.cbl:85-108", 
+   "text": "COADM01C never checks CDEMO-USRTYP-ADMIN; the admin role is enforced only by COSGN00C routing. Any program/transaction passing a commarea (or starting CA00 with one) reaches the admin functions."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COADM01C.cbl:131-140", 
+   "text": "After an invalid option the message branch is skipped by IF NOT ERR-FLG-ON, but WS-OPTION may be 0 or > table size; no subscript is used in that case (unlike COMEN01C), so no out-of-range access."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/cbl/COADM01C.cbl:152-156", 
+   "text": "The option name is commented out of the 'not installed' message, so the message never names the option."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COADM01C.cbl:280-284", 
+   "text": "PGMIDERR-ERR-PARA ends with END-EXEC. followed by a stray period line; and the PGMIDERR handler remains active for the whole task including the RETURN-TO-SIGNON XCTL."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/COADM01C.cbl:194-200", 
+   "text": "RECEIVE MAP RESP/RESP2 captured but never tested."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COADM01C.cbl:39", 
+   "text": "WS-USRSEC-FILE and copybook CSUSR01Y are declared but not used."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "75-114", 
+   "logic": "Registers HANDLE CONDITION PGMIDERR(PGMIDERR-ERR-PARA), clears the error flag and message. If EIBCALEN = 0 it sets CDEMO-FROM-PROGRAM='COSGN00C' and returns to sign-on; otherwise it copies DFHCOMMAREA into CARDDEMO-COMMAREA, and on first entry (not CDEMO-PGM-REENTER) sets the re-enter flag and sends the menu. On re-entry it receives the map: ENTER performs PROCESS-ENTER-KEY, PF3 sets CDEMO-TO-PROGRAM='COSGN00C' and returns to sign-on, other keys redisplay with CCDA-MSG-INVALID-KEY. Ends with CICS RETURN TRANSID('CA00').", 
+   "name": "MAIN-PARA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "119-158", 
+   "logic": "Trims trailing blanks from OPTIONI, right-justifies it into WS-OPTION-X, replaces blanks by '0' and moves it to WS-OPTION. Non-numeric, zero or > CDEMO-ADMIN-OPT-COUNT options redisplay the menu with 'Please enter a valid option number...'. Otherwise, if CDEMO-ADMIN-OPT-PGMNAME(WS-OPTION) does not start with 'DUMMY', it sets CDEMO-FROM-TRANID/PROGRAM and CDEMO-PGM-CONTEXT=0 and XCTLs to that program; if no transfer occurred it shows green 'This option is not installed ...' and redisplays the menu.", 
+   "name": "PROCESS-ENTER-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "163-170", 
+   "logic": "Defaults CDEMO-TO-PROGRAM to 'COSGN00C' when low-values or spaces, then XCTLs to CDEMO-TO-PROGRAM without a commarea.", 
+   "name": "RETURN-TO-SIGNON-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "175-187", 
+   "logic": "Performs POPULATE-HEADER-INFO and BUILD-MENU-OPTIONS, moves WS-MESSAGE to ERRMSGO and sends map COADM1A (mapset COADM01) with ERASE.", 
+   "name": "SEND-MENU-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "192-200", 
+   "logic": "Receives map COADM1A into COADM1AI capturing RESP/RESP2, which are not tested afterwards.", 
+   "name": "RECEIVE-MENU-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "205-224", 
+   "logic": "Moves FUNCTION CURRENT-DATE to WS-CURDATE-DATA, CCDA-TITLE01/CCDA-TITLE02 to TITLE01O/TITLE02O, WS-TRANID to TRNNAMEO and WS-PGMNAME to PGMNAMEO of COADM1AO; rebuilds the date as WS-CURDATE-MM-DD-YY (MM/DD/YY from WS-CURDATE-MONTH, WS-CURDATE-DAY, WS-CURDATE-YEAR(3:2)) into CURDATEO and the time as WS-CURTIME-HH-MM-SS into CURTIMEO.", 
+   "name": "POPULATE-HEADER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "229-266", 
+   "logic": "Loops WS-IDX from 1 to CDEMO-ADMIN-OPT-COUNT building 'nn. option name' and moving it to OPTN001O..OPTN010O according to WS-IDX; higher indexes are ignored.", 
+   "name": "BUILD-MENU-OPTIONS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "270-284", 
+   "logic": "Entered by the PGMIDERR handler when an XCTL target is not defined: shows green 'This option is not installed ...', redisplays the menu and issues CICS RETURN TRANSID(CA00) with the commarea.", 
+   "name": "PGMIDERR-ERR-PARA"
+  }
+ ], 
+ "program": "COADM01C", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/cbl/COADM01C.cbl:121-129", 
+    "app/cpy/COADM02Y.cpy:22"
+   ], 
+   "anchor": "WS-OPTION > CDEMO-ADMIN-OPT-COUNT OR", 
+   "category": "validation", 
+   "conditions": "WS-OPTION NOT NUMERIC or > CDEMO-ADMIN-OPT-COUNT or = 0", 
+   "confidence": "Confirmed", 
+   "data": [
+    "OPTIONI", 
+    "WS-OPTION", 
+    "CDEMO-ADMIN-OPT-COUNT"
+   ], 
+   "id": "BR-COADM01C-001", 
+   "messages": [
+    "Please enter a valid option number..."
+   ], 
+   "outcome": "Error flag set, menu redisplayed with message", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/cbl/COADM01C.cbl:131-138", 
+   "statement": "The admin menu option must be numeric, non-zero and not greater than CDEMO-ADMIN-OPT-COUNT (6 in COADM02Y); otherwise the menu is redisplayed with 'Please enter a valid option number...'. Trailing blanks are trimmed and remaining blanks replaced by zeros before the check."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COADM01C.cbl:77-79"
+   ], 
+   "anchor": "'is not installed ...' DELIMITED BY SIZE", 
+   "category": "error-policy", 
+   "conditions": "XCTL raises PGMIDERR", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-ADMIN-OPT-PGMNAME", 
+    "WS-MESSAGE"
+   ], 
+   "id": "BR-COADM01C-002", 
+   "messages": [
+    "This option is not installed ..."
+   ], 
+   "outcome": "Message displayed, RETURN TRANSID(CA00)", 
+   "paragraph": "PGMIDERR-ERR-PARA", 
+   "source": "app/cbl/COADM01C.cbl:270-283", 
+   "statement": "When the program of a selected admin option is not defined to CICS (PGMIDERR on XCTL), the admin menu does not abend: it shows 'This option is not installed ...' in green, redisplays the menu and continues the conversation with transaction CA00."
+  }, 
+  {
+   "additional_sources": [
+    "app/cpy/CSMSG01Y.cpy:20-21"
+   ], 
+   "anchor": "IF NOT CDEMO-PGM-REENTER", 
+   "category": "decision", 
+   "conditions": "EIBCALEN = 0; CDEMO-PGM-REENTER; EIBAID", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBCALEN", 
+    "CDEMO-PGM-CONTEXT", 
+    "EIBAID"
+   ], 
+   "id": "BR-COADM01C-003", 
+   "messages": [
+    "Invalid key pressed. Please see below..."
+   ], 
+   "outcome": "Sign-on transfer, menu display, option processing or invalid-key message", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/cbl/COADM01C.cbl:85-107", 
+   "statement": "The admin menu distinguishes first entry from re-entry with CDEMO-PGM-CONTEXT: entered from another program it sets CDEMO-PGM-REENTER and only displays the menu; input is processed only on re-entry. A start without commarea is sent to sign-on COSGN00C. Any key other than ENTER or PF3 redisplays the menu with 'Invalid key pressed. Please see below...'."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Should the admin menu itself verify CDEMO-USER-TYPE = 'A' (defence in depth), or is sign-on routing considered sufficient?", 
+   "source": "app/cbl/COADM01C.cbl:85-94"
+  }
+ ], 
+ "source_path": "app/cbl/COADM01C.cbl", 
+ "source_sha256": "4e49afda5f685f3ebeb95ed04a93cf88df93d39c66d8d7f9ba2b9a3e00a1f690", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/COADM01C.cbl:35-51", 
+   "app/cbl/COADM01C.cbl:75-114", 
+   "app/cbl/COADM01C.cbl:119-158", 
+   "app/cbl/COADM01C.cbl:270-284", 
+   "app/cpy/COADM02Y.cpy:19-59"
+  ], 
+  "text": "COADM01C is the CICS pseudo-conversational administrator menu of CardDemo, transaction CA00, map COADM1A of mapset COADM01. It establishes a HANDLE CONDITION PGMIDERR so that a missing option program produces an 'is not installed' message. Without a commarea it transfers to COSGN00C; on first entry it sets the re-enter flag and displays the option list from COADM02Y (6 options: user list/add/update/delete and the two Db2 transaction-type programs). On ENTER it normalises and validates the option number against CDEMO-ADMIN-OPT-COUNT and XCTLs to the option's program with the CARDDEMO-COMMAREA unless the program name starts with DUMMY. PF3 returns to COSGN00C; other keys redisplay the menu with an invalid-key message. Each turn ends with CICS RETURN TRANSID(CA00) COMMAREA(CARDDEMO-COMMAREA)."
+ }
+}

@@ -1,0 +1,391 @@
+{
+ "batch": "B01", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Redisplay of the account id field on the screen.", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:228-232"
+  }, 
+  {
+   "reason": "Moves the formatted row into one of five screen line positions; presentation only.", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:542-605"
+  }, 
+  {
+   "reason": "Clears and protects the five screen rows; presentation only.", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:611-660"
+  }, 
+  {
+   "reason": "Technical PSB release via SYNCPOINT and SEND with or without ERASE.", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:684-709"
+  }, 
+  {
+   "reason": "Technical IMS PSB re-schedule when already scheduled ('TC').", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:1007-1016"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:436-441", 
+   "text": "PF7 decrements the page number, but PROCESS-PAGE-FORWARD increments it again on the first row and overwrites CDEMO-CPVS-PAUKEY-PREV-PG for that page with the previous page's first key; after one PF7 from page 2 the page counter still reads 2 while page 1 is shown (Inferred from tracing 365-379 and 436-441)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:120", 
+   "text": "CDEMO-CPVS-PAUKEY-PREV-PG has OCCURS 20 and is subscripted by CDEMO-CPVS-PAGE-NUM with no upper-bound check; paging past 20 pages overwrites following commarea storage."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:832-845", 
+   "text": "Not-found conditions in xref/account/customer reads do not set the error flag; processing continues with stale record data and SEND-PAULST-SCREEN can be issued several times in one task (each error path performs a SEND)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:971-972", 
+   "text": "GET-AUTH-SUMMARY keys the IMS GU on CDEMO-ACCT-ID (XREF-ACCT-ID line is commented out), not WS-ACCT-ID; on first entry with a non-numeric CDEMO-ACCT-ID it is not reached, but the two can diverge."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:716-721", 
+   "text": "RECEIVE MAP RESP/RESP2 are captured but never tested."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:40-53", 
+   "text": "WS-CARDFILENAME, WS-CCXREF-FILE, WS-REC-COUNT, WS-PAGE-NUM and CVACT02Y card record are declared but not used."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "178-257", 
+   "logic": "Resets error/EOF/next-page/erase flags. With no commarea it initializes CARDDEMO-COMMAREA, marks re-entry and sends an empty screen. On first entry from another program it prefills the account id from CDEMO-ACCT-ID when numeric, gathers details and sends the screen; on re-entry it receives the map and dispatches ENTER, PF3 (menu COMEN01C), PF7, PF8, or shows the invalid-key message. Always ends with CICS RETURN TRANSID 'CPVS' and the commarea.", 
+   "name": "MAIN-PARA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "261-338", 
+   "logic": "Validates ACCTIDI: blank gives 'Please enter Acct Id...', non-numeric gives 'Acct Id must be Numeric ...'. For a valid id it stores it in WS-ACCT-ID and CDEMO-ACCT-ID, captures the first non-blank selection field SEL0001I-SEL0005I with its saved auth key, and on 'S'/'s' XCTLs to COPAUS1C; any other selection value gives 'Invalid selection. Valid value is S'. Finally performs GATHER-DETAILS.", 
+   "name": "PROCESS-ENTER-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "342-358", 
+   "logic": "Resets the page number to 0; when WS-ACCT-ID is present it gathers account/customer/summary details, clears the five list rows and, if an IMS summary exists, loads the first page of authorizations.", 
+   "name": "GATHER-DETAILS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "362-385", 
+   "logic": "If CDEMO-CPVS-PAGE-NUM > 1, decrements it, takes the saved first key of that page from CDEMO-CPVS-PAUKEY-PREV-PG, re-reads the summary, clears the rows and pages forward from that key. Otherwise shows 'You are already at the top of the page...'.", 
+   "name": "PROCESS-PF7-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "388-412", 
+   "logic": "If a last key (CDEMO-CPVS-PAUKEY-LAST) is saved it re-reads the summary and repositions on that detail key. If NEXT-PAGE-YES it clears rows and loads the next page, otherwise shows 'You are already at the bottom of the page...'.", 
+   "name": "PROCESS-PF8-KEY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "415-454", 
+   "logic": "When no error, reads up to five detail segments (repositioning on the first row for PF7) and populates rows, saving the last key and, on the first row, incrementing the page number and saving that row's key as the page's first key. Then performs one look-ahead read to set NEXT-PAGE-YES or NEXT-PAGE-NO.", 
+   "name": "PROCESS-PAGE-FORWARD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "458-486", 
+   "logic": "Issues DLI GNP for the next PAUTDTL1 under the current summary. OK sets AUTHS-NOT-EOF; 'GE'/'GB' sets AUTHS-EOF; other statuses set the error flag, build ' System error while reading AUTH Details: Code:' and send the screen.", 
+   "name": "GET-AUTHORIZATIONS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "488-519", 
+   "logic": "Moves WS-AUTH-KEY-SAVE to PA-AUTHORIZATION-KEY and issues DLI GNP for PAUTDTL1 WHERE PAUT9CTS equals that key. Status handling mirrors GET-AUTHORIZATIONS with message ' System error while repos. AUTH Details: Code:'.", 
+   "name": "REPOSITION-AUTHORIZATIONS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "522-605", 
+   "logic": "Formats the approved amount, original time HH:MM:SS and original date MM/DD/YY, derives approval status 'A' when PA-AUTH-RESP-CODE = '00' else 'D', and moves key, transaction id, date, time, type, status, match status and amount into row WS-IDX (1-5), saving the key in CDEMO-CPVS-AUTH-KEYS and unprotecting that row's selection field.", 
+   "name": "POPULATE-AUTH-LIST"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "608-662", 
+   "logic": "For rows 1 to 5 protects the selection field (DFHBMPRO) and blanks transaction id, date, time, type, approval, status and amount fields.", 
+   "name": "INITIALIZE-AUTH-DATA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "665-677", 
+   "logic": "Defaults CDEMO-TO-PROGRAM to 'COSGN00C' when empty, sets from-tranid/from-program to CPVS/COPAUS0C, zeroes the context and XCTLs to CDEMO-TO-PROGRAM with the commarea.", 
+   "name": "RETURN-TO-PREV-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "681-709", 
+   "logic": "If the PSB is scheduled it marks it not scheduled and issues CICS SYNCPOINT. Fills the header, moves WS-MESSAGE to ERRMSGO and sends map COPAU0A with ERASE when SEND-ERASE-YES, otherwise without ERASE, positioning the cursor.", 
+   "name": "SEND-PAULST-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "712-722", 
+   "logic": "Receives map COPAU0A of mapset COPAU00 into COPAU0AI, capturing RESP/RESP2 (not checked).", 
+   "name": "RECEIVE-PAULST-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "726-747", 
+   "logic": "Moves titles, transaction id 'CPVS', program name and current date (MM/DD/YY) and time (HH:MM:SS) from FUNCTION CURRENT-DATE to the map header.", 
+   "name": "POPULATE-HEADER-INFO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "750-808", 
+   "logic": "Performs GETCARDXREF-BYACCT, GETACCTDATA-BYACCT and GETCUSTDATA-BYCUST, then moves CUST-ID to CUSTIDO, STRINGs first name, middle initial CUST-MIDDLE-NAME(1:1) and last name into CNAMEO, address lines 1-2 into ADDR001O and line 3, state and CUST-ADDR-ZIP(1:5) into ADDR002O, and CUST-PHONE-NUM-1, ACCT-CREDIT-LIMIT and ACCT-CASH-CREDIT-LIMIT to PHONE1O, CREDLIMO and CASHLIMO. After GET-AUTH-SUMMARY, when FOUND-PAUT-SMRY-SEG it shows PA-APPROVED-AUTH-CNT, PA-DECLINED-AUTH-CNT, PA-CREDIT-BALANCE, PA-CASH-BALANCE, PA-APPROVED-AUTH-AMT and PA-DECLINED-AUTH-AMT; otherwise it moves ZERO to all six fields.", 
+   "name": "GATHER-ACCOUNT-DETAILS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "812-862", 
+   "logic": "Reads CXACAIX (xref by account alternate index) with WS-ACCT-ID. NORMAL saves XREF-CUST-ID and XREF-CARD-NUM in the commarea; NOTFND builds 'Account:... not found in XREF file' and sends the screen; other responses also set the error flag with a system-error message.", 
+   "name": "GETCARDXREF-BYACCT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "865-912", 
+   "logic": "Reads ACCTDAT by XREF-ACCT-ID into ACCOUNT-RECORD. NOTFND builds a 'not found in ACCT file' message and sends the screen; other responses set the error flag with a system-error message and send the screen.", 
+   "name": "GETACCTDATA-BYACCT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "915-963", 
+   "logic": "Reads CUSTDAT by XREF-CUST-ID into CUSTOMER-RECORD. NOTFND builds a 'not found in CUST file' message and sends the screen; other responses set the error flag with a system-error message and send the screen.", 
+   "name": "GETCUSTDATA-BYCUST"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "966-997", 
+   "logic": "Schedules the PSB, then issues DLI GU for PAUTSUM0 WHERE ACCNTID = CDEMO-ACCT-ID. OK sets FOUND-PAUT-SMRY-SEG, 'GE' sets NFOUND-PAUT-SMRY-SEG, other statuses set the error flag with ' System error while reading AUTH Summary: Code:' and send the screen.", 
+   "name": "GET-AUTH-SUMMARY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1001-1031", 
+   "logic": "Schedules PSB 'PSBPAUTB' (NODHABEND); on 'TC' terminates and reschedules. OK sets IMS-PSB-SCHD; otherwise sets the error flag, builds ' System error while scheduling PSB: Code:' and sends the screen.", 
+   "name": "SCHEDULE-PSB"
+  }
+ ], 
+ "program": "COPAUS0C", 
+ "rules": [
+  {
+   "anchor": "IF ACCTIDI OF COPAU0AI IS NOT NUMERIC", 
+   "category": "validation", 
+   "conditions": "ACCTIDI blank/low-values, or not numeric", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACCTIDI", 
+    "WS-ACCT-ID", 
+    "CDEMO-ACCT-ID"
+   ], 
+   "id": "BR-COPAUS0C-001", 
+   "messages": [
+    "Please enter Acct Id...", 
+    "Acct Id must be Numeric ..."
+   ], 
+   "outcome": "WS-ACCT-ID = LOW-VALUES, WS-ERR-FLG = 'Y', message shown, no list loaded.", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:264-284", 
+   "statement": "The account id entered on the authorization summary screen is mandatory and must be numeric; otherwise the account is cleared, the error flag is set and a message is shown."
+  }, 
+  {
+   "anchor": "MOVE WS-PGM-AUTH-DTL  TO CDEMO-TO-PROGRAM", 
+   "category": "routing", 
+   "conditions": "Valid account id and a selection code with a saved authorization key", 
+   "confidence": "Confirmed", 
+   "data": [
+    "SEL0001I", 
+    "CDEMO-CPVS-PAU-SEL-FLG", 
+    "CDEMO-CPVS-PAU-SELECTED", 
+    "CDEMO-CPVS-AUTH-KEYS"
+   ], 
+   "id": "BR-COPAUS0C-002", 
+   "messages": [
+    "Invalid selection. Valid value is S"
+   ], 
+   "outcome": "XCTL PROGRAM(COPAUS1C) with CARDDEMO-COMMAREA; otherwise message.", 
+   "paragraph": "PROCESS-ENTER-KEY", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:285-332", 
+   "statement": "Selecting a listed authorization with 'S' or 's' transfers control to the authorization detail program COPAUS1C, passing the selected authorization key in CDEMO-CPVS-PAU-SELECTED; only the first non-blank selection field of the five rows is honoured and any other selection value is rejected."
+  }, 
+  {
+   "anchor": "PERFORM UNTIL WS-IDX > 5 OR AUTHS-EOF OR ERR-FLG-ON", 
+   "category": "decision", 
+   "conditions": "No error; summary found", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-IDX", 
+    "CDEMO-CPVS-PAGE-NUM", 
+    "CDEMO-CPVS-PAUKEY-LAST", 
+    "CDEMO-CPVS-PAUKEY-PREV-PG", 
+    "CDEMO-CPVS-NEXT-PAGE-FLG"
+   ], 
+   "id": "BR-COPAUS0C-003", 
+   "messages": [], 
+   "outcome": "Up to 5 rows populated; CDEMO-CPVS-PAUKEY-LAST, CDEMO-CPVS-PAUKEY-PREV-PG(page), NEXT-PAGE-YES/NO set.", 
+   "paragraph": "PROCESS-PAGE-FORWARD", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:418-452", 
+   "statement": "Pending authorizations are listed five per page in IMS key order under the account's summary; a page number and the first key of each page are kept in the commarea, and one look-ahead read decides whether a next page exists."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:391-411"
+   ], 
+   "anchor": "IF CDEMO-CPVS-PAGE-NUM > 1", 
+   "category": "decision", 
+   "conditions": "PF7: CDEMO-CPVS-PAGE-NUM > 1; PF8: NEXT-PAGE-YES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-CPVS-PAGE-NUM", 
+    "CDEMO-CPVS-PAUKEY-LAST", 
+    "CDEMO-CPVS-NEXT-PAGE-FLG"
+   ], 
+   "id": "BR-COPAUS0C-004", 
+   "messages": [
+    "You are already at the top of the page...", 
+    "You are already at the bottom of the page..."
+   ], 
+   "outcome": "Page reloaded or message shown.", 
+   "paragraph": "PROCESS-PF7-KEY", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:365-384", 
+   "statement": "PF7 pages backward only when the current page number is greater than 1, otherwise shows a top-of-list message; PF8 pages forward only when a next page was detected, otherwise shows a bottom-of-list message."
+  }, 
+  {
+   "anchor": "IF PA-AUTH-RESP-CODE = '00'", 
+   "category": "transformation", 
+   "conditions": "PA-AUTH-RESP-CODE", 
+   "confidence": "Confirmed", 
+   "data": [
+    "PA-AUTH-RESP-CODE", 
+    "WS-AUTH-APRV-STAT"
+   ], 
+   "id": "BR-COPAUS0C-005", 
+   "messages": [], 
+   "outcome": "WS-AUTH-APRV-STAT shown in PAPRVnnI.", 
+   "paragraph": "POPULATE-AUTH-LIST", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:536-540", 
+   "statement": "In the authorization list an authorization is shown as approved ('A') when its response code is '00' and as declined ('D') for any other response code."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:349-356"
+   ], 
+   "anchor": "MOVE PA-APPROVED-AUTH-CNT   TO WS-DISPLAY-COUNT", 
+   "category": "decision", 
+   "conditions": "FOUND-PAUT-SMRY-SEG", 
+   "confidence": "Confirmed", 
+   "data": [
+    "PA-APPROVED-AUTH-CNT", 
+    "PA-DECLINED-AUTH-CNT", 
+    "PA-CREDIT-BALANCE", 
+    "PA-CASH-BALANCE", 
+    "PA-APPROVED-AUTH-AMT", 
+    "PA-DECLINED-AUTH-AMT"
+   ], 
+   "id": "BR-COPAUS0C-006", 
+   "messages": [], 
+   "outcome": "Summary fields displayed or zero; list loaded only when summary exists.", 
+   "paragraph": "GATHER-ACCOUNT-DETAILS", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:787-807", 
+   "statement": "Account-level authorization totals (approved/declined counts and amounts, credit and cash balances) are shown from the IMS pending authorization summary when one exists for the account; otherwise they are shown as zero and no authorization list is loaded."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:668-670"
+   ], 
+   "anchor": "MOVE WS-PGM-MENU        TO CDEMO-TO-PROGRAM", 
+   "category": "routing", 
+   "conditions": "EIBAID", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBAID", 
+    "CDEMO-TO-PROGRAM"
+   ], 
+   "id": "BR-COPAUS0C-007", 
+   "messages": [], 
+   "outcome": "XCTL to COMEN01C (or COSGN00C) or message CCDA-MSG-INVALID-KEY.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:224-250", 
+   "statement": "PF3 returns to the main menu program COMEN01C; any key other than ENTER, PF3, PF7 or PF8 is rejected with the common invalid-key message. When no target program is set, return defaults to the sign-on program COSGN00C."
+  }, 
+  {
+   "anchor": "IF CDEMO-ACCT-ID IS NUMERIC", 
+   "category": "decision", 
+   "conditions": "NOT CDEMO-PGM-REENTER and CDEMO-ACCT-ID numeric", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-ACCT-ID", 
+    "WS-ACCT-ID"
+   ], 
+   "id": "BR-COPAUS0C-008", 
+   "messages": [], 
+   "outcome": "WS-ACCT-ID/ACCTIDO set and details gathered.", 
+   "paragraph": "MAIN-PARA", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:207-213", 
+   "statement": "When entered from another CardDemo program, the account id passed in the commarea is used to load the screen immediately if it is numeric; otherwise the account field is left blank and nothing is loaded."
+  }, 
+  {
+   "additional_sources": [
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:500-517", 
+    "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:980-995"
+   ], 
+   "anchor": "' System error while reading AUTH Details: Code:'", 
+   "category": "error-policy", 
+   "conditions": "DIBSTAT not OK, 'GE' or 'GB'", 
+   "confidence": "Confirmed", 
+   "data": [
+    "IMS-RETURN-CODE", 
+    "WS-ERR-FLG"
+   ], 
+   "id": "BR-COPAUS0C-009", 
+   "messages": [
+    " System error while reading AUTH Details: Code:", 
+    " System error while repos. AUTH Details: Code:", 
+    " System error while reading AUTH Summary: Code:"
+   ], 
+   "outcome": "WS-ERR-FLG = 'Y', message, screen sent.", 
+   "paragraph": "GET-AUTHORIZATIONS", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:467-483", 
+   "statement": "Unexpected IMS statuses while reading the summary or detail segments set the error flag, stop further list loading and display a system-error message with the IMS status code."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Is the PF7 page-number behaviour (counter re-incremented on backward paging) intended, and what should happen beyond 20 pages?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:362-385"
+  }, 
+  {
+   "question": "Should not-found errors on xref/account/customer stop further processing (set WS-ERR-FLG) rather than continue?", 
+   "source": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:832-845"
+  }
+ ], 
+ "source_path": "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl", 
+ "source_sha256": "7ab6dadad6d9d738f6a0cb402f394c25ccda5f7fef26ad644feeb76c11065254", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:32-42", 
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:178-257", 
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:261-338", 
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:415-454", 
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:681-709", 
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:750-808", 
+   "app/app-authorization-ims-db2-mq/cbl/COPAUS0C.cbl:966-997"
+  ], 
+  "text": "COPAUS0C is a pseudo-conversational CICS program (transaction 'CPVS', map COPAU0A of mapset COPAU00) that shows the pending authorization summary for an account and a pageable list of its pending authorization details, five per page. For an entered or passed account id it reads the card cross-reference by account (CXACAIX), the account (ACCTDAT) and customer (CUSTDAT) VSAM files to show customer name, address, phone and limits, and reads the IMS pending authorization summary root (PAUTSUM0, PSB PSBPAUTB) to show approved/declined counts, amounts and balances. Detail segments (PAUTDTL1) are read with GNP and shown with transaction id, date, time, type, approval status (A/D), match status and amount. PF7/PF8 page backward/forward using keys saved in the commarea; selecting a row with 'S' transfers (XCTL) to COPAUS1C for the detail view; PF3 returns to the menu COMEN01C. The PSB is released with CICS SYNCPOINT before every screen send."
+ }
+}

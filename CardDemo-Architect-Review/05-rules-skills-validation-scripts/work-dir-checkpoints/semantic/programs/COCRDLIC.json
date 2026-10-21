@@ -1,0 +1,625 @@
+{
+ "schema": "program-semantics/1",
+ "program": "COCRDLIC",
+ "source_path": "app/cbl/COCRDLIC.cbl",
+ "source_sha256": "d6a9210ad3062bd657881fc3f0d2a7368db3ff4869594e0d6a878d8f410d87b6",
+ "batch": "B05",
+ "status": "complete",
+ "summary": {
+  "text": "COCRDLIC is the CICS pseudo-conversational Credit Card List program (transaction CCLI, map CCRDLIA of mapset COCRDLI). It browses the card master CARDDAT by card number and shows up to 7 cards per page (account number, card number, active status), optionally filtered by an 11-digit account number and/or a 16-digit card number typed on the screen. PF8 pages forward and PF7 backward using first/last card keys kept in a program-specific commarea extension; ENTER with 'S' or 'U' against exactly one row transfers (XCTL) to card detail COCRDSLC or card update COCRDUPC with the selected account and card in the commarea. Input errors (invalid filters, more than one selection, invalid action code) are shown in red on the same screen. PF3 transfers to the main menu COMEN01C. Each turn ends with CICS RETURN TRANSID(CCLI) and a 2000-byte commarea.",
+  "evidence": [
+   "app/cbl/COCRDLIC.cbl:1-7",
+   "app/cbl/COCRDLIC.cbl:176-260",
+   "app/cbl/COCRDLIC.cbl:298-620",
+   "app/cbl/COCRDLIC.cbl:985-1117",
+   "app/cbl/COCRDLIC.cbl:1123-1407"
+  ],
+  "confidence": "Confirmed"
+ },
+ "paragraphs": [
+  {
+   "name": "0000-MAIN",
+   "lines": "298-602",
+   "logic": "Initialises work areas; with no commarea builds a fresh CARDDEMO-COMMAREA (from CCLI/COCRDLIC, user type U, first page), else restores CARDDEMO-COMMAREA and WS-THIS-PROGCOMMAREA from DFHCOMMAREA; entry from another program resets the paging context. Maps the AID, receives and edits the screen when re-entered from itself, treats keys other than ENTER/PF3/PF7/PF8 as ENTER, and XCTLs to COMEN01C on PF3. The main EVALUATE then handles input errors, PF7 on first page, return from another program, PF8 page down, PF7 page up, S (view) and U (update) selections and the default redisplay, each ending at COMMON-RETURN.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "COMMON-RETURN",
+   "lines": "604-620",
+   "logic": "Stamps CDEMO-FROM-TRANID/PROGRAM with CCLI/COCRDLIC and last map/mapset, packs CARDDEMO-COMMAREA plus WS-THIS-PROGCOMMAREA into WS-COMMAREA and issues CICS RETURN TRANSID('CCLI') COMMAREA(WS-COMMAREA) LENGTH 2000.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "0000-MAIN-EXIT",
+   "lines": "621-623",
+   "logic": "Exit paragraph for 0000-MAIN (EXIT only); not reached because 0000-MAIN always transfers to COMMON-RETURN.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1000-SEND-MAP",
+   "lines": "624-637",
+   "logic": "Performs 1100-SCREEN-INIT, 1200-SCREEN-ARRAY-INIT, 1250-SETUP-ARRAY-ATTRIBS, 1300-SETUP-SCREEN-ATTRS, 1400-SETUP-MESSAGE and 1500-SEND-SCREEN to build and send the list screen.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1000-SEND-MAP-EXIT",
+   "lines": "639-641",
+   "logic": "Exit paragraph for 1000-SEND-MAP (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1100-SCREEN-INIT",
+   "lines": "642-672",
+   "logic": "Clears CCRDLIAO and fills titles, transaction CCLI, program name, current date MM/DD/YY, time HH:MM:SS and the page number WS-CA-SCREEN-NUM; blanks and darkens the info message.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1100-SCREEN-INIT-EXIT",
+   "lines": "674-676",
+   "logic": "Exit paragraph for 1100-SCREEN-INIT (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1200-SCREEN-ARRAY-INIT",
+   "lines": "678-743",
+   "logic": "For each of the 7 rows whose WS-EACH-CARD is not low-values, moves the selection code, account number, card number and card status from WS-SCREEN-ROWS to the CRDSELnO/ACCTNOnO/CRDNUMnO/CRDSTSnO screen fields.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1200-SCREEN-ARRAY-INIT-EXIT",
+   "lines": "745-747",
+   "logic": "Exit paragraph for 1200-SCREEN-ARRAY-INIT (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1250-SETUP-ARRAY-ATTRIBS",
+   "lines": "748-832",
+   "logic": "For each row: protects the selection field when the row is empty or FLG-PROTECT-SELECT-ROWS-YES (filter error); otherwise unprotects it and, when the row has a selection error, colours it red (row 1 also shows '*' when blank; rows 2-7 get the cursor).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1250-SETUP-ARRAY-ATTRIBS-EXIT",
+   "lines": "834-836",
+   "logic": "Exit paragraph for 1250-SETUP-ARRAY-ATTRIBS (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1300-SETUP-SCREEN-ATTRS",
+   "lines": "837-889",
+   "logic": "Unless this is a fresh start from the menu, echoes the account and card filters (from CC-ACCT-ID/CC-CARD-NUM when edited, low-values when the commarea value is 0, else from CDEMO-ACCT-ID/CDEMO-CARD-NUM). Colours an invalid filter red with the cursor on it; with no errors puts the cursor on the account filter.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1300-SETUP-SCREEN-ATTRS-EXIT",
+   "lines": "890-892",
+   "logic": "Exit paragraph for 1300-SETUP-SCREEN-ATTRS (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1400-SETUP-MESSAGE",
+   "lines": "895-932",
+   "logic": "Chooses the message: keeps filter errors; PF7 on the first page gives 'NO PREVIOUS PAGES TO DISPLAY'; PF8 with no next page gives 'NO MORE PAGES TO DISPLAY' once the last page was shown, otherwise the info 'TYPE S FOR DETAIL, U TO UPDATE ANY RECORD' and marks the last page shown; when a next page exists or no info is set the same info text is used. Moves the error message and (unless empty or 'no records') the info message to the map.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1400-SETUP-MESSAGE-EXIT",
+   "lines": "933-935",
+   "logic": "Exit paragraph for 1400-SETUP-MESSAGE (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1500-SEND-SCREEN",
+   "lines": "938-947",
+   "logic": "Sends map CCRDLIA of mapset COCRDLI from CCRDLIAO with CURSOR ERASE FREEKB, capturing RESP (not tested).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "1500-SEND-SCREEN-EXIT",
+   "lines": "948-950",
+   "logic": "Exit paragraph for 1500-SEND-SCREEN (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2000-RECEIVE-MAP",
+   "lines": "951-957",
+   "logic": "Performs 2100-RECEIVE-SCREEN then 2200-EDIT-INPUTS.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2000-RECEIVE-MAP-EXIT",
+   "lines": "959-961",
+   "logic": "Exit paragraph for 2000-RECEIVE-MAP (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2100-RECEIVE-SCREEN",
+   "lines": "962-979",
+   "logic": "Receives map CCRDLIA into CCRDLIAI, moves ACCTSIDI to CC-ACCT-ID, CARDSIDI to CC-CARD-NUM and the 7 row selection fields CRDSEL1I..CRDSEL7I to WS-EDIT-SELECT(1..7).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2100-RECEIVE-SCREEN-EXIT",
+   "lines": "981-983",
+   "logic": "Exit paragraph for 2100-RECEIVE-SCREEN (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2200-EDIT-INPUTS",
+   "lines": "985-997",
+   "logic": "Sets INPUT-OK and unprotected rows, then performs 2210-EDIT-ACCOUNT, 2220-EDIT-CARD and 2250-EDIT-ARRAY.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2200-EDIT-INPUTS-EXIT",
+   "lines": "999-1001",
+   "logic": "Exit paragraph for 2200-EDIT-INPUTS (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2210-EDIT-ACCOUNT",
+   "lines": "1003-1030",
+   "logic": "Treats a low-values, spaces or all-zero account filter as blank (CDEMO-ACCT-ID = 0). A non-numeric value sets INPUT-ERROR, FLG-ACCTFILTER-NOT-OK, protects the selection rows and sets 'ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER'. Otherwise moves it to CDEMO-ACCT-ID and flags the filter valid.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2210-EDIT-ACCOUNT-EXIT",
+   "lines": "1032-1034",
+   "logic": "Exit paragraph for 2210-EDIT-ACCOUNT, target of its GO TO statements (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2220-EDIT-CARD",
+   "lines": "1036-1067",
+   "logic": "Treats a low-values, spaces or all-zero card filter as blank (CDEMO-CARD-NUM = 0). A non-numeric value sets INPUT-ERROR, FLG-CARDFILTER-NOT-OK, protects the rows and, if no message yet, sets 'CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER'. Otherwise moves CC-CARD-NUM-N to CDEMO-CARD-NUM and flags the filter valid.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2220-EDIT-CARD-EXIT",
+   "lines": "1069-1071",
+   "logic": "Exit paragraph for 2220-EDIT-CARD, target of its GO TO statements (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2250-EDIT-ARRAY",
+   "lines": "1073-1117",
+   "logic": "Skipped when a filter error exists. Counts 'S' and 'U' codes in the 7 selection fields; more than one sets INPUT-ERROR, 'PLEASE SELECT ONLY ONE RECORD TO VIEW OR UPDATE' and flags the selected rows in error. Then loops over the rows: S/U records the row in I-SELECTED, blank is ignored, any other code sets INPUT-ERROR, flags the row and (if no message yet) sets 'INVALID ACTION CODE'.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "2250-EDIT-ARRAY-EXIT",
+   "lines": "1119-1121",
+   "logic": "Exit paragraph for 2250-EDIT-ARRAY, target of its GO TO (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9000-READ-FORWARD",
+   "lines": "1123-1260",
+   "logic": "Clears the row array, STARTBR CARDDAT GTEQ at WS-CARD-RID-CARDNUM and READNEXTs, keeping records that pass 9500-FILTER-RECORDS until 7 rows are filled; row 1's key is saved as the first card key (page number set to 1 if 0). On the 7th row it saves the last key and reads one more record to decide whether a next page exists. ENDFILE sets no-next-page and 'NO MORE RECORDS TO SHOW' (or 'NO RECORDS FOUND FOR THIS SEARCH CONDITION.' when page 1 is empty); other responses set the 'File Error: READ on CARDDAT ...' message. Ends the browse.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9000-READ-FORWARD-EXIT",
+   "lines": "1261-1263",
+   "logic": "Exit paragraph for 9000-READ-FORWARD (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9100-READ-BACKWARDS",
+   "lines": "1264-1372",
+   "logic": "Clears the rows, copies the first card key to the last card key, STARTBR CARDDAT GTEQ at the current first card and READPREVs once (the current first card itself), then READPREVs further records that pass the filter, filling rows 7 down to 1; when row 1 is filled its key becomes the new first card key. Any non-NORMAL/DUPREC response (including start of file) stops the loop with the 'File Error: READ on CARDDAT ...' message.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9100-READ-BACKWARDS-EXIT",
+   "lines": "1374-1380",
+   "logic": "Ends the CARDDAT browse (EXEC CICS ENDBR) and exits; also the GO TO target after an initial READPREV error.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9500-FILTER-RECORDS",
+   "lines": "1382-1407",
+   "logic": "Marks the current CARD-RECORD as included, then excludes it when a valid account filter is set and CARD-ACCT-ID differs from CC-ACCT-ID, or when a valid card filter is set and CARD-NUM differs from CC-CARD-NUM-N.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "9500-FILTER-RECORDS-EXIT",
+   "lines": "1409-1417",
+   "logic": "EXIT for 9500-FILTER-RECORDS followed by COPY 'CSSTRPFY', which supplies YYYY-STORE-PFKEY mapping EIBAID to CCARD-AID values (PF13-PF24 folded onto PF1-PF12).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "SEND-PLAIN-TEXT",
+   "lines": "1422-1432",
+   "logic": "Debug helper: sends WS-ERROR-MSG as plain text and returns without transid; not performed anywhere in the program.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "SEND-PLAIN-TEXT-EXIT",
+   "lines": "1433-1435",
+   "logic": "Exit paragraph for SEND-PLAIN-TEXT (EXIT only).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "SEND-LONG-TEXT",
+   "lines": "1441-1451",
+   "logic": "Debug helper: sends WS-LONG-MSG as plain text and returns; not performed anywhere in the program.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "SEND-LONG-TEXT-EXIT",
+   "lines": "1452-1454",
+   "logic": "Exit paragraph for SEND-LONG-TEXT (EXIT only).",
+   "confidence": "Confirmed"
+  }
+ ],
+ "rules": [
+  {
+   "id": "BR-COCRDLIC-001",
+   "category": "decision",
+   "statement": "The card list starts afresh (first page, paging keys cleared, last page not shown) whenever it is entered in first-entry mode from a different program, e.g. from the main menu; with no commarea at all it also creates a new commarea with from-transaction CCLI, from-program COCRDLIC and user type 'U'.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDLIC.cbl:315-343",
+   "anchor": "AND CDEMO-FROM-PROGRAM NOT EQUAL LIT-THISPGM)",
+   "conditions": "EIBCALEN = 0, or CDEMO-PGM-ENTER and CDEMO-FROM-PROGRAM not COCRDLIC",
+   "outcome": "WS-THIS-PROGCOMMAREA initialised; CA-FIRST-PAGE, CA-LAST-PAGE-NOT-SHOWN",
+   "data": ["EIBCALEN", "CDEMO-PGM-CONTEXT", "CDEMO-FROM-PROGRAM", "WS-CA-SCREEN-NUM"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-002",
+   "category": "decision",
+   "statement": "On the card list only ENTER, PF3, PF7 and PF8 are recognised; any other attention key is processed as ENTER. Screen input is received and edited only when the list re-enters itself (commarea present and CDEMO-FROM-PROGRAM = COCRDLIC).",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDLIC.cbl:357-380",
+   "anchor": "CCARD-AID-PFK08",
+   "conditions": "AID not ENTER/PF3/PF7/PF8",
+   "outcome": "Treated as ENTER",
+   "data": ["CCARD-AID", "WS-PFK-FLAG"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-003",
+   "category": "routing",
+   "statement": "PF3 pressed on the card list always returns to the main menu COMEN01C (not to the caller): the commarea is stamped with from CCLI/COCRDLIC, user type 'U', first-entry context and last map, then XCTL to COMEN01C.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDLIC.cbl:383-406",
+   "anchor": "PROGRAM (LIT-MENUPGM)",
+   "conditions": "CCARD-AID-PFK03 and CDEMO-FROM-PROGRAM = COCRDLIC",
+   "outcome": "XCTL COMEN01C with CARDDEMO-COMMAREA",
+   "data": ["CDEMO-TO-PROGRAM", "CDEMO-USER-TYPE", "CDEMO-PGM-CONTEXT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-004",
+   "category": "error-policy",
+   "statement": "When the input has errors the list is redisplayed with the error; the card file is re-read only when both filters are valid (i.e. the error is in the row selections). With an invalid account or card filter no records are read and the selection column is protected.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDLIC.cbl:418-438",
+   "anchor": "AND NOT FLG-CARDFILTER-NOT-OK",
+   "conditions": "INPUT-ERROR",
+   "outcome": "Screen redisplayed with error message; list re-read only for selection errors",
+   "data": ["WS-INPUT-FLAG", "WS-EDIT-ACCT-FLAG", "WS-EDIT-CARD-FLAG"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-005",
+   "category": "decision",
+   "statement": "PF7 on the first page does not page: the current page is re-read from its first card and the message 'NO PREVIOUS PAGES TO DISPLAY' is shown.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDLIC.cbl:439-454",
+   "anchor": "AND CA-FIRST-PAGE",
+   "additional_sources": ["app/cbl/COCRDLIC.cbl:901-904"],
+   "conditions": "CCARD-AID-PFK07 and CA-FIRST-PAGE",
+   "outcome": "Same page redisplayed with message",
+   "data": ["WS-CA-SCREEN-NUM", "WS-CA-FIRST-CARD-NUM"],
+   "messages": ["NO PREVIOUS PAGES TO DISPLAY"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-006",
+   "category": "decision",
+   "statement": "When control comes back to the card list from another program (re-entry flag set but from-program not COCRDLIC, or PF3 still set as AID), the commarea is re-initialised and the list restarts at page 1, discarding filters and the previously selected account/card.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDLIC.cbl:458-482",
+   "anchor": "WHEN CDEMO-PGM-REENTER AND",
+   "conditions": "CCARD-AID-PFK03 (from other program) or CDEMO-PGM-REENTER and CDEMO-FROM-PROGRAM not COCRDLIC",
+   "outcome": "CARDDEMO-COMMAREA and paging context initialised; first page listed",
+   "data": ["CARDDEMO-COMMAREA", "WS-THIS-PROGCOMMAREA"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-007",
+   "category": "decision",
+   "statement": "PF8 pages forward only when a next page exists: the page number is increased by 1 and the browse restarts at the saved last-card key (the first record after the current page). Without a next page, PF8 falls to the default branch and redisplays the current page.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDLIC.cbl:485-497",
+   "anchor": "ADD +1 TO WS-CA-SCREEN-NUM",
+   "additional_sources": ["app/cbl/COCRDLIC.cbl:410-414"],
+   "conditions": "CCARD-AID-PFK08 and CA-NEXT-PAGE-EXISTS",
+   "outcome": "Next 7 matching cards listed",
+   "data": ["WS-CA-SCREEN-NUM", "WS-CA-LAST-CARD-NUM", "WS-CA-NEXT-PAGE-IND"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-008",
+   "category": "decision",
+   "statement": "PF7 when not on the first page pages backward: the page number is decreased by 1 and the 7 matching cards preceding the current page's first card are read backwards.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDLIC.cbl:501-513",
+   "anchor": "SUBTRACT 1 FROM WS-CA-SCREEN-NUM",
+   "conditions": "CCARD-AID-PFK07 and NOT CA-FIRST-PAGE",
+   "outcome": "Previous page listed",
+   "data": ["WS-CA-SCREEN-NUM", "WS-CA-FIRST-CARD-NUM"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-009",
+   "category": "routing",
+   "statement": "ENTER with 'S' against one listed card transfers to the card detail program COCRDSLC, passing that row's account number in CDEMO-ACCT-ID and card number in CDEMO-CARD-NUM, with from CCLI/COCRDLIC, user type 'U' and first-entry context.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDLIC.cbl:517-541",
+   "anchor": "AND VIEW-REQUESTED-ON(I-SELECTED)",
+   "conditions": "CCARD-AID-ENTER, VIEW-REQUESTED-ON(I-SELECTED), no input error, re-entry from itself",
+   "outcome": "XCTL COCRDSLC with CARDDEMO-COMMAREA",
+   "data": ["WS-EDIT-SELECT", "I-SELECTED", "WS-ROW-ACCTNO", "WS-ROW-CARD-NUM", "CDEMO-ACCT-ID", "CDEMO-CARD-NUM"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-010",
+   "category": "routing",
+   "statement": "ENTER with 'U' against one listed card transfers to the card update program COCRDUPC, passing that row's account number and card number in the commarea, with from CCLI/COCRDLIC, user type 'U' and first-entry context.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDLIC.cbl:545-569",
+   "anchor": "AND UPDATE-REQUESTED-ON(I-SELECTED)",
+   "conditions": "CCARD-AID-ENTER, UPDATE-REQUESTED-ON(I-SELECTED), re-entry from itself",
+   "outcome": "XCTL COCRDUPC with CARDDEMO-COMMAREA",
+   "data": ["WS-EDIT-SELECT", "I-SELECTED", "CDEMO-ACCT-ID", "CDEMO-CARD-NUM"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-011",
+   "category": "decision",
+   "statement": "In all other cases (ENTER without a selection, first display, PF8 with no next page) the list is (re)displayed starting from the first card key of the current page; on a fresh start this key is empty, so the list starts at the beginning of the card file.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDLIC.cbl:572-582",
+   "anchor": "WHEN OTHER",
+   "conditions": "No earlier WHEN matched",
+   "outcome": "Page listed from WS-CA-FIRST-CARD-NUM",
+   "data": ["WS-CA-FIRST-CARD-NUM", "WS-CARD-RID-CARDNUM"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-012",
+   "category": "decision",
+   "statement": "Paging messages: PF8 when no next page exists first shows the action hint 'TYPE S FOR DETAIL, U TO UPDATE ANY RECORD' and marks the last page as shown; a further PF8 shows 'NO MORE PAGES TO DISPLAY'. The hint is also shown whenever a next page exists or no other info is set. Filter errors suppress these messages.",
+   "paragraph": "1400-SETUP-MESSAGE",
+   "source": "app/cbl/COCRDLIC.cbl:897-930",
+   "anchor": "MOVE 'NO MORE PAGES TO DISPLAY'",
+   "additional_sources": ["app/cbl/COCRDLIC.cbl:113-116"],
+   "conditions": "CCARD-AID-PFK08, CA-NEXT-PAGE-NOT-EXISTS, CA-LAST-PAGE-SHOWN / NOT-SHOWN",
+   "outcome": "Error or info message on the list screen",
+   "data": ["WS-CA-LAST-PAGE-DISPLAYED", "WS-CA-NEXT-PAGE-IND", "WS-INFO-MSG", "WS-ERROR-MSG"],
+   "messages": ["NO PREVIOUS PAGES TO DISPLAY", "NO MORE PAGES TO DISPLAY", "TYPE S FOR DETAIL, U TO UPDATE ANY RECORD"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-013",
+   "category": "validation",
+   "statement": "The account filter is optional: spaces, low-values or all zeros mean no account filter. If supplied it must be numeric over all 11 positions; otherwise the input is rejected with 'ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER', the account filter is shown in red and row selection is protected.",
+   "paragraph": "2210-EDIT-ACCOUNT",
+   "source": "app/cbl/COCRDLIC.cbl:1007-1029",
+   "anchor": "'ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER'",
+   "conditions": "CC-ACCT-ID blank/zero -> no filter; NOT NUMERIC -> error",
+   "outcome": "FLG-ACCTFILTER-BLANK / NOT-OK / ISVALID; CDEMO-ACCT-ID set or zeroed",
+   "data": ["CC-ACCT-ID", "CC-ACCT-ID-N", "CDEMO-ACCT-ID"],
+   "messages": ["ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-014",
+   "category": "validation",
+   "statement": "The card number filter is optional: spaces, low-values or all zeros mean no card filter. If supplied it must be numeric over all 16 positions; otherwise the input is rejected with 'CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER' (only if no account-filter message is already set) and row selection is protected.",
+   "paragraph": "2220-EDIT-CARD",
+   "source": "app/cbl/COCRDLIC.cbl:1042-1066",
+   "anchor": "'CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER'",
+   "conditions": "CC-CARD-NUM blank/zero -> no filter; NOT NUMERIC -> error",
+   "outcome": "FLG-CARDFILTER-BLANK / NOT-OK / ISVALID; CDEMO-CARD-NUM set or zeroed",
+   "data": ["CC-CARD-NUM", "CC-CARD-NUM-N", "CDEMO-CARD-NUM"],
+   "messages": ["CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-015",
+   "category": "validation",
+   "statement": "Only one card may be selected per request: if more than one row carries 'S' or 'U', the input is rejected with 'PLEASE SELECT ONLY ONE RECORD TO VIEW OR UPDATE' and every selected row is highlighted as an error. Selection editing is skipped when a filter is invalid.",
+   "paragraph": "2250-EDIT-ARRAY",
+   "source": "app/cbl/COCRDLIC.cbl:1075-1094",
+   "anchor": "SET WS-MORE-THAN-1-ACTION TO TRUE",
+   "additional_sources": ["app/cbl/COCRDLIC.cbl:123-124"],
+   "conditions": "Count of 'S' + 'U' in WS-EDIT-SELECT-FLAGS > 1",
+   "outcome": "INPUT-ERROR; message; row error flags set",
+   "data": ["WS-EDIT-SELECT-FLAGS", "WS-EDIT-SELECT-ERROR-FLAGS", "I"],
+   "messages": ["PLEASE SELECT ONLY ONE RECORD TO VIEW OR UPDATE"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-016",
+   "category": "validation",
+   "statement": "Valid row action codes are 'S' (view detail), 'U' (update) or blank. Any other code marks the row in error and rejects the input with 'INVALID ACTION CODE' (unless another message is already set). The row with S/U becomes the selected row (I-SELECTED).",
+   "paragraph": "2250-EDIT-ARRAY",
+   "source": "app/cbl/COCRDLIC.cbl:1099-1115",
+   "anchor": "SET WS-INVALID-ACTION-CODE TO TRUE",
+   "additional_sources": ["app/cbl/COCRDLIC.cbl:74-82", "app/cbl/COCRDLIC.cbl:125-126"],
+   "conditions": "WS-EDIT-SELECT(I) not in ('S','U',' ',LOW-VALUES)",
+   "outcome": "INPUT-ERROR; row flagged; message",
+   "data": ["WS-EDIT-SELECT", "WS-ROW-CRDSELECT-ERROR", "I-SELECTED"],
+   "messages": ["INVALID ACTION CODE"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-017",
+   "category": "decision",
+   "statement": "A page holds at most 7 cards (WS-MAX-SCREEN-LINES). Reading forward from the start key in card-number order, only records passing the filters are placed on the page; the first placed card's key becomes the page's first-card key, and the page number is set to 1 if it was 0.",
+   "paragraph": "9000-READ-FORWARD",
+   "source": "app/cbl/COCRDLIC.cbl:1144-1194",
+   "anchor": "IF WS-SCRN-COUNTER = WS-MAX-SCREEN-LINES",
+   "additional_sources": ["app/cbl/COCRDLIC.cbl:177-178"],
+   "conditions": "READNEXT NORMAL/DUPREC and WS-DONOT-EXCLUDE-THIS-RECORD",
+   "outcome": "WS-SCREEN-ROWS filled; WS-CA-FIRST-CARDKEY and WS-CA-LAST-CARDKEY saved",
+   "data": ["WS-SCRN-COUNTER", "WS-MAX-SCREEN-LINES", "WS-CA-FIRST-CARD-NUM", "WS-CA-SCREEN-NUM"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-018",
+   "category": "decision",
+   "statement": "After the 7th card is placed, one more record is read (without filtering) to decide whether a next page exists; its key becomes the start key for PF8. Reaching end of file sets 'no next page' and the message 'NO MORE RECORDS TO SHOW'; if page 1 has no matching card at all, the message is 'NO RECORDS FOUND FOR THIS SEARCH CONDITION.'.",
+   "paragraph": "9000-READ-FORWARD",
+   "source": "app/cbl/COCRDLIC.cbl:1196-1246",
+   "anchor": "SET WS-NO-RECORDS-FOUND TO TRUE",
+   "additional_sources": ["app/cbl/COCRDLIC.cbl:121-122"],
+   "conditions": "Lookahead READNEXT result; ENDFILE; WS-CA-SCREEN-NUM = 1 and WS-SCRN-COUNTER = 0",
+   "outcome": "CA-NEXT-PAGE-EXISTS / NOT-EXISTS; message",
+   "data": ["WS-CA-NEXT-PAGE-IND", "WS-CA-LAST-CARD-NUM", "WS-ERROR-MSG"],
+   "messages": ["NO MORE RECORDS TO SHOW", "NO RECORDS FOUND FOR THIS SEARCH CONDITION."],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-019",
+   "category": "error-policy",
+   "statement": "Any card-file read failure other than end of file stops the list fill and shows 'File Error: READ on CARDDAT returned RESP <resp>,RESP2 <resp2>' on the screen; the rows read so far are still displayed.",
+   "paragraph": "9000-READ-FORWARD",
+   "source": "app/cbl/COCRDLIC.cbl:1247-1254",
+   "anchor": "MOVE WS-FILE-ERROR-MESSAGE TO WS-ERROR-MSG",
+   "additional_sources": ["app/cbl/COCRDLIC.cbl:153-171"],
+   "conditions": "READNEXT RESP not NORMAL/DUPREC/ENDFILE",
+   "outcome": "Loop ends; file-error message",
+   "data": ["WS-RESP-CD", "WS-REAS-CD", "WS-FILE-ERROR-MESSAGE"],
+   "messages": ["File Error:", " returned RESP "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-020",
+   "category": "decision",
+   "statement": "Paging backward reads the card file in descending card-number order from the current page's first card, skips that card itself, and fills rows 7 down to 1 with the preceding cards that pass the filters; the card placed in row 1 becomes the new first-card key. A read error (including reaching the start of the file) ends the fill with the file-error message.",
+   "paragraph": "9100-READ-BACKWARDS",
+   "source": "app/cbl/COCRDLIC.cbl:1283-1371",
+   "anchor": "WS-MAX-SCREEN-LINES + 1",
+   "conditions": "PF7 and not first page",
+   "outcome": "WS-SCREEN-ROWS filled bottom-up; WS-CA-FIRST-CARDKEY updated",
+   "data": ["WS-SCRN-COUNTER", "WS-CA-FIRST-CARD-NUM", "WS-CA-FIRST-CARD-ACCT-ID"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDLIC-021",
+   "category": "decision",
+   "statement": "Record selection filter: a card is listed only if it matches every supplied filter - its CARD-ACCT-ID equals the account filter when a valid account filter was entered, and its CARD-NUM equals the card filter when a valid card filter was entered. With no filters all cards are listed.",
+   "paragraph": "9500-FILTER-RECORDS",
+   "source": "app/cbl/COCRDLIC.cbl:1382-1407",
+   "anchor": "IF CARD-ACCT-ID = CC-ACCT-ID",
+   "conditions": "FLG-ACCTFILTER-ISVALID / FLG-CARDFILTER-ISVALID",
+   "outcome": "WS-EXCLUDE-THIS-RECORD or WS-DONOT-EXCLUDE-THIS-RECORD",
+   "data": ["CARD-ACCT-ID", "CC-ACCT-ID", "CARD-NUM", "CC-CARD-NUM-N"],
+   "messages": [],
+   "confidence": "Confirmed"
+  }
+ ],
+ "existing_rules_reviewed": [],
+ "no_rule_decisions": [
+  {
+   "source": "app/cbl/COCRDLIC.cbl:680-742",
+   "reason": "1200-SCREEN-ARRAY-INIT only copies non-empty rows to the screen fields (presentation)."
+  },
+  {
+   "source": "app/cbl/COCRDLIC.cbl:751-831",
+   "reason": "1250-SETUP-ARRAY-ATTRIBS sets protection, colour, '*' marker and cursor on the selection fields (screen attributes)."
+  },
+  {
+   "source": "app/cbl/COCRDLIC.cbl:838-886",
+   "reason": "1300-SETUP-SCREEN-ATTRS echoes filter values and sets filter field colour and cursor (presentation)."
+  }
+ ],
+ "no_business_rules_reason": null,
+ "observations": [
+  {
+   "kind": "conflict",
+   "text": "The header says admins see all cards and non-admin users only the cards of the account in the commarea, but the code never tests CDEMO-USER-TYPE or uses CDEMO-ACCT-ID as an implicit filter; any user can list every card in CARDDAT. It even forces CDEMO-USRTYP-USER on every transfer.",
+   "source": "app/cbl/COCRDLIC.cbl:4-7"
+  },
+  {
+   "kind": "anomaly",
+   "text": "WS-CA-SCREEN-NUM is PIC 9(1): paging forward past page 9 truncates the page number to 0, which breaks the first-page test (CA-FIRST-PAGE) and the page display.",
+   "source": "app/cbl/COCRDLIC.cbl:237-238"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The next-page lookahead read is not filtered, so with a filter active 'next page exists' can be set although no further matching card exists; PF8 then shows an empty page with 'NO MORE RECORDS TO SHOW'.",
+   "source": "app/cbl/COCRDLIC.cbl:1196-1214"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Backward paging treats start-of-file (ENDFILE on READPREV) as a generic file error and shows 'File Error: READ on CARDDAT ...' instead of a paging message.",
+   "source": "app/cbl/COCRDLIC.cbl:1361-1369"
+  },
+  {
+   "kind": "anomaly",
+   "text": "On selection errors with valid filters the list is re-read with WS-CARD-RID-CARDNUM still initialised (not set from the first-card key), so the list restarts at the beginning of the file while the page number and selection codes are kept.",
+   "source": "app/cbl/COCRDLIC.cbl:431-435"
+  },
+  {
+   "kind": "anomaly",
+   "text": "A stray 'I' on its own line makes the MOVE DFHBMPRO also target subscript I (MOVE DFHBMPRO TO CRDSEL4A OF CCRDLIAI I).",
+   "source": "app/cbl/COCRDLIC.cbl:787-790"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Row 1 uses DFHBMPRF and a '*' marker whereas rows 2-7 use DFHBMPRO and cursor positioning - inconsistent attribute handling across rows.",
+   "source": "app/cbl/COCRDLIC.cbl:751-772"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Duplicate WHEN 'CCARD-AID-PFK07 AND CA-FIRST-PAGE' (first one empty) and several PERFORM 1000-SEND-MAP THRU 1000-SEND-MAP (not the -EXIT paragraph).",
+   "source": "app/cbl/COCRDLIC.cbl:436-445"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Filtering is done by sequentially browsing CARDDAT by card number; with an account filter the whole file may be scanned. The alternate path CARDAIX (LIT-CARD-FILE-ACCT-PATH) is declared but unused.",
+   "source": "app/cbl/COCRDLIC.cbl:213-217"
+  },
+  {
+   "kind": "unchecked-io",
+   "text": "STARTBR responses are not tested (both browses), nor SEND/RECEIVE MAP RESP.",
+   "source": "app/cbl/COCRDLIC.cbl:1129-1136"
+  },
+  {
+   "kind": "dead-code",
+   "text": "SEND-PLAIN-TEXT and SEND-LONG-TEXT are never performed; 0000-MAIN-EXIT is unreachable.",
+   "source": "app/cbl/COCRDLIC.cbl:1422-1454"
+  }
+ ],
+ "sme_questions": [
+  {
+   "question": "Should non-admin users be restricted to the cards of their own account as the program header states? If yes, where should the user's account come from (commarea CDEMO-ACCT-ID is not set by sign-on)?",
+   "source": "app/cbl/COCRDLIC.cbl:4-7"
+  },
+  {
+   "question": "Is a maximum of 9 pages acceptable (WS-CA-SCREEN-NUM PIC 9), or must the target system page through the whole card file?",
+   "source": "app/cbl/COCRDLIC.cbl:237"
+  },
+  {
+   "question": "After returning from card detail/update, should the list restore the previous filters and page instead of restarting at page 1?",
+   "source": "app/cbl/COCRDLIC.cbl:458-482"
+  }
+ ]
+}

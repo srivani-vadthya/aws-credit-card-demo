@@ -1,0 +1,24 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "CVTRA05Y",
+ "evidence": ["app/cpy/CVTRA05Y.cpy:1-18", "app/cbl/CBACT04C.cbl:473-500"],
+ "key_fields": [
+  {"name": "TRAN-RECORD", "meaning": "350-byte posted transaction record (comment RECLN 350; field sizes add up to 350).", "source": "app/cpy/CVTRA05Y.cpy:4"},
+  {"name": "TRAN-ID", "meaning": "16-byte transaction id, key of the transaction file; CBACT04C builds it from the run date and a 6-digit sequence.", "source": "app/cpy/CVTRA05Y.cpy:5"},
+  {"name": "TRAN-TYPE-CD", "meaning": "2-character transaction type code (CBACT04C uses '01' for interest).", "source": "app/cpy/CVTRA05Y.cpy:6"},
+  {"name": "TRAN-CAT-CD", "meaning": "4-digit transaction category code (CBACT04C uses 5 for interest).", "source": "app/cpy/CVTRA05Y.cpy:7"},
+  {"name": "TRAN-SOURCE", "meaning": "10-byte origin of the transaction (e.g. 'System' for interest).", "source": "app/cpy/CVTRA05Y.cpy:8"},
+  {"name": "TRAN-AMT", "meaning": "Signed amount S9(09)V99.", "source": "app/cpy/CVTRA05Y.cpy:10"},
+  {"name": "TRAN-MERCHANT-ID", "meaning": "9-digit merchant id, with merchant name, city and ZIP following.", "source": "app/cpy/CVTRA05Y.cpy:11-14"},
+  {"name": "TRAN-CARD-NUM", "meaning": "Card number the transaction is charged to.", "source": "app/cpy/CVTRA05Y.cpy:15"},
+  {"name": "TRAN-ORIG-TS", "meaning": "26-byte origination timestamp (DB2 format YYYY-MM-DD-HH.MM.SS.nnnnnn in CBACT04C).", "source": "app/cpy/CVTRA05Y.cpy:16"},
+  {"name": "TRAN-PROC-TS", "meaning": "26-byte processing timestamp.", "source": "app/cpy/CVTRA05Y.cpy:17"}
+ ],
+ "observations": [],
+ "purpose": "CVTRA05Y defines TRAN-RECORD, the 350-byte posted transaction entity: id, type and category codes, source, description, amount, merchant details, card number and origination/processing timestamps. It is written by CBACT04C (interest) and CBTRN02C (posting), read by reporting and migration programs (CBTRN03C, CBEXPORT, CBIMPORT) and by online programs COBIL00C, CORPT00C, COTRN00C, COTRN01C and COTRN02C.",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/CVTRA05Y.cpy"],
+ "source_sha256": ["d7bde0e78ff608497087b9909c889ed39e347269f964bda767b92b547fbb5fec"],
+ "status": "complete"
+}

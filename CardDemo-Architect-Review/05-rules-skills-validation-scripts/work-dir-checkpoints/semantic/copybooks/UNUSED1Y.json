@@ -1,0 +1,41 @@
+{
+ "batch": "B10", 
+ "confidence": "Inferred", 
+ "copybook": "UNUSED1Y", 
+ "evidence": [
+  "app/cpy/UNUSED1Y.cpy:1-7"
+ ], 
+ "key_fields": [
+  {
+   "meaning": "8-byte identifier at the start of the 80-byte record; the same picture as the user id in CSUSR01Y (Inferred from matching PIC only).", 
+   "name": "UNUSED-ID", 
+   "source": "app/cpy/UNUSED1Y.cpy:2"
+  }, 
+  {
+   "meaning": "8-byte password-like field (name only; no program reads it).", 
+   "name": "UNUSED-PWD", 
+   "source": "app/cpy/UNUSED1Y.cpy:5"
+  }, 
+  {
+   "meaning": "1-byte type code (name only; no program reads it).", 
+   "name": "UNUSED-TYPE", 
+   "source": "app/cpy/UNUSED1Y.cpy:6"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "dead-code", 
+   "source": "app/cpy/UNUSED1Y.cpy:1", 
+   "text": "No COPY or EXEC SQL INCLUDE of UNUSED1Y exists in any inventoried program or copybook (docs/_work/structure/copybook-usage.json). Its 8+20+20+8+1+23 = 80-byte shape matches the user-security layout in CSUSR01Y; whether it is a retired copy of that layout needs SME confirmation."
+  }
+ ], 
+ "purpose": "Defines group UNUSED-DATA, an 80-byte record of six alphanumeric fields: id, first name, last name, password, type and filler. No program in the repository copies it, so it has no runtime role in this code base. The field shape mirrors a user record, but that is an observation from pictures and names, not from any usage.", 
+ "schema": "copybook-semantics/1", 
+ "source_paths": [
+  "app/cpy/UNUSED1Y.cpy"
+ ], 
+ "source_sha256": [
+  "91ad4ceffd87a40f5071dd4f0d3a08dc1253d76d2f0b3ecfc03490f7526b78e3"
+ ], 
+ "status": "complete"
+}

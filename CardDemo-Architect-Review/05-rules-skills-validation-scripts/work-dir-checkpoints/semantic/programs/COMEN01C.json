@@ -1,0 +1,220 @@
+{
+ "schema": "program-semantics/1",
+ "program": "COMEN01C",
+ "source_path": "app/cbl/COMEN01C.cbl",
+ "source_sha256": "c77747b4caaf00b45177a6449562b7f59ec336db832937595edef8b32fdce6fa",
+ "batch": "B05",
+ "status": "complete",
+ "summary": {
+  "text": "COMEN01C is the CICS pseudo-conversational main (regular user) menu of CardDemo, transaction CM00, map COMEN1A of mapset COMEN01. Without a commarea it transfers to the sign-on program COSGN00C; on first entry from another program it sets the re-enter flag and displays the option list built from the COMEN02Y table (11 options). On ENTER it normalises the typed option number, validates it against CDEMO-MENU-OPT-COUNT, blocks admin-only options for regular users, and XCTLs to the program of the chosen option with the CARDDEMO-COMMAREA; COPAUS0C is first checked with INQUIRE PROGRAM and DUMMY placeholders are shown as 'coming soon'. PF3 returns to COSGN00C; other keys redisplay the menu with an invalid-key message. Each turn ends with CICS RETURN TRANSID(CM00) COMMAREA(CARDDEMO-COMMAREA).",
+  "evidence": [
+   "app/cbl/COMEN01C.cbl:35-51",
+   "app/cbl/COMEN01C.cbl:75-110",
+   "app/cbl/COMEN01C.cbl:115-191",
+   "app/cpy/COMEN02Y.cpy:19-98"
+  ],
+  "confidence": "Confirmed"
+ },
+ "paragraphs": [
+  {
+   "name": "MAIN-PARA",
+   "lines": "75-110",
+   "logic": "Clears the error flag and message. If EIBCALEN = 0 it moves 'COSGN00C' to CDEMO-FROM-PROGRAM and performs RETURN-TO-SIGNON-SCREEN. Otherwise it copies DFHCOMMAREA into CARDDEMO-COMMAREA; if CDEMO-PGM-REENTER is not set it sets it, clears COMEN1AO and sends the menu; else it receives the map and evaluates EIBAID: ENTER performs PROCESS-ENTER-KEY, PF3 sets CDEMO-TO-PROGRAM='COSGN00C' and returns to sign-on, other keys redisplay with CCDA-MSG-INVALID-KEY. Ends with CICS RETURN TRANSID('CM00') and the commarea.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "PROCESS-ENTER-KEY",
+   "lines": "115-191",
+   "logic": "Finds the last non-space character of OPTIONI, moves the significant part into right-justified WS-OPTION-X, replaces spaces with '0' and moves it to numeric WS-OPTION. Rejects non-numeric, zero or > CDEMO-MENU-OPT-COUNT options with 'Please enter a valid option number...', and rejects options with user type 'A' for CDEMO-USRTYP-USER users with 'No access - Admin Only option... '. When no error: COPAUS0C is XCTLed only if EXEC CICS INQUIRE PROGRAM returns NORMAL (else red 'This option ... is not installed...'); programs starting 'DUMMY' produce a green 'coming soon' message; any other option sets CDEMO-FROM-TRANID/PROGRAM, CDEMO-PGM-CONTEXT=0 and XCTLs to CDEMO-MENU-OPT-PGMNAME(WS-OPTION). If no XCTL occurred, the menu is redisplayed.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "RETURN-TO-SIGNON-SCREEN",
+   "lines": "196-203",
+   "logic": "Defaults CDEMO-TO-PROGRAM to 'COSGN00C' when it is low-values or spaces, then XCTLs to CDEMO-TO-PROGRAM without a commarea.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "SEND-MENU-SCREEN",
+   "lines": "208-220",
+   "logic": "Performs POPULATE-HEADER-INFO and BUILD-MENU-OPTIONS, moves WS-MESSAGE to ERRMSGO and sends map COMEN1A (mapset COMEN01) with ERASE.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "RECEIVE-MENU-SCREEN",
+   "lines": "225-233",
+   "logic": "Receives map COMEN1A of mapset COMEN01 into COMEN1AI capturing RESP/RESP2 (not tested afterwards).",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "POPULATE-HEADER-INFO",
+   "lines": "238-257",
+   "logic": "Moves titles, transaction id CM00, program name, current date (MM/DD/YY) and time (HH:MM:SS) from FUNCTION CURRENT-DATE to the map header fields.",
+   "confidence": "Confirmed"
+  },
+  {
+   "name": "BUILD-MENU-OPTIONS",
+   "lines": "262-303",
+   "logic": "Loops WS-IDX from 1 to CDEMO-MENU-OPT-COUNT, builds 'nn. option name' from CDEMO-MENU-OPT-NUM and CDEMO-MENU-OPT-NAME and moves it to screen line OPTN001O..OPTN012O according to WS-IDX; indexes beyond 12 are ignored.",
+   "confidence": "Confirmed"
+  }
+ ],
+ "rules": [
+  {
+   "id": "BR-COMEN01C-001",
+   "category": "validation",
+   "statement": "The menu option entered must be numeric, not zero and not greater than the number of configured options (CDEMO-MENU-OPT-COUNT, 11 in COMEN02Y); otherwise the menu is redisplayed with 'Please enter a valid option number...'. Before the test, trailing blanks are dropped and embedded/leading blanks are replaced by zeros, so ' 5' and '5 ' both mean option 5.",
+   "paragraph": "PROCESS-ENTER-KEY",
+   "source": "app/cbl/COMEN01C.cbl:127-134",
+   "anchor": "WS-OPTION > CDEMO-MENU-OPT-COUNT OR",
+   "additional_sources": [
+    "app/cbl/COMEN01C.cbl:117-125",
+    "app/cpy/COMEN02Y.cpy:21"
+   ],
+   "conditions": "WS-OPTION IS NOT NUMERIC or WS-OPTION > CDEMO-MENU-OPT-COUNT or WS-OPTION = 0",
+   "outcome": "Error flag set; menu redisplayed with message; no transfer",
+   "data": ["OPTIONI", "WS-OPTION-X", "WS-OPTION", "CDEMO-MENU-OPT-COUNT"],
+   "messages": ["Please enter a valid option number..."],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COMEN01C-002",
+   "category": "security",
+   "statement": "A regular user (CDEMO-USER-TYPE 'U') may not select a menu option flagged admin-only (CDEMO-MENU-OPT-USRTYPE = 'A'); the menu is redisplayed with 'No access - Admin Only option... ' and no transfer happens. In the current COMEN02Y table every option is flagged 'U', so the check never fires with the shipped configuration.",
+   "paragraph": "PROCESS-ENTER-KEY",
+   "source": "app/cbl/COMEN01C.cbl:136-143",
+   "anchor": "CDEMO-MENU-OPT-USRTYPE(WS-OPTION) = 'A'",
+   "additional_sources": [
+    "app/cpy/COMEN02Y.cpy:25-90"
+   ],
+   "conditions": "CDEMO-USRTYP-USER and CDEMO-MENU-OPT-USRTYPE(WS-OPTION) = 'A'",
+   "outcome": "Error flag set; menu redisplayed with message",
+   "data": ["CDEMO-USER-TYPE", "CDEMO-MENU-OPT-USRTYPE"],
+   "messages": ["No access - Admin Only option... "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COMEN01C-003",
+   "category": "routing",
+   "statement": "A valid, permitted option whose program is neither COPAUS0C nor a DUMMY placeholder transfers control (XCTL) to the program named in CDEMO-MENU-OPT-PGMNAME for that option, passing the commarea with from-transaction CM00, from-program COMEN01C and program context 0 (first entry). Options 1-10 map to COACTVWC, COACTUPC, COCRDLIC, COCRDSLC, COCRDUPC, COTRN00C, COTRN01C, COTRN02C, CORPT00C, COBIL00C.",
+   "paragraph": "PROCESS-ENTER-KEY",
+   "source": "app/cbl/COMEN01C.cbl:177-187",
+   "anchor": "XCTL PROGRAM(CDEMO-MENU-OPT-PGMNAME(WS-OPTION))",
+   "additional_sources": [
+    "app/cbl/COMEN01C.cbl:144-146",
+    "app/cpy/COMEN02Y.cpy:25-84"
+   ],
+   "conditions": "Error flag off and option program not COPAUS0C and not starting 'DUMMY'",
+   "outcome": "XCTL to option program with CARDDEMO-COMMAREA",
+   "data": ["CDEMO-MENU-OPT-PGMNAME", "CDEMO-FROM-TRANID", "CDEMO-FROM-PROGRAM", "CDEMO-PGM-CONTEXT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COMEN01C-004",
+   "category": "decision",
+   "statement": "The menu distinguishes first entry from re-entry with CDEMO-PGM-CONTEXT: when entered from another program (context not 1) it sets CDEMO-PGM-REENTER and only displays the menu; screen input is received and acted on only on re-entry. A call without any commarea is sent back to sign-on (COSGN00C).",
+   "paragraph": "MAIN-PARA",
+   "source": "app/cbl/COMEN01C.cbl:82-92",
+   "anchor": "IF NOT CDEMO-PGM-REENTER",
+   "conditions": "EIBCALEN = 0; or CDEMO-PGM-REENTER false/true",
+   "outcome": "No commarea: XCTL to COSGN00C. First entry: menu sent. Re-entry: map received and key processed.",
+   "data": ["EIBCALEN", "CDEMO-PGM-CONTEXT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COMEN01C-005",
+   "category": "error-policy",
+   "statement": "On the main menu any key other than ENTER or PF3 is rejected: the menu is redisplayed with 'Invalid key pressed. Please see below...' and no option is processed.",
+   "paragraph": "MAIN-PARA",
+   "source": "app/cbl/COMEN01C.cbl:99-102",
+   "anchor": "MOVE CCDA-MSG-INVALID-KEY TO WS-MESSAGE",
+   "additional_sources": ["app/cpy/CSMSG01Y.cpy:20-21"],
+   "conditions": "Re-entry and EIBAID not DFHENTER/DFHPF3",
+   "outcome": "Menu redisplayed with invalid-key message",
+   "data": ["EIBAID"],
+   "messages": ["Invalid key pressed. Please see below..."],
+   "confidence": "Confirmed"
+  }
+ ],
+ "existing_rules_reviewed": [
+  {
+   "id": "BR-BASE-001",
+   "verdict": "confirmed",
+   "source": "app/cbl/COMEN01C.cbl:198-200",
+   "anchor": "IF CDEMO-TO-PROGRAM = LOW-VALUES OR SPACES",
+   "note": "Confirmed for COMEN01C; the XCTL at 201-203 passes no commarea. The COADM01C half is reviewed in COADM01C.json."
+  },
+  {
+   "id": "BR-BASE-002",
+   "verdict": "confirmed",
+   "source": "app/cbl/COMEN01C.cbl:96-98",
+   "anchor": "MOVE 'COSGN00C' TO CDEMO-TO-PROGRAM",
+   "note": "PF3 sets CDEMO-TO-PROGRAM to 'COSGN00C' and performs RETURN-TO-SIGNON-SCREEN (XCTL without commarea)."
+  },
+  {
+   "id": "BR-BASE-COMEN01C-001",
+   "verdict": "confirmed",
+   "source": "app/cbl/COMEN01C.cbl:147-168",
+   "anchor": "IF EIBRESP = DFHRESP(NORMAL)",
+   "note": "INQUIRE PROGRAM ... NOHANDLE; when not NORMAL the message 'This option <name> is not installed...' is shown in red (DFHRED). On success CDEMO-FROM-TRANID/PROGRAM and context 0 are set before XCTL."
+  },
+  {
+   "id": "BR-BASE-COMEN01C-002",
+   "verdict": "confirmed",
+   "source": "app/cbl/COMEN01C.cbl:169-176",
+   "anchor": "WHEN CDEMO-MENU-OPT-PGMNAME(WS-OPTION)(1:5) = 'DUMMY'",
+   "note": "Message built as 'This option ' + option name up to the first space + 'is coming soon ...' in green. No COMEN02Y entry currently starts with DUMMY, so this branch is dormant."
+  }
+ ],
+ "no_rule_decisions": [
+  {
+   "source": "app/cbl/COMEN01C.cbl:264-301",
+   "reason": "BUILD-MENU-OPTIONS loop and EVALUATE WS-IDX only place option text on screen lines OPTN001O-OPTN012O (presentation)."
+  }
+ ],
+ "no_business_rules_reason": null,
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "After an invalid option (zero, non-numeric or > count) the error flag is set but the next IF still subscripts CDEMO-MENU-OPT-USRTYPE(WS-OPTION); with WS-OPTION = 0 or > 12 this is an out-of-range subscript, and if the condition evaluated true the map would be sent twice.",
+   "source": "app/cbl/COMEN01C.cbl:127-143"
+  },
+  {
+   "kind": "dead-code",
+   "text": "Every COMEN02Y option has user type 'U' and none starts with 'DUMMY', so the admin-only check and the coming-soon branch never fire with the shipped table.",
+   "source": "app/cbl/COMEN01C.cbl:136-176"
+  },
+  {
+   "kind": "anomaly",
+   "text": "Coming-soon message truncates the option name at the first space and the literal 'is coming soon ...' has no leading space (e.g. 'This option Accountis coming soon ...'). The not-installed message uses DELIMITED BY '  ' instead.",
+   "source": "app/cbl/COMEN01C.cbl:172-176"
+  },
+  {
+   "kind": "anomaly",
+   "text": "MOVE WS-PGMNAME TO CDEMO-FROM-PROGRAM is duplicated; commented-out moves of WS-USER-ID/SEC-USR-TYPE remain.",
+   "source": "app/cbl/COMEN01C.cbl:179-182"
+  },
+  {
+   "kind": "unchecked-io",
+   "text": "RECEIVE MAP RESP/RESP2 are never tested, and the XCTL to option programs has no RESP/HANDLE, so a missing program would abend (only COPAUS0C is pre-checked).",
+   "source": "app/cbl/COMEN01C.cbl:227-233"
+  },
+  {
+   "kind": "anomaly",
+   "text": "COMEN01C copies CSUSR01Y and defines WS-USRSEC-FILE 'USRSEC' but never reads the file.",
+   "source": "app/cbl/COMEN01C.cbl:39"
+  }
+ ],
+ "sme_questions": [
+  {
+   "question": "Is the admin-only flag in COMEN02Y intended to be used (e.g. 'Transaction Add (Admin Only)' was commented out)? If not, can the access check be dropped in the target design?",
+   "source": "app/cpy/COMEN02Y.cpy:67-72"
+  },
+  {
+   "question": "Why is only COPAUS0C pre-checked with INQUIRE PROGRAM? Is the pending-authorization module an optional install?",
+   "source": "app/cbl/COMEN01C.cbl:147-151"
+  }
+ ]
+}

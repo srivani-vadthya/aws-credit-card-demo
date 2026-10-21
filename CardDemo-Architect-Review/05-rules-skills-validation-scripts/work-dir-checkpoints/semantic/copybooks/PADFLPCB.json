@@ -1,0 +1,20 @@
+{
+ "schema": "copybook-semantics/1",
+ "copybook": "PADFLPCB",
+ "batch": "B01",
+ "status": "complete",
+ "confidence": "Confirmed",
+ "source_paths": ["app/app-authorization-ims-db2-mq/cpy/PADFLPCB.CPY"],
+ "source_sha256": ["616e5d500d4a4c8e9ba63016c1b93ede555130b8c61d78199a84387dc809073a"],
+ "purpose": "Linkage-section PCB mask for the GSAM dataset that receives pending authorization detail records (third PCB of PSB DLIGSAMP, DBD PADFLDBD). DBUNLDGS passes it to CBLTDLI ISRT to write each PAUTDTL1 detail and checks PADFL-PCB-STATUS.",
+ "evidence": [
+  "app/app-authorization-ims-db2-mq/cpy/PADFLPCB.CPY:17-26",
+  "app/app-authorization-ims-db2-mq/cbl/DBUNLDGS.CBL:319-334",
+  "app/app-authorization-ims-db2-mq/ims/DLIGSAMP.PSB:22"
+ ],
+ "key_fields": [
+  {"name": "PADFL-PCB-STATUS", "meaning": "GSAM status after ISRT; non-blank causes DBUNLDGS to abend.", "source": "app/app-authorization-ims-db2-mq/cpy/PADFLPCB.CPY:20"},
+  {"name": "PADFL-KEYFB", "meaning": "Key feedback area (255 bytes) displayed on failure.", "source": "app/app-authorization-ims-db2-mq/cpy/PADFLPCB.CPY:26"}
+ ],
+ "observations": []
+}

@@ -1,0 +1,27 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "CSUSR01Y",
+ "evidence": [
+  "app/cpy/CSUSR01Y.cpy:17-23"
+ ],
+ "key_fields": [
+  {"name": "SEC-USER-DATA", "meaning": "80-byte user security record.", "source": "app/cpy/CSUSR01Y.cpy:17"},
+  {"name": "SEC-USR-ID", "meaning": "8-character user id.", "source": "app/cpy/CSUSR01Y.cpy:18"},
+  {"name": "SEC-USR-PWD", "meaning": "8-character password stored in clear text in the record layout.", "source": "app/cpy/CSUSR01Y.cpy:21"},
+  {"name": "SEC-USR-TYPE", "meaning": "1-character user type (admin/user, see CDEMO-USER-TYPE in COCOM01Y).", "source": "app/cpy/CSUSR01Y.cpy:22"}
+ ],
+ "observations": [
+  {"kind": "dead-code", "source": "app/cbl/COACTUPC.cbl:635", "text": "COACTUPC copies CSUSR01Y but references no SEC-USR field."},
+  {"kind": "security", "source": "app/cpy/CSUSR01Y.cpy:21", "text": "The password field is a plain PIC X(08) with no hashing indicated by the layout."}
+ ],
+ "purpose": "Defines SEC-USER-DATA, the 80-byte signed-on user security record: user id, first and last name, password, user type and filler. It is the record used by the sign-on and user-maintenance programs; COACTUPC copies it but does not reference any of its fields.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CSUSR01Y.cpy"
+ ],
+ "source_sha256": [
+  "37c34094dc4124bc6255e0b06a0387442f4f0dd9d51dd6623b559d370aa0d2cb"
+ ],
+ "status": "complete"
+}

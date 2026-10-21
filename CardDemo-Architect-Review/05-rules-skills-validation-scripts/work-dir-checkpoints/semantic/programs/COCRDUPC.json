@@ -1,0 +1,804 @@
+{
+ "batch": "B06", 
+ "existing_rules_reviewed": [
+  {
+   "anchor": "IF WS-RETURN-MSG-OFF SET WS-PROMPT-FOR-ACCT TO TRUE", 
+   "id": "BR-BASE-003", 
+   "note": "The guard is used in every field edit of COCRDUPC (730, 743, 773, 786, 816, 833, 855, 868, 887, 903, 921, 939) and on the lock error (1445), but it is not absolute: 'No input received' (657-659), 'No change detected...' (680-682), the file-error message (1411) and 'Update of record failed' (1490) are set unconditionally and overwrite any earlier message.", 
+   "source": "app/cbl/COCRDUPC.cbl:730-732", 
+   "verdict": "corrected"
+  }, 
+  {
+   "anchor": "SET CCUP-CHANGES-OK-NOT-CONFIRMED TO TRUE", 
+   "id": "BR-BASE-004", 
+   "note": "Confirmed for COCRDUPC: after the detail edits, no INPUT-ERROR sets state 'N'. The state was set to 'E' (CCUP-CHANGES-NOT-OK) at 696 before the edits, so a failed edit leaves 'E'.", 
+   "source": "app/cbl/COCRDUPC.cbl:710-714", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF CC-ACCT-ID IS NOT NUMERIC", 
+   "id": "BR-BASE-COCRDUPC-001", 
+   "note": "Confirmed; only performed when CCUP-DETAILS-NOT-FETCHED (645-647). A blank account sets INPUT-ERROR (mandatory). The non-numeric message is the literal 'ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER' (744-746), not an 88-level value.", 
+   "source": "app/cbl/COCRDUPC.cbl:721-756", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF CC-CARD-NUM IS NOT NUMERIC", 
+   "id": "BR-BASE-COCRDUPC-002", 
+   "note": "Confirmed; blank card sets INPUT-ERROR and 'Card number not provided'; non-numeric uses the literal 'CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER' (787-790).", 
+   "source": "app/cbl/COCRDUPC.cbl:762-800", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF FLG-ACCTFILTER-BLANK AND FLG-CARDFILTER-BLANK SET NO-SEARCH-CRITERIA-RECEIVED TO TRUE", 
+   "id": "BR-BASE-COCRDUPC-003", 
+   "note": "Confirmed; the 'No input received' SET is unconditional and replaces 'Account number not provided'. CCUP-NEW-CARDDATA is cleared to LOW-VALUES on this path (653).", 
+   "source": "app/cbl/COCRDUPC.cbl:644-662", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF (FUNCTION UPPER-CASE(CCUP-NEW-CARDDATA) EQUAL FUNCTION UPPER-CASE(CCUP-OLD-CARDDATA))", 
+   "id": "BR-BASE-COCRDUPC-004", 
+   "note": "Confirmed. The detail edits are also skipped when the state is already 'N' (validated) or 'C' (done) (685-686). The compared group includes name, expiry year/month/day and status; CVV is not part of CCUP-*-CARDDATA.", 
+   "source": "app/cbl/COCRDUPC.cbl:680-693", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "INSPECT CARD-NAME-CHECK CONVERTING LIT-ALL-ALPHA-FROM TO LIT-ALL-SPACES-TO", 
+   "id": "BR-BASE-COCRDUPC-005", 
+   "note": "Confirmed; messages 'Card name not provided' and 'Card name can only contain alphabets and spaces' (181-184).", 
+   "source": "app/cbl/COCRDUPC.cbl:806-840", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF FLG-YES-NO-VALID", 
+   "id": "BR-BASE-COCRDUPC-006", 
+   "note": "Confirmed; FLG-YES-NO-VALID accepts only upper-case 'Y' and 'N' (91), so lower-case input is rejected. Message 'Card Active Status must be Y or N'.", 
+   "source": "app/cbl/COCRDUPC.cbl:845-873", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF VALID-MONTH", 
+   "id": "BR-BASE-COCRDUPC-007", 
+   "note": "Confirmed; VALID-MONTH VALUES 1 THRU 12 on the PIC 9(2) redefinition (93-95); message 'Card expiry month must be between 1 and 12'.", 
+   "source": "app/cbl/COCRDUPC.cbl:877-908", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF VALID-YEAR", 
+   "id": "BR-BASE-COCRDUPC-008", 
+   "note": "Confirmed; VALID-YEAR VALUES 1950 THRU 2099 (96-99); message 'Invalid card expiry year'. No check that the expiry date is in the future and the expiry day is not validated.", 
+   "source": "app/cbl/COCRDUPC.cbl:913-944", 
+   "verdict": "confirmed"
+  }
+ ], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Presentation: chooses which values (blank, fetched or edited) are displayed for each state.", 
+   "source": "app/cbl/COCRDUPC.cbl:1085-1130"
+  }, 
+  {
+   "reason": "Message housekeeping: info line text chosen from the update state (state transitions are covered by BR-COCRDUPC-008..011).", 
+   "source": "app/cbl/COCRDUPC.cbl:1140-1159"
+  }, 
+  {
+   "reason": "Cursor positioning on the first field in error.", 
+   "source": "app/cbl/COCRDUPC.cbl:1211-1235"
+  }, 
+  {
+   "reason": "Screen colour/highlight attributes for fields in error, info message and function-key line.", 
+   "source": "app/cbl/COCRDUPC.cbl:1238-1317"
+  }, 
+  {
+   "reason": "Technical abend handling: default abend message text.", 
+   "source": "app/cbl/COCRDUPC.cbl:1533-1535"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COCRDUPC.cbl:1461-1466", 
+   "text": "CCUP-NEW-CVV-CD is never populated from the screen or the fetched record (only cleared by INITIALIZE CCUP-NEW-DETAILS at 585), yet it is moved via CARD-CVV-CD-X/CARD-CVV-CD-N into CARD-UPDATE-CVV-CD, so the REWRITE stores a CVV derived from spaces instead of the existing CVV (Inferred from 306, 585, 1464-1465)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COCRDUPC.cbl:1376-1390", 
+   "text": "The card is read by card number only and the account typed by the user is never compared with CARD-ACCT-ID; the REWRITE then stores CC-ACCT-ID-N as the card's account, so a card can be re-assigned to whatever account was entered on the search screen (Inferred from 1379-1383 and 1463)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COCRDUPC.cbl:1285", 
+   "text": "The expiry day comes from the screen (EXPDAYI at 621), is never validated, and is written into the expiry date; the field is not enterable and is darkened via DFHBMDAR moved to the colour attribute EXPDAYC."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/cbl/COCRDUPC.cbl:971-977", 
+   "text": "The ELSE branch setting CCUP-CHANGES-OK-NOT-CONFIRMED under WHEN CCUP-SHOW-DETAILS appears unreachable: 1200-EDIT-MAP-INPUTS leaves the state 'S' only when NO-CHANGES-DETECTED, otherwise it changes it to 'E' or 'N' (Inferred from 684-696, 710-714)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COCRDUPC.cbl:464", 
+   "text": "On exit the program unconditionally sets CDEMO-USRTYP-USER, overwriting an admin user type in the commarea."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/COCRDUPC.cbl:578-583", 
+   "text": "RESP of RECEIVE MAP and SEND MAP is captured but never tested."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COCRDUPC.cbl:1101-1102", 
+   "text": "CRDNAMEO is listed twice in the same MOVE (harmless duplication)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COCRDUPC.cbl:1519", 
+   "text": "'END-IF EXIT' places an EXIT statement inside the IF sentence of 9300-CHECK-CHANGE-IN-REC; it has no effect."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COCRDUPC.cbl:188-214", 
+   "text": "Several 88-level messages are defined but unused (SEARCHED-ACCT-ZEROES, SEARCHED-ACCT-NOT-NUMERIC, SEARCHED-CARD-NOT-NUMERIC, DID-NOT-FIND-ACCT-IN-CARDXREF, XREF-READ-ERROR, CODING-TO-BE-DONE); edits use hardcoded literals."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/COCRDUPC.cbl:96-99", 
+   "text": "Valid expiry year range 1950-2099 is hardcoded in an 88-level."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/COCRDUPC.cbl:1550-1552", 
+   "text": "Abend code '9999' hardcoded."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "367-544", 
+   "logic": "Sets ABEND-ROUTINE as abend handler, initializes work areas and clears WS-RETURN-MSG. On EIBCALEN 0 or first entry from COMEN01C it initializes the commarea and sets CDEMO-PGM-ENTER / CCUP-DETAILS-NOT-FETCHED, else restores CARDDEMO-COMMAREA and WS-THIS-PROGCOMMAREA. After mapping the AID and validating it, an EVALUATE routes: PF3 or finished/failed update from the card list -> SYNCPOINT and XCTL to caller/menu; entry or PF12 from COCRDLIC -> read card and show details; fresh entry -> blank search screen; after done/failed -> reset and prompt for new keys; otherwise process inputs, decide action and send the map.", 
+   "name": "0000-MAIN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "546-559", 
+   "logic": "Moves WS-RETURN-MSG to CCARD-ERROR-MSG, concatenates CARDDEMO-COMMAREA and WS-THIS-PROGCOMMAREA into WS-COMMAREA and issues CICS RETURN TRANSID(CCUP) with the 2000-byte commarea.", 
+   "name": "COMMON-RETURN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "560-562", 
+   "logic": "Exit paragraph for 0000-MAIN; contains only EXIT.", 
+   "name": "0000-MAIN-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "564-573", 
+   "logic": "Performs 1100-RECEIVE-MAP and 1200-EDIT-MAP-INPUTS, then copies WS-RETURN-MSG to CCARD-ERROR-MSG and sets the next program/mapset/map to COCRDUPC/COCRDUP/CCRDUPA.", 
+   "name": "1000-PROCESS-INPUTS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "575-577", 
+   "logic": "Exit paragraph for 1000-PROCESS-INPUTS; contains only EXIT.", 
+   "name": "1000-PROCESS-INPUTS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "578-636", 
+   "logic": "Receives map CCRDUPA into CCRDUPAI (RESP not checked) and initializes CCUP-NEW-DETAILS. For account, card, name, status, expiry month and expiry year an input of '*' or SPACES becomes LOW-VALUES, otherwise the input is copied to CC-ACCT-ID/CC-CARD-NUM and the CCUP-NEW-* fields; the expiry day EXPDAYI is copied to CCUP-NEW-EXPDAY without normalisation.", 
+   "name": "1100-RECEIVE-MAP"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "638-640", 
+   "logic": "Exit paragraph for 1100-RECEIVE-MAP; contains only EXIT.", 
+   "name": "1100-RECEIVE-MAP-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "641-715", 
+   "logic": "If details are not yet fetched, edits only the account and card keys (1210/1220), sets 'No input received' when both are blank and exits. Otherwise restores the fetched values from CCUP-OLD-*, sets NO-CHANGES-DETECTED when the upper-cased new card data equals the old, and skips the detail edits when there is no change or the state is already validated/done. Else it sets CCUP-CHANGES-NOT-OK, performs the name, status, month and year edits, and sets CCUP-CHANGES-OK-NOT-CONFIRMED when no INPUT-ERROR resulted.", 
+   "name": "1200-EDIT-MAP-INPUTS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "717-719", 
+   "logic": "Exit paragraph for 1200-EDIT-MAP-INPUTS; target of its GO TO statements.", 
+   "name": "1200-EDIT-MAP-INPUTS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "721-756", 
+   "logic": "Blank/LOW-VALUES/zero CC-ACCT-ID sets INPUT-ERROR, FLG-ACCTFILTER-BLANK and (if no message yet) 'Account number not provided'; a non-numeric value sets INPUT-ERROR, FLG-ACCTFILTER-NOT-OK and 'ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER'. A valid value is moved to CDEMO-ACCT-ID and CCUP-NEW-ACCTID and FLG-ACCTFILTER-ISVALID is set.", 
+   "name": "1210-EDIT-ACCOUNT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "758-760", 
+   "logic": "Exit paragraph for 1210-EDIT-ACCOUNT; target of its GO TO statements.", 
+   "name": "1210-EDIT-ACCOUNT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "762-800", 
+   "logic": "Blank/LOW-VALUES/zero CC-CARD-NUM sets INPUT-ERROR, FLG-CARDFILTER-BLANK and 'Card number not provided'; a non-numeric value sets INPUT-ERROR, FLG-CARDFILTER-NOT-OK and 'CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER'. A valid value is moved to CDEMO-CARD-NUM and CCUP-NEW-CARDID and FLG-CARDFILTER-ISVALID is set.", 
+   "name": "1220-EDIT-CARD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "802-804", 
+   "logic": "Exit paragraph for 1220-EDIT-CARD; target of its GO TO statements.", 
+   "name": "1220-EDIT-CARD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "806-840", 
+   "logic": "A blank/LOW-VALUES/zeros CCUP-NEW-CRDNAME sets INPUT-ERROR, FLG-CARDNAME-BLANK and 'Card name not provided'. Otherwise letters A-Z/a-z are converted to spaces in CARD-NAME-CHECK; any remaining non-space character sets INPUT-ERROR, FLG-CARDNAME-NOT-OK and 'Card name can only contain alphabets and spaces', else FLG-CARDNAME-ISVALID.", 
+   "name": "1230-EDIT-NAME"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "841-843", 
+   "logic": "Exit paragraph for 1230-EDIT-NAME; target of its GO TO statements.", 
+   "name": "1230-EDIT-NAME-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "845-873", 
+   "logic": "A blank/LOW-VALUES/zero CCUP-NEW-CRDSTCD sets INPUT-ERROR, FLG-CARDSTATUS-BLANK and 'Card Active Status must be Y or N'. Otherwise the value is moved to FLG-YES-NO-CHECK; 'Y' or 'N' sets FLG-CARDSTATUS-ISVALID, anything else sets INPUT-ERROR, FLG-CARDSTATUS-NOT-OK and the same message.", 
+   "name": "1240-EDIT-CARDSTATUS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "874-876", 
+   "logic": "Exit paragraph for 1240-EDIT-CARDSTATUS; target of its GO TO statements.", 
+   "name": "1240-EDIT-CARDSTATUS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "877-908", 
+   "logic": "A blank/LOW-VALUES/zero CCUP-NEW-EXPMON sets INPUT-ERROR, FLG-CARDEXPMON-BLANK and 'Card expiry month must be between 1 and 12'. Otherwise the value is moved to CARD-MONTH-CHECK and VALID-MONTH (1 thru 12) sets FLG-CARDEXPMON-ISVALID, else INPUT-ERROR, FLG-CARDEXPMON-NOT-OK and the same message.", 
+   "name": "1250-EDIT-EXPIRY-MON"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "910-912", 
+   "logic": "Exit paragraph for 1250-EDIT-EXPIRY-MON; target of its GO TO statements.", 
+   "name": "1250-EDIT-EXPIRY-MON-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "913-944", 
+   "logic": "A blank/LOW-VALUES/zero CCUP-NEW-EXPYEAR sets INPUT-ERROR, FLG-CARDEXPYEAR-BLANK and 'Invalid card expiry year'. Otherwise the value is moved to CARD-YEAR-CHECK and VALID-YEAR (1950 thru 2099) sets FLG-CARDEXPYEAR-ISVALID, else INPUT-ERROR, FLG-CARDEXPYEAR-NOT-OK and the same message.", 
+   "name": "1260-EDIT-EXPIRY-YEAR"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "945-947", 
+   "logic": "Exit paragraph for 1260-EDIT-EXPIRY-YEAR; target of its GO TO statements.", 
+   "name": "1260-EDIT-EXPIRY-YEAR-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "948-1028", 
+   "logic": "EVALUATEs the update state: not fetched or PF12 -> read the card when both keys are valid and set CCUP-SHOW-DETAILS if found; show details -> mark validated-not-confirmed unless input error or no change; changes not OK -> no action; validated and PF5 -> 9200-WRITE-PROCESSING then set lock-error (L), failed (F), back to show details when changed by someone else, or done (C); validated without PF5 -> no action; done -> show details and clear the account/card in the commarea when there is no calling transaction; any other state -> ABEND-ROUTINE with 'UNEXPECTED DATA SCENARIO'.", 
+   "name": "2000-DECIDE-ACTION"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1029-1031", 
+   "logic": "Exit paragraph for 2000-DECIDE-ACTION; contains only EXIT.", 
+   "name": "2000-DECIDE-ACTION-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1035-1046", 
+   "logic": "Builds and sends the update screen by performing 3100-SCREEN-INIT, 3200-SETUP-SCREEN-VARS, 3250-SETUP-INFOMSG, 3300-SETUP-SCREEN-ATTRS and 3400-SEND-SCREEN.", 
+   "name": "3000-SEND-MAP"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1048-1050", 
+   "logic": "Exit paragraph for 3000-SEND-MAP; contains only EXIT.", 
+   "name": "3000-SEND-MAP-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1052-1076", 
+   "logic": "Clears CCRDUPAO and fills titles, transaction CCUP, program COCRDUPC, the current date MM/DD/YY and time HH:MM:SS.", 
+   "name": "3100-SCREEN-INIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1078-1080", 
+   "logic": "Exit paragraph for 3100-SCREEN-INIT; contains only EXIT.", 
+   "name": "3100-SCREEN-INIT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1082-1134", 
+   "logic": "Does nothing when CDEMO-PGM-ENTER. Otherwise moves CC-ACCT-ID and CC-CARD-NUM to ACCTSIDO and CARDSIDO (LOW-VALUES when the numeric value is 0) and, by state: CCUP-DETAILS-NOT-FETCHED clears CRDNAMEO, CRDSTCDO and the expiry fields; CCUP-SHOW-DETAILS and WHEN OTHER show the CCUP-OLD-* values; CCUP-CHANGES-MADE shows CCUP-NEW-CRDNAME, CCUP-NEW-CRDSTCD, CCUP-NEW-EXPMON and CCUP-NEW-EXPYEAR but keeps CCUP-OLD-EXPDAY in EXPDAYO.", 
+   "name": "3200-SETUP-SCREEN-VARS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1135-1137", 
+   "logic": "Exit paragraph for 3200-SETUP-SCREEN-VARS; contains only EXIT.", 
+   "name": "3200-SETUP-SCREEN-VARS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1138-1164", 
+   "logic": "Chooses the info line by state: 'Please enter Account and Card Number', 'Details of selected card shown above', 'Update card details presented above.', 'Changes validated.Press F5 to save', 'Changes committed to database' or 'Changes unsuccessful. Please try again'; then moves WS-INFO-MSG and WS-RETURN-MSG to the map.", 
+   "name": "3250-SETUP-INFOMSG"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1165-1167", 
+   "logic": "Exit paragraph for 3250-SETUP-INFOMSG; contains only EXIT.", 
+   "name": "3250-SETUP-INFOMSG-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1168-1318", 
+   "logic": "Sets attributes by state: CCUP-DETAILS-NOT-FETCHED and WHEN OTHER make ACCTSIDA/CARDSIDA enterable (DFHBMFSE) and card fields protected (DFHBMPRF); CCUP-SHOW-DETAILS and CCUP-CHANGES-NOT-OK protect the keys and open CRDNAMEA, CRDSTCDA, EXPMONA, EXPYEARA; confirmed or done states protect everything. It places the cursor (-1 length) on CRDNAMEL when FOUND-CARDS-FOR-ACCOUNT or NO-CHANGES-DETECTED, otherwise on the first field whose FLG-*-NOT-OK or FLG-*-BLANK flag is set (account, card, name, status, expiry month, expiry year), defaulting to ACCTSIDL. It uses DFHDFCOL for the keys when CDEMO-LAST-MAPSET is LIT-CCLISTMAPSET, colours fields in error DFHRED and shows '*' in blank required fields, darkens EXPDAYC, sets INFOMSGA dark when WS-NO-INFO-MESSAGE else bright, and brightens FKEYSCA when PROMPT-FOR-CONFIRMATION.", 
+   "name": "3300-SETUP-SCREEN-ATTRS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1319-1321", 
+   "logic": "Exit paragraph for 3300-SETUP-SCREEN-ATTRS; contains only EXIT.", 
+   "name": "3300-SETUP-SCREEN-ATTRS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1324-1337", 
+   "logic": "Sends map CCRDUPA of mapset COCRDUP from CCRDUPAO with CURSOR, ERASE and FREEKB; RESP is captured but not tested.", 
+   "name": "3400-SEND-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1338-1340", 
+   "logic": "Exit paragraph for 3400-SEND-SCREEN; contains only EXIT.", 
+   "name": "3400-SEND-SCREEN-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1343-1370", 
+   "logic": "Initializes CCUP-OLD-DETAILS with the requested account/card, performs 9100-GETCARD-BYACCTCARD and, when found, saves CVV, the embossed name converted to upper case, expiry year/month/day (positions 1-4, 6-7, 9-10 of CARD-EXPIRAION-DATE) and active status into CCUP-OLD-*.", 
+   "name": "9000-READ-DATA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1372-1374", 
+   "logic": "Exit paragraph for 9000-READ-DATA; contains only EXIT.", 
+   "name": "9000-READ-DATA-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1376-1413", 
+   "logic": "Reads CARDDAT by the 16-byte card number (account key move commented out). NORMAL sets FOUND-CARDS-FOR-ACCOUNT; NOTFND sets INPUT-ERROR, both key flags NOT-OK and 'Did not find cards for this search condition'; other responses set INPUT-ERROR and a 'File Error: READ on CARDDAT ...' message.", 
+   "name": "9100-GETCARD-BYACCTCARD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1415-1417", 
+   "logic": "Exit paragraph for 9100-GETCARD-BYACCTCARD; contains only EXIT.", 
+   "name": "9100-GETCARD-BYACCTCARD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1420-1493", 
+   "logic": "Reads CARDDAT for UPDATE by card number; a non-NORMAL response sets INPUT-ERROR and 'Could not lock record for update'. It then performs 9300-CHECK-CHANGE-IN-REC and stops if the record changed. Otherwise it builds CARD-UPDATE-RECORD from CCUP-NEW-CARDID, CC-ACCT-ID-N, CCUP-NEW-CVV-CD, CCUP-NEW-CRDNAME, expiry 'YYYY-MM-DD' and CCUP-NEW-CRDSTCD and REWRITEs it; a non-NORMAL REWRITE sets 'Update of record failed'.", 
+   "name": "9200-WRITE-PROCESSING"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1494-1496", 
+   "logic": "Exit paragraph for 9200-WRITE-PROCESSING; also the GO TO target from 9300-CHECK-CHANGE-IN-REC.", 
+   "name": "9200-WRITE-PROCESSING-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1498-1520", 
+   "logic": "Upper-cases the embossed name of the locked record and compares CVV, name, expiry year/month/day and active status with CCUP-OLD-*. On any difference it sets 'Record changed by some one else. Please review', refreshes CCUP-OLD-* with the current record values and jumps to 9200-WRITE-PROCESSING-EXIT.", 
+   "name": "9300-CHECK-CHANGE-IN-REC"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1521-1529", 
+   "logic": "Exit paragraph for 9300-CHECK-CHANGE-IN-REC; the range also holds COPY 'CSSTRPFY', which inserts YYYY-STORE-PFKEY mapping EIBAID to CCARD-AID (PF13-24 folded to PF1-12).", 
+   "name": "9300-CHECK-CHANGE-IN-REC-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1531-1553", 
+   "logic": "Defaults ABEND-MSG to 'UNEXPECTED ABEND OCCURRED.', sets ABEND-CULPRIT to COCRDUPC, sends ABEND-DATA with ERASE (NOHANDLE), cancels the abend handler and abends with code 9999.", 
+   "name": "ABEND-ROUTINE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1554-1556", 
+   "logic": "Exit paragraph for ABEND-ROUTINE; never reached in practice because the routine ends with CICS ABEND.", 
+   "name": "ABEND-ROUTINE-EXIT"
+  }
+ ], 
+ "program": "COCRDUPC", 
+ "rules": [
+  {
+   "anchor": "IF CDEMO-LAST-MAPSET EQUAL LIT-CCLISTMAPSET MOVE ZEROS TO CDEMO-ACCT-ID", 
+   "category": "routing", 
+   "conditions": "PF3, or (state C/L/F and CDEMO-LAST-MAPSET = 'COCRDLI')", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCARD-AID", 
+    "CCUP-CHANGE-ACTION", 
+    "CDEMO-LAST-MAPSET", 
+    "CDEMO-FROM-TRANID", 
+    "CDEMO-FROM-PROGRAM", 
+    "CDEMO-ACCT-ID", 
+    "CDEMO-CARD-NUM"
+   ], 
+   "id": "BR-COCRDUPC-001", 
+   "messages": [], 
+   "outcome": "SYNCPOINT; XCTL with CARDDEMO-COMMAREA; CDEMO-USRTYP-USER and CDEMO-PGM-ENTER set", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/cbl/COCRDUPC.cbl:429-476", 
+   "statement": "The program exits when PF3 is pressed, or automatically when an update has completed or failed and the user originally came from the card list (last mapset COCRDLI). It commits (SYNCPOINT) and XCTLs to CDEMO-FROM-PROGRAM/TRANID, or to COMEN01C/CM00 when those are blank; when returning to the card list the account and card numbers in the commarea are zeroed."
+  }, 
+  {
+   "anchor": "(CCARD-AID-PFK05 AND CCUP-CHANGES-OK-NOT-CONFIRMED)", 
+   "category": "validation", 
+   "conditions": "CCARD-AID and CCUP-CHANGE-ACTION", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCARD-AID", 
+    "CCUP-CHANGE-ACTION"
+   ], 
+   "id": "BR-COCRDUPC-002", 
+   "messages": [], 
+   "outcome": "Invalid keys silently mapped to CCARD-AID-ENTER", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/cbl/COCRDUPC.cbl:413-424", 
+   "statement": "Accepted keys are ENTER, PF3, PF5 only when changes have been validated but not yet confirmed, and PF12 only after card details have been fetched; any other key is treated as ENTER."
+  }, 
+  {
+   "anchor": "WHEN CCARD-AID-PFK12 AND CDEMO-FROM-PROGRAM EQUAL LIT-CCLISTPGM", 
+   "category": "routing", 
+   "conditions": "(CDEMO-PGM-ENTER or PF12) and CDEMO-FROM-PROGRAM = 'COCRDLIC'", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-ACCT-ID", 
+    "CDEMO-CARD-NUM", 
+    "CC-ACCT-ID-N", 
+    "CC-CARD-NUM-N"
+   ], 
+   "id": "BR-COCRDUPC-003", 
+   "messages": [], 
+   "outcome": "9000-READ-DATA; CCUP-SHOW-DETAILS; screen sent", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/cbl/COCRDUPC.cbl:482-496", 
+   "statement": "On first entry from the card list COCRDLIC (or PF12 when the caller is COCRDLIC), the account and card from the commarea are trusted as valid keys: the card is read and its details shown for editing without key edits."
+  }, 
+  {
+   "anchor": "WHEN CCUP-DETAILS-NOT-FETCHED AND CDEMO-PGM-ENTER", 
+   "category": "decision", 
+   "conditions": "CCUP-DETAILS-NOT-FETCHED and CDEMO-PGM-ENTER, or CDEMO-FROM-PROGRAM = 'COMEN01C' and not re-enter", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCUP-CHANGE-ACTION", 
+    "CDEMO-PGM-CONTEXT"
+   ], 
+   "id": "BR-COCRDUPC-004", 
+   "messages": [
+    "Please enter Account and Card Number"
+   ], 
+   "outcome": "WS-THIS-PROGCOMMAREA initialized; search screen sent; state not fetched / re-enter", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/cbl/COCRDUPC.cbl:502-511", 
+   "statement": "On a fresh entry (details not fetched and first entry, or first entry from the main menu) the program shows an empty search screen asking for account and card number."
+  }, 
+  {
+   "anchor": "WHEN CCUP-CHANGES-OKAYED-AND-DONE WHEN CCUP-CHANGES-FAILED INITIALIZE WS-THIS-PROGCOMMAREA", 
+   "category": "decision", 
+   "conditions": "CCUP-CHANGE-ACTION = 'C', 'L' or 'F'", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCUP-CHANGE-ACTION", 
+    "CDEMO-ACCT-ID", 
+    "CDEMO-CARD-NUM"
+   ], 
+   "id": "BR-COCRDUPC-005", 
+   "messages": [], 
+   "outcome": "State reset to not fetched; search screen sent", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/cbl/COCRDUPC.cbl:517-528", 
+   "statement": "After an update has completed or failed (and the user did not come from the card list), the next interaction resets the update state, working storage and the commarea account/card numbers and prompts for new search keys."
+  }, 
+  {
+   "anchor": "PERFORM 2000-DECIDE-ACTION", 
+   "category": "decision", 
+   "conditions": "WHEN OTHER of the main EVALUATE", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCUP-CHANGE-ACTION"
+   ], 
+   "id": "BR-COCRDUPC-006", 
+   "messages": [], 
+   "outcome": "1000-PROCESS-INPUTS, 2000-DECIDE-ACTION, 3000-SEND-MAP", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/cbl/COCRDUPC.cbl:535-542", 
+   "statement": "In every other situation the screen input is received and edited, the next action is decided from the update state, and the screen is redisplayed."
+  }, 
+  {
+   "anchor": "IF CRDNAMEI OF CCRDUPAI = '*' OR CRDNAMEI OF CCRDUPAI = SPACES", 
+   "category": "transformation", 
+   "conditions": "field value '*' or SPACES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CC-ACCT-ID", 
+    "CC-CARD-NUM", 
+    "CCUP-NEW-CRDNAME", 
+    "CCUP-NEW-CRDSTCD", 
+    "CCUP-NEW-EXPMON", 
+    "CCUP-NEW-EXPYEAR", 
+    "CCUP-NEW-EXPDAY"
+   ], 
+   "id": "BR-COCRDUPC-007", 
+   "messages": [], 
+   "outcome": "LOW-VALUES moved to CC-ACCT-ID/CC-CARD-NUM/CCUP-NEW-* fields", 
+   "paragraph": "1100-RECEIVE-MAP", 
+   "source": "app/cbl/COCRDUPC.cbl:588-635", 
+   "statement": "An input of '*' or spaces in the account, card, name, status, expiry month or expiry year field is treated as not supplied (LOW-VALUES); the expiry day is taken from the screen as is."
+  }, 
+  {
+   "anchor": "IF FLG-ACCTFILTER-ISVALID AND FLG-CARDFILTER-ISVALID PERFORM 9000-READ-DATA", 
+   "category": "decision", 
+   "conditions": "CCUP-DETAILS-NOT-FETCHED or PF12; both key flags valid; card found", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCUP-CHANGE-ACTION", 
+    "WS-EDIT-ACCT-FLAG", 
+    "WS-EDIT-CARD-FLAG", 
+    "WS-INFO-MSG"
+   ], 
+   "id": "BR-COCRDUPC-008", 
+   "messages": [], 
+   "outcome": "CCUP-SHOW-DETAILS set", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/cbl/COCRDUPC.cbl:949-966", 
+   "statement": "When details are not yet fetched, or the user presses PF12 to cancel changes, the card is (re)read only if both the account and card keys are valid; if found, the state becomes show details, discarding any edits."
+  }, 
+  {
+   "anchor": "IF INPUT-ERROR OR NO-CHANGES-DETECTED CONTINUE ELSE SET CCUP-CHANGES-OK-NOT-CONFIRMED TO TRUE", 
+   "category": "decision", 
+   "conditions": "CCUP-SHOW-DETAILS / CCUP-CHANGES-NOT-OK", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCUP-CHANGE-ACTION", 
+    "WS-INPUT-FLAG", 
+    "WS-RETURN-MSG"
+   ], 
+   "id": "BR-COCRDUPC-009", 
+   "messages": [], 
+   "outcome": "State N or unchanged", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/cbl/COCRDUPC.cbl:971-983", 
+   "statement": "While details are shown, changes become 'validated, awaiting confirmation' only when there is no input error and a change was detected; when edits failed the state stays 'changes not OK' and the user must correct the fields."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COCRDUPC.cbl:1149-1156"
+   ], 
+   "anchor": "WHEN DATA-WAS-CHANGED-BEFORE-UPDATE SET CCUP-SHOW-DETAILS TO TRUE", 
+   "category": "decision", 
+   "conditions": "CCUP-CHANGES-OK-NOT-CONFIRMED and PF5", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCUP-CHANGE-ACTION", 
+    "WS-RETURN-MSG"
+   ], 
+   "id": "BR-COCRDUPC-010", 
+   "messages": [
+    "Changes validated.Press F5 to save", 
+    "Changes committed to database", 
+    "Changes unsuccessful. Please try again"
+   ], 
+   "outcome": "9200-WRITE-PROCESSING; CCUP-CHANGE-ACTION set to L, F, S or C", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/cbl/COCRDUPC.cbl:988-1001", 
+   "statement": "Validated changes are saved only when the user confirms with PF5. The outcome sets the state: lock failure -> 'L' (Changes unsuccessful), rewrite failure -> 'F' (Changes unsuccessful), record changed by another user -> back to show details with the refreshed values, otherwise 'C' (Changes committed to database)."
+  }, 
+  {
+   "anchor": "WHEN CCUP-CHANGES-OKAYED-AND-DONE SET CCUP-SHOW-DETAILS TO TRUE", 
+   "category": "decision", 
+   "conditions": "State N without PF5; state C", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCUP-CHANGE-ACTION", 
+    "CDEMO-FROM-TRANID", 
+    "CDEMO-ACCT-ID", 
+    "CDEMO-CARD-NUM", 
+    "CDEMO-ACCT-STATUS"
+   ], 
+   "id": "BR-COCRDUPC-011", 
+   "messages": [], 
+   "outcome": "No action, or CCUP-SHOW-DETAILS with commarea keys zeroed", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/cbl/COCRDUPC.cbl:1006-1018", 
+   "statement": "Without PF5 a validated change is simply redisplayed awaiting confirmation. After a successful save the details are shown again; when there is no calling transaction the commarea account, card and account status are cleared."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COCRDUPC.cbl:1531-1553"
+   ], 
+   "anchor": "MOVE 'UNEXPECTED DATA SCENARIO' TO ABEND-MSG", 
+   "category": "error-policy", 
+   "conditions": "WHEN OTHER in 2000-DECIDE-ACTION", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ABEND-CULPRIT", 
+    "ABEND-CODE", 
+    "ABEND-MSG"
+   ], 
+   "id": "BR-COCRDUPC-012", 
+   "messages": [
+    "UNEXPECTED DATA SCENARIO"
+   ], 
+   "outcome": "CICS ABEND ABCODE('9999')", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/cbl/COCRDUPC.cbl:1019-1026", 
+   "statement": "An update state not handled by the decision logic is treated as a program error: ABEND-ROUTINE sends 'UNEXPECTED DATA SCENARIO' and the task abends with code 9999."
+  }, 
+  {
+   "anchor": "INSPECT CARD-EMBOSSED-NAME CONVERTING LIT-LOWER TO LIT-UPPER", 
+   "category": "transformation", 
+   "conditions": "FOUND-CARDS-FOR-ACCOUNT", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CARD-EMBOSSED-NAME", 
+    "CARD-EXPIRAION-DATE", 
+    "CCUP-OLD-DETAILS"
+   ], 
+   "id": "BR-COCRDUPC-013", 
+   "messages": [], 
+   "outcome": "CCUP-OLD-CVV-CD, CCUP-OLD-CRDNAME, CCUP-OLD-EXPYEAR/MON/DAY, CCUP-OLD-CRDSTCD populated", 
+   "paragraph": "9000-READ-DATA", 
+   "source": "app/cbl/COCRDUPC.cbl:1352-1369", 
+   "statement": "When the card is found, the values fetched for later comparison are saved with the embossed name converted to upper case and the expiry date split into year (1-4), month (6-7) and day (9-10)."
+  }, 
+  {
+   "anchor": "RIDFLD (WS-CARD-RID-CARDNUM)", 
+   "category": "decision", 
+   "conditions": "CICS READ response", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CC-CARD-NUM", 
+    "WS-CARD-RID-CARDNUM", 
+    "CARD-RECORD"
+   ], 
+   "id": "BR-COCRDUPC-014", 
+   "messages": [
+    "Did not find cards for this search condition", 
+    "File Error: "
+   ], 
+   "outcome": "FOUND-CARDS-FOR-ACCOUNT or INPUT-ERROR with message", 
+   "paragraph": "9100-GETCARD-BYACCTCARD", 
+   "source": "app/cbl/COCRDUPC.cbl:1380-1412", 
+   "statement": "The card to update is located in CARDDAT by card number only; the account number is not part of the key and is not compared with CARD-ACCT-ID. Not found gives 'Did not find cards for this search condition'; other responses give a 'File Error: READ on CARDDAT' message."
+  }, 
+  {
+   "anchor": "SET COULD-NOT-LOCK-FOR-UPDATE TO TRUE", 
+   "category": "error-policy", 
+   "conditions": "READ UPDATE response not NORMAL", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD"
+   ], 
+   "id": "BR-COCRDUPC-015", 
+   "messages": [
+    "Could not lock record for update"
+   ], 
+   "outcome": "INPUT-ERROR; message set; no rewrite", 
+   "paragraph": "9200-WRITE-PROCESSING", 
+   "source": "app/cbl/COCRDUPC.cbl:1427-1449", 
+   "statement": "If the card record cannot be read for update (lock), the update is abandoned with 'Could not lock record for update'."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COCRDUPC.cbl:1453-1457"
+   ], 
+   "anchor": "SET DATA-WAS-CHANGED-BEFORE-UPDATE TO TRUE", 
+   "category": "data-integrity", 
+   "conditions": "Any compared field differs", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CARD-CVV-CD", 
+    "CARD-EMBOSSED-NAME", 
+    "CARD-EXPIRAION-DATE", 
+    "CARD-ACTIVE-STATUS", 
+    "CCUP-OLD-DETAILS"
+   ], 
+   "id": "BR-COCRDUPC-016", 
+   "messages": [
+    "Record changed by some one else. Please review"
+   ], 
+   "outcome": "No REWRITE; CCUP-OLD-* refreshed; state returns to show details", 
+   "paragraph": "9300-CHECK-CHANGE-IN-REC", 
+   "source": "app/cbl/COCRDUPC.cbl:1499-1519", 
+   "statement": "Optimistic concurrency: before rewriting, the locked record's CVV, upper-cased embossed name, expiry year/month/day and active status must equal the values fetched when the details were shown; otherwise the update is not applied, the message 'Record changed by some one else. Please review' is set and the stored old values are refreshed from the current record."
+  }, 
+  {
+   "anchor": "STRING CCUP-NEW-EXPYEAR '-' CCUP-NEW-EXPMON '-' CCUP-NEW-EXPDAY", 
+   "category": "transformation", 
+   "conditions": "Lock obtained and record unchanged", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CARD-UPDATE-RECORD", 
+    "CCUP-NEW-CARDID", 
+    "CC-ACCT-ID-N", 
+    "CCUP-NEW-CVV-CD", 
+    "CCUP-NEW-CRDNAME", 
+    "CCUP-NEW-CRDSTCD"
+   ], 
+   "id": "BR-COCRDUPC-017", 
+   "messages": [
+    "Update of record failed"
+   ], 
+   "outcome": "EXEC CICS REWRITE FILE(CARDDAT); LOCKED-BUT-UPDATE-FAILED on error", 
+   "paragraph": "9200-WRITE-PROCESSING", 
+   "source": "app/cbl/COCRDUPC.cbl:1461-1491", 
+   "statement": "The rewritten card record is built from the screen values: card number, account number from the (protected) account field, CVV from CCUP-NEW-CVV-CD, embossed name as typed, expiry date formatted 'YYYY-MM-DD' from new year, month and day, and the new active status. A REWRITE failure sets 'Update of record failed'."
+  }, 
+  {
+   "anchor": "WHEN CCUP-CHANGES-OK-NOT-CONFIRMED WHEN CCUP-CHANGES-OKAYED-AND-DONE MOVE DFHBMPRF TO ACCTSIDA OF CCRDUPAI", 
+   "category": "decision", 
+   "conditions": "CCUP-CHANGE-ACTION", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCUP-CHANGE-ACTION"
+   ], 
+   "id": "BR-COCRDUPC-018", 
+   "messages": [], 
+   "outcome": "DFHBMFSE / DFHBMPRF attributes on input fields", 
+   "paragraph": "3300-SETUP-SCREEN-ATTRS", 
+   "source": "app/cbl/COCRDUPC.cbl:1172-1208", 
+   "statement": "Which fields may be edited depends on the update state: before fetch only the account and card keys are enterable; while showing details or correcting errors only name, status, expiry month and year are enterable; once validated or saved all fields are protected. The expiry day is never enterable."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Is the CVV supposed to be preserved on update? The rewrite takes it from CCUP-NEW-CVV-CD, which is never filled.", 
+   "source": "app/cbl/COCRDUPC.cbl:1464-1465"
+  }, 
+  {
+   "question": "Should the update verify that the card belongs to the entered account (and keep CARD-ACCT-ID unchanged), rather than writing the screen account number into the record?", 
+   "source": "app/cbl/COCRDUPC.cbl:1461-1463"
+  }, 
+  {
+   "question": "Should an expiry date in the past be rejected, and should the expiry day be editable/validated? Today only month 1-12 and year 1950-2099 are checked.", 
+   "source": "app/cbl/COCRDUPC.cbl:913-944"
+  }, 
+  {
+   "question": "Should lower-case 'y'/'n' be accepted for the active status (the change detection compares upper-cased data but the status edit is case-sensitive)?", 
+   "source": "app/cbl/COCRDUPC.cbl:861-872"
+  }
+ ], 
+ "source_path": "app/cbl/COCRDUPC.cbl", 
+ "source_sha256": "c245cf383a4a3f721773a13ca231eb76bd5ae75c1830d58c7aba898a554a0de9", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/COCRDUPC.cbl:218-254", 
+   "app/cbl/COCRDUPC.cbl:274-321", 
+   "app/cbl/COCRDUPC.cbl:367-544", 
+   "app/cbl/COCRDUPC.cbl:641-715", 
+   "app/cbl/COCRDUPC.cbl:948-1028", 
+   "app/cbl/COCRDUPC.cbl:1420-1520"
+  ], 
+  "text": "COCRDUPC is a pseudo-conversational CICS program (transaction CCUP, mapset COCRDUP, map CCRDUPA) that updates one credit card record in the CARDDAT VSAM file. The user first supplies (or receives from the card list COCRDLIC) an account number and card number; the card is read by card number and its embossed name, active status and expiry month/year are shown for editing. Edited values are validated (name alphabetic, status Y/N, month 1-12, year 1950-2099); when valid the user is asked to press PF5, after which the record is read for UPDATE, compared with the values originally fetched (optimistic concurrency) and rewritten. A state machine in CCUP-CHANGE-ACTION (not fetched, show details, changes not OK, validated not confirmed, done, lock error, failed) carried in the commarea drives screen content, field protection and messages. PF3 (or completion when entered from the card list) issues SYNCPOINT and XCTLs back to the caller or main menu COMEN01C; PF12 cancels changes by re-reading the card."
+ }
+}

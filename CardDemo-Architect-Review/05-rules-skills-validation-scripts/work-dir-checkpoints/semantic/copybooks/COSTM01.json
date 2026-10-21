@@ -1,0 +1,22 @@
+{
+ "batch": "B02",
+ "confidence": "Confirmed",
+ "copybook": "COSTM01",
+ "evidence": ["app/cpy/COSTM01.CPY:1-3", "app/cpy/COSTM01.CPY:20-36", "app/cbl/CBSTM03A.CBL:51", "app/cbl/CBSTM03B.CBL:58-63"],
+ "key_fields": [
+  {"name": "TRNX-KEY", "meaning": "32-byte composite key: card number followed by transaction id; matches the TRNXFILE record key FD-TRNXS-ID in CBSTM03B, so records are ordered by card number.", "source": "app/cpy/COSTM01.CPY:21-23"},
+  {"name": "TRNX-CARD-NUM", "meaning": "Card number the transaction belongs to; used by CBSTM03A to group transactions per card.", "source": "app/cpy/COSTM01.CPY:22"},
+  {"name": "TRNX-ID", "meaning": "16-byte transaction identifier.", "source": "app/cpy/COSTM01.CPY:23"},
+  {"name": "TRNX-REST", "meaning": "Remaining 318 bytes of transaction data (type, category, source, description, amount, merchant, timestamps), stored as a block in the CBSTM03A transaction table.", "source": "app/cpy/COSTM01.CPY:24-36"},
+  {"name": "TRNX-DESC", "meaning": "Transaction description printed on the statement detail line.", "source": "app/cpy/COSTM01.CPY:28"},
+  {"name": "TRNX-AMT", "meaning": "Signed transaction amount S9(09)V99, printed and summed into the statement total.", "source": "app/cpy/COSTM01.CPY:29"}
+ ],
+ "observations": [
+  {"kind": "anomaly", "text": "Same 350-byte content as CVTRA05Y but with the card number moved to the front as part of the key ('Transaction altered Layout for use in reporting'); the two layouts are not interchangeable byte-for-byte.", "source": "app/cpy/COSTM01.CPY:2"}
+ ],
+ "purpose": "COSTM01 defines TRNX-RECORD, a 350-byte transaction layout re-ordered for reporting, with a composite key of card number plus transaction id. It is used by the statement program CBSTM03A to receive records read from TRNXFILE (via CBSTM03B), load them into its per-card transaction table and print description and amount on statements.",
+ "schema": "copybook-semantics/1",
+ "source_paths": ["app/cpy/COSTM01.CPY"],
+ "source_sha256": ["108170f314aa951281fdda321c4609c89638caee8d4d7085d08cdca5dc6bec36"],
+ "status": "complete"
+}

@@ -1,0 +1,43 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "CSLKPCDY",
+ "evidence": [
+  "app/cpy/CSLKPCDY.cpy:1-7",
+  "app/cpy/CSLKPCDY.cpy:24-30",
+  "app/cpy/CSLKPCDY.cpy:521-521",
+  "app/cpy/CSLKPCDY.cpy:931-931",
+  "app/cpy/CSLKPCDY.cpy:1012-1014",
+  "app/cpy/CSLKPCDY.cpy:1071-1074",
+  "app/cpy/CSLKPCDY.cpy:1313-1314",
+  "app/cbl/COACTUPC.cbl:2295-2298",
+  "app/cbl/COACTUPC.cbl:2493-2495",
+  "app/cbl/COACTUPC.cbl:2537-2542"
+ ],
+ "key_fields": [
+  {"name": "WS-US-PHONE-AREA-CODE-TO-EDIT", "meaning": "3-character area code to look up; carries the three area-code 88-level lists.", "source": "app/cpy/CSLKPCDY.cpy:24"},
+  {"name": "VALID-PHONE-AREA-CODE", "meaning": "All North American area codes in the list (general purpose plus easily recognizable codes), 490 values from the NANPA report cited in the comment; not used by COACTUPC.", "source": "app/cpy/CSLKPCDY.cpy:30-520"},
+  {"name": "VALID-GENERAL-PURP-CODE", "meaning": "410 general-purpose area codes; the list COACTUPC checks for phone numbers.", "source": "app/cpy/CSLKPCDY.cpy:521-930"},
+  {"name": "VALID-EASY-RECOG-AREA-CODE", "meaning": "80 easily recognizable codes (repeating-digit patterns such as 200, 211, 222 ... 999); not used by COACTUPC.", "source": "app/cpy/CSLKPCDY.cpy:931-1010"},
+  {"name": "US-STATE-CODE-TO-EDIT", "meaning": "2-character state code to look up.", "source": "app/cpy/CSLKPCDY.cpy:1012"},
+  {"name": "VALID-US-STATE-CODE", "meaning": "56 upper-case codes: the 50 states, DC, and territories AS, GU, MP, PR, VI.", "source": "app/cpy/CSLKPCDY.cpy:1013-1069"},
+  {"name": "US-STATE-AND-FIRST-ZIP2", "meaning": "State code followed by the first two zip digits.", "source": "app/cpy/CSLKPCDY.cpy:1072"},
+  {"name": "VALID-US-STATE-ZIP-CD2-COMBO", "meaning": "240 valid state + zip-prefix combinations (for example 'AK99', 'WY83'), including military codes AA and AE.", "source": "app/cpy/CSLKPCDY.cpy:1073-1313"},
+  {"name": "LAST-3-OF-ZIP", "meaning": "Remaining 3 zip characters; not referenced by COACTUPC.", "source": "app/cpy/CSLKPCDY.cpy:1314"}
+ ],
+ "observations": [
+  {"kind": "anomaly", "source": "app/cpy/CSLKPCDY.cpy:1074-1083", "text": "Combinations for military codes AA and AE (and others outside the state list) can never match in COACTUPC, because the state must first pass VALID-US-STATE-CODE, which does not contain AA or AE (Inferred)."},
+  {"kind": "hardcoded-value", "source": "app/cpy/CSLKPCDY.cpy:25-29", "text": "Area-code lists are static literals taken from the NANPA report (https://nationalnanpa.com/nanp1/npa_report.csv per the comment); new area codes need a source change and recompile of every program copying the member."},
+  {"kind": "anomaly", "source": "app/cpy/CSLKPCDY.cpy:1011", "text": "The comment 'Search list of valid Phone area codes' sits above the state code list, not the area-code lists."},
+  {"kind": "anomaly", "source": "app/cpy/CSLKPCDY.cpy:31-40", "text": "Value lines are indented with tab characters rather than fixed-column spaces."}
+ ],
+ "purpose": "Lookup-table copybook of three 01-level edit fields whose 88-level VALUE lists hold reference data: North American telephone area codes (all, general purpose, and easily recognizable), US state and territory codes, and valid state + first-two-zip-digit combinations. A program moves a value into the edit field and tests the 88-level. Only COACTUPC copies it, using VALID-GENERAL-PURP-CODE for phone area codes, VALID-US-STATE-CODE for the customer state and VALID-US-STATE-ZIP-CD2-COMBO for the state/zip cross edit.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CSLKPCDY.cpy"
+ ],
+ "source_sha256": [
+  "098d384b9580abd5b4b77ae9c33b8cb65b28be45390130b22c48c3714200cca2"
+ ],
+ "status": "complete"
+}

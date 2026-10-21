@@ -1,0 +1,60 @@
+{
+ "batch": "B03",
+ "confidence": "Confirmed",
+ "copybook": "CVTRA04Y",
+ "evidence": [
+  "app/cpy/CVTRA04Y.cpy:1-9",
+  "app/cbl/CBTRN03C.cbl:108",
+  "app/cbl/CBTRN03C.cbl:191-194",
+  "app/cbl/CBTRN03C.cbl:504-512",
+  "app/cbl/CBTRN03C.cbl:368"
+ ],
+ "key_fields": [
+  {
+   "name": "TRAN-CAT-RECORD",
+   "meaning": "60-byte transaction category reference record (6-byte key + 50 + 4 bytes); CBTRN03C reads the TRANCATG KSDS into it.",
+   "source": "app/cpy/CVTRA04Y.cpy:4"
+  },
+  {
+   "name": "TRAN-CAT-KEY",
+   "meaning": "Composite record key: transaction type code followed by category code.",
+   "source": "app/cpy/CVTRA04Y.cpy:5"
+  },
+  {
+   "name": "TRAN-TYPE-CD",
+   "meaning": "2-character transaction type code, first part of the category key (same code as TRAN-TYPE in CVTRA03Y).",
+   "source": "app/cpy/CVTRA04Y.cpy:6"
+  },
+  {
+   "name": "TRAN-CAT-CD",
+   "meaning": "4-digit numeric transaction category code within the type, second part of the key.",
+   "source": "app/cpy/CVTRA04Y.cpy:7"
+  },
+  {
+   "name": "TRAN-CAT-TYPE-DESC",
+   "meaning": "50-character description of the type/category combination; printed (truncated to 29 characters) in the transaction report detail line.",
+   "source": "app/cpy/CVTRA04Y.cpy:8"
+  }
+ ],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "TRAN-TYPE-CD and TRAN-CAT-CD have the same names as fields of TRAN-RECORD in CVTRA05Y, so CBTRN03C, which copies both members, must qualify them with OF TRAN-RECORD / OF FD-TRAN-CAT-KEY. Confirmed.",
+   "source": "app/cbl/CBTRN03C.cbl:189-194"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The 50-character TRAN-CAT-TYPE-DESC is moved into the 29-character TRAN-REPORT-CAT-DESC, truncating category descriptions on the report.",
+   "source": "app/cbl/CBTRN03C.cbl:368"
+  }
+ ],
+ "purpose": "CVTRA04Y defines TRAN-CAT-RECORD, the 60-byte transaction category reference record (header comment states RECLN = 60, matching PIC sizes 2 + 4 + 50 + 4). Its key TRAN-CAT-KEY combines the 2-character transaction type code and the 4-digit category code, and it carries a 50-character category description. In the application source it is copied only by CBTRN03C, which reads the TRANCATG KSDS by type + category to print the category description and abends if the key is not found.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CVTRA04Y.cpy"
+ ],
+ "source_sha256": [
+  "89803bc13a06347e1f3d8a599a5383b87235b203dce9f18a486bc233186479f8"
+ ],
+ "status": "complete"
+}

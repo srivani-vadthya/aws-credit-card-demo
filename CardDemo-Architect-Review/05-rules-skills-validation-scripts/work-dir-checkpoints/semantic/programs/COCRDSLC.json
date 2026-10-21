@@ -1,0 +1,211 @@
+{
+ "schema": "program-semantics/1",
+ "program": "COCRDSLC",
+ "source_path": "app/cbl/COCRDSLC.cbl",
+ "source_sha256": "d5af307fb4b1a155f03df9eea14b402d866a332360e14a1e37dbefe59b73363b",
+ "batch": "B06",
+ "status": "complete",
+ "summary": {
+  "text": "COCRDSLC is a pseudo-conversational CICS program (transaction CCDL, mapset COCRDSL, map CCRDSLA) that displays the details of one credit card. When entered from the card list program COCRDLIC it takes the account and card number from the CARDDEMO-COMMAREA and reads the card immediately; from any other context it shows an empty search screen and, on re-entry, receives the account number and card number typed by the user and edits them (both are mandatory and must be numeric). The card is read from the CARDDAT VSAM file by card number only, and on success the embossed name, expiry month/year and active status are shown. PF3 returns control (XCTL) to the calling program/transaction or to the main menu COMEN01C/CM00; any other AID key is treated as ENTER. Unexpected program states end with a plain-text 'UNEXPECTED DATA SCENARIO' message, and CICS abends are trapped by ABEND-ROUTINE which sends ABEND-DATA and abends with code 9999.",
+  "evidence": [
+   "app/cbl/COCRDSLC.cbl:162-190",
+   "app/cbl/COCRDSLC.cbl:248-392",
+   "app/cbl/COCRDSLC.cbl:394-407",
+   "app/cbl/COCRDSLC.cbl:608-720",
+   "app/cbl/COCRDSLC.cbl:736-773",
+   "app/cbl/COCRDSLC.cbl:857-878"
+  ],
+  "confidence": "Confirmed"
+ },
+ "paragraphs": [
+  {"name": "0000-MAIN", "lines": "248-392", "confidence": "Confirmed", "logic": "Registers ABEND-ROUTINE as abend handler, initializes CC-WORK-AREA, WS-MISC-STORAGE and WS-COMMAREA, and clears WS-RETURN-MSG. If EIBCALEN is 0 or the caller is COMEN01C without re-enter it initializes the commarea, else it copies CARDDEMO-COMMAREA and WS-THIS-PROGCOMMAREA from DFHCOMMAREA. It maps the AID (YYYY-STORE-PFKEY), forces any key other than ENTER/PF3 to ENTER, then EVALUATEs: PF3 XCTLs to the caller or menu; first entry from COCRDLIC reads and shows the card; other first entry shows the empty screen; re-entry edits input and either redisplays errors or reads and shows the card; anything else sends 'UNEXPECTED DATA SCENARIO' as plain text."},
+  {"name": "COMMON-RETURN", "lines": "394-407", "confidence": "Confirmed", "logic": "Moves WS-RETURN-MSG to CCARD-ERROR-MSG, packs CARDDEMO-COMMAREA followed by WS-THIS-PROGCOMMAREA into the 2000-byte WS-COMMAREA and issues EXEC CICS RETURN TRANSID(CCDL) with that commarea to continue the pseudo-conversation."},
+  {"name": "0000-MAIN-EXIT", "lines": "408-410", "confidence": "Confirmed", "logic": "Exit paragraph for 0000-MAIN; contains only EXIT."},
+  {"name": "1000-SEND-MAP", "lines": "412-421", "confidence": "Confirmed", "logic": "Builds and sends the card detail screen by performing 1100-SCREEN-INIT, 1200-SETUP-SCREEN-VARS, 1300-SETUP-SCREEN-ATTRS and 1400-SEND-SCREEN in sequence."},
+  {"name": "1000-SEND-MAP-EXIT", "lines": "423-425", "confidence": "Confirmed", "logic": "Exit paragraph for 1000-SEND-MAP; contains only EXIT."},
+  {"name": "1100-SCREEN-INIT", "lines": "427-451", "confidence": "Confirmed", "logic": "Clears CCRDSLAO to LOW-VALUES and fills the header: titles CCDA-TITLE01/02, transaction CCDL, program COCRDSLC, current date as MM/DD/YY and current time as HH:MM:SS from FUNCTION CURRENT-DATE."},
+  {"name": "1100-SCREEN-INIT-EXIT", "lines": "453-455", "confidence": "Confirmed", "logic": "Exit paragraph for 1100-SCREEN-INIT; contains only EXIT."},
+  {"name": "1200-SETUP-SCREEN-VARS", "lines": "457-497", "confidence": "Confirmed", "logic": "On first invocation (EIBCALEN 0) sets the 'Please enter Account and Card Number' prompt; otherwise shows CC-ACCT-ID and CC-CARD-NUM (or LOW-VALUES when the commarea value is zero) and, when FOUND-CARDS-FOR-ACCOUNT, moves CARD-EMBOSSED-NAME, the expiry month and year split from CARD-EXPIRAION-DATE, and CARD-ACTIVE-STATUS to the map. If no info message is set it sets the input prompt, then moves WS-RETURN-MSG to ERRMSGO and WS-INFO-MSG to INFOMSGO."},
+  {"name": "1200-SETUP-SCREEN-VARS-EXIT", "lines": "499-501", "confidence": "Confirmed", "logic": "Exit paragraph for 1200-SETUP-SCREEN-VARS; contains only EXIT."},
+  {"name": "1300-SETUP-SCREEN-ATTRS", "lines": "502-558", "confidence": "Confirmed", "logic": "Protects the account and card input fields (DFHBMPRF) when the last mapset is COCRDLI and the caller is COCRDLIC, otherwise makes them enterable (DFHBMFSE). Positions the cursor on the account field unless only the card filter is in error/blank, colours fields in error red, shows '*' in red for blank filters on re-entry, and dims the info message when none is set."},
+  {"name": "1300-SETUP-SCREEN-ATTRS-EXIT", "lines": "559-560", "confidence": "Confirmed", "logic": "Exit paragraph for 1300-SETUP-SCREEN-ATTRS; contains only EXIT."},
+  {"name": "1400-SEND-SCREEN", "lines": "563-577", "confidence": "Confirmed", "logic": "Sets the next mapset/map to COCRDSL/CCRDSLA, sets CDEMO-PGM-REENTER so the next input is processed as a re-entry, and sends map CCRDSLAO with CURSOR, ERASE and FREEKB; the RESP code is captured but not tested."},
+  {"name": "1400-SEND-SCREEN-EXIT", "lines": "578-580", "confidence": "Confirmed", "logic": "Exit paragraph for 1400-SEND-SCREEN; contains only EXIT."},
+  {"name": "2000-PROCESS-INPUTS", "lines": "582-591", "confidence": "Confirmed", "logic": "Receives the map (2100-RECEIVE-MAP), edits the inputs (2200-EDIT-MAP-INPUTS), then copies WS-RETURN-MSG to CCARD-ERROR-MSG and sets the next program/mapset/map to this program's own values."},
+  {"name": "2000-PROCESS-INPUTS-EXIT", "lines": "593-595", "confidence": "Confirmed", "logic": "Exit paragraph for 2000-PROCESS-INPUTS; contains only EXIT."},
+  {"name": "2100-RECEIVE-MAP", "lines": "596-603", "confidence": "Confirmed", "logic": "Issues EXEC CICS RECEIVE MAP(CCRDSLA) MAPSET(COCRDSL) INTO CCRDSLAI capturing RESP/RESP2; the response is not checked."},
+  {"name": "2100-RECEIVE-MAP-EXIT", "lines": "605-607", "confidence": "Confirmed", "logic": "Exit paragraph for 2100-RECEIVE-MAP; contains only EXIT."},
+  {"name": "2200-EDIT-MAP-INPUTS", "lines": "608-641", "confidence": "Confirmed", "logic": "Starts with INPUT-OK and both filter flags valid, converts an account or card input of '*' or SPACES to LOW-VALUES (otherwise copies ACCTSIDI/CARDSIDI to CC-ACCT-ID/CC-CARD-NUM), performs 2210-EDIT-ACCOUNT and 2220-EDIT-CARD, and when both filters are blank sets the 'No input received' message."},
+  {"name": "2200-EDIT-MAP-INPUTS-EXIT", "lines": "643-645", "confidence": "Confirmed", "logic": "Exit paragraph for 2200-EDIT-MAP-INPUTS; contains only EXIT."},
+  {"name": "2210-EDIT-ACCOUNT", "lines": "647-679", "confidence": "Confirmed", "logic": "If CC-ACCT-ID is LOW-VALUES, SPACES or zero it flags INPUT-ERROR and FLG-ACCTFILTER-BLANK, sets 'Account number not provided' if no message yet and zeroes CDEMO-ACCT-ID. If it is not numeric it flags INPUT-ERROR/FLG-ACCTFILTER-NOT-OK with message 'ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER' and zeroes CDEMO-ACCT-ID; otherwise moves it to CDEMO-ACCT-ID and sets FLG-ACCTFILTER-ISVALID."},
+  {"name": "2210-EDIT-ACCOUNT-EXIT", "lines": "681-683", "confidence": "Confirmed", "logic": "Exit paragraph for 2210-EDIT-ACCOUNT; target of its GO TO statements."},
+  {"name": "2220-EDIT-CARD", "lines": "685-720", "confidence": "Confirmed", "logic": "If CC-CARD-NUM is LOW-VALUES, SPACES or zero it flags INPUT-ERROR and FLG-CARDFILTER-BLANK, sets 'Card number not provided' if no message yet and zeroes CDEMO-CARD-NUM. If it is not numeric it flags INPUT-ERROR/FLG-CARDFILTER-NOT-OK with message 'CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER'; otherwise moves CC-CARD-NUM-N to CDEMO-CARD-NUM and sets FLG-CARDFILTER-ISVALID."},
+  {"name": "2220-EDIT-CARD-EXIT", "lines": "722-724", "confidence": "Confirmed", "logic": "Exit paragraph for 2220-EDIT-CARD; target of its GO TO statements."},
+  {"name": "9000-READ-DATA", "lines": "726-730", "confidence": "Confirmed", "logic": "Performs 9100-GETCARD-BYACCTCARD to read the requested card."},
+  {"name": "9000-READ-DATA-EXIT", "lines": "732-734", "confidence": "Confirmed", "logic": "Exit paragraph for 9000-READ-DATA; contains only EXIT."},
+  {"name": "9100-GETCARD-BYACCTCARD", "lines": "736-773", "confidence": "Confirmed", "logic": "Reads CARDDAT into CARD-RECORD keyed by the 16-byte card number CC-CARD-NUM (the account part of the key is commented out). NORMAL sets FOUND-CARDS-FOR-ACCOUNT; NOTFND sets INPUT-ERROR, both filters NOT-OK and 'Did not find cards for this search condition'; any other response sets INPUT-ERROR and builds 'File Error: READ on CARDDAT ...' with RESP/RESP2 into WS-RETURN-MSG."},
+  {"name": "9100-GETCARD-BYACCTCARD-EXIT", "lines": "775-777", "confidence": "Confirmed", "logic": "Exit paragraph for 9100-GETCARD-BYACCTCARD; contains only EXIT."},
+  {"name": "9150-GETCARD-BYACCT", "lines": "779-809", "confidence": "Confirmed", "logic": "Would read the card through alternate index path CARDAIX keyed by WS-CARD-RID-ACCT-ID, setting FOUND-CARDS-FOR-ACCOUNT, 'Did not find this account in cards database' on NOTFND, or a file error message. It is never performed in this program (dead code)."},
+  {"name": "9150-GETCARD-BYACCT-EXIT", "lines": "810-812", "confidence": "Confirmed", "logic": "Exit paragraph for 9150-GETCARD-BYACCT; contains only EXIT and is unreferenced."},
+  {"name": "SEND-LONG-TEXT", "lines": "820-830", "confidence": "Confirmed", "logic": "Debug helper that sends WS-LONG-MSG as plain text with ERASE and ends the task with CICS RETURN; it is not performed anywhere in the program."},
+  {"name": "SEND-LONG-TEXT-EXIT", "lines": "831-833", "confidence": "Confirmed", "logic": "Exit paragraph for SEND-LONG-TEXT; contains only EXIT."},
+  {"name": "SEND-PLAIN-TEXT", "lines": "838-848", "confidence": "Confirmed", "logic": "Sends WS-RETURN-MSG as plain text with ERASE and FREEKB and ends the task with a CICS RETURN without TRANSID, terminating the conversation; used for the unexpected-scenario branch."},
+  {"name": "SEND-PLAIN-TEXT-EXIT", "lines": "849-856", "confidence": "Confirmed", "logic": "Exit paragraph for SEND-PLAIN-TEXT; the range also contains COPY 'CSSTRPFY', which inserts YYYY-STORE-PFKEY mapping EIBAID (PF13-24 folded onto PF1-12) to CCARD-AID."},
+  {"name": "ABEND-ROUTINE", "lines": "857-878", "confidence": "Confirmed", "logic": "Defaults ABEND-MSG to 'UNEXPECTED ABEND OCCURRED.' when empty, sets ABEND-CULPRIT to COCRDSLC, sends ABEND-DATA (NOHANDLE), cancels the abend handler and issues EXEC CICS ABEND ABCODE('9999')."}
+ ],
+ "rules": [
+  {
+   "id": "BR-COCRDSLC-001",
+   "category": "routing",
+   "statement": "When PF3 is pressed the program transfers control (XCTL) back to the program and transaction recorded in CDEMO-FROM-PROGRAM / CDEMO-FROM-TRANID; when either is LOW-VALUES or SPACES the main menu COMEN01C / transaction CM00 is used instead. Before leaving it records itself as the from-program, sets the user type to regular user and the context to first entry.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDSLC.cbl:304-334",
+   "anchor": "IF CDEMO-FROM-TRANID EQUAL LOW-VALUES OR CDEMO-FROM-TRANID EQUAL SPACES MOVE LIT-MENUTRANID TO CDEMO-TO-TRANID",
+   "additional_sources": ["app/cbl/COCRDSLC.cbl:179-182"],
+   "conditions": "AID key is PF3 (or PF15, folded to PF3)",
+   "outcome": "XCTL to caller or COMEN01C with CARDDEMO-COMMAREA; CDEMO-USRTYP-USER and CDEMO-PGM-ENTER set",
+   "data": ["CDEMO-FROM-TRANID", "CDEMO-FROM-PROGRAM", "CDEMO-TO-TRANID", "CDEMO-TO-PROGRAM", "CDEMO-USER-TYPE", "CDEMO-PGM-CONTEXT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDSLC-002",
+   "category": "validation",
+   "statement": "Only ENTER and PF3 are accepted on the card detail screen; any other attention key is silently treated as ENTER.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDSLC.cbl:291-299",
+   "anchor": "IF PFK-INVALID SET CCARD-AID-ENTER TO TRUE",
+   "conditions": "CCARD-AID is neither ENTER nor PFK03",
+   "outcome": "CCARD-AID-ENTER is set and processing continues as for ENTER; no error message",
+   "data": ["CCARD-AID", "WS-PFK-FLAG"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDSLC-003",
+   "category": "routing",
+   "statement": "When the program is first entered from the card list program COCRDLIC, the account and card number passed in the commarea are treated as already validated: the card is read and its details displayed without editing the inputs.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDSLC.cbl:339-348",
+   "anchor": "WHEN CDEMO-PGM-ENTER AND CDEMO-FROM-PROGRAM EQUAL LIT-CCLISTPGM",
+   "conditions": "CDEMO-PGM-ENTER and CDEMO-FROM-PROGRAM = 'COCRDLIC'",
+   "outcome": "INPUT-OK; CDEMO-ACCT-ID/CDEMO-CARD-NUM moved to CC-ACCT-ID-N/CC-CARD-NUM-N; 9000-READ-DATA then screen sent",
+   "data": ["CDEMO-ACCT-ID", "CDEMO-CARD-NUM", "CC-ACCT-ID-N", "CC-CARD-NUM-N"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDSLC-004",
+   "category": "decision",
+   "statement": "On first entry from any program other than COCRDLIC the search screen is shown without reading data; on re-entry the typed criteria are edited and, if any edit fails, the screen is redisplayed with the error, otherwise the card is read and displayed.",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDSLC.cbl:349-371",
+   "anchor": "WHEN CDEMO-PGM-REENTER PERFORM 2000-PROCESS-INPUTS",
+   "conditions": "CDEMO-PGM-ENTER (not from COCRDLIC) or CDEMO-PGM-REENTER with INPUT-ERROR / no error",
+   "outcome": "Screen sent; card read only when all input edits passed",
+   "data": ["CDEMO-PGM-CONTEXT", "WS-INPUT-FLAG"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDSLC-005",
+   "category": "error-policy",
+   "statement": "If the program context matches none of the expected scenarios, the program sends the plain-text message 'UNEXPECTED DATA SCENARIO' and ends the conversation (no abend is issued even though ABEND-CODE '0001' is prepared).",
+   "paragraph": "0000-MAIN",
+   "source": "app/cbl/COCRDSLC.cbl:373-380",
+   "anchor": "MOVE 'UNEXPECTED DATA SCENARIO' TO WS-RETURN-MSG",
+   "conditions": "WHEN OTHER of the main EVALUATE",
+   "outcome": "SEND TEXT then CICS RETURN without TRANSID",
+   "data": ["ABEND-CULPRIT", "ABEND-CODE", "WS-RETURN-MSG"],
+   "messages": ["UNEXPECTED DATA SCENARIO"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDSLC-006",
+   "category": "decision",
+   "statement": "The card is looked up in CARDDAT by card number only; the entered account number is not part of the key and is not compared with CARD-ACCT-ID. Not found produces 'Did not find cards for this search condition' and marks both filters in error; any other response produces a 'File Error: READ on CARDDAT returned RESP ... ,RESP2 ...' message.",
+   "paragraph": "9100-GETCARD-BYACCTCARD",
+   "source": "app/cbl/COCRDSLC.cbl:740-772",
+   "anchor": "RIDFLD (WS-CARD-RID-CARDNUM)",
+   "additional_sources": ["app/cbl/COCRDSLC.cbl:153-154"],
+   "conditions": "CICS READ response NORMAL / NOTFND / other",
+   "outcome": "FOUND-CARDS-FOR-ACCOUNT on success; INPUT-ERROR with message otherwise",
+   "data": ["CC-CARD-NUM", "WS-CARD-RID-CARDNUM", "CARD-RECORD", "WS-RESP-CD", "WS-REAS-CD"],
+   "messages": ["Did not find cards for this search condition", "File Error: "],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-COCRDSLC-007",
+   "category": "decision",
+   "statement": "When the card detail screen was reached from the card list (last mapset COCRDLI and caller COCRDLIC), the account and card number fields are protected so the user cannot change the selection; otherwise they are enterable.",
+   "paragraph": "1300-SETUP-SCREEN-ATTRS",
+   "source": "app/cbl/COCRDSLC.cbl:505-512",
+   "anchor": "MOVE DFHBMPRF TO ACCTSIDA OF CCRDSLAI",
+   "conditions": "CDEMO-LAST-MAPSET = 'COCRDLI' and CDEMO-FROM-PROGRAM = 'COCRDLIC'",
+   "outcome": "ACCTSIDA/CARDSIDA = DFHBMPRF, else DFHBMFSE",
+   "data": ["CDEMO-LAST-MAPSET", "CDEMO-FROM-PROGRAM"],
+   "messages": [],
+   "confidence": "Confirmed"
+  }
+ ],
+ "existing_rules_reviewed": [
+  {
+   "id": "BR-BASE-003",
+   "verdict": "corrected",
+   "source": "app/cbl/COCRDSLC.cbl:655-658",
+   "anchor": "IF WS-RETURN-MSG-OFF SET WS-PROMPT-FOR-ACCT TO TRUE",
+   "note": "The cited line 135 is only the 88-level WS-RETURN-MSG-OFF definition. The first-error guard is applied at lines 656, 668, 695, 709 and 759, but in COCRDSLC it is not absolute: the cross-field edit at 637-640 unconditionally overwrites the message with 'No input received', and the file-error branch at 762-771 always overwrites WS-RETURN-MSG with WS-FILE-ERROR-MESSAGE."
+  },
+  {
+   "id": "BR-BASE-COCRDSLC-001",
+   "verdict": "corrected",
+   "source": "app/cbl/COCRDSLC.cbl:647-679",
+   "additional_sources": ["app/cbl/COCRDSLC.cbl:615-620"],
+   "anchor": "IF CC-ACCT-ID IS NOT NUMERIC",
+   "note": "COCRDSLC is the card detail (single card) screen, not the card list. A blank/zero account is not merely 'reported': it sets INPUT-ERROR, so the account number is mandatory and the card is not read. The non-numeric message is the hardcoded literal 'ACCOUNT FILTER,IF SUPPLIED MUST BE A 11 DIGIT NUMBER' (669-671); the 88-level SEARCHED-ACCT-NOT-NUMERIC text at 145-146 is never used. '*'/SPACES normalisation at 615-620 confirmed."
+  },
+  {
+   "id": "BR-BASE-COCRDSLC-002",
+   "verdict": "corrected",
+   "source": "app/cbl/COCRDSLC.cbl:685-720",
+   "additional_sources": ["app/cbl/COCRDSLC.cbl:622-627"],
+   "anchor": "IF CC-CARD-NUM IS NOT NUMERIC",
+   "note": "Same correction as for the account: this is the card detail screen, and a blank/zero card number sets INPUT-ERROR (mandatory). Non-numeric message is the literal 'CARD ID FILTER,IF SUPPLIED MUST BE A 16 DIGIT NUMBER' (710-712); the 88 SEARCHED-CARD-NOT-NUMERIC at 147-148 is unused. '*'/SPACES normalisation at 622-627 confirmed."
+  },
+  {
+   "id": "BR-BASE-COCRDSLC-003",
+   "verdict": "confirmed",
+   "source": "app/cbl/COCRDSLC.cbl:637-640",
+   "anchor": "IF FLG-ACCTFILTER-BLANK AND FLG-CARDFILTER-BLANK SET NO-SEARCH-CRITERIA-RECEIVED TO TRUE",
+   "note": "Confirmed. The SET is unconditional, so 'No input received' replaces the 'Account number not provided' message already set by 2210-EDIT-ACCOUNT."
+  }
+ ],
+ "no_rule_decisions": [
+  {"source": "app/cbl/COCRDSLC.cbl:615-627", "reason": "Input normalisation ('*' or SPACES treated as not supplied) is part of the reviewed existing rules BR-BASE-COCRDSLC-001/002; no separate rule."},
+  {"source": "app/cbl/COCRDSLC.cbl:462-472", "reason": "Presentation: a zero account/card number in the commarea is displayed as blank (LOW-VALUES)."},
+  {"source": "app/cbl/COCRDSLC.cbl:474-484", "reason": "Presentation: card fields (embossed name, expiry month/year, status) are moved to the map only after a successful read."},
+  {"source": "app/cbl/COCRDSLC.cbl:490-492", "reason": "Message housekeeping: default the info line to the input prompt when empty."},
+  {"source": "app/cbl/COCRDSLC.cbl:515-524", "reason": "Cursor positioning on the first field in error."},
+  {"source": "app/cbl/COCRDSLC.cbl:533-557", "reason": "Screen colour / attribute settings for fields in error and the info message."},
+  {"source": "app/cbl/COCRDSLC.cbl:859-861", "reason": "Technical abend handling: default abend message text."}
+ ],
+ "no_business_rules_reason": null,
+ "observations": [
+  {"kind": "anomaly", "text": "The card is read by card number only (account key move commented out at 739); the entered account number is never compared with CARD-ACCT-ID, so any existing card is displayed regardless of the account entered.", "source": "app/cbl/COCRDSLC.cbl:736-750"},
+  {"kind": "dead-code", "text": "9150-GETCARD-BYACCT (alternate-index read via CARDAIX) is never performed.", "source": "app/cbl/COCRDSLC.cbl:779-812"},
+  {"kind": "dead-code", "text": "SEND-LONG-TEXT is never performed (comment says debugging only).", "source": "app/cbl/COCRDSLC.cbl:820-833"},
+  {"kind": "dead-code", "text": "The IF INPUT-ERROR block after the main EVALUATE is unreachable: every WHEN branch ends with GO TO COMMON-RETURN, XCTL or SEND-PLAIN-TEXT (CICS RETURN).", "source": "app/cbl/COCRDSLC.cbl:385-391"},
+  {"kind": "anomaly", "text": "On PF3 the program unconditionally sets CDEMO-USRTYP-USER, overwriting an admin user type carried in the commarea.", "source": "app/cbl/COCRDSLC.cbl:325"},
+  {"kind": "anomaly", "text": "88-level messages SEARCHED-ACCT-ZEROES, SEARCHED-ACCT-NOT-NUMERIC, SEARCHED-CARD-NOT-NUMERIC, XREF-READ-ERROR and CODING-TO-BE-DONE are defined but not used; the edits use hardcoded literals instead.", "source": "app/cbl/COCRDSLC.cbl:143-158"},
+  {"kind": "unchecked-io", "text": "RESP of SEND MAP and RECEIVE MAP is captured but never tested.", "source": "app/cbl/COCRDSLC.cbl:569-575"},
+  {"kind": "unchecked-io", "text": "RECEIVE MAP response (e.g. MAPFAIL) is not checked before editing input.", "source": "app/cbl/COCRDSLC.cbl:597-602"},
+  {"kind": "anomaly", "text": "WHEN OTHER prepares ABEND-CODE '0001' but performs SEND-PLAIN-TEXT, which ends with CICS RETURN rather than an abend; the abend fields are unused.", "source": "app/cbl/COCRDSLC.cbl:373-380"},
+  {"kind": "anomaly", "text": "CVV and expiry day are present in the card record but not displayed; only expiry month/year are moved to the screen.", "source": "app/cbl/COCRDSLC.cbl:474-484"},
+  {"kind": "hardcoded-value", "text": "Abend code '9999' is hardcoded in ABEND-ROUTINE.", "source": "app/cbl/COCRDSLC.cbl:874-876"}
+ ],
+ "sme_questions": [
+  {"question": "Should the card detail lookup verify that the card belongs to the entered account (CARD-ACCT-ID = CC-ACCT-ID), or use the CARDAIX path in the unused 9150-GETCARD-BYACCT? Today only the card number is used.", "source": "app/cbl/COCRDSLC.cbl:736-750"},
+  {"question": "Must the account number be exactly 11 digits and the card exactly 16? The NOT NUMERIC test on the full PIC X field rejects shorter input padded with spaces/low-values, unless the BMS field definition right-justifies or zero-fills it.", "source": "app/cbl/COCRDSLC.cbl:665-678"},
+  {"question": "Is forcing CDEMO-USRTYP-USER on PF3 intended, given that admin users may reach this screen?", "source": "app/cbl/COCRDSLC.cbl:325"}
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "CSSETATY",
+ "evidence": [
+  "app/cpy/CSSETATY.cpy:17-27",
+  "app/cbl/COACTUPC.cbl:3208-3435"
+ ],
+ "key_fields": [],
+ "observations": [
+  {"kind": "anomaly", "source": "app/cpy/CSSETATY.cpy:17", "text": "The comment line ends with a stray 'ACSHLIM' token, apparently left from an edit; it is comment text and has no effect."},
+  {"kind": "anomaly", "source": "app/cbl/COACTUPC.cbl:3426-3435", "text": "In COACTUPC the comments above the last two COPY CSSETATY statements are swapped: 'EFT Account Id' precedes the PRI-CARDHOLDER copy and 'Primary Card Holder' precedes the EFT-ACCOUNT-ID copy. The code itself is correct."}
+ ],
+ "purpose": "Procedure-division fragment (no data items) used with COPY ... REPLACING to set the screen attribute of one field. With (TESTVAR1), (SCRNVAR2) and (MAPNAME3) replaced, it colours the field red when FLG-<field>-NOT-OK or FLG-<field>-BLANK is set on a re-entry and also shows '*' in the field when it was blank. COACTUPC copies it 39 times in 3300-SETUP-SCREEN-ATTRS, once per editable field; COTRTUPC also uses it.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CSSETATY.cpy"
+ ],
+ "source_sha256": [
+  "45000f93a9be6e8132262e53faa1db03ab1f20fbee4063272b890837216d1fcb"
+ ],
+ "status": "complete"
+}

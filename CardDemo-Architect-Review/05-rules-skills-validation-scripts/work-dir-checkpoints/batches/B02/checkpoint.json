@@ -1,0 +1,240 @@
+{
+ "batch": "B02", 
+ "checked": "2026-10-20T04:35:12", 
+ "copybooks": {
+  "CODATECN": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CODATECN", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "COSTM01": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "COSTM01", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CUSTREC": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CUSTREC", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVACT01Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVACT01Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVACT02Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVACT02Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVACT03Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVACT03Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVCUS01Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVCUS01Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVEXPORT": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVEXPORT", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVTRA01Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVTRA01Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVTRA02Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVTRA02Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVTRA05Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVTRA05Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVTRA06Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVTRA06Y", 
+   "issues": [], 
+   "status": "validated"
+  }
+ }, 
+ "programs": {
+  "CBACT01C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 1, 
+   "decision_covered": 1, 
+   "decision_in_rules": 1, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 17, 
+   "paragraphs_total": 17, 
+   "program": "CBACT01C", 
+   "rules": 3, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "CBACT02C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 0, 
+   "decision_covered": 0, 
+   "decision_in_rules": 0, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 6, 
+   "paragraphs_total": 6, 
+   "program": "CBACT02C", 
+   "rules": 0, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "CBACT03C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 0, 
+   "decision_covered": 0, 
+   "decision_in_rules": 0, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 6, 
+   "paragraphs_total": 6, 
+   "program": "CBACT03C", 
+   "rules": 0, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "CBACT04C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 2, 
+   "decision_covered": 2, 
+   "decision_in_rules": 2, 
+   "existing_reviewed": 1, 
+   "issues": [], 
+   "paragraphs_described": 23, 
+   "paragraphs_total": 23, 
+   "program": "CBACT04C", 
+   "rules": 6, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "CBCUS01C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 0, 
+   "decision_covered": 0, 
+   "decision_in_rules": 0, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 6, 
+   "paragraphs_total": 6, 
+   "program": "CBCUS01C", 
+   "rules": 0, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "CBEXPORT": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 11, 
+   "decision_covered": 11, 
+   "decision_in_rules": 11, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 21, 
+   "paragraphs_total": 21, 
+   "program": "CBEXPORT", 
+   "rules": 4, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "CBIMPORT": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 18, 
+   "decision_covered": 18, 
+   "decision_in_rules": 18, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 16, 
+   "paragraphs_total": 16, 
+   "program": "CBIMPORT", 
+   "rules": 4, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "CBSTM03A": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 37, 
+   "decision_covered": 37, 
+   "decision_in_rules": 14, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 26, 
+   "paragraphs_total": 26, 
+   "program": "CBSTM03A", 
+   "rules": 6, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "CBSTM03B": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 18, 
+   "decision_covered": 18, 
+   "decision_in_rules": 0, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 14, 
+   "paragraphs_total": 14, 
+   "program": "CBSTM03B", 
+   "rules": 0, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "CBTRN01C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 3, 
+   "decision_covered": 3, 
+   "decision_in_rules": 0, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 18, 
+   "paragraphs_total": 18, 
+   "program": "CBTRN01C", 
+   "rules": 3, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }
+ }
+}

@@ -1,0 +1,58 @@
+{
+ "batch": "B03", 
+ "checked": "2026-10-20T04:35:12", 
+ "copybooks": {
+  "CVTRA03Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVTRA03Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVTRA04Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVTRA04Y", 
+   "issues": [], 
+   "status": "validated"
+  }, 
+  "CVTRA07Y": {
+   "checked": "2026-10-20T04:35:12", 
+   "copybook": "CVTRA07Y", 
+   "issues": [], 
+   "status": "validated"
+  }
+ }, 
+ "programs": {
+  "CBTRN02C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 5, 
+   "decision_covered": 5, 
+   "decision_in_rules": 5, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 27, 
+   "paragraphs_total": 27, 
+   "program": "CBTRN02C", 
+   "rules": 17, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "CBTRN03C": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 3, 
+   "decision_covered": 3, 
+   "decision_in_rules": 3, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 27, 
+   "paragraphs_total": 27, 
+   "program": "CBTRN03C", 
+   "rules": 14, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }
+ }
+}

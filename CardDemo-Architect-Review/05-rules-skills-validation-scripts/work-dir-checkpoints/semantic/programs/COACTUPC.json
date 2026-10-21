@@ -1,0 +1,1258 @@
+{
+ "batch": "B04", 
+ "existing_rules_reviewed": [
+  {
+   "anchor": "IF WS-RETURN-MSG-OFF", 
+   "id": "BR-BASE-003", 
+   "note": "Confirmed for COACTUPC: every field edit sets INPUT-ERROR but writes WS-RETURN-MSG only when WS-RETURN-MSG-OFF (88 at app/cbl/COACTUPC.cbl:480), so the first failing edit wins. Exceptions in this program: the WHEN OTHER file-error branches overwrite the message unconditionally (app/cbl/COACTUPC.cbl:3692, 3742, 3791), 1200-EDIT-MAP-INPUTS overwrites a blank-key message with 'No input received' (1441-1443), and LOCKED-BUT-UPDATE-FAILED is set without the guard (4079, 4098).", 
+   "source": "app/cbl/COACTUPC.cbl:1804-1811", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "SET ACUP-CHANGES-OK-NOT-CONFIRMED TO TRUE", 
+   "id": "BR-BASE-004", 
+   "note": "Confirmed: after all edits, no INPUT-ERROR sets ACUP-CHANGES-OK-NOT-CONFIRMED ('N'). ACUP-CHANGES-NOT-OK ('E') was set before the edits (app/cbl/COACTUPC.cbl:1470), so any error leaves the state at 'E'. 2000-DECIDE-ACTION repeats the same transition for ACUP-SHOW-DETAILS (2585-2591).", 
+   "source": "app/cbl/COACTUPC.cbl:1670-1675", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF CC-ACCT-ID IS NOT NUMERIC", 
+   "id": "BR-BASE-COACTUPC-001", 
+   "note": "Confirmed. Blank id: INPUT-ERROR, FLG-ACCTFILTER-BLANK, 'Account number not provided' (1787-1797), then replaced by 'No input received' in 1200-EDIT-MAP-INPUTS (1441-1443). Non-numeric or zero id: 'Account Number if supplied must be a 11 digit Non-Zero Number' (1802-1813). The 88-level texts at 492-495 (SEARCHED-ACCT-*) are not used by this check.", 
+   "source": "app/cbl/COACTUPC.cbl:1783-1818", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "SET NO-CHANGES-DETECTED TO TRUE", 
+   "id": "BR-BASE-COACTUPC-002", 
+   "note": "Confirmed. Detail: account status is compared upper-cased without trim, account group id and customer id trimmed and upper-cased, the primary-holder flag and government id trimmed and upper-cased. A change only in letter case is therefore reported as 'No change detected'. Field edits are skipped at 1463-1468.", 
+   "source": "app/cbl/COACTUPC.cbl:1681-1775", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF FLG-YES-NO-ISVALID", 
+   "id": "BR-BASE-COACTUPC-003", 
+   "note": "Confirmed: low-values, spaces or zeros give '<field> must be supplied.'; anything other than 'Y'/'N' (88 at 78) gives '<field> must be Y or N.'. Only upper-case Y/N are accepted. Applied to Account Status (1472-1476) and Primary Card Holder (1657-1662).", 
+   "source": "app/cbl/COACTUPC.cbl:1856-1893", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF FUNCTION TEST-NUMVAL-C(WS-EDIT-SIGNED-NUMBER-9V2-X) = 0", 
+   "id": "BR-BASE-COACTUPC-004", 
+   "note": "Confirmed for credit limit, cash credit limit, current balance, cycle credit and cycle debit (calls at 1483-1527). No sign, range or cross-field check (for example cash limit not above credit limit) is coded.", 
+   "source": "app/cbl/COACTUPC.cbl:2180-2219", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF THIS-CENTURY OR LAST-CENTURY", 
+   "id": "BR-BASE-COACTUPC-005", 
+   "note": "Confirmed in EDIT-YEAR-CCYY, EDIT-MONTH and EDIT-DAY; applied to open, expiry, reissue dates and date of birth (app/cbl/COACTUPC.cbl:1478-1538). A failing year does not stop the month and day edits because each GO TO targets that paragraph's own exit and control falls through to the next paragraph.", 
+   "source": "app/cpy/CSUTLDPY.cpy:25-205", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF WS-FEBRUARY AND WS-DAY-29", 
+   "id": "BR-BASE-COACTUPC-006", 
+   "note": "Confirmed in EDIT-DAY-MONTH-YEAR: day 31 outside WS-31-DAY-MONTH, day 30 in February, and day 29 in February unless the year divides by 400 (YY = 00) or by 4 are rejected. Range tightened from 209-272 to the IF blocks.", 
+   "source": "app/cpy/CSUTLDPY.cpy:213-272", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "CALL 'CSUTLDTC'", 
+   "id": "BR-BASE-COACTUPC-007", 
+   "note": "Confirmed: CALL 'CSUTLDTC' with format 'YYYYMMDD'; WS-SEVERITY-N not 0 sets INPUT-ERROR and '<field> validation error Sev code: ...'. Range corrected from 273-321 to the EDIT-DATE-LE paragraph. Caveat: the failure GO TO EDIT-DATE-LE-EXIT falls into SET WS-EDIT-DATE-IS-VALID (CSUTLDPY.cpy:327), so the field flags end up valid although INPUT-ERROR stays set (see observations).", 
+   "source": "app/cpy/CSUTLDPY.cpy:283-321", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF WS-CURRENT-DATE-BINARY > WS-EDIT-DATE-BINARY", 
+   "id": "BR-BASE-COACTUPC-008", 
+   "note": "Confirmed: only when the current date is strictly greater than the date of birth is it accepted; equal or later gives '<field>:cannot be in the future '. Invoked only when the date flags are valid (app/cbl/COACTUPC.cbl:1539-1543).", 
+   "source": "app/cpy/CSUTLDPY.cpy:341-368", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF INVALID-SSN-PART1", 
+   "id": "BR-BASE-COACTUPC-009", 
+   "note": "Confirmed: parts of 3, 2 and 4 digits each go through 1245-EDIT-NUM-REQD (required, numeric, non-zero); part 1 is also rejected for 0, 666 or 900-999 (88 at 121-123). Part 2 and part 3 have no further check beyond non-zero.", 
+   "source": "app/cbl/COACTUPC.cbl:2431-2488", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF FICO-RANGE-IS-VALID", 
+   "id": "BR-BASE-COACTUPC-010", 
+   "note": "Confirmed: FICO is first edited as a required 3-character non-zero number (1545-1552); only then (guard at 1553) the 300-850 range of the 88 at 848-849 is applied with ': should be between 300 and 850'.", 
+   "source": "app/cbl/COACTUPC.cbl:2514-2530", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "' can have alphabets only.'", 
+   "id": "BR-BASE-COACTUPC-011", 
+   "note": "Confirmed: first and last names use 1225-EDIT-ALPHA-REQD with length 25 (1560-1582); the INSPECT converts A-Z and a-z to spaces, so letters and embedded spaces are allowed. Middle name uses the optional variant 1235-EDIT-ALPHA-OPT (2012-2056).", 
+   "source": "app/cbl/COACTUPC.cbl:1898-1950", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF VALID-US-STATE-CODE", 
+   "id": "BR-BASE-COACTUPC-012", 
+   "note": "Confirmed: Address Line 1 required (1583-1590), state alpha-only then one of 56 codes (CSLKPCDY.cpy:1013-1069; the list is upper case, so lower-case input is rejected), city and country required alpha-only (1614-1630), Address Line 2 unedited (comment at 1613). The country field is protected on screen (3546-3547), so the user cannot normally change it.", 
+   "source": "app/cbl/COACTUPC.cbl:2493-2510", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF VALID-US-STATE-ZIP-CD2-COMBO", 
+   "id": "BR-BASE-COACTUPC-013", 
+   "note": "Confirmed: zip is a required 5-character non-zero number (1604-1611); the cross edit runs only when both state and zip flags are valid (1665-1669) and checks state + first two zip digits against the 240 values at CSLKPCDY.cpy:1074-1313. Failure marks both state and zip in error with 'Invalid zip code for state'.", 
+   "source": "app/cbl/COACTUPC.cbl:2536-2557", 
+   "verdict": "confirmed"
+  }, 
+  {
+   "anchor": "IF VALID-GENERAL-PURP-CODE", 
+   "id": "BR-BASE-COACTUPC-014", 
+   "note": "Corrected: the area code, prefix and line-number checks are as stated (410 codes at CSLKPCDY.cpy:521-930), but the 'phone not entered' test at app/cbl/COACTUPC.cbl:2234-2239 checks WS-EDIT-US-PHONE-NUMA EQUAL SPACES where NUMC is expected. As coded, a number whose area code and prefix are blank (spaces) is accepted as not entered even when a line number is keyed, so 'when a number is entered' is not fully enforced.", 
+   "source": "app/cbl/COACTUPC.cbl:2225-2423", 
+   "verdict": "corrected"
+  }, 
+  {
+   "anchor": "' must not be zero.'", 
+   "id": "BR-BASE-COACTUPC-015", 
+   "note": "Confirmed: EFT Account Id is edited by 1245-EDIT-NUM-REQD with length 10 (1648-1655): required, all numeric, not zero.", 
+   "source": "app/cbl/COACTUPC.cbl:2109-2175", 
+   "verdict": "confirmed"
+  }
+ ], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [
+  {
+   "reason": "Default dispatch (WHEN OTHER) that performs input processing, action decision and screen send; the business decisions are in BR-COACTUPC-006..010.", 
+   "source": "app/cbl/COACTUPC.cbl:996-1003"
+  }, 
+  {
+   "reason": "Sequencing guard: the date-of-birth future check (existing rule BR-BASE-COACTUPC-008) runs only when the date passed the basic date edits.", 
+   "source": "app/cbl/COACTUPC.cbl:1539-1543"
+  }, 
+  {
+   "reason": "Sequencing guard: the FICO range check (existing rule BR-BASE-COACTUPC-010) runs only after the numeric edit passed.", 
+   "source": "app/cbl/COACTUPC.cbl:1553-1556"
+  }, 
+  {
+   "reason": "Sequencing guard: the state code lookup (existing rule BR-BASE-COACTUPC-012) runs only when the state passed the alphabetic edit.", 
+   "source": "app/cbl/COACTUPC.cbl:1599-1602"
+  }, 
+  {
+   "reason": "Sequencing guard: the state/zip cross edit (existing rule BR-BASE-COACTUPC-013) runs only when both state and zip passed their own edits.", 
+   "source": "app/cbl/COACTUPC.cbl:1665-1669"
+  }, 
+  {
+   "reason": "Generic required-field routine; its only business use (Address Line 1 required) is recorded under existing rule BR-BASE-COACTUPC-012.", 
+   "source": "app/cbl/COACTUPC.cbl:1824-1851"
+  }, 
+  {
+   "reason": "Dead code: 1230-EDIT-ALPHANUM-REQD is never performed (no PERFORM in the program).", 
+   "source": "app/cbl/COACTUPC.cbl:1955-2008"
+  }, 
+  {
+   "reason": "Generic optional-alphabetic routine; its only business use (Middle Name optional, letters only) is recorded under existing rule BR-BASE-COACTUPC-011.", 
+   "source": "app/cbl/COACTUPC.cbl:2012-2056"
+  }, 
+  {
+   "reason": "Dead code: 1240-EDIT-ALPHANUM-OPT is never performed (no PERFORM in the program).", 
+   "source": "app/cbl/COACTUPC.cbl:2061-2104"
+  }, 
+  {
+   "reason": "Unreachable branch (Inferred): state 'C' is intercepted in 0000-MAIN (979-989) before 2000-DECIDE-ACTION is performed, and no earlier step in the same task sets 'C' before this EVALUATE; recorded as dead code in observations.", 
+   "source": "app/cbl/COACTUPC.cbl:2625-2632"
+  }, 
+  {
+   "reason": "Presentation: chooses which set of values (empty, fetched or newly keyed) is moved to the screen.", 
+   "source": "app/cbl/COACTUPC.cbl:2700-2725"
+  }, 
+  {
+   "reason": "Presentation: moves fetched values to the screen when the account or customer was found.", 
+   "source": "app/cbl/COACTUPC.cbl:2787-2865"
+  }, 
+  {
+   "reason": "Presentation: shows each amount currency-edited when valid, otherwise the raw keyed text.", 
+   "source": "app/cbl/COACTUPC.cbl:2870-2909"
+  }, 
+  {
+   "reason": "Message housekeeping: selects the informational message text for the current state.", 
+   "source": "app/cbl/COACTUPC.cbl:2955-2981"
+  }, 
+  {
+   "reason": "Cursor placement on the first field in error, in screen order.", 
+   "source": "app/cbl/COACTUPC.cbl:3008-3167"
+  }, 
+  {
+   "reason": "Screen colour attributes for the account id and early exit from attribute setup when no account is shown.", 
+   "source": "app/cbl/COACTUPC.cbl:3170-3191"
+  }, 
+  {
+   "reason": "Screen attributes for the info message and the PF5/PF12 key labels.", 
+   "source": "app/cbl/COACTUPC.cbl:3566-3581"
+  }
+ ], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COACTUPC.cbl:2234-2239", 
+   "text": "The 'phone not entered' test repeats WS-EDIT-US-PHONE-NUMA EQUAL SPACES in the third group where WS-EDIT-US-PHONE-NUMC is expected. A phone with blank area code and prefix but a keyed line number is accepted as not entered and stored as '(   )   -<line>' style data."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COACTUPC.cbl:418-433", 
+   "text": "The rewrite layout ACCT-UPDATE-RECORD has no ACCT-ADDR-ZIP field: ACCT-UPDATE-GROUP-ID sits at the offset of ACCT-ADDR-ZIP in CVACT01Y (app/cpy/CVACT01Y.cpy:15-17) and its FILLER is 188 bytes instead of 10+178. REWRITE FROM ACCT-UPDATE-RECORD (4065-4071) therefore writes the group id into the account zip position and leaves the real group id position to the FILLER bytes, which INITIALIZE does not set."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COACTUPC.cbl:3627-3638", 
+   "text": "9000-READ-ACCT stops on DID-NOT-FIND-ACCT-IN-ACCTDAT and DID-NOT-FIND-CUST-IN-CUSTDAT, which are 88-levels on WS-RETURN-MSG text. The SET statements are commented out (3719, 3769) and the NOTFND branches build a different text, so these tests are never true (Inferred). After an account NOTFND the customer is still read and, if found, 9500 stores the unread ACCOUNT-RECORD and 2000-DECIDE-ACTION sets ACUP-SHOW-DETAILS."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COACTUPC.cbl:2606-2614", 
+   "text": "The outcome EVALUATE after 9600-WRITE-PROCESSING has no WHEN for COULD-NOT-LOCK-CUST-FOR-UPDATE (set at 3939). A customer lock failure, or an account lock failure when a message was already present, falls to WHEN OTHER and sets ACUP-CHANGES-OKAYED-AND-DONE, so 'Changes committed to database' is shown although nothing was rewritten (Inferred from control flow)."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/cbl/COACTUPC.cbl:2625-2632", 
+   "text": "WHEN ACUP-CHANGES-OKAYED-AND-DONE in 2000-DECIDE-ACTION is unreachable: 0000-MAIN handles state 'C' at 979-989 without performing 2000-DECIDE-ACTION (Inferred)."
+  }, 
+  {
+   "kind": "dead-code", 
+   "source": "app/cbl/COACTUPC.cbl:1955-2104", 
+   "text": "1230-EDIT-ALPHANUM-REQD and 1240-EDIT-ALPHANUM-OPT are never performed."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COACTUPC.cbl:4141-4144", 
+   "text": "9700-CHECK-CHANGE-IN-REC, performed THRU 9700-CHECK-CHANGE-IN-REC-EXIT, leaves its range with GO TO 9600-WRITE-PROCESSING-EXIT (also at 4190). The 9700 PERFORM is left unterminated; it works only because the enclosing PERFORM of 9600 returns at that exit (Inferred)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cpy/CSUTLDPY.cpy:315-328", 
+   "text": "When CSUTLDTC returns a non-zero severity, GO TO EDIT-DATE-LE-EXIT falls into SET WS-EDIT-DATE-IS-VALID, so the date's field flags are reset to valid although INPUT-ERROR stays set; the field is not highlighted and, for the date of birth, EDIT-DATE-OF-BIRTH still runs (app/cbl/COACTUPC.cbl:1539-1543)."
+  }, 
+  {
+   "kind": "security", 
+   "source": "app/cbl/COACTUPC.cbl:947", 
+   "text": "On PF3 the program sets CDEMO-USRTYP-USER before XCTL, overwriting the user type received in the commarea (an administrator would be passed on as a regular user)."
+  }, 
+  {
+   "kind": "security", 
+   "source": "app/cbl/COACTUPC.cbl:905-916", 
+   "text": "No authorization check on CDEMO-USER-TYPE exists anywhere in the program (Inferred from absence): any user reaching transaction CAUP can change balances, credit limits, SSN and other customer data."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/COACTUPC.cbl:1040-1045", 
+   "text": "RESP from RECEIVE MAP is captured but never tested; likewise SEND MAP RESP at 3593-3601."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/COACTUPC.cbl:496-497", 
+   "text": "88 DID-NOT-FIND-ACCT-IN-CARDXREF is defined twice on WS-RETURN-MSG with different texts (also at 513-514); neither is set by the program."
+  }, 
+  {
+   "kind": "conflict", 
+   "source": "app/cbl/COACTUPC.cbl:434-456", 
+   "text": "Comment says the customer update record is RECLN 300, but its fields add up to 500 bytes, matching CVCUS01Y (RECLN 500 comment at app/cpy/CVCUS01Y.cpy:2)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COACTUPC.cbl:3992-4000", 
+   "text": "ACCT-REISSUE-DATE is moved to ACCT-UPDATE-REISSUE-DATE and immediately overwritten by the STRING of the new reissue parts (dead store)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COACTUPC.cbl:4027-4041", 
+   "text": "When a phone number is legitimately left blank (parts stored as LOW-VALUES by 1100-RECEIVE-MAP), the STRING still writes '(' + low-values + ')' + low-values + '-' + low-values into CUST-PHONE-NUM-1/2 (Inferred)."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/COACTUPC.cbl:2611-2612", 
+   "text": "After a concurrent-change rejection the state returns to ACUP-SHOW-DETAILS but ACUP-OLD-DETAILS is not refreshed, so the screen shows the values fetched before the other update and the next save attempt fails the same check until PF12 re-reads the data (Inferred)."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "859-1005", 
+   "logic": "Sets HANDLE ABEND to ABEND-ROUTINE, initializes work areas and clears WS-RETURN-MSG. If EIBCALEN is 0 or the caller is COMEN01C on a first entry it initializes CARDDEMO-COMMAREA and the program area and sets ACUP-DETAILS-NOT-FETCHED, otherwise it restores both from DFHCOMMAREA. It maps the AID (YYYY-STORE-PFKEY), forces invalid keys to Enter, then EVALUATEs: PF3 exits by XCTL; a fresh entry sends the empty search screen; a finished or failed update resets state and re-prompts; anything else runs 1000-PROCESS-INPUTS, 2000-DECIDE-ACTION and 3000-SEND-MAP and goes to COMMON-RETURN.", 
+   "name": "0000-MAIN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1007-1020", 
+   "logic": "Copies WS-RETURN-MSG to CCARD-ERROR-MSG, packs CARDDEMO-COMMAREA followed by WS-THIS-PROGCOMMAREA into the 2000-byte WS-COMMAREA and issues EXEC CICS RETURN TRANSID('CAUP') with that commarea.", 
+   "name": "COMMON-RETURN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1021-1023", 
+   "logic": "Exit point of 0000-MAIN; contains only EXIT.", 
+   "name": "0000-MAIN-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1025-1034", 
+   "logic": "Performs 1100-RECEIVE-MAP and 1200-EDIT-MAP-INPUTS, then copies WS-RETURN-MSG to CCARD-ERROR-MSG and sets CCARD-NEXT-PROG/MAPSET/MAP to this program, mapset COACTUP and map CACTUPA.", 
+   "name": "1000-PROCESS-INPUTS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1036-1038", 
+   "logic": "Exit point of 1000-PROCESS-INPUTS; contains only EXIT.", 
+   "name": "1000-PROCESS-INPUTS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1039-1425", 
+   "logic": "RECEIVEs map CACTUPA into CACTUPAI (RESP not tested) and initializes ACUP-NEW-DETAILS. Each input field equal to '*' or spaces is stored as LOW-VALUES, otherwise copied to the matching ACUP-NEW-* field; the account id also goes to CC-ACCT-ID. If no account has been fetched yet it stops after the account id. The five amount fields are converted with NUMVAL-C into the numeric ACUP-NEW-*-N fields only when TEST-NUMVAL-C returns 0; dates, SSN and phone numbers are captured as separate parts.", 
+   "name": "1100-RECEIVE-MAP"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1426-1428", 
+   "logic": "Exit point of 1100-RECEIVE-MAP; also the GO TO target when only the account id is captured.", 
+   "name": "1100-RECEIVE-MAP-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1429-1676", 
+   "logic": "Sets INPUT-OK. Before an account is fetched it edits only the account id (1210-EDIT-ACCOUNT), sets 'No input received' when blank, and exits. Otherwise it marks the account/customer as found, runs 1205-COMPARE-OLD-NEW and skips all edits when nothing changed or the changes are already validated or committed. Else it sets ACUP-CHANGES-NOT-OK and edits, in order: status, open date, credit limit, expiry date, cash limit, reissue date, balance, cycle credit, cycle debit, SSN, date of birth (plus not-in-future), FICO, names, address line 1, state, zip, city, country, phones 1 and 2, EFT account, primary holder, then the state/zip cross edit; with no INPUT-ERROR it sets ACUP-CHANGES-OK-NOT-CONFIRMED.", 
+   "name": "1200-EDIT-MAP-INPUTS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1678-1680", 
+   "logic": "Exit point of 1200-EDIT-MAP-INPUTS; GO TO target for the early exits.", 
+   "name": "1200-EDIT-MAP-INPUTS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1681-1775", 
+   "logic": "Sets NO-CHANGES-FOUND, then compares every ACUP-NEW account field with ACUP-OLD (status upper-cased, group id trimmed and upper-cased, amounts and dates exactly) and every customer field (text trimmed and upper-cased; phone parts, SSN, DOB, EFT id and FICO exactly). Any difference sets CHANGE-HAS-OCCURRED; full equality sets the message 'No change detected with respect to values fetched.'.", 
+   "name": "1205-COMPARE-OLD-NEW"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1777-1779", 
+   "logic": "Exit point of 1205-COMPARE-OLD-NEW; GO TO target when a change is found.", 
+   "name": "1205-COMPARE-OLD-NEW-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1783-1818", 
+   "logic": "Sets FLG-ACCTFILTER-NOT-OK. A CC-ACCT-ID of low-values or spaces sets INPUT-ERROR, FLG-ACCTFILTER-BLANK and 'Account number not provided' and zeroes CDEMO-ACCT-ID. A non-numeric or all-zero id sets INPUT-ERROR and 'Account Number if supplied must be a 11 digit Non-Zero Number'. A valid id is copied to CDEMO-ACCT-ID and FLG-ACCTFILTER-ISVALID is set.", 
+   "name": "1210-EDIT-ACCOUNT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1820-1822", 
+   "logic": "Exit point of 1210-EDIT-ACCOUNT; contains only EXIT.", 
+   "name": "1210-EDIT-ACCOUNT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1824-1851", 
+   "logic": "Generic required-field edit on WS-EDIT-ALPHANUM-ONLY(1:WS-EDIT-ALPHANUM-LENGTH): low-values, spaces or zero trimmed length sets INPUT-ERROR, FLG-MANDATORY-BLANK and '<field> must be supplied.'; otherwise FLG-MANDATORY-ISVALID. Used only for Address Line 1.", 
+   "name": "1215-EDIT-MANDATORY"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1852-1854", 
+   "logic": "Exit point of 1215-EDIT-MANDATORY; contains only EXIT.", 
+   "name": "1215-EDIT-MANDATORY-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1856-1893", 
+   "logic": "Edits WS-EDIT-YES-NO: low-values, spaces or zero sets INPUT-ERROR, FLG-YES-NO-BLANK and '<field> must be supplied.'; a value other than 'Y' or 'N' sets INPUT-ERROR, FLG-YES-NO-NOT-OK and '<field> must be Y or N.'. Used for Account Status and Primary Card Holder.", 
+   "name": "1220-EDIT-YESNO"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1894-1896", 
+   "logic": "Exit point of 1220-EDIT-YESNO; contains only EXIT.", 
+   "name": "1220-EDIT-YESNO-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1898-1950", 
+   "logic": "Required alphabetic edit: a blank value sets INPUT-ERROR, FLG-ALPHA-BLANK and '<field> must be supplied.'. Otherwise it INSPECT-CONVERTs A-Z and a-z to spaces and, if anything non-blank remains, sets INPUT-ERROR, FLG-ALPHA-NOT-OK and '<field> can have alphabets only.'; else FLG-ALPHA-ISVALID. Used for first name, last name, state, city and country.", 
+   "name": "1225-EDIT-ALPHA-REQD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1951-1953", 
+   "logic": "Exit point of 1225-EDIT-ALPHA-REQD; contains only EXIT.", 
+   "name": "1225-EDIT-ALPHA-REQD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "1955-2008", 
+   "logic": "Required alphanumeric edit: blank gives '<field> must be supplied.'; any character other than letters and digits (after INSPECT CONVERTING them to spaces) gives '<field> can have numbers or alphabets only.'. No PERFORM of this paragraph exists in the program.", 
+   "name": "1230-EDIT-ALPHANUM-REQD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2009-2011", 
+   "logic": "Exit point of the unused 1230-EDIT-ALPHANUM-REQD; contains only EXIT.", 
+   "name": "1230-EDIT-ALPHANUM-REQD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2012-2056", 
+   "logic": "Optional alphabetic edit: a blank value is accepted (FLG-ALPHA-ISVALID); a non-blank value with characters other than letters and spaces sets INPUT-ERROR, FLG-ALPHA-NOT-OK and '<field> can have alphabets only.'. Used for Middle Name.", 
+   "name": "1235-EDIT-ALPHA-OPT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2057-2059", 
+   "logic": "Exit point of 1235-EDIT-ALPHA-OPT; contains only EXIT.", 
+   "name": "1235-EDIT-ALPHA-OPT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2061-2104", 
+   "logic": "Optional alphanumeric edit: blank is accepted; other characters than letters and digits give '<field> can have numbers or alphabets only.'. No PERFORM of this paragraph exists in the program.", 
+   "name": "1240-EDIT-ALPHANUM-OPT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2105-2107", 
+   "logic": "Exit point of the unused 1240-EDIT-ALPHANUM-OPT; contains only EXIT.", 
+   "name": "1240-EDIT-ALPHANUM-OPT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2109-2175", 
+   "logic": "Required numeric edit on the first WS-EDIT-ALPHANUM-LENGTH characters: blank gives '<field> must be supplied.', not NUMERIC gives '<field> must be all numeric.', NUMVAL = 0 gives '<field> must not be zero.'; each failure sets INPUT-ERROR and a flag, success sets FLG-ALPHNANUM-ISVALID. Used for FICO (3), zip (5), EFT account (10) and the three SSN parts.", 
+   "name": "1245-EDIT-NUM-REQD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2176-2178", 
+   "logic": "Exit point of 1245-EDIT-NUM-REQD; contains only EXIT.", 
+   "name": "1245-EDIT-NUM-REQD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2180-2219", 
+   "logic": "Edits WS-EDIT-SIGNED-NUMBER-9V2-X: low-values or spaces sets INPUT-ERROR, FLG-SIGNED-NUMBER-BLANK and '<field> must be supplied.'; a value failing FUNCTION TEST-NUMVAL-C sets INPUT-ERROR and '<field> is not valid'; else FLG-SIGNED-NUMBER-ISVALID. No range or sign limit is applied.", 
+   "name": "1250-EDIT-SIGNED-9V2"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2221-2223", 
+   "logic": "Exit point of 1250-EDIT-SIGNED-9V2; contains only EXIT.", 
+   "name": "1250-EDIT-SIGNED-9V2-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2225-2245", 
+   "logic": "Starts the phone edit with WS-EDIT-US-PHONE-IS-INVALID. When the area code and prefix are blank and the third test (written against NUMA spaces or NUMC low-values) is true, the phone is accepted as not entered and control jumps to EDIT-US-PHONE-EXIT; otherwise it falls through into EDIT-AREA-CODE.", 
+   "name": "1260-EDIT-US-PHONE-NUM"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2246-2315", 
+   "logic": "Area code WS-EDIT-US-PHONE-NUMA must be supplied, numeric, non-zero and a VALID-GENERAL-PURP-CODE from CSLKPCDY; each failure sets INPUT-ERROR, FLG-EDIT-US-PHONEA-BLANK/NOT-OK and a '<field>: Area code ...' message and continues at EDIT-US-PHONE-PREFIX.", 
+   "name": "EDIT-AREA-CODE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2316-2368", 
+   "logic": "Prefix WS-EDIT-US-PHONE-NUMB must be supplied, numeric and non-zero; failures set INPUT-ERROR, FLG-EDIT-US-PHONEB-* and a '<field>: Prefix code ...' message and continue at EDIT-US-PHONE-LINENUM.", 
+   "name": "EDIT-US-PHONE-PREFIX"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2370-2422", 
+   "logic": "Line number WS-EDIT-US-PHONE-NUMC must be supplied, numeric (4 digits) and non-zero; failures set INPUT-ERROR, FLG-EDIT-US-PHONEC-* and a '<field>: Line number code ...' message.", 
+   "name": "EDIT-US-PHONE-LINENUM"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2424-2426", 
+   "logic": "Exit label inside the phone edit range; GO TO target for a blank phone and line-number failures.", 
+   "name": "EDIT-US-PHONE-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2427-2429", 
+   "logic": "End of the PERFORM 1260-EDIT-US-PHONE-NUM THRU range; contains only EXIT.", 
+   "name": "1260-EDIT-US-PHONE-NUM-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2431-2488", 
+   "logic": "Edits the SSN in three parts through 1245-EDIT-NUM-REQD: part 1 (3 digits), part 2 (2 digits), part 3 (4 digits). When part 1 passes, it is also rejected if INVALID-SSN-PART1 (0, 666 or 900-999) with ': should not be 000, 666, or between 900 and 999'. Each part's flag is saved to WS-EDIT-US-SSN-PARTn-FLGS.", 
+   "name": "1265-EDIT-US-SSN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2489-2491", 
+   "logic": "Exit point of 1265-EDIT-US-SSN; contains only EXIT.", 
+   "name": "1265-EDIT-US-SSN-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2493-2510", 
+   "logic": "Moves ACUP-NEW-CUST-ADDR-STATE-CD to US-STATE-CODE-TO-EDIT; if it is not a VALID-US-STATE-CODE (CSLKPCDY list) it sets INPUT-ERROR, FLG-STATE-NOT-OK and '<field>: is not a valid state code'.", 
+   "name": "1270-EDIT-US-STATE-CD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2511-2513", 
+   "logic": "Exit point of 1270-EDIT-US-STATE-CD; contains only EXIT.", 
+   "name": "1270-EDIT-US-STATE-CD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2514-2530", 
+   "logic": "If ACUP-NEW-CUST-FICO-SCORE is not in FICO-RANGE-IS-VALID (300 through 850) it sets INPUT-ERROR, FLG-FICO-SCORE-NOT-OK and '<field>: should be between 300 and 850'.", 
+   "name": "1275-EDIT-FICO-SCORE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2531-2533", 
+   "logic": "Exit point of 1275-EDIT-FICO-SCORE; contains only EXIT.", 
+   "name": "1275-EDIT-FICO-SCORE-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2536-2557", 
+   "logic": "Builds US-STATE-AND-FIRST-ZIP2 from the state code and first two zip characters; if it is not a VALID-US-STATE-ZIP-CD2-COMBO it sets INPUT-ERROR, both FLG-STATE-NOT-OK and FLG-ZIPCODE-NOT-OK and 'Invalid zip code for state'.", 
+   "name": "1280-EDIT-US-STATE-ZIP-CD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2558-2560", 
+   "logic": "Exit point of 1280-EDIT-US-STATE-ZIP-CD; contains only EXIT.", 
+   "name": "1280-EDIT-US-STATE-ZIP-CD-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2562-2642", 
+   "logic": "EVALUATE on the change-action state: not fetched or PF12 with a valid account id re-reads the data (9000-READ-ACCT) and sets ACUP-SHOW-DETAILS when the customer was found; ACUP-SHOW-DETAILS without errors or no-change moves to confirmation; ACUP-CHANGES-NOT-OK does nothing; confirmation plus PF5 runs 9600-WRITE-PROCESSING and maps its outcome to lock-error, failed, show-details again or done; confirmation without PF5 waits; any other state abends with code '0001' 'UNEXPECTED DATA SCENARIO'.", 
+   "name": "2000-DECIDE-ACTION"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2643-2645", 
+   "logic": "Exit point of 2000-DECIDE-ACTION; contains only EXIT.", 
+   "name": "2000-DECIDE-ACTION-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2649-2662", 
+   "logic": "Builds and sends the screen by performing 3100-SCREEN-INIT, 3200-SETUP-SCREEN-VARS, 3250-SETUP-INFOMSG, 3300-SETUP-SCREEN-ATTRS, 3390-SETUP-INFOMSG-ATTRS and 3400-SEND-SCREEN.", 
+   "name": "3000-SEND-MAP"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2664-2666", 
+   "logic": "Exit point of 3000-SEND-MAP; contains only EXIT.", 
+   "name": "3000-SEND-MAP-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2668-2692", 
+   "logic": "Clears CACTUPAO and fills the header: titles from COTTL01Y, transaction CAUP, program COACTUPC, and the current date (MM/DD/YY) and time (HH:MM:SS) from FUNCTION CURRENT-DATE via CSDAT01Y fields.", 
+   "name": "3100-SCREEN-INIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2694-2696", 
+   "logic": "Exit point of 3100-SCREEN-INIT; contains only EXIT.", 
+   "name": "3100-SCREEN-INIT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2698-2726", 
+   "logic": "Skips on first entry (CDEMO-PGM-ENTER). Otherwise shows the account id (blank when zero but valid) and chooses the field values: empty fields when not fetched or account id zero, fetched values for ACUP-SHOW-DETAILS, the user's new values for any changes-made state, fetched values otherwise.", 
+   "name": "3200-SETUP-SCREEN-VARS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2727-2729", 
+   "logic": "Exit point of 3200-SETUP-SCREEN-VARS; contains only EXIT.", 
+   "name": "3200-SETUP-SCREEN-VARS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2731-2781", 
+   "logic": "Moves LOW-VALUES to every account and customer output field of CACTUPAO so the screen shows empty fields.", 
+   "name": "3201-SHOW-INITIAL-VALUES"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2783-2785", 
+   "logic": "Exit point of 3201-SHOW-INITIAL-VALUES; contains only EXIT.", 
+   "name": "3201-SHOW-INITIAL-VALUES-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2787-2865", 
+   "logic": "Moves LOW-VALUES to WS-NON-KEY-FLAGS and sets PROMPT-FOR-CHANGES. When FOUND-ACCT-IN-MASTER or FOUND-CUST-IN-MASTER it moves the ACUP-OLD account values to CACTUPAO: ACUP-OLD-ACTIVE-STATUS, the five amounts (current balance, credit limit, cash credit limit, cycle credit, cycle debit) edited through WS-EDIT-CURRENCY-9-2-F, open/expiry/reissue year-month-day and ACUP-OLD-GROUP-ID. When FOUND-CUST-IN-MASTER it also moves the customer values: id, ACUP-OLD-CUST-SSN-X split (1:3), (4:2), (6:4), FICO score, date of birth, names, address lines, state, zip, country, phone numbers 1 and 2 split at positions (2:3), (6:3), (10:4), government id, EFT account id and primary-holder flag.", 
+   "name": "3202-SHOW-ORIGINAL-VALUES"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2867-2869", 
+   "logic": "Exit point of 3202-SHOW-ORIGINAL-VALUES; contains only EXIT.", 
+   "name": "3202-SHOW-ORIGINAL-VALUES-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2870-2949", 
+   "logic": "Moves ACUP-NEW-ACTIVE-STATUS to ACSTTUSO. For credit limit, cash credit limit, current balance, cycle credit and cycle debit it shows the numeric value edited through WS-EDIT-CURRENCY-9-2-F when the matching flag (FLG-CRED-LIMIT-ISVALID, FLG-CASH-CREDIT-LIMIT-ISVALID, FLG-CURR-BAL-ISVALID, FLG-CURR-CYC-CREDIT-ISVALID, FLG-CURR-CYC-DEBIT-ISVALID) is set, otherwise the keyed text (the -X field). All other ACUP-NEW fields (dates, group id, customer id, SSN parts, FICO, names, address, phone parts, government id, EFT account, primary-holder flag) are moved to CACTUPAO as entered.", 
+   "name": "3203-SHOW-UPDATED-VALUES"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2951-2953", 
+   "logic": "Exit point of 3203-SHOW-UPDATED-VALUES; contains only EXIT.", 
+   "name": "3203-SHOW-UPDATED-VALUES-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2955-2982", 
+   "logic": "Chooses WS-INFO-MSG from the state: search prompt on entry or before fetch, 'Update account details presented above.' for show/error states, 'Changes validated.Press F5 to save' for awaiting confirmation, 'Changes committed to database' when done, 'Changes unsuccessful. Please try again' on lock or update failure. Moves it to INFOMSGO and WS-RETURN-MSG to ERRMSGO.", 
+   "name": "3250-SETUP-INFOMSG"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2983-2985", 
+   "logic": "Exit point of 3250-SETUP-INFOMSG; contains only EXIT.", 
+   "name": "3250-SETUP-INFOMSG-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "2986-3436", 
+   "logic": "Protects all fields, then unprotects only the account id before fetch, or the editable fields (3320) in show/error states; confirmation and done states stay protected. Positions the cursor on the first field in error (screen order), colours the account id red when invalid or blank, and for every other field uses COPY CSSETATY to show it red (and '*' when blank) if its edit flag is not OK on a re-entry.", 
+   "name": "3300-SETUP-SCREEN-ATTRS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3437-3439", 
+   "logic": "Exit point of 3300-SETUP-SCREEN-ATTRS; GO TO target when no account is fetched or the account id is in error.", 
+   "name": "3300-SETUP-SCREEN-ATTRS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3441-3495", 
+   "logic": "Moves DFHBMPRF (protected) to the attribute byte of every input field, including the account id and INFOMSG.", 
+   "name": "3310-PROTECT-ALL-ATTRS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3496-3498", 
+   "logic": "Exit point of 3310-PROTECT-ALL-ATTRS; contains only EXIT.", 
+   "name": "3310-PROTECT-ALL-ATTRS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3500-3561", 
+   "logic": "Moves DFHBMFSE (unprotected) to status, limits, balances, all dates, group id, SSN, FICO, names, address lines, city, state, zip, both phones, government id, EFT account and primary holder; keeps the customer id and the country protected (comment: edits are USA-specific).", 
+   "name": "3320-UNPROTECT-FEW-ATTRS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3562-3564", 
+   "logic": "Exit point of 3320-UNPROTECT-FEW-ATTRS; contains only EXIT.", 
+   "name": "3320-UNPROTECT-FEW-ATTRS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3566-3583", 
+   "logic": "Hides INFOMSG (DFHBMDAR) when there is no info message, otherwise brightens it; brightens the PF12 label while changes are pending and the PF5 and PF12 labels when confirmation is being asked.", 
+   "name": "3390-SETUP-INFOMSG-ATTRS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3584-3586", 
+   "logic": "Exit point of 3390-SETUP-INFOMSG-ATTRS; contains only EXIT.", 
+   "name": "3390-SETUP-INFOMSG-ATTRS-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3589-3602", 
+   "logic": "Sets CCARD-NEXT-MAPSET/MAP and issues EXEC CICS SEND MAP(CACTUPA) MAPSET(COACTUP) FROM(CACTUPAO) with CURSOR, ERASE and FREEKB; RESP is captured but not tested.", 
+   "name": "3400-SEND-SCREEN"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3603-3605", 
+   "logic": "Exit point of 3400-SEND-SCREEN; contains only EXIT.", 
+   "name": "3400-SEND-SCREEN-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3608-3644", 
+   "logic": "Initializes ACUP-OLD-DETAILS and the info message, keys on CC-ACCT-ID, reads the cross-reference (9200) and stops if the account filter failed; reads the account (9300) and the customer by CDEMO-CUST-ID (9400), testing message condition names to stop early, then stores the fetched data (9500).", 
+   "name": "9000-READ-ACCT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3647-3649", 
+   "logic": "Exit point of 9000-READ-ACCT; GO TO target for the early stops.", 
+   "name": "9000-READ-ACCT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3650-3697", 
+   "logic": "EXEC CICS READ of CXACAIX (card xref by account id). NORMAL copies XREF-CUST-ID and XREF-CARD-NUM to the commarea; NOTFND sets INPUT-ERROR, FLG-ACCTFILTER-NOT-OK and 'Account:<id> not found in Cross ref file. Resp:.. Reas:..'; other responses set the same flags and a 'File Error: READ on CXACAIX ...' message.", 
+   "name": "9200-GETCARDXREF-BYACCT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3698-3700", 
+   "logic": "Exit point of 9200-GETCARDXREF-BYACCT; contains only EXIT.", 
+   "name": "9200-GETCARDXREF-BYACCT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3701-3747", 
+   "logic": "EXEC CICS READ of ACCTDAT by account id into ACCOUNT-RECORD. NORMAL sets FOUND-ACCT-IN-MASTER; NOTFND sets INPUT-ERROR, FLG-ACCTFILTER-NOT-OK and 'Account:<id> not found in Acct Master file...'; other responses build the generic file-error message.", 
+   "name": "9300-GETACCTDATA-BYACCT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3748-3750", 
+   "logic": "Exit point of 9300-GETACCTDATA-BYACCT; contains only EXIT.", 
+   "name": "9300-GETACCTDATA-BYACCT-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3752-3796", 
+   "logic": "EXEC CICS READ of CUSTDAT by customer id into CUSTOMER-RECORD. NORMAL sets FOUND-CUST-IN-MASTER; NOTFND sets INPUT-ERROR, FLG-CUSTFILTER-NOT-OK and 'CustId:<id> not found in customer master...'; other responses build the generic file-error message.", 
+   "name": "9400-GETCUSTDATA-BYCUST"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3797-3799", 
+   "logic": "Exit point of 9400-GETCUSTDATA-BYCUST; contains only EXIT.", 
+   "name": "9400-GETCUSTDATA-BYCUST-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3801-3884", 
+   "logic": "Copies account id, customer id and names, account status and card number into CARDDEMO-COMMAREA, then copies every ACCOUNT-RECORD and CUSTOMER-RECORD field into ACUP-OLD-DETAILS, splitting YYYY-MM-DD dates into year, month and day parts.", 
+   "name": "9500-STORE-FETCHED-DATA"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3885-3887", 
+   "logic": "Exit point of 9500-STORE-FETCHED-DATA; contains only EXIT.", 
+   "name": "9500-STORE-FETCHED-DATA-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "3888-4104", 
+   "logic": "READs ACCTDAT then CUSTDAT with UPDATE; a failure sets INPUT-ERROR and 'Could not lock account/customer record for update' and exits. Runs 9700-CHECK-CHANGE-IN-REC and exits if data changed. Builds ACCT-UPDATE-RECORD and CUST-UPDATE-RECORD from the new values (dates as YYYY-MM-DD, phones as (AAA)BBB-CCCC), REWRITEs ACCTDAT (failure: 'Update of record failed') and then CUSTDAT (failure: same message plus SYNCPOINT ROLLBACK).", 
+   "name": "9600-WRITE-PROCESSING"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "4105-4107", 
+   "logic": "Exit point of 9600-WRITE-PROCESSING; also the GO TO target used from inside 9700-CHECK-CHANGE-IN-REC.", 
+   "name": "9600-WRITE-PROCESSING-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "4109-4192", 
+   "logic": "Compares the records just read for update with ACUP-OLD-DETAILS captured at fetch time: account status, amounts, open/expiry/reissue date parts and group id (lower-cased), then customer names, address, state, country (upper-cased), zip, phones, SSN, government id, DOB parts, EFT id, primary holder and FICO. Any difference sets 'Record changed by some one else. Please review' and jumps to 9600-WRITE-PROCESSING-EXIT.", 
+   "name": "9700-CHECK-CHANGE-IN-REC"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "4193-4200", 
+   "logic": "Exit point of 9700-CHECK-CHANGE-IN-REC; the range also holds COPY 'CSSTRPFY', which brings in paragraph YYYY-STORE-PFKEY (AID to CCARD-AID mapping).", 
+   "name": "9700-CHECK-CHANGE-IN-REC-EXIT"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "4203-4225", 
+   "logic": "Defaults ABEND-MSG to 'UNEXPECTED ABEND OCCURRED.' when empty, sets ABEND-CULPRIT to COACTUPC, SENDs ABEND-DATA to the terminal (NOHANDLE, ERASE), cancels the abend handler and issues EXEC CICS ABEND ABCODE('9999').", 
+   "name": "ABEND-ROUTINE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "4226-4233", 
+   "logic": "Exit point of ABEND-ROUTINE; the range also holds COPY CSUTLDPY, which brings in the date edit paragraphs EDIT-DATE-CCYYMMDD through EDIT-DATE-OF-BIRTH-EXIT.", 
+   "name": "ABEND-ROUTINE-EXIT"
+  }
+ ], 
+ "program": "COACTUPC", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/cpy/CSSTRPFY.cpy:21-78"
+   ], 
+   "anchor": "(CCARD-AID-PFK05 AND ACUP-CHANGES-OK-NOT-CONFIRMED)", 
+   "category": "routing", 
+   "conditions": "CCARD-AID mapped from EIBAID; ACUP-CHANGE-ACTION state", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CCARD-AID", 
+    "ACUP-CHANGE-ACTION", 
+    "WS-PFK-FLAG"
+   ], 
+   "id": "BR-COACTUPC-001", 
+   "messages": [], 
+   "outcome": "PFK-INVALID forces CCARD-AID-ENTER", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/cbl/COACTUPC.cbl:905-916", 
+   "statement": "Only Enter, PF3, PF5 (only while validated changes await confirmation) and PF12 (only after account details have been fetched) are accepted; any other key, or PF5/PF12 outside those states, is processed as Enter."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "WHEN CCARD-AID-PFK03", 
+   "category": "routing", 
+   "conditions": "CCARD-AID-PFK03", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CDEMO-FROM-TRANID", 
+    "CDEMO-FROM-PROGRAM", 
+    "CDEMO-TO-TRANID", 
+    "CDEMO-TO-PROGRAM", 
+    "CDEMO-USER-TYPE"
+   ], 
+   "id": "BR-COACTUPC-002", 
+   "messages": [], 
+   "outcome": "SYNCPOINT, XCTL PROGRAM(CDEMO-TO-PROGRAM) COMMAREA(CARDDEMO-COMMAREA); CDEMO-USRTYP-USER and CDEMO-PGM-ENTER set", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/cbl/COACTUPC.cbl:921-959", 
+   "statement": "PF3 ends the update dialog: the program takes a SYNCPOINT and transfers control (XCTL) to CDEMO-FROM-PROGRAM with CDEMO-FROM-TRANID, or to COMEN01C / CM00 when the caller fields are blank, recording CAUP/COACTUPC as the new caller."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "WHEN ACUP-CHANGES-FAILED", 
+   "category": "routing", 
+   "conditions": "ACUP-CHANGES-OKAYED-AND-DONE or ACUP-CHANGES-FAILED at task start", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACUP-CHANGE-ACTION", 
+    "CDEMO-ACCT-ID"
+   ], 
+   "id": "BR-COACTUPC-003", 
+   "messages": [], 
+   "outcome": "INITIALIZE WS-THIS-PROGCOMMAREA WS-MISC-STORAGE CDEMO-ACCT-ID; 3000-SEND-MAP; ACUP-DETAILS-NOT-FETCHED", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/cbl/COACTUPC.cbl:979-989", 
+   "statement": "On the interaction after an update finished (state 'C') or failed (state 'L' lock error or 'F' update failed), the program clears its program area, working storage and CDEMO-ACCT-ID and shows the empty search screen again, so a new account must be entered."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COACTUPC.cbl:1064-1423"
+   ], 
+   "anchor": "IF ACUP-DETAILS-NOT-FETCHED GO TO 1100-RECEIVE-MAP-EXIT", 
+   "category": "transformation", 
+   "conditions": "<field>I OF CACTUPAI = '*' OR SPACES", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CACTUPAI", 
+    "ACUP-NEW-DETAILS", 
+    "CC-ACCT-ID"
+   ], 
+   "id": "BR-COACTUPC-004", 
+   "messages": [], 
+   "outcome": "LOW-VALUES moved to the ACUP-NEW-* field (and CC-ACCT-ID for the account id); required-field edits later report it as not supplied", 
+   "paragraph": "1100-RECEIVE-MAP", 
+   "source": "app/cbl/COACTUPC.cbl:1051-1062", 
+   "statement": "An input field keyed as '*' or left as spaces is treated as not supplied and stored as LOW-VALUES; until an account has been fetched, only the account number is taken from the screen."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COACTUPC.cbl:1086-1140"
+   ], 
+   "anchor": "IF FUNCTION TEST-NUMVAL-C(ACUP-NEW-CREDIT-LIMIT-X) = 0", 
+   "category": "transformation", 
+   "conditions": "TEST-NUMVAL-C(<amount text>) = 0", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACUP-NEW-CREDIT-LIMIT-N", 
+    "ACUP-NEW-CASH-CREDIT-LIMIT-N", 
+    "ACUP-NEW-CURR-BAL-N", 
+    "ACUP-NEW-CURR-CYC-CREDIT-N", 
+    "ACUP-NEW-CURR-CYC-DEBIT-N"
+   ], 
+   "id": "BR-COACTUPC-005", 
+   "messages": [], 
+   "outcome": "COMPUTE ACUP-NEW-<amount>-N = FUNCTION NUMVAL-C(<input>)", 
+   "paragraph": "1100-RECEIVE-MAP", 
+   "source": "app/cbl/COACTUPC.cbl:1072-1084", 
+   "statement": "Credit limit, cash credit limit, current balance, current cycle credit and current cycle debit may be keyed in currency format; when FUNCTION TEST-NUMVAL-C accepts the text, FUNCTION NUMVAL-C converts it into the signed 10.2 numeric field used for display and for the rewrite."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "SET NO-SEARCH-CRITERIA-RECEIVED TO TRUE", 
+   "category": "validation", 
+   "conditions": "ACUP-DETAILS-NOT-FETCHED", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACUP-CHANGE-ACTION", 
+    "WS-EDIT-ACCT-FLAG", 
+    "WS-RETURN-MSG"
+   ], 
+   "id": "BR-COACTUPC-006", 
+   "messages": [
+    "No input received"
+   ], 
+   "outcome": "1210-EDIT-ACCOUNT then GO TO 1200-EDIT-MAP-INPUTS-EXIT", 
+   "paragraph": "1200-EDIT-MAP-INPUTS", 
+   "source": "app/cbl/COACTUPC.cbl:1433-1448", 
+   "statement": "Until an account has been fetched, only the account number is edited and no other field edit runs; a blank account number ends with the message 'No input received'."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "MOVE LOW-VALUES TO WS-NON-KEY-FLAGS", 
+   "category": "decision", 
+   "conditions": "NO-CHANGES-FOUND OR ACUP-CHANGES-OK-NOT-CONFIRMED OR ACUP-CHANGES-OKAYED-AND-DONE", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-DATACHANGED-FLAG", 
+    "ACUP-CHANGE-ACTION", 
+    "WS-NON-KEY-FLAGS"
+   ], 
+   "id": "BR-COACTUPC-007", 
+   "messages": [], 
+   "outcome": "WS-NON-KEY-FLAGS = LOW-VALUES; exit without editing", 
+   "paragraph": "1200-EDIT-MAP-INPUTS", 
+   "source": "app/cbl/COACTUPC.cbl:1463-1468", 
+   "statement": "Field edits are skipped and all edit flags cleared when nothing changed, when the changes were already validated and await PF5 confirmation, or when they were already committed; values validated once are not edited again on the confirming key press."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "WHEN CCARD-AID-PFK12", 
+   "category": "decision", 
+   "conditions": "(ACUP-DETAILS-NOT-FETCHED or CCARD-AID-PFK12) and FLG-ACCTFILTER-ISVALID", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACUP-CHANGE-ACTION", 
+    "WS-EDIT-ACCT-FLAG", 
+    "WS-CUST-MASTER-READ-FLAG"
+   ], 
+   "id": "BR-COACTUPC-008", 
+   "messages": [], 
+   "outcome": "9000-READ-ACCT; ACUP-SHOW-DETAILS when FOUND-CUST-IN-MASTER", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/cbl/COACTUPC.cbl:2563-2580", 
+   "statement": "When no account is shown yet, or the user presses PF12, the program re-reads the account (cross-reference, account and customer) for a valid account number and shows the stored values; PF12 therefore discards any unsaved changes."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "IF INPUT-ERROR OR NO-CHANGES-DETECTED", 
+   "category": "decision", 
+   "conditions": "ACUP-SHOW-DETAILS or ACUP-CHANGES-NOT-OK", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACUP-CHANGE-ACTION", 
+    "WS-INPUT-FLAG", 
+    "WS-RETURN-MSG"
+   ], 
+   "id": "BR-COACTUPC-009", 
+   "messages": [], 
+   "outcome": "ACUP-CHANGES-OK-NOT-CONFIRMED only when no INPUT-ERROR and a change exists", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/cbl/COACTUPC.cbl:2585-2597", 
+   "statement": "While details are shown, input with edit errors or with no change stays on the change screen without any update; only error-free changed input moves to the 'awaiting confirmation' state."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "WHEN COULD-NOT-LOCK-ACCT-FOR-UPDATE", 
+   "category": "decision", 
+   "conditions": "ACUP-CHANGES-OK-NOT-CONFIRMED AND CCARD-AID-PFK05", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACUP-CHANGE-ACTION", 
+    "WS-RETURN-MSG", 
+    "CCARD-AID"
+   ], 
+   "id": "BR-COACTUPC-010", 
+   "messages": [
+    "Changes committed to database", 
+    "Changes unsuccessful. Please try again"
+   ], 
+   "outcome": "9600-WRITE-PROCESSING; ACUP-CHANGES-OKAYED-LOCK-ERROR / ACUP-CHANGES-OKAYED-BUT-FAILED / ACUP-SHOW-DETAILS / ACUP-CHANGES-OKAYED-AND-DONE", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/cbl/COACTUPC.cbl:2602-2621", 
+   "statement": "The account and customer are written only when the user presses PF5 while validated changes await confirmation. The outcome sets the next state: account lock failure gives 'L', a failed rewrite gives 'F', a concurrent change returns to showing details, and any other outcome is treated as success 'C'. Without PF5 the confirmation screen is shown again."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COACTUPC.cbl:4203-4224", 
+    "app/cbl/COACTUPC.cbl:861-863"
+   ], 
+   "anchor": "MOVE 'UNEXPECTED DATA SCENARIO'", 
+   "category": "error-policy", 
+   "conditions": "WHEN OTHER in the action EVALUATE, or any abend after HANDLE ABEND", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ABEND-CODE", 
+    "ABEND-MSG", 
+    "ABEND-CULPRIT"
+   ], 
+   "id": "BR-COACTUPC-011", 
+   "messages": [
+    "UNEXPECTED DATA SCENARIO", 
+    "UNEXPECTED ABEND OCCURRED."
+   ], 
+   "outcome": "EXEC CICS SEND FROM(ABEND-DATA); EXEC CICS ABEND ABCODE('9999')", 
+   "paragraph": "2000-DECIDE-ACTION", 
+   "source": "app/cbl/COACTUPC.cbl:2633-2640", 
+   "statement": "A change-action state not handled by 2000-DECIDE-ACTION abends the task: ABEND-CODE '0001', message 'UNEXPECTED DATA SCENARIO', the abend data is sent to the terminal and the task abends with code 9999. Any other CICS abend is routed to the same routine with 'UNEXPECTED ABEND OCCURRED.'."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COACTUPC.cbl:3530-3547"
+   ], 
+   "anchor": "PERFORM 3320-UNPROTECT-FEW-ATTRS", 
+   "category": "data-integrity", 
+   "conditions": "ACUP-CHANGE-ACTION state", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACUP-CHANGE-ACTION", 
+    "ACSTNUMA", 
+    "ACSCTRYA"
+   ], 
+   "id": "BR-COACTUPC-012", 
+   "messages": [], 
+   "outcome": "DFHBMFSE on editable fields; DFHBMPRF on ACSTNUMA and ACSCTRYA", 
+   "paragraph": "3300-SETUP-SCREEN-ATTRS", 
+   "source": "app/cbl/COACTUPC.cbl:2993-3005", 
+   "statement": "Fields are editable only while details are shown or after edit errors; before fetch only the account number is editable, and during confirmation and after commit everything is protected. The customer id and the country code are always protected, so they cannot be changed from this screen."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COACTUPC.cbl:3664-3667"
+   ], 
+   "anchor": "IF FLG-ACCTFILTER-NOT-OK", 
+   "category": "decision", 
+   "conditions": "FLG-ACCTFILTER-NOT-OK after 9200; DID-NOT-FIND-* message conditions after 9300 and 9400", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-CARD-RID-ACCT-ID", 
+    "CDEMO-CUST-ID", 
+    "XREF-CUST-ID"
+   ], 
+   "id": "BR-COACTUPC-013", 
+   "messages": [], 
+   "outcome": "GO TO 9000-READ-ACCT-EXIT on failure; otherwise 9500-STORE-FETCHED-DATA", 
+   "paragraph": "9000-READ-ACCT", 
+   "source": "app/cbl/COACTUPC.cbl:3620-3638", 
+   "statement": "Account details are fetched in sequence: card cross-reference by account id, then the account master, then the customer master using the customer id from the cross-reference; a missing cross-reference stops the fetch before the account is read."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COACTUPC.cbl:3713-3746", 
+    "app/cbl/COACTUPC.cbl:3762-3794"
+   ], 
+   "anchor": "WHEN DFHRESP(NOTFND)", 
+   "category": "error-policy", 
+   "conditions": "WS-RESP-CD NOTFND or OTHER after EXEC CICS READ", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "WS-REAS-CD", 
+    "WS-FILE-ERROR-MESSAGE"
+   ], 
+   "id": "BR-COACTUPC-014", 
+   "messages": [
+    " not found in Cross ref file.  Resp:", 
+    " not found in Acct Master file.Resp:", 
+    " in customer master.Resp: "
+   ], 
+   "outcome": "INPUT-ERROR, FLG-ACCTFILTER-NOT-OK or FLG-CUSTFILTER-NOT-OK, WS-RETURN-MSG", 
+   "paragraph": "9200-GETCARDXREF-BYACCT", 
+   "source": "app/cbl/COACTUPC.cbl:3664-3695", 
+   "statement": "A NOTFND on the cross-reference, account or customer read is an input error: the account (or customer) filter is flagged and a message naming the key, file, RESP and RESP2 is shown; any other response shows 'File Error: READ on <file> returned RESP ..,RESP2 ..'."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COACTUPC.cbl:4152-4191", 
+    "app/cbl/COACTUPC.cbl:3946-3952"
+   ], 
+   "anchor": "SET DATA-WAS-CHANGED-BEFORE-UPDATE TO TRUE", 
+   "category": "data-integrity", 
+   "conditions": "Any field of ACCOUNT-RECORD/CUSTOMER-RECORD differs from ACUP-OLD-DETAILS", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACCOUNT-RECORD", 
+    "CUSTOMER-RECORD", 
+    "ACUP-OLD-DETAILS"
+   ], 
+   "id": "BR-COACTUPC-015", 
+   "messages": [
+    "Record changed by some one else. Please review"
+   ], 
+   "outcome": "DATA-WAS-CHANGED-BEFORE-UPDATE; no REWRITE; 2000-DECIDE-ACTION returns to ACUP-SHOW-DETAILS", 
+   "paragraph": "9700-CHECK-CHANGE-IN-REC", 
+   "source": "app/cbl/COACTUPC.cbl:4114-4145", 
+   "statement": "Optimistic concurrency check: after reading both records for update, every stored account and customer value is compared with the value captured when the screen was filled; any difference cancels the save with 'Record changed by some one else. Please review'. Group id is compared case-insensitively (lower case), customer text fields upper-cased."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COACTUPC.cbl:3921-3942"
+   ], 
+   "anchor": "SET COULD-NOT-LOCK-ACCT-FOR-UPDATE TO TRUE", 
+   "category": "error-policy", 
+   "conditions": "WS-RESP-CD not NORMAL on READ ... UPDATE", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-RESP-CD", 
+    "WS-RETURN-MSG"
+   ], 
+   "id": "BR-COACTUPC-016", 
+   "messages": [
+    "Could not lock account record for update", 
+    "Could not lock customer record for update"
+   ], 
+   "outcome": "INPUT-ERROR; message (when none set yet); GO TO 9600-WRITE-PROCESSING-EXIT", 
+   "paragraph": "9600-WRITE-PROCESSING", 
+   "source": "app/cbl/COACTUPC.cbl:3894-3915", 
+   "statement": "Before updating, the account record and then the customer record are read with UPDATE (locked); if either read fails the save is abandoned with 'Could not lock account record for update' or 'Could not lock customer record for update'."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "SYNCPOINT ROLLBACK", 
+   "category": "error-policy", 
+   "conditions": "WS-RESP-CD not NORMAL after REWRITE ACCTDAT / CUSTDAT", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACCT-UPDATE-RECORD", 
+    "CUST-UPDATE-RECORD", 
+    "WS-RESP-CD"
+   ], 
+   "id": "BR-COACTUPC-017", 
+   "messages": [
+    "Update of record failed"
+   ], 
+   "outcome": "LOCKED-BUT-UPDATE-FAILED; ROLLBACK on customer failure", 
+   "paragraph": "9600-WRITE-PROCESSING", 
+   "source": "app/cbl/COACTUPC.cbl:4064-4103", 
+   "statement": "The account record is rewritten first and then the customer record; a failed account rewrite stops with 'Update of record failed', and a failed customer rewrite sets the same message and issues SYNCPOINT ROLLBACK so the account rewrite is backed out."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COACTUPC.cbl:4027-4041", 
+    "app/cbl/COACTUPC.cbl:4043-4052", 
+    "app/cbl/COACTUPC.cbl:3963-3974"
+   ], 
+   "anchor": "STRING ACUP-NEW-OPEN-YEAR", 
+   "category": "transformation", 
+   "conditions": "Save after confirmation", 
+   "confidence": "Confirmed", 
+   "data": [
+    "ACCT-UPDATE-OPEN-DATE", 
+    "ACCT-UPDATE-EXPIRAION-DATE", 
+    "ACCT-UPDATE-REISSUE-DATE", 
+    "CUST-UPDATE-PHONE-NUM-1", 
+    "CUST-UPDATE-PHONE-NUM-2", 
+    "CUST-UPDATE-DOB-YYYY-MM-DD", 
+    "CUST-UPDATE-SSN"
+   ], 
+   "id": "BR-COACTUPC-018", 
+   "messages": [], 
+   "outcome": "ACCT-UPDATE-*-DATE, CUST-UPDATE-PHONE-NUM-1/2, CUST-UPDATE-DOB-YYYY-MM-DD, CUST-UPDATE-SSN populated", 
+   "paragraph": "9600-WRITE-PROCESSING", 
+   "source": "app/cbl/COACTUPC.cbl:3976-4000", 
+   "statement": "On save, open, expiry, reissue and birth dates are stored as YYYY-MM-DD built from the keyed parts, and each phone number is stored as (AAA)BBB-CCCC from its three parts; amounts are taken from the NUMVAL-C converted fields and the SSN from the 9-digit concatenation of its parts."
+  }, 
+  {
+   "additional_sources": [], 
+   "anchor": "WHEN EIBAID IS EQUAL TO DFHPF13 SET CCARD-AID-PFK01 TO TRUE", 
+   "category": "transformation", 
+   "conditions": "EIBAID = DFHPF13 .. DFHPF24", 
+   "confidence": "Confirmed", 
+   "copybook": "CSSTRPFY", 
+   "data": [
+    "EIBAID", 
+    "CCARD-AID"
+   ], 
+   "id": "BR-COACTUPC-019", 
+   "messages": [], 
+   "outcome": "CCARD-AID-PFK01 .. CCARD-AID-PFK12 set", 
+   "paragraph": "YYYY-STORE-PFKEY", 
+   "source": "app/cpy/CSSTRPFY.cpy:54-77", 
+   "statement": "PF13 through PF24 are treated as PF1 through PF12 (for example PF15 acts as PF3 and PF17 as PF5); Enter, Clear, PA1 and PA2 are recorded as such."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/COACTUPC.cbl:880-892"
+   ], 
+   "anchor": "WHEN CDEMO-FROM-PROGRAM EQUAL LIT-MENUPGM AND NOT CDEMO-PGM-REENTER", 
+   "category": "routing", 
+   "conditions": "EIBCALEN = 0, or CDEMO-FROM-PROGRAM = 'COMEN01C' and not CDEMO-PGM-REENTER, or ACUP-DETAILS-NOT-FETCHED with CDEMO-PGM-ENTER", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EIBCALEN", 
+    "CDEMO-FROM-PROGRAM", 
+    "CDEMO-PGM-CONTEXT", 
+    "ACUP-CHANGE-ACTION"
+   ], 
+   "id": "BR-COACTUPC-020", 
+   "messages": [
+    "Enter or update id of account to update"
+   ], 
+   "outcome": "INITIALIZE; 3000-SEND-MAP; CDEMO-PGM-REENTER; ACUP-DETAILS-NOT-FETCHED", 
+   "paragraph": "0000-MAIN", 
+   "source": "app/cbl/COACTUPC.cbl:964-973", 
+   "statement": "A first entry (no commarea, or arrival from the main menu COMEN01C that is not a re-entry) starts a fresh dialog: commarea and program state are initialized and the empty search screen prompting for the account id is sent."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Should current balance, current cycle credit and current cycle debit be editable from an online screen at all, and are sign, range or cross-field limits (for example cash credit limit not above credit limit) required? None are coded.", 
+   "source": "app/cbl/COACTUPC.cbl:1483-1527"
+  }, 
+  {
+   "question": "Is account update meant to be restricted to administrators? The program never checks CDEMO-USER-TYPE and forces it to 'U' on exit.", 
+   "source": "app/cbl/COACTUPC.cbl:947"
+  }, 
+  {
+   "question": "Is ACCT-UPDATE-RECORD (no ACCT-ADDR-ZIP field) or CVACT01Y the authoritative ACCTDAT layout? The rewrite shifts the group id into the zip position.", 
+   "source": "app/cbl/COACTUPC.cbl:418-433"
+  }, 
+  {
+   "question": "Should a customer-record lock failure show 'Changes committed to database'? The outcome EVALUATE has no branch for COULD-NOT-LOCK-CUST-FOR-UPDATE.", 
+   "source": "app/cbl/COACTUPC.cbl:2606-2614"
+  }, 
+  {
+   "question": "Is a phone number with only the line number keyed intended to be accepted as 'not entered'? The blank test compares NUMA where NUMC appears intended.", 
+   "source": "app/cbl/COACTUPC.cbl:2234-2239"
+  }, 
+  {
+   "question": "Government-issued id and account group id are stored without any edit. Are format rules required for them?", 
+   "source": "app/cbl/COACTUPC.cbl:1401-1406"
+  }, 
+  {
+   "question": "After 'Record changed by some one else. Please review', should the program re-read the records so the user can review the new values, instead of keeping the stale fetched values?", 
+   "source": "app/cbl/COACTUPC.cbl:2611-2612"
+  }, 
+  {
+   "question": "The country is protected and all address edits are US-specific (state list, state/zip prefix, North American area codes). Are non-US customers out of scope for this screen?", 
+   "source": "app/cbl/COACTUPC.cbl:3546-3547"
+  }
+ ], 
+ "source_path": "app/cbl/COACTUPC.cbl", 
+ "source_sha256": "b5bb7d6ccad022e0fc91b4dd1e971f49d184adf89b56abdce14eccff35b39396", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/COACTUPC.cbl:533-582", 
+   "app/cbl/COACTUPC.cbl:652-668", 
+   "app/cbl/COACTUPC.cbl:880-1004", 
+   "app/cbl/COACTUPC.cbl:1429-1676", 
+   "app/cbl/COACTUPC.cbl:2562-2642", 
+   "app/cbl/COACTUPC.cbl:3608-3644", 
+   "app/cbl/COACTUPC.cbl:3888-4104"
+  ], 
+  "text": "COACTUPC is a pseudo-conversational CICS program (transaction CAUP, map CACTUPA in mapset COACTUP) that lets a signed-on user update one credit-card account and its customer. On the first screen the user keys an 11-digit account number; the program reads the card cross-reference file through alternate index CXACAIX, then ACCTDAT and CUSTDAT, and shows the current account and customer values. When the user changes values and presses Enter, every field is edited (Y/N flags, signed amounts, CCYYMMDD dates with leap-year and LE checks, SSN, FICO 300-850, alpha-only names, US state, state/zip prefix, North American phone numbers, EFT account) and the first failing edit is reported. When all edits pass the program asks for confirmation; PF5 reads both records for UPDATE, rejects the save if either record changed since it was fetched, then REWRITEs ACCTDAT and CUSTDAT and rolls back if the customer rewrite fails. PF12 discards changes and re-reads the account, and PF3 returns to the calling program or the main menu COMEN01C. State between screens is kept in the CARDDEMO-COMMAREA plus a program area holding the old and new values and the change-action flag."
+ }
+}

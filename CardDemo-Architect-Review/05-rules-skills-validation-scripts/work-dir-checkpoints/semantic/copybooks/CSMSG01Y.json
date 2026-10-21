@@ -1,0 +1,24 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "CSMSG01Y",
+ "evidence": [
+  "app/cpy/CSMSG01Y.cpy:17-21"
+ ],
+ "key_fields": [
+  {"name": "CCDA-MSG-THANK-YOU", "meaning": "Exit message 'Thank you for using CardDemo application...'.", "source": "app/cpy/CSMSG01Y.cpy:18-19"},
+  {"name": "CCDA-MSG-INVALID-KEY", "meaning": "Message 'Invalid key pressed. Please see below...'.", "source": "app/cpy/CSMSG01Y.cpy:20-21"}
+ ],
+ "observations": [
+  {"kind": "dead-code", "source": "app/cbl/COACTUPC.cbl:629", "text": "COACTUPC copies CSMSG01Y but references neither message; invalid keys are silently treated as Enter (app/cbl/COACTUPC.cbl:914-916)."}
+ ],
+ "purpose": "Defines CCDA-COMMON-MESSAGES, two 50-byte common message literals (thank-you and invalid-key) shared by CardDemo online programs. COACTUPC copies it but does not use either message.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CSMSG01Y.cpy"
+ ],
+ "source_sha256": [
+  "ef8ce44572885d63e46a02516f992cabbbc57ea94235000fd376325750e26eda"
+ ],
+ "status": "complete"
+}

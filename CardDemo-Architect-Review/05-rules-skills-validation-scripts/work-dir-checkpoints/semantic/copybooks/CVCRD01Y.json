@@ -1,0 +1,33 @@
+{
+ "batch": "B04",
+ "confidence": "Confirmed",
+ "copybook": "CVCRD01Y",
+ "evidence": [
+  "app/cpy/CVCRD01Y.cpy:1-41",
+  "app/cbl/COACTUPC.cbl:905-916",
+  "app/cbl/COACTUPC.cbl:1051-1058"
+ ],
+ "key_fields": [
+  {"name": "CC-WORK-AREA", "meaning": "Common card/account work area initialized at task start.", "source": "app/cpy/CVCRD01Y.cpy:2"},
+  {"name": "CCARD-AID", "meaning": "Normalized attention key with 88-levels CCARD-AID-ENTER, -CLEAR, -PA1, -PA2 and -PFK01..-PFK12, set by YYYY-STORE-PFKEY.", "source": "app/cpy/CVCRD01Y.cpy:3-19"},
+  {"name": "CCARD-AID-PFK05", "meaning": "PF5; COACTUPC uses it as the save confirmation key.", "source": "app/cpy/CVCRD01Y.cpy:12"},
+  {"name": "CCARD-AID-PFK12", "meaning": "PF12; COACTUPC uses it to cancel changes and re-read the account.", "source": "app/cpy/CVCRD01Y.cpy:19"},
+  {"name": "CCARD-NEXT-PROG", "meaning": "Next program name recorded by the screen handler.", "source": "app/cpy/CVCRD01Y.cpy:21"},
+  {"name": "CCARD-ERROR-MSG", "meaning": "75-byte error message area; COACTUPC copies WS-RETURN-MSG here.", "source": "app/cpy/CVCRD01Y.cpy:28"},
+  {"name": "CC-ACCT-ID", "meaning": "11-character account id entered on the screen, with numeric redefinition CC-ACCT-ID-N; key for the cross-reference and account reads.", "source": "app/cpy/CVCRD01Y.cpy:34-36"},
+  {"name": "CC-CARD-NUM", "meaning": "16-character card number with numeric redefinition; not referenced by COACTUPC.", "source": "app/cpy/CVCRD01Y.cpy:37-39"},
+  {"name": "CC-CUST-ID", "meaning": "9-character customer id with numeric redefinition; not referenced by COACTUPC.", "source": "app/cpy/CVCRD01Y.cpy:40-41"}
+ ],
+ "observations": [
+  {"kind": "dead-code", "source": "app/cpy/CVCRD01Y.cpy:20-33", "text": "Several former fields (CCARD-LAST-PROG, CCARD-RETURN-TO-PROG, CCARD-RETURN-FLAG, CCARD-FUNCTION) are commented out; the lines carry sequence numbers in columns 1-6 and 73-80."}
+ ],
+ "purpose": "Defines CC-WORK-AREAS, the common working storage of the card and account online programs: the normalized attention key CCARD-AID with its 88-levels, next program/mapset/map, error and return message areas, and the account, card and customer ids keyed on the screen. COACTUPC uses CCARD-AID for key handling, CC-ACCT-ID as the account key and CCARD-ERROR-MSG for the error message.",
+ "schema": "copybook-semantics/1",
+ "source_paths": [
+  "app/cpy/CVCRD01Y.cpy"
+ ],
+ "source_sha256": [
+  "52b6dbe09f7648f3fdbd7c00f4683d434fe6b631f6c8854466a24f42c1c92445"
+ ],
+ "status": "complete"
+}

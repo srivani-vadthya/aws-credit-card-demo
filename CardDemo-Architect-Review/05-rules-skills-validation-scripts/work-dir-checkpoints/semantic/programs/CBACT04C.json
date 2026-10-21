@@ -1,0 +1,293 @@
+{
+ "batch": "B02",
+ "existing_rules_reviewed": [
+  {
+   "anchor": "COMPUTE WS-MONTHLY-INT = ( TRAN-CAT-BAL * DIS-INT-RATE) / 1200",
+   "id": "BR-BASE-CBACT04C-001",
+   "note": "Confirmed: WS-MONTHLY-INT = (TRAN-CAT-BAL * DIS-INT-RATE) / 1200, i.e. the annual percentage rate divided by 12 months and by 100. No ROUNDED clause, so the result is truncated to 2 decimals (WS-MONTHLY-INT PIC S9(09)V99). It is only executed when DIS-INT-RATE is not zero (see BR-CBACT04C-002).",
+   "source": "app/cbl/CBACT04C.cbl:464-465",
+   "verdict": "confirmed"
+  }
+ ],
+ "no_business_rules_reason": null,
+ "no_rule_decisions": [],
+ "observations": [
+  {
+   "kind": "anomaly",
+   "text": "The ELSE branch that performs 1050-UPDATE-ACCOUNT when END-OF-FILE is 'Y' sits inside PERFORM UNTIL END-OF-FILE = 'Y' (test before), so it is never reached: once 1000-TCATBALF-GET-NEXT sets END-OF-FILE to 'Y' the loop ends. As written, the accumulated interest of the last account in TCATBALF is never added to its balance (its interest transactions are still written).",
+   "source": "app/cbl/CBACT04C.cbl:187-222"
+  },
+  {
+   "kind": "dead-code",
+   "text": "1400-COMPUTE-FEES is an empty stub ('To be implemented'); no fees are calculated.",
+   "source": "app/cbl/CBACT04C.cbl:518-520"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The disclosure-group open error message reads 'ERROR OPENING DALY REJECTS FILE' although the file opened is DISCGRP-FILE (copy/paste text).",
+   "source": "app/cbl/CBACT04C.cbl:270-285"
+  },
+  {
+   "kind": "hardcoded-value",
+   "text": "Interest transactions are hardcoded as TRAN-TYPE-CD '01', TRAN-CAT-CD '05', TRAN-SOURCE 'System', and the fallback disclosure group id is the literal 'DEFAULT'.",
+   "source": "app/cbl/CBACT04C.cbl:481-483"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The interest COMPUTE has no ROUNDED clause, so monthly interest is truncated to cents; negative category balances (credits) produce negative interest transactions because there is no sign check.",
+   "source": "app/cbl/CBACT04C.cbl:464-465"
+  },
+  {
+   "kind": "anomaly",
+   "text": "The card number on the interest transaction comes from the cross-reference read by alternate key FD-XREF-ACCT-ID, which returns one card for the account; with several cards per account the choice depends on alternate-index order.",
+   "source": "app/cbl/CBACT04C.cbl:393-398"
+  }
+ ],
+ "paragraphs": [
+  {
+   "confidence": "Confirmed",
+   "lines": "181-232",
+   "logic": "Opens TCATBALF (input), XREFFILE, DISCGRP (input), ACCTFILE (I-O) and TRANSACT (output). For each transaction-category-balance record it counts and displays it; when TRANCAT-ACCT-ID differs from WS-LAST-ACCT-NUM it rewrites the previous account (except the first time), resets WS-TOTAL-INT, and reads the new account and its cross-reference. It then looks up the interest rate by account group, type and category and, when DIS-INT-RATE is not 0, computes interest and (stub) fees. Finally closes all five files.",
+   "name": "(PROCEDURE DIVISION entry)"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "234-250",
+   "logic": "Opens TCATBAL-FILE for input; on a status other than '00' displays 'ERROR OPENING TRANSACTION CATEGORY BALANCE', the status, and abends.",
+   "name": "0000-TCATBALF-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "252-268",
+   "logic": "Opens XREF-FILE for input; on a status other than '00' displays 'ERROR OPENING CROSS REF FILE' with the status and abends.",
+   "name": "0100-XREFFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "270-286",
+   "logic": "Opens DISCGRP-FILE for input; on a status other than '00' displays 'ERROR OPENING DALY REJECTS FILE', the status, and abends.",
+   "name": "0200-DISCGRP-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "289-305",
+   "logic": "Opens ACCOUNT-FILE for I-O (update); on a status other than '00' displays 'ERROR OPENING ACCOUNT MASTER FILE', the status, and abends.",
+   "name": "0300-ACCTFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "307-323",
+   "logic": "Opens TRANSACT-FILE for output; on a status other than '00' displays 'ERROR OPENING TRANSACTION FILE', the status, and abends.",
+   "name": "0400-TRANFILE-OPEN"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "325-348",
+   "logic": "Reads the next TCATBAL-FILE record into TRAN-CAT-BAL-RECORD. Status '10' sets END-OF-FILE 'Y'; a status other than '00'/'10' displays 'ERROR READING TRANSACTION CATEGORY FILE', the status, and abends.",
+   "name": "1000-TCATBALF-GET-NEXT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "350-370",
+   "logic": "Adds WS-TOTAL-INT to ACCT-CURR-BAL, sets ACCT-CURR-CYC-CREDIT and ACCT-CURR-CYC-DEBIT to 0, and rewrites the account record; a rewrite status other than '00' displays 'ERROR RE-WRITING ACCOUNT FILE' and abends.",
+   "name": "1050-UPDATE-ACCOUNT"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "372-391",
+   "logic": "Reads ACCOUNT-FILE randomly by FD-ACCT-ID into ACCOUNT-RECORD, displaying 'ACCOUNT NOT FOUND: ' on invalid key. Any status other than '00' (including not found) displays 'ERROR READING ACCOUNT FILE' and abends.",
+   "name": "1100-GET-ACCT-DATA"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "393-413",
+   "logic": "Reads XREF-FILE by alternate key FD-XREF-ACCT-ID into CARD-XREF-RECORD, displaying 'ACCOUNT NOT FOUND: ' on invalid key. Any status other than '00' displays 'ERROR READING XREF FILE' and abends.",
+   "name": "1110-GET-XREF-DATA"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "415-440",
+   "logic": "Reads DISCGRP-FILE by account group id, transaction type and category. On invalid key displays 'DISCLOSURE GROUP RECORD MISSING' / 'TRY WITH DEFAULT GROUP CODE'. Statuses other than '00' or '23' abend; on '23' it sets FD-DIS-ACCT-GROUP-ID to 'DEFAULT' and performs 1200-A-GET-DEFAULT-INT-RATE.",
+   "name": "1200-GET-INTEREST-RATE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "443-460",
+   "logic": "Re-reads DISCGRP-FILE with the 'DEFAULT' group id and the same type/category; any status other than '00' displays 'ERROR READING DEFAULT DISCLOSURE GROUP' and abends.",
+   "name": "1200-A-GET-DEFAULT-INT-RATE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "462-470",
+   "logic": "Computes WS-MONTHLY-INT = (TRAN-CAT-BAL * DIS-INT-RATE) / 1200, adds it to WS-TOTAL-INT for the account, and performs 1300-B-WRITE-TX.",
+   "name": "1300-COMPUTE-INTEREST"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "473-515",
+   "logic": "Builds an interest transaction: TRAN-ID = PARM-DATE followed by the incremented 6-digit WS-TRANID-SUFFIX, type '01', category '05', source 'System', description 'Int. for a/c ' + ACCT-ID, amount WS-MONTHLY-INT, blank merchant fields, card number XREF-CARD-NUM, and current DB2-format timestamp as origin and processing time. Writes it to TRANSACT; a status other than '00' displays 'ERROR WRITING TRANSACTION RECORD' and abends.",
+   "name": "1300-B-WRITE-TX"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "518-520",
+   "logic": "Empty placeholder (comment 'To be implemented'); only EXIT.",
+   "name": "1400-COMPUTE-FEES"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "522-538",
+   "logic": "Closes TCATBAL-FILE; a status other than '00' displays 'ERROR CLOSING TRANSACTION BALANCE FILE' and abends.",
+   "name": "9000-TCATBALF-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "541-557",
+   "logic": "Closes XREF-FILE; a status other than '00' displays 'ERROR CLOSING CROSS REF FILE' and abends.",
+   "name": "9100-XREFFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "559-575",
+   "logic": "Closes DISCGRP-FILE; a status other than '00' displays 'ERROR CLOSING DISCLOSURE GROUP FILE' and abends.",
+   "name": "9200-DISCGRP-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "577-593",
+   "logic": "Closes ACCOUNT-FILE; a status other than '00' displays 'ERROR CLOSING ACCOUNT FILE' and abends.",
+   "name": "9300-ACCTFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "595-611",
+   "logic": "Closes TRANSACT-FILE; a status other than '00' displays 'ERROR CLOSING TRANSACTION FILE' and abends.",
+   "name": "9400-TRANFILE-CLOSE"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "613-626",
+   "logic": "Moves FUNCTION CURRENT-DATE into COBOL-TS and reformats it into DB2-FORMAT-TS as YYYY-MM-DD-HH.MM.SS.hh0000.",
+   "name": "Z-GET-DB2-FORMAT-TIMESTAMP"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "628-632",
+   "logic": "Displays 'ABENDING PROGRAM' and calls CEE3ABD with ABCODE 999 and TIMING 0.",
+   "name": "9999-ABEND-PROGRAM"
+  },
+  {
+   "confidence": "Confirmed",
+   "lines": "635-648",
+   "logic": "Formats IO-STATUS into the 4-digit IO-STATUS-04 (binary conversion of the second byte for non-numeric or '9x' statuses, otherwise zero-padded) and displays 'FILE STATUS IS: NNNN' with it.",
+   "name": "9910-DISPLAY-IO-STATUS"
+  }
+ ],
+ "program": "CBACT04C",
+ "rules": [
+  {
+   "id": "BR-CBACT04C-001",
+   "category": "decision",
+   "statement": "Transaction-category balances are processed as a control break on account id: when TRANCAT-ACCT-ID changes, the previously accumulated interest is posted to the previous account (not on the first record), the interest total is reset to zero, and the new account record and its card cross-reference are read.",
+   "paragraph": "(PROCEDURE DIVISION entry)",
+   "source": "app/cbl/CBACT04C.cbl:194-206",
+   "anchor": "IF TRANCAT-ACCT-ID NOT= WS-LAST-ACCT-NUM",
+   "conditions": "TRANCAT-ACCT-ID differs from WS-LAST-ACCT-NUM",
+   "outcome": "1050-UPDATE-ACCOUNT for the previous account (if WS-FIRST-TIME is not 'Y'); WS-TOTAL-INT = 0; 1100-GET-ACCT-DATA and 1110-GET-XREF-DATA for the new account.",
+   "data": ["TRANCAT-ACCT-ID", "WS-LAST-ACCT-NUM", "WS-FIRST-TIME", "WS-TOTAL-INT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBACT04C-002",
+   "category": "decision",
+   "statement": "Interest (and the future fee calculation) is generated for a transaction category only when the disclosure-group interest rate DIS-INT-RATE for the account group, transaction type and category is non-zero; zero-rate categories produce no interest transaction.",
+   "paragraph": "(PROCEDURE DIVISION entry)",
+   "source": "app/cbl/CBACT04C.cbl:210-217",
+   "anchor": "IF DIS-INT-RATE NOT = 0",
+   "conditions": "DIS-INT-RATE <> 0",
+   "outcome": "1300-COMPUTE-INTEREST and 1400-COMPUTE-FEES are performed.",
+   "data": ["ACCT-GROUP-ID", "TRANCAT-CD", "TRANCAT-TYPE-CD", "DIS-INT-RATE"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBACT04C-003",
+   "category": "routing",
+   "statement": "When no disclosure group record exists for the account's group id, type and category (status '23'), the interest rate is taken from the disclosure group with group id 'DEFAULT' for the same type and category; if that default record is also missing the job abends.",
+   "paragraph": "1200-GET-INTEREST-RATE",
+   "source": "app/cbl/CBACT04C.cbl:436-439",
+   "anchor": "MOVE 'DEFAULT' TO FD-DIS-ACCT-GROUP-ID",
+   "additional_sources": ["app/cbl/CBACT04C.cbl:416-426", "app/cbl/CBACT04C.cbl:444-459"],
+   "conditions": "DISCGRP-STATUS = '23' (record not found)",
+   "outcome": "Re-read DISCGRP with FD-DIS-ACCT-GROUP-ID = 'DEFAULT'; abend 999 with 'ERROR READING DEFAULT DISCLOSURE GROUP' if not found.",
+   "data": ["DISCGRP-STATUS", "FD-DIS-ACCT-GROUP-ID", "DIS-INT-RATE"],
+   "messages": ["DISCLOSURE GROUP RECORD MISSING", "TRY WITH DEFAULT GROUP CODE", "ERROR READING DEFAULT DISCLOSURE GROUP"],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBACT04C-004",
+   "category": "calculation",
+   "statement": "Monthly interest of all categories of an account is summed in WS-TOTAL-INT; at the account break the total is added to the account's current balance and the current-cycle credit and debit totals are reset to zero before the account is rewritten.",
+   "paragraph": "1050-UPDATE-ACCOUNT",
+   "source": "app/cbl/CBACT04C.cbl:352-356",
+   "anchor": "ADD WS-TOTAL-INT TO ACCT-CURR-BAL",
+   "additional_sources": ["app/cbl/CBACT04C.cbl:467"],
+   "conditions": "Account control break (BR-CBACT04C-001).",
+   "outcome": "ACCT-CURR-BAL += WS-TOTAL-INT; ACCT-CURR-CYC-CREDIT = 0; ACCT-CURR-CYC-DEBIT = 0; REWRITE of the account record.",
+   "data": ["WS-MONTHLY-INT", "WS-TOTAL-INT", "ACCT-CURR-BAL", "ACCT-CURR-CYC-CREDIT", "ACCT-CURR-CYC-DEBIT"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBACT04C-005",
+   "category": "transformation",
+   "statement": "Each computed monthly interest amount is posted as a system transaction: id = run date parameter (PARM-DATE) + 6-digit running sequence, type '01', category 5, source 'System', description 'Int. for a/c ' followed by the account id, amount = monthly interest, card number from the account's cross-reference, and the current timestamp as both origin and processing timestamp.",
+   "paragraph": "1300-B-WRITE-TX",
+   "source": "app/cbl/CBACT04C.cbl:474-498",
+   "anchor": "STRING 'Int. for a/c ' , ACCT-ID",
+   "conditions": "DIS-INT-RATE <> 0 for the category.",
+   "outcome": "One TRAN-RECORD written to TRANSACT per interest-bearing category.",
+   "data": ["PARM-DATE", "WS-TRANID-SUFFIX", "TRAN-ID", "TRAN-TYPE-CD", "TRAN-CAT-CD", "TRAN-SOURCE", "TRAN-DESC", "TRAN-AMT", "XREF-CARD-NUM", "TRAN-ORIG-TS", "TRAN-PROC-TS"],
+   "messages": [],
+   "confidence": "Confirmed"
+  },
+  {
+   "id": "BR-CBACT04C-006",
+   "category": "error-policy",
+   "statement": "A transaction-category balance whose account is missing from the account master (or has no card cross-reference) is not skipped: the program displays 'ACCOUNT NOT FOUND: ' with the id and abends the run with code 999.",
+   "paragraph": "1100-GET-ACCT-DATA",
+   "source": "app/cbl/CBACT04C.cbl:373-390",
+   "anchor": "DISPLAY 'ACCOUNT NOT FOUND: ' FD-ACCT-ID",
+   "additional_sources": ["app/cbl/CBACT04C.cbl:394-412"],
+   "conditions": "ACCTFILE-STATUS or XREFFILE-STATUS not '00' after the keyed read.",
+   "outcome": "'ERROR READING ACCOUNT FILE' / 'ERROR READING XREF FILE', file status display, abend 999.",
+   "data": ["FD-ACCT-ID", "FD-XREF-ACCT-ID", "ACCTFILE-STATUS", "XREFFILE-STATUS"],
+   "messages": ["ACCOUNT NOT FOUND: ", "ERROR READING ACCOUNT FILE", "ERROR READING XREF FILE"],
+   "confidence": "Confirmed"
+  }
+ ],
+ "schema": "program-semantics/1",
+ "sme_questions": [
+  {
+   "question": "The end-of-file branch that would post interest to the last account is unreachable. Is the last account's balance update handled elsewhere, or is this a known defect?",
+   "source": "app/cbl/CBACT04C.cbl:187-222"
+  },
+  {
+   "question": "Should interest be charged on negative (credit) category balances, and should the monthly interest be rounded rather than truncated?",
+   "source": "app/cbl/CBACT04C.cbl:464-465"
+  },
+  {
+   "question": "Which fees should 1400-COMPUTE-FEES calculate, and is resetting the cycle credit/debit totals in this interest step the intended cycle-close point?",
+   "source": "app/cbl/CBACT04C.cbl:350-354"
+  }
+ ],
+ "source_path": "app/cbl/CBACT04C.cbl",
+ "source_sha256": "5084bb8b0c9a0f0199f737487ae1863f12e43cabbdc459a62b6b67bedc683cc4",
+ "status": "complete",
+ "summary": {
+  "confidence": "Confirmed",
+  "evidence": ["app/cbl/CBACT04C.cbl:1-5", "app/cbl/CBACT04C.cbl:28-57", "app/cbl/CBACT04C.cbl:175-232", "app/cbl/CBACT04C.cbl:350-370", "app/cbl/CBACT04C.cbl:462-515"],
+  "text": "CBACT04C is the batch interest calculator. It reads the transaction category balance file TCATBALF sequentially (records grouped by account id) and, for each category, looks up the annual interest rate in the disclosure group file DISCGRP by account group, transaction type and category, falling back to the 'DEFAULT' group. For non-zero rates it computes monthly interest as balance x rate / 1200 and writes an interest transaction (type '01', category 5) to the sequential TRANSACT file, using the run date passed in PARM-DATE to build transaction ids. At each change of account it adds the accumulated interest to the account balance in ACCTFILE (opened I-O), resets the cycle credit and debit totals and rewrites the account. Missing accounts, cross-references or default rates and any I/O error abend the job with code 999."
+ }
+}

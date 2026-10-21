@@ -1,0 +1,300 @@
+{
+ "batch": "B02", 
+ "existing_rules_reviewed": [], 
+ "no_business_rules_reason": null, 
+ "no_rule_decisions": [], 
+ "observations": [
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CBEXPORT.cbl:65-69", 
+   "text": "EXPORT-OUTPUT is declared ORGANIZATION INDEXED with RECORD KEY EXPORT-SEQUENCE-NUM, but EXPORT-SEQUENCE-NUM belongs to EXPORT-RECORD in WORKING-STORAGE (COPY CVEXPORT), not to the FD record EXPORT-OUTPUT-RECORD; the FD also states RECORDING MODE F. A record key outside the file's record area is not valid COBOL, so the intended organization (KSDS vs sequential) needs confirmation."
+  }, 
+  {
+   "kind": "hardcoded-value", 
+   "source": "app/cbl/CBEXPORT.cbl:278-279", 
+   "text": "Every export record is stamped with branch id '0001' and region 'NORTH' regardless of the data."
+  }, 
+  {
+   "kind": "security", 
+   "source": "app/cbl/CBEXPORT.cbl:293-294", 
+   "text": "Customer SSN, government id, and card CVV are copied in clear text into the export file (CVV stored as binary COMP, which is not encryption)."
+  }, 
+  {
+   "kind": "unchecked-io", 
+   "source": "app/cbl/CBEXPORT.cbl:556-561", 
+   "text": "6000-FINALIZE closes all six files without checking any file status."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CBEXPORT.cbl:190-193", 
+   "text": "WS-FORMATTED-TIMESTAMP (X(26)) is built from date (10) + space + time (8) + '.00' = 22 characters; STRING does not pad, so the last 4 bytes are never set by the program."
+  }, 
+  {
+   "kind": "anomaly", 
+   "source": "app/cbl/CBEXPORT.cbl:576-579", 
+   "text": "9999-ABEND-PROGRAM calls CEE3ABD with no abend code or timing parameters, unlike other CardDemo batch programs which pass ABCODE 999."
+  }
+ ], 
+ "paragraphs": [
+  {
+   "confidence": "Confirmed", 
+   "lines": "149-158", 
+   "logic": "Performs 1000-INITIALIZE, then 2000-EXPORT-CUSTOMERS, 3000-EXPORT-ACCOUNTS, 4000-EXPORT-XREFS, 5000-EXPORT-TRANSACTIONS and 5500-EXPORT-CARDS in that order, then 6000-FINALIZE, and ends with GOBACK.", 
+   "name": "0000-MAIN-PROCESSING"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "161-169", 
+   "logic": "Displays 'CBEXPORT: Starting Customer Data Export', performs 1050-GENERATE-TIMESTAMP and 1100-OPEN-FILES, then displays WS-EXPORT-DATE and WS-EXPORT-TIME.", 
+   "name": "1000-INITIALIZE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "172-195", 
+   "logic": "Accepts the system date (YYYYMMDD) and time, formats WS-EXPORT-DATE as YYYY-MM-DD and WS-EXPORT-TIME as HH:MM:SS, and strings them with '.00' into WS-FORMATTED-TIMESTAMP.", 
+   "name": "1050-GENERATE-TIMESTAMP"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "198-240", 
+   "logic": "Opens CUSTOMER-INPUT, ACCOUNT-INPUT, XREF-INPUT, TRANSACTION-INPUT and CARD-INPUT for INPUT and EXPORT-OUTPUT for OUTPUT. After each OPEN, when the status condition (WS-CUSTOMER-OK, WS-ACCOUNT-OK, WS-XREF-OK, WS-TRANSACTION-OK, WS-CARD-OK, WS-EXPORT-OK) is false it displays 'ERROR: Cannot open <file>, Status: ' with the status field and performs 9999-ABEND-PROGRAM.", 
+   "name": "1100-OPEN-FILES"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "243-255", 
+   "logic": "Reads customer records sequentially until WS-CUSTOMER-EOF, creating one export record per customer, then displays the customer export count.", 
+   "name": "2000-EXPORT-CUSTOMERS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "258-266", 
+   "logic": "Reads the next CUSTOMER-INPUT record; a status other than '00' or '10' displays 'ERROR: Reading CUSTOMER-INPUT, Status: ' and abends.", 
+   "name": "2100-READ-CUSTOMER-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "269-310", 
+   "logic": "Initializes EXPORT-RECORD, sets type 'C', timestamp, next sequence number, branch '0001' and region 'NORTH', maps all CUSTOMER-RECORD fields into EXPORT-CUSTOMER-DATA (address lines and phones into OCCURS arrays), writes the 500-byte record (abend on bad status) and increments the customer and total counters.", 
+   "name": "2200-CREATE-CUSTOMER-EXP-REC"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "312-324", 
+   "logic": "Reads account records sequentially until WS-ACCOUNT-EOF, creating one export record per account, then displays the account export count.", 
+   "name": "3000-EXPORT-ACCOUNTS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "327-335", 
+   "logic": "Reads the next ACCOUNT-INPUT record; a status other than '00' or '10' displays 'ERROR: Reading ACCOUNT-INPUT, Status: ' and abends.", 
+   "name": "3100-READ-ACCOUNT-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "338-373", 
+   "logic": "Initializes EXPORT-RECORD, sets type 'A' and the common header, maps all ACCOUNT-RECORD fields into EXPORT-ACCOUNT-DATA (balance and cash limit become COMP-3, cycle debit COMP), writes the record (abend on bad status) and increments counters.", 
+   "name": "3200-CREATE-ACCOUNT-EXP-REC"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "376-388", 
+   "logic": "Reads cross-reference records sequentially until WS-XREF-EOF, creating one export record each, then displays the count.", 
+   "name": "4000-EXPORT-XREFS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "391-399", 
+   "logic": "Reads the next XREF-INPUT record; a status other than '00' or '10' displays 'ERROR: Reading XREF-INPUT, Status: ' and abends.", 
+   "name": "4100-READ-XREF-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "402-428", 
+   "logic": "Initializes EXPORT-RECORD, sets type 'X' and the common header, maps card number, customer id and account id (COMP) into EXPORT-CARD-XREF-DATA, writes the record (abend on bad status) and increments counters.", 
+   "name": "4200-CREATE-XREF-EXPORT-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "431-443", 
+   "logic": "Reads transaction records sequentially until WS-TRANSACTION-EOF, creating one export record each, then displays the count.", 
+   "name": "5000-EXPORT-TRANSACTIONS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "446-454", 
+   "logic": "Reads the next TRANSACTION-INPUT record; a status other than '00' or '10' displays 'ERROR: Reading TRANSACTION-INPUT, Status: ' and abends.", 
+   "name": "5100-READ-TRANSACTION-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "457-493", 
+   "logic": "Initializes EXPORT-RECORD, sets type 'T' and the common header, maps all TRAN-RECORD fields into EXPORT-TRANSACTION-DATA (amount COMP-3, merchant id COMP), writes the record (abend on bad status) and increments counters.", 
+   "name": "5200-CREATE-TRAN-EXP-REC"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "496-508", 
+   "logic": "Reads card records sequentially until WS-CARD-EOF, creating one export record each, then displays the count.", 
+   "name": "5500-EXPORT-CARDS"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "511-519", 
+   "logic": "Reads the next CARD-INPUT record; a status other than '00' or '10' displays 'ERROR: Reading CARD-INPUT, Status: ' and abends.", 
+   "name": "5600-READ-CARD-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "522-551", 
+   "logic": "Initializes EXPORT-RECORD, sets type 'D' and the common header, maps card number, account id (COMP), CVV (COMP), embossed name, expiration date and active status into EXPORT-CARD-DATA, writes the record (abend on bad status) and increments counters.", 
+   "name": "5700-CREATE-CARD-EXPORT-RECORD"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "554-573", 
+   "logic": "Closes CUSTOMER-INPUT, ACCOUNT-INPUT, XREF-INPUT, TRANSACTION-INPUT, CARD-INPUT and EXPORT-OUTPUT (statuses not checked), displays 'CBEXPORT: Export completed' and the counters WS-CUSTOMER-RECORDS-EXPORTED, WS-ACCOUNT-RECORDS-EXPORTED, WS-XREF-RECORDS-EXPORTED, WS-TRAN-RECORDS-EXPORTED, WS-CARD-RECORDS-EXPORTED and WS-TOTAL-RECORDS-EXPORTED.", 
+   "name": "6000-FINALIZE"
+  }, 
+  {
+   "confidence": "Confirmed", 
+   "lines": "576-579", 
+   "logic": "Displays 'CBEXPORT: ABENDING PROGRAM' and calls CEE3ABD without parameters.", 
+   "name": "9999-ABEND-PROGRAM"
+  }
+ ], 
+ "program": "CBEXPORT", 
+ "rules": [
+  {
+   "additional_sources": [
+    "app/cbl/CBEXPORT.cbl:249-252"
+   ], 
+   "anchor": "PERFORM 2000-EXPORT-CUSTOMERS", 
+   "category": "decision", 
+   "conditions": "Always.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "CUSTOMER-INPUT", 
+    "ACCOUNT-INPUT", 
+    "XREF-INPUT", 
+    "TRANSACTION-INPUT", 
+    "CARD-INPUT"
+   ], 
+   "id": "BR-CBEXPORT-001", 
+   "messages": [], 
+   "outcome": "EXPFILE contains all records of the five source files.", 
+   "paragraph": "0000-MAIN-PROCESSING", 
+   "source": "app/cbl/CBEXPORT.cbl:151-157", 
+   "statement": "The branch-migration export is a full, unfiltered extract: every customer, account, card cross-reference, transaction and card record is exported, in that fixed order (one entity type after another), with no selection criteria."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/CBEXPORT.cbl:343-348", 
+    "app/cbl/CBEXPORT.cbl:407-412", 
+    "app/cbl/CBEXPORT.cbl:462-467", 
+    "app/cbl/CBEXPORT.cbl:527-532"
+   ], 
+   "anchor": "MOVE 'C' TO EXPORT-REC-TYPE", 
+   "category": "transformation", 
+   "conditions": "Every exported record.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "EXPORT-REC-TYPE", 
+    "EXPORT-TIMESTAMP", 
+    "WS-SEQUENCE-COUNTER", 
+    "EXPORT-SEQUENCE-NUM", 
+    "EXPORT-BRANCH-ID", 
+    "EXPORT-REGION-CODE"
+   ], 
+   "id": "BR-CBEXPORT-002", 
+   "messages": [], 
+   "outcome": "EXPORT-REC-TYPE, EXPORT-TIMESTAMP, EXPORT-SEQUENCE-NUM, EXPORT-BRANCH-ID, EXPORT-REGION-CODE populated.", 
+   "paragraph": "2200-CREATE-CUSTOMER-EXP-REC", 
+   "source": "app/cbl/CBEXPORT.cbl:273-279", 
+   "statement": "Each export record carries a type code identifying the entity ('C' customer, 'A' account, 'X' card cross-reference, 'T' transaction, 'D' card), the run timestamp, a sequence number incremented across all record types, branch id '0001' and region code 'NORTH'."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/CBEXPORT.cbl:262-266", 
+    "app/cbl/CBEXPORT.cbl:331-335", 
+    "app/cbl/CBEXPORT.cbl:395-399", 
+    "app/cbl/CBEXPORT.cbl:450-454", 
+    "app/cbl/CBEXPORT.cbl:515-519"
+   ], 
+   "anchor": "DISPLAY 'ERROR: Cannot open CUSTOMER-INPUT, Status: '", 
+   "category": "error-policy", 
+   "conditions": "Open status not '00'; read status not '00' and not '10'.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-CUSTOMER-STATUS", 
+    "WS-ACCOUNT-STATUS", 
+    "WS-XREF-STATUS", 
+    "WS-TRANSACTION-STATUS", 
+    "WS-CARD-STATUS", 
+    "WS-EXPORT-STATUS"
+   ], 
+   "id": "BR-CBEXPORT-003", 
+   "messages": [
+    "ERROR: Cannot open CUSTOMER-INPUT, Status: ", 
+    "ERROR: Reading CUSTOMER-INPUT, Status: ", 
+    "CBEXPORT: ABENDING PROGRAM"
+   ], 
+   "outcome": "Abend; partial export file may remain.", 
+   "paragraph": "1100-OPEN-FILES", 
+   "source": "app/cbl/CBEXPORT.cbl:200-240", 
+   "statement": "Any failure to open a source or export file, or any read status other than success/end-of-file, stops the export with an error message naming the file and its status and an abend via CEE3ABD."
+  }, 
+  {
+   "additional_sources": [
+    "app/cbl/CBEXPORT.cbl:364-370", 
+    "app/cbl/CBEXPORT.cbl:419-425", 
+    "app/cbl/CBEXPORT.cbl:484-490", 
+    "app/cbl/CBEXPORT.cbl:542-548"
+   ], 
+   "anchor": "DISPLAY 'ERROR: Writing export record, Status: '", 
+   "category": "error-policy", 
+   "conditions": "WS-EXPORT-STATUS not '00' after WRITE.", 
+   "confidence": "Confirmed", 
+   "data": [
+    "WS-EXPORT-STATUS"
+   ], 
+   "id": "BR-CBEXPORT-004", 
+   "messages": [
+    "ERROR: Writing export record, Status: "
+   ], 
+   "outcome": "Abend via 9999-ABEND-PROGRAM.", 
+   "paragraph": "2200-CREATE-CUSTOMER-EXP-REC", 
+   "source": "app/cbl/CBEXPORT.cbl:301-307", 
+   "statement": "A failed write of any export record (status not '00') aborts the whole export run; no record is skipped silently."
+  }
+ ], 
+ "schema": "program-semantics/1", 
+ "sme_questions": [
+  {
+   "question": "Is EXPFILE meant to be a VSAM KSDS keyed by sequence number or a plain sequential file? The SELECT says INDEXED but the key is not in the FD record.", 
+   "source": "app/cbl/CBEXPORT.cbl:65-69"
+  }, 
+  {
+   "question": "Should branch id and region code be parameters instead of the constants '0001' and 'NORTH'?", 
+   "source": "app/cbl/CBEXPORT.cbl:278-279"
+  }, 
+  {
+   "question": "Is exporting SSN and CVV in clear text acceptable for the migration file, or must they be masked/encrypted?", 
+   "source": "app/cbl/CBEXPORT.cbl:536-538"
+  }
+ ], 
+ "source_path": "app/cbl/CBEXPORT.cbl", 
+ "source_sha256": "598e3c9055b96b79266910e080bc24048eb308ee61afc828c06dbade9f501d38", 
+ "status": "complete", 
+ "summary": {
+  "confidence": "Confirmed", 
+  "evidence": [
+   "app/cbl/CBEXPORT.cbl:4-30", 
+   "app/cbl/CBEXPORT.cbl:34-92", 
+   "app/cbl/CBEXPORT.cbl:149-158", 
+   "app/cbl/CBEXPORT.cbl:269-310", 
+   "app/cbl/CBEXPORT.cbl:554-573"
+  ], 
+  "text": "CBEXPORT is a batch COBOL program that produces a branch-migration export file. It reads the customer (CUSTFILE), account (ACCTFILE), card cross-reference (XREFFILE), transaction (TRANSACT) and card (CARDFILE) indexed files sequentially and writes every record into one 500-byte multi-record file EXPFILE using the CVEXPORT layout. Each record gets a type code (C, A, X, T, D), a run timestamp, a global sequence number and constant branch '0001' / region 'NORTH'; several numeric fields are packed into COMP or COMP-3 to save space. At the end it displays per-type and total counts. Any open, read or write error abends the program via CEE3ABD."
+ }
+}

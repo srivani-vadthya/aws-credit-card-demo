@@ -1,0 +1,39 @@
+{
+ "batch": "B09", 
+ "checked": "2026-10-20T04:35:12", 
+ "copybooks": {}, 
+ "programs": {
+  "COACCT01": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 19, 
+   "decision_covered": 19, 
+   "decision_in_rules": 7, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 13, 
+   "paragraphs_total": 13, 
+   "program": "COACCT01", 
+   "rules": 8, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }, 
+  "CODATE01": {
+   "checked": "2026-10-20T04:35:12", 
+   "decision_candidates": 18, 
+   "decision_covered": 18, 
+   "decision_in_rules": 6, 
+   "existing_reviewed": 0, 
+   "issues": [], 
+   "paragraphs_described": 13, 
+   "paragraphs_total": 13, 
+   "program": "CODATE01", 
+   "rules": 5, 
+   "status": "validated", 
+   "uncovered_decisions": [], 
+   "ungrounded_paragraphs": [], 
+   "warnings": []
+  }
+ }
+}
