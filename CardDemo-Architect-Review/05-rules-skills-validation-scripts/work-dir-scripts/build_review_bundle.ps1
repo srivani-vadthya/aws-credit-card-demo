@@ -52,7 +52,7 @@ Copy-Item '.cursor/rules' "$d5/cursor-rules" -Recurse
 Copy-Item 'docs-toolkit' "$d5/docs-toolkit" -Recurse
 New-Item -ItemType Directory -Force "$d5/work-dir-scripts" | Out-Null
 foreach ($f in @('build_combined_markdown.ps1', 'build_review_bundle.ps1', 'prepare_review_bundle.py', 'verify_review_bundle.py',
-                 'write_review_readme.py', 'check_instream_secrets.py', 'progress.md')) {
+                 'write_review_readme.py', 'check_instream_secrets.py', 'zip_review_bundle.py', 'zip_entry_check.py', 'progress.md')) {
     Copy-Item "$work/$f" "$d5/work-dir-scripts"
 }
 New-Item -ItemType Directory -Force "$d5/work-dir-checkpoints" | Out-Null
@@ -67,7 +67,10 @@ $verifyCode = $LASTEXITCODE
 $commit = (git rev-parse --short HEAD 2>$null)
 $srcChanges = @(git status --porcelain -- app samples scripts 2>$null)
 $srcState = if ($srcChanges.Count -eq 0) { 'clean' } elseif (@($srcChanges | Where-Object { $_ -notlike '`?`? *' }).Count -eq 0) { 'untracked' } else { 'modified' }
-& python "$work/write_review_readme.py" $Bundle $commit $srcState
+$regenerated = @('README.md', '02-coverage-validation-report/bundle-verification.md', '02-coverage-validation-report/bundle-verification.json')
+$changed = @(git status --porcelain --untracked-files=all -- $Bundle 2>$null | ForEach-Object { $_.Substring(3).Trim('"') } |
+             ForEach-Object { $_.Substring($Bundle.Length + 1) } | Where-Object { $regenerated -notcontains $_ } | Sort-Object)
+& python "$work/write_review_readme.py" $Bundle $commit $srcState ($changed -join ';')
 if ($LASTEXITCODE -ne 0) { throw "write_review_readme.py failed" }
 if ($verifyCode -ne 0) { throw "verify_review_bundle.py reported failures; see $Bundle/02-coverage-validation-report/bundle-verification.md" }
 
@@ -75,8 +78,10 @@ if ($verifyCode -ne 0) { throw "verify_review_bundle.py reported failures; see $
 if ($LASTEXITCODE -ne 0) { throw "in-stream secrets found in bundle" }
 
 $zip = "$Bundle.zip"
-if (Test-Path $zip) { Remove-Item $zip -Force }
-Compress-Archive -Path $Bundle -DestinationPath $zip
+& python "$work/zip_review_bundle.py" $Bundle $zip
+if ($LASTEXITCODE -ne 0) { throw "zip_review_bundle.py failed" }
+& python "$work/zip_entry_check.py" $zip $Bundle
+if ($LASTEXITCODE -ne 0) { throw "ZIP entries use backslashes or lie outside $Bundle/" }
 
 $tmp = Join-Path $env:TEMP ("carddemo-bundle-check-" + [guid]::NewGuid().ToString('N'))
 Expand-Archive -Path $zip -DestinationPath $tmp
